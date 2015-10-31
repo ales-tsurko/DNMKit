@@ -9,7 +9,14 @@ It includes several subframeworks:
 * DNMView: Graphical representation of the musical model
 * DNMUI: Interaction elements
 * DNMConverter: Converter 
-	* currently for DNMShorthand text input, later for JSON, MusicXML, Bach, OpenMusic, PWGL, etc.
+	* currently for DNMShorthand text input, later for:
+		* JSON
+		* MusicXML
+		* Abjad
+		* Bach
+		* OpenMusic
+		* PWGL
+		* and so on
 - DNMUtility: Basic helper functions and variables
 
 
