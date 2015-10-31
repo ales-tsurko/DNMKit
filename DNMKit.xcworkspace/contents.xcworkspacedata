@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DNMUI/DNMUI.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DNMKitExample_OSX/DNMKitExample_OSX.xcodeproj">
    </FileRef>
    <FileRef
