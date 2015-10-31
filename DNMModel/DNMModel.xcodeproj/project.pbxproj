@@ -10,6 +10,41 @@
 		07ECB3D51BE538AD00C9AD08 /* DNMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3D41BE538AD00C9AD08 /* DNMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB3DC1BE538AD00C9AD08 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3D11BE538AD00C9AD08 /* DNMModel.framework */; };
 		07ECB3E11BE538AD00C9AD08 /* DNMModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB3E01BE538AD00C9AD08 /* DNMModelTests.swift */; };
+		07F3E5FB1BE541CA00948758 /* Beats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F51BE541CA00948758 /* Beats.swift */; };
+		07F3E5FC1BE541CA00948758 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F61BE541CA00948758 /* Duration.swift */; };
+		07F3E5FD1BE541CA00948758 /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F71BE541CA00948758 /* DurationSpan.swift */; };
+		07F3E5FE1BE541CA00948758 /* Subdivision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F81BE541CA00948758 /* Subdivision.swift */; };
+		07F3E5FF1BE541CA00948758 /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F91BE541CA00948758 /* Tempo.swift */; };
+		07F3E6001BE541CA00948758 /* TempoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5FA1BE541CA00948758 /* TempoFunction.swift */; };
+		07F3E6021BE541F400948758 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E6011BE541F300948758 /* DNMUtility.framework */; };
+		07F3E6051BE5426E00948758 /* InstrumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6041BE5426E00948758 /* InstrumentType.swift */; };
+		07F3E6071BE5429D00948758 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6061BE5429D00948758 /* Measure.swift */; };
+		07F3E6111BE5439300948758 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6101BE5439300948758 /* Component.swift */; };
+		07F3E6141BE5439B00948758 /* DurationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6121BE5439B00948758 /* DurationNode.swift */; };
+		07F3E6151BE5439B00948758 /* DurationNodeDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6131BE5439B00948758 /* DurationNodeDyad.swift */; };
+		07F3E6171BE543BF00948758 /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6161BE543BF00948758 /* TempoMarking.swift */; };
+		07F3E6191BE543D400948758 /* RehearsalMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6181BE543D400948758 /* RehearsalMarking.swift */; };
+		07F3E68B1BE5475900948758 /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E68A1BE5475900948758 /* DNMJSON.framework */; };
+		07F3E6951BE547DB00948758 /* ScoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6941BE547DB00948758 /* ScoreInfo.swift */; };
+		07F3E6DA1BE54AC500948758 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D81BE54AC500948758 /* Frequency.swift */; };
+		07F3E6DB1BE54AC500948758 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D91BE54AC500948758 /* MIDI.swift */; };
+		07F3E6E01BE54AE200948758 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DC1BE54AE200948758 /* Pitch.swift */; };
+		07F3E6E11BE54AE200948758 /* PitchDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DD1BE54AE200948758 /* PitchDyad.swift */; };
+		07F3E6E21BE54AE200948758 /* PitchPolyphony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */; };
+		07F3E6E31BE54AE200948758 /* PitchVerticality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */; };
+		07F3E6ED1BE54B0C00948758 /* GetPitchSpellings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */; };
+		07F3E6EE1BE54B0C00948758 /* PitchDyadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */; };
+		07F3E6EF1BE54B0C00948758 /* PitchMonadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */; };
+		07F3E6F01BE54B0C00948758 /* PitchPolyphonySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */; };
+		07F3E6F11BE54B0C00948758 /* PitchSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E81BE54B0C00948758 /* PitchSpeller.swift */; };
+		07F3E6F21BE54B0C00948758 /* PitchSpelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E91BE54B0C00948758 /* PitchSpelling.swift */; };
+		07F3E6F31BE54B0C00948758 /* PitchSpellingDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6EA1BE54B0C00948758 /* PitchSpellingDyad.swift */; };
+		07F3E6F41BE54B0C00948758 /* PitchSpellingsByPitchClass.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E6EB1BE54B0C00948758 /* PitchSpellingsByPitchClass.json */; };
+		07F3E6F51BE54B0C00948758 /* PitchVerticalitySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6EC1BE54B0C00948758 /* PitchVerticalitySpeller.swift */; };
+		07F3E6FA1BE54B1700948758 /* PitchCoarse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F61BE54B1700948758 /* PitchCoarse.swift */; };
+		07F3E6FB1BE54B1700948758 /* PitchFine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F71BE54B1700948758 /* PitchFine.swift */; };
+		07F3E6FC1BE54B1700948758 /* PitchInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F81BE54B1700948758 /* PitchInterval.swift */; };
+		07F3E6FD1BE54B1700948758 /* PitchLetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F91BE54B1700948758 /* PitchLetterName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +64,41 @@
 		07ECB3DB1BE538AD00C9AD08 /* DNMModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3E01BE538AD00C9AD08 /* DNMModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMModelTests.swift; sourceTree = "<group>"; };
 		07ECB3E21BE538AD00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E5F51BE541CA00948758 /* Beats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beats.swift; sourceTree = "<group>"; };
+		07F3E5F61BE541CA00948758 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		07F3E5F71BE541CA00948758 /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
+		07F3E5F81BE541CA00948758 /* Subdivision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subdivision.swift; sourceTree = "<group>"; };
+		07F3E5F91BE541CA00948758 /* Tempo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tempo.swift; sourceTree = "<group>"; };
+		07F3E5FA1BE541CA00948758 /* TempoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoFunction.swift; sourceTree = "<group>"; };
+		07F3E6011BE541F300948758 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
+		07F3E6041BE5426E00948758 /* InstrumentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentType.swift; sourceTree = "<group>"; };
+		07F3E6061BE5429D00948758 /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
+		07F3E6101BE5439300948758 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		07F3E6121BE5439B00948758 /* DurationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNode.swift; sourceTree = "<group>"; };
+		07F3E6131BE5439B00948758 /* DurationNodeDyad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeDyad.swift; sourceTree = "<group>"; };
+		07F3E6161BE543BF00948758 /* TempoMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarking.swift; sourceTree = "<group>"; };
+		07F3E6181BE543D400948758 /* RehearsalMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarking.swift; sourceTree = "<group>"; };
+		07F3E68A1BE5475900948758 /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMJSON.framework"; sourceTree = "<group>"; };
+		07F3E6941BE547DB00948758 /* ScoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfo.swift; sourceTree = "<group>"; };
+		07F3E6D81BE54AC500948758 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		07F3E6D91BE54AC500948758 /* MIDI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
+		07F3E6DC1BE54AE200948758 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
+		07F3E6DD1BE54AE200948758 /* PitchDyad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchDyad.swift; sourceTree = "<group>"; };
+		07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchPolyphony.swift; sourceTree = "<group>"; };
+		07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchVerticality.swift; sourceTree = "<group>"; };
+		07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPitchSpellings.swift; sourceTree = "<group>"; };
+		07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchDyadSpeller.swift; sourceTree = "<group>"; };
+		07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchMonadSpeller.swift; sourceTree = "<group>"; };
+		07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchPolyphonySpeller.swift; sourceTree = "<group>"; };
+		07F3E6E81BE54B0C00948758 /* PitchSpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSpeller.swift; sourceTree = "<group>"; };
+		07F3E6E91BE54B0C00948758 /* PitchSpelling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSpelling.swift; sourceTree = "<group>"; };
+		07F3E6EA1BE54B0C00948758 /* PitchSpellingDyad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSpellingDyad.swift; sourceTree = "<group>"; };
+		07F3E6EB1BE54B0C00948758 /* PitchSpellingsByPitchClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PitchSpellingsByPitchClass.json; sourceTree = "<group>"; };
+		07F3E6EC1BE54B0C00948758 /* PitchVerticalitySpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchVerticalitySpeller.swift; sourceTree = "<group>"; };
+		07F3E6F61BE54B1700948758 /* PitchCoarse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchCoarse.swift; sourceTree = "<group>"; };
+		07F3E6F71BE54B1700948758 /* PitchFine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchFine.swift; sourceTree = "<group>"; };
+		07F3E6F81BE54B1700948758 /* PitchInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchInterval.swift; sourceTree = "<group>"; };
+		07F3E6F91BE54B1700948758 /* PitchLetterName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchLetterName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6021BE541F400948758 /* DNMUtility.framework in Frameworks */,
+				07F3E68B1BE5475900948758 /* DNMJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +125,8 @@
 		07ECB3C71BE538AD00C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				07F3E68A1BE5475900948758 /* DNMJSON.framework */,
+				07F3E6011BE541F300948758 /* DNMUtility.framework */,
 				07ECB3D31BE538AD00C9AD08 /* DNMModel */,
 				07ECB3DF1BE538AD00C9AD08 /* DNMModelTests */,
 				07ECB3D21BE538AD00C9AD08 /* Products */,
@@ -71,6 +145,13 @@
 		07ECB3D31BE538AD00C9AD08 /* DNMModel */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E6941BE547DB00948758 /* ScoreInfo.swift */,
+				07F3E6101BE5439300948758 /* Component.swift */,
+				07F3E6121BE5439B00948758 /* DurationNode.swift */,
+				07F3E6131BE5439B00948758 /* DurationNodeDyad.swift */,
+				07F3E6031BE5425100948758 /* InstrumentInfo */,
+				07F3E5C51BE540F800948758 /* Pitch */,
+				07F3E5C41BE540F500948758 /* Duration */,
 				07ECB3D41BE538AD00C9AD08 /* DNMModel.h */,
 				07ECB3D61BE538AD00C9AD08 /* Info.plist */,
 			);
@@ -84,6 +165,72 @@
 				07ECB3E21BE538AD00C9AD08 /* Info.plist */,
 			);
 			path = DNMModelTests;
+			sourceTree = "<group>";
+		};
+		07F3E5C41BE540F500948758 /* Duration */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E5F51BE541CA00948758 /* Beats.swift */,
+				07F3E5F61BE541CA00948758 /* Duration.swift */,
+				07F3E5F71BE541CA00948758 /* DurationSpan.swift */,
+				07F3E5F81BE541CA00948758 /* Subdivision.swift */,
+				07F3E5F91BE541CA00948758 /* Tempo.swift */,
+				07F3E5FA1BE541CA00948758 /* TempoFunction.swift */,
+				07F3E6161BE543BF00948758 /* TempoMarking.swift */,
+				07F3E6181BE543D400948758 /* RehearsalMarking.swift */,
+				07F3E6061BE5429D00948758 /* Measure.swift */,
+			);
+			name = Duration;
+			sourceTree = "<group>";
+		};
+		07F3E5C51BE540F800948758 /* Pitch */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6DC1BE54AE200948758 /* Pitch.swift */,
+				07F3E6DD1BE54AE200948758 /* PitchDyad.swift */,
+				07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */,
+				07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */,
+				07F3E6D71BE54AB300948758 /* Utility */,
+				07F3E6D61BE54AA400948758 /* PitchSpelling */,
+			);
+			name = Pitch;
+			sourceTree = "<group>";
+		};
+		07F3E6031BE5425100948758 /* InstrumentInfo */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6041BE5426E00948758 /* InstrumentType.swift */,
+			);
+			name = InstrumentInfo;
+			sourceTree = "<group>";
+		};
+		07F3E6D61BE54AA400948758 /* PitchSpelling */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */,
+				07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */,
+				07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */,
+				07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */,
+				07F3E6E81BE54B0C00948758 /* PitchSpeller.swift */,
+				07F3E6E91BE54B0C00948758 /* PitchSpelling.swift */,
+				07F3E6EA1BE54B0C00948758 /* PitchSpellingDyad.swift */,
+				07F3E6EB1BE54B0C00948758 /* PitchSpellingsByPitchClass.json */,
+				07F3E6EC1BE54B0C00948758 /* PitchVerticalitySpeller.swift */,
+			);
+			name = PitchSpelling;
+			sourceTree = "<group>";
+		};
+		07F3E6D71BE54AB300948758 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6F61BE54B1700948758 /* PitchCoarse.swift */,
+				07F3E6F71BE54B1700948758 /* PitchFine.swift */,
+				07F3E6F81BE54B1700948758 /* PitchInterval.swift */,
+				07F3E6F91BE54B1700948758 /* PitchLetterName.swift */,
+				07F3E6D81BE54AC500948758 /* Frequency.swift */,
+				07F3E6D91BE54AC500948758 /* MIDI.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +289,7 @@
 		07ECB3C81BE538AD00C9AD08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
@@ -176,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6F41BE54B0C00948758 /* PitchSpellingsByPitchClass.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +342,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6071BE5429D00948758 /* Measure.swift in Sources */,
+				07F3E6ED1BE54B0C00948758 /* GetPitchSpellings.swift in Sources */,
+				07F3E6141BE5439B00948758 /* DurationNode.swift in Sources */,
+				07F3E6951BE547DB00948758 /* ScoreInfo.swift in Sources */,
+				07F3E6FB1BE54B1700948758 /* PitchFine.swift in Sources */,
+				07F3E6111BE5439300948758 /* Component.swift in Sources */,
+				07F3E5FB1BE541CA00948758 /* Beats.swift in Sources */,
+				07F3E6E21BE54AE200948758 /* PitchPolyphony.swift in Sources */,
+				07F3E6001BE541CA00948758 /* TempoFunction.swift in Sources */,
+				07F3E6191BE543D400948758 /* RehearsalMarking.swift in Sources */,
+				07F3E6151BE5439B00948758 /* DurationNodeDyad.swift in Sources */,
+				07F3E6F11BE54B0C00948758 /* PitchSpeller.swift in Sources */,
+				07F3E6EE1BE54B0C00948758 /* PitchDyadSpeller.swift in Sources */,
+				07F3E6DB1BE54AC500948758 /* MIDI.swift in Sources */,
+				07F3E5FC1BE541CA00948758 /* Duration.swift in Sources */,
+				07F3E5FD1BE541CA00948758 /* DurationSpan.swift in Sources */,
+				07F3E6F51BE54B0C00948758 /* PitchVerticalitySpeller.swift in Sources */,
+				07F3E6051BE5426E00948758 /* InstrumentType.swift in Sources */,
+				07F3E6F01BE54B0C00948758 /* PitchPolyphonySpeller.swift in Sources */,
+				07F3E6DA1BE54AC500948758 /* Frequency.swift in Sources */,
+				07F3E6171BE543BF00948758 /* TempoMarking.swift in Sources */,
+				07F3E6E11BE54AE200948758 /* PitchDyad.swift in Sources */,
+				07F3E6E01BE54AE200948758 /* Pitch.swift in Sources */,
+				07F3E6FC1BE54B1700948758 /* PitchInterval.swift in Sources */,
+				07F3E6F31BE54B0C00948758 /* PitchSpellingDyad.swift in Sources */,
+				07F3E6FD1BE54B1700948758 /* PitchLetterName.swift in Sources */,
+				07F3E6E31BE54AE200948758 /* PitchVerticality.swift in Sources */,
+				07F3E5FE1BE541CA00948758 /* Subdivision.swift in Sources */,
+				07F3E5FF1BE541CA00948758 /* Tempo.swift in Sources */,
+				07F3E6F21BE54B0C00948758 /* PitchSpelling.swift in Sources */,
+				07F3E6FA1BE54B1700948758 /* PitchCoarse.swift in Sources */,
+				07F3E6EF1BE54B0C00948758 /* PitchMonadSpeller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +488,7 @@
 		07ECB3E61BE538AD00C9AD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -317,12 +499,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		07ECB3E71BE538AD00C9AD08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -375,6 +559,7 @@
 				07ECB3E71BE538AD00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07ECB3E81BE538AD00C9AD08 /* Build configuration list for PBXNativeTarget "DNMModelTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +568,7 @@
 				07ECB3EA1BE538AD00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

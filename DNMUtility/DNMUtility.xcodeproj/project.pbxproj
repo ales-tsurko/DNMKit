@@ -10,6 +10,15 @@
 		07ECB41D1BE538CD00C9AD08 /* DNMUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB41C1BE538CD00C9AD08 /* DNMUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4241BE538CD00C9AD08 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB4191BE538CD00C9AD08 /* DNMUtility.framework */; };
 		07ECB4291BE538CD00C9AD08 /* DNMUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4281BE538CD00C9AD08 /* DNMUtilityTests.swift */; };
+		07F3E5CC1BE5414100948758 /* Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5C71BE5414100948758 /* Arithmetic.swift */; };
+		07F3E5CD1BE5414100948758 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5C81BE5414100948758 /* ArrayExtensions.swift */; };
+		07F3E5CE1BE5414100948758 /* GCDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5C91BE5414100948758 /* GCDHelper.swift */; };
+		07F3E5CF1BE5414100948758 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5CA1BE5414100948758 /* Random.swift */; };
+		07F3E5D01BE5414100948758 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5CB1BE5414100948758 /* RegularExpressions.swift */; };
+		07F3E60A1BE542F800948758 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6081BE542F800948758 /* Node.swift */; };
+		07F3E60B1BE542F800948758 /* NodePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6091BE542F800948758 /* NodePosition.swift */; };
+		07F3E60D1BE5433600948758 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E60C1BE5433600948758 /* Direction.swift */; };
+		07F3E6AB1BE548C700948758 /* SimpleRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6AA1BE548C700948758 /* SimpleRoot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +38,16 @@
 		07ECB4231BE538CD00C9AD08 /* DNMUtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMUtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB4281BE538CD00C9AD08 /* DNMUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMUtilityTests.swift; sourceTree = "<group>"; };
 		07ECB42A1BE538CD00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E5C71BE5414100948758 /* Arithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arithmetic.swift; sourceTree = "<group>"; };
+		07F3E5C81BE5414100948758 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		07F3E5C91BE5414100948758 /* GCDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDHelper.swift; sourceTree = "<group>"; };
+		07F3E5CA1BE5414100948758 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		07F3E5CB1BE5414100948758 /* RegularExpressions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		07F3E6081BE542F800948758 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		07F3E6091BE542F800948758 /* NodePosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePosition.swift; sourceTree = "<group>"; };
+		07F3E60C1BE5433600948758 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		07F3E6881BE5473E00948758 /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMJSON.framework"; sourceTree = "<group>"; };
+		07F3E6AA1BE548C700948758 /* SimpleRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRoot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +72,7 @@
 		07ECB40F1BE538CD00C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				07F3E6881BE5473E00948758 /* DNMJSON.framework */,
 				07ECB41B1BE538CD00C9AD08 /* DNMUtility */,
 				07ECB4271BE538CD00C9AD08 /* DNMUtilityTests */,
 				07ECB41A1BE538CD00C9AD08 /* Products */,
@@ -71,6 +91,15 @@
 		07ECB41B1BE538CD00C9AD08 /* DNMUtility */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E6AA1BE548C700948758 /* SimpleRoot.swift */,
+				07F3E60C1BE5433600948758 /* Direction.swift */,
+				07F3E6081BE542F800948758 /* Node.swift */,
+				07F3E6091BE542F800948758 /* NodePosition.swift */,
+				07F3E5C71BE5414100948758 /* Arithmetic.swift */,
+				07F3E5C81BE5414100948758 /* ArrayExtensions.swift */,
+				07F3E5C91BE5414100948758 /* GCDHelper.swift */,
+				07F3E5CA1BE5414100948758 /* Random.swift */,
+				07F3E5CB1BE5414100948758 /* RegularExpressions.swift */,
 				07ECB41C1BE538CD00C9AD08 /* DNMUtility.h */,
 				07ECB41E1BE538CD00C9AD08 /* Info.plist */,
 			);
@@ -142,6 +171,7 @@
 		07ECB4101BE538CD00C9AD08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
@@ -193,6 +223,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E5CF1BE5414100948758 /* Random.swift in Sources */,
+				07F3E5CC1BE5414100948758 /* Arithmetic.swift in Sources */,
+				07F3E5CE1BE5414100948758 /* GCDHelper.swift in Sources */,
+				07F3E6AB1BE548C700948758 /* SimpleRoot.swift in Sources */,
+				07F3E60D1BE5433600948758 /* Direction.swift in Sources */,
+				07F3E60A1BE542F800948758 /* Node.swift in Sources */,
+				07F3E5D01BE5414100948758 /* RegularExpressions.swift in Sources */,
+				07F3E5CD1BE5414100948758 /* ArrayExtensions.swift in Sources */,
+				07F3E60B1BE542F800948758 /* NodePosition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +346,7 @@
 		07ECB42E1BE538CD00C9AD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -317,12 +357,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		07ECB42F1BE538CD00C9AD08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -375,6 +417,7 @@
 				07ECB42F1BE538CD00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07ECB4301BE538CD00C9AD08 /* Build configuration list for PBXNativeTarget "DNMUtilityTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +426,7 @@
 				07ECB4321BE538CD00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

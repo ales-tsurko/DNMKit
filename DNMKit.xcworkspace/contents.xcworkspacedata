@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DNMJSON/DNMJSON.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMView/DNMView.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMModel/DNMModel.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMMetricalAnalysis/DNMMetricalAnalysis.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DNMConverter/DNMConverter.xcodeproj">
    </FileRef>
    <FileRef
@@ -18,11 +30,5 @@
    </FileRef>
    <FileRef
       location = "group:DNMUtility/DNMUtility.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:DNMView/DNMView.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:DNMModel/DNMModel.xcodeproj">
    </FileRef>
 </Workspace>

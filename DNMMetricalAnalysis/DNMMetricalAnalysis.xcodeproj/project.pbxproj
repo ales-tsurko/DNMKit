@@ -7,187 +7,183 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */; };
-		07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */; };
+		07F3E5DF1BE541B500948758 /* DNMMetricalAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5DE1BE541B500948758 /* DNMMetricalAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F3E5E61BE541B500948758 /* DNMMetricalAnalysis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */; };
+		07F3E5EB1BE541B500948758 /* DNMMetricalAnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5EA1BE541B500948758 /* DNMMetricalAnalysisTests.swift */; };
+		07F3E60F1BE5438400948758 /* MetricalAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E60E1BE5438400948758 /* MetricalAnalyzer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */ = {
+		07F3E5E71BE541B500948758 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F3E5A01BE53EFE00948758 /* Project object */;
+			containerPortal = 07F3E5D21BE541B500948758 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07F3E5A81BE53EFE00948758;
-			remoteInfo = DNMConverter;
+			remoteGlobalIDString = 07F3E5DA1BE541B500948758;
+			remoteInfo = DNMMetricalAnalysis;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07F3E5A91BE53EFE00948758 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5AC1BE53EFE00948758 /* DNMConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMConverter.h; sourceTree = "<group>"; };
-		07F3E5AE1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMConverterTests.swift; sourceTree = "<group>"; };
-		07F3E5BA1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMMetricalAnalysis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F3E5DE1BE541B500948758 /* DNMMetricalAnalysis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMMetricalAnalysis.h; sourceTree = "<group>"; };
+		07F3E5E01BE541B500948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E5E51BE541B500948758 /* DNMMetricalAnalysisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMMetricalAnalysisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F3E5EA1BE541B500948758 /* DNMMetricalAnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMMetricalAnalysisTests.swift; sourceTree = "<group>"; };
+		07F3E5EC1BE541B500948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E60E1BE5438400948758 /* MetricalAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricalAnalyzer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07F3E5A51BE53EFE00948758 /* Frameworks */ = {
+		07F3E5D71BE541B500948758 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B01BE53EFE00948758 /* Frameworks */ = {
+		07F3E5E21BE541B500948758 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */,
+				07F3E5E61BE541B500948758 /* DNMMetricalAnalysis.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07F3E59F1BE53EFE00948758 = {
+		07F3E5D11BE541B500948758 = {
 			isa = PBXGroup;
 			children = (
-				07F3E5AB1BE53EFE00948758 /* DNMConverter */,
-				07F3E5B71BE53EFE00948758 /* DNMConverterTests */,
-				07F3E5AA1BE53EFE00948758 /* Products */,
+				07F3E5DD1BE541B500948758 /* DNMMetricalAnalysis */,
+				07F3E5E91BE541B500948758 /* DNMMetricalAnalysisTests */,
+				07F3E5DC1BE541B500948758 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		07F3E5AA1BE53EFE00948758 /* Products */ = {
+		07F3E5DC1BE541B500948758 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5A91BE53EFE00948758 /* DNMConverter.framework */,
-				07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */,
+				07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */,
+				07F3E5E51BE541B500948758 /* DNMMetricalAnalysisTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07F3E5AB1BE53EFE00948758 /* DNMConverter */ = {
+		07F3E5DD1BE541B500948758 /* DNMMetricalAnalysis */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5C31BE540E400948758 /* Shorthand */,
-				07F3E5AC1BE53EFE00948758 /* DNMConverter.h */,
-				07F3E5AE1BE53EFE00948758 /* Info.plist */,
+				07F3E60E1BE5438400948758 /* MetricalAnalyzer.swift */,
+				07F3E5DE1BE541B500948758 /* DNMMetricalAnalysis.h */,
+				07F3E5E01BE541B500948758 /* Info.plist */,
 			);
-			path = DNMConverter;
+			path = DNMMetricalAnalysis;
 			sourceTree = "<group>";
 		};
-		07F3E5B71BE53EFE00948758 /* DNMConverterTests */ = {
+		07F3E5E91BE541B500948758 /* DNMMetricalAnalysisTests */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */,
-				07F3E5BA1BE53EFE00948758 /* Info.plist */,
+				07F3E5EA1BE541B500948758 /* DNMMetricalAnalysisTests.swift */,
+				07F3E5EC1BE541B500948758 /* Info.plist */,
 			);
-			path = DNMConverterTests;
-			sourceTree = "<group>";
-		};
-		07F3E5C31BE540E400948758 /* Shorthand */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Shorthand;
+			path = DNMMetricalAnalysisTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		07F3E5A61BE53EFE00948758 /* Headers */ = {
+		07F3E5D81BE541B500948758 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */,
+				07F3E5DF1BE541B500948758 /* DNMMetricalAnalysis.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07F3E5A81BE53EFE00948758 /* DNMConverter */ = {
+		07F3E5DA1BE541B500948758 /* DNMMetricalAnalysis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */;
+			buildConfigurationList = 07F3E5EF1BE541B500948758 /* Build configuration list for PBXNativeTarget "DNMMetricalAnalysis" */;
 			buildPhases = (
-				07F3E5A41BE53EFE00948758 /* Sources */,
-				07F3E5A51BE53EFE00948758 /* Frameworks */,
-				07F3E5A61BE53EFE00948758 /* Headers */,
-				07F3E5A71BE53EFE00948758 /* Resources */,
+				07F3E5D61BE541B500948758 /* Sources */,
+				07F3E5D71BE541B500948758 /* Frameworks */,
+				07F3E5D81BE541B500948758 /* Headers */,
+				07F3E5D91BE541B500948758 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DNMConverter;
-			productName = DNMConverter;
-			productReference = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */;
+			name = DNMMetricalAnalysis;
+			productName = DNMMetricalAnalysis;
+			productReference = 07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		07F3E5B21BE53EFE00948758 /* DNMConverterTests */ = {
+		07F3E5E41BE541B500948758 /* DNMMetricalAnalysisTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */;
+			buildConfigurationList = 07F3E5F21BE541B500948758 /* Build configuration list for PBXNativeTarget "DNMMetricalAnalysisTests" */;
 			buildPhases = (
-				07F3E5AF1BE53EFE00948758 /* Sources */,
-				07F3E5B01BE53EFE00948758 /* Frameworks */,
-				07F3E5B11BE53EFE00948758 /* Resources */,
+				07F3E5E11BE541B500948758 /* Sources */,
+				07F3E5E21BE541B500948758 /* Frameworks */,
+				07F3E5E31BE541B500948758 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				07F3E5B61BE53EFE00948758 /* PBXTargetDependency */,
+				07F3E5E81BE541B500948758 /* PBXTargetDependency */,
 			);
-			name = DNMConverterTests;
-			productName = DNMConverterTests;
-			productReference = 07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */;
+			name = DNMMetricalAnalysisTests;
+			productName = DNMMetricalAnalysisTests;
+			productReference = 07F3E5E51BE541B500948758 /* DNMMetricalAnalysisTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		07F3E5A01BE53EFE00948758 /* Project object */ = {
+		07F3E5D21BE541B500948758 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
-					07F3E5A81BE53EFE00948758 = {
+					07F3E5DA1BE541B500948758 = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					07F3E5B21BE53EFE00948758 = {
+					07F3E5E41BE541B500948758 = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = 07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */;
+			buildConfigurationList = 07F3E5D51BE541B500948758 /* Build configuration list for PBXProject "DNMMetricalAnalysis" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 07F3E59F1BE53EFE00948758;
-			productRefGroup = 07F3E5AA1BE53EFE00948758 /* Products */;
+			mainGroup = 07F3E5D11BE541B500948758;
+			productRefGroup = 07F3E5DC1BE541B500948758 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07F3E5A81BE53EFE00948758 /* DNMConverter */,
-				07F3E5B21BE53EFE00948758 /* DNMConverterTests */,
+				07F3E5DA1BE541B500948758 /* DNMMetricalAnalysis */,
+				07F3E5E41BE541B500948758 /* DNMMetricalAnalysisTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		07F3E5A71BE53EFE00948758 /* Resources */ = {
+		07F3E5D91BE541B500948758 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B11BE53EFE00948758 /* Resources */ = {
+		07F3E5E31BE541B500948758 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,33 +193,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07F3E5A41BE53EFE00948758 /* Sources */ = {
+		07F3E5D61BE541B500948758 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E60F1BE5438400948758 /* MetricalAnalyzer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5AF1BE53EFE00948758 /* Sources */ = {
+		07F3E5E11BE541B500948758 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */,
+				07F3E5EB1BE541B500948758 /* DNMMetricalAnalysisTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07F3E5B61BE53EFE00948758 /* PBXTargetDependency */ = {
+		07F3E5E81BE541B500948758 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07F3E5A81BE53EFE00948758 /* DNMConverter */;
-			targetProxy = 07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */;
+			target = 07F3E5DA1BE541B500948758 /* DNMMetricalAnalysis */;
+			targetProxy = 07F3E5E71BE541B500948758 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07F3E5BB1BE53EFE00948758 /* Debug */ = {
+		07F3E5ED1BE541B500948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,7 +268,7 @@
 			};
 			name = Debug;
 		};
-		07F3E5BC1BE53EFE00948758 /* Release */ = {
+		07F3E5EE1BE541B500948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -312,54 +309,57 @@
 			};
 			name = Release;
 		};
-		07F3E5BE1BE53EFE00948758 /* Debug */ = {
+		07F3E5F01BE541B500948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DNMConverter/Info.plist;
+				INFOPLIST_FILE = DNMMetricalAnalysis/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMMetricalAnalysis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		07F3E5BF1BE53EFE00948758 /* Release */ = {
+		07F3E5F11BE541B500948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DNMConverter/Info.plist;
+				INFOPLIST_FILE = DNMMetricalAnalysis/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMMetricalAnalysis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		07F3E5C11BE53EFE00948758 /* Debug */ = {
+		07F3E5F31BE541B500948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = DNMConverterTests/Info.plist;
+				INFOPLIST_FILE = DNMMetricalAnalysisTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMMetricalAnalysisTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		07F3E5C21BE53EFE00948758 /* Release */ = {
+		07F3E5F41BE541B500948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = DNMConverterTests/Info.plist;
+				INFOPLIST_FILE = DNMMetricalAnalysisTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMMetricalAnalysisTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -367,32 +367,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */ = {
+		07F3E5D51BE541B500948758 /* Build configuration list for PBXProject "DNMMetricalAnalysis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BB1BE53EFE00948758 /* Debug */,
-				07F3E5BC1BE53EFE00948758 /* Release */,
+				07F3E5ED1BE541B500948758 /* Debug */,
+				07F3E5EE1BE541B500948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */ = {
+		07F3E5EF1BE541B500948758 /* Build configuration list for PBXNativeTarget "DNMMetricalAnalysis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BE1BE53EFE00948758 /* Debug */,
-				07F3E5BF1BE53EFE00948758 /* Release */,
+				07F3E5F01BE541B500948758 /* Debug */,
+				07F3E5F11BE541B500948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */ = {
+		07F3E5F21BE541B500948758 /* Build configuration list for PBXNativeTarget "DNMMetricalAnalysisTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5C11BE53EFE00948758 /* Debug */,
-				07F3E5C21BE53EFE00948758 /* Release */,
+				07F3E5F31BE541B500948758 /* Debug */,
+				07F3E5F41BE541B500948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 07F3E5A01BE53EFE00948758 /* Project object */;
+	rootObject = 07F3E5D21BE541B500948758 /* Project object */;
 }

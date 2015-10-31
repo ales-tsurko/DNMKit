@@ -7,187 +7,183 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */; };
-		07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */; };
+		07F3E6701BE5471A00948758 /* DNMJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E66F1BE5471A00948758 /* DNMJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F3E6771BE5471A00948758 /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E66C1BE5471A00948758 /* DNMJSON.framework */; };
+		07F3E67C1BE5471A00948758 /* DNMJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E67B1BE5471A00948758 /* DNMJSONTests.swift */; };
+		07F3E6871BE5472500948758 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6861BE5472500948758 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */ = {
+		07F3E6781BE5471A00948758 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F3E5A01BE53EFE00948758 /* Project object */;
+			containerPortal = 07F3E6631BE5471A00948758 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07F3E5A81BE53EFE00948758;
-			remoteInfo = DNMConverter;
+			remoteGlobalIDString = 07F3E66B1BE5471A00948758;
+			remoteInfo = DNMJSON;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07F3E5A91BE53EFE00948758 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5AC1BE53EFE00948758 /* DNMConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMConverter.h; sourceTree = "<group>"; };
-		07F3E5AE1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMConverterTests.swift; sourceTree = "<group>"; };
-		07F3E5BA1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E66C1BE5471A00948758 /* DNMJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F3E66F1BE5471A00948758 /* DNMJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMJSON.h; sourceTree = "<group>"; };
+		07F3E6711BE5471A00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E6761BE5471A00948758 /* DNMJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F3E67B1BE5471A00948758 /* DNMJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMJSONTests.swift; sourceTree = "<group>"; };
+		07F3E67D1BE5471A00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E6861BE5472500948758 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07F3E5A51BE53EFE00948758 /* Frameworks */ = {
+		07F3E6681BE5471A00948758 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B01BE53EFE00948758 /* Frameworks */ = {
+		07F3E6731BE5471A00948758 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */,
+				07F3E6771BE5471A00948758 /* DNMJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07F3E59F1BE53EFE00948758 = {
+		07F3E6621BE5471A00948758 = {
 			isa = PBXGroup;
 			children = (
-				07F3E5AB1BE53EFE00948758 /* DNMConverter */,
-				07F3E5B71BE53EFE00948758 /* DNMConverterTests */,
-				07F3E5AA1BE53EFE00948758 /* Products */,
+				07F3E66E1BE5471A00948758 /* DNMJSON */,
+				07F3E67A1BE5471A00948758 /* DNMJSONTests */,
+				07F3E66D1BE5471A00948758 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		07F3E5AA1BE53EFE00948758 /* Products */ = {
+		07F3E66D1BE5471A00948758 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5A91BE53EFE00948758 /* DNMConverter.framework */,
-				07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */,
+				07F3E66C1BE5471A00948758 /* DNMJSON.framework */,
+				07F3E6761BE5471A00948758 /* DNMJSONTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07F3E5AB1BE53EFE00948758 /* DNMConverter */ = {
+		07F3E66E1BE5471A00948758 /* DNMJSON */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5C31BE540E400948758 /* Shorthand */,
-				07F3E5AC1BE53EFE00948758 /* DNMConverter.h */,
-				07F3E5AE1BE53EFE00948758 /* Info.plist */,
+				07F3E66F1BE5471A00948758 /* DNMJSON.h */,
+				07F3E6711BE5471A00948758 /* Info.plist */,
+				07F3E6861BE5472500948758 /* SwiftyJSON.swift */,
 			);
-			path = DNMConverter;
+			path = DNMJSON;
 			sourceTree = "<group>";
 		};
-		07F3E5B71BE53EFE00948758 /* DNMConverterTests */ = {
+		07F3E67A1BE5471A00948758 /* DNMJSONTests */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */,
-				07F3E5BA1BE53EFE00948758 /* Info.plist */,
+				07F3E67B1BE5471A00948758 /* DNMJSONTests.swift */,
+				07F3E67D1BE5471A00948758 /* Info.plist */,
 			);
-			path = DNMConverterTests;
-			sourceTree = "<group>";
-		};
-		07F3E5C31BE540E400948758 /* Shorthand */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Shorthand;
+			path = DNMJSONTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		07F3E5A61BE53EFE00948758 /* Headers */ = {
+		07F3E6691BE5471A00948758 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */,
+				07F3E6701BE5471A00948758 /* DNMJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07F3E5A81BE53EFE00948758 /* DNMConverter */ = {
+		07F3E66B1BE5471A00948758 /* DNMJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */;
+			buildConfigurationList = 07F3E6801BE5471A00948758 /* Build configuration list for PBXNativeTarget "DNMJSON" */;
 			buildPhases = (
-				07F3E5A41BE53EFE00948758 /* Sources */,
-				07F3E5A51BE53EFE00948758 /* Frameworks */,
-				07F3E5A61BE53EFE00948758 /* Headers */,
-				07F3E5A71BE53EFE00948758 /* Resources */,
+				07F3E6671BE5471A00948758 /* Sources */,
+				07F3E6681BE5471A00948758 /* Frameworks */,
+				07F3E6691BE5471A00948758 /* Headers */,
+				07F3E66A1BE5471A00948758 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DNMConverter;
-			productName = DNMConverter;
-			productReference = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */;
+			name = DNMJSON;
+			productName = DNMJSON;
+			productReference = 07F3E66C1BE5471A00948758 /* DNMJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		07F3E5B21BE53EFE00948758 /* DNMConverterTests */ = {
+		07F3E6751BE5471A00948758 /* DNMJSONTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */;
+			buildConfigurationList = 07F3E6831BE5471A00948758 /* Build configuration list for PBXNativeTarget "DNMJSONTests" */;
 			buildPhases = (
-				07F3E5AF1BE53EFE00948758 /* Sources */,
-				07F3E5B01BE53EFE00948758 /* Frameworks */,
-				07F3E5B11BE53EFE00948758 /* Resources */,
+				07F3E6721BE5471A00948758 /* Sources */,
+				07F3E6731BE5471A00948758 /* Frameworks */,
+				07F3E6741BE5471A00948758 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				07F3E5B61BE53EFE00948758 /* PBXTargetDependency */,
+				07F3E6791BE5471A00948758 /* PBXTargetDependency */,
 			);
-			name = DNMConverterTests;
-			productName = DNMConverterTests;
-			productReference = 07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */;
+			name = DNMJSONTests;
+			productName = DNMJSONTests;
+			productReference = 07F3E6761BE5471A00948758 /* DNMJSONTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		07F3E5A01BE53EFE00948758 /* Project object */ = {
+		07F3E6631BE5471A00948758 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
-					07F3E5A81BE53EFE00948758 = {
+					07F3E66B1BE5471A00948758 = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					07F3E5B21BE53EFE00948758 = {
+					07F3E6751BE5471A00948758 = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = 07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */;
+			buildConfigurationList = 07F3E6661BE5471A00948758 /* Build configuration list for PBXProject "DNMJSON" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 07F3E59F1BE53EFE00948758;
-			productRefGroup = 07F3E5AA1BE53EFE00948758 /* Products */;
+			mainGroup = 07F3E6621BE5471A00948758;
+			productRefGroup = 07F3E66D1BE5471A00948758 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07F3E5A81BE53EFE00948758 /* DNMConverter */,
-				07F3E5B21BE53EFE00948758 /* DNMConverterTests */,
+				07F3E66B1BE5471A00948758 /* DNMJSON */,
+				07F3E6751BE5471A00948758 /* DNMJSONTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		07F3E5A71BE53EFE00948758 /* Resources */ = {
+		07F3E66A1BE5471A00948758 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B11BE53EFE00948758 /* Resources */ = {
+		07F3E6741BE5471A00948758 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,33 +193,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07F3E5A41BE53EFE00948758 /* Sources */ = {
+		07F3E6671BE5471A00948758 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6871BE5472500948758 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5AF1BE53EFE00948758 /* Sources */ = {
+		07F3E6721BE5471A00948758 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */,
+				07F3E67C1BE5471A00948758 /* DNMJSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07F3E5B61BE53EFE00948758 /* PBXTargetDependency */ = {
+		07F3E6791BE5471A00948758 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07F3E5A81BE53EFE00948758 /* DNMConverter */;
-			targetProxy = 07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */;
+			target = 07F3E66B1BE5471A00948758 /* DNMJSON */;
+			targetProxy = 07F3E6781BE5471A00948758 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07F3E5BB1BE53EFE00948758 /* Debug */ = {
+		07F3E67E1BE5471A00948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,7 +268,7 @@
 			};
 			name = Debug;
 		};
-		07F3E5BC1BE53EFE00948758 /* Release */ = {
+		07F3E67F1BE5471A00948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -312,54 +309,57 @@
 			};
 			name = Release;
 		};
-		07F3E5BE1BE53EFE00948758 /* Debug */ = {
+		07F3E6811BE5471A00948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DNMConverter/Info.plist;
+				INFOPLIST_FILE = DNMJSON/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMJSON;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		07F3E5BF1BE53EFE00948758 /* Release */ = {
+		07F3E6821BE5471A00948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DNMConverter/Info.plist;
+				INFOPLIST_FILE = DNMJSON/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMJSON;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		07F3E5C11BE53EFE00948758 /* Debug */ = {
+		07F3E6841BE5471A00948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = DNMConverterTests/Info.plist;
+				INFOPLIST_FILE = DNMJSONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMJSONTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		07F3E5C21BE53EFE00948758 /* Release */ = {
+		07F3E6851BE5471A00948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = DNMConverterTests/Info.plist;
+				INFOPLIST_FILE = DNMJSONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMJSONTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -367,32 +367,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */ = {
+		07F3E6661BE5471A00948758 /* Build configuration list for PBXProject "DNMJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BB1BE53EFE00948758 /* Debug */,
-				07F3E5BC1BE53EFE00948758 /* Release */,
+				07F3E67E1BE5471A00948758 /* Debug */,
+				07F3E67F1BE5471A00948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */ = {
+		07F3E6801BE5471A00948758 /* Build configuration list for PBXNativeTarget "DNMJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BE1BE53EFE00948758 /* Debug */,
-				07F3E5BF1BE53EFE00948758 /* Release */,
+				07F3E6811BE5471A00948758 /* Debug */,
+				07F3E6821BE5471A00948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */ = {
+		07F3E6831BE5471A00948758 /* Build configuration list for PBXNativeTarget "DNMJSONTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5C11BE53EFE00948758 /* Debug */,
-				07F3E5C21BE53EFE00948758 /* Release */,
+				07F3E6841BE5471A00948758 /* Debug */,
+				07F3E6851BE5471A00948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 07F3E5A01BE53EFE00948758 /* Project object */;
+	rootObject = 07F3E6631BE5471A00948758 /* Project object */;
 }

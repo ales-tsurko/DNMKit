@@ -10,6 +10,44 @@
 		07ECB3F91BE538BB00C9AD08 /* DNMView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3F81BE538BB00C9AD08 /* DNMView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4001BE538BB00C9AD08 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3F51BE538BB00C9AD08 /* DNMView.framework */; };
 		07ECB4051BE538BB00C9AD08 /* DNMViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4041BE538BB00C9AD08 /* DNMViewTests.swift */; };
+		07F3E69A1BE5483C00948758 /* ViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6991BE5483C00948758 /* ViewNode.swift */; };
+		07F3E6A31BE5489A00948758 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E69C1BE5489A00948758 /* BezierCurve.swift */; };
+		07F3E6A41BE5489A00948758 /* BezierCurveCubic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E69D1BE5489A00948758 /* BezierCurveCubic.swift */; };
+		07F3E6A51BE5489A00948758 /* BezierCurveLinear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E69E1BE5489A00948758 /* BezierCurveLinear.swift */; };
+		07F3E6A61BE5489A00948758 /* BezierCurveQuadratic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E69F1BE5489A00948758 /* BezierCurveQuadratic.swift */; };
+		07F3E6A71BE5489A00948758 /* BezierCurveStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */; };
+		07F3E6A81BE5489A00948758 /* BezierCurveStylerDashes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */; };
+		07F3E6A91BE5489A00948758 /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A21BE5489A00948758 /* BezierPath.swift */; };
+		07F3E6AD1BE548F400948758 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E6AC1BE548F400948758 /* DNMUtility.framework */; };
+		07F3E6AF1BE5490900948758 /* StyledBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */; };
+		07F3E6B11BE5493600948758 /* UIBezierPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B01BE5493600948758 /* UIBezierPathExtensions.swift */; };
+		07F3E6B31BE5494000948758 /* TextLayerContstrainedByHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B21BE5494000948758 /* TextLayerContstrainedByHeight.swift */; };
+		07F3E6B61BE5496900948758 /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B41BE5496900948758 /* Accidental.swift */; };
+		07F3E6B71BE5496900948758 /* AccidentalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B51BE5496900948758 /* AccidentalComponent.swift */; };
+		07F3E6B91BE5497000948758 /* AccidentalCollision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B81BE5497000948758 /* AccidentalCollision.swift */; };
+		07F3E6BB1BE5499200948758 /* Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6BA1BE5499200948758 /* Ligature.swift */; };
+		07F3E6BD1BE549B500948758 /* Guido.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6BC1BE549B500948758 /* Guido.swift */; };
+		07F3E6BF1BE549C200948758 /* BuildPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6BE1BE549C200948758 /* BuildPattern.swift */; };
+		07F3E6C11BE549DA00948758 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6C01BE549DA00948758 /* Polygon.swift */; };
+		07F3E6C51BE54A0B00948758 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6C31BE54A0B00948758 /* Staff.swift */; };
+		07F3E6C61BE54A0B00948758 /* StaffEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6C41BE54A0B00948758 /* StaffEvent.swift */; };
+		07F3E6C81BE54A1B00948758 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6C71BE54A1B00948758 /* Graph.swift */; };
+		07F3E6CA1BE54A2100948758 /* GraphEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6C91BE54A2100948758 /* GraphEvent.swift */; };
+		07F3E6CF1BE54A3D00948758 /* GraphContinuousController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6CC1BE54A3D00948758 /* GraphContinuousController.swift */; };
+		07F3E6D01BE54A3D00948758 /* GraphEventEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6CD1BE54A3D00948758 /* GraphEventEdge.swift */; };
+		07F3E6D11BE54A3D00948758 /* GraphEventNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6CE1BE54A3D00948758 /* GraphEventNode.swift */; };
+		07F3E6D51BE54A7000948758 /* GraphContinuousControllerStepped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D41BE54A7000948758 /* GraphContinuousControllerStepped.swift */; };
+		07F3E6FF1BE54BD700948758 /* Articulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6FE1BE54BD700948758 /* Articulation.swift */; };
+		07F3E7011BE54C1100948758 /* StemDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7001BE54C1100948758 /* StemDirection.swift */; };
+		07F3E7031BE54C4600948758 /* Notehead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7021BE54C4600948758 /* Notehead.swift */; };
+		07F3E7061BE54C5C00948758 /* Stem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7051BE54C5C00948758 /* Stem.swift */; };
+		07F3E7091BE54C7C00948758 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7081BE54C7C00948758 /* Label.swift */; };
+		07F3E70B1BE54CA000948758 /* StaffItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E70A1BE54CA000948758 /* StaffItem.swift */; };
+		07F3E70E1BE54CC500948758 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E70D1BE54CC500948758 /* UIColorExtensions.swift */; };
+		07F3E7101BE54CCE00948758 /* DNMColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E70F1BE54CCE00948758 /* DNMColorManager.swift */; };
+		07F3E7121BE54CF500948758 /* DepthOfField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7111BE54CF500948758 /* DepthOfField.swift */; };
+		07F3E7141BE54D0300948758 /* ColorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7131BE54D0300948758 /* ColorMode.swift */; };
+		07F3E7161BE54E0000948758 /* HueByTupletDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7151BE54E0000948758 /* HueByTupletDepth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +67,44 @@
 		07ECB3FF1BE538BB00C9AD08 /* DNMViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB4041BE538BB00C9AD08 /* DNMViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMViewTests.swift; sourceTree = "<group>"; };
 		07ECB4061BE538BB00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E6991BE5483C00948758 /* ViewNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNode.swift; sourceTree = "<group>"; };
+		07F3E69C1BE5489A00948758 /* BezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurve.swift; sourceTree = "<group>"; };
+		07F3E69D1BE5489A00948758 /* BezierCurveCubic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveCubic.swift; sourceTree = "<group>"; };
+		07F3E69E1BE5489A00948758 /* BezierCurveLinear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveLinear.swift; sourceTree = "<group>"; };
+		07F3E69F1BE5489A00948758 /* BezierCurveQuadratic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveQuadratic.swift; sourceTree = "<group>"; };
+		07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyler.swift; sourceTree = "<group>"; };
+		07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashes.swift; sourceTree = "<group>"; };
+		07F3E6A21BE5489A00948758 /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
+		07F3E6AC1BE548F400948758 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
+		07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledBezierCurve.swift; sourceTree = "<group>"; };
+		07F3E6B01BE5493600948758 /* UIBezierPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtensions.swift; sourceTree = "<group>"; };
+		07F3E6B21BE5494000948758 /* TextLayerContstrainedByHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayerContstrainedByHeight.swift; sourceTree = "<group>"; };
+		07F3E6B41BE5496900948758 /* Accidental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accidental.swift; sourceTree = "<group>"; };
+		07F3E6B51BE5496900948758 /* AccidentalComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalComponent.swift; sourceTree = "<group>"; };
+		07F3E6B81BE5497000948758 /* AccidentalCollision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalCollision.swift; sourceTree = "<group>"; };
+		07F3E6BA1BE5499200948758 /* Ligature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligature.swift; sourceTree = "<group>"; };
+		07F3E6BC1BE549B500948758 /* Guido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guido.swift; sourceTree = "<group>"; };
+		07F3E6BE1BE549C200948758 /* BuildPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPattern.swift; sourceTree = "<group>"; };
+		07F3E6C01BE549DA00948758 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		07F3E6C31BE54A0B00948758 /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		07F3E6C41BE54A0B00948758 /* StaffEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffEvent.swift; sourceTree = "<group>"; };
+		07F3E6C71BE54A1B00948758 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		07F3E6C91BE54A2100948758 /* GraphEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEvent.swift; sourceTree = "<group>"; };
+		07F3E6CC1BE54A3D00948758 /* GraphContinuousController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphContinuousController.swift; sourceTree = "<group>"; };
+		07F3E6CD1BE54A3D00948758 /* GraphEventEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventEdge.swift; sourceTree = "<group>"; };
+		07F3E6CE1BE54A3D00948758 /* GraphEventNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventNode.swift; sourceTree = "<group>"; };
+		07F3E6D41BE54A7000948758 /* GraphContinuousControllerStepped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphContinuousControllerStepped.swift; sourceTree = "<group>"; };
+		07F3E6FE1BE54BD700948758 /* Articulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Articulation.swift; sourceTree = "<group>"; };
+		07F3E7001BE54C1100948758 /* StemDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDirection.swift; sourceTree = "<group>"; };
+		07F3E7021BE54C4600948758 /* Notehead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notehead.swift; sourceTree = "<group>"; };
+		07F3E7051BE54C5C00948758 /* Stem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stem.swift; sourceTree = "<group>"; };
+		07F3E7081BE54C7C00948758 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		07F3E70A1BE54CA000948758 /* StaffItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffItem.swift; sourceTree = "<group>"; };
+		07F3E70D1BE54CC500948758 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		07F3E70F1BE54CCE00948758 /* DNMColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMColorManager.swift; sourceTree = "<group>"; };
+		07F3E7111BE54CF500948758 /* DepthOfField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepthOfField.swift; sourceTree = "<group>"; };
+		07F3E7131BE54D0300948758 /* ColorMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorMode.swift; sourceTree = "<group>"; };
+		07F3E7151BE54E0000948758 /* HueByTupletDepth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueByTupletDepth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6AD1BE548F400948758 /* DNMUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +130,7 @@
 		07ECB3EB1BE538BB00C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				07F3E6AC1BE548F400948758 /* DNMUtility.framework */,
 				07ECB3F71BE538BB00C9AD08 /* DNMView */,
 				07ECB4031BE538BB00C9AD08 /* DNMViewTests */,
 				07ECB3F61BE538BB00C9AD08 /* Products */,
@@ -71,6 +149,10 @@
 		07ECB3F71BE538BB00C9AD08 /* DNMView */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E70C1BE54CBA00948758 /* Color */,
+				07F3E68D1BE5478D00948758 /* Utility */,
+				07F3E68E1BE5479100948758 /* OrganizationalObjects */,
+				07F3E68C1BE5478600948758 /* MusicNotationObjects */,
 				07ECB3F81BE538BB00C9AD08 /* DNMView.h */,
 				07ECB3FA1BE538BB00C9AD08 /* Info.plist */,
 			);
@@ -84,6 +166,175 @@
 				07ECB4061BE538BB00C9AD08 /* Info.plist */,
 			);
 			path = DNMViewTests;
+			sourceTree = "<group>";
+		};
+		07F3E68C1BE5478600948758 /* MusicNotationObjects */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7041BE54C5500948758 /* Stem */,
+				07F3E6971BE5482600948758 /* Accidentals */,
+				07F3E6931BE547BA00948758 /* Spanners */,
+				07F3E6921BE547B400948758 /* Noteheads */,
+				07F3E68F1BE5479D00948758 /* Articulations */,
+			);
+			name = MusicNotationObjects;
+			sourceTree = "<group>";
+		};
+		07F3E68D1BE5478D00948758 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7001BE54C1100948758 /* StemDirection.swift */,
+				07F3E70A1BE54CA000948758 /* StaffItem.swift */,
+				07F3E6BE1BE549C200948758 /* BuildPattern.swift */,
+				07F3E6BC1BE549B500948758 /* Guido.swift */,
+				07F3E6B01BE5493600948758 /* UIBezierPathExtensions.swift */,
+				07F3E6B21BE5494000948758 /* TextLayerContstrainedByHeight.swift */,
+				07F3E6C01BE549DA00948758 /* Polygon.swift */,
+				07F3E6991BE5483C00948758 /* ViewNode.swift */,
+				07F3E6BA1BE5499200948758 /* Ligature.swift */,
+				07F3E7071BE54C7100948758 /* Label */,
+				07F3E69B1BE5486B00948758 /* BezierCurves */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		07F3E68E1BE5479100948758 /* OrganizationalObjects */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6911BE547A600948758 /* Graphs */,
+			);
+			name = OrganizationalObjects;
+			sourceTree = "<group>";
+		};
+		07F3E68F1BE5479D00948758 /* Articulations */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6FE1BE54BD700948758 /* Articulation.swift */,
+			);
+			name = Articulations;
+			sourceTree = "<group>";
+		};
+		07F3E6911BE547A600948758 /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6D31BE54A5600948758 /* GraphSwitch */,
+				07F3E6D21BE54A4D00948758 /* GraphWaveform */,
+				07F3E6C71BE54A1B00948758 /* Graph.swift */,
+				07F3E6C91BE54A2100948758 /* GraphEvent.swift */,
+				07F3E6CB1BE54A2500948758 /* GraphContinuousController */,
+				07F3E6C21BE549F900948758 /* Staff */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
+		07F3E6921BE547B400948758 /* Noteheads */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7021BE54C4600948758 /* Notehead.swift */,
+			);
+			name = Noteheads;
+			sourceTree = "<group>";
+		};
+		07F3E6931BE547BA00948758 /* Spanners */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Spanners;
+			sourceTree = "<group>";
+		};
+		07F3E6971BE5482600948758 /* Accidentals */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6B41BE5496900948758 /* Accidental.swift */,
+				07F3E6B51BE5496900948758 /* AccidentalComponent.swift */,
+				07F3E6981BE5482C00948758 /* AccidentalCollision */,
+			);
+			name = Accidentals;
+			sourceTree = "<group>";
+		};
+		07F3E6981BE5482C00948758 /* AccidentalCollision */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6B81BE5497000948758 /* AccidentalCollision.swift */,
+			);
+			name = AccidentalCollision;
+			sourceTree = "<group>";
+		};
+		07F3E69B1BE5486B00948758 /* BezierCurves */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */,
+				07F3E69C1BE5489A00948758 /* BezierCurve.swift */,
+				07F3E69D1BE5489A00948758 /* BezierCurveCubic.swift */,
+				07F3E69E1BE5489A00948758 /* BezierCurveLinear.swift */,
+				07F3E69F1BE5489A00948758 /* BezierCurveQuadratic.swift */,
+				07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */,
+				07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */,
+				07F3E6A21BE5489A00948758 /* BezierPath.swift */,
+			);
+			name = BezierCurves;
+			sourceTree = "<group>";
+		};
+		07F3E6C21BE549F900948758 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6C31BE54A0B00948758 /* Staff.swift */,
+				07F3E6C41BE54A0B00948758 /* StaffEvent.swift */,
+			);
+			name = Staff;
+			sourceTree = "<group>";
+		};
+		07F3E6CB1BE54A2500948758 /* GraphContinuousController */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E6CC1BE54A3D00948758 /* GraphContinuousController.swift */,
+				07F3E6D41BE54A7000948758 /* GraphContinuousControllerStepped.swift */,
+				07F3E6CD1BE54A3D00948758 /* GraphEventEdge.swift */,
+				07F3E6CE1BE54A3D00948758 /* GraphEventNode.swift */,
+			);
+			name = GraphContinuousController;
+			sourceTree = "<group>";
+		};
+		07F3E6D21BE54A4D00948758 /* GraphWaveform */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GraphWaveform;
+			sourceTree = "<group>";
+		};
+		07F3E6D31BE54A5600948758 /* GraphSwitch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GraphSwitch;
+			sourceTree = "<group>";
+		};
+		07F3E7041BE54C5500948758 /* Stem */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7051BE54C5C00948758 /* Stem.swift */,
+			);
+			name = Stem;
+			sourceTree = "<group>";
+		};
+		07F3E7071BE54C7100948758 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7081BE54C7C00948758 /* Label.swift */,
+			);
+			name = Label;
+			sourceTree = "<group>";
+		};
+		07F3E70C1BE54CBA00948758 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7131BE54D0300948758 /* ColorMode.swift */,
+				07F3E7151BE54E0000948758 /* HueByTupletDepth.swift */,
+				07F3E7111BE54CF500948758 /* DepthOfField.swift */,
+				07F3E70D1BE54CC500948758 /* UIColorExtensions.swift */,
+				07F3E70F1BE54CCE00948758 /* DNMColorManager.swift */,
+			);
+			name = Color;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +393,7 @@
 		07ECB3EC1BE538BB00C9AD08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
@@ -193,6 +445,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E6D11BE54A3D00948758 /* GraphEventNode.swift in Sources */,
+				07F3E6A41BE5489A00948758 /* BezierCurveCubic.swift in Sources */,
+				07F3E7061BE54C5C00948758 /* Stem.swift in Sources */,
+				07F3E6B11BE5493600948758 /* UIBezierPathExtensions.swift in Sources */,
+				07F3E6BB1BE5499200948758 /* Ligature.swift in Sources */,
+				07F3E6CA1BE54A2100948758 /* GraphEvent.swift in Sources */,
+				07F3E70E1BE54CC500948758 /* UIColorExtensions.swift in Sources */,
+				07F3E7101BE54CCE00948758 /* DNMColorManager.swift in Sources */,
+				07F3E6A91BE5489A00948758 /* BezierPath.swift in Sources */,
+				07F3E6B71BE5496900948758 /* AccidentalComponent.swift in Sources */,
+				07F3E7121BE54CF500948758 /* DepthOfField.swift in Sources */,
+				07F3E6C61BE54A0B00948758 /* StaffEvent.swift in Sources */,
+				07F3E6A31BE5489A00948758 /* BezierCurve.swift in Sources */,
+				07F3E6D51BE54A7000948758 /* GraphContinuousControllerStepped.swift in Sources */,
+				07F3E69A1BE5483C00948758 /* ViewNode.swift in Sources */,
+				07F3E6B91BE5497000948758 /* AccidentalCollision.swift in Sources */,
+				07F3E70B1BE54CA000948758 /* StaffItem.swift in Sources */,
+				07F3E7161BE54E0000948758 /* HueByTupletDepth.swift in Sources */,
+				07F3E6C81BE54A1B00948758 /* Graph.swift in Sources */,
+				07F3E6A51BE5489A00948758 /* BezierCurveLinear.swift in Sources */,
+				07F3E6AF1BE5490900948758 /* StyledBezierCurve.swift in Sources */,
+				07F3E6A81BE5489A00948758 /* BezierCurveStylerDashes.swift in Sources */,
+				07F3E7091BE54C7C00948758 /* Label.swift in Sources */,
+				07F3E7011BE54C1100948758 /* StemDirection.swift in Sources */,
+				07F3E6A61BE5489A00948758 /* BezierCurveQuadratic.swift in Sources */,
+				07F3E6B31BE5494000948758 /* TextLayerContstrainedByHeight.swift in Sources */,
+				07F3E6D01BE54A3D00948758 /* GraphEventEdge.swift in Sources */,
+				07F3E7141BE54D0300948758 /* ColorMode.swift in Sources */,
+				07F3E6C51BE54A0B00948758 /* Staff.swift in Sources */,
+				07F3E6A71BE5489A00948758 /* BezierCurveStyler.swift in Sources */,
+				07F3E6C11BE549DA00948758 /* Polygon.swift in Sources */,
+				07F3E6BD1BE549B500948758 /* Guido.swift in Sources */,
+				07F3E6CF1BE54A3D00948758 /* GraphContinuousController.swift in Sources */,
+				07F3E7031BE54C4600948758 /* Notehead.swift in Sources */,
+				07F3E6B61BE5496900948758 /* Accidental.swift in Sources */,
+				07F3E6BF1BE549C200948758 /* BuildPattern.swift in Sources */,
+				07F3E6FF1BE54BD700948758 /* Articulation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +596,7 @@
 		07ECB40A1BE538BB00C9AD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -317,12 +607,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		07ECB40B1BE538BB00C9AD08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -375,6 +667,7 @@
 				07ECB40B1BE538BB00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07ECB40C1BE538BB00C9AD08 /* Build configuration list for PBXNativeTarget "DNMViewTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +676,7 @@
 				07ECB40E1BE538BB00C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
