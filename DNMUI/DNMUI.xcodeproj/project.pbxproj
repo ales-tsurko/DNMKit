@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07E4DC961BE6850900AF0DE9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DC951BE6850900AF0DE9 /* Environment.swift */; };
+		07E4DC9B1BE6851400AF0DE9 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC971BE6851400AF0DE9 /* DNMConverter.framework */; };
+		07E4DC9C1BE6851500AF0DE9 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC981BE6851400AF0DE9 /* DNMView.framework */; };
+		07E4DC9D1BE6851500AF0DE9 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC991BE6851400AF0DE9 /* DNMModel.framework */; };
+		07E4DC9E1BE6851500AF0DE9 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC9A1BE6851400AF0DE9 /* DNMUtility.framework */; };
+		07E4DCA11BE6853900AF0DE9 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DC9F1BE6853900AF0DE9 /* PageView.swift */; };
+		07E4DCA21BE6853900AF0DE9 /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCA01BE6853900AF0DE9 /* SystemView.swift */; };
+		07E4DCA51BE6858700AF0DE9 /* SelectionRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCA41BE6858700AF0DE9 /* SelectionRectangle.swift */; };
+		07E4DCAC1BE685A800AF0DE9 /* ButtonSwitchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCA71BE685A800AF0DE9 /* ButtonSwitchNode.swift */; };
+		07E4DCAD1BE685A800AF0DE9 /* ButtonSwitchNodeComplex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCA81BE685A800AF0DE9 /* ButtonSwitchNodeComplex.swift */; };
+		07E4DCAE1BE685A800AF0DE9 /* ButtonSwitchNodeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCA91BE685A800AF0DE9 /* ButtonSwitchNodeGroup.swift */; };
+		07E4DCAF1BE685A800AF0DE9 /* ButtonSwitchNodeMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCAA1BE685A800AF0DE9 /* ButtonSwitchNodeMaster.swift */; };
+		07E4DCB01BE685A800AF0DE9 /* ButtonSwitchNodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCAB1BE685A800AF0DE9 /* ButtonSwitchNodeState.swift */; };
+		07E4DCB21BE6861500AF0DE9 /* PerformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB11BE6861500AF0DE9 /* PerformerView.swift */; };
+		07E4DCB91BE6869D00AF0DE9 /* ButtonSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB31BE6869D00AF0DE9 /* ButtonSwitch.swift */; };
+		07E4DCBA1BE6869D00AF0DE9 /* ButtonSwitchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB41BE6869D00AF0DE9 /* ButtonSwitchPanel.swift */; };
+		07E4DCBB1BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB51BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift */; };
+		07E4DCBC1BE6869D00AF0DE9 /* ButtonSwitchPanelWithMasterButtonSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB61BE6869D00AF0DE9 /* ButtonSwitchPanelWithMasterButtonSwitch.swift */; };
+		07E4DCBD1BE6869D00AF0DE9 /* RadioGroupPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB71BE6869D00AF0DE9 /* RadioGroupPanel.swift */; };
+		07E4DCBE1BE6869D00AF0DE9 /* RadioGroupPanelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCB81BE6869D00AF0DE9 /* RadioGroupPanelVertical.swift */; };
+		07E4DCC01BE686D500AF0DE9 /* ComponentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCBF1BE686D500AF0DE9 /* ComponentSelector.swift */; };
 		07F3E5891BE53CF100948758 /* DNMUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5881BE53CF100948758 /* DNMUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07F3E5901BE53CF100948758 /* DNMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5851BE53CF100948758 /* DNMUI.framework */; };
 		07F3E5951BE53CF100948758 /* DNMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5941BE53CF100948758 /* DNMUITests.swift */; };
@@ -23,6 +44,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07E4DC951BE6850900AF0DE9 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		07E4DC971BE6851400AF0DE9 /* DNMConverter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMConverter.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMConverter.framework"; sourceTree = "<group>"; };
+		07E4DC981BE6851400AF0DE9 /* DNMView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMView.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMView.framework"; sourceTree = "<group>"; };
+		07E4DC991BE6851400AF0DE9 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
+		07E4DC9A1BE6851400AF0DE9 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
+		07E4DC9F1BE6853900AF0DE9 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		07E4DCA01BE6853900AF0DE9 /* SystemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
+		07E4DCA41BE6858700AF0DE9 /* SelectionRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionRectangle.swift; sourceTree = "<group>"; };
+		07E4DCA71BE685A800AF0DE9 /* ButtonSwitchNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNode.swift; sourceTree = "<group>"; };
+		07E4DCA81BE685A800AF0DE9 /* ButtonSwitchNodeComplex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNodeComplex.swift; sourceTree = "<group>"; };
+		07E4DCA91BE685A800AF0DE9 /* ButtonSwitchNodeGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNodeGroup.swift; sourceTree = "<group>"; };
+		07E4DCAA1BE685A800AF0DE9 /* ButtonSwitchNodeMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNodeMaster.swift; sourceTree = "<group>"; };
+		07E4DCAB1BE685A800AF0DE9 /* ButtonSwitchNodeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchNodeState.swift; sourceTree = "<group>"; };
+		07E4DCB11BE6861500AF0DE9 /* PerformerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformerView.swift; sourceTree = "<group>"; };
+		07E4DCB31BE6869D00AF0DE9 /* ButtonSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitch.swift; sourceTree = "<group>"; };
+		07E4DCB41BE6869D00AF0DE9 /* ButtonSwitchPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchPanel.swift; sourceTree = "<group>"; };
+		07E4DCB51BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchPanelWithID.swift; sourceTree = "<group>"; };
+		07E4DCB61BE6869D00AF0DE9 /* ButtonSwitchPanelWithMasterButtonSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchPanelWithMasterButtonSwitch.swift; sourceTree = "<group>"; };
+		07E4DCB71BE6869D00AF0DE9 /* RadioGroupPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanel.swift; sourceTree = "<group>"; };
+		07E4DCB81BE6869D00AF0DE9 /* RadioGroupPanelVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanelVertical.swift; sourceTree = "<group>"; };
+		07E4DCBF1BE686D500AF0DE9 /* ComponentSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSelector.swift; sourceTree = "<group>"; };
 		07F3E5851BE53CF100948758 /* DNMUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F3E5881BE53CF100948758 /* DNMUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMUI.h; sourceTree = "<group>"; };
 		07F3E58A1BE53CF100948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E4DC9B1BE6851400AF0DE9 /* DNMConverter.framework in Frameworks */,
+				07E4DC9C1BE6851500AF0DE9 /* DNMView.framework in Frameworks */,
+				07E4DC9D1BE6851500AF0DE9 /* DNMModel.framework in Frameworks */,
+				07E4DC9E1BE6851500AF0DE9 /* DNMUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,9 +96,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07E4DCA31BE6855F00AF0DE9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				07E4DCA41BE6858700AF0DE9 /* SelectionRectangle.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		07E4DCA61BE6859E00AF0DE9 /* ButtonSwitchNode */ = {
+			isa = PBXGroup;
+			children = (
+				07E4DCA71BE685A800AF0DE9 /* ButtonSwitchNode.swift */,
+				07E4DCA81BE685A800AF0DE9 /* ButtonSwitchNodeComplex.swift */,
+				07E4DCA91BE685A800AF0DE9 /* ButtonSwitchNodeGroup.swift */,
+				07E4DCAA1BE685A800AF0DE9 /* ButtonSwitchNodeMaster.swift */,
+				07E4DCAB1BE685A800AF0DE9 /* ButtonSwitchNodeState.swift */,
+			);
+			name = ButtonSwitchNode;
+			sourceTree = "<group>";
+		};
 		07F3E57B1BE53CF100948758 = {
 			isa = PBXGroup;
 			children = (
+				07E4DC971BE6851400AF0DE9 /* DNMConverter.framework */,
+				07E4DC981BE6851400AF0DE9 /* DNMView.framework */,
+				07E4DC991BE6851400AF0DE9 /* DNMModel.framework */,
+				07E4DC9A1BE6851400AF0DE9 /* DNMUtility.framework */,
 				07F3E5871BE53CF100948758 /* DNMUI */,
 				07F3E5931BE53CF100948758 /* DNMUITests */,
 				07F3E5861BE53CF100948758 /* Products */,
@@ -71,6 +141,19 @@
 		07F3E5871BE53CF100948758 /* DNMUI */ = {
 			isa = PBXGroup;
 			children = (
+				07E4DCBF1BE686D500AF0DE9 /* ComponentSelector.swift */,
+				07E4DCB31BE6869D00AF0DE9 /* ButtonSwitch.swift */,
+				07E4DCB41BE6869D00AF0DE9 /* ButtonSwitchPanel.swift */,
+				07E4DCB51BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift */,
+				07E4DCB61BE6869D00AF0DE9 /* ButtonSwitchPanelWithMasterButtonSwitch.swift */,
+				07E4DCB71BE6869D00AF0DE9 /* RadioGroupPanel.swift */,
+				07E4DCB81BE6869D00AF0DE9 /* RadioGroupPanelVertical.swift */,
+				07E4DCA61BE6859E00AF0DE9 /* ButtonSwitchNode */,
+				07E4DCA31BE6855F00AF0DE9 /* Utility */,
+				07E4DC951BE6850900AF0DE9 /* Environment.swift */,
+				07E4DC9F1BE6853900AF0DE9 /* PageView.swift */,
+				07E4DCA01BE6853900AF0DE9 /* SystemView.swift */,
+				07E4DCB11BE6861500AF0DE9 /* PerformerView.swift */,
 				07F3E5881BE53CF100948758 /* DNMUI.h */,
 				07F3E58A1BE53CF100948758 /* Info.plist */,
 			);
@@ -142,6 +225,7 @@
 		07F3E57C1BE53CF100948758 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
@@ -193,6 +277,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E4DCAE1BE685A800AF0DE9 /* ButtonSwitchNodeGroup.swift in Sources */,
+				07E4DCA21BE6853900AF0DE9 /* SystemView.swift in Sources */,
+				07E4DCAC1BE685A800AF0DE9 /* ButtonSwitchNode.swift in Sources */,
+				07E4DCB01BE685A800AF0DE9 /* ButtonSwitchNodeState.swift in Sources */,
+				07E4DCBA1BE6869D00AF0DE9 /* ButtonSwitchPanel.swift in Sources */,
+				07E4DCAD1BE685A800AF0DE9 /* ButtonSwitchNodeComplex.swift in Sources */,
+				07E4DCBD1BE6869D00AF0DE9 /* RadioGroupPanel.swift in Sources */,
+				07E4DCC01BE686D500AF0DE9 /* ComponentSelector.swift in Sources */,
+				07E4DCB91BE6869D00AF0DE9 /* ButtonSwitch.swift in Sources */,
+				07E4DCB21BE6861500AF0DE9 /* PerformerView.swift in Sources */,
+				07E4DC961BE6850900AF0DE9 /* Environment.swift in Sources */,
+				07E4DCA51BE6858700AF0DE9 /* SelectionRectangle.swift in Sources */,
+				07E4DCA11BE6853900AF0DE9 /* PageView.swift in Sources */,
+				07E4DCAF1BE685A800AF0DE9 /* ButtonSwitchNodeMaster.swift in Sources */,
+				07E4DCBC1BE6869D00AF0DE9 /* ButtonSwitchPanelWithMasterButtonSwitch.swift in Sources */,
+				07E4DCBE1BE6869D00AF0DE9 /* RadioGroupPanelVertical.swift in Sources */,
+				07E4DCBB1BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +408,7 @@
 		07F3E59A1BE53CF100948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -317,12 +419,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		07F3E59B1BE53CF100948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -375,6 +479,7 @@
 				07F3E59B1BE53CF100948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07F3E59C1BE53CF100948758 /* Build configuration list for PBXNativeTarget "DNMUITests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +488,7 @@
 				07F3E59E1BE53CF100948758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

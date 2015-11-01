@@ -10,6 +10,15 @@
 		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */; };
 		07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */; };
+		07F3E7851BE67D0E00948758 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77E1BE67D0E00948758 /* Action.swift */; };
+		07F3E7861BE67D0E00948758 /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77F1BE67D0E00948758 /* Interpreter.swift */; };
+		07F3E7871BE67D0E00948758 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7801BE67D0E00948758 /* Item.swift */; };
+		07F3E7881BE67D0E00948758 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7811BE67D0E00948758 /* Parser.swift */; };
+		07F3E7891BE67D0E00948758 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7821BE67D0E00948758 /* Scanner.swift */; };
+		07F3E78A1BE67D0E00948758 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7831BE67D0E00948758 /* Token.swift */; };
+		07F3E78B1BE67D0E00948758 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7841BE67D0E00948758 /* Tokenizer.swift */; };
+		07F3E78D1BE67D4200948758 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E78C1BE67D4200948758 /* DNMUtility.framework */; };
+		07F3E78F1BE67D4700948758 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E78E1BE67D4700948758 /* DNMModel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +38,15 @@
 		07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMConverterTests.swift; sourceTree = "<group>"; };
 		07F3E5BA1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E77E1BE67D0E00948758 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		07F3E77F1BE67D0E00948758 /* Interpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
+		07F3E7801BE67D0E00948758 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		07F3E7811BE67D0E00948758 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		07F3E7821BE67D0E00948758 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		07F3E7831BE67D0E00948758 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		07F3E7841BE67D0E00948758 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		07F3E78C1BE67D4200948758 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
+		07F3E78E1BE67D4700948758 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E78D1BE67D4200948758 /* DNMUtility.framework in Frameworks */,
+				07F3E78F1BE67D4700948758 /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +73,8 @@
 		07F3E59F1BE53EFE00948758 = {
 			isa = PBXGroup;
 			children = (
+				07F3E78E1BE67D4700948758 /* DNMModel.framework */,
+				07F3E78C1BE67D4200948758 /* DNMUtility.framework */,
 				07F3E5AB1BE53EFE00948758 /* DNMConverter */,
 				07F3E5B71BE53EFE00948758 /* DNMConverterTests */,
 				07F3E5AA1BE53EFE00948758 /* Products */,
@@ -90,6 +112,13 @@
 		07F3E5C31BE540E400948758 /* Shorthand */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E77E1BE67D0E00948758 /* Action.swift */,
+				07F3E77F1BE67D0E00948758 /* Interpreter.swift */,
+				07F3E7801BE67D0E00948758 /* Item.swift */,
+				07F3E7811BE67D0E00948758 /* Parser.swift */,
+				07F3E7821BE67D0E00948758 /* Scanner.swift */,
+				07F3E7831BE67D0E00948758 /* Token.swift */,
+				07F3E7841BE67D0E00948758 /* Tokenizer.swift */,
 			);
 			name = Shorthand;
 			sourceTree = "<group>";
@@ -150,6 +179,7 @@
 		07F3E5A01BE53EFE00948758 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
@@ -201,6 +231,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E7881BE67D0E00948758 /* Parser.swift in Sources */,
+				07F3E7861BE67D0E00948758 /* Interpreter.swift in Sources */,
+				07F3E7871BE67D0E00948758 /* Item.swift in Sources */,
+				07F3E78B1BE67D0E00948758 /* Tokenizer.swift in Sources */,
+				07F3E78A1BE67D0E00948758 /* Token.swift in Sources */,
+				07F3E7891BE67D0E00948758 /* Scanner.swift in Sources */,
+				07F3E7851BE67D0E00948758 /* Action.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +352,7 @@
 		07F3E5BE1BE53EFE00948758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -325,12 +363,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		07F3E5BF1BE53EFE00948758 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

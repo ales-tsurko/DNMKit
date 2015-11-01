@@ -1,0 +1,31 @@
+P: VN vn Violin
+P: VC vc Violoncello
+P: EL cc ContinuousController
+
+# tempo 48 1
+| 1,8 VN vn
+    1 p 80 d fff [ a > . (
+    1 p 62 a -
+    1 p 58 d o ] [ a - )
+
++ 1,8 VN vn
+    1 p 80 (
+    1 p 60
+    1 p 83 d f ] )
+
+| 1,8 VC vc
+    1 p 39 d p [ (
+    1 p 41
+    1 p 49 )
+                
+tempo 60 1
+                
++ 1,8 VC vc
+    1 p 41 ( a -
+    1 p 39
+    1 p 49 d f ] ) a - >
+
+| 2,8 EL cc
+    2 node 0.5 [ -  d o [
+    2 node 0 ] [
+    1 node 1 ] d fff ]

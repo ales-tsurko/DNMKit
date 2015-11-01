@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07E4DC871BE680B800AF0DE9 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */; };
+		07E4DC881BE680B800AF0DE9 /* DNMUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07E4DC8B1BE680BF00AF0DE9 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */; };
+		07E4DC8C1BE680BF00AF0DE9 /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07E4DC8E1BE680C600AF0DE9 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */; };
+		07E4DC8F1BE680C600AF0DE9 /* DNMView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07E4DC911BE6840500AF0DE9 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */; };
+		07E4DC921BE6840500AF0DE9 /* DNMConverter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07ECB4641BE5393900C9AD08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4631BE5393900C9AD08 /* AppDelegate.swift */; };
 		07ECB4661BE5393900C9AD08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4651BE5393900C9AD08 /* ViewController.swift */; };
 		07ECB4691BE5393900C9AD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07ECB4671BE5393900C9AD08 /* Main.storyboard */; };
 		07ECB46B1BE5393900C9AD08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07ECB46A1BE5393900C9AD08 /* Assets.xcassets */; };
 		07ECB46E1BE5393900C9AD08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07ECB46C1BE5393900C9AD08 /* LaunchScreen.storyboard */; };
 		07ECB4791BE5393900C9AD08 /* DNMKitExample_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4781BE5393900C9AD08 /* DNMKitExample_iOSTests.swift */; };
+		07F3E7971BE6801100948758 /* parse_header.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7921BE6801100948758 /* parse_header.txt */; };
+		07F3E7981BE6801100948758 /* parse_JACK.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7931BE6801100948758 /* parse_JACK.txt */; };
+		07F3E7991BE6801100948758 /* parse_slurTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7941BE6801100948758 /* parse_slurTest.txt */; };
+		07F3E79A1BE6801100948758 /* parseThis.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7951BE6801100948758 /* parseThis.txt */; };
+		07F3E79B1BE6801100948758 /* parse_string.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7961BE6801100948758 /* parse_string.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +38,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		07E4DC891BE680B800AF0DE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				07E4DC8C1BE680BF00AF0DE9 /* DNMModel.framework in Embed Frameworks */,
+				07E4DC921BE6840500AF0DE9 /* DNMConverter.framework in Embed Frameworks */,
+				07E4DC8F1BE680C600AF0DE9 /* DNMView.framework in Embed Frameworks */,
+				07E4DC881BE680B800AF0DE9 /* DNMUtility.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUtility.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<absolute>"; };
+		07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<absolute>"; };
+		07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMView.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMView.framework"; sourceTree = "<absolute>"; };
+		07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMConverter.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMConverter.framework"; sourceTree = "<absolute>"; };
 		07ECB4601BE5393900C9AD08 /* DNMKitExample_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNMKitExample_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB4631BE5393900C9AD08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07ECB4651BE5393900C9AD08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +70,11 @@
 		07ECB4741BE5393900C9AD08 /* DNMKitExample_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMKitExample_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB4781BE5393900C9AD08 /* DNMKitExample_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMKitExample_iOSTests.swift; sourceTree = "<group>"; };
 		07ECB47A1BE5393900C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F3E7921BE6801100948758 /* parse_header.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_header.txt; sourceTree = "<group>"; };
+		07F3E7931BE6801100948758 /* parse_JACK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_JACK.txt; sourceTree = "<group>"; };
+		07F3E7941BE6801100948758 /* parse_slurTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_slurTest.txt; sourceTree = "<group>"; };
+		07F3E7951BE6801100948758 /* parseThis.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parseThis.txt; sourceTree = "<group>"; };
+		07F3E7961BE6801100948758 /* parse_string.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_string.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E4DC8B1BE680BF00AF0DE9 /* DNMModel.framework in Frameworks */,
+				07E4DC911BE6840500AF0DE9 /* DNMConverter.framework in Frameworks */,
+				07E4DC8E1BE680C600AF0DE9 /* DNMView.framework in Frameworks */,
+				07E4DC871BE680B800AF0DE9 /* DNMUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +102,10 @@
 		07ECB4571BE5393900C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */,
+				07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */,
+				07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */,
+				07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */,
 				07ECB4621BE5393900C9AD08 /* DNMKitExample_iOS */,
 				07ECB4771BE5393900C9AD08 /* DNMKitExample_iOSTests */,
 				07ECB4611BE5393900C9AD08 /* Products */,
@@ -77,6 +124,7 @@
 		07ECB4621BE5393900C9AD08 /* DNMKitExample_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E7911BE67FDF00948758 /* Scores */,
 				07ECB4631BE5393900C9AD08 /* AppDelegate.swift */,
 				07ECB4651BE5393900C9AD08 /* ViewController.swift */,
 				07ECB4671BE5393900C9AD08 /* Main.storyboard */,
@@ -96,6 +144,18 @@
 			path = DNMKitExample_iOSTests;
 			sourceTree = "<group>";
 		};
+		07F3E7911BE67FDF00948758 /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7921BE6801100948758 /* parse_header.txt */,
+				07F3E7931BE6801100948758 /* parse_JACK.txt */,
+				07F3E7941BE6801100948758 /* parse_slurTest.txt */,
+				07F3E7951BE6801100948758 /* parseThis.txt */,
+				07F3E7961BE6801100948758 /* parse_string.txt */,
+			);
+			name = Scores;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +166,7 @@
 				07ECB45C1BE5393900C9AD08 /* Sources */,
 				07ECB45D1BE5393900C9AD08 /* Frameworks */,
 				07ECB45E1BE5393900C9AD08 /* Resources */,
+				07E4DC891BE680B800AF0DE9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -177,8 +238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07ECB46E1BE5393900C9AD08 /* LaunchScreen.storyboard in Resources */,
+				07F3E7971BE6801100948758 /* parse_header.txt in Resources */,
+				07F3E79A1BE6801100948758 /* parseThis.txt in Resources */,
+				07F3E7991BE6801100948758 /* parse_slurTest.txt in Resources */,
 				07ECB46B1BE5393900C9AD08 /* Assets.xcassets in Resources */,
 				07ECB4691BE5393900C9AD08 /* Main.storyboard in Resources */,
+				07F3E7981BE6801100948758 /* parse_JACK.txt in Resources */,
+				07F3E79B1BE6801100948758 /* parse_string.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +453,7 @@
 				07ECB47F1BE5393900C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07ECB4801BE5393900C9AD08 /* Build configuration list for PBXNativeTarget "DNMKitExample_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +462,7 @@
 				07ECB4821BE5393900C9AD08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

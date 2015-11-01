@@ -1,13 +1,3 @@
-//
-//  SwiftyJSON.swift
-//  DNMJSON
-//
-//  Created by James Bean on 10/31/15.
-//  Copyright © 2015 James Bean. All rights reserved.
-//
-
-import Foundation
-
 //  SwiftyJSON.swift
 //
 //  Copyright (c) 2014 Ruoyu Fu, Pinglin Tang
