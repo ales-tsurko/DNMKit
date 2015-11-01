@@ -19,7 +19,7 @@ internal class Tokenizer {
     internal func getTokens() -> [Token] {
     
         var inBlockComment: Bool = false
-        var inLineComment: Bool = false
+        //var inLineComment: Bool = false
         
         var tokens: [Token] = []
         var lineCount: Int = 0
@@ -52,7 +52,8 @@ internal class Tokenizer {
             case .BlockCommentStop:
                 inBlockComment = false
             case .LineCommentStart:
-                inLineComment = true
+                //inLineComment = true
+                break
             default: break
             }
             index++

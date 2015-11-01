@@ -63,7 +63,7 @@ public class Environment: UIView {
         var measures: [MeasureView] = []
         for measure_model in measures_model {
             let duration = measure_model.duration
-            let offsetDuration = measure_model.offsetDuration
+            //let offsetDuration = measure_model.offsetDuration
             let measure = MeasureView(duration: duration)
             measure.hasTimeSignature = measure_model.hasTimeSignature
             measures.append(measure)
@@ -101,7 +101,7 @@ public class Environment: UIView {
 
         viewIDs = []
         for performerArray in iIDsAndInstrumentTypesByPID {
-            for (id, arrayOfIIDsAndInstrumentTypes) in performerArray {
+            for (id, _) in performerArray {
                viewIDs.append(id)
             }
         }
@@ -280,7 +280,7 @@ public class Environment: UIView {
     
     public func makePages() -> [Page] {
 
-        var maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
+        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
 
         var pages: [Page] = []
         var systemIndex: Int = 0

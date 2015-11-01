@@ -35,6 +35,7 @@ public class System: ViewNode, BuildPattern {
     public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
 
+    
     // this should go...
     // make private getter
     public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] {
@@ -42,7 +43,7 @@ public class System: ViewNode, BuildPattern {
     }
 
     /** 
-    All component types (as String) by ID.
+    All component types (as `String`) by ID.
     Currently, this is a PerformerID, however, 
     this is to be extended to be more generalized at flexibility increases with identifiers.
     Examples of these component types are: "dynamics", "articulations", "pitch", etc..
@@ -54,31 +55,51 @@ public class System: ViewNode, BuildPattern {
     public var componentTypesShownByID: [String : [String]] = [:]
     
     
-    public var idsByComponentType: [String : [String]] = [:]
-    public var idsShownByComponentType: [String : [String]] = [:]
-    public var idsHiddenByComponentType: [String : [String]] = [:]
+    /// Identifiers organizaed by component type (as `String`)
+    private var idsByComponentType: [String : [String]] = [:]
+    
+    /// Identifiers that are currently showing a given component type (as `String`)
+    private var idsShownByComponentType: [String : [String]] = [:]
+    
+    /// Identifiers that are currently not showing a given component type (as `String`)
+    private var idsHiddenByComponentType: [String : [String]] = [:]
     
     // DESTROY
     public var bgStratumByID: [String : BGStratum] = [:]
     public var bgStrataByID: [String : [BGStratum]] = [:]
     
+    /// DynamicMarkingNodes organized by identifier `String`
     public var dmNodeByID: [String : DMNode] = [:]
+    
+    /// Performers organized by identifier `String`
     public var performerByID: [String: Performer] = [:]
+    
+    /// SlurHandlers organizaed by identifier `String`
     public var slurHandlersByID: [String : [SlurHandler]] = [:]
 
+    /// All InstrumentEventHandlers in this System
     public var instrumentEventHandlers: [InstrumentEventHandler] = []
     
-    // DESTROY
-    //public var eventHandlers: [EventHandler] = [] // getter? // or too expensive?
-    
-    // DESTROY
-    public var tempoMarkingNode: TMNode?
-    
+    /** TemporalInfoNode of this System. Contains:
+        - TimeSignatureNode
+        - MeasureNumberNode
+        - TempoMarkingsNode
+    */
     public var temporalInfoNode = TemporalInfoNode(height: 75)
+    
+    /** 
+    EventsNode of System. Stacked after the `temporalInfoNode`.
+    Contains all non-temporal musical information (`Performers`, `BGStrata`, `DMNodes`, etc).
+    */
     public var eventsNode = ViewNode(accumulateVerticallyFrom: .Top)
+    
+    /// Layer for Barlines. First (most background) layer of EventsNode
     public let barlinesLayer = CALayer()
     
+    /// All MeasureViews contained in this System
     public var measures: [MeasureView] = []
+    
+    /// All DurationNodes contained in this System
     public var durationNodes: [DurationNode] = []
     
     public var measureNumberNode: ViewNode? // make specific
@@ -870,12 +891,14 @@ public class System: ViewNode, BuildPattern {
         for stem in stems { addStem(stem) }
     }
     
+    /*
     public func createTMNode() {
         tempoMarkingNode = TMNode(height: 30)
         tempoMarkingNode!.pad_bottom = 5 // HACK
         //tempoMarkingNode!.addSampleTempoMarkingAtX(50)
         insertNode(tempoMarkingNode!, atIndex: 0)
     }
+    */
     
     public func build() {
         clearNodes()
