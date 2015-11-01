@@ -65,6 +65,38 @@
 		07F3E7361BE66E8600948758 /* TimeSignatureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7341BE66E8600948758 /* TimeSignatureNode.swift */; };
 		07F3E7391BE66E9900948758 /* MeasureNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7371BE66E9900948758 /* MeasureNumber.swift */; };
 		07F3E73A1BE66E9900948758 /* MeasureNumberNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7381BE66E9900948758 /* MeasureNumberNode.swift */; };
+		07F3E73C1BE670BE00948758 /* GraphSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E73B1BE670BE00948758 /* GraphSwitch.swift */; };
+		07F3E7461BE6717800948758 /* Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E73E1BE6717800948758 /* Beam.swift */; };
+		07F3E7471BE6717800948758 /* BeamGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E73F1BE6717800948758 /* BeamGroup.swift */; };
+		07F3E7481BE6717800948758 /* BeamJunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7401BE6717800948758 /* BeamJunction.swift */; };
+		07F3E7491BE6717800948758 /* BeamsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7411BE6717800948758 /* BeamsLayer.swift */; };
+		07F3E74A1BE6717800948758 /* BeamsLayerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7421BE6717800948758 /* BeamsLayerGroup.swift */; };
+		07F3E74B1BE6717800948758 /* BGContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7431BE6717800948758 /* BGContainer.swift */; };
+		07F3E74C1BE6717800948758 /* BGEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7441BE6717800948758 /* BGEvent.swift */; };
+		07F3E74D1BE6717800948758 /* BGStratum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7451BE6717800948758 /* BGStratum.swift */; };
+		07F3E74F1BE6720B00948758 /* TupletBracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E74E1BE6720B00948758 /* TupletBracket.swift */; };
+		07F3E7511BE6722100948758 /* SubdivisionGraphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7501BE6722100948758 /* SubdivisionGraphic.swift */; };
+		07F3E7531BE6723900948758 /* AugmentationDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7521BE6723900948758 /* AugmentationDot.swift */; };
+		07F3E7551BE6725900948758 /* DurationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7541BE6725900948758 /* DurationExtensions.swift */; };
+		07F3E7571BE6734300948758 /* DurationNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7561BE6734300948758 /* DurationNodeExtensions.swift */; };
+		07F3E7591BE6750F00948758 /* DENode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7581BE6750F00948758 /* DENode.swift */; };
+		07F3E75B1BE6751C00948758 /* DurationalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E75A1BE6751C00948758 /* DurationalExtension.swift */; };
+		07F3E75D1BE6754600948758 /* SANode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E75C1BE6754600948758 /* SANode.swift */; };
+		07F3E75F1BE6759C00948758 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E75E1BE6759C00948758 /* Page.swift */; };
+		07F3E7611BE675C900948758 /* RehearsalMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7601BE675C900948758 /* RehearsalMarkingView.swift */; };
+		07F3E7631BE675F700948758 /* SlurHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7621BE675F700948758 /* SlurHandler.swift */; };
+		07F3E76A1BE6762600948758 /* DMCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7651BE6762600948758 /* DMCharacter.swift */; };
+		07F3E76B1BE6762600948758 /* DMLigature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7661BE6762600948758 /* DMLigature.swift */; };
+		07F3E76C1BE6762600948758 /* DMLigatureSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7671BE6762600948758 /* DMLigatureSegment.swift */; };
+		07F3E76D1BE6762600948758 /* DMNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7681BE6762600948758 /* DMNode.swift */; };
+		07F3E76E1BE6762600948758 /* DynamicMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7691BE6762600948758 /* DynamicMarking.swift */; };
+		07F3E7701BE6765600948758 /* TemporalInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E76F1BE6765600948758 /* TemporalInfoNode.swift */; };
+		07F3E7731BE6767200948758 /* RhythmCueGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7721BE6767200948758 /* RhythmCueGraph.swift */; };
+		07F3E7751BE6769200948758 /* TempoMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7741BE6769200948758 /* TempoMarkingView.swift */; };
+		07F3E7771BE6774100948758 /* GraphEventSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7761BE6774100948758 /* GraphEventSwitch.swift */; };
+		07F3E7791BE6784200948758 /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7781BE6784200948758 /* Tremolo.swift */; };
+		07F3E77B1BE6793900948758 /* ConcreteStyledBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77A1BE6793900948758 /* ConcreteStyledBezierCurve.swift */; };
+		07F3E77D1BE67B1900948758 /* TMNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77C1BE67B1900948758 /* TMNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +171,38 @@
 		07F3E7341BE66E8600948758 /* TimeSignatureNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSignatureNode.swift; sourceTree = "<group>"; };
 		07F3E7371BE66E9900948758 /* MeasureNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureNumber.swift; sourceTree = "<group>"; };
 		07F3E7381BE66E9900948758 /* MeasureNumberNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureNumberNode.swift; sourceTree = "<group>"; };
+		07F3E73B1BE670BE00948758 /* GraphSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphSwitch.swift; sourceTree = "<group>"; };
+		07F3E73E1BE6717800948758 /* Beam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beam.swift; sourceTree = "<group>"; };
+		07F3E73F1BE6717800948758 /* BeamGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeamGroup.swift; sourceTree = "<group>"; };
+		07F3E7401BE6717800948758 /* BeamJunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeamJunction.swift; sourceTree = "<group>"; };
+		07F3E7411BE6717800948758 /* BeamsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeamsLayer.swift; sourceTree = "<group>"; };
+		07F3E7421BE6717800948758 /* BeamsLayerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeamsLayerGroup.swift; sourceTree = "<group>"; };
+		07F3E7431BE6717800948758 /* BGContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGContainer.swift; sourceTree = "<group>"; };
+		07F3E7441BE6717800948758 /* BGEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEvent.swift; sourceTree = "<group>"; };
+		07F3E7451BE6717800948758 /* BGStratum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGStratum.swift; sourceTree = "<group>"; };
+		07F3E74E1BE6720B00948758 /* TupletBracket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupletBracket.swift; sourceTree = "<group>"; };
+		07F3E7501BE6722100948758 /* SubdivisionGraphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubdivisionGraphic.swift; sourceTree = "<group>"; };
+		07F3E7521BE6723900948758 /* AugmentationDot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AugmentationDot.swift; sourceTree = "<group>"; };
+		07F3E7541BE6725900948758 /* DurationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationExtensions.swift; sourceTree = "<group>"; };
+		07F3E7561BE6734300948758 /* DurationNodeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeExtensions.swift; sourceTree = "<group>"; };
+		07F3E7581BE6750F00948758 /* DENode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DENode.swift; sourceTree = "<group>"; };
+		07F3E75A1BE6751C00948758 /* DurationalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationalExtension.swift; sourceTree = "<group>"; };
+		07F3E75C1BE6754600948758 /* SANode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SANode.swift; sourceTree = "<group>"; };
+		07F3E75E1BE6759C00948758 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		07F3E7601BE675C900948758 /* RehearsalMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarkingView.swift; sourceTree = "<group>"; };
+		07F3E7621BE675F700948758 /* SlurHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlurHandler.swift; sourceTree = "<group>"; };
+		07F3E7651BE6762600948758 /* DMCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCharacter.swift; sourceTree = "<group>"; };
+		07F3E7661BE6762600948758 /* DMLigature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMLigature.swift; sourceTree = "<group>"; };
+		07F3E7671BE6762600948758 /* DMLigatureSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMLigatureSegment.swift; sourceTree = "<group>"; };
+		07F3E7681BE6762600948758 /* DMNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMNode.swift; sourceTree = "<group>"; };
+		07F3E7691BE6762600948758 /* DynamicMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicMarking.swift; sourceTree = "<group>"; };
+		07F3E76F1BE6765600948758 /* TemporalInfoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporalInfoNode.swift; sourceTree = "<group>"; };
+		07F3E7721BE6767200948758 /* RhythmCueGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RhythmCueGraph.swift; sourceTree = "<group>"; };
+		07F3E7741BE6769200948758 /* TempoMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarkingView.swift; sourceTree = "<group>"; };
+		07F3E7761BE6774100948758 /* GraphEventSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventSwitch.swift; sourceTree = "<group>"; };
+		07F3E7781BE6784200948758 /* Tremolo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tremolo.swift; sourceTree = "<group>"; };
+		07F3E77A1BE6793900948758 /* ConcreteStyledBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteStyledBezierCurve.swift; sourceTree = "<group>"; };
+		07F3E77C1BE67B1900948758 /* TMNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +271,12 @@
 		07F3E68C1BE5478600948758 /* MusicNotationObjects */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E73D1BE6714E00948758 /* Rhythm */,
 				07F3E7041BE54C5500948758 /* Stem */,
 				07F3E6971BE5482600948758 /* Accidentals */,
 				07F3E6931BE547BA00948758 /* Spanners */,
 				07F3E6921BE547B400948758 /* Noteheads */,
+				07F3E7641BE675FF00948758 /* DynamicMarkings */,
 				07F3E68F1BE5479D00948758 /* Articulations */,
 			);
 			name = MusicNotationObjects;
@@ -229,6 +295,9 @@
 				07F3E6991BE5483C00948758 /* ViewNode.swift */,
 				07F3E6BA1BE5499200948758 /* Ligature.swift */,
 				07F3E7251BE66DED00948758 /* Waveform.swift */,
+				07F3E7501BE6722100948758 /* SubdivisionGraphic.swift */,
+				07F3E7541BE6725900948758 /* DurationExtensions.swift */,
+				07F3E7561BE6734300948758 /* DurationNodeExtensions.swift */,
 				07F3E7071BE54C7100948758 /* Label */,
 				07F3E69B1BE5486B00948758 /* BezierCurves */,
 			);
@@ -238,10 +307,15 @@
 		07F3E68E1BE5479100948758 /* OrganizationalObjects */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E75E1BE6759C00948758 /* Page.swift */,
 				07F3E7231BE66DA200948758 /* System.swift */,
 				07F3E7271BE66E0F00948758 /* Performer.swift */,
-				07F3E7291BE66E2D00948758 /* Instrument */,
+				07F3E76F1BE6765600948758 /* TemporalInfoNode.swift */,
+				07F3E7601BE675C900948758 /* RehearsalMarkingView.swift */,
+				07F3E7741BE6769200948758 /* TempoMarkingView.swift */,
+				07F3E77C1BE67B1900948758 /* TMNode.swift */,
 				07F3E7301BE66E6800948758 /* Measure */,
+				07F3E7291BE66E2D00948758 /* Instrument */,
 				07F3E6911BE547A600948758 /* Graphs */,
 			);
 			name = OrganizationalObjects;
@@ -250,7 +324,9 @@
 		07F3E68F1BE5479D00948758 /* Articulations */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E75C1BE6754600948758 /* SANode.swift */,
 				07F3E6FE1BE54BD700948758 /* Articulation.swift */,
+				07F3E7781BE6784200948758 /* Tremolo.swift */,
 			);
 			name = Articulations;
 			sourceTree = "<group>";
@@ -258,11 +334,12 @@
 		07F3E6911BE547A600948758 /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E6D31BE54A5600948758 /* GraphSwitch */,
-				07F3E6D21BE54A4D00948758 /* GraphWaveform */,
 				07F3E6C71BE54A1B00948758 /* Graph.swift */,
 				07F3E6C91BE54A2100948758 /* GraphEvent.swift */,
 				07F3E7171BE66CBD00948758 /* Clef.swift */,
+				07F3E7711BE6766800948758 /* GraphCue */,
+				07F3E6D31BE54A5600948758 /* GraphSwitch */,
+				07F3E6D21BE54A4D00948758 /* GraphWaveform */,
 				07F3E6CB1BE54A2500948758 /* GraphContinuousController */,
 				07F3E6C21BE549F900948758 /* Staff */,
 			);
@@ -280,6 +357,7 @@
 		07F3E6931BE547BA00948758 /* Spanners */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E7621BE675F700948758 /* SlurHandler.swift */,
 				07F3E7191BE66CED00948758 /* Slur.swift */,
 			);
 			name = Spanners;
@@ -307,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */,
+				07F3E77A1BE6793900948758 /* ConcreteStyledBezierCurve.swift */,
 				07F3E69C1BE5489A00948758 /* BezierCurve.swift */,
 				07F3E69D1BE5489A00948758 /* BezierCurveCubic.swift */,
 				07F3E69E1BE5489A00948758 /* BezierCurveLinear.swift */,
@@ -349,6 +428,8 @@
 		07F3E6D31BE54A5600948758 /* GraphSwitch */ = {
 			isa = PBXGroup;
 			children = (
+				07F3E73B1BE670BE00948758 /* GraphSwitch.swift */,
+				07F3E7761BE6774100948758 /* GraphEventSwitch.swift */,
 			);
 			name = GraphSwitch;
 			sourceTree = "<group>";
@@ -403,6 +484,45 @@
 				07F3E7311BE66E7B00948758 /* Barline.swift */,
 			);
 			name = Measure;
+			sourceTree = "<group>";
+		};
+		07F3E73D1BE6714E00948758 /* Rhythm */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E73E1BE6717800948758 /* Beam.swift */,
+				07F3E73F1BE6717800948758 /* BeamGroup.swift */,
+				07F3E7401BE6717800948758 /* BeamJunction.swift */,
+				07F3E7411BE6717800948758 /* BeamsLayer.swift */,
+				07F3E7421BE6717800948758 /* BeamsLayerGroup.swift */,
+				07F3E7431BE6717800948758 /* BGContainer.swift */,
+				07F3E7441BE6717800948758 /* BGEvent.swift */,
+				07F3E7451BE6717800948758 /* BGStratum.swift */,
+				07F3E74E1BE6720B00948758 /* TupletBracket.swift */,
+				07F3E7521BE6723900948758 /* AugmentationDot.swift */,
+				07F3E7581BE6750F00948758 /* DENode.swift */,
+				07F3E75A1BE6751C00948758 /* DurationalExtension.swift */,
+			);
+			name = Rhythm;
+			sourceTree = "<group>";
+		};
+		07F3E7641BE675FF00948758 /* DynamicMarkings */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7651BE6762600948758 /* DMCharacter.swift */,
+				07F3E7661BE6762600948758 /* DMLigature.swift */,
+				07F3E7671BE6762600948758 /* DMLigatureSegment.swift */,
+				07F3E7681BE6762600948758 /* DMNode.swift */,
+				07F3E7691BE6762600948758 /* DynamicMarking.swift */,
+			);
+			name = DynamicMarkings;
+			sourceTree = "<group>";
+		};
+		07F3E7711BE6766800948758 /* GraphCue */ = {
+			isa = PBXGroup;
+			children = (
+				07F3E7721BE6767200948758 /* RhythmCueGraph.swift */,
+			);
+			name = GraphCue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,50 +633,81 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F3E7511BE6722100948758 /* SubdivisionGraphic.swift in Sources */,
 				07F3E6D11BE54A3D00948758 /* GraphEventNode.swift in Sources */,
+				07F3E7591BE6750F00948758 /* DENode.swift in Sources */,
 				07F3E72F1BE66E4300948758 /* InstrumentString.swift in Sources */,
 				07F3E6A41BE5489A00948758 /* BezierCurveCubic.swift in Sources */,
 				07F3E71C1BE66D2300948758 /* MeasureView.swift in Sources */,
+				07F3E7791BE6784200948758 /* Tremolo.swift in Sources */,
+				07F3E74B1BE6717800948758 /* BGContainer.swift in Sources */,
 				07F3E7061BE54C5C00948758 /* Stem.swift in Sources */,
 				07F3E7391BE66E9900948758 /* MeasureNumber.swift in Sources */,
+				07F3E7531BE6723900948758 /* AugmentationDot.swift in Sources */,
 				07F3E6B11BE5493600948758 /* UIBezierPathExtensions.swift in Sources */,
 				07F3E72E1BE66E4300948758 /* InstrumentEventHandler.swift in Sources */,
 				07F3E7361BE66E8600948758 /* TimeSignatureNode.swift in Sources */,
+				07F3E7751BE6769200948758 /* TempoMarkingView.swift in Sources */,
+				07F3E75F1BE6759C00948758 /* Page.swift in Sources */,
+				07F3E76B1BE6762600948758 /* DMLigature.swift in Sources */,
+				07F3E76E1BE6762600948758 /* DynamicMarking.swift in Sources */,
+				07F3E76C1BE6762600948758 /* DMLigatureSegment.swift in Sources */,
 				07F3E6BB1BE5499200948758 /* Ligature.swift in Sources */,
 				07F3E6CA1BE54A2100948758 /* GraphEvent.swift in Sources */,
 				07F3E7201BE66D6E00948758 /* Instrument.swift in Sources */,
 				07F3E7321BE66E7B00948758 /* Barline.swift in Sources */,
 				07F3E70E1BE54CC500948758 /* UIColorExtensions.swift in Sources */,
+				07F3E76D1BE6762600948758 /* DMNode.swift in Sources */,
+				07F3E73C1BE670BE00948758 /* GraphSwitch.swift in Sources */,
 				07F3E7101BE54CCE00948758 /* DNMColorManager.swift in Sources */,
 				07F3E6A91BE5489A00948758 /* BezierPath.swift in Sources */,
 				07F3E6B71BE5496900948758 /* AccidentalComponent.swift in Sources */,
 				07F3E7261BE66DED00948758 /* Waveform.swift in Sources */,
 				07F3E72D1BE66E4300948758 /* InstrumentEvent.swift in Sources */,
+				07F3E74A1BE6717800948758 /* BeamsLayerGroup.swift in Sources */,
 				07F3E7121BE54CF500948758 /* DepthOfField.swift in Sources */,
 				07F3E6C61BE54A0B00948758 /* StaffEvent.swift in Sources */,
+				07F3E75D1BE6754600948758 /* SANode.swift in Sources */,
 				07F3E6A31BE5489A00948758 /* BezierCurve.swift in Sources */,
 				07F3E7281BE66E0F00948758 /* Performer.swift in Sources */,
 				07F3E73A1BE66E9900948758 /* MeasureNumberNode.swift in Sources */,
 				07F3E6D51BE54A7000948758 /* GraphContinuousControllerStepped.swift in Sources */,
+				07F3E7481BE6717800948758 /* BeamJunction.swift in Sources */,
+				07F3E7771BE6774100948758 /* GraphEventSwitch.swift in Sources */,
 				07F3E69A1BE5483C00948758 /* ViewNode.swift in Sources */,
 				07F3E6B91BE5497000948758 /* AccidentalCollision.swift in Sources */,
+				07F3E74F1BE6720B00948758 /* TupletBracket.swift in Sources */,
+				07F3E7471BE6717800948758 /* BeamGroup.swift in Sources */,
+				07F3E7731BE6767200948758 /* RhythmCueGraph.swift in Sources */,
+				07F3E76A1BE6762600948758 /* DMCharacter.swift in Sources */,
 				07F3E70B1BE54CA000948758 /* StaffItem.swift in Sources */,
+				07F3E75B1BE6751C00948758 /* DurationalExtension.swift in Sources */,
 				07F3E7161BE54E0000948758 /* HueByTupletDepth.swift in Sources */,
 				07F3E6C81BE54A1B00948758 /* Graph.swift in Sources */,
 				07F3E6A51BE5489A00948758 /* BezierCurveLinear.swift in Sources */,
+				07F3E7571BE6734300948758 /* DurationNodeExtensions.swift in Sources */,
 				07F3E6AF1BE5490900948758 /* StyledBezierCurve.swift in Sources */,
 				07F3E6A81BE5489A00948758 /* BezierCurveStylerDashes.swift in Sources */,
 				07F3E7091BE54C7C00948758 /* Label.swift in Sources */,
+				07F3E77B1BE6793900948758 /* ConcreteStyledBezierCurve.swift in Sources */,
 				07F3E7011BE54C1100948758 /* StemDirection.swift in Sources */,
 				07F3E6A61BE5489A00948758 /* BezierCurveQuadratic.swift in Sources */,
+				07F3E7701BE6765600948758 /* TemporalInfoNode.swift in Sources */,
+				07F3E7611BE675C900948758 /* RehearsalMarkingView.swift in Sources */,
 				07F3E6B31BE5494000948758 /* TextLayerContstrainedByHeight.swift in Sources */,
+				07F3E7491BE6717800948758 /* BeamsLayer.swift in Sources */,
 				07F3E7241BE66DA200948758 /* System.swift in Sources */,
+				07F3E74C1BE6717800948758 /* BGEvent.swift in Sources */,
 				07F3E6D01BE54A3D00948758 /* GraphEventEdge.swift in Sources */,
+				07F3E7551BE6725900948758 /* DurationExtensions.swift in Sources */,
 				07F3E7141BE54D0300948758 /* ColorMode.swift in Sources */,
 				07F3E6C51BE54A0B00948758 /* Staff.swift in Sources */,
 				07F3E6A71BE5489A00948758 /* BezierCurveStyler.swift in Sources */,
 				07F3E6C11BE549DA00948758 /* Polygon.swift in Sources */,
 				07F3E6BD1BE549B500948758 /* Guido.swift in Sources */,
+				07F3E77D1BE67B1900948758 /* TMNode.swift in Sources */,
+				07F3E74D1BE6717800948758 /* BGStratum.swift in Sources */,
+				07F3E7631BE675F700948758 /* SlurHandler.swift in Sources */,
 				07F3E6CF1BE54A3D00948758 /* GraphContinuousController.swift in Sources */,
 				07F3E71A1BE66CED00948758 /* Slur.swift in Sources */,
 				07F3E7031BE54C4600948758 /* Notehead.swift in Sources */,
@@ -565,6 +716,7 @@
 				07F3E6FF1BE54BD700948758 /* Articulation.swift in Sources */,
 				07F3E7351BE66E8600948758 /* TimeSignature.swift in Sources */,
 				07F3E7181BE66CBD00948758 /* Clef.swift in Sources */,
+				07F3E7461BE6717800948758 /* Beam.swift in Sources */,
 				07F3E7221BE66D8500948758 /* GraphWaveform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

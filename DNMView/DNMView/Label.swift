@@ -24,7 +24,7 @@ public class Label: ViewNode {
         super.init()
         self.top = top
         build()
-        backgroundColor = ColorManager.backgroundColor.CGColor
+        backgroundColor = DNMColorManager.backgroundColor.CGColor
     }
     public override init() { super.init() }
     public override init(layer: AnyObject) { super.init(layer: layer) }
@@ -45,7 +45,7 @@ public class Label: ViewNode {
             alignment: .Center,
             fontName: "Baskerville-SemiBold"
         )
-        textLayer.foregroundColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+        textLayer.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
         addSublayer(textLayer)
     }
     

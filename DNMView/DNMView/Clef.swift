@@ -410,7 +410,7 @@ public class ClefOrnament: ClefComponent {
     
     override private func setVisualAttributes() {
         //fillColor = UIColor.whiteColor().CGColor
-        fillColor = ColorManager.backgroundColor.CGColor
+        fillColor = DNMColorManager.backgroundColor.CGColor
         strokeColor = color
         backgroundColor = UIColor.clearColor().CGColor
     }

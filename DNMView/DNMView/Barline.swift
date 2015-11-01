@@ -8,10 +8,10 @@
 
 import QuartzCore
 
-public class Barline: LigatureVertical, Playable {
+public class Barline: LigatureVertical/*, Playable*/ {
     
     public override func setVisualAttributes() {
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.MostBackground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.MostBackground).CGColor
     }
     
     public func play() {

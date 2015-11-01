@@ -75,7 +75,7 @@ public class Notehead: CALayer, StaffItem {
     
     public func setVisualAttributes() {
         shapeLayer.lineWidth = 0
-        shapeLayer.fillColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        shapeLayer.fillColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         shapeLayer.backgroundColor = UIColor.clearColor().CGColor
     }
 }
@@ -110,8 +110,8 @@ public class NoteheadDiamondEmpty: Notehead {
     }
     
     public override func setVisualAttributes() {
-        shapeLayer.fillColor = ColorManager.backgroundColor.CGColor
-        shapeLayer.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        shapeLayer.fillColor = DNMColorManager.backgroundColor.CGColor
+        shapeLayer.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         shapeLayer.lineWidth = 0.236 * g
     }
 }
@@ -130,8 +130,8 @@ public class NoteheadCircleEmpty: Notehead {
     }
     
     public override func setVisualAttributes() {
-        shapeLayer.fillColor = ColorManager.backgroundColor.CGColor
-        shapeLayer.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        shapeLayer.fillColor = DNMColorManager.backgroundColor.CGColor
+        shapeLayer.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         shapeLayer.lineWidth = 0.1236 * g
     }
 }
@@ -150,8 +150,8 @@ public class NoteheadCircleFull: Notehead {
     }
     
     public override func setVisualAttributes() {
-        shapeLayer.fillColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
-        shapeLayer.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        shapeLayer.fillColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        shapeLayer.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         shapeLayer.lineWidth = 0.1236 * g
     }
 }

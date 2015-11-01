@@ -94,7 +94,7 @@ public class Performer: ViewNode {
                 path.moveToPoint(CGPointMake(0, minInstrumentsTop))
                 path.addLineToPoint(CGPointMake(0, maxInstrumentsBottom))
                 bracket!.path = path.CGPath
-                bracket!.strokeColor = JBColor.grayscaleColorWithDepthOfField(.MiddleBackground).CGColor
+                bracket!.strokeColor = UIColor.grayscaleColorWithDepthOfField(.MiddleBackground).CGColor
                 bracket!.lineWidth = 3
                 
                 // hackish -- this is why we need more intelligent barline
@@ -109,7 +109,7 @@ public class Performer: ViewNode {
         label = TextLayerConstrainedByHeight(
             text: id, x: -10, top: 0, height: 10, alignment: .Right, fontName: "Baskerville-SemiBold"
         )
-        label!.foregroundColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        label!.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
         addSublayer(label!)
     }
     

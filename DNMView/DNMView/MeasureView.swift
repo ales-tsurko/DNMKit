@@ -53,18 +53,26 @@ public class MeasureView: ViewNode, BuildPattern {
     
     
     public class func rangeFromMeasures(
-        measures: [Measure],
+        measures: [MeasureView],
         startingAtIndex index: Int,
         constrainedByMaximumTotalWidth maximumWidth: CGFloat
-    ) -> [Measure]
+    ) -> [MeasureView]
     {
-        var measureRange: [Measure] = []
+        var measureRange: [MeasureView] = []
         var m: Int = index
         var accumLeft: CGFloat = 0
         while m < measures.count && accumLeft < maximumWidth {
+            
+            /*
+            // update
             let measure_width = graphicalWidth(
                 duration: measures[m].dur!, beatWidth: measures[m].beatWidth
             )
+            */
+
+            // TODO: clean
+            let measure_width = measures[m].dur!.width(beatWidth: measures[m].beatWidth)
+            
             if accumLeft + measure_width <= maximumWidth {
                 measureRange.append(measures[m])
                 accumLeft += measure_width
@@ -74,6 +82,8 @@ public class MeasureView: ViewNode, BuildPattern {
         }
         return measureRange
     }
+    
+    // TODO: public init(measure: Measure) { }
     
     public init(offsetDuration: Duration) {
         self.offsetDur = offsetDuration
@@ -164,6 +174,7 @@ public class MeasureView: ViewNode, BuildPattern {
         addSublayer(barlineLeft!)
     }
     
+    /*
     public func switchMGRects() {
         print("switch mgrects", terminator: "")
         
@@ -188,7 +199,9 @@ public class MeasureView: ViewNode, BuildPattern {
             CATransaction.setDisableActions(false)
         }
     }
+    */
     
+    /*
     private func addMGRects() {
         // encapsulate
         // add metronome grid rect
@@ -206,10 +219,12 @@ public class MeasureView: ViewNode, BuildPattern {
             }
         }
     }
+    */
     
     private func setFrame() {
         //let width = dur!.getGraphicalWidth(beatWidth: beatWidth)
-        let width = graphicalWidth(duration: dur!, beatWidth: beatWidth)
+        //let width = graphicalWidth(duration: dur!, beatWidth: beatWidth)
+        let width = dur!.width(beatWidth: beatWidth)
         frame = CGRectMake(0, 0, width, 0)
     }
     

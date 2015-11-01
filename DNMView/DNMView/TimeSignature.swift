@@ -10,7 +10,7 @@ import QuartzCore
 
 public class TimeSignature: ViewNode, BuildPattern {
     
-    public var measure: Measure?
+    public var measure: MeasureView?
     
     public var numeratorLayer: TextLayerConstrainedByHeight?
     public var denominatorLayer: TextLayerConstrainedByHeight?

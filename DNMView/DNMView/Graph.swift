@@ -7,6 +7,7 @@
 //
 
 import QuartzCore
+import DNMUtility
 
 public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
 
@@ -154,7 +155,7 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
                     line.path = line_path.CGPath
                     line.lineWidth = 1
                     //line.strokeColor = UIColor.lightGrayColor().CGColor
-                    line.strokeColor = JBColor.grayscaleColorWithDepthOfField(
+                    line.strokeColor = UIColor.grayscaleColorWithDepthOfField(
                         .MiddleBackground
                     ).CGColor
                     addSublayer(line)

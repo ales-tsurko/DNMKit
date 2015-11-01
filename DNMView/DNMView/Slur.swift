@@ -405,8 +405,8 @@ public class Slur: Ligature {
     }
     
     public override func setVisualAttributes() {
-        fillColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        fillColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         lineWidth = g / 16
         lineJoin = kCALineJoinRound
         lineCap = kCALineCapRound

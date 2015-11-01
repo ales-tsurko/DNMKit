@@ -33,7 +33,7 @@ public class System: ViewNode, BuildPattern {
                             graphEvents.append(event)
                             /*
                             if let stem = event.stem {
-                                stem.strokeColor = JBColor.grayscaleColorWithDepthOfField(
+                                stem.strokeColor = UIColor.grayscaleColorWithDepthOfField(
                                     .MostForeground
                                 ).CGColor
                             }
@@ -83,14 +83,18 @@ public class System: ViewNode, BuildPattern {
     public var slurHandlersByID: [String : [SlurHandler]] = [:]
 
     public var instrumentEventHandlers: [InstrumentEventHandler] = []
-    public var eventHandlers: [EventHandler] = [] // getter? // or too expensive?
     
+    // DESTROY
+    //public var eventHandlers: [EventHandler] = [] // getter? // or too expensive?
+    
+    // DESTROY
     public var tempoMarkingNode: TMNode?
+    
     public var temporalInfoNode = TemporalInfoNode(height: 75)
     public var eventsNode = ViewNode(accumulateVerticallyFrom: .Top)
     public let barlinesLayer = CALayer()
     
-    public var measures: [Measure] = []
+    public var measures: [MeasureView] = []
     public var durationNodes: [DurationNode] = []
     
     public var measureNumberNode: ViewNode? // make specific
@@ -133,7 +137,7 @@ public class System: ViewNode, BuildPattern {
     public var stems: [Stem] = []
 
     public var barlines: [Barline] = []
-    public var mgRects: [MetronomeGridRect] = []
+    //public var mgRects: [MetronomeGridRect] = []
     
     public var minPerformersTop: CGFloat? { get { return getMinPerformersTop() } }
     public var maxPerformersBottom: CGFloat? { get { return getMaxPerformersBottom() } }
@@ -209,9 +213,6 @@ public class System: ViewNode, BuildPattern {
     // -- is maintained when there are no perfs, dmNode OR bgStratum
     public func arrangeNodesWithComponentTypesPresent() {
         
-        print("system.arrangeNodesWithComponentTypesPresent()")
-        
-        // take care of data organization
         organizeIDsByComponentType()
         
         func addPerformersShown() {
@@ -268,19 +269,24 @@ public class System: ViewNode, BuildPattern {
                                             for bgEvent in bgStratum.bgEvents {
                                                 let x = bgEvent.x_objective!
                                                 let graphEvent = rhythmCueGraph.startEventAtX(x)
+                                                
+                                                
+                                                /*
                                                 let eventHandler = EventHandler(
                                                     bgEvent: bgEvent, graphEvent: graphEvent, system: self
                                                 )
+                                                */
                                                 //print("making rhythm cue graph stem:")
-                                                let stem = eventHandler.makeStemInContext(eventsNode)
+                                                //let stem = eventHandler.makeStemInContext(eventsNode)
                                                 
                                                 // encapsulate within init
-                                                var stem_width: CGFloat = 0.0618 * g
-                                                stem.lineWidth = stem_width
+                                                //var stem_width: CGFloat = 0.0618 * g
+                                                //stem.lineWidth = stem_width
                                                 
                                                 // this will be changed
-                                                stem.strokeColor = colors[eventHandler.bgEvent!.depth! - 1].CGColor
-                                                eventHandlers.append(eventHandler)
+                                                //stem.strokeColor = colors[eventHandler.bgEvent!.depth! - 1].CGColor
+                                                
+                                                //eventHandlers.append(eventHandler)
                                             }
                                         }
                                     }
@@ -584,7 +590,8 @@ public class System: ViewNode, BuildPattern {
         return ids_sorted
     }
 
-
+    /*
+    // TODO: reimplement with InstrumentEventHandlers
     private func getBGStratumRepresentationByPerformer() -> [Performer : [BGStratum : Int]] {
         var bgStratumRepresentationByPerformer: [Performer : [BGStratum : Int]] = [:]
         for eventHandler in eventHandlers {
@@ -603,7 +610,10 @@ public class System: ViewNode, BuildPattern {
         }
         return bgStratumRepresentationByPerformer
     }
+    */
     
+    /*
+    // TODO: reimplement: see above
     private func arrangeBGStrataAroundPerformers() {
         let bgStratumRepresentationByPerformer = getBGStratumRepresentationByPerformer()
         for (performer, representationByBGStratum) in bgStratumRepresentationByPerformer {
@@ -616,6 +626,35 @@ public class System: ViewNode, BuildPattern {
             //let mostRepresented = bgStrataSorted.first!.0
         }
     }
+    */
+    
+    /*
+    private func getDMNodeRepresentationByPerformer() -> [Performer: [DMNode : Int]] {
+        var dmNodeRepresentationByPerformer: [Performer : [DMNode : Int]] = [:]
+        for eventHandler in eventHandlers {
+            if eventHandler.bgEvent == nil { continue }
+            if eventHandler.graphEvent == nil { continue }
+            
+            let performer = eventHandler.graphEvent!.graph!.instrument!.performer!
+            for component in eventHandler.bgEvent!.durationNode.components {
+                if let componentDynamic = component as? ComponentDynamic {
+                    assert(dmNodeByID[componentDynamic.id] != nil,
+                        "dmNodeByID[\(componentDynamic.id)] must exist"
+                    )
+                    let dmNode = dmNodeByID[componentDynamic.id]!
+                    if dmNodeRepresentationByPerformer[performer] == nil {
+                        dmNodeRepresentationByPerformer[performer] = [dmNode : 1]
+                    }
+                    else if dmNodeRepresentationByPerformer[performer]![dmNode] == nil {
+                        dmNodeRepresentationByPerformer[performer]![dmNode] = 1
+                    }
+                    else { dmNodeRepresentationByPerformer[performer]![dmNode]!++ }
+                }
+            }
+        }
+        return dmNodeRepresentationByPerformer
+    }
+    */
     
     // public for now // private soon
     public func createStems() {
@@ -624,23 +663,12 @@ public class System: ViewNode, BuildPattern {
             
             let stem = eventHandler.makeStemInContext(eventsNode)
             
-            var stem_width: CGFloat = 0.0618 * g
+            let stem_width: CGFloat = 0.0618 * g
             
             // get g from either GraphEvent or BGstratum?
             stem.lineWidth = stem_width
-            stem.color = JBColor.colorWithHue(HueByTupletDepth[
-                eventHandler.bgEvent!.depth! - 1
-                ],
-                andDepthOfField: .MostForeground
-                ).CGColor
-            
-            /*
-            stem.strokeColor = JBColor.colorWithHue(HueByTupletDepth[
-                eventHandler.bgEvent!.depth! - 1
-                ],
-                andDepthOfField: .MostForeground
-            ).CGColor
-            */
+            let hue = HueByTupletDepth[eventHandler.bgEvent!.depth! - 1]
+            stem.color = UIColor.colorWithHue(hue, andDepthOfField: .MostForeground).CGColor
             eventHandler.repositionStemInContext(eventsNode)
             stems.append(stem) // addStem()
         }
@@ -655,7 +683,7 @@ public class System: ViewNode, BuildPattern {
             
             // get g from either GraphEvent or BGstratum?
             stem.lineWidth = stem_width
-            stem.strokeColor = JBColor.colorWithHue(HueByTupletDepth[
+            stem.strokeColor = UIColor.colorWithHue(HueByTupletDepth[
                 eventHandler.bgEvent!.depth! - 1
                 ],
                 andDepthOfField: .MostForeground
@@ -706,15 +734,15 @@ public class System: ViewNode, BuildPattern {
         var accumLeft: CGFloat = infoStartX
         for durationNode in durationNodes {
             bgStratum.addBeamGroupWithDurationNode(durationNode, atX: accumLeft)
-            accumLeft += graphicalWidth(duration: durationNode.duration, beatWidth: beatWidth)
+            accumLeft += durationNode.width(beatWidth: beatWidth)
+            //accumLeft += graphicalWidth(duration: durationNode.duration, beatWidth: beatWidth)
         }
     }
-    
-    
+
     // in use: takes in measures that only have model data (duration, offset duration)
     // -- implant graphical info (g, beatWidth, width, etc.)
     // -- then add the graphical components of the measure: barlines, timesig, measure num
-    public func setMeasuresWithMeasures(measures: [Measure]) {
+    public func setMeasuresWithMeasures(measures: [MeasureView]) {
         self.measures = measures
         var accumLeft: CGFloat = infoStartX
         var accumDur: Duration = DurationZero
@@ -745,7 +773,7 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
-    private func setGraphicalAttributesOfMeasure(measure: Measure, left: CGFloat) {
+    private func setGraphicalAttributesOfMeasure(measure: MeasureView, left: CGFloat) {
         measure.g = g
         measure.beatWidth = beatWidth
         measure.build()
@@ -753,34 +781,34 @@ public class System: ViewNode, BuildPattern {
     }
     
     // takes in a graphically built measure, that has been positioned within the system
-    private func addBarlinesForMeasure(measure: Measure) {
+    private func addBarlinesForMeasure(measure: MeasureView) {
         addBarlineLeftForMeasure(measure)
         if measure === measures.last! { addBarlineRightForMeasure(measure) }
     }
     
-    private func addBarlineLeftForMeasure(measure: Measure) {
+    private func addBarlineLeftForMeasure(measure: MeasureView) {
         let barlineLeft = Barline(x: measure.frame.minX, top: 0, bottom: frame.height)
         barlineLeft.lineWidth = 6
-        barlineLeft.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Background).CGColor
+        barlineLeft.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Background).CGColor
         barlineLeft.opacity = 0.5
         barlines.append(barlineLeft)
         barlinesLayer.insertSublayer(barlineLeft, atIndex: 0)
     }
 
-    private func addBarlineRightForMeasure(measure: Measure) {
+    private func addBarlineRightForMeasure(measure: MeasureView) {
         let barlineRight = Barline(x: measure.frame.maxX, top: 0, bottom: frame.height)
         barlineRight.lineWidth = 6
-        barlineRight.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Background).CGColor
+        barlineRight.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Background).CGColor
         barlineRight.opacity = 0.5
         barlines.append(barlineRight)
         barlinesLayer.insertSublayer(barlineRight, atIndex: 0)
     }
     
-    private func addMGRectsForMeasure(measure: Measure) {
+    private func addMGRectsForMeasure(measure: MeasureView) {
         
     }
     
-    public func addMeasureComponentsFromMeasure(measure: Measure, atX x: CGFloat) {
+    public func addMeasureComponentsFromMeasure(measure: MeasureView, atX x: CGFloat) {
         if let timeSignature = measure.timeSignature { addTimeSignature(timeSignature, atX: x) }
         if let measureNumber = measure.measureNumber { addMeasureNumber(measureNumber, atX: x) }
 
@@ -845,7 +873,7 @@ public class System: ViewNode, BuildPattern {
         insertSublayer(barline, atIndex: 0)
     }
     
-    public func addMeasure(measure: Measure) {
+    public func addMeasure(measure: MeasureView) {
         addMeasureComponentsFromMeasure(measure, atX: measure.frame.minX)
     }
     
@@ -952,10 +980,12 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
+    /*
     // deprecate
     private func decorateGraphEvents() {
         for eventHandler in eventHandlers { eventHandler.decorateGraphEvent() }
     }
+    */
     
     private func getStemDirectionForPID(pID: String) -> StemDirection {
         return pID == viewerID ? .Up : .Down
@@ -1228,7 +1258,7 @@ public class System: ViewNode, BuildPattern {
                 bgStratum.pad_bottom = 0.5 * g
                 for durationNode in stratum_model {
                     let offset_fromSystem = durationNode.durationSpan.startDuration - offsetDuration
-                    let x = infoStartX + graphicalWidth(duration: offset_fromSystem, beatWidth: beatWidth)
+                    let x = infoStartX + offset_fromSystem.width(beatWidth: beatWidth)
                     bgStratum.addBeamGroupWithDurationNode(durationNode, atX: x)
                 }
                 if !bgStratum.hasBeenBuilt { bgStratum.build() }
@@ -1426,34 +1456,10 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
-    private func getDMNodeRepresentationByPerformer() -> [Performer: [DMNode : Int]] {
-        var dmNodeRepresentationByPerformer: [Performer : [DMNode : Int]] = [:]
-        for eventHandler in eventHandlers {
-            if eventHandler.bgEvent == nil { continue }
-            if eventHandler.graphEvent == nil { continue }
-            
-            let performer = eventHandler.graphEvent!.graph!.instrument!.performer!
-            for component in eventHandler.bgEvent!.durationNode.components {
-                if let componentDynamic = component as? ComponentDynamic {
-                    assert(dmNodeByID[componentDynamic.id] != nil,
-                        "dmNodeByID[\(componentDynamic.id)] must exist"
-                    )
-                    let dmNode = dmNodeByID[componentDynamic.id]!
-                    if dmNodeRepresentationByPerformer[performer] == nil {
-                        dmNodeRepresentationByPerformer[performer] = [dmNode : 1]
-                    }
-                    else if dmNodeRepresentationByPerformer[performer]![dmNode] == nil {
-                        dmNodeRepresentationByPerformer[performer]![dmNode] = 1
-                    }
-                    else { dmNodeRepresentationByPerformer[performer]![dmNode]!++ }
-                }
-            }
-        }
-        return dmNodeRepresentationByPerformer
-    }
     
-    private func handoffMGRectsFromMeasure(measure: Measure) {
-        
+    
+    /*
+    private func handoffMGRectsFromMeasure(measure: MeasureView) {
         // hand off mg rects
         var accumLeft: CGFloat = measure.frame.minX
         for mgRect in measure.mgRects {
@@ -1463,14 +1469,15 @@ public class System: ViewNode, BuildPattern {
             accumLeft += mgRect.frame.width
         }
     }
+    */
     
-    private func handoffTimeSignatureFromMeasure(measure: Measure) {
+    private func handoffTimeSignatureFromMeasure(measure: MeasureView) {
         if let timeSignature = measure.timeSignature {
             addTimeSignature(timeSignature, atX: measure.frame.minX)
         }
     }
     
-    private func handoffMeasureNumberFromMeasure(measure: Measure) {
+    private func handoffMeasureNumberFromMeasure(measure: MeasureView) {
         if measure.measureNumber != nil {
             addMeasureNumber(measure.measureNumber!, atX: measure.frame.minX)
         }
@@ -1527,6 +1534,8 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
+    /*
+    // TODO: reimplement when the time is right
     private func adjustMetronomeGridRects() {
         for mgRect in mgRects {
             let f = mgRect.frame
@@ -1535,6 +1544,7 @@ public class System: ViewNode, BuildPattern {
             mgRect.path = mgRect.makePath()
         }
     }
+    */
     
     private func getMinPerformersTop() -> CGFloat? {
         if performers.count == 0 { return 0 }

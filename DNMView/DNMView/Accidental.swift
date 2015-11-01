@@ -67,7 +67,7 @@ public class Accidental: CALayer, Guido, BuildPattern {
     
     public var hasArrow: Bool { get { return getHasArrow() } }
     
-    public var color: CGColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor {
+    public var color: CGColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor {
         didSet { for component in components { component.fillColor = color } }
     }
     
@@ -123,7 +123,7 @@ public class Accidental: CALayer, Guido, BuildPattern {
             accidental!.g = g
             accidental!.s = s
             accidental!.build()
-            accidental!.color = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+            accidental!.color = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
             return accidental!
         }
         return nil

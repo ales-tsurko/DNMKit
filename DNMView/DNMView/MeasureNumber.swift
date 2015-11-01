@@ -11,7 +11,7 @@ import QuartzCore
 // Consider as subclass of Label
 public class MeasureNumber: ViewNode, BuildPattern {
     
-    public var measure: Measure?
+    public var measure: MeasureView?
     
     private var margin: CGFloat { get { return 0.25 * height } }
     public var borderLayer: CAShapeLayer!
@@ -46,7 +46,7 @@ public class MeasureNumber: ViewNode, BuildPattern {
             alignment: .Center,
             fontName: "AvenirNext-Medium"
         )
-        numberLayer.foregroundColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+        numberLayer.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
         addSublayer(numberLayer)
     }
     
@@ -55,8 +55,8 @@ public class MeasureNumber: ViewNode, BuildPattern {
         let borderPath = UIBezierPath(rect: bounds)
         borderLayer.path = borderPath.CGPath
         borderLayer.lineWidth = 0.0236 * height
-        borderLayer.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
-        borderLayer.fillColor = ColorManager.backgroundColor.CGColor
+        borderLayer.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+        borderLayer.fillColor = DNMColorManager.backgroundColor.CGColor
         borderLayer.lineJoin = kCALineJoinBevel
         insertSublayer(borderLayer, atIndex: 0)
     }

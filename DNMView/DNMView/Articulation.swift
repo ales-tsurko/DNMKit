@@ -115,9 +115,8 @@ public class ArticulationTenuto: Articulation {
     }
     
     private override func setVisualAttributes() {
-        //fillColor = UIColor.blackColor().CGColor
-        fillColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        fillColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
         lineWidth = 0
     }
     
@@ -142,8 +141,8 @@ public class ArticulationStaccato: Articulation {
     }
     
     private override func setVisualAttributes() {
-        fillColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        fillColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
         lineWidth = 0
     }
     
@@ -171,7 +170,7 @@ public class ArticulationAccent: Articulation {
     
     override func setVisualAttributes() {
         fillColor = UIColor.clearColor().CGColor
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
         lineWidth = 0.1236 * g
         lineJoin = kCALineJoinBevel
     }
@@ -270,7 +269,7 @@ public class ArticulationStringBowDirectionUp: ArticulationStringBowDirection {
     
     private override func setVisualAttributes() {
         lineWidth = 0.1 * g
-        strokeColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+        strokeColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
         fillColor = nil
         lineJoin = kCALineJoinBevel
     }
@@ -302,7 +301,7 @@ public class ArticulationStringBowDirectionDown: ArticulationStringBowDirection 
     }
     
     private override func setVisualAttributes() {
-        fillColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+        fillColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
     }
 }
 
@@ -349,7 +348,7 @@ public class ArticulationStringNumber: Articulation {
     }
     
     public override func setVisualAttributes() {
-        textLayer.foregroundColor = JBColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+        textLayer.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
     }
     
     

@@ -1,11 +1,10 @@
 //
-//  Measure_model.swift
-//  denm_model
+//  Measure.swift
+//  DNMModel
 //
 //  Created by James Bean on 8/15/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
-
 
 import Foundation
 
@@ -16,6 +15,7 @@ public struct Measure {
     
     public var hasTimeSignature: Bool = true
     
+    // TODO: Test this
     public static func rangeFromMeasures(
         measures: [Measure],
         startingAtIndex index: Int,
@@ -45,7 +45,4 @@ public struct Measure {
     public mutating func setHasTimeSignature(hasTimeSignature: Bool) {
         self.hasTimeSignature = hasTimeSignature
     }
-    
-    
-    
 }

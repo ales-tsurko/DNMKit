@@ -9,5 +9,5 @@
 import Foundation
 
 public enum StemDirection {
-    case Up, Down, None
+    case Up, Down
 }
