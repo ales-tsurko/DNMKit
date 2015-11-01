@@ -141,7 +141,7 @@ public class Staff: Graph, Guido {
             line_path.addLineToPoint(CGPointMake(x + 0.5 * ledgerLineLength, y))
             line.path = line_path.CGPath
             line.lineWidth = ledgerLineWidth
-            line.strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
+            line.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
             addLine(line)
             ledgerLines.append(line)
         }
