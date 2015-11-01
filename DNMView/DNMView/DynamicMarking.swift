@@ -15,13 +15,11 @@ public class DynamicMarking: ViewNode, BuildPattern {
     public var initialIntValue: Int? { get { return intValues.first } }
     public var finalIntValue: Int? { get { return intValues.last } }
     
-    // pad_left, pad_right
-    
-    // ligature start, ligature stop (not encapsulated enough!!!)
-    
     public var x: CGFloat = 0
     
     public var height: CGFloat = 0
+    
+    public var hasBeenBuilt: Bool = false
     
     public init(string: String) {
         super.init()
@@ -34,12 +32,17 @@ public class DynamicMarking: ViewNode, BuildPattern {
         super.init()
         self.top = top
         addCharactersWithString(string)
-        setFrame()
+        build()
     }
     
     public override init() { super.init() }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init(layer: AnyObject) { super.init(layer: layer) }
+    
+    public func build() {
+        setFrame()
+        hasBeenBuilt = true
+    }
     
     private func addCharactersWithString(string: String) {
         var types: [DMCharacterType] = []

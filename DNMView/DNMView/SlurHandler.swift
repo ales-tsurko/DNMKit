@@ -35,7 +35,7 @@ public class SlurHandler {
     
     // size? g?
     public func makeSlurInContext(context: CALayer) -> Slur? {
-        if let graphEvent0 = graphEvent0, graphEvent1 = graphEvent1 {
+        if let graphEvent0 = graphEvent0, _ = graphEvent1 {
             let point0 = getConnectionPoint0InContext(context)
             let point1 = getConnectionPoint1InContext(context)
             let stemDirection = graphEvent0.stemDirection // for now
@@ -138,13 +138,13 @@ public class SlurHandler {
 
             }
             // frayed at end
-            else if let graphEvent0 = graphEvent0 where graphEvent1 == nil {
+            else if let _ = graphEvent0 where graphEvent1 == nil {
                 let point0 = getConnectionPoint0InContext(context)
                 let point1 = CGPointMake(context.frame.width + 20, point0.y) // hack x val
                 slur.setPoint1(point0, andPoint2: point1)
             }
             // frayed at beginning
-            else if let graphEvent1 = graphEvent1 where graphEvent0 == nil {
+            else if let _ = graphEvent1 where graphEvent0 == nil {
                 let point1 = getConnectionPoint1InContext(context)
                 let point0 = CGPointMake(-10, point1.y) // hack x val
                 slur.setPoint1(point0, andPoint2: point1)

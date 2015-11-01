@@ -13,6 +13,7 @@ import DNMModel
 import DNMView
 import DNMUI
 
+// TODO: Reintegrate ViewSelector
 class ViewController: UIViewController {
 
     var environment: Environment!
@@ -22,11 +23,10 @@ class ViewController: UIViewController {
 
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
-
+        
         let scoreInfo = DNMScoreFromShorthand(name: "parse_slurTest")
         environment = Environment(scoreInfo: scoreInfo)
         environment.build()
-        
         view.addSubview(environment)
         
         // Do any additional setup after loading the view, typically from a nib.

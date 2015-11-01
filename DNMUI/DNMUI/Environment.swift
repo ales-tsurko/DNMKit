@@ -41,6 +41,15 @@ public class Environment: UIView {
     
     public var viewIDs: [String] = []
     
+    public init(scoreModel: DNMScoreModel) {
+        super.init(frame: CGRectZero)
+        self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
+        self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
+        self.tempoMarkings = scoreModel.tempoMarkings
+        self.rehearsalMarkings = scoreModel.rehearsalMarkings
+        self.durationNodes = scoreModel.durationNodes
+    }
+    
     public init(scoreInfo: ScoreInfo) {
         super.init(frame: CGRectZero)
         self.iIDsAndInstrumentTypesByPID = scoreInfo.iIDsAndInstrumentTypesByPID

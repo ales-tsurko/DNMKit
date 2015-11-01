@@ -51,7 +51,7 @@ public class Waveform: ViewNode {
         }
         
         // do the drawing
-        var y: CGFloat = 0.5 * frame.height
+        let y: CGFloat = 0.5 * frame.height
         let path = UIBezierPath()
         var x: CGFloat = 0
         for (s, sample) in lessSamples.enumerate() {

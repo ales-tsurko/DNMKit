@@ -18,17 +18,7 @@ public class Page: ViewNode, BuildPattern {
     public var maximumHeight: CGFloat { get { return getMaximumHeight() } }
     public var maximumWidth: CGFloat { get { return getMaximumWidth() } }
     
-    public func getBounds() -> CGRect {
-        return UIScreen.mainScreen().bounds
-    }
-    
-    private func getMaximumHeight() -> CGFloat {
-        return UIScreen.mainScreen().bounds.height // - pad
-    }
-
-    private func getMaximumWidth() -> CGFloat {
-        return UIScreen.mainScreen().bounds.width
-    }
+    public var hasBeenBuilt: Bool = false
     
     public init(systems: [System]) {
         super.init()
@@ -61,10 +51,23 @@ public class Page: ViewNode, BuildPattern {
     public func build() {
         buildSystems()
         layout()
+        hasBeenBuilt = true
     }
     
     private func buildSystems() {
         for system in systems { if !system.hasBeenBuilt { system.build() } }
+    }
+    
+    public func getBounds() -> CGRect {
+        return UIScreen.mainScreen().bounds
+    }
+    
+    private func getMaximumHeight() -> CGFloat {
+        return UIScreen.mainScreen().bounds.height // - pad
+    }
+    
+    private func getMaximumWidth() -> CGFloat {
+        return UIScreen.mainScreen().bounds.width
     }
 }
 

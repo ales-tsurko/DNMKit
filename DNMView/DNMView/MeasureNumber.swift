@@ -21,6 +21,8 @@ public class MeasureNumber: ViewNode, BuildPattern {
     public var x: CGFloat = 0
     public var height: CGFloat = 10
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(number: Int = 0, x: CGFloat = 0, top: CGFloat = 0, height: CGFloat = 10) {
         super.init()
         self.number = number
@@ -34,6 +36,7 @@ public class MeasureNumber: ViewNode, BuildPattern {
         addNumberLayer()
         setFrame()
         addBorderLayer()
+        hasBeenBuilt = true
     }
     
     private func addNumberLayer() {

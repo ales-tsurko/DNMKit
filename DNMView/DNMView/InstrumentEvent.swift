@@ -9,7 +9,7 @@
 import QuartzCore
 
 // consider protocol for Event
-public class InstrumentEvent: CALayer, BuildPattern {
+public class InstrumentEvent: CALayer {
 
     public var x: CGFloat = 0
     
@@ -22,7 +22,7 @@ public class InstrumentEvent: CALayer, BuildPattern {
     public var maxInfoY: CGFloat { return getMaxInfoY() }
     
     public var stemEndY: CGFloat { return getStemEndY() } // make getter
-
+    
     public init(x: CGFloat, stemDirection: StemDirection, stem: Stem? = nil) {
         super.init()
         self.x = x

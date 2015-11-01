@@ -43,6 +43,8 @@ public class ClefStaff: CALayer, Clef, Guido {
     
     public var components: [ClefComponent] = []
     
+    public var hasBeenBuilt: Bool = false
+    
     public class func withType(type: ClefStaffType) -> ClefStaff? {
         switch type {
         case .Treble: return ClefStaffTreble()
@@ -96,6 +98,7 @@ public class ClefStaff: CALayer, Clef, Guido {
         addComponents()
         commitComponents()
         setFrame()
+        hasBeenBuilt = true
     }
     
     internal func getMiddleCPosition() -> CGFloat {
@@ -280,6 +283,7 @@ public class ClefCue: CALayer, Clef, BuildPattern {
     
     public var components: [ClefComponent] = []
 
+    public var hasBeenBuilt: Bool = false
     
     public override init() { super.init() }
     public override init(layer: AnyObject) { super.init(layer: layer) }
@@ -289,6 +293,7 @@ public class ClefCue: CALayer, Clef, BuildPattern {
         setFrame()
         addComponents()
         commitComponents()
+        hasBeenBuilt = true
     }
     
     private func commitComponents() {
@@ -318,6 +323,12 @@ public class ClefCue: CALayer, Clef, BuildPattern {
 public class ClefComponent: CAShapeLayer, BuildPattern {
     
     public var color: CGColor = UIColor.blackColor().CGColor
+    
+    public var hasBeenBuilt: Bool = false
+    
+    public func build() {
+        hasBeenBuilt = true
+    }
     
     private func makePath() -> CGPath {
         // override in subclasses
@@ -351,10 +362,11 @@ public class ClefGraphLine: ClefComponent {
     public override init(layer: AnyObject) { super.init(layer: layer) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
 
-    public func build() {
+    public override func build() {
         setFrame()
         path = makePath()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     override private func makePath() -> CGPath {
@@ -402,14 +414,14 @@ public class ClefOrnament: ClefComponent {
         return nil
     }
     
-    public func build() {
+    public override func build() {
         path = makePath()
         setFrame()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     override private func setVisualAttributes() {
-        //fillColor = UIColor.whiteColor().CGColor
         fillColor = DNMColorManager.backgroundColor.CGColor
         strokeColor = color
         backgroundColor = UIColor.clearColor().CGColor

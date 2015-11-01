@@ -16,6 +16,8 @@ public class Tremolo: CAShapeLayer, BuildPattern {
     public var width: CGFloat = 0
     public var amountBars: Int = 3
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(x: CGFloat, top: CGFloat, width: CGFloat, amountBars: Int = 3) {
         super.init()
         self.x = x
@@ -34,14 +36,10 @@ public class Tremolo: CAShapeLayer, BuildPattern {
         path = makePath()
         setFrame()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     internal func makePath() -> CGPath {
-        //let path: UIBezierPath = UIBezierPath()
-        
-        // setFrame properly
-        //let path = ParallelogramVertical(x: 0.5 * width, y: 0, width: 0.236 * width, length: width, slope: 0.25)
-        
         let path = UIBezierPath()
         var accumHeight: CGFloat = 0.5 * barHeight
         for _ in 0..<amountBars {

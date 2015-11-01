@@ -71,6 +71,8 @@ public class Accidental: CALayer, Guido, BuildPattern {
         didSet { for component in components { component.fillColor = color } }
     }
     
+    public var hasBeenBuilt: Bool = false
+    
     /*
     public override class func makePDFDocumentation() {
         let accidentalsLayer = CALayer()
@@ -153,6 +155,7 @@ public class Accidental: CALayer, Guido, BuildPattern {
         setAccidentalOfComponentsToSelf()
         commitComponents()
         setFrame()
+        hasBeenBuilt = true
     }
     
     private func addComponents() {

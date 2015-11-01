@@ -20,6 +20,8 @@ public class TextLayerConstrainedByHeight: CATextLayer, BuildPattern {
     public var left: CGFloat { get { return getLeft() } }
     public var width: CGFloat { get { return getWidth() } }
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(
         text: String,
         x: CGFloat,
@@ -52,6 +54,7 @@ public class TextLayerConstrainedByHeight: CATextLayer, BuildPattern {
         borderWidth = 1
         borderColor = UIColor.redColor().CGColor
         contentsScale = UIScreen.mainScreen().scale
+        hasBeenBuilt = true
     }
     
     private func setFont() {

@@ -16,58 +16,43 @@ public class System: ViewNode, BuildPattern {
     public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
     // DESTROY --------------------------------------------------------------------------------
     
+    /// String representation of System
     public override var description: String { get { return getDescription() } }
     
+    
     public var viewerID: String?
+    
+    /// Page containing this System
     public var page: Page?
+    
+    /// If this System has been built yet
     public var hasBeenBuilt: Bool = false
     
-    // make private getter
-    public var graphEvents: [GraphEvent] {
-        get {
-            var graphEvents: [GraphEvent] = []
-            for performer in performers where eventsNode.hasNode(performer) {
-                for instrument in performer.instruments where performer.hasNode(instrument) {
-                    for graph in instrument.graphs where instrument.hasNode(graph) {
-                        for event in graph.events {
-                            graphEvents.append(event)
-                            /*
-                            if let stem = event.stem {
-                                stem.strokeColor = UIColor.grayscaleColorWithDepthOfField(
-                                    .MostForeground
-                                ).CGColor
-                            }
-                            */
-                        }
-                    }
-                }
-            }
-            return graphEvents.sort {$0.x < $1.x }
-        }
-    }
-    
+    /// All GraphEvents contained within this System
+    public var graphEvents: [GraphEvent] { return getGraphEvents() }
+
+    /// All InstrumentIDs and InstrumentTypes, organized by PerformerID
     public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
+
+    // this should go...
     // make private getter
     public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] {
-        var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] = [:]
-        for dict in iIDsAndInstrumentTypesByPID {
-            for (pID, arrayOfIIDsAndInstruments) in dict {
-                for tuple in arrayOfIIDsAndInstruments {
-                    let iID = tuple.0
-                    let instrumentType = tuple.1
-                    if instrumentTypeByIIDByPID[pID] == nil {
-                        instrumentTypeByIIDByPID[pID] = [iID : instrumentType]
-                    }
-                    else { instrumentTypeByIIDByPID[pID]![iID] = instrumentType }
-                }
-            }
-        }
-        return instrumentTypeByIIDByPID
+        return getInstrumentTypeAndIIDByPID()
     }
-    
+
+    /** 
+    All component types (as String) by ID.
+    Currently, this is a PerformerID, however, 
+    this is to be extended to be more generalized at flexibility increases with identifiers.
+    Examples of these component types are: "dynamics", "articulations", "pitch", etc..
+    */
     public var componentTypesByID: [String : [String]] = [:]
+    
+    
+    /// Component types currently shown
     public var componentTypesShownByID: [String : [String]] = [:]
+    
     
     public var idsByComponentType: [String : [String]] = [:]
     public var idsShownByComponentType: [String : [String]] = [:]
@@ -75,7 +60,6 @@ public class System: ViewNode, BuildPattern {
     
     // DESTROY
     public var bgStratumByID: [String : BGStratum] = [:]
-    
     public var bgStrataByID: [String : [BGStratum]] = [:]
     
     public var dmNodeByID: [String : DMNode] = [:]
@@ -266,9 +250,9 @@ public class System: ViewNode, BuildPattern {
                                             where eventsNode.hasNode(bgStratum)
                                         {
                                             // right now this creates WAY too many bgEvents
-                                            for bgEvent in bgStratum.bgEvents {
-                                                let x = bgEvent.x_objective!
-                                                let graphEvent = rhythmCueGraph.startEventAtX(x)
+                                            for _ in bgStratum.bgEvents {
+                                                //let x = bgEvent.x_objective!
+                                                //let graphEvent = rhythmCueGraph.startEventAtX(x)
                                                 
                                                 
                                                 /*
@@ -928,7 +912,7 @@ public class System: ViewNode, BuildPattern {
                     bgStratum.saNodeByType[saType]!.addTremoloAtX(bgEvent.x_inBGStratum!)
                 }
             }
-            for (type, saNode) in bgStratum.saNodeByType {
+            for (_, saNode) in bgStratum.saNodeByType {
                 saNode.layout()
                 bgStratum.addNode(saNode)
             }
@@ -940,7 +924,7 @@ public class System: ViewNode, BuildPattern {
         createDMNodes()
         createSlurHandlers()
 
-        for (id, slurHandlers) in slurHandlersByID {
+        for (_, slurHandlers) in slurHandlersByID {
             for slurHandler in slurHandlers {
                 if let slur = slurHandler.makeSlurInContext(eventsNode) {
                     eventsNode.addSublayer(slur)
@@ -958,9 +942,9 @@ public class System: ViewNode, BuildPattern {
     
     
     private func manageGraphLines() {
-        for (id, performer) in performerByID {
-            for (id, instrument) in performer.instrumentByID {
-                for (id, graph) in instrument.graphByID {
+        for (_, performer) in performerByID {
+            for (_, instrument) in performer.instrumentByID {
+                for (_, graph) in instrument.graphByID {
                     if measures.count > 0 {
                         graph.stopLinesAtX(measures.last!.frame.maxX)
                     }
@@ -1028,7 +1012,7 @@ public class System: ViewNode, BuildPattern {
                     continue
                 }
                 
-                var instrumentEvent: InstrumentEvent?
+                //var instrumentEvent: InstrumentEvent?
                 for component in bgEvent.durationNode.components {
                     
                     print("create instrument event handlers: component: \(component)")
@@ -1288,7 +1272,7 @@ public class System: ViewNode, BuildPattern {
     
     private func addRhythmComponentTypesForBGStrata(bgStrata: [BGStratum]) {
         for bgStratum in bgStrata {
-            for (pID, iIDs) in bgStratum.iIDsByPID { addComponentType("rhythm", withID: pID) }
+            for (pID, _) in bgStratum.iIDsByPID { addComponentType("rhythm", withID: pID) }
         }
     }
     
@@ -1350,13 +1334,13 @@ public class System: ViewNode, BuildPattern {
         
         // ---------------------------------------------------------------------------------
         // make DMNodes
-        var dmComponents: [ComponentDynamic] = []
+        //var dmComponents: [ComponentDynamic] = []
         
         var dmNodeByID: [String : DMNode] = [:]
         
-        var dmsWithLigatureTypes: [(ComponentDynamic?, ComponentDMLigature?)] = []
+        //var dmsWithLigatureTypes: [(ComponentDynamic?, ComponentDMLigature?)] = []
         
-        var dmComponentContexts: [DMComponentContext] = []
+        //var dmComponentContexts: [DMComponentContext] = []
         
         
         // deal with DYNAMIC MARKINGS
@@ -1368,7 +1352,7 @@ public class System: ViewNode, BuildPattern {
             
             // create dmComponentContext
             var dmComponentContext = DMComponentContext(eventHandler: eventHandler)
-            for (c, component) in eventHandler.bgEvent!.durationNode.components.enumerate() {
+            for component in eventHandler.bgEvent!.durationNode.components {
                 if let componentDMLigature = component as? ComponentDMLigature {
                     dmComponentContext.componentDMLigatures.append(componentDMLigature)
                 }
@@ -1427,7 +1411,7 @@ public class System: ViewNode, BuildPattern {
                     
                     for componentDMLigature in dmComponentContext.componentDMLigatures {
                         switch componentDMLigature.property {
-                        case .DMLigatureStart(let type):
+                        case .DMLigatureStart:
                             if let start_intValue = start_intValue {
                                 dmNodeByID[id]!.startLigatureAtX(start_x,
                                     withDynamicMarkingIntValue: start_intValue
@@ -1508,7 +1492,7 @@ public class System: ViewNode, BuildPattern {
     }
     
     private func adjustSlurs() {
-        for (id, slurHandlers) in slurHandlersByID {
+        for (_, slurHandlers) in slurHandlersByID {
             
             // this works, but jesus...clean up
             for slurHandler in slurHandlers {
@@ -1602,6 +1586,35 @@ public class System: ViewNode, BuildPattern {
         if measures.count == 0 { return DurationSpan() }
         let durationSpan = DurationSpan(duration: totalDuration, startDuration: offsetDuration)
         return durationSpan
+    }
+    
+    private func getGraphEvents() -> [GraphEvent] {
+        var graphEvents: [GraphEvent] = []
+        for performer in performers where eventsNode.hasNode(performer) {
+            for instrument in performer.instruments where performer.hasNode(instrument) {
+                for graph in instrument.graphs where instrument.hasNode(graph) {
+                    for event in graph.events { graphEvents.append(event) }
+                }
+            }
+        }
+        return graphEvents.sort {$0.x < $1.x }
+    }
+    
+    private func getInstrumentTypeAndIIDByPID() -> [String : [String : InstrumentType]] {
+        var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] = [:]
+        for dict in iIDsAndInstrumentTypesByPID {
+            for (pID, arrayOfIIDsAndInstruments) in dict {
+                for tuple in arrayOfIIDsAndInstruments {
+                    let iID = tuple.0
+                    let instrumentType = tuple.1
+                    if instrumentTypeByIIDByPID[pID] == nil {
+                        instrumentTypeByIIDByPID[pID] = [iID : instrumentType]
+                    }
+                    else { instrumentTypeByIIDByPID[pID]![iID] = instrumentType }
+                }
+            }
+        }
+        return instrumentTypeByIIDByPID
     }
     
     // ----------------------------------------------------------------------------------------- //

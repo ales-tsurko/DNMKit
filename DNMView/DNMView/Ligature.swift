@@ -13,21 +13,23 @@ public class Ligature: CAShapeLayer, BuildPattern {
     public var point1: CGPoint?
     public var point2: CGPoint?
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(point1: CGPoint, point2: CGPoint) {
         self.point1 = point1
         self.point2 = point2
         super.init()
-        path = makePath()
-        setVisualAttributes()
+        build()
     }
     
     public override init() {
         super.init()
-        setVisualAttributes()
+        build()
     }
     public override init(layer: AnyObject) { super.init(layer: layer) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+
     public func setPoint1(point: CGPoint) {
         if point1 == nil {
             point1 = point
@@ -40,33 +42,13 @@ public class Ligature: CAShapeLayer, BuildPattern {
     }
     
     public func setPoint2(point: CGPoint) {
-        
-        print("\(self): setPoint2)", terminator: "")
-        
         if point2 == nil {
-            
-            print("point2 == nil", terminator: "")
-            
             point2 = point
-            if point1 != nil {
-                print("point1 != nil", terminator: "")
-                
-                self.path = makePath()
-            }
+            if point1 != nil { self.path = makePath() }
         }
         else {
-            print("point2 != nil", terminator: "")
-            
             point2 = point
-            
-            
-            if point1 != nil {
-                
-                print("point1 != nil", terminator: "")
-                
-                animateToPath()
-                
-            }
+            if point1 != nil { animateToPath() }
         }
     }
     
@@ -74,6 +56,14 @@ public class Ligature: CAShapeLayer, BuildPattern {
         self.point1 = point1
         self.point2 = point2
         animateToPath()
+    }
+    
+    public func build() {
+        if point1 != nil && point2 != nil {
+            path = makePath()
+            hasBeenBuilt = true
+        }
+        setVisualAttributes()
     }
     
     internal func animateToPath() {

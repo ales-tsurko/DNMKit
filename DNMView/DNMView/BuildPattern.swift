@@ -8,12 +8,14 @@
 
 import Foundation
 
-@objc public protocol BuildPattern {
+public protocol BuildPattern {
     
-    optional func build()
-    optional func addComponents()
-    optional func commitComponents()
-    optional func setVisualAttributes()
-    optional func setFrame()
-    //var hasBeenBuilt: Bool { get }
+    func build()
+    var hasBeenBuilt: Bool { get }
+    
+    //optional func addComponents()
+    //optional func commitComponents()
+    //optional func setVisualAttributes()
+    //optional func setFrame()
+    
 }

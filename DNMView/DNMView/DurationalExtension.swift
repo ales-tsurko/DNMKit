@@ -15,16 +15,18 @@ public class DurationalExtension: LigatureHorizontal {
     public init(y: CGFloat, left: CGFloat, right: CGFloat, width: CGFloat) {
         super.init(y: y, left: left, right: right)
         self.width = width
-        build()
+        //build()
     }
     
     public override init() { super.init() }
     public override init(layer: AnyObject) { super.init(layer: layer) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    public func build() {
+    /*
+    public override func build() {
         setVisualAttributes()
     }
+    */
     
     public override func setVisualAttributes() {
         lineWidth = width

@@ -41,6 +41,8 @@ public class GraphEvent: CALayer, BuildPattern {
     // Scale of GraphEvent
     public var s: CGFloat = 1
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(x: CGFloat) {
         super.init()
         self.x = x
@@ -140,6 +142,7 @@ public class GraphEvent: CALayer, BuildPattern {
     
     public func build() {
         moveArticulations()
+        hasBeenBuilt = true
     }
     
     public func getMaxInfoY() -> CGFloat {

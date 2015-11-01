@@ -177,22 +177,6 @@ public class StaffEvent: GraphEvent, Guido {
         slurConnectionY = y
     }
     
-    // move up to GraphEvent
-    private func getSlurConnectionY() -> CGFloat {
-        if articulations.count == 0 {
-            let ΔY: CGFloat = stemDirection == .Down ? g : -g
-            return info_yRef + ΔY
-        }
-        var articulations_sorted: [Articulation]
-        if stemDirection == .Down {
-            articulations_sorted = articulations.sort { $0.position.y > $1.position.y }
-        }
-        else {
-            articulations_sorted = articulations.sort { $0.position.y < $1.position.y }
-        }
-        return 0
-    }
-    
     private func createLedgerLines() {
         if pitchVerticality.pitches.count > 0 {
             createLedgerLinesAbove()

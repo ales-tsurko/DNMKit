@@ -23,6 +23,8 @@ public class TimeSignature: ViewNode, BuildPattern {
     private var pad_between: CGFloat { get { return 0.0618 * height } }
     private var numberHeight: CGFloat { get { return (height - pad_between) / 2 } }
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(numerator: Int, denominator: Int, x: CGFloat, top: CGFloat, height: CGFloat) {
         self.numerator = "\(numerator)"
         self.denominator = "\(denominator)"
@@ -47,6 +49,7 @@ public class TimeSignature: ViewNode, BuildPattern {
         addDenominatorLayer()
         setFrame()
         flowHorizontally()
+        hasBeenBuilt = true
     }
     
     private func addNumeratorLayer() {

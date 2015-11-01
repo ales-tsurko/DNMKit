@@ -91,12 +91,12 @@ public class ConcreteStyledBezierCurve: StyledBezierCurve {
             bezierPath.addCurve(upperBoundingCurve)
             bezierPath.addCurve(lowerBoundingCurve)
             
-        case let linear as BezierCurveLinear:
+        case is BezierCurveLinear:
             upperBoundingCurve = BezierCurveLinear(point1: top_left, point2: top_right)
             lowerBoundingCurve = BezierCurveLinear(point1: bottom_right, point2: bottom_left)
             bezierPath.addCurve(upperBoundingCurve)
             bezierPath.addCurve(lowerBoundingCurve)
-        case let cubic as BezierCurveCubic:
+        case is BezierCurveCubic:
             // TODO
             break
         default: break

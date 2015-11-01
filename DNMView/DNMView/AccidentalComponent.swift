@@ -55,6 +55,8 @@ public class AccidentalComponent: CAShapeLayer, Guido, BuildPattern {
     }
     */
     
+    public var hasBeenBuilt: Bool = false
+    
     public override init() {
         super.init()
     }
@@ -76,6 +78,7 @@ public class AccidentalComponent: CAShapeLayer, Guido, BuildPattern {
         path = makePath()
         setFrame()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     private func makePath() -> CGPath {

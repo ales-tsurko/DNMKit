@@ -49,8 +49,6 @@ public class Slur: Ligature {
     
     private var bezierPath: BezierPath!
     
-    public var hasBeenBuilt: Bool = false
-    
     // get rid of this soon ...
     private var testDots: [CAShapeLayer] = []
 
@@ -159,7 +157,8 @@ public class Slur: Ligature {
         
         print("adjust control points by x: \(x); and y: \(y)")
         
-        // DEAL WITH THE SCALING HERE!
+        /*
+        // DEAL WITH THE SCALING OF X,Y HERE
         var x1: CGFloat = 0
         var x2: CGFloat = 0
         if x > y {
@@ -168,6 +167,7 @@ public class Slur: Ligature {
         else {
             x1 = x
         }
+        */
         
         if let point1 = point1, point2 = point2 {
             
@@ -216,7 +216,7 @@ public class Slur: Ligature {
         
         print("slur set default control point attrs")
         
-        if let point1 = point1, point2 = point2, slope = slope, angle = angle {
+        if let angle = angle {
             
             // set default control point length (this is currently static)
             controlPoint1_length = 2.36 * g
@@ -268,7 +268,8 @@ public class Slur: Ligature {
             
             // GET RID OF THIS
             // add test dots
-            testDots.map { $0.removeFromSuperlayer() }
+            //testDots.map { $0.removeFromSuperlayer() }
+            for dot in testDots { dot.removeFromSuperlayer() }
             testDots = []
             for point in [
                 controlPoint1_inside!,
@@ -324,11 +325,13 @@ public class Slur: Ligature {
         return bezierPath.cgPath
     }
     
+    /*
     public func build() {
         path = makePath()
         setVisualAttributes()
         hasBeenBuilt = true
     }
+    */
     
     private func setControlPoint1WithLength(length: CGFloat, andAngle angle: CGFloat) {
         if let point1 = point1 {

@@ -18,6 +18,8 @@ public class SubdivisionGraphic: CAShapeLayer, BuildPattern {
     
     public var amountBeams: Int = 0
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(
         x: CGFloat,
         top: CGFloat,
@@ -41,6 +43,7 @@ public class SubdivisionGraphic: CAShapeLayer, BuildPattern {
         setFrame()
         path = makePath()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     private func makePath() -> CGPath {

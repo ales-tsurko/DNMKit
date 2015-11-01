@@ -162,7 +162,7 @@ public class AccidentalDyadMover {
             }
             
             if let c0 = collision.component0 as? AccidentalComponentColumn {
-                if let b1 = collision.component1 as? AccidentalComponentBody {
+                if let _ = collision.component1 as? AccidentalComponentBody {
                     let c0_poly = getContextualPolygonForComponent(c0)
                     let c0_x = c0_poly.midX!
                     let b1_y = b1_poly.getYValueAtX(c0_x, fromDirection: .South)
@@ -171,7 +171,7 @@ public class AccidentalDyadMover {
                 }
             }
             
-            if let b0 = collision.component0 as? AccidentalComponentBody {
+            if let _ = collision.component0 as? AccidentalComponentBody {
                 if let c1 = collision.component1 as? AccidentalComponentColumn {
                     let c1_poly = getContextualPolygonForComponent(c1)
                     let c1_x = c1_poly.midX!
@@ -185,7 +185,7 @@ public class AccidentalDyadMover {
                 if let c1 = collision.component1 as? AccidentalComponentColumn {
                     if c0.direction != c1.direction {
                         let c0_poly = getContextualPolygonForComponent(c0)
-                        let c1_poly = getContextualPolygonForComponent(c1)
+                        let _ = getContextualPolygonForComponent(c1)
                         let x = c0_poly.midX!
                         let b0_y = b0_poly.getYValueAtX(x, fromDirection: .North)
                         let b1_y = b1_poly.getYValueAtX(x, fromDirection: .South)

@@ -22,12 +22,7 @@ public class MeasureView: ViewNode, BuildPattern {
     public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
     
-    // refine, move down
-    private func getDurationSpan() -> DurationSpan {
-        if dur == nil { return DurationSpan() }
-        let durationSpan = DurationSpan(duration: dur!, startDuration: offsetDur)
-        return durationSpan
-    }
+
     
     //var left: CGFloat = 0
     public var g: CGFloat = 0
@@ -46,12 +41,13 @@ public class MeasureView: ViewNode, BuildPattern {
     
     public var hasTimeSignature: Bool = true
     
+    public var hasBeenBuilt: Bool = false
+    
     //public var mgRects: [MetronomeGridRect] = []
     //public var mgRectsShown: Bool = true // temporary!
     
     // TODO: Do this in the Measure (MODEL), with the maximum width version in MeasureView (here)
-    
-    
+
     public class func rangeFromMeasures(
         measures: [MeasureView],
         startingAtIndex index: Int,
@@ -62,17 +58,7 @@ public class MeasureView: ViewNode, BuildPattern {
         var m: Int = index
         var accumLeft: CGFloat = 0
         while m < measures.count && accumLeft < maximumWidth {
-            
-            /*
-            // update
-            let measure_width = graphicalWidth(
-                duration: measures[m].dur!, beatWidth: measures[m].beatWidth
-            )
-            */
-
-            // TODO: clean
             let measure_width = measures[m].dur!.width(beatWidth: measures[m].beatWidth)
-            
             if accumLeft + measure_width <= maximumWidth {
                 measureRange.append(measures[m])
                 accumLeft += measure_width
@@ -83,7 +69,11 @@ public class MeasureView: ViewNode, BuildPattern {
         return measureRange
     }
     
-    // TODO: public init(measure: Measure) { }
+    public init(measure: Measure) {
+        self.offsetDur = measure.offsetDuration
+        self.dur = measure.duration
+        super.init()
+    }
     
     public init(offsetDuration: Duration) {
         self.offsetDur = offsetDuration
@@ -134,6 +124,7 @@ public class MeasureView: ViewNode, BuildPattern {
         // add barline(s) --> handoff to system
         // add measure number --> handoff to system
         
+        hasBeenBuilt = true
     }
     
     public func addBarlineLeft() {
@@ -220,6 +211,13 @@ public class MeasureView: ViewNode, BuildPattern {
         }
     }
     */
+    
+    // refine, move down
+    private func getDurationSpan() -> DurationSpan {
+        if dur == nil { return DurationSpan() }
+        let durationSpan = DurationSpan(duration: dur!, startDuration: offsetDur)
+        return durationSpan
+    }
     
     private func setFrame() {
         //let width = dur!.getGraphicalWidth(beatWidth: beatWidth)

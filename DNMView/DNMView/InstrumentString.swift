@@ -102,7 +102,7 @@ public class InstrumentString: Instrument {
         atX x: CGFloat, withStemDirection stemDirection: StemDirection
         ) -> InstrumentEvent?
     {
-        let pID = component.pID, iID = component.iID
+        //let pID = component.pID, iID = component.iID
         switch component.property {
         case .Pitch, .StringArtificialHarmonic:
             

@@ -17,6 +17,8 @@ public class Articulation: CAShapeLayer, BuildPattern, Guido {
 
     public var scale: CGFloat = 1 // deprecate!
     
+    public var hasBeenBuilt: Bool = false
+    
     public class func withType(type: ArticulationType, x: CGFloat, y: CGFloat, g: CGFloat, s: CGFloat = 1.0) -> Articulation? {
         var articulation: Articulation?
         switch type {
@@ -61,6 +63,7 @@ public class Articulation: CAShapeLayer, BuildPattern, Guido {
         setFrame()
         path = makePath()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     private func makePath() -> CGPath {
@@ -245,7 +248,6 @@ public class ArticulationStringBowDirection: ArticulationString {
         case .Up: return ArticulationStringBowDirectionUp()
         case .Down: return ArticulationStringBowDirectionDown()
         }
-        return nil
     }
 }
 
@@ -296,7 +298,7 @@ public class ArticulationStringBowDirectionDown: ArticulationStringBowDirection 
     
     public override func setFrame() {
         let width = g
-        var height = 0.875 * width
+        let height = 0.875 * width
         frame = CGRectMake(point.x - 0.5 * width, point.y - 0.5 * height, width, height)
     }
     

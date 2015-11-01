@@ -24,6 +24,8 @@ public class Notehead: CALayer, StaffItem {
     
     public var shapeLayer: CAShapeLayer!
     
+    public var hasBeenBuilt: Bool = false
+    
     public class func withType(type: NoteheadType) -> Notehead? {
         switch type {
         case .Ord: return NoteheadOrd()
@@ -54,6 +56,7 @@ public class Notehead: CALayer, StaffItem {
         setFrame()
         commitComponents()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     public func commitComponents() {

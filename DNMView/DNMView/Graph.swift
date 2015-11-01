@@ -165,10 +165,9 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
     }
     
     internal func addLabel() {
-        // hack
-        let h = 20
+        let h: CGFloat = 20  // hack
         let label = TextLayerConstrainedByHeight(
-            text: id, x: 0, top: 10, height: 20, alignment: PositionAbsolute.Right
+            text: id, x: 0, top: 10, height: h, alignment: PositionAbsolute.Right
         )
         addSublayer(label)
     }

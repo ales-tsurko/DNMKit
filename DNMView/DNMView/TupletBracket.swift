@@ -29,6 +29,8 @@ public class TupletBracket: ViewNode, BuildPattern {
     
     public var textHeight: CGFloat { get { return 0.691 * height } }
     
+    public var hasBeenBuilt: Bool = false
+    
     public var components: [CALayer] {
         get { return [subdivisionGraphic!, arm_left!, arm_right!] }
     }
@@ -63,6 +65,7 @@ public class TupletBracket: ViewNode, BuildPattern {
     public func build() {
         setFrame()
         addComponents()
+        hasBeenBuilt = true
     }
     
     private func setFrame() {
@@ -185,6 +188,8 @@ public class TupletBracketArm: CAShapeLayer, BuildPattern {
     public var left: CGFloat = 0
     public var top: CGFloat = 0
     
+    public var hasBeenBuilt: Bool = false
+    
     public init(
         left: CGFloat,
         top: CGFloat,
@@ -208,6 +213,7 @@ public class TupletBracketArm: CAShapeLayer, BuildPattern {
         setFrame()
         path = makePath()
         setVisualAttributes()
+        hasBeenBuilt = true
     }
     
     private func makePath() -> CGPath {
@@ -226,7 +232,6 @@ public class TupletBracketArm: CAShapeLayer, BuildPattern {
                 path.moveToPoint(CGPointMake(0, height))
                 path.addLineToPoint(CGPointMake(0, 0))
                 path.addLineToPoint(CGPointMake(width, 0))
-            default: break
             }
         case .Right:
             switch stemDirection {
@@ -238,7 +243,6 @@ public class TupletBracketArm: CAShapeLayer, BuildPattern {
                 path.moveToPoint(CGPointMake(0, 0))
                 path.addLineToPoint(CGPointMake(width - inset, 0))
                 path.addLineToPoint(CGPointMake(width, height))
-            default: break
             }
             
         default: break
@@ -307,23 +311,14 @@ public class TBLigature: CALayer, BuildPattern {
     
     public var stemDirection: StemDirection { get { return getStemDirection() } }
     
-    private func getStemDirection() -> StemDirection {
-        return beamEndY > bracketEndY ? .Down : .Up
-    }
+    
     
     public var line: TBLigatureLine!
     public var ornament_beamEnd: TBLigatureOrnament?
     public var ornament_bracketEnd: TBLigatureOrnament?
     public var ornaments: [TBLigatureOrnament] = []
     
-    public init(x: CGFloat, beamEndY: CGFloat, bracketEndY: CGFloat, g: CGFloat) {
-        self.x = x
-        self.beamEndY = beamEndY
-        self.bracketEndY = bracketEndY
-        self.g = g
-        super.init()
-        build()
-    }
+    public var hasBeenBuilt: Bool = false
     
     public class func ligatureWithType(
         type: TBLigatureType,
@@ -347,6 +342,15 @@ public class TBLigature: CALayer, BuildPattern {
         return ligature!
     }
     
+    public init(x: CGFloat, beamEndY: CGFloat, bracketEndY: CGFloat, g: CGFloat) {
+        self.x = x
+        self.beamEndY = beamEndY
+        self.bracketEndY = bracketEndY
+        self.g = g
+        super.init()
+        build()
+    }
+    
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init() { super.init() }
     public override init(layer: AnyObject) { super.init(layer: layer) }
@@ -361,6 +365,7 @@ public class TBLigature: CALayer, BuildPattern {
     
     public func build() {
         addComponents()
+        hasBeenBuilt = true
     }
     
     func addLine() {
@@ -379,6 +384,10 @@ public class TBLigature: CALayer, BuildPattern {
     
     private func addComponents() {
         addLine()
+    }
+    
+    private func getStemDirection() -> StemDirection {
+        return beamEndY > bracketEndY ? .Down : .Up
     }
 }
 

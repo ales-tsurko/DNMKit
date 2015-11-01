@@ -54,14 +54,14 @@ public class InstrumentEventHandler {
                 }
             case .Pitch(let pitches):
                 for graphEvent in instrumentEvent!.graphEvents {
-                    if let staff = graphEvent.graph as? Staff {
+                    if let _ = graphEvent.graph as? Staff {
                         for p in pitches {
                             let pitch = Pitch(midi: MIDI(p))
                             (graphEvent as? StaffEvent)?.addPitch(pitch)
                         }
                     }
                 }
-            case .Node(let value):
+            case .Node(_):
                 // currently decorated automatically when intiialized, will be extended later
                 break
             case .EdgeStart(let hasDashes):
@@ -76,9 +76,9 @@ public class InstrumentEventHandler {
                 break
             case .EdgeStop:
                 break
-            case .StringNumber(let romanNumeral):
+            case .StringNumber(_):
                 break
-            case .StringBowDirection(let direction):
+            case .StringBowDirection(_):
                 break
             case .Articulation(let markings):
                 for graphEvent in instrumentEvent!.graphEvents {
@@ -124,7 +124,7 @@ public class InstrumentEventHandler {
                         // NEED TO CHECK THIS, different context than graph
                         
                         
-                        if let instrument = instrumentEvent?.instrument {
+                        if let _ = instrumentEvent?.instrument {
                             if stem.superlayer == nil {
                                 context.insertSublayer(stem, atIndex: 1) // after barlinesLayer ?
                             }
@@ -249,7 +249,7 @@ public class InstrumentEventHandler {
                 case .GlissandoStop:
                     // testing hack
                     graphEvent.graph!.addGlissandoFromGraphEventAtIndex(0, toIndex: 1)
-                case .Node(let value):
+                case .Node(_):
                     // happens automatically when eventHandler is created within System
                     break
                 case .Label(let value):
