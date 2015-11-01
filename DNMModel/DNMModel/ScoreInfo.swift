@@ -8,9 +8,8 @@
 
 import Foundation
 
-// this could / should go into _model
 public struct ScoreInfo {
-    public var iIDsAndInstrumentTypesByPID: [[String: [(String,InstrumentType)]]]
+    public var iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]]
     public var measures: [Measure]
     public var tempoMarkings: [TempoMarking]
     public var durationNodes: [DurationNode]

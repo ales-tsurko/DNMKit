@@ -20,15 +20,15 @@
       location = "group:DNMUI/DNMUI.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DNMKitExample_OSX/DNMKitExample_OSX.xcodeproj">
+      location = "group:DNMAudio/DNMAudio.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMUtility/DNMUtility.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMKitExample_iOS/DNMKitExample_iOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DNMAudio/DNMAudio.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:DNMUtility/DNMUtility.xcodeproj">
+      location = "group:DNMKitExample_OSX/DNMKitExample_OSX.xcodeproj">
    </FileRef>
 </Workspace>

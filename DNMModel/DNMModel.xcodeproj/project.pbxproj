@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07E4DCCB1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */; };
 		07ECB3D51BE538AD00C9AD08 /* DNMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3D41BE538AD00C9AD08 /* DNMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB3DC1BE538AD00C9AD08 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3D11BE538AD00C9AD08 /* DNMModel.framework */; };
 		07ECB3E11BE538AD00C9AD08 /* DNMModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB3E01BE538AD00C9AD08 /* DNMModelTests.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PreferredClefsAndTranspositionByInstrumentType.json; sourceTree = "<group>"; };
 		07ECB3D11BE538AD00C9AD08 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3D41BE538AD00C9AD08 /* DNMModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMModel.h; sourceTree = "<group>"; };
 		07ECB3D61BE538AD00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				07F3E6041BE5426E00948758 /* InstrumentType.swift */,
+				07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */,
 			);
 			name = InstrumentInfo;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F3E6F41BE54B0C00948758 /* PitchSpellingsByPitchClass.json in Resources */,
+				07E4DCCB1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

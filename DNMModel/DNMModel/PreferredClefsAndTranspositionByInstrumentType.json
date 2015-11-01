@@ -1,0 +1,190 @@
+{
+    "Flute_Piccolo": [
+        {
+            "clef": "Treble", "transposition": 12, "transposition_shown": false
+        }
+    ],
+
+    "Flute_C": [
+        {
+            "clef": "Treble"
+        }
+    ],
+
+    "Flute_Alto": [
+        {
+            "clef": "Treble", "transposition": -5, "transposition_shown": false
+        }
+    ],
+
+    "Flute_Bass": [
+        {
+            "clef": "Treble", "transposition": -12, "transposition_shown": false
+        }
+    ],
+
+    "Clarinet_Bflat": [
+        {
+            "clef": "Treble", "transposition": -2, "transposition_shown": false
+        }
+    ],
+
+    "Clarinet_A": [
+        {
+            "clef": "Treble", "transposition": -3, "transposition_shown": false
+        }
+    ],
+
+    "Clarinet_Bass": [
+        {
+            "clef": "Treble", "transposition": -14, "transposition_shown": false 
+        }
+    ],
+
+    "Oboe": [
+        {
+            "clef": "Treble"
+        }
+    ],
+
+    "Oboe_dAmore": [
+        {
+            "clef": "Treble", "transposition": -3, "transposition_shown": false
+        }
+    ],
+
+    "English_Horn": [
+        {
+            "clef": "Treble", "transposition": -7, "transposition_shown": false
+        }
+    ],
+
+    "Bassoon": [
+        {
+            "clef": "Bass"
+        },
+        {
+            "clef": "Tenor"
+        },
+        {
+            "clef": "Treble"
+        }
+    ],
+
+    "Saxophone_Soprano": [
+        {
+            "clef": "Treble", "transposition": -2, "transposition_shown": false
+        }
+    ],
+
+    "Saxophone_Alto": [
+        {
+            "clef": "Treble", "transposition": -9, "transposition_shown": false
+        }
+    ],
+
+    "Saxophone_Tenor": [
+        {
+            "clef": "Treble", "transposition": -14, "transposition_shown": false
+        }
+    ],
+
+    "Saxophone_Baritone": [
+        {
+            "clef": "Treble", "transposition": -21, "transposition_shown": false
+        }
+    ],
+
+    "Trumpet_Bflat": [
+        {
+            "clef": "Treble", "transposition": -2, "transposition_shown": false
+        }
+    ],
+
+    "Trumpet_C": [
+        {
+            "clef": "Treble"
+        }
+    ],
+
+    "Horn": [
+        {
+            "clef": "Treble", "transposition": -7, "transposition_shown": false
+        }
+    ],
+
+    "Trombone": [
+        {
+            "clef": "Bass"
+        }
+    ],
+
+    "Tuba": [
+        {
+            "clef": "Bass"
+        }
+    ],
+
+    "Violin": [
+        { 
+            "clef": "Treble", "transposition": 0 
+        },
+        {
+            "clef": "Treble", "transposition": 12
+        }
+    ],
+
+    "Viola": [
+        {
+            "clef": "Alto", "transposition": 0
+        },
+        {
+            "clef": "Treble", "transposition": 0
+        },
+        {
+            "clef": "Treble", "transposition": 12
+        }
+    ],
+
+    "Violoncello": [
+        {
+            "clef": "Bass", "transposition": 0
+        },
+        {
+            "clef": "Treble", "transposition": 0
+        },
+        {
+            "clef": "Treble", "transposition": 12
+        }
+    ],
+
+    "Guitar": [
+        {
+            "clef": "Treble", "transposition": -12
+        },
+        {
+            "clef": "Treble", "transposition": 0
+        }
+    ],
+    
+    "Keyboard_Piano": [
+        {
+            "clef": "Treble"
+        },
+        {
+            "clef": "Bass"
+        },
+        {
+            "clef": "Treble", "transposition": 12, "transposition_shown": true
+        },
+        {
+            "clef": "Treble", "transposition": 24, "transposition_shown": true
+        },
+        {
+            "clef": "Bass", "transposition": -12, "transposition_shown": true
+        },
+        {
+            "clef": "Bass", "transposition": -24, "transposition_shown": true
+        }
+    ]
+}

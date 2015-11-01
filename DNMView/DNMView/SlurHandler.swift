@@ -97,31 +97,31 @@ public class SlurHandler {
                 if let index0 = graphEvent0.graph!.events.indexOfObject(graphEvent0),
                     index1 = graphEvent1.graph!.events.indexOfObject(graphEvent1)
                 {
-                    print("reposition slur: index0: \(index0); index1: \(index1)")
-                    
-                    
                     switch graphEvent0.stemDirection {
                     case .Down:
-                        var eventWithMaxY: GraphEvent?
+
                         if index1 > index0 + 1 {
+                            var eventWithMaxY: GraphEvent?
                             for e in (index0 + 1)..<index1 {
                                 let event = graphEvent0.graph!.events[e]
                                 if eventWithMaxY == nil { eventWithMaxY = event }
                                 else if event.maxY > eventWithMaxY!.maxY { eventWithMaxY = event }
                             }
+                            
+                            let x = eventWithMaxY!.x
+                            let y = eventWithMaxY!.maxY + 0.5 * g // pad
+                            
+                            let point_local = CGPoint(x: x, y: y)
+                            
+                            let convertedPoint = context.convertPoint(point_local,
+                                fromLayer: graphEvent0.graph!.eventsLayer
+                            )
+                            
+                            print("slur.adjustToAvoidPoint: x: \(x); y: \(y)")
+                            slur.adjustToAvoidPoint(convertedPoint)
                         }
                         
-                        let x = eventWithMaxY!.x
-                        let y = eventWithMaxY!.maxY + 0.5 * g // pad
                         
-                        let point_local = CGPoint(x: x, y: y)
-                        
-                        let convertedPoint = context.convertPoint(point_local,
-                            fromLayer: graphEvent0.graph!.eventsLayer
-                        )
-                        
-                        print("slur.adjustToAvoidPoint: x: \(x); y: \(y)")
-                        slur.adjustToAvoidPoint(convertedPoint)
                         slur.build()
                     case .Up:
                         // finish
