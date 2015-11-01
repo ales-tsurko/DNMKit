@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public struct ScoreInfo {
     public var iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]]
     public var measures: [Measure]

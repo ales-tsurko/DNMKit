@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Token/*: CustomStringConvertible*/ {
+internal enum Token/*: CustomStringConvertible*/ {
     case Number(value: String, indentationLevel: Int, lineCount: Int)
     case Symbol(value: String, indentationLevel: Int, lineCount: Int)
 }

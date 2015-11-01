@@ -11,13 +11,13 @@
       location = "group:DNMModel/DNMModel.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:DNMUI/DNMUI.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DNMMetricalAnalysis/DNMMetricalAnalysis.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMConverter/DNMConverter.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:DNMUI/DNMUI.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMAudio/DNMAudio.xcodeproj">

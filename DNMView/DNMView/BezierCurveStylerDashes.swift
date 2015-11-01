@@ -10,6 +10,8 @@ import UIKit
 
 public class BezierCurveStylerDashes: BezierCurveStyler {
     
+    // TODO: Init with Dash Width
+    
     public required init(styledBezierCurve: StyledBezierCurve) {
         super.init(styledBezierCurve: styledBezierCurve)
         addDashes()
@@ -19,7 +21,7 @@ public class BezierCurveStylerDashes: BezierCurveStyler {
         let newPath: BezierPath = BezierPath()
         
         let path = styledBezierCurve.bezierPath
-        let dash_w: CGFloat = 10
+        let dash_w: CGFloat = 5
         var x: CGFloat = 0
         while x <= (carrierCurve.p2.x - carrierCurve.p1.x) - dash_w {
             

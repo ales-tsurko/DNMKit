@@ -16,12 +16,14 @@ public class DurationNodeDyad {
     public var durationSpan: DurationSpan {
         get {
             let startDuration = [
-                durationNode0.durationSpan.startDuration, durationNode1.durationSpan.startDuration
+                durationNode0.durationSpan.startDuration,
+                durationNode1.durationSpan.startDuration
             ].sort(<).first!
             let stopDuration = [
-                durationNode0.durationSpan.stopDuration, durationNode1.durationSpan.stopDuration
+                durationNode0.durationSpan.stopDuration,
+                durationNode1.durationSpan.stopDuration
             ].sort(<).last!
-            return DurationSpan(startDuration: startDuration, stopDuration: stopDuration )
+            return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
         }
     }
 

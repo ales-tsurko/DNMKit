@@ -8,11 +8,23 @@
 
 import Foundation
 
+/**
+Musical Measure
+*/
 public struct Measure {
+  
+    // TODO: DurationSpan
     
+    /// Duration of Measure
     public var duration: Duration = DurationZero
+    
+    /// Offset Duration of Measure (in current implementation: from the beginning of the piece)
     public var offsetDuration: Duration = DurationZero
     
+    /** 
+    When graphically represented, 
+    should the Duration of this Measure be shown with a TimeSignature
+    */
     public var hasTimeSignature: Bool = true
     
     // TODO: Test this
@@ -38,10 +50,23 @@ public struct Measure {
         return measureRange
     }
     
+    /**
+    Create a Measure with an Duration offset from the beginning of the piece
+    
+    - parameter offsetDuration: Duration offset from the beginning of the piece
+    
+    - returns: Measure
+    */
     public init(offsetDuration: Duration) {
         self.offsetDuration = offsetDuration
     }
     
+    /**
+    Set if when graphically represented,
+    should the Duration of this Measure be shown with a TimeSignature
+    
+    - parameter hasTimeSignature: If a TimeSignature should be shown in the score.
+    */
     public mutating func setHasTimeSignature(hasTimeSignature: Bool) {
         self.hasTimeSignature = hasTimeSignature
     }

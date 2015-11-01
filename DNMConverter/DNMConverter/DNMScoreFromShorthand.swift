@@ -9,6 +9,13 @@
 import Foundation
 import DNMModel
 
+/**
+<#Description#>
+
+- parameter name: <#name description#>
+
+- returns: <#return value description#>
+*/
 public func DNMScoreFromShorthand(name name: String) -> ScoreInfo {
     
     let filePath = NSBundle.mainBundle().pathForResource(name, ofType: "txt")!

@@ -11,9 +11,9 @@ import Foundation
 import DNMUtility
 import DNMModel
 
-public class Interpreter {
+internal class Interpreter {
     
-    public var actions: [Action]
+    internal var actions: [Action]
     
     private var durationAccumulationMode: DurationAccumulationMode = .Increment
     
@@ -41,11 +41,11 @@ public class Interpreter {
     private var iIDsByPID: [String : [String]] = [:]
     private var iIDsAndInstrumentTypesByPID: [ [ String : [(String, InstrumentType)] ] ] = []
     
-    public init(actions: [Action]) {
+    internal init(actions: [Action]) {
         self.actions = actions
     }
     
-    public func makeScoreInfo() -> ScoreInfo {
+    internal func makeScoreInfo() -> ScoreInfo {
         var pID: String = ""
         var iID: String = ""
         var measures: [Measure] = []
@@ -290,7 +290,7 @@ public class Interpreter {
     }
 }
 
-public enum DurationAccumulationMode {
+internal enum DurationAccumulationMode {
     case Measure
     case Increment
     case Decrement

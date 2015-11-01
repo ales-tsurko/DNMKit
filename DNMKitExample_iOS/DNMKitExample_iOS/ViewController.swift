@@ -19,18 +19,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let d = Duration(1,16)
-        print(d)
 
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
 
         let scoreInfo = DNMScoreFromShorthand(name: "parse_slurTest")
-        print("scoreInfo: \(scoreInfo)")
-        
         environment = Environment(scoreInfo: scoreInfo)
         environment.build()
-            
+        
         view.addSubview(environment)
         
         // Do any additional setup after loading the view, typically from a nib.

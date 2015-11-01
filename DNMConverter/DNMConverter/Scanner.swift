@@ -8,16 +8,16 @@
 
 import Foundation
 
-public class Scanner {
+internal class Scanner {
     
     // input
     var code: [String]
     
-    public init(code: String) {
+    internal init(code: String) {
         self.code = code.characters.map { s -> String in String(s) }
     }
     
-    public func getItems() -> [Item] {
+    internal func getItems() -> [Item] {
         var items: [Item] = [.BOF]
         var index: Int = 0
         while index < code.count {

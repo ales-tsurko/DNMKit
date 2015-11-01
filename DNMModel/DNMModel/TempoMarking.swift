@@ -8,11 +8,31 @@
 
 import Foundation
 
+/**
+Structure indicating the establishment of a Tempo
+*/
 public struct TempoMarking {
+    
+    /// The beats-per-minute value of the Tempo being established
     public var value: Int
+    
+    /// The SubdivisionLevel to which this Tempo is applied
     public var subdivisionLevel: Int
+    
+    /// The Duration that this TempoMarking is offset from the beginning of the piece
     public var offsetDuration: Duration
     
+    /**
+    Create a TempoMarking with the beats-per-minute value,
+    the subdivisionLevel (1 = 1/8th-note, 2 = 1/16th-note, etc),
+    and the offsetDuration.
+    
+    - parameter value:            Beats-per-minute value
+    - parameter subdivisionLevel: SubdivisionLevel (1 = 1/8th-note, 2 = 1/16th-note, etc)
+    - parameter offsetDuration:   Duration offset from the beginning of the piece
+    
+    - returns: TempoMarking
+    */
     public init(value: Int, subdivisionLevel: Int, offsetDuration: Duration) {
         self.value = value
         self.subdivisionLevel = subdivisionLevel

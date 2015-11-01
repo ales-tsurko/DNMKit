@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class Tokenizer {
+internal class Tokenizer {
     
-    public var items: [Item]
+    internal var items: [Item]
     
-    public init(items: [Item]) {
+    internal init(items: [Item]) {
         self.items = items
     }
     
-    public func getTokens() -> [Token] {
+    internal func getTokens() -> [Token] {
     
         var inBlockComment: Bool = false
         var inLineComment: Bool = false

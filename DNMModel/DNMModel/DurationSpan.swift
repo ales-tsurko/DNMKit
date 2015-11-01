@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Span between two Durations
+*/
 public struct DurationSpan: CustomStringConvertible {
     
     public var description: String { get { return getDescription() } }
@@ -18,6 +21,14 @@ public struct DurationSpan: CustomStringConvertible {
     
     public init() { }
     
+    /**
+    Create a DurationSpan with two Durations, which do not have to be in order.
+    
+    - parameter duration:      One Duration
+    - parameter otherDuration: Another Duration
+    
+    - returns: DurationSpan
+    */
     public init(duration: Duration, andAnotherDuration otherDuration: Duration) {
         let durations: [Duration] = [duration, otherDuration].sort(<)
         self.startDuration = durations.first!
@@ -25,18 +36,42 @@ public struct DurationSpan: CustomStringConvertible {
         self.duration = stopDuration - startDuration
     }
     
+    /**
+    Create a DurationSpan with two Durations (the first being before the second)
+    
+    - parameter startDuration: Duration to start the DurationSpan
+    - parameter stopDuration:  Duration to stop the DurationSpan
+    
+    - returns: DurationSpan
+    */
     public init(startDuration: Duration, stopDuration: Duration) {
         self.startDuration = startDuration
         self.stopDuration = stopDuration
         self.duration = stopDuration - startDuration
     }
     
+    /**
+    Create a DurationSpan with the total Duration and a start Duration
+    
+    - parameter duration:      Total Duration of DurationSpan
+    - parameter startDuration: Duration to start the DurationSpan
+    
+    - returns: DurationSpan
+    */
     public init(duration: Duration, startDuration: Duration) {
         self.duration = duration
         self.startDuration = startDuration
         self.stopDuration = duration + startDuration
     }
     
+    /**
+    Get the DurationSpanRelationship between this DurationSpan and another DurationSpan.
+    The possible relationships are: .None, .Adjacent, and .Overlapping.
+    
+    - parameter durationSpan: DurationSpan to compare with this DurationSpan
+    
+    - returns: DurationSpanRelationship (.None, .Adjacent, .Overlapping)
+    */
     public func relationShipWithDurationSpan(durationSpan: DurationSpan) -> DurationSpanRelationship {
         if startDuration < durationSpan.startDuration {
             if stopDuration < durationSpan.startDuration { return .None }
@@ -70,6 +105,7 @@ public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> 
         return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
     }
 }
+
 
 public enum DurationSpanRelationship {
     case None, Adjacent, Overlapping

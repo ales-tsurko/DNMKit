@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Item/*: CustomStringConvertible*/ {
+internal enum Item/*: CustomStringConvertible*/ {
     case BOF
     case EOF
     case NewLine

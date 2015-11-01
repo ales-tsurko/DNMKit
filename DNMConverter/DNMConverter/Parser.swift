@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Parser {
+internal class Parser {
     
     // d r y
     private let commands: [String] = [
@@ -39,13 +39,13 @@ public class Parser {
         "a_harm": ["_numeric_", "[", "]"]
     ]
     
-    public var tokens: [Token]
+    internal var tokens: [Token]
     
-    public init(tokens: [Token]) {
+    internal init(tokens: [Token]) {
         self.tokens = tokens
     }
     
-    public func getActions() -> [Action] {
+    internal func getActions() -> [Action] {
         var actions: [Action] = []
         var index: Int = 0
         
@@ -569,7 +569,7 @@ public class Parser {
 }
 
 // think about how this is integrated
-public enum Command: String {
+internal enum Command: String {
     case Octothorpe = "#"
     case P = "p"
     case D = "d"

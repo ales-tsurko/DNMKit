@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Action {
+internal enum Action {
     //case IIDsAndInstrumentTypesByPID(instrumentTypeByIIDByPID: [String : [String : String]])
     case IIDsAndInstrumentTypesByPID(instrumentTypeAndIIDByPID: [ [String : [(String, String)]] ] )
     case DurationAccumulationMode(mode: String)
