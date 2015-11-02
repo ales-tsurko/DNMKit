@@ -50,10 +50,8 @@ public class System: ViewNode, BuildPattern {
     */
     public var componentTypesByID: [String : [String]] = [:]
     
-    
-    /// Component types currently shown
+    /// Component types currently displayed
     public var componentTypesShownByID: [String : [String]] = [:]
-    
     
     /// Identifiers organizaed by component type (as `String`)
     private var idsByComponentType: [String : [String]] = [:]
@@ -101,9 +99,7 @@ public class System: ViewNode, BuildPattern {
     
     /// All DurationNodes contained in this System
     public var durationNodes: [DurationNode] = []
-    
-    public var measureNumberNode: ViewNode? // make specific
-    public var timeSignatureNode: ViewNode? // make specific
+
     
     public var g: CGFloat = 0
     public var beatWidth: CGFloat = 0 // proxy
@@ -765,8 +761,6 @@ public class System: ViewNode, BuildPattern {
             accumDur += measure.dur!
         }
         totalDuration = accumDur
-        measureNumberNode?.layout()
-        timeSignatureNode?.layout()
     }
     
     override func setWidthWithContents() {
