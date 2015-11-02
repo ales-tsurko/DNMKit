@@ -1,6 +1,6 @@
 language: swift
 osx_image: xcode7.1
-sudo: false
+sudo: required
 
 script:
 - xcodebuild -workspace DNMKit.xcworkspace -scheme DNMModel -sdk iphonesimulator
