@@ -3,4 +3,4 @@ osx_image: xcode7.1
 sudo: required
 
 script:
-- xcodebuild -workspace DNMKit.xcworkspace -scheme DNMModel -sdk iphonesimulator
+- xctool -workspace DNMKit.xcworkspace -scheme DNMModel -sdk iphonesimulator
