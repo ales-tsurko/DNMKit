@@ -1,4 +1,4 @@
-// SimpleRoot.swift - As straight a port as I could get my head aroundof Jim Armstrong's
+// SimpleRoot.swift - As straight a port as I could get my head around of Jim Armstrong's
 // port of Jack Crenshaw's TWBRF simple root finding algorithm. See license below:
 //
 // SimpleRoot.as - A straight port of Jack Crenshaw's TWBRF method for simple roots in an interval.  To use, identify an interval in which
