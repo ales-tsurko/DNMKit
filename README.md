@@ -5,14 +5,15 @@ Underlying framework for DNM (Dynamic Notation for Music).
 
 It includes several subframeworks:
 
+* **DNMUtility**: Basic helper functions and variables
 * **DNMModel**: Model of music
 * **DNMView**: Graphical representation of the musical model
 * **DNMUI**: Interaction elements
-* **DNMUtility**: Basic helper functions and variables
 * **DNMJSON**: Wrapper for [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) with DNM-specific funcionality
 * **DNMAudio**: Wrapper for [The Amazing Audio Engine](https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine) to provide:
     * Sample-accurate timing of events in playback scenarios
     * Audio playback of pitches
+    * and so on
 * **DNMConverter**: Converter 
     * Currently for DNMShorthand text input, later for:
         * JSON
