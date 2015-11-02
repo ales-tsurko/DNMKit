@@ -462,7 +462,6 @@ internal class Parser {
         switch tokens[index] {
         case .Number(_, _, let lineCount): initialLineCount =  lineCount
         case .Symbol(_, _, let lineCount): initialLineCount =  lineCount
-        default: initialLineCount = 0
         }
         
         var actions: [Action] = []

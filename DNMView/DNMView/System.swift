@@ -34,10 +34,7 @@ public class System: ViewNode, BuildPattern {
     /// All InstrumentIDs and InstrumentTypes, organized by PerformerID
     public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
-
-    
     // this should go...
-    // make private getter
     public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] {
         return getInstrumentTypeAndIIDByPID()
     }
@@ -62,12 +59,11 @@ public class System: ViewNode, BuildPattern {
     /// Identifiers that are currently not showing a given component type (as `String`)
     private var idsHiddenByComponentType: [String : [String]] = [:]
     
-    // DESTROY
-    public var bgStratumByID: [String : BGStratum] = [:]
-    public var bgStrataByID: [String : [BGStratum]] = [:]
-    
     /// DynamicMarkingNodes organized by identifier `String`
     public var dmNodeByID: [String : DMNode] = [:]
+    
+    /// All Performers in this System.
+    public var performers: [Performer] = []
     
     /// Performers organized by identifier `String`
     public var performerByID: [String: Performer] = [:]
@@ -92,7 +88,7 @@ public class System: ViewNode, BuildPattern {
     public var eventsNode = ViewNode(accumulateVerticallyFrom: .Top)
     
     /// Layer for Barlines. First (most background) layer of EventsNode
-    public let barlinesLayer = CALayer()
+    private let barlinesLayer = CALayer()
     
     /// All MeasureViews contained in this System
     public var measures: [MeasureView] = []
@@ -100,49 +96,71 @@ public class System: ViewNode, BuildPattern {
     /// All DurationNodes contained in this System
     public var durationNodes: [DurationNode] = []
 
-    
+    /// Graphical height of a single Guidonian staff space
     public var g: CGFloat = 0
-    public var beatWidth: CGFloat = 0 // proxy
-    public var infoStartX: CGFloat = 50 // proxy
     
-    // DEPRECATE
+    /// Graphical width of a single 8th-note
+    public var beatWidth: CGFloat = 0
+    
+    /// Horiztonal starting point of musical information
+    public var infoStartX: CGFloat = 50
+    
+    /// Duration that the beginning of this System is offset from the beginning of the piece.
     public var offsetDuration: Duration = DurationZero
+    
+    /// The Duration of this System
     public var totalDuration: Duration = DurationZero
     
+    /// DurationSpan of System
     public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
+    /// System following this System on the Page containing this System. May be `nil`.
     public var nextSystem: System? { get { return getNextSystem() } }
    
-    // move down
-    private func getNextSystem() -> System? {
-        if page == nil { return nil }
-        if let index = page!.systems.indexOfObject(self) {
-            if index < page!.systems.count - 1 { return page!.systems[index + 1] }
-        }
-        return nil
-    }
-    
+    /// System preceeding this System on the Page containing this System. May be `nil`.
     public var previousSystem: System? { get { return getPreviousSystem() } }
     
-    // move down
-    private func getPreviousSystem() -> System? {
-        if page == nil { return nil }
-        if let index = page?.systems.indexOfObject(self) {
-            if index > 0 { return page!.systems[index - 1] }
-        }
-        return nil
-    }
-
+    /**
+    All BGStrata organized by identifier `String`.
+    This is a temporary implementation that assumes that there is only one PerformerID
+    per BGStrata (and therefore BGStratum, and therefore BGEvent, etc.).
+    */
+    public var bgStrataByID: [String : [BGStratum]] = [:]
+    
+    /// All BGStrata in this System
     public var bgStrata: [BGStratum] = []
-    public var performers: [Performer] = []
+    
+    /// All Stems in this System
     public var stems: [Stem] = []
 
-    public var barlines: [Barline] = []
-    //public var mgRects: [MetronomeGridRect] = []
+    /// All Barlines in this System
+    private var barlines: [Barline] = []
     
+    /**
+    Minimum vertical value for Performer, for the purposes of Barline placement.
+    This is the highest graphTop contained within the
+    Performer -> Instrument -> Graph hierarchy.
+    */
     public var minPerformersTop: CGFloat? { get { return getMinPerformersTop() } }
+    
+    /**
+    Maximum vertical value for Performer, for the purposes of Barline placement.
+    This is the lowest graphBottom contained within the
+    Performer -> Instrument -> Graph hierarchy.
+    */
     public var maxPerformersBottom: CGFloat? { get { return getMaxPerformersBottom() } }
     
+    /**
+    Get an array of Systems, starting at a given index, and not exceeding a given maximumHeight.
+    
+    TODO: Make contingency for case where a single System is larger than the maximumHeight
+    
+    - parameter systems:       The entire reservoir of Systems from which to choose
+    - parameter index:         Index of first System in the output range
+    - parameter maximumHeight: Height which is not to be exceeded by range of Systems
+    
+    - returns: Array of Systems fulfilling these requirements
+    */
     public class func rangeFromSystems(
         systems: [System],
         startingAtIndex index: Int,
@@ -163,6 +181,11 @@ public class System: ViewNode, BuildPattern {
         return systemRange
     }
     
+    /**
+    Create a System
+    
+    - returns: System
+    */
     public override init() {
         super.init()
         layoutAccumulation_vertical = .Top
@@ -170,6 +193,15 @@ public class System: ViewNode, BuildPattern {
         pad_bottom = 2 * g
     }
     
+    /**
+    Create a System
+    
+    - parameter g:         Graphical height of a single Guidonian staff space
+    - parameter beatWidth: Graphical width of a single 8th-note
+    - parameter viewerID:  Identifier of human interacting with the score
+    
+    - returns: System
+    */
     public init(
         g: CGFloat,
         beatWidth: CGFloat,
@@ -184,8 +216,24 @@ public class System: ViewNode, BuildPattern {
         pad_bottom = 2 * g
     }
     
+    /**
+    Create a System.
+    
+    - parameter coder: NSCoder
+    
+    - returns: System
+    */
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+    
+    /**
+    Create a System
+    
+    - parameter layer: AnyObject
+    
+    - returns: System
+    */
     public override init(layer: AnyObject) { super.init(layer: layer) }
+    
     
     public func getDurationAtX(x: CGFloat) -> Duration {
         if x <= infoStartX { return DurationZero }
@@ -194,7 +242,62 @@ public class System: ViewNode, BuildPattern {
         let duration = Duration(floatValue: floatValue) + offsetDuration
         return duration
     }
+    
+    /**
+    Add a MeasureNumber to this System
+    
+    - parameter measureNumber: MeasureNumber to be added
+    - parameter x:             Horizontal placement of MeasureNumber
+    */
+    public func addMeasureNumber(measureNumber: MeasureNumber, atX x: CGFloat) {
+        temporalInfoNode.addMeasureNumber(measureNumber, atX: x)
+    }
+    
+    /**
+    Add a TimeSignature to this System
+    
+    - parameter timeSignature: TimeSignature to be added
+    - parameter x:             Horizontal placement of TimeSignature
+    */
+    public func addTimeSignature(timeSignature: TimeSignature, atX x: CGFloat) {
+        temporalInfoNode.addTimeSignature(timeSignature, atX: x)
+    }
+    
+    /**
+    Add a BeamGroupStratum to this System
+    
+    - parameter bgStratum: BeamGroupStratum
+    */
+    public func addBGStratum(bgStratum: BGStratum) {
+        bgStrata.append(bgStratum)
+        eventsNode.addNode(bgStratum)
+    }
+    
+    /**
+    Add a Performer to this System
+    
+    - parameter performer: Performer to be added
+    */
+    public func addPerformer(performer: Performer) {
+        performers.append(performer)
+        performerByID[performer.id] = performer
+        eventsNode.addNode(performer)
+    }
+    
+    
 
+    
+    public func addMeasure(measure: MeasureView) {
+        addMeasureComponentsFromMeasure(measure, atX: measure.frame.minX)
+    }
+
+    /**
+    Add a TempoMarking
+    
+    - parameter value:            Beats-per-minute value of Tempo
+    - parameter subdivisionLevel: SubdivisionLevel (1: 1/16th note, etc)
+    - parameter x:                Horizontal placement of TempoMarking
+    */
     public func addTempoMarkingWithValue(value: Int,
         andSubdivisionLevel subdivisionLevel: Int, atX x: CGFloat
     )
@@ -202,23 +305,89 @@ public class System: ViewNode, BuildPattern {
         temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionLevel: subdivisionLevel, atX: x)
     }
     
+    /**
+    Add a RehearsalMarking
+    
+    - parameter index: Index of the RehearsalMarking
+    - parameter type:  RehearsalMarkingType (.Alphabetical, .Numerical)
+    - parameter x:     Horizonatal placement of RehearsalMarking
+    */
     public func addRehearsalMarkingWithIndex(index: Int, type: RehearsalMarkingType, atX x: CGFloat) {
-        print("system add rehearsal marking")
         temporalInfoNode.addRehearsalMarkingWithIndex(index, type: type, atX: x)
     }
     
-    // NOTE: The use of BGStratumByID[id] is temporary, and must be dealt with over time as necessary!
-    // -- in future: use getBGStratumRepresentation....
+    /**
+    Set MeasureViews with MeasureViews. Manages the handing-off of Measure-related
+    graphical components (Barlines, TimeSignatures, MeasureNumbers)
     
-    // TODO: rhythmCueGraph still unstable
-    // -- is maintained when there are no perfs, dmNode OR bgStratum
-    public func arrangeNodesWithComponentTypesPresent() {
+    - parameter measures: All MeasureViews in this System
+    */
+    public func setMeasuresWithMeasures(measures: [MeasureView]) {
+        self.measures = measures
+        var accumLeft: CGFloat = infoStartX
+        var accumDur: Duration = DurationZero
+        for measure in measures {
+            measure.system = self
+            setGraphicalAttributesOfMeasure(measure, left: accumLeft)
+            handoffTimeSignatureFromMeasure(measure)
+            handoffMeasureNumberFromMeasure(measure)
+            
+            // temp
+            //handoffMGRectsFromMeasure(measure)
+            
+            addBarlinesForMeasure(measure)
+            accumLeft += measure.frame.width
+            accumDur += measure.dur!
+        }
+        totalDuration = accumDur
+    }
+    
+    /**
+    Add component types (as `String`) with an identifier.
+    
+    - parameter type: Component type (as `String`). E.g., "dynamics", "articulations", etc.
+    - parameter id:   Identifier by which this component type shall be organized
+    */
+    public func addComponentType(type: String, withID id: String) {
+        if componentTypesByID[id] == nil {
+            componentTypesByID[id] = [type]
+        }
+        else {
+            if componentTypesByID[id]!.count == 0 { componentTypesByID[id] = [type] }
+            else {
+                if !componentTypesByID[id]!.contains(type) {
+                    componentTypesByID[id]!.append(type)
+                }
+            }
+        }
+    }
+    
+    /**
+    Create Stems.
+    This is currently `public`, as the System `build()` process is fragmented externally.
+    As the System `build()` process becomes clearer, this shall be made `private`,
+    and called only within the System itself.
+    */
+    public func createStems() {
         
+        for eventHandler in instrumentEventHandlers {
+            let stem = eventHandler.makeStemInContext(eventsNode)
+            let stem_width: CGFloat = 0.0618 * g
+            stem.lineWidth = stem_width
+            let hue = HueByTupletDepth[eventHandler.bgEvent!.depth! - 1]
+            stem.color = UIColor.colorWithHue(hue, andDepthOfField: .MostForeground).CGColor
+            eventHandler.repositionStemInContext(eventsNode)
+            stems.append(stem) // addStem()
+        }
+    }
+    
+    /**
+    Arrange all ViewNodes contained within this System to show only those selected.
+    */
+    public func arrangeNodesWithComponentTypesPresent() {
         organizeIDsByComponentType()
         
         func addPerformersShown() {
-            
-            // eek, redo completely
             if let performersIDsShown = idsShownByComponentType["pitches"] {
                 for performerIDShown in performersIDsShown {
                     if let performer = performerByID[performerIDShown] {
@@ -263,6 +432,8 @@ public class System: ViewNode, BuildPattern {
                                         rhythmCueGraph = rCG
                                         
                                         // add new stems
+                                        
+                                        /*
                                         if let bgStratum = bgStratumByID[id]
                                             where eventsNode.hasNode(bgStratum)
                                         {
@@ -290,6 +461,7 @@ public class System: ViewNode, BuildPattern {
                                                 //eventHandlers.append(eventHandler)
                                             }
                                         }
+                                        */
                                     }
                                     rhythmCueGraph.instrument = instrument
                                     instrument.replaceNode(staff, withNode: rhythmCueGraph)
@@ -483,6 +655,33 @@ public class System: ViewNode, BuildPattern {
         sortComponents()
     }
     
+    /**
+    Layout this System. Calls `ViewNode.layout()`, then adjusts Ligatures.
+    */
+    public override func layout() {
+        super.layout()
+        
+        // hack
+        eventsNode.frame = CGRectMake(
+            eventsNode.frame.minX,
+            eventsNode.frame.minY,
+            self.frame.width,
+            eventsNode.frame.height
+        )
+        
+        adjustLigatures()
+    }
+    
+    private func adjustLigatures() {
+        adjustStems()
+        adjustSlurs()
+        adjustBarlines()
+        
+        // adjustPerformerBrackets()
+        // adjustMetronomeGridRects()
+    }
+
+    
     private func organizeIDsByComponentType() {
         
         // encapsulate this, put this somewhere early and smart
@@ -544,7 +743,7 @@ public class System: ViewNode, BuildPattern {
         }
     }
 
-    public func makePerformerByIDWithBGStrata(bgStrata: [BGStratum]) -> [String : Performer] {
+    private func makePerformerByIDWithBGStrata(bgStrata: [BGStratum]) -> [String : Performer] {
         var performerByID: [String : Performer] = [:]
         for bgStratum in bgStrata {
             for (pID, iIDs) in bgStratum.iIDsByPID {
@@ -657,49 +856,9 @@ public class System: ViewNode, BuildPattern {
     }
     */
     
-    // public for now // private soon
-    public func createStems() {
-        
-        for eventHandler in instrumentEventHandlers {
-            
-            let stem = eventHandler.makeStemInContext(eventsNode)
-            
-            let stem_width: CGFloat = 0.0618 * g
-            
-            // get g from either GraphEvent or BGstratum?
-            stem.lineWidth = stem_width
-            let hue = HueByTupletDepth[eventHandler.bgEvent!.depth! - 1]
-            stem.color = UIColor.colorWithHue(hue, andDepthOfField: .MostForeground).CGColor
-            eventHandler.repositionStemInContext(eventsNode)
-            stems.append(stem) // addStem()
-        }
-        
-        // deprecate
-        /*
-        for eventHandler in eventHandlers {
-            let stem = eventHandler.makeStemInContext(eventsNode)
-            
-            // internalize
-            var stem_width: CGFloat = 0.0618 * g
-            
-            // get g from either GraphEvent or BGstratum?
-            stem.lineWidth = stem_width
-            stem.strokeColor = UIColor.colorWithHue(HueByTupletDepth[
-                eventHandler.bgEvent!.depth! - 1
-                ],
-                andDepthOfField: .MostForeground
-            ).CGColor
-            eventHandler.repositionStemInContext(eventsNode)
-        }
-        */
-    }
+
     
-    public func setDurationNodesWithDurationNodes(durationNodes: [DurationNode]) {
-        self.durationNodes = durationNodes
-        // anything else?
-    }
-    
-    func getInfoEndYFromGraphEvent(
+    private func getInfoEndYFromGraphEvent(
         graphEvent: GraphEvent,
         withStemDirection stemDirection: StemDirection
     ) -> CGFloat
@@ -710,7 +869,7 @@ public class System: ViewNode, BuildPattern {
         return infoEndY
     }
     
-    func getBeamEndYFromBGStratum(bgStratum: BGStratum) -> CGFloat {
+    private func getBeamEndYFromBGStratum(bgStratum: BGStratum) -> CGFloat {
         let beamEndY = bgStratum.stemDirection == .Down
             ? convertY(bgStratum.beamsLayerGroup!.frame.minY, fromLayer: bgStratum)
             : convertY(bgStratum.beamsLayerGroup!.frame.maxY, fromLayer: bgStratum)
@@ -740,29 +899,6 @@ public class System: ViewNode, BuildPattern {
         }
     }
 
-    // in use: takes in measures that only have model data (duration, offset duration)
-    // -- implant graphical info (g, beatWidth, width, etc.)
-    // -- then add the graphical components of the measure: barlines, timesig, measure num
-    public func setMeasuresWithMeasures(measures: [MeasureView]) {
-        self.measures = measures
-        var accumLeft: CGFloat = infoStartX
-        var accumDur: Duration = DurationZero
-        for measure in measures {
-            measure.system = self
-            setGraphicalAttributesOfMeasure(measure, left: accumLeft)
-            handoffTimeSignatureFromMeasure(measure)
-            handoffMeasureNumberFromMeasure(measure)
-            
-            // temp
-            //handoffMGRectsFromMeasure(measure)
-            
-            addBarlinesForMeasure(measure)
-            accumLeft += measure.frame.width
-            accumDur += measure.dur!
-        }
-        totalDuration = accumDur
-    }
-    
     override func setWidthWithContents() {
         if measures.count > 0 {
             frame = CGRectMake(frame.minX, frame.minY, measures.last!.frame.maxX, frame.height)
@@ -807,7 +943,7 @@ public class System: ViewNode, BuildPattern {
         
     }
     
-    public func addMeasureComponentsFromMeasure(measure: MeasureView, atX x: CGFloat) {
+    private func addMeasureComponentsFromMeasure(measure: MeasureView, atX x: CGFloat) {
         if let timeSignature = measure.timeSignature { addTimeSignature(timeSignature, atX: x) }
         if let measureNumber = measure.measureNumber { addMeasureNumber(measureNumber, atX: x) }
 
@@ -818,65 +954,15 @@ public class System: ViewNode, BuildPattern {
         barlineLeft.opacity = 0.236
         barlines.append(barlineLeft)
         insertSublayer(barlineLeft, atIndex: 0)
-        
-        /*
-        // encapsulate
-        // add metronome grid rect
-        if measure.dur != nil {
-        let rect_dur = Duration(1, measure.dur!.subdivision!.value)
-        let rect_width = rect_dur.getGraphicalWidth(beatWidth: 120)
-        var accumLeft: CGFloat = measure.left
-        for r in 0..<measure.dur!.beats!.amount {
-        let mgRect = MetronomeGridRect(
-        rect: CGRectMake(
-        accumLeft, timeSignatureNode!.frame.maxY, rect_width, frame.height
-        )
-        )
-        //insertSublayer(mgRect, atIndex: 0)
-        //addSublayer(mgRect)
-        mgRects.append(mgRect)
-        accumLeft += mgRect.frame.width
-        }
-        }
-        */
     }
     
-    // move to TemporalInfoNode
-    public func addMeasureNumber(measureNumber: MeasureNumber, atX x: CGFloat) {
-        temporalInfoNode.addMeasureNumber(measureNumber, atX: x)
-    }
-    
-    // move to TemporalInfoNode
-    public func addTimeSignature(timeSignature: TimeSignature, atX x: CGFloat) {
-        temporalInfoNode.addTimeSignature(timeSignature, atX: x)
-    }
-    
-    public func addBGStratum(bgStratum: BGStratum) {
-        bgStrata.append(bgStratum)
-        
-        // hmmmm, check bgStrata instead
-        if let id = bgStratum.id { bgStratumByID[id] = bgStratum }
-        eventsNode.addNode(bgStratum)
-    }
-    
-    public func addPerformer(performer: Performer) {
-        performers.append(performer)
-        performerByID[performer.id] = performer
-        eventsNode.addNode(performer)
-        print("performerByID after: \(performerByID)")
-    }
-    
-    public func addBarline(barline: Barline, atX x: CGFloat) {
+    private func addBarline(barline: Barline, atX x: CGFloat) {
         barlines.append(barline)
         barline.x = x
         insertSublayer(barline, atIndex: 0)
     }
-    
-    public func addMeasure(measure: MeasureView) {
-        addMeasureComponentsFromMeasure(measure, atX: measure.frame.minX)
-    }
-    
-    public func addStem(stem: Stem) {
+
+    private func addStem(stem: Stem) {
         //eventsNode.insertSublayer(stem, atIndex: 0)
         //stems.append(stem)
     }
@@ -884,45 +970,45 @@ public class System: ViewNode, BuildPattern {
     private func addStems(stems: [Stem]) {
         for stem in stems { addStem(stem) }
     }
-    
-    /*
-    public func createTMNode() {
-        tempoMarkingNode = TMNode(height: 30)
-        tempoMarkingNode!.pad_bottom = 5 // HACK
-        //tempoMarkingNode!.addSampleTempoMarkingAtX(50)
-        insertNode(tempoMarkingNode!, atIndex: 0)
-    }
-    */
-    
+
     public func build() {
         clearNodes()
-
         createTemporalInfoNode() // change name of this: // tempo always above?
         createEventsNode()
         createBGStrata()
         createPerformers()
-        
-        // deprecate
-        //createEventHandlers() // NEEDS CLEANING!
-        
         createInstrumentEventHandlers()
-        
         decorateInstrumentEvents()
-        
-        // deprecate
-        //decorateGraphEvents()
-        
-        // encapsulate
-        
-        
-        // check out BGStrata.SANode situation
-        // encapsulate
+        createStemArticulations()
+        manageGraphLines()
+        createDMNodes()
+        createSlurHandlers()
+        addSlurs()
+        setDefaultComponentTypesShownByID()
+        hasBeenBuilt = true
+    }
+    
+    private func setDefaultComponentTypesShownByID() {
+        for (id, componentTypes) in componentTypesByID {
+            componentTypesShownByID[id] = componentTypes
+        }
+    }
+    
+    private func addSlurs() {
+        for (_, slurHandlers) in slurHandlersByID {
+            for slurHandler in slurHandlers {
+                if let slur = slurHandler.makeSlurInContext(eventsNode) {
+                    eventsNode.addSublayer(slur)
+                }
+            }
+        }
+    }
+    
+    private func createStemArticulations() {
         for bgStratum in bgStrata {
             for bgEvent in bgStratum.bgEvents {
                 for saType in bgEvent.stemArticulationTypes {
-                    //print("STEM ARTICULATION TYPE: \(saType)")
                     if bgStratum.saNodeByType[saType] == nil {
-                        //print("bgStratum.saNodeByType: \(saType) == nil: create!")
                         let saNode = SANode(left: 0, top: 0, height: 20)
                         bgStratum.saNodeByType[saType] = saNode
                     }
@@ -933,30 +1019,8 @@ public class System: ViewNode, BuildPattern {
                 saNode.layout()
                 bgStratum.addNode(saNode)
             }
-            
-
         }
-        
-        manageGraphLines()
-        createDMNodes()
-        createSlurHandlers()
-
-        for (_, slurHandlers) in slurHandlersByID {
-            for slurHandler in slurHandlers {
-                if let slur = slurHandler.makeSlurInContext(eventsNode) {
-                    eventsNode.addSublayer(slur)
-                }
-            }
-        }
-
-        // encapsulate: set initial componentTypesShownByID
-        for (id, componentTypes) in componentTypesByID {
-            componentTypesShownByID[id] = componentTypes
-        }
-        
-        hasBeenBuilt = true
     }
-    
     
     private func manageGraphLines() {
         for (_, performer) in performerByID {
@@ -974,19 +1038,10 @@ public class System: ViewNode, BuildPattern {
     }
     
     private func decorateInstrumentEvents() {
-        print("decorate instrument events: instr e handler amount: \(instrumentEventHandlers.count)")
-        
         for instrumentEventHandler in instrumentEventHandlers {
             instrumentEventHandler.decorateInstrumentEvent()
         }
     }
-    
-    /*
-    // deprecate
-    private func decorateGraphEvents() {
-        for eventHandler in eventHandlers { eventHandler.decorateGraphEvent() }
-    }
-    */
     
     private func getStemDirectionForPID(pID: String) -> StemDirection {
         return pID == viewerID ? .Up : .Down
@@ -1003,9 +1058,6 @@ public class System: ViewNode, BuildPattern {
     }
     
     private func createInstrumentEventHandlers() {
-        
-        print("create instrument event handlers")
-        
         var instrumentEventHandlers: [InstrumentEventHandler] = []
         
         func addInstrumentEventHandlerWithBGEvent(bgEvent: BGEvent?,
@@ -1029,11 +1081,9 @@ public class System: ViewNode, BuildPattern {
                     continue
                 }
                 
-                //var instrumentEvent: InstrumentEvent?
                 for component in bgEvent.durationNode.components {
                     
-                    print("create instrument event handlers: component: \(component)")
-                    
+                    // interrogate this...
                     var instrumentEventHandlerSuccessfullyCreated: Bool = false
                     let pID = component.pID, iID = component.iID
                     let x: CGFloat = bgEvent.x_objective!
@@ -1069,7 +1119,7 @@ public class System: ViewNode, BuildPattern {
         self.instrumentEventHandlers = instrumentEventHandlers
     }
     
-    public func createSlurHandlers() {
+    private func createSlurHandlers() {
         
         func addSlurHandler(slurHandler: SlurHandler) {
             slurHandler.g = slurHandler.id == viewerID ? g : 0.618 * g
@@ -1127,9 +1177,8 @@ public class System: ViewNode, BuildPattern {
         performerByID = makePerformerByIDWithBGStrata(bgStrata) // clean
     }
     
+    // Encapsulate in BGStratumFactory or something
     private func createBGStrata() {
-        
-        // REFACTOR THIS TO BGStrataManager()
         
         func getPIDsFromStratum(stratum: [DurationNode]) -> [String] {
             var pids: [String] = []
@@ -1303,21 +1352,7 @@ public class System: ViewNode, BuildPattern {
         addNode(eventsNode)
         eventsNode.insertSublayer(barlinesLayer, atIndex: 0)
     }
-    
-    public func addComponentType(type: String, withID id: String) {
-        if componentTypesByID[id] == nil {
-            componentTypesByID[id] = [type]
-        }
-        else {
-            if componentTypesByID[id]!.count == 0 { componentTypesByID[id] = [type] }
-            else {
-                if !componentTypesByID[id]!.contains(type) {
-                    componentTypesByID[id]!.append(type)
-                }
-            }
-        }
-    }
-    
+
     // ENCAPSULATE WITH DMNodeFactory()
     private func createDMNodes() {
         
@@ -1348,17 +1383,8 @@ public class System: ViewNode, BuildPattern {
         func directionFromType(type: Float) -> DMLigatureDirection {
             return type == 0 ? .Static : type < 0 ? .Decrescendo : .Crescendo
         }
-        
-        // ---------------------------------------------------------------------------------
-        // make DMNodes
-        //var dmComponents: [ComponentDynamic] = []
-        
+
         var dmNodeByID: [String : DMNode] = [:]
-        
-        //var dmsWithLigatureTypes: [(ComponentDynamic?, ComponentDMLigature?)] = []
-        
-        //var dmComponentContexts: [DMComponentContext] = []
-        
         
         // deal with DYNAMIC MARKINGS
         for eventHandler in instrumentEventHandlers {
@@ -1457,8 +1483,6 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
-    
-    
     /*
     private func handoffMGRectsFromMeasure(measure: MeasureView) {
         // hand off mg rects
@@ -1484,30 +1508,7 @@ public class System: ViewNode, BuildPattern {
         }
     }
     
-    public override func layout() {
-
-        super.layout()
-        
-        // hack
-        eventsNode.frame = CGRectMake(
-            eventsNode.frame.minX,
-            eventsNode.frame.minY,
-            self.frame.width,
-            eventsNode.frame.height
-        )
-        
-        adjustLigatures()
-    }
-    
-    private func adjustLigatures() {
-        adjustStems()
-        adjustSlurs()
-        adjustBarlines()
-        
-        // adjustPerformerBrackets()
-        // adjustMetronomeGridRects()
-    }
-    
+    // Must clean up
     private func adjustSlurs() {
         for (_, slurHandlers) in slurHandlersByID {
             
@@ -1517,7 +1518,12 @@ public class System: ViewNode, BuildPattern {
                     if let graph0 = graphEvent0.graph, graph1 = graphEvent1.graph {
                         if let instrument0 = graph0.instrument, instrument1 = graph1.instrument {
                             if let performer0 = instrument0.performer, performer1 = instrument1.performer {
-                                if eventsNode.hasNode(performer0) && eventsNode.hasNode(performer1) && performer0.hasNode(instrument0) && performer1.hasNode(instrument1) && instrument0.hasNode(graph0) && instrument1.hasNode(graph1)
+                                if eventsNode.hasNode(performer0) &&
+                                    eventsNode.hasNode(performer1) &&
+                                    performer0.hasNode(instrument0) &&
+                                    performer1.hasNode(instrument1) &&
+                                    instrument0.hasNode(graph0) &&
+                                    instrument1.hasNode(graph1)
                                 {
                                     if let slur = slurHandler.slur where slur.superlayer == nil {
                                         eventsNode.addSublayer(slur)
@@ -1534,18 +1540,6 @@ public class System: ViewNode, BuildPattern {
             }
         }
     }
-    
-    /*
-    // TODO: reimplement when the time is right
-    private func adjustMetronomeGridRects() {
-        for mgRect in mgRects {
-            let f = mgRect.frame
-            let h = frame.height - timeSignatureNode!.frame.maxY
-            mgRect.frame = CGRectMake(f.minX, timeSignatureNode!.frame.maxY, f.width, h)
-            mgRect.path = mgRect.makePath()
-        }
-    }
-    */
     
     private func getMinPerformersTop() -> CGFloat? {
         if performers.count == 0 { return 0 }
@@ -1634,21 +1628,35 @@ public class System: ViewNode, BuildPattern {
         return instrumentTypeByIIDByPID
     }
     
-    // ----------------------------------------------------------------------------------------- //
+    private func getNextSystem() -> System? {
+        if page == nil { return nil }
+        if let index = page!.systems.indexOfObject(self) {
+            if index < page!.systems.count - 1 { return page!.systems[index + 1] }
+        }
+        return nil
+    }
+    
+    private func getPreviousSystem() -> System? {
+        if page == nil { return nil }
+        if let index = page?.systems.indexOfObject(self) {
+            if index > 0 { return page!.systems[index - 1] }
+        }
+        return nil
+    }
+    
+    /*
+    // TODO: reimplement when the time is right
+    private func adjustMetronomeGridRects() {
+        for mgRect in mgRects {
+            let f = mgRect.frame
+            let h = frame.height - timeSignatureNode!.frame.maxY
+            mgRect.frame = CGRectMake(f.minX, timeSignatureNode!.frame.maxY, f.width, h)
+            mgRect.path = mgRect.makePath()
+        }
+    }
+    */
     
     private func getDescription() -> String {
         return "System: totalDuration: \(totalDuration), offsetDuration: \(offsetDuration)"
     }
-    
-    /*
-    override public func hitTest(p: CGPoint) -> CALayer? {
-        if containsPoint(p) { return self }
-        return nil
-    }
-    
-    override public func containsPoint(p: CGPoint) -> Bool {
-        if frame.contains(p) { return true }
-        return false
-    }
-    */
 }

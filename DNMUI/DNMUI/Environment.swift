@@ -205,8 +205,7 @@ public class Environment: UIView {
             let durationNodeRange = DurationNode.rangeFromDurationNodes(durationNodes,
                 afterDuration: start, untilDuration: stop
             )
-            
-            system.setDurationNodesWithDurationNodes(durationNodeRange)
+            system.durationNodes = durationNodeRange
             systems.append(system)
             
             // encapsulate: increment shit
