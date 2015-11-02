@@ -15,13 +15,13 @@ It includes several subframeworks:
     * Audio playback of pitches
 * **DNMConverter**: Converter 
     * Currently for DNMShorthand text input, later for:
-    * JSON
-    * MusicXML
-    * Abjad
-    * Bach
-    * OpenMusic
-    * PWGL
-    * and so on
+        * JSON
+        * MusicXML
+        * Abjad
+        * Bach
+        * OpenMusic
+        * PWGL
+        * and so on
 
 
 
