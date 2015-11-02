@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DurationNode Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/DurationNode" class="dashAnchor"></a>
+    <a title="DurationNode Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (32% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DurationNode Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DurationNode.html">DurationNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DurationNodeDyad.html">DurationNodeDyad</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InstrumentFamily.html">InstrumentFamily</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Pitch.html">Pitch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchDyad.html">PitchDyad</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchDyadSpeller.html">PitchDyadSpeller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchInterval.html">PitchInterval</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchMonadSpeller.html">PitchMonadSpeller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchPolyphony.html">PitchPolyphony</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchSpeller.html">PitchSpeller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchSpelling.html">PitchSpelling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchVerticality.html">PitchVerticality</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PitchVerticalitySpeller.html">PitchVerticalitySpeller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:C8DNMModel5Tempo">Tempo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:C8DNMModel13TempoFunction">TempoFunction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v8DNMModel12DurationZeroVS_8Duration">DurationZero</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v8DNMModel18InstrumentFamiliesGSaMCS_16InstrumentFamily_">InstrumentFamilies</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ComponentProperty.html">ComponentProperty</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DurationNodeDyadRelationship.html">DurationNodeDyadRelationship</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DurationSpanRelationship.html">DurationSpanRelationship</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InstrumentType.html">InstrumentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PitchCoarse.html">PitchCoarse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PitchFine.html">PitchFine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PitchLetterName.html">PitchLetterName</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Duration.html">Duration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2neFTVS_11SubdivisionS0__Sb">!=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2neFTVS_5BeatsS0__Sb">!=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2neFTVS_8DurationS0__Sb">!=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1mFTVS_11SubdivisionSi_S0_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1mFTVS_8DurationSi_S0_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1mFTVS_5BeatsSi_S0_">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2meFTRVS_11SubdivisionSi_T_">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2meFTRVS_5BeatsSi_T_">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2meFTRVS_8DurationSi_T_">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1pFTVS_8DurationS0__S0_">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1pFTVS_5BeatsS0__S0_">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2peFTRVS_8DurationS0__T_">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2peFTRVS_5BeatsS0__T_">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1sFTVS_8DurationS0__S0_">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1sFTVS_5BeatsS0__S0_">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2seFTRVS_5BeatsS0__T_">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2seFTRVS_8DurationS0__T_">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1dFTVS_11SubdivisionSi_S0_">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1dFTVS_5BeatsSi_S0_">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1dFTVS_8DurationSi_S0_">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2deFTRVS_8DurationSi_T_">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2deFTRVS_11SubdivisionSi_T_">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2deFTRVS_5BeatsSi_T_">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTVS_8DurationS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTCS_5PitchS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTVS_5BeatsS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTCS_13PitchSpellingS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTVS_11SubdivisionS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1lFTOS_15PitchLetterNameS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTVS_11SubdivisionS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTVS_8DurationS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTVS_5BeatsS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTCS_5PitchS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTOS_15PitchLetterNameS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2leFTCS_13PitchSpellingS0__Sb">&lt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTOS_15PitchLetterNameS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTCS_13PitchSpellingS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTVS_17PitchSpellingDyadS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTVS_8DurationS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTCS_5PitchS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTVS_11SubdivisionS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2eeFTVS_5BeatsS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTCS_5PitchS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTCS_13PitchSpellingS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTOS_15PitchLetterNameS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTVS_5BeatsS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTVS_8DurationS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi1gFTVS_11SubdivisionS0__Sb">&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTVS_8DurationS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTCS_5PitchS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTOS_15PitchLetterNameS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTCS_13PitchSpellingS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTVS_11SubdivisionS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF8DNMModeloi2geFTVS_5BeatsS0__Sb">&gt;=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F8DNMModel33makeDurationSpanWithDurationNodesFGSaCS_12DurationNode_VS_12DurationSpan">makeDurationSpanWithDurationNodes(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Component.html">Component</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ComponentDMLigature.html">ComponentDMLigature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ComponentSlur.html">ComponentSlur</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Beats.html">Beats</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentArticulation.html">ComponentArticulation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentDMLigatureStart.html">ComponentDMLigatureStart</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentDMLigatureStop.html">ComponentDMLigatureStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentDynamic.html">ComponentDynamic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentEdgeStart.html">ComponentEdgeStart</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentEdgeStop.html">ComponentEdgeStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentExtensionStart.html">ComponentExtensionStart</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentExtensionStop.html">ComponentExtensionStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentGlissandoStart.html">ComponentGlissandoStart</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentGlissandoStop.html">ComponentGlissandoStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentLabel.html">ComponentLabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentNode.html">ComponentNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentPitch.html">ComponentPitch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentRest.html">ComponentRest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentSlurStart.html">ComponentSlurStart</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentSlurStop.html">ComponentSlurStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentStringArtificialHarmonic.html">ComponentStringArtificialHarmonic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentStringBowDirection.html">ComponentStringBowDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentStringNumber.html">ComponentStringNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ComponentWave.html">ComponentWave</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DNMScoreModel.html">DNMScoreModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Duration.html">Duration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DurationSpan.html">DurationSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Frequency.html">Frequency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDI.html">MIDI</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Measure.html">Measure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PitchSpellingDyad.html">PitchSpellingDyad</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RehearsalMarking.html">RehearsalMarking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScoreInfo.html">ScoreInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subdivision.html">Subdivision</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TempoMarking.html">TempoMarking</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DurationNode</h1>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>DurationNode is a hierarchical structure with an accompanying datum of Duration. NYI: Partition</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode2idGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode2idGSqSS_">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/String%20Representation"></a>
+                  <a name="//apple_ref/swift/Section/String Representation" class="dashAnchor"></a>
+                  <a href="#/String%20Representation">
+                    <h3 class="section-name">String Representation</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode11descriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Attributes"></a>
+                  <a name="//apple_ref/swift/Section/Attributes" class="dashAnchor"></a>
+                  <a href="#/Attributes">
+                    <h3 class="section-name">Attributes</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode8durationVS_8Duration"></a>
+                    <a name="//apple_ref/swift/Property/duration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode8durationVS_8Duration">duration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Duration of DurationNode</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">Duration</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode14offsetDurationVS_8Duration"></a>
+                    <a name="//apple_ref/swift/Property/offsetDuration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode14offsetDurationVS_8Duration">offsetDuration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode12durationSpanVS_12DurationSpan"></a>
+                    <a name="//apple_ref/swift/Property/durationSpan" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode12durationSpanVS_12DurationSpan">durationSpan</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode10componentsGSaPS_9Component__"></a>
+                    <a name="//apple_ref/swift/Property/components" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode10componentsGSaPS_9Component__">components</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode6isRestSb"></a>
+                    <a name="//apple_ref/swift/Property/isRest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode6isRestSb">isRest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode9iIDsByPIDGVSs10DictionarySSGSaSS__"></a>
+                    <a name="//apple_ref/swift/Property/iIDsByPID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode9iIDsByPIDGVSs10DictionarySSGSaSS__">iIDsByPID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode26instrumentIDsByPerformerIDGVSs10DictionarySSGSaSS__"></a>
+                    <a name="//apple_ref/swift/Property/instrumentIDsByPerformerID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode26instrumentIDsByPerformerIDGVSs10DictionarySSGSaSS__">instrumentIDsByPerformerID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>All Instrument ID values organized by Performer ID keys</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">instrumentIDsByPerformerID</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">getIIDsByPID</span><span class="p">()</span> <span class="p">}</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode17hasExtensionBeginSb"></a>
+                    <a name="//apple_ref/swift/Property/hasExtensionBegin" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode17hasExtensionBeginSb">hasExtensionBegin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this DurationNode is a continuation from another (<q>tied</q>)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hasExtensionBegin</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode15hasExtensionEndSb"></a>
+                    <a name="//apple_ref/swift/Property/hasExtensionEnd" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode15hasExtensionEndSb">hasExtensionEnd</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this DurationNode continues into another (<q>tied</q>)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hasExtensionEnd</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode10isMetricalSb"></a>
+                    <a name="//apple_ref/swift/Property/isMetrical" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode10isMetricalSb">isMetrical</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this DurationNode shall be represented with metrical beaming</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isMetrical</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode11isNumericalSb"></a>
+                    <a name="//apple_ref/swift/Property/isNumerical" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode11isNumericalSb">isNumerical</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this DurationNode is either [1] subdividable (non-tuplet), or [2] should not be
+represented with tuplet bracket(s).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isNumerical</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode26hasOnlyExtensionComponentsSb"></a>
+                    <a name="//apple_ref/swift/Property/hasOnlyExtensionComponents" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode26hasOnlyExtensionComponentsSb">hasOnlyExtensionComponents</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this DurationNode has only Extension Components (ties) (not a rest, but no info).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hasOnlyExtensionComponents</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode24distanceFromDurationNodeFS0_FS0_GSqVS_8Duration_"></a>
+                    <a name="//apple_ref/swift/Method/distanceFromDurationNode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode24distanceFromDurationNodeFS0_FS0_GSqVS_8Duration_">distanceFromDurationNode(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode20distanceFromDurationFS0_FVS_8DurationGSqS1__"></a>
+                    <a name="//apple_ref/swift/Method/distanceFromDuration(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode20distanceFromDurationFS0_FVS_8DurationGSqS1__">distanceFromDuration(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Analyze%20DurationNode"></a>
+                  <a name="//apple_ref/swift/Section/Analyze DurationNode" class="dashAnchor"></a>
+                  <a href="#/Analyze%20DurationNode">
+                    <h3 class="section-name">Analyze DurationNode</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode27relativeDurationsOfChildrenGSqGSaSi__"></a>
+                    <a name="//apple_ref/swift/Property/relativeDurationsOfChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode27relativeDurationsOfChildrenGSqGSaSi__">relativeDurationsOfChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Array of integers with reduced relative durations of children</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">relativeDurationsOfChildren</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode21subdivisionOfChildrenGSqVS_11Subdivision_"></a>
+                    <a name="//apple_ref/swift/Property/subdivisionOfChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode21subdivisionOfChildrenGSqVS_11Subdivision_">subdivisionOfChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The reduced, leveled Subdivision of children</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">subdivisionOfChildren</span><span class="p">:</span> <span class="kt">Subdivision</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode15scaleOfChildrenGSqSf_"></a>
+                    <a name="//apple_ref/swift/Property/scaleOfChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode15scaleOfChildrenGSqSf_">scaleOfChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Scale of children DurationNodes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">scaleOfChildren</span><span class="p">:</span> <span class="kt">Float</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">getScaleOfChildren</span><span class="p">()</span> <span class="p">}</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8DNMModel12DurationNode14isSubdividableSb"></a>
+                    <a name="//apple_ref/swift/Property/isSubdividable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8DNMModel12DurationNode14isSubdividableSb">isSubdividable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If DurationNode is subdividable (non-tuplet)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isSubdividable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">getIsSubdividable</span><span class="p">()</span> <span class="p">}</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode22rangeFromDurationNodesFMS0_FTGSaS0__14inDurationSpanVS_12DurationSpan_T_"></a>
+                    <a name="//apple_ref/swift/Method/rangeFromDurationNodes(_:inDurationSpan:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode22rangeFromDurationNodesFMS0_FTGSaS0__14inDurationSpanVS_12DurationSpan_T_">rangeFromDurationNodes(_:inDurationSpan:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode22rangeFromDurationNodesFMS0_FTGSaS0__13afterDurationVS_8Duration13untilDurationS1__GSaS0__"></a>
+                    <a name="//apple_ref/swift/Method/rangeFromDurationNodes(_:afterDuration:untilDuration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode22rangeFromDurationNodesFMS0_FTGSaS0__13afterDurationVS_8Duration13untilDurationS1__GSaS0__">rangeFromDurationNodes(_:afterDuration:untilDuration:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>From an array of DurationNodes, choose those that fit within the given DurationSpan</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">rangeFromDurationNodes</span><span class="p">(</span>
+        <span class="nv">durationNodes</span><span class="p">:</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">],</span>
+        <span class="n">afterDuration</span> <span class="nv">start</span><span class="p">:</span> <span class="kt">Duration</span><span class="p">,</span>
+        <span class="n">untilDuration</span> <span class="nv">stop</span><span class="p">:</span> <span class="kt">Duration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode6randomFMS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Method/random()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode6randomFMS0_FT_S0_">random()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode31getMaximumSubdivisionOfSequenceFMS0_FGSaS0__GSqVS_11Subdivision_"></a>
+                    <a name="//apple_ref/swift/Method/getMaximumSubdivisionOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode31getMaximumSubdivisionOfSequenceFMS0_FGSaS0__GSqVS_11Subdivision_">getMaximumSubdivisionOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode31getMinimumSubdivisionOfSequenceFMS0_FGSaS0__GSqVS_11Subdivision_"></a>
+                    <a name="//apple_ref/swift/Method/getMinimumSubdivisionOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode31getMinimumSubdivisionOfSequenceFMS0_FGSaS0__GSqVS_11Subdivision_">getMinimumSubdivisionOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode24matchDurationsOfSequenceFMS0_FGSaS0__T_"></a>
+                    <a name="//apple_ref/swift/Method/matchDurationsOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode24matchDurationsOfSequenceFMS0_FGSaS0__T_">matchDurationsOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode24levelDurationsOfSequenceFMS0_FGSaS0__T_"></a>
+                    <a name="//apple_ref/swift/Method/levelDurationsOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode24levelDurationsOfSequenceFMS0_FGSaS0__T_">levelDurationsOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode25reduceDurationsOfSequenceFMS0_FGSaS0__T_"></a>
+                    <a name="//apple_ref/swift/Method/reduceDurationsOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode25reduceDurationsOfSequenceFMS0_FGSaS0__T_">reduceDurationsOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode38allSubdivisionsOfSequenceAreEquivalentFMS0_FGSaS0__Sb"></a>
+                    <a name="//apple_ref/swift/Method/allSubdivisionsOfSequenceAreEquivalent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode38allSubdivisionsOfSequenceAreEquivalentFMS0_FGSaS0__Sb">allSubdivisionsOfSequenceAreEquivalent(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8DNMModel12DurationNode30getRelativeDurationsOfSequenceFMS0_FGSaS0__GSaSi_"></a>
+                    <a name="//apple_ref/swift/Method/getRelativeDurationsOfSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8DNMModel12DurationNode30getRelativeDurationsOfSequenceFMS0_FGSaS0__GSaSi_">getRelativeDurationsOfSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNodecFMS0_FT8durationVS_8Duration_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(duration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNodecFMS0_FT8durationVS_8Duration_S0_">init(duration:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a DurationNode with Duration</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="kt">Duration</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Initialized DurationNode</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNodecFMS0_FT8durationVS_8Duration14offsetDurationS1_8sequenceCSo7NSArray_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(duration:offsetDuration:sequence:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNodecFMS0_FT8durationVS_8Duration14offsetDurationS1_8sequenceCSo7NSArray_S0_">init(duration:offsetDuration:sequence:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a DurationNode with a Duration and a sequence of relative durations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="kt">Duration</span><span class="p">,</span> <span class="nv">offsetDuration</span><span class="p">:</span> <span class="kt">Duration</span> <span class="o">=</span> <span class="kt">DurationZero</span><span class="p">,</span> <span class="nv">sequence</span><span class="p">:</span> <span class="kt">NSArray</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sequence</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sequence of relative durations of child nodes</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Initialized DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNodecFMS0_FT8durationTSiSi_14offsetDurationTSiSi_8sequenceCSo7NSArray_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(duration:offsetDuration:sequence:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNodecFMS0_FT8durationTSiSi_14offsetDurationTSiSi_8sequenceCSo7NSArray_S0_">init(duration:offsetDuration:sequence:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a DurationNode with a Duration as an array of two integers: [beats, subdivision] and
+a sequence of relative durations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">),</span> <span class="nv">offsetDuration</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="nv">sequence</span><span class="p">:</span> <span class="kt">NSArray</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration as an array of two integers: [beats, subdivision]</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sequence</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sequence of relative durations of child nodes</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Initialized DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode34addRandomComponentsToLeavesWithPIDFS0_FTSS6andIIDSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/addRandomComponentsToLeavesWithPID(_:andIID:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode34addRandomComponentsToLeavesWithPIDFS0_FTSS6andIIDSS_T_">addRandomComponentsToLeavesWithPID(_:andIID:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode17addChildWithBeatsFS0_FSiT_"></a>
+                    <a name="//apple_ref/swift/Method/addChildWithBeats(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode17addChildWithBeatsFS0_FSiT_">addChildWithBeats(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode11setDurationFS0_FVS_8DurationS0_"></a>
+                    <a name="//apple_ref/swift/Method/setDuration(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode11setDurationFS0_FVS_8DurationS0_">setDuration(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set Duration of DurationNode</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setDuration</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="kt">Duration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DurationNode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration of DurationNode</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode23addChildrenWithSequenceFS0_FCSo7NSArrayS0_"></a>
+                    <a name="//apple_ref/swift/Method/addChildrenWithSequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode23addChildrenWithSequenceFS0_FCSo7NSArrayS0_">addChildrenWithSequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add child nodes with relative durations in sequence.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addChildrenWithSequence</span><span class="p">(</span><span class="nv">sequence</span><span class="p">:</span> <span class="kt">NSArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DurationNode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sequence</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sequence of relative durations of child nodes</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode12addComponentFS0_FPS_9Component_T_"></a>
+                    <a name="//apple_ref/swift/Method/addComponent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode12addComponentFS0_FPS_9Component_T_">addComponent(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode15clearComponentsFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/clearComponents()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode15clearComponentsFS0_FT_T_">clearComponents()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode27setOffsetDurationOfChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/setOffsetDurationOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode27setOffsetDurationOfChildrenFS0_FT_T_">setOffsetDurationOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode20setHasExtensionBeginFS0_FSbS0_"></a>
+                    <a name="//apple_ref/swift/Method/setHasExtensionBegin(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode20setHasExtensionBeginFS0_FSbS0_">setHasExtensionBegin(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set if DurationNode is extended at the beginning</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setHasExtensionBegin</span><span class="p">(</span><span class="nv">hasExtensionBegin</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DurationNode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hasExtensionBegin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If DurationNode is extended at the beginning</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode18setHasExtensionEndFS0_FSbS0_"></a>
+                    <a name="//apple_ref/swift/Method/setHasExtensionEnd(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode18setHasExtensionEndFS0_FSbS0_">setHasExtensionEnd(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set if DurationNode extends into the next</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setHasExtensionEnd</span><span class="p">(</span><span class="nv">hasExtensionEnd</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DurationNode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hasExtensionEnd</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If DurationNode extends into the next</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Operations"></a>
+                  <a name="//apple_ref/swift/Section/Operations" class="dashAnchor"></a>
+                  <a href="#/Operations">
+                    <h3 class="section-name">Operations</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode4copyFS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Method/copy()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode4copyFS0_FT_S0_">copy()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deep copy of DurationNode. A new DurationNode is created with all attributes equivalant
+to original.
+When comparing a Node that has been copied from another,<q>===</q> will return false,
+while <q>==</q> will return true (NYI).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">DurationNode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DurationNode object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode13descendToCopyERR"></a>
+                    <a name="//apple_ref/swift/Method/descendToCopy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode13descendToCopyERR">descendToCopy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the recursive counterpart to copy(). This method copies the Duration of each
+child and descends to each child, if applicable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">descendToCopy</span><span class="p">(</span><span class="k">inout</span> <span class="nv">node</span><span class="p">:</span> <span class="kt">Node</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>node</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Node</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode20matchDurationsOfTreeFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/matchDurationsOfTree()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode20matchDurationsOfTreeFS0_FT_T_">matchDurationsOfTree()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode20scaleDurationsOfTreeFS0_FT5scaleSf_S0_"></a>
+                    <a name="//apple_ref/swift/Method/scaleDurationsOfTree(scale:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode20scaleDurationsOfTreeFS0_FT5scaleSf_S0_">scaleDurationsOfTree(scale:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode24scaleDurationsOfChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/scaleDurationsOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode24scaleDurationsOfChildrenFS0_FT_T_">scaleDurationsOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Recursively scales the Durations of all Nodes in a DurationNode tree. This scale is used
+when calculating the graphical widths and temporal lengths of (embedded-)tuplet rhythms.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">scaleDurationsOfChildren</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode33descendToScaleDurationsOfChildrenFS0_FTRS0_5scaleRSf_T_"></a>
+                    <a name="//apple_ref/swift/Method/descendToScaleDurationsOfChildren(_:scale:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode33descendToScaleDurationsOfChildrenFS0_FTRS0_5scaleRSf_T_">descendToScaleDurationsOfChildren(_:scale:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the recursive counterpart to scaleDurationsOfChildren(). This method sets the
+inheritedScale of the Duration of each Node in a DurationNode tree.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">descendToScaleDurationsOfChildren</span><span class="p">(</span>
+        <span class="k">inout</span> <span class="nv">node</span><span class="p">:</span> <span class="kt">DurationNode</span><span class="p">,</span> <span class="k">inout</span> <span class="nv">scale</span><span class="p">:</span> <span class="kt">Float</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>node</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>DurationNode to be scaled</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>scale</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount by which to scale Duration of DurationNode</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode38matchDurationToChildren_nonDestructiveFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/matchDurationToChildren_nonDestructive()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode38matchDurationToChildren_nonDestructiveFS0_FT_T_">matchDurationToChildren_nonDestructive()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode23matchDurationToChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/matchDurationToChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode23matchDurationToChildrenFS0_FT_T_">matchDurationToChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ensures that the Duration of this DurationNode is appropriate considering the context of
+the Durations of its children.</p>
+
+<p>In many cases, this means that the Duration of this DurationNode is respelled according to
+the amount of beats that most closely matches the sum of the leveled and reduced children
+Durations (e.g. original DurationNode.duration = (2,16), and original
+DurationNode.relativeDurationsOfChildren.sum() = 13; new DurationNode.duration = (16,128)).</p>
+
+<p>In other cases, this means that the Durations of the children DurationNodes are respelled
+such that their sum matches the most-reduced form the Duration of this DurationNode (e.g.
+original DurationNode.duration = (7,32), and the amounts of beats for the children are
+[1,2,1]; the new amounts of beats for the children are [2,4,2], with a sum of 8).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">matchDurationToChildren</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode24matchDurationsOfChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/matchDurationsOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode24matchDurationsOfChildrenFS0_FT_T_">matchDurationsOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Levels and Reduces the Durations of all of the children of this DurationNode, if present.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">matchDurationsOfChildren</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode24levelDurationsOfChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/levelDurationsOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode24levelDurationsOfChildrenFS0_FT_T_">levelDurationsOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ensures that the Durations of each child of this DurationNode have the same Subdivision.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">levelDurationsOfChildren</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode25reduceDurationsOfChildrenFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reduceDurationsOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode25reduceDurationsOfChildrenFS0_FT_T_">reduceDurationsOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ensures that the Durations of each child, once leveled, are reduced to the greatest degree.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reduceDurationsOfChildren</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode22partitionAtSubdivisionFS0_FVS_11SubdivisionGSaS0__"></a>
+                    <a name="//apple_ref/swift/Method/partitionAtSubdivision(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode22partitionAtSubdivisionFS0_FVS_11SubdivisionGSaS0__">partitionAtSubdivision(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Partitions this DurationNode at the desired Subdivision.</p>
+
+<p>NYI: Less friendly partition-points. Arbitrary arrays of partition widths ([3,5,3]).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">partitionAtSubdivision</span><span class="p">(</span><span class="nv">newSubdivision</span><span class="p">:</span> <span class="kt">Subdivision</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newSubdivision</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Subdivision at which to partition DurationNode</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of DurationNodes, partitioned at the desired Subdivision</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode31recurseToPartitionAtSubdivisionFS0_FTRGSaS0__8compoundRGSaGSaS0___3sumSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/recurseToPartitionAtSubdivision(_:compound:sum:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode31recurseToPartitionAtSubdivisionFS0_FTRGSaS0__8compoundRGSaGSaS0___3sumSi_T_">recurseToPartitionAtSubdivision(_:compound:sum:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the recursive counterpart to partitionAtSubdivision().</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">recurseToPartitionAtSubdivision</span><span class="p">(</span>
+        <span class="k">inout</span> <span class="nv">array</span><span class="p">:</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">],</span>
+        <span class="k">inout</span> <span class="nv">compound</span><span class="p">:</span> <span class="p">[[</span><span class="kt">DurationNode</span><span class="p">]],</span>
+        <span class="nv">sum</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>array</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of DurationNodes</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>compound</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of Arrays of Durations, with a width prescribed by the Subdivision</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sum</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Width of each Partition</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode38makeChildrenWithDurationsScaledByRatioFS0_FSiGSaS0__"></a>
+                    <a name="//apple_ref/swift/Method/makeChildrenWithDurationsScaledByRatio(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode38makeChildrenWithDurationsScaledByRatioFS0_FSiGSaS0__">makeChildrenWithDurationsScaledByRatio(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeChildrenWithDurationsScaledByRatio</span><span class="p">(</span><span class="nv">ratio</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ratio</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount by which to scale the Durations of the children of this DurationNode</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of DurationNodes with Durations scaled by ratio</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode31getMaximumSubdivisionOfChildrenFS0_FT_GSqVS_11Subdivision_"></a>
+                    <a name="//apple_ref/swift/Method/getMaximumSubdivisionOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode31getMaximumSubdivisionOfChildrenFS0_FT_GSqVS_11Subdivision_">getMaximumSubdivisionOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getMaximumSubdivisionOfChildren</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Subdivision</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Maximum Subdivision of children of this DurationNode, if present.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode30getRelativeDurationsOfChildrenFS0_FT_GSqGSaSi__"></a>
+                    <a name="//apple_ref/swift/Method/getRelativeDurationsOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode30getRelativeDurationsOfChildrenFS0_FT_GSqGSaSi__">getRelativeDurationsOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getRelativeDurationsOfChildren</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of integers of relative amounts of Beats in the Durations of children.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode17getIsSubdividableFS0_FT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/getIsSubdividable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode17getIsSubdividableFS0_FT_Sb">getIsSubdividable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if the sum of the Durations of all children DurationNodes are equivelant to the
+amount of Beats in this DurationNode. Otherwise, this DurationNode is a tuplet.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getIsSubdividable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>If this DurationNode is subdividable</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode24getSubdivisionOfChildrenFS0_FT_GSqVS_11Subdivision_"></a>
+                    <a name="//apple_ref/swift/Method/getSubdivisionOfChildren()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode24getSubdivisionOfChildrenFS0_FT_GSqVS_11Subdivision_">getSubdivisionOfChildren()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSubdivisionOfChildren</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Subdivision</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Subdivision of children, if present.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode21getSumOfDurationNodesFS0_FGSaS0__Si"></a>
+                    <a name="//apple_ref/swift/Method/getSumOfDurationNodes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode21getSumOfDurationNodesFS0_FGSaS0__Si">getSumOfDurationNodes(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSumOfDurationNodes</span><span class="p">(</span><span class="nv">durationNodes</span><span class="p">:</span> <span class="p">[</span><span class="kt">DurationNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>durationNodes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of DurationNodes</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Sum of the Beats in the Durations of each DurationNode in array.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8DNMModel12DurationNode14getDescriptionFS0_FT_SS"></a>
+                    <a name="//apple_ref/swift/Method/getDescription()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8DNMModel12DurationNode14getDescriptionFS0_FT_SS">getDescription()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DurationNode</span><span class="p">:</span> <span class="kt">Node</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-11-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

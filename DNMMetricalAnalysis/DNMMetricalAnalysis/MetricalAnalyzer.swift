@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMModel
 
 /**
 Analyzes a rhythmic material, or measure containing materal for the best way(s) to subdivide.

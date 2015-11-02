@@ -1,0 +1,1962 @@
+SubdivisionGraphic.swift
+	public class SubdivisionGraphic: CAShapeLayer, BuildPattern
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var height: CGFloat = 0
+	public var width: CGFloat { get { return 0.382 * height } }
+	public var stemDirection: StemDirection = .Down
+	public var amountBeams: Int = 0
+	public var hasBeenBuilt: Bool = false
+	public init(
+        x: CGFloat,
+        top: CGFloat,
+        height: CGFloat,
+        stemDirection: StemDirection,
+        amountBeams: Int
+    )
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+GraphEventNode.swift
+	public class GraphEventNode: GraphEvent
+	public var edge: GraphEventEdge?
+	public var hasEdge: Bool = false
+	public var y: CGFloat = 0
+	public var width: CGFloat = 0
+	public init(x: CGFloat, y: CGFloat, width: CGFloat = 10, stemDirection: StemDirection)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addEdge()
+	public override func build()
+	public func setFrame()
+	public override func getMaxInfoY() -> CGFloat
+	public override func getMinInfoY() -> CGFloat
+DENode.swift
+	public class DENode: ViewNode
+	public var height: CGFloat = 0
+	public var components: [CALayer] = []
+	public var durationalExtensions: [DurationalExtension] = []
+	public var augmentationDots: [AugmentationDot] = []
+	public init(left: CGFloat, top: CGFloat, height: CGFloat)
+	public init(left: CGFloat, top: CGFloat)
+	public override init()
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addAugmentationDotAtX(x: CGFloat)
+	public func addDurationalExtensionFromLeft(left: CGFloat, toRight right: CGFloat)
+	public func addAugmentationDot(augmentationDot: AugmentationDot)
+	public func addDurationalExtension(durationalExtension: DurationalExtension)
+InstrumentString.swift
+	public class InstrumentString: Instrument
+	public var staff_soundingPitch: Graph?
+	public var staff_fingeredPitch: Graph?
+	public var tablature: GraphContinuousController?
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public override func createGraphsWithComponent(component: Component, andG g: CGFloat)
+	public override func createInstrumentEventWithComponent(component: Component,
+        atX x: CGFloat, withStemDirection stemDirection: StemDirection
+        ) -> InstrumentEvent?
+BezierCurveCubic.swift
+	public class BezierCurveCubic: BezierCurve
+	public var p1: CGPoint
+	public var p2: CGPoint
+	public var cp1: CGPoint
+	public var cp2: CGPoint
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public var cgPath: CGPath { get { return uiBezierPath.CGPath } }
+	public init(point1: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint, point2: CGPoint)
+	public func getPointAtT(t: CGFloat) -> CGPoint?
+	public func getYValuesAtX(x: CGFloat) -> [CGFloat]
+	public func bisect(left l: CGFloat, right r: CGFloat, f: CGFloat -> CGFloat)
+	public func getXAtY(y: CGFloat) -> [CGFloat]
+	public func getTAtMaxX() -> CGFloat
+	public func getTAtMinX() -> CGFloat
+	public func getTAtMinY() -> CGFloat
+	public func getTAtMaxY() -> CGFloat
+	public func isWithinBounds(x x: CGFloat) -> Bool
+	public func isWithinBounds(y y: CGFloat) -> Bool
+MeasureView.swift
+	public class MeasureView: ViewNode, BuildPattern
+	public override var description: String { get { return getDescription() } }
+	public var system: System?
+	public var offsetDur: Duration = DurationZero
+	public var dur: Duration?
+	public var durationSpan: DurationSpan { get { return DurationSpan() } }
+	public var g: CGFloat = 0
+	public var scale: CGFloat = 0
+	public var height: CGFloat = 200 // to be set by system
+	public var number: Int = 0
+	public var beatWidth: CGFloat = 0
+	public var barlineLeft: Barline?
+	public var barlineRight: Barline?
+	public var timeSignature: TimeSignature?
+	public var measureNumber: MeasureNumber?
+	public var hasTimeSignature: Bool = true
+	public var hasBeenBuilt: Bool = false
+	public class func rangeFromMeasures(
+        measures: [MeasureView],
+        startingAtIndex index: Int,
+        constrainedByMaximumTotalWidth maximumWidth: CGFloat
+    ) -> [MeasureView]
+	public init(measure: Measure)
+	public init(offsetDuration: Duration)
+	public init(duration: Duration)
+	public init(
+        duration: Duration,
+        number: Int,
+        g: CGFloat,
+        scale: CGFloat,
+        left: CGFloat,
+        beatWidth: CGFloat
+    )
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setDuration(duration: Duration)
+	public func build()
+	public func addBarlineLeft()
+	public func addBarlineRight()
+Tremolo.swift
+	public class Tremolo: CAShapeLayer, BuildPattern
+	public var x: CGFloat = 0
+	public var barHeight: CGFloat { get { return 0.5 * width } }
+	public var top: CGFloat = 0
+	public var width: CGFloat = 0
+	public var amountBars: Int = 3
+	public var hasBeenBuilt: Bool = false
+	public init(x: CGFloat, top: CGFloat, width: CGFloat, amountBars: Int = 3)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func setVisualAttributes()
+	public func setFrame()
+BGContainer.swift
+	public class BGContainer: ViewNode
+	public var durationNode: DurationNode?
+	public var beamGroup: BeamGroup?
+	public var bgContainer: BGContainer?
+	public var bgContainers: [BGContainer] = []
+	public var bgEvents: [BGEvent] = []
+	public var beamJunctions: [BeamJunction] = [] // just referenced by BGEvent.beamJunction
+	public var augmentationDots: [AugmentationDot] = []
+	public var beamsLayer = BeamsLayer()
+	public var tupletBracket: TupletBracket?
+	public var tbLigatures: [TBLigature] = []
+	public var width: CGFloat = 0
+	public var beatWidth: CGFloat = 0 // proxy
+	public var depth: Int { get { return durationNode!.depth } }
+	public var g: CGFloat = 0
+	public var scale: CGFloat = 1
+	public var isMetrical: Bool = true
+	public var isNumerical: Bool = true
+	public var stemDirection: StemDirection = .Down
+	public init(
+        durationNode: DurationNode,
+        left: CGFloat,
+        top: CGFloat,
+        g: CGFloat,
+        scale: CGFloat,
+        beatWidth: CGFloat,
+        stemDirection: StemDirection,
+        isMetrical: Bool = true,
+        isNumerical: Bool = true
+    )
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addBGContainer(bgContainer: BGContainer)
+	public func addBGEvent(bgEvent: BGEvent)
+Stem.swift
+	public class Stem: LigatureVertical
+	public override var description: String { get { return "Stem" } }
+	public var instrumentEvent: InstrumentEvent?
+	public var bgEvent: BGEvent?
+	public var graphEvent: GraphEvent?
+	public var beamEndY: CGFloat = 0
+	public var infoEndY: CGFloat = 0
+	public var isHighlighted: Bool = false
+	public var color: CGColorRef = UIColor.colorWithHue(HueByTupletDepth[0],
+        andDepthOfField: .MostForeground).CGColor
+	public var direction: DirectionRelative = .Down
+	public init(x: CGFloat, beamEndY: CGFloat, infoEndY: CGFloat)
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setBeamEndY(beamEndY: CGFloat, andInfoEndY infoEndY: CGFloat)
+	public func highlight()
+	public func deHighlight()
+MeasureNumber.swift
+	public class MeasureNumber: ViewNode, BuildPattern
+	public var measure: MeasureView?
+	public var borderLayer: CAShapeLayer!
+	public var numberLayer: TextLayerConstrainedByHeight!
+	public var number: Int = 0
+	public var x: CGFloat = 0
+	public var height: CGFloat = 10
+	public var hasBeenBuilt: Bool = false
+	public init(number: Int = 0, x: CGFloat = 0, top: CGFloat = 0, height: CGFloat = 10)
+	public func build()
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+AugmentationDot.swift
+	public class AugmentationDot: CAShapeLayer
+	public var x: CGFloat = 0
+	public var y: CGFloat = 0
+	public var width: CGFloat = 0
+	public init(x: CGFloat, y: CGFloat, width: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+UIBezierPathExtensions.swift
+	public func rotate(degrees degrees: Float)
+	public func mirror()
+	public func scale(sx: CGFloat, sy: CGFloat)
+InstrumentEventHandler.swift
+	public class InstrumentEventHandler
+	public var bgEvent: BGEvent?
+	public var instrumentEvent: InstrumentEvent?
+	public var stem: Stem?
+	public var system: System?
+	public init(bgEvent: BGEvent?, instrumentEvent: InstrumentEvent? = nil, system: System? = nil)
+	public func decorateInstrumentEvent()
+	public func repositionStemInContext(context: CALayer)
+	public func makeStemInContext(context: CALayer) -> Stem
+	public func _decorateInstrumentEvent()
+TimeSignatureNode.swift
+	public class TimeSignatureNode: ViewNode
+	public var height: CGFloat = 0
+	public var timeSignatures: [TimeSignature] = []
+	public init(height: CGFloat = 0)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func getTimeSignatureAtX(x: CGFloat) -> TimeSignature?
+	public func addTimeSignature(timeSignature: TimeSignature)
+	public func addTimeSignatureWithNumerator(
+        numerator: Int, andDenominator denominator: Int, atX x: CGFloat
+    )
+TempoMarkingView.swift
+	public class TempoMarkingView: CALayer
+	public var left: CGFloat = 0
+	public var top: CGFloat = 0
+	public var height: CGFloat = 0
+	public var subdivisionLevel: Int = 1 // eighth note
+	public var value: Int = 60 // at 60 bpm
+	public var subdivisionGraphic: SubdivisionGraphic!
+	public var numberLayer: TextLayerConstrainedByHeight!
+	public init(
+        left: CGFloat = 0,
+        top: CGFloat = 0,
+        height: CGFloat,
+        value: Int = 60,
+        subdivisionLevel: Int = 1
+    )
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func addNumberLayer()
+	public func addSubdivisionGraphic()
+Page.swift
+	public class Page: ViewNode, BuildPattern
+	public var viewerID: String?
+	public var systems: [System] = []
+	public var maximumHeight: CGFloat { get { return getMaximumHeight() } }
+	public var maximumWidth: CGFloat { get { return getMaximumWidth() } }
+	public var hasBeenBuilt: Bool = false
+	public init(systems: [System])
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func setSystemsWithSystems(systems: [System])
+	public func addSystem(system: System)
+	public func build()
+	public func getBounds() -> CGRect
+DMLigature.swift
+	public class DMLigature: CALayer
+	public var initialDynamicMarkingIntValue: Int?
+	public var finalDynamicMarkingIntValue: Int?
+	public var height: CGFloat = 0
+	public var direction: DMLigatureDirection = .Static // hmmmm
+	public var segments: [DMLigatureSegment] = []
+	public var left: CGFloat = 0 // ?
+	public var right: CGFloat = 0 // ?
+	public var hasBeenBuilt: Bool = false
+	public init(height: CGFloat)
+	public init(right: CGFloat, height: CGFloat, finalDynamicMarkingIntValue: Int?)
+	public init(left: CGFloat, height: CGFloat, initialDynamicMarkingIntValue: Int?)
+	public init(left: CGFloat, height: CGFloat)
+	public init(right: CGFloat, height: CGFloat)
+	public init(left: CGFloat, height: CGFloat, direction: DMLigatureDirection)
+	public init(left: CGFloat, right: CGFloat, height: CGFloat, direction: DMLigatureDirection)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addSegmentsWithPattern(
+        pattern: [(
+            x0: CGFloat,
+            x1: CGFloat,
+            percentage0: CGFloat,
+            percentage1: CGFloat,
+            lineStyle: DMLigatureSegmentStyle
+        )]
+    )
+	public func completeFromZeroWithDynamicMarkingIntValue(intValue: Int?)
+	public func completeHalfOpenFromLeftWithDynamicMarkingIntValue(intValue: Int?)
+	public func completeHalfOpenToX(x: CGFloat, withDynamicMarkingIntValue intValue: Int?)
+	public func completeToX(x: CGFloat, withDynamicMarkingIntValue intValue: Int?)
+	public func addSegmentFromLeft(
+        left: CGFloat,
+        toRight right: CGFloat,
+        percentageLeft: CGFloat,
+        percentageRight: CGFloat,
+        lineStyle: DMLigatureSegmentStyle = .Solid
+    )
+	public func addSegment(segment: DMLigatureSegment)
+	public func build()
+	public enum DMLigatureDirection
+	case Crescendo, Decrescendo, Static
+	case Crescendo, Decrescendo, Static
+	case Crescendo, Decrescendo, Static
+DynamicMarking.swift
+	public class DynamicMarking: ViewNode, BuildPattern
+	public var characters: [DMCharacter] = []
+	public var intValues: [Int] { get { return getIntValuesWithString() } }
+	public var initialIntValue: Int? { get { return intValues.first } }
+	public var finalIntValue: Int? { get { return intValues.last } }
+	public var x: CGFloat = 0
+	public var height: CGFloat = 0
+	public var hasBeenBuilt: Bool = false
+	public init(string: String)
+	public init(string: String, x: CGFloat, top: CGFloat, height: CGFloat)
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func build()
+	public func addCharacter(character: DMCharacter)
+DMLigatureSegment.swift
+	public class DMLigatureSegment: CAShapeLayer, BuildPattern
+	public var height: CGFloat = 0
+	public var left: CGFloat = 0
+	public var right: CGFloat = 0
+	public var percentageLeft: CGFloat = 0
+	public var percentageRight: CGFloat = 0
+	public var lineStyle: DMLigatureSegmentStyle = .Solid
+	public var hasBeenBuilt: Bool = false
+	public init(
+        height: CGFloat,
+        left: CGFloat,
+        right: CGFloat,
+        percentageLeft: CGFloat,
+        percentageRight: CGFloat,
+        lineStyle: DMLigatureSegmentStyle = .Solid
+    )
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public enum DMLigatureSegmentStyle
+	case Dashed, Solid // others
+	case Dashed, Solid // others
+Ligature.swift
+	public class Ligature: CAShapeLayer, BuildPattern
+	public var point1: CGPoint?
+	public var point2: CGPoint?
+	public var hasBeenBuilt: Bool = false
+	public init(point1: CGPoint, point2: CGPoint)
+	public override init()
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setPoint1(point: CGPoint)
+	public func setPoint2(point: CGPoint)
+	public func setPoint1(point1: CGPoint, andPoint2 point2: CGPoint)
+	public func build()
+	public func setVisualAttributes()
+	public class LigatureHorizontal: Ligature
+	public var y: CGFloat = 0
+	public var left: CGFloat = 0
+	public var right: CGFloat = 0
+	public init(y: CGFloat)
+	public init(y: CGFloat, left: CGFloat, right: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setLeftWithX(x: CGFloat)
+	public func setRightWithX(x: CGFloat)
+	public class LigatureVertical: Ligature
+	public var x: CGFloat = 0
+	public init(x: CGFloat)
+	public init(x: CGFloat, top: CGFloat, bottom: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setTop(y: CGFloat)
+	public func setBottom(y: CGFloat)
+	public func setTop(top: CGFloat, andBottom bottom: CGFloat)
+GraphEvent.swift
+	public class GraphEvent: CALayer, BuildPattern
+	public var graph: Graph?
+	public var stem: Stem?
+	public var isConnectedToStem: Bool = true // modify for
+	public var next: GraphEvent? { get { return getNext() } }
+	public var previous: GraphEvent? { get { return getPrevious() } }
+	public var slurConnectionY: CGFloat?
+	public var isRest: Bool = false
+	public var articulations: [Articulation] = []
+	public var labels: [Label] = []
+	public static var articulationStackingOrder: [ArticulationType] = [
+	public var x: CGFloat = 0
+	public var maxInfoY: CGFloat { get { return getMinInfoY() } }
+	public var minInfoY: CGFloat { get { return getMaxInfoY() } }
+	public var maxY: CGFloat { get { return getMaxY() } }
+	public var minY: CGFloat { get { return getMinY() } }
+	public var stemEndY: CGFloat { get { return getStemEndY() } }
+	public var stemDirection: StemDirection = .Down
+	public var s: CGFloat = 1
+	public var hasBeenBuilt: Bool = false
+	public init(x: CGFloat)
+	public init(x: CGFloat, stemDirection: StemDirection, stem: Stem? = nil)
+	public init(stemDirection: StemDirection)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addLabel(label: Label)
+	public func addArticulationWithType(type: ArticulationType)
+	public func addArticulation(articulation: Articulation)
+	public func showArticulations()
+	public func hideArticulations()
+	public func clear()
+	public func build()
+	public func getMaxInfoY() -> CGFloat
+	public func getMinInfoY() -> CGFloat
+Barline.swift
+	public class Barline: LigatureVertical/*, Playable*/
+	public override func setVisualAttributes()
+	public func play()
+	public func playNext()
+UIColorExtensions.swift
+	public class func grayscaleColorWithDepthOfField(depthOfField: DepthOfField,
+        inColorMode colorMode: ColorMode
+        ) -> UIColor
+	public class func grayscaleColorWithDepthOfField(depthOfField: DepthOfField) -> UIColor
+	public class func colorWithHue(hue: CGFloat, andDepthOfField depthOfField: DepthOfField
+        ) -> UIColor
+	public class func colorWithHue(hue: CGFloat,
+        andDepthOfField depthOfField: DepthOfField, inColorMode colorMode: ColorMode
+        ) -> UIColor
+DMNode.swift
+	public class DMNode: ViewNode
+	public var height: CGFloat = 0
+	public var ligatureHeight: CGFloat { get { return 0.382 * height } }
+	public var dynamicMarkings: [DynamicMarking] = []
+	public var ligatures: [DMLigature] = []
+	public var dynamicMarkingsWithLigatureType: [(DynamicMarking, Float)] = []
+	public init(height: CGFloat)
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func build()
+	public func getDynamicMarkingAtX(x: CGFloat) -> DynamicMarking?
+	public func addDynamicMarkingsWithString(string: String,
+        withLigatureType ligatureType: Float = 0, atX x: CGFloat
+    )
+	public func addSegmentToCurrentLigatureFromLeft(
+        left: CGFloat,
+        toRight right: CGFloat,
+        percentageLeft: CGFloat,
+        percentageRight: CGFloat,
+        lineStyle: DMLigatureSegmentStyle = .Solid
+    )
+	public func startLigatureAtX(x: CGFloat, withDynamicMarkingIntValue intValue: Int?)
+	public func stopCurrentLigatureAtX(x: CGFloat, withDynamicMarkingIntValue intValue: Int?)
+	public func addDynamicMarking(dynamicMarking: DynamicMarking)
+	public func addLigature(ligature: DMLigature)
+GraphSwitch.swift
+	public class GraphSwitch: Graph
+	public var amountThrows: Int = 1
+	public override init(id: String)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addSwitchEventAtX(x: CGFloat,
+        withValue value: Int, andStemDirection stemDirection: StemDirection
+    )
+	public override func build()
+DNMColorManager.swift
+	public class DNMColorManager
+	public static var colorMode: ColorMode = .Dark
+	public static var backgroundColor: UIColor
+BezierPath.swift
+	public class BezierPath: CustomStringConvertible
+	public var description: String { get { return getDescription() } }
+	public var curves: [BezierCurve] = []
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public var cgPath: CGPath { get { return uiBezierPath.CGPath } }
+	public init() { }
+	public func addCurve(curve: BezierCurve)
+	public func clearCurves()
+	public func getUIBezierPath() -> UIBezierPath
+	public func getYValuesAtX(x: CGFloat) -> [CGFloat]
+AccidentalComponent.swift
+	public class AccidentalComponent: CAShapeLayer, Guido, BuildPattern
+	public override var description: String { get { return "AccidentalComponent" } }
+	public var g: CGFloat = 0
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var minimumDistance: CGFloat?
+	public var canContract: Bool { get { return minimumDistance != nil } } // override
+	public var hasBeenContracted: Bool = false
+	public var alignment: Alignment = .Center // override
+	public var accidental: Accidental?
+	public var collisionFrame: CGRect
+	public var collisionPolygonPoints: [CGPoint] { get { return makeCollisionPolygonPoints() } }
+	public var polygon: Polygon { get { return makeCollisionPolygon() } }
+	public var hasBeenBuilt: Bool = false
+	public override init()
+	public required init?(coder aDecoder: NSCoder)
+	public override init(layer: AnyObject)
+	public func build()
+	public enum AccidentalComponentType
+	case Body, Column, Arrow
+	case Body, Column, Arrow
+	case Body, Column, Arrow
+	public class AccidentalComponentArrow: AccidentalComponent
+	public override var description: String { get { return "Arrow" } }
+	public var point: CGPoint = CGPointZero
+	public var direction: Direction = .None
+	public var column: AccidentalComponentColumn?
+	public var contractionStepSize: CGFloat { get { return 0.25 * gS } }
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint, direction: Direction)
+	public required init?(coder aDecoder: NSCoder)
+	public override init(layer: AnyObject)
+	public func contractByStep()
+	public func contractByAmount(amount: CGFloat)
+	public func contract()
+	public class AccidentalComponentBody: AccidentalComponent
+	public override var description: String { get { return "Body" } }
+	public var point: CGPoint = CGPointZero
+	public var midWidth: CGFloat { get { return 0.575 * gS } }
+	public var flankWidth: CGFloat { get { return 0.15 * gS } }
+	public var thickLineSlope: CGFloat = 0.25
+	public var thickLineWidth: CGFloat { get { return 0.382 * gS } }
+	public var thickLineLength: CGFloat { get { return midWidth + 2 * flankWidth } }
+	public var thickLineΔY: CGFloat { get { return 0.4125 * gS } }
+	public func getYAtX(x: CGFloat) -> CGFloat
+	public class AccidentalComponentBodyFlat: AccidentalComponentBody
+	public var bowlLineWidthTop: CGFloat { get { return 0.1875 * gS } }
+	public var bowlLineWidthBottom: CGFloat { get { return 0.382 * gS } }
+	public var bowlLineWidthStress: CGFloat { get { return 0.25 * gS } }
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint)
+	public required init?(coder aDecoder: NSCoder)
+	public class AccidentalComponentBodyNatural: AccidentalComponentBody
+	public override var thickLineLength: CGFloat { get { return midWidth + thinLineWidth } }
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint)
+	public required init?(coder aDecoder: NSCoder)
+	public class AccidentalComponentBodyQuarterFlat: AccidentalComponentBodyFlat
+	public override func build()
+	public class AccidentalComponentBodyQuarterSharp: AccidentalComponentBody
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint)
+	public required init?(coder aDecoder: NSCoder)
+	public class AccidentalComponentBodySharp: AccidentalComponentBody
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint)
+	public required init?(coder aDecoder: NSCoder)
+	public class AccidentalComponentColumn: AccidentalComponent
+	public override var description: String { get { return "Column" } }
+	public var width: CGFloat { get { return 0.0875 * gS } }
+	public var x: CGFloat = 0
+	public var y_internal: CGFloat = 0
+	public var y_external: CGFloat = 0
+	public var direction: Direction = .None // default?
+	public var arrow: AccidentalComponentArrow?
+	public init(
+        g: CGFloat,
+        scale: CGFloat,
+        x: CGFloat,
+        y_internal: CGFloat,
+        y_external: CGFloat
+    )
+	public required init?(coder aDecoder: NSCoder)
+	public override init(layer: AnyObject)
+	public func contractToY(y: CGFloat)
+	public func contractByAmount(amount: CGFloat)
+	public func contractToLength(length: CGFloat)
+	public func contractToMinimumDistance()
+	public override func build()
+	public class AccidentalComponentDyad: CustomStringConvertible
+	public var description: String { get { return getDescription() } }
+	public var component0: AccidentalComponent
+	public var component1: AccidentalComponent
+	public init(component0: AccidentalComponent, component1: AccidentalComponent)
+	public enum AccidentalComponentBodyType
+	case Natural, Sharp, Flat, QuarterSharp, QuarterFlat
+	case Natural, Sharp, Flat, QuarterSharp, QuarterFlat
+	case Natural, Sharp, Flat, QuarterSharp, QuarterFlat
+	case Natural, Sharp, Flat, QuarterSharp, QuarterFlat
+	case Natural, Sharp, Flat, QuarterSharp, QuarterFlat
+Waveform.swift
+	public class Waveform: ViewNode
+	public var height: CGFloat = 0
+	public var width: CGFloat = 0
+	public var shape = CAShapeLayer()
+	public var samples: [Float] = []
+	public init(samples: [Float] = [], left: CGFloat = 0, height: CGFloat = 0, width: CGFloat = 0)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func WaveformWithDuration(duration: Duration, andBeatWidth beatWidth: CGFloat) -> Waveform
+	public func WaveformSampleWithDuration(duration: Duration, andBeatWidth beatWidth: CGFloat) -> Waveform
+InstrumentEvent.swift
+	public class InstrumentEvent: CALayer
+	public var x: CGFloat = 0
+	public var instrument: Instrument?
+	public var graphEvents: [GraphEvent] = []
+	public var stem: Stem?
+	public var stemDirection: StemDirection = .Down
+	public var minInfoY: CGFloat { return getMinInfoY() }
+	public var maxInfoY: CGFloat { return getMaxInfoY() }
+	public var stemEndY: CGFloat { return getStemEndY() } // make getter
+	public init(x: CGFloat, stemDirection: StemDirection, stem: Stem? = nil)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addGraphEvent(graphEvent: GraphEvent)
+	public func addArticulationWithType(type: ArticulationType)
+BeamsLayerGroup.swift
+	public class BeamsLayerGroup: ViewNode
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public var stemDirection: StemDirection = .Down
+	public init(stemDirection: StemDirection)
+	public override init()
+	public func switchIsMetrical()
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+DepthOfField.swift
+	public enum DepthOfField: Int
+	case MostBackground = 0
+	case Background
+	case MiddleBackground
+	case Middleground
+	case MiddleForeground
+	case Foreground
+	case MostForeground
+StaffEvent.swift
+	public class StaffEvent: GraphEvent, Guido
+	public var pitchVerticality: PitchVerticality = PitchVerticality()
+	public var maxPitchSpelling: PitchSpelling? { get { return getMaxPitchSpelling() } }
+	public var minPitchSpelling: PitchSpelling? { get { return getMinPitchSpelling() } }
+	public var pitchesByNoteheadType: [NoteheadType : [Pitch]] = [:]
+	public var ledgerLines: [CAShapeLayer] = []
+	public var noteheads: [Notehead] = []
+	public var accidentals: [Accidental] = []
+	public var g: CGFloat = 12
+	public var middleCPosition: CGFloat = 0
+	public var gS: CGFloat { get { return g * s } }
+	public override var stemEndY: CGFloat { get { return getStemEndY() } }
+	public var middleCStaffPosition: CGFloat = 0
+	public override var maxInfoY: CGFloat { get { return getMaxInfoY() } }
+	public override var minInfoY: CGFloat { get { return getMinInfoY() } }
+	public var info_yRef: CGFloat
+	public init(
+        x: CGFloat,
+        stemDirection: StemDirection = .Down,
+        staff: Staff? = nil,
+        stem: Stem? = nil
+    )
+	public init(x: CGFloat, g: CGFloat, s: CGFloat = 1, staff: Staff? = nil, stem: Stem? = nil)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addPitch(pitch: Pitch, withNoteheadType noteheadType: NoteheadType)
+	public func addPitch(pitch: Pitch,
+        respellVerticality shouldRespellVerticality: Bool = false,
+        andUpdateView shouldUpdateView: Bool = false
+    )
+	public func setMiddleCPosition(middleCPosition: CGFloat?)
+	public override func addArticulationWithType(type: ArticulationType)
+	public override func build()
+	public override func getMaxInfoY() -> CGFloat
+	public override func getMinInfoY() -> CGFloat
+	public func spellPitches()
+	public func createAccidentalWithCoarse(coarse: Float, andFine fine: Float, atY y: CGFloat)
+	public func createNoteheadWithType(type: NoteheadType, atY y: CGFloat)
+	public override func clear()
+	public func clearLedgerLines()
+SANode.swift
+	public class SANode: ViewNode
+	public var height: CGFloat = 0
+	public var components: [CALayer] = []
+	public var articulations: [CALayer] = [] // subclass at some point?
+	public init(left: CGFloat, top: CGFloat, height: CGFloat)
+	public init(left: CGFloat, top: CGFloat)
+	public override init()
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addStemArticulation(stemArticulation: CALayer)
+	public func addTremoloAtX(x: CGFloat)
+BezierCurve.swift
+	public protocol BezierCurve
+	var p1: CGPoint { get set }
+	var p2: CGPoint { get set }
+	var uiBezierPath: UIBezierPath { get }
+	var cgPath: CGPath { get }
+	func getYValuesAtX(x: CGFloat) -> [CGFloat]
+	func getXAtY(y: CGFloat) -> [CGFloat]
+	func isWithinBounds(x x: CGFloat) -> Bool
+	func isWithinBounds(y y: CGFloat) -> Bool
+Performer.swift
+	public class Performer: ViewNode
+	public override var description: String
+	public var id: String = ""
+	public var instrumentOrder: [String]?
+	public var instruments: [Instrument] = []
+	public var instrumentByID: [String : Instrument] = [:]
+	public var bracket: CAShapeLayer? // make subclass
+	public var label: TextLayerConstrainedByHeight?
+	public var minInstrumentsTop: CGFloat? { get { return getMinInstrumentsTop() } }
+	public var maxInstrumentsBottom: CGFloat? { get { return getMaxInstrumentsBottom() } }
+	public init(id: String)
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func addInstrument(instrument: Instrument)
+	public func addInstrumentsWithIDsAndInstrumentTypes(
+        idsAndInstrumentTypes: [(String, InstrumentType)]
+    )
+	public func createInstrumentWithInstrumentType(instrumentType: InstrumentType,
+        andID id: String
+    )
+	public override func layout()
+MeasureNumberNode.swift
+	public class MeasureNumberNode: ViewNode
+	public var height: CGFloat = 0
+	public var measureNumbers: [MeasureNumber] = []
+	public init(height: CGFloat = 0)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func addMeasureNumber(measureNumber: MeasureNumber)
+	public func addMeasureNumberWithNumber(number: Int, atX x: CGFloat)
+	public func getMeasureNumberAtX(x: CGFloat) -> MeasureNumber?
+GraphContinuousControllerStepped.swift
+	public class GraphContinuousControllerStepped: GraphContinuousController
+BeamJunction.swift
+	public class BeamJunction: CustomStringConvertible
+	public var description: String { get { return getDescription() } }
+	public var x: CGFloat = 0
+	public var beamsLayer: BeamsLayer?
+	public var junctionLeft: BeamJunction? { get { return getJunctionLeft() } }
+	public var juntionRight: BeamJunction? { get { return getJunctionRight() } }
+	public var positionInTree: NodePositionTree
+	public var positionInContainer: NodePositionContainer
+	public var currentSubdivisionLevel: Int
+	public var previousSubdivisionLevel: Int?
+	public var nextSubdivisionLevel: Int?
+	public var beamletDirection: Direction = .West // default?
+	public var componentsOnLevel: [Int : BeamJunctionComponent] = [:]
+	public func setComponent(component: BeamJunctionComponent, forLevel level: Int)
+	public func setComponent(component: BeamJunctionComponent, forLevelRange range: [Int])
+	public func BeamJunctionMake(durationNode: DurationNode) -> BeamJunction
+	public enum BeamJunctionComponent
+	case Start, Stop, Beamlet, Extended
+	case Start, Stop, Beamlet, Extended
+	case Start, Stop, Beamlet, Extended
+	case Start, Stop, Beamlet, Extended
+GraphEventSwitch.swift
+	public class GraphEventSwitch: GraphEvent
+	public var value: Int = 0
+	public init(x: CGFloat, value: Int, stemDirection: StemDirection, stem: Stem? = nil)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+ViewNode.swift
+	public class ViewNode: CALayer
+	public var layoutFlow_horizontal: LayoutDirectionHorizontal = .None
+	public var layoutFlow_vertical: LayoutDirectionVertical = .None
+	public var layoutAccumulation_horizontal: LayoutDirectionHorizontal = .None
+	public var layoutAccumulation_vertical: LayoutDirectionVertical = .None
+	public var pad_top: CGFloat = 0
+	public var pad_bottom: CGFloat = 0
+	public var pad_left: CGFloat = 0
+	public var pad_right: CGFloat = 0
+	public var left: CGFloat = 0
+	public var top: CGFloat = 0
+	public var isContainer: Bool { get { return getIsContainer() } }
+	public var setsWidthWithContents: Bool = true
+	public var setsHeightWithContents: Bool = true
+	public var container: ViewNode? // settable
+	public var previous: ViewNode? // settable
+	public var next: ViewNode?
+	public var nodes: [ViewNode] = []
+	public var positionByNode: [ViewNode : CGPoint] = [:]
+	public init(accumulateVerticallyFrom layoutAccumulation_vertical: LayoutDirectionVertical)
+	public init(accumulateHorizontallyFrom layoutAccumulation_horizontal: LayoutDirectionHorizontal)
+	public init(flowVerticallyFrom layoutFlow_vertical: LayoutDirectionVertical)
+	public init(flowHorizontallyFrom layoutFlow_horizontal: LayoutDirectionHorizontal)
+	public init(
+        flowVerticallyFrom layoutFlow_vertical: LayoutDirectionVertical,
+        flowHorizontallyFrom layoutFlow_horizontal: LayoutDirectionHorizontal
+    )
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func tap()
+	public func layout()
+	public func addNode(node: ViewNode, andLayout shouldLayout: Bool = true)
+	public func addNode(node: ViewNode, withDelay isDelayed: Bool)
+	public func removeNode(node: ViewNode, animated: Bool)
+	public func removeNode(node: ViewNode, andLayout shouldLayout: Bool = true)
+	public func hasNode(node: ViewNode) -> Bool
+	public func removeFromSuperlayer(animated animated: Bool)
+	public func addNodes(node: [ViewNode])
+	public func moveNode(node: ViewNode, toIndex index: Int)
+	public func insertNodes(nodes: [ViewNode], afterNode otherNode: ViewNode)
+	public func insertNodes(nodes: [ViewNode], beforeNode otherNode: ViewNode)
+	public func insertNodes(nodes: [ViewNode], atIndex index: Int)
+	public func removeNodes(nodes: [ViewNode])
+	public func replaceNode(node: ViewNode, withNode newNode: ViewNode)
+	public func insertNode(node: ViewNode,
+        beforeNode otherNode: ViewNode, andLayout shouldLayout: Bool = true
+    )
+	public func insertNode(node: ViewNode,
+        afterNode otherNode: ViewNode, andLayout shouldLayout: Bool = true
+    )
+	public func insertNode(
+        node: ViewNode, atIndex index: Int, andLayout shouldLayout: Bool = true
+    )
+	public func clearNodes()
+	public func moveBy(ΔX: CGFloat, ΔY: CGFloat, animated: Bool)
+	public func moveBy(ΔX ΔX: CGFloat, ΔY: CGFloat)
+	public func moveHorizontallyByX(ΔX: CGFloat, animated: Bool)
+	public func moveHorizontallyByX(ΔX: CGFloat)
+	public func moveVerticallyByY(ΔY: CGFloat, animated: Bool)
+	public func moveVerticallyByY(ΔY: CGFloat)
+	public func moveHorizontallyToX(x: CGFloat, animated: Bool)
+	public func moveVerticallyToY(y: CGFloat, animated: Bool)
+	public func moveVerticallyToY(y: CGFloat)
+	public func moveHorizontallyToX(x: CGFloat)
+	public func moveTo(x x: CGFloat, y: CGFloat, animated: Bool)
+	public func moveTo(x x: CGFloat, y: CGFloat)
+	public func moveTo(point point: CGPoint, animated: Bool)
+	public func moveTo(point point: CGPoint)
+AccidentalCollision.swift
+	public class AccidentalDyad: CustomStringConvertible
+	public var description: String { get { return "\(accidental0); \(accidental1)" } }
+	public var accidental0: Accidental
+	public var accidental1: Accidental
+	public init(accidental0: Accidental, accidental1: Accidental)
+	public class AccidentalDyadMover
+	public var dyad: AccidentalDyad
+	public var staffEvent: StaffEvent? // deprecate!
+	public var g: CGFloat = 0
+	public var pad: CGFloat { get { return 0.0618 * g } }
+	public var hasCollision: Bool { get { return getHasCollision() } }
+	public var collisions: [AccidentalComponentDyad] { get { return getCollisions() } }
+	public var canBeSpelledWithoutMovement: Bool
+	public init(dyad: AccidentalDyad, g: CGFloat)
+	public init(dyad: AccidentalDyad)
+	public init(dyad: AccidentalDyad, staffEvent: StaffEvent?)
+	public func moveLowerAccidental()
+	public func adjust()
+	public class AccidentalVerticality
+	public var accidentals: [Accidental] = []
+	public var dyads: [AccidentalDyad]? { get { return getDyads() } }
+	public init(accidentals: [Accidental])
+	public class AccidentalVerticalityMover
+	public var staffEvent: StaffEvent?
+	public var pad: CGFloat { get { return 0.236 * staffEvent!.g } }
+	public var verticality: AccidentalVerticality
+	public var columns: [Int : AccidentalColumn] = [:]
+	public var initialOffset: CGFloat = 0
+	public init(verticality: AccidentalVerticality)
+	public init(verticality: AccidentalVerticality, staffEvent: StaffEvent, initialOffset: CGFloat = 0)
+	public func move()
+	public class AccidentalColumn: AccidentalVerticality
+	public var columnToTheRight: AccidentalColumn?
+	public var columnToTheLeft: AccidentalColumn?
+	public var right: CGFloat = 0
+	public var x: CGFloat { get { return right - 0.5 * width } }
+	public var width: CGFloat { get { return getWidth() } }
+	public var index: Int?
+	public func addAccidental(accidental: Accidental)
+	public func removeAccidental(accidental: Accidental)
+	public func alignAccidentals()
+TupletBracket.swift
+	public class TupletBracket: ViewNode, BuildPattern
+	public var stemDirection: StemDirection = .Down
+	public var subdivisionGraphic: SubdivisionGraphic?
+	public var text_left: TextLayerConstrainedByHeight?
+	public var text_right: TextLayerConstrainedByHeight?
+	public var arm_left: TupletBracketArm?
+	public var arm_right: TupletBracketArm?
+	public var height: CGFloat = 0
+	public var width: CGFloat = 0
+	public var sum: Int = 0
+	public var beats: Int = 0
+	public var subdivisionLevel: Int = 0
+	public var textHeight: CGFloat { get { return 0.691 * height } }
+	public var hasBeenBuilt: Bool = false
+	public var components: [CALayer]
+	public init(
+        left: CGFloat,
+        top: CGFloat,
+        width: CGFloat,
+        height: CGFloat,
+        stemDirection: StemDirection,
+        sum: Int,
+        beats: Int,
+        subdivisionLevel: Int
+        )
+	public required init?(coder aDecoder: NSCoder)
+	public func build()
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+	public class TupletBracketArm: CAShapeLayer, BuildPattern
+	public var stemDirection: StemDirection = .Down
+	public var side: DirectionRelative = .Left
+	public var height: CGFloat = 0
+	public var width: CGFloat = 0
+	public var left: CGFloat = 0
+	public var top: CGFloat = 0
+	public var hasBeenBuilt: Bool = false
+	public init(
+        left: CGFloat,
+        top: CGFloat,
+        width: CGFloat,
+        height: CGFloat,
+        stemDirection: StemDirection,
+        side: DirectionRelative
+        )
+	public func build()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public class TBGroup: ViewNode
+	public var bgStratum: BGStratum?
+	public var depth: Int = 0
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject)
+	public var stemDirection: StemDirection = .Down
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+	public class TBLigature: CALayer, BuildPattern
+	public var x: CGFloat = 0
+	public var g: CGFloat = 0
+	public var beamEndY: CGFloat = 0
+	public var bracketEndY: CGFloat = 0
+	public var stemDirection: StemDirection { get { return getStemDirection() } }
+	public var line: TBLigatureLine!
+	public var ornament_beamEnd: TBLigatureOrnament?
+	public var ornament_bracketEnd: TBLigatureOrnament?
+	public var ornaments: [TBLigatureOrnament] = []
+	public var hasBeenBuilt: Bool = false
+	public class func ligatureWithType(
+        type: TBLigatureType,
+        x: CGFloat,
+        beamEndY: CGFloat,
+        bracketEndY: CGFloat,
+        g: CGFloat
+    ) -> TBLigature?
+	public init(x: CGFloat, beamEndY: CGFloat, bracketEndY: CGFloat, g: CGFloat)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func setBeamEndY(beamEndY: CGFloat, andBracketEndY bracketEndY: CGFloat)
+	public func build()
+	public class TBLigatureBegin: TBLigature
+	public class TBLigatureResume: TBLigature
+	public class TBLigatureEnd: TBLigature
+	public enum TBLigatureType
+	case Begin, Resume, End
+	case Begin, Resume, End
+	case Begin, Resume, End
+	public class TBLigatureLine: LigatureVertical
+	public var beamEndY: CGFloat = 0
+	public var bracketEndY: CGFloat = 0
+	public init(x: CGFloat, beamEndY: CGFloat, bracketEndY: CGFloat)
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func setBeamEndY(beamEndY: CGFloat, andBracketEndY bracketEndY: CGFloat)
+	public class TBLigatureOrnament: CAShapeLayer
+	public var point: CGPoint = CGPointZero
+	public var g: CGFloat = 0
+	public var color: CGColor = UIColor.grayColor().CGColor
+	public class func ornamentWithType(
+        type: TBLigatureOrnamentType,
+        point: CGPoint,
+        g: CGFloat,
+        stemDirection: StemDirection = .Down
+        ) -> TBLigatureOrnament?
+	public init(point: CGPoint, g: CGFloat)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func build()
+	public class TBLigatureOrnamentCircle: TBLigatureOrnament
+	public class TBLigatureOrnamentArrow: TBLigatureOrnament
+	public var stemDirection: StemDirection = .Down
+	public class TBLigatureOrnamentLine: TBLigatureOrnament
+	public enum TBLigatureOrnamentType
+	case Circle, Arrow, Line
+	case Circle, Arrow, Line
+	case Circle, Arrow, Line
+BeamGroup.swift
+	public class BeamGroup: ViewNode, BuildPattern
+	public var hasBeenBuilt: Bool = false
+	public var id: String? // FOR TESTING ONLY! will be on Component-level only later
+	public var g: CGFloat = 12
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var beatWidth: CGFloat = 0
+	public var stemDirection: StemDirection = .Down
+	public var durationNode: DurationNode?
+	public var bgStratum: BGStratum?
+	public var bgEvents: [BGEvent] { get { return getBGEvents() } }
+	public var bgContainers: [BGContainer] = []
+	public var tbGroupAtDepth: [Int : TBGroup] = [:]
+	public var beamsLayerGroupAtDepth: [Int : BeamsLayerGroup] = [:]
+	public var tbLigaturesAtDepth: [Int : [TBLigature]] = [:]
+	public var beamsLayerGroup: BeamsLayerGroup?
+	public var tupletBracketGroup = TBGroup()
+	public var augmentationDots: [AugmentationDot] = []
+	public var isMetrical: Bool = true
+	public var isNumerical: Bool = true
+	public required init?(coder aDecoder: NSCoder)
+	public override init()
+	public init(durationNode: DurationNode, left: CGFloat = 0)
+	public init(
+        durationNode: DurationNode,
+        stemDirection: StemDirection,
+        g: CGFloat,
+        beatWidth: CGFloat
+    )
+	public init(
+        durationNode: DurationNode,
+        top: CGFloat,
+        left: CGFloat,
+        g: CGFloat,
+        scale: CGFloat,
+        beatWidth: CGFloat,
+        stemDirection: StemDirection,
+        isMetrical: Bool = true,
+        isNumerical: Bool = true
+    )
+	public func build()
+	public func addBGContainer(bgContainer: BGContainer)
+	public func addTestStems()
+RhythmCueGraph.swift
+	public class RhythmCueGraph: Graph
+	public var g: CGFloat = 0
+	public init(height: CGFloat, g: CGFloat)
+	public override init()
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func build()
+	public override func addClefAtX(x: CGFloat)
+	public override func setFrame()
+DMCharacter.swift
+	public class DMCharacter: CAShapeLayer
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var width: CGFloat { get { return 0 } }
+	public var height: CGFloat = 0
+	public var italicAngle: CGFloat = 0
+	public var midLine: CGFloat { get { return 0.5 * height } }
+	public var xHeight: CGFloat { get { return 0.2 * height } }
+	public var capHeight: CGFloat { get { return 0.0618 * height } }
+	public var baseline: CGFloat { get { return 0.75 * height } }
+	public var restLine: CGFloat { get { return 0.9 * height } }
+	public class func withDMCharacterType(type: DMCharacterType, height: CGFloat)
+        -> DMCharacter?
+	public class func dmCharacterWithDMCharacterType(
+        type: DMCharacterType,
+        x: CGFloat,
+        height: CGFloat
+        ) -> DMCharacter?
+	public class DMCharacter_f: DMCharacter
+	public override var width: CGFloat { get { return baseline - xHeight } }
+	public class DMCharacter_p: DMCharacter
+	public override var width: CGFloat { get { return baseline - xHeight } }
+	public var serif_length: CGFloat { get { return 0.382 * width } }
+	public class DMCharacter_o: DMCharacter
+	public override var width: CGFloat { get { return 0.618 * (baseline - xHeight) } }
+	public class DMCharacter_m: DMCharacter
+	public override var width: CGFloat { get { return baseline - xHeight } }
+	public enum DMCharacterType
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+	case F, P, M, O, Exclamation, Paren_open, Paren_close
+StaffItem.swift
+	public protocol StaffItem: Guido, BuildPattern { }
+DurationalExtension.swift
+	public class DurationalExtension: LigatureHorizontal
+	public var width: CGFloat = 0
+	public init(y: CGFloat, left: CGFloat, right: CGFloat, width: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func setVisualAttributes()
+HueByTupletDepth.swift
+	public let HueByTupletDepth: [CGFloat] = [
+Graph.swift
+	public class Graph: ViewNode, BuildPattern/*, Identifiable*/
+	public var id: String = ""
+	public var events: [GraphEvent] = []
+	public var instrument: Instrument?
+	public var lineActions: [LineAction] = []
+	public var lastLinesX: CGFloat?
+	public var clefs: [Clef] = []
+	public var linesLayer: CALayer = CALayer()
+	public var clefsLayer: CALayer = CALayer()
+	public var eventsLayer: CALayer = CALayer()
+	public var hasBeenBuilt: Bool = false
+	public var height: CGFloat = 0
+	public var graphTop: CGFloat { get { return getGraphTop() } }
+	public var graphBottom: CGFloat { get { return getGraphBottom() } }
+	public class func withType(graphType: GraphType) -> Graph?
+	public init(id: String)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addGlissandoFromGraphEventAtIndex(index0: Int, toIndex index1: Int)
+	public func addClefAtX(x: CGFloat)
+	public func addClef(clef: Clef)
+	public func startEventAtX(x: CGFloat, withStemDirection stemDirection: StemDirection)
+        -> GraphEvent
+	public func startEventAtX(x: CGFloat) -> GraphEvent
+	public func getEventAtX(x: CGFloat) -> GraphEvent?
+	public func startLinesAtX(x: CGFloat)
+	public func stopLinesAtX(x: CGFloat)
+	public func build()
+	public func commitLines()
+	public func getGraphTop() -> CGFloat
+	public func getGraphBottom() -> CGFloat
+	public func setFrame()
+	public override func setWidthWithContents()
+	public protocol LineAction
+	var x: CGFloat { get set }
+	public struct LineActionStart: LineAction
+	public var x: CGFloat
+	public init(x: CGFloat)
+	public struct LineActionStop: LineAction
+	public var x: CGFloat
+	public init(x: CGFloat)
+	public enum GraphType
+	case Staff, Cue, ContinuousController, Switch, Waveform
+	case Staff, Cue, ContinuousController, Switch, Waveform
+	case Staff, Cue, ContinuousController, Switch, Waveform
+	case Staff, Cue, ContinuousController, Switch, Waveform
+	case Staff, Cue, ContinuousController, Switch, Waveform
+BezierCurveLinear.swift
+	public class BezierCurveLinear: BezierCurve
+	public var p1: CGPoint
+	public var p2: CGPoint
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public var cgPath: CGPath { get { return uiBezierPath.CGPath } }
+	public init(point1: CGPoint, point2: CGPoint)
+	public func getYValuesAtX(x: CGFloat) -> [CGFloat]
+	public func getXAtY(y: CGFloat) -> [CGFloat]
+	public func isWithinBounds(y y: CGFloat) -> Bool
+	public func isWithinBounds(x x: CGFloat) -> Bool
+DurationNodeExtensions.swift
+	public func getGraphicalWidthWithBeatWidth(beatWidth: CGFloat) -> CGFloat
+	public func width(beatWidth beatWidth: CGFloat) -> CGFloat
+StyledBezierCurve.swift
+	public protocol StyledBezierCurve
+	var carrierCurve: BezierCurve { get set }
+	var bezierPath: BezierPath! { get set }
+	var uiBezierPath: UIBezierPath { get }
+BezierCurveStylerDashes.swift
+	public class BezierCurveStylerDashes: BezierCurveStyler
+	public required init(styledBezierCurve: StyledBezierCurve)
+Label.swift
+	public class Label: ViewNode
+	public var x: CGFloat = 0
+	public var height: CGFloat = 0
+	public var text: String = ""
+	public var textLayer: TextLayerConstrainedByHeight!
+	public var pad: CGFloat { get { return 0.25 * height } }
+	public init(x: CGFloat = 0, top: CGFloat = 0, height: CGFloat = 10, text: String)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func createTextLayer()
+	public func setFrame()
+ConcreteStyledBezierCurve.swift
+	public class ConcreteStyledBezierCurve: StyledBezierCurve
+	public var carrierCurve: BezierCurve
+	public var bezierPath: BezierPath! = BezierPath()
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public var widthAtBeginning: CGFloat = 1
+	public var widthAtEnd: CGFloat = 1
+	public var widthAtMiddle: CGFloat = 1
+	public var widthExponent: CGFloat = 1
+	public var upperBoundingCurve: BezierCurve!
+	public var lowerBoundingCurve: BezierCurve!
+	public var styledBezierCurve: ConcreteStyledBezierCurve!
+	public required init(styledBezierCurve: ConcreteStyledBezierCurve)
+	public init(carrierCurve: BezierCurve)
+	public func setWidthAtBeginningWithWidth(width: CGFloat)
+	public func setWidthAtEndWithWidth(width: CGFloat)
+	public func setWithAtMiddleWithWidth(width: CGFloat)
+	public func setBoundingCurves()
+StemDirection.swift
+	public enum StemDirection
+	case Up, Down
+	case Up, Down
+BezierCurveQuadratic.swift
+	public class BezierCurveQuadratic: BezierCurve
+	public var p1: CGPoint
+	public var cp: CGPoint
+	public var p2: CGPoint
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public var cgPath: CGPath { get { return uiBezierPath.CGPath } }
+	public init(point1: CGPoint, controlPoint: CGPoint, point2: CGPoint)
+	public func getXAtT(t: CGFloat) -> CGFloat?
+	public func getYAtT(t: CGFloat) -> CGFloat?
+	public func getYValuesAtX(x: CGFloat) -> [CGFloat]
+	public func getXAtY(y: CGFloat) -> [CGFloat]
+	public func getTAtMaxX() -> CGFloat
+	public func getTAtMinX() -> CGFloat
+	public func getTAtMinY() -> CGFloat
+	public func getTAtMaxY() -> CGFloat
+	public func isWithinBounds(y y: CGFloat) -> Bool
+	public func isWithinBounds(x x: CGFloat) -> Bool
+TemporalInfoNode.swift
+	public class TemporalInfoNode: ViewNode
+	public var height: CGFloat = 0
+	public var tempoMarkings: [TempoMarkingView] = []
+	public var measureNumberNode: MeasureNumberNode?
+	public var timeSignatureNode: TimeSignatureNode?
+	public var rehearsalMarkingNode: ViewNode?
+	public init(height: CGFloat)
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func addRehearsalMarking(rehearsalMarking: RehearsalMarkingView)
+	public func addRehearsalMarking(rehearsalMarking: RehearsalMarkingView, atX x: CGFloat)
+	public func addRehearsalMarkingWithIndex(index: Int, type: RehearsalMarkingType, atX x: CGFloat)
+	public func addTimeSignature(timeSignature: TimeSignature)
+	public func addTimeSignature(timeSignature: TimeSignature, atX x: CGFloat)
+	public func addTimeSignatureWithNumerator(
+        numerator: Int, andDenominator denominator: Int, atX x: CGFloat
+    )
+	public func addMeasureNumber(measureNumber: MeasureNumber, atX x: CGFloat)
+	public func addMeasureNumberWithNumber(number: Int, atX x: CGFloat)
+	public func addMeasureNumber(measureNumber: MeasureNumber)
+	public func addTempoMarking(tempoMarking: TempoMarkingView)
+	public func addTempoMarkingWithValue(value: Int,
+        andSubdivisionLevel subdivisionLevel: Int, atX x: CGFloat
+    )
+RehearsalMarkingView.swift
+	public class RehearsalMarkingView: ViewNode
+	public var borderLayer: CAShapeLayer!
+	public var textLayer: TextLayerConstrainedByHeight!
+	public var index: Int = 0
+	public var text: String = ""
+	public var x: CGFloat = 0
+	public var height: CGFloat = 20
+	public var type: RehearsalMarkingType = .Alphabetical
+	public init(
+        index: Int = 0,
+        x: CGFloat = 0,
+        top: CGFloat = 0,
+        height: CGFloat,
+        type: RehearsalMarkingType = .Alphabetical
+    )
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+	public enum RehearsalMarkingType: String
+	case Alphabetical
+	case Numerical
+TextLayerContstrainedByHeight.swift
+	public class TextLayerConstrainedByHeight: CATextLayer, BuildPattern
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var height: CGFloat = 0
+	public var fontName: String = ""
+	public var alignment: PositionAbsolute = .Left
+	public var left: CGFloat { get { return getLeft() } }
+	public var width: CGFloat { get { return getWidth() } }
+	public var hasBeenBuilt: Bool = false
+	public init(
+        text: String,
+        x: CGFloat,
+        top: CGFloat,
+        height: CGFloat,
+        alignment: PositionAbsolute,
+        fontName: String = "AvenirNext-Medium"
+    )
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func build()
+BeamsLayer.swift
+	public class BeamsLayer: ViewNode
+	public var augmentationDots: [AugmentationDot] = []
+	public var stemWidth: CGFloat { get { return 0.0618 * g * scale } }
+	public var isMetrical: Bool = true
+	public var beamsHaveBeenPlaced: Bool = false
+	public init(g: CGFloat)
+	public init(g: CGFloat, scale: CGFloat)
+	public init(
+        g: CGFloat,
+        scale: CGFloat,
+        start: CGPoint,
+        stop: CGPoint,
+        stemDirection: StemDirection,
+        isMetrical: Bool = true
+        )
+	public override init()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func switchIsMetrical()
+	public func dent(amount amount: Int, beforeJunctionAtIndex index: Int)
+	public func dent(amount amount: Int, afterJunctionAtIndex index: Int)
+	public func cut(beforeJunctionAtIndex index: Int)
+	public func cut(AfterJunctionAtIndex index: Int)
+	public func addBeamJunction(beamJunction: BeamJunction, atX x: CGFloat)
+	public func addBeams()
+	public func clearBeams()
+	public func startBeamAtX(x: CGFloat, onLevel level: Int)
+	public func stopBeamAtX(x: CGFloat, onLevel level: Int)
+	public func startBeamsAtX(x: CGFloat, inRange range: (Int, Int))
+	public func stopBeamsAtX(x: CGFloat, inRange range: (Int, Int))
+System.swift
+	public class System: ViewNode, BuildPattern
+	public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
+	public var viewerID: String?
+	public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]]
+	public func getDurationAtX(x: CGFloat) -> Duration
+	public func addMeasure(measure: MeasureView)
+	public func build()
+BGEvent.swift
+	public class BGEvent
+	public var durationNode: DurationNode
+	public var bgStratum: BGStratum?
+	public var beamGroup: BeamGroup?
+	public var bgContainer: BGContainer?
+	public var stem: Stem?
+	public var beamJunction: BeamJunction?
+	public var next: BGEvent? { get { return nil } }
+	public var previous: BGEvent? { get { return nil } }
+	public var isRest: Bool { get { return getIsRest() } }
+	public var stemArticulationTypes: [ArticulationType] = []
+	public func addStemArticulationType(type: ArticulationType)
+	public var x: CGFloat = 0
+	public var x_inBGContainer: CGFloat? { get { return getX_inBGContainer() } }
+	public var x_inBeamGroup: CGFloat? { get { return getX_inBeamGroup() } }
+	public var x_inBGStratum: CGFloat? { get { return getX_inBGStratum() } }
+	public var x_objective: CGFloat? { get { return getX_objective() } }
+	public var startsExtension: Bool { get { return getStartsExtension() } }
+	public var depth: Int?
+	public init(durationNode: DurationNode, x: CGFloat)
+GraphEventEdge.swift
+	public class GraphEventEdge: CAShapeLayer
+	public var point1: CGPoint?
+	public var point2: CGPoint?
+	public var hasDashes: Bool = false
+	public init(point1: CGPoint? = nil, point2: CGPoint? = nil, hasDashes: Bool = false)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func makePath() -> CGPath
+	public func setVisualAttributes()
+DurationExtensions.swift
+	public func getGraphicalWidthWithBeatWidth(beatWidth: CGFloat) -> CGFloat
+	public func width(beatWidth beatWidth: CGFloat) -> CGFloat
+ColorMode.swift
+	public enum ColorMode
+	case Dark
+	case Light
+Staff.swift
+	public class Staff: Graph, Guido
+	public var g: CGFloat = 0
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var lineWidth: CGFloat { get { return 0.0618 * gS } }
+	public var ledgerLineLength: CGFloat { get { return 2 * gS} }
+	public var ledgerLineWidth: CGFloat { get { return 1.875 * lineWidth } }
+	public var lines: [CAShapeLayer] = []
+	public var currentEvent: StaffEvent? { get { return events.last as? StaffEvent } }
+	public init(id: String, g: CGFloat)
+	public init(g: CGFloat, s: CGFloat = 1)
+	public init(left: CGFloat, top: CGFloat, g: CGFloat, s: CGFloat = 1)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addClefWithType(
+        type: String,
+        withTransposition transposition: Int = 0,
+        atX x: CGFloat
+    )
+	public func addClefWithType(
+        type: ClefStaffType,
+        withTransposition transposition: Int = 0,
+        atX x: CGFloat
+    )
+	public override func startEventAtX(x: CGFloat,
+        withStemDirection stemDirection: StemDirection
+    ) -> GraphEvent
+	public override func startEventAtX(x: CGFloat) -> StaffEvent
+	public func middleCPositionAtX(x: CGFloat) -> CGFloat?
+	public func addPitchToCurrentEvent(pitch: Pitch)
+	public func addPitchToCurrentEvent(
+        pitch pitch: Pitch,
+        respellVerticality shouldRespellVerticality: Bool,
+        andUpdateView shouldUpdateView: Bool
+    )
+	public func addArticulationToCurrentEventWithType(type: ArticulationType)
+	public override func startLinesAtX(x: CGFloat)
+	public override func stopLinesAtX(x: CGFloat)
+	public func addLedgerLinesAtX(x: CGFloat, toLevel level: Int) -> [CAShapeLayer]
+	public func addLine(line: CAShapeLayer)
+	public func addClef(clef: ClefStaff)
+	public override func build()
+	public override func setFrame()
+	public override func commitLines()
+	public override func getGraphTop() -> CGFloat
+	public override func getGraphBottom() -> CGFloat
+	public enum PlacementInStaff
+	case Line, Space, Floating
+	case Line, Space, Floating
+	case Line, Space, Floating
+BezierCurveStyler.swift
+	public class BezierCurveStyler: StyledBezierCurve
+	public var bezierPath: BezierPath!
+	public var carrierCurve: BezierCurve
+	public var styledBezierCurve: StyledBezierCurve
+	public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
+	public required init(styledBezierCurve: StyledBezierCurve)
+Polygon.swift
+	public class Polygon: CustomStringConvertible
+	public var description: String { get { return getDescription() } }
+	public var vertices: [CGPoint] = []
+	public var path: UIBezierPath { get { return makePath() } }
+	public var maxY: CGFloat? { get { return getMaxY() } }
+	public var minY: CGFloat? { get { return getMinY() } }
+	public var midY: CGFloat? { get { return getMidY() } }
+	public var maxX: CGFloat? { get { return getMaxX() } }
+	public var minX: CGFloat? { get { return getMinX() } }
+	public var midX: CGFloat? { get { return getMidX() } }
+	public func collidesWithPolygon(polygon: Polygon) -> Bool
+	public func axesOverlap(a0 a0: CGFloat, a1: CGFloat, b0: CGFloat, b1: CGFloat) -> Bool
+	public func containsPoint(point: CGPoint) -> Bool
+	public func getXValuesAtY(y: CGFloat) -> [CGFloat]
+	public func getYValuesAtX(x: CGFloat) -> [CGFloat]
+	public func getYValueAtX(x: CGFloat, fromDirection direction: Direction) -> CGFloat
+	public func getXValueAtY(y: CGFloat, fromDirection direction: Direction) -> CGFloat?
+	public func convertY(y: CGFloat, fromLayer otherLayer: CALayer) -> CGFloat
+	public func convertX(x: CGFloat, fromLayer otherLayer: CALayer) -> CGFloat
+	public func convertPolygon(polygon: Polygon, fromLayer otherLayer: CALayer) -> Polygon
+	public func convertPolygon(polygon: Polygon, toLayer otherLayer: CALayer) -> Polygon
+	public class ParallelogramVertical: UIBezierPath
+	public var x: CGFloat = 0
+	public var y: CGFloat = 0
+	public var width: CGFloat = 0
+	public var length: CGFloat = 0
+	public var slope: CGFloat = 0
+	public init(x: CGFloat, y: CGFloat, width: CGFloat, length: CGFloat, slope: CGFloat)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func getVertices() -> [CGPoint]
+Guido.swift
+	public protocol Guido
+	var g: CGFloat { get set }
+	var s: CGFloat { get set }
+	var gS: CGFloat { get }
+TMNode.swift
+	public class TMNode: ViewNode
+	public var height: CGFloat = 0
+	public var tempoMarkings: [TempoMarkingView] = []
+	public init(height: CGFloat)
+	public override init() { super.init() }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func addSampleTempoMarking()
+	public func addSampleTempoMarkingAtX(x: CGFloat)
+	public func addTempoMarking(tempoMarking: TempoMarkingView)
+	public func addTempoMarking(tempoMarking: TempoMarkingView, atX x: CGFloat)
+	public func addTempoMarkingAtX(x: CGFloat, value: Int, subdivisionLevel: Int)
+BGStratum.swift
+	public class BGStratum: ViewNode, BuildPattern
+	public override var description: String { get { return getDescription() } }
+	public var id: String?
+	public var system: System? // temp
+	public var g: CGFloat = 12
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var stemDirection: StemDirection = .Down
+	public var beatWidth: CGFloat = 0
+	public var isMetrical: Bool?
+	public var isNumerical: Bool?
+	public var beamEndY: CGFloat { get { return getBeamEndY() } }
+	public var hasBeenBuilt: Bool = false
+	public var beamGroups: [BeamGroup] = []
+	public var bgEvents: [BGEvent] { get { return getBGEvents() } }
+	public var deNode: DENode?
+	public var saNodeByType: [ArticulationType : SANode] = [:]
+	public var beamsLayerGroup: BeamsLayerGroup?
+	public var tbGroupAtDepth: [Int : TBGroup] = [:]
+	public var tbLigaturesAtDepth: [Int : [TBLigature]] = [:]
+	public var augmentationDots: [AugmentationDot] = []
+	public var iIDsByPID: [String: [String]] { get { return getIIDsByPID() } }
+	public init(stemDirection: StemDirection = .Down, g: CGFloat = 12, s: CGFloat = 1)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func showTBGroupAtDepth(depth: Int)
+	public func hideTBGRoupAtDepth(depth: Int)
+	public func commitDENode()
+	public override func layout()
+	public func addBeamGroupWithDurationNode(durationNode: DurationNode, atX x: CGFloat)
+	public func buildBeamGroups()
+	public func commitBeamGroups()
+	public func handOffBeamGroup(beamGroup: BeamGroup)
+	public func build()
+	public func addTestStems()
+SlurHandler.swift
+	public class SlurHandler
+	public var id: String = ""
+	public var graphEvent0: GraphEvent?
+	public var graphEvent1: GraphEvent?
+	public var slur: Slur?
+	public var system: System?
+	public var g: CGFloat = 10
+	public var connectionPoint0: CGPoint { get { return getConnectionPoint0() } }
+	public var connectionPoint1: CGPoint { get { return getConnectionPoint1() } }
+	public init(
+        id: String,
+        g: CGFloat = 10,
+        graphEvent0: GraphEvent? = nil,
+        graphEvent1: GraphEvent? = nil
+    )
+	public func makeSlurInContext(context: CALayer) -> Slur?
+	public func repositionInContext(context: CALayer)
+GraphContinuousController.swift
+	public class GraphContinuousController: Graph
+	public var edges: [GraphEventEdge] = []
+	public var startEdgesAtXValues: [CGFloat] = []
+	public var graphEventEdgeHandlers: [Int] = []
+	public override init(id: String)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func startEdgeAtX(x: CGFloat, withDashes hasDashes: Bool = false)
+	public func addNodeEventAtX(x: CGFloat,
+        withValue value: Float, andStemDirection stemDirection: StemDirection
+    ) -> GraphEvent
+	public override func build()
+Slur.swift
+	public class Slur: Ligature
+	public var g: CGFloat = 10
+	public var stemDirection: StemDirection = .Down // only one for now; more complex later
+	public var controlPoint1: CGPoint!
+	public var controlPoint2: CGPoint!
+	public var pointToAvoid: CGPoint?
+	public var pointsToAvoid: [CGPoint] = [] // in future development
+	public init(
+        point1: CGPoint,
+        point2: CGPoint,
+        stemDirection: StemDirection = .Down,
+        g: CGFloat = 10,
+        pointToAvoid: CGPoint? = nil
+    )
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func setPoint1(point1: CGPoint, andPoint2 point2: CGPoint)
+	public override func setPoint1(point: CGPoint)
+	public override func setPoint2(point: CGPoint)
+	public func adjustToAvoidPoint(point: CGPoint)
+	public func adjustControlPointsByY(y: CGFloat)
+	public override func setVisualAttributes()
+Notehead.swift
+	public class Notehead: CALayer, StaffItem
+	public var g: CGFloat = 0
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var width: CGFloat { get { return 1.236 * gS } }
+	public var height: CGFloat { get { return width } }
+	public var x: CGFloat = 0
+	public var y: CGFloat = 0
+	public var shapeLayer: CAShapeLayer!
+	public var hasBeenBuilt: Bool = false
+	public class func withType(type: NoteheadType) -> Notehead?
+	public class func withType(type: NoteheadType, x: CGFloat, y: CGFloat, g: CGFloat, s: CGFloat = 1) -> Notehead?
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func commitComponents()
+	public func setFrame()
+	public func setVisualAttributes()
+	public class NoteheadOrd: Notehead
+	public override var height: CGFloat { get { return 0.75 * width } }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public class NoteheadDiamondEmpty: Notehead
+	public override var width: CGFloat { get { return 0.75 * gS } }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func setVisualAttributes()
+	public class NoteheadCircleEmpty: Notehead
+	public override var width: CGFloat { get { return gS } }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func setVisualAttributes()
+	public class NoteheadCircleFull: Notehead
+	public override var width: CGFloat { get { return gS } }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func setVisualAttributes()
+	public enum NoteheadType
+	case Ord, DiamondEmpty, CircleEmpty, CircleFull
+	case Ord, DiamondEmpty, CircleEmpty, CircleFull
+	case Ord, DiamondEmpty, CircleEmpty, CircleFull
+	case Ord, DiamondEmpty, CircleEmpty, CircleFull
+	public class NoteheadDyad
+	public var g: CGFloat = 0
+	public var notehead0: Notehead
+	public var notehead1: Notehead
+	public var occupiesSameLine: Bool { get { return getOccupiesSameLine() } }
+	public var occupiesAdjacentLines: Bool { get { return getOccupiesAdjacentLines() } }
+	public init(notehead0: Notehead, notehead1: Notehead)
+	public class NoteheadVerticality
+	public var g: CGFloat = 0
+	public var noteheads: [Notehead]
+	public var dyads: [NoteheadDyad]? { get { return getDyads() } }
+	public init(noteheads: [Notehead])
+	public class NoteheadDyadMover
+	public var g: CGFloat = 0
+	public var dyad: NoteheadDyad
+	public init(dyad: NoteheadDyad)
+	public func move(g: CGFloat)
+	public class NoteheadVerticalityMover
+	public var staff: Staff? // not needed
+	public var g: CGFloat = 0
+	public var verticality: NoteheadVerticality
+	public var stemDirection: StemDirection = .Down
+	public var amountClusteredAtEnd: Int { get { return getAmountClusteredAtEnd() } }
+	public func move()
+	public func move(g: CGFloat, stemDirection: StemDirection)
+	public func getAmountClusteredAtEnd() -> Int
+Accidental.swift
+	public class Accidental: CALayer, Guido, BuildPattern
+	public var g: CGFloat = 0
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var boundingWidth: CGFloat? { get { return getBoundingWidth() } }
+	public var thickLineSlope: CGFloat = 0.25
+	public var thickLineWidth: CGFloat { get { return 0.382 * gS } }
+	public var thickLineLength: CGFloat { get { return midWidth + 2 * flankWidth } }
+	public var midWidth: CGFloat { get { return 0.575 * gS } }
+	public var flankWidth: CGFloat { get { return 0.15 * gS } }
+	public var thinLineWidth: CGFloat { get { return 0.0875 * gS } }
+	public var arrowHeight: CGFloat { get { return 0.618 * gS } }
+	public var column: Int? // index, change !!P: VNII vn Violin
+	public var components: [AccidentalComponent] = []
+	public var arrow: AccidentalComponentArrow? { get { return getArrow() } }
+	public var body: AccidentalComponentBody?
+	public var column_left_up: AccidentalComponentColumn?
+	public var column_left_down: AccidentalComponentColumn?
+	public var column_center_up: AccidentalComponentColumn?
+	public var column_center_down: AccidentalComponentColumn?
+	public var column_right_up: AccidentalComponentColumn?
+	public var column_right_down: AccidentalComponentColumn?
+	public var arrow_left_up: AccidentalComponentArrow?
+	public var arrow_left_down: AccidentalComponentArrow?
+	public var arrow_center_up: AccidentalComponentArrow?
+	public var arrow_center_down: AccidentalComponentArrow?
+	public var arrow_right_up: AccidentalComponentArrow?
+	public var arrow_right_down: AccidentalComponentArrow?
+	public var hasArrow: Bool { get { return getHasArrow() } }
+	public var color: CGColor = UIColor.grayscaleColorWithDepthOfField(.Foreground).CGColor
+	public var hasBeenBuilt: Bool = false
+	public class func withType(type: AccidentalType,
+        x: CGFloat, y: CGFloat, g: CGFloat, s: CGFloat = 1
+    ) -> Accidental?
+	public init(g: CGFloat)
+	public init(g: CGFloat, scale: CGFloat, point: CGPoint)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public class AccidentalNatural: Accidental
+	public override var description: String { get { return "Natural" } }
+	public class AccidentalNaturalUp: AccidentalNatural
+	public override var description: String { get { return "NaturalUp" } }
+	public class AccidentalNaturalDown: AccidentalNatural
+	public override var description: String { get { return "NaturalDown" } }
+	public class AccidentalSharp: Accidental
+	public override var description: String { get { return "Sharp" } }
+	public class AccidentalSharpUp: AccidentalSharp
+	public override var description: String { get { return "SharpUp" } }
+	public class AccidentalSharpDown: AccidentalSharp
+	public override var description: String { get { return "SharpDown" } }
+	public class AccidentalFlat: Accidental
+	public override var description: String { get { return "Flat" } }
+	public class AccidentalFlatUp: AccidentalFlat
+	public override var description: String { get { return "FlatUp" } }
+	public class AccidentalFlatDown: AccidentalFlat
+	public override var description: String { get { return "FlatDown" } }
+	public class AccidentalQuarterSharp: Accidental
+	public override var description: String { get { return "QuarterSharp" } }
+	public var column_up_height: CGFloat { get { return 1.236 * gS } }
+	public var column_down_height: CGFloat { get { return 1.236 * gS } }
+	public class AccidentalQuarterSharpUp: AccidentalQuarterSharp
+	public override var description: String { get { return "QuarterSharpUp" } }
+	public override var column_up_height: CGFloat { get { return  2 * gS } }
+	public class AccidentalQuarterSharpDown: AccidentalQuarterSharp
+	public override var description: String { get { return "QuarterSharpDown" } }
+	public override var column_down_height: CGFloat { get { return 2 * gS } }
+	public class AccidentalQuarterFlat: Accidental
+	public override var description: String { get { return "QuarterFlat" } }
+	public var column_up: AccidentalComponentColumn?
+	public var column_down: AccidentalComponentColumn?
+	public class AccidentalQuarterFlatUp: AccidentalQuarterFlat
+	public override var description: String { get { return "QuarterFlatUp" } }
+	public var arrow_up: AccidentalComponentArrow?
+	public class AccidentalQuarterFlatDown: AccidentalQuarterFlat
+	public override var description: String { get { return "QuarterFlatDown" } }
+	public var arrow_down: AccidentalComponentArrow?
+	public enum AccidentalType: String, CustomStringConvertible
+	case Natural = "Natural"
+	case NaturalUp = "NaturalUp"
+	case NaturalDown = "NaturalDown"
+	case Sharp = "Sharp"
+	case SharpUp = "SharpUp"
+	case SharpDown = "SharpDown"
+	case Flat = "Flat"
+	case FlatUp = "FlatUp"
+	case FlatDown = "FlatDown"
+	case QuarterSharp = "QuarterSharp"
+	case QuarterSharpUp = "QuarterSharpUp"
+	case QuarterSharpDown = "QuarterSharpDown"
+	case QuarterFlat = "QuarterFlat"
+	case QuarterFlatUp = "QuarterFlatUp"
+	case QuarterFlatDown = "QuarterFlatDown"
+	public var description: String { get { return rawValue } }
+	public func AccidentalTypeMake(coarse coarse: Float, fine: Float) -> AccidentalType?
+BuildPattern.swift
+	public protocol BuildPattern
+	func build()
+	var hasBeenBuilt: Bool { get }
+Articulation.swift
+	public class Articulation: CAShapeLayer, BuildPattern, Guido
+	public var point: CGPoint = CGPointZero
+	public var g: CGFloat = 12
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var scale: CGFloat = 1 // deprecate!
+	public var hasBeenBuilt: Bool = false
+	public class func withType(type: ArticulationType, x: CGFloat, y: CGFloat, g: CGFloat, s: CGFloat = 1.0) -> Articulation?
+	public class func articulationWithType(type: ArticulationType, point: CGPoint, g: CGFloat)
+        -> Articulation?
+	public init(point: CGPoint, g: CGFloat)
+	public func build()
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func ArticulationTypeWithMarking(marking: String) -> ArticulationType?
+	public enum ArticulationType
+	case Accent, Staccato, Tenuto, Tremolo
+	case Accent, Staccato, Tenuto, Tremolo
+	case Accent, Staccato, Tenuto, Tremolo
+	case Accent, Staccato, Tenuto, Tremolo
+	public static func random() -> ArticulationType
+	public class ArticulationTenuto: Articulation
+	public override func build()
+	public class ArticulationStaccato: Articulation
+	public override func build()
+	public class ArticulationAccent: Articulation
+	public override func build()
+	public class ArticulationStemDirectionDependent: Articulation
+	public var stemDirection: StemDirection = .Down
+	public class ArticulationString: Articulation
+	public class ArticulationStringBowPosition: ArticulationString
+	public class func withType(type: BowPosition) -> ArticulationStringBowPosition?
+	public enum BowPosition: String
+	case Frog
+	case Middle
+	case Tip
+	public class ArticulationStringBowPlacement: ArticulationString
+	public class func withType(type: BowPlacement) -> ArticulationStringBowPlacement?
+	public enum BowPlacement: Int
+	case Bridge = 0
+	case MoltoSulPonticello
+	case SulPonticello
+	case Ord
+	case SulTasto
+	case MoltoSulTasto
+	public class ArticulationStringBowDirection: ArticulationString
+	public class func withType(type: BowDirection) -> ArticulationStringBowDirection?
+	public class ArticulationStringBowDirectionUp: ArticulationStringBowDirection
+	public override func setFrame()
+	public class ArticulationStringBowDirectionDown: ArticulationStringBowDirection
+	public override func setFrame()
+	public enum BowDirection: String
+	case Up
+	case Down
+	public class ArticulationStringNumber: Articulation
+	public var romanNumeralString: String!
+	public var textLayer: TextLayerConstrainedByHeight!
+	public init(point: CGPoint = CGPointZero, g: CGFloat = 12, romanNumeralString: String)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public override func setFrame()
+	public override func setVisualAttributes()
+TimeSignature.swift
+	public class TimeSignature: ViewNode, BuildPattern
+	public var measure: MeasureView?
+	public var numeratorLayer: TextLayerConstrainedByHeight?
+	public var denominatorLayer: TextLayerConstrainedByHeight?
+	public var numerator: String = ""
+	public var denominator: String = "" // perhaps make string to include: ?/16 or Δ/32
+	public var x: CGFloat = 0
+	public var height: CGFloat = 0
+	public var hasBeenBuilt: Bool = false
+	public init(numerator: Int, denominator: Int, x: CGFloat, top: CGFloat, height: CGFloat)
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public override func hitTest(p: CGPoint) -> CALayer?
+	public override func containsPoint(p: CGPoint) -> Bool
+Clef.swift
+	public protocol Clef: BuildPattern
+	var color: CGColor { get set }
+	var top: CGFloat { get set }
+	var x: CGFloat { get set }
+	var height: CGFloat { get }
+	var components: [ClefComponent] { get }
+	public class ClefStaff: CALayer, Clef, Guido
+	public var g: CGFloat = 0
+	public var s: CGFloat = 1
+	public var gS: CGFloat { get { return g * s } }
+	public var lineWidth: CGFloat { get { return 0.1236 * gS } }
+	public var graphHeight: CGFloat { get { return 4 * gS } }
+	public var extenderHeight: CGFloat { get { return 0.5 * gS } }
+	public var height: CGFloat { get { return graphHeight + (2 * extenderHeight) } }
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var transposition: Int = 0
+	public var middleCPosition: CGFloat { get { return getMiddleCPosition() } }
+	public var color: CGColor = UIColor.redColor().CGColor
+	public var components: [ClefComponent] = []
+	public var hasBeenBuilt: Bool = false
+	public class func withType(type: ClefStaffType) -> ClefStaff?
+	public class func withType(type: String,
+        transposition: Int = 0, x: CGFloat, top: CGFloat, g: CGFloat, s: CGFloat = 1) -> ClefStaff?
+	public class func withType(type: ClefStaffType,
+        transposition: Int = 0, x: CGFloat, top: CGFloat, g: CGFloat, s: CGFloat = 1) -> ClefStaff?
+	public init(x: CGFloat, top: CGFloat, g: CGFloat, s: CGFloat = 1)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public class ClefStaffTreble: ClefStaff
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public class ClefStaffBass: ClefStaff
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public class ClefStaffAlto: ClefStaff
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public class ClefStaffTenor: ClefStaff
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public enum ClefStaffType: String
+	case Treble, Bass, Alto, Tenor
+	case Treble, Bass, Alto, Tenor
+	case Treble, Bass, Alto, Tenor
+	case Treble, Bass, Alto, Tenor
+	public class ClefCue: CALayer, Clef, BuildPattern
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var height: CGFloat = 0
+	public var g: CGFloat = 0
+	public var scale: CGFloat = 1
+	public var lineWidth: CGFloat { get { return 0.1236 * g * scale } }
+	public var color: CGColor = UIColor.redColor().CGColor
+	public var components: [ClefComponent] = []
+	public var hasBeenBuilt: Bool = false
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func build()
+	public func addLine()
+	public class ClefComponent: CAShapeLayer, BuildPattern
+	public var color: CGColor = UIColor.blackColor().CGColor
+	public var hasBeenBuilt: Bool = false
+	public func build()
+	public class ClefGraphLine: ClefComponent
+	public var x: CGFloat = 0
+	public var top: CGFloat = 0
+	public var height: CGFloat = 0
+	public init(x: CGFloat, top: CGFloat, height: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override func build()
+	public class ClefOrnament: ClefComponent
+	public var x: CGFloat = 0
+	public var y: CGFloat = 0
+	public var width: CGFloat = 0
+	public class func withType(type: ClefOrnamentType) -> ClefOrnament?
+	public class func withType(type: ClefOrnamentType, x: CGFloat, y: CGFloat, width: CGFloat) -> ClefOrnament?
+	public override func build()
+	public class ClefOrnamentDot: ClefOrnament
+	public class ClefOrnamentCircle: ClefOrnament
+	public class ClefOrnamentDiamond: ClefOrnament
+	public enum ClefOrnamentType
+	case Dot, Circle, Diamond
+	case Dot, Circle, Diamond
+	case Dot, Circle, Diamond
+Beam.swift
+	public class Beam: CAShapeLayer
+	public override var description: String { get { return getDescription() } }
+	public var g: CGFloat = 0
+	public var scale: CGFloat = 1
+	public var beamWidth: CGFloat { get { return 0.382 * g * scale } }
+	public var start: CGPoint = CGPointZero
+	public var stop: CGPoint = CGPointZero
+	public init(g: CGFloat, scale: CGFloat, start: CGPoint, stop: CGPoint)
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public func build()
+GraphWaveform.swift
+	public class GraphWaveform: Graph
+	public var width: CGFloat = 0
+	public var waveforms: [Waveform] = []
+	public init(id: String, height: CGFloat, width: CGFloat)
+	public override init() { super.init() }
+	public override init(layer: AnyObject) { super.init(layer: layer) }
+	public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+	public func addWaveform(waveform: Waveform)
+	public func addWaveform(waveform: Waveform, atX x: CGFloat)
+	public func addSampleWaveformAtX(
+        x: CGFloat, withDuration duration: Duration, andBeatWidth beatWidth: CGFloat
+    )
+	public func addWaveform(waveform: Waveform, atX x: CGFloat, withDuration duration: Duration)
+	public override func build()

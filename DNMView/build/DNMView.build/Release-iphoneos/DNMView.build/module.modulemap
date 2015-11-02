@@ -1,0 +1,10 @@
+framework module DNMView {
+  umbrella header "DNMView.h"
+
+  export *
+  module * { export * }
+}
+
+module DNMView.Swift {
+    header "DNMView-Swift.h"
+}

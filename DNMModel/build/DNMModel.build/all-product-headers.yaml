@@ -1,0 +1,33 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/BEAN/DNM/DNMModel/build/Release-iphoneos/DNMModel.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "DNMModel-Swift.h",
+          'external-contents': "/Users/BEAN/DNM/DNMModel/build/Release-iphoneos/DNMModel.framework/Headers/DNMModel-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "DNMModel.h",
+          'external-contents': "/Users/BEAN/DNM/DNMModel/DNMModel/DNMModel.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/BEAN/DNM/DNMModel/build/Release-iphoneos/DNMModel.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/BEAN/DNM/DNMModel/build/DNMModel.build/Release-iphoneos/DNMModel.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

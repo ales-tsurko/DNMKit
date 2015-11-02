@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0791ABF21BE7AF0C005D0B6F /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF11BE7AF0C005D0B6F /* DNMModel.framework */; };
+		0791ABF41BE7AF1E005D0B6F /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF31BE7AF1E005D0B6F /* DNMUtility.framework */; };
 		07F3E5DF1BE541B500948758 /* DNMMetricalAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5DE1BE541B500948758 /* DNMMetricalAnalysis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07F3E5E61BE541B500948758 /* DNMMetricalAnalysis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */; };
 		07F3E5EB1BE541B500948758 /* DNMMetricalAnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5EA1BE541B500948758 /* DNMMetricalAnalysisTests.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0791ABF11BE7AF0C005D0B6F /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
+		0791ABF31BE7AF1E005D0B6F /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
 		07F3E5DB1BE541B500948758 /* DNMMetricalAnalysis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMMetricalAnalysis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F3E5DE1BE541B500948758 /* DNMMetricalAnalysis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMMetricalAnalysis.h; sourceTree = "<group>"; };
 		07F3E5E01BE541B500948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0791ABF41BE7AF1E005D0B6F /* DNMUtility.framework in Frameworks */,
+				0791ABF21BE7AF0C005D0B6F /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +61,8 @@
 		07F3E5D11BE541B500948758 = {
 			isa = PBXGroup;
 			children = (
+				0791ABF31BE7AF1E005D0B6F /* DNMUtility.framework */,
+				0791ABF11BE7AF0C005D0B6F /* DNMModel.framework */,
 				07F3E5DD1BE541B500948758 /* DNMMetricalAnalysis */,
 				07F3E5E91BE541B500948758 /* DNMMetricalAnalysisTests */,
 				07F3E5DC1BE541B500948758 /* Products */,

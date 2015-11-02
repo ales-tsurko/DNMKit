@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0791ABF61BE7B01C005D0B6F /* DNMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; };
+		0791ABF71BE7B01C005D0B6F /* DNMUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07E4DC871BE680B800AF0DE9 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */; };
 		07E4DC881BE680B800AF0DE9 /* DNMUtility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07E4DC8B1BE680BF00AF0DE9 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */; };
@@ -47,6 +49,7 @@
 			files = (
 				07E4DC8C1BE680BF00AF0DE9 /* DNMModel.framework in Embed Frameworks */,
 				07E4DC921BE6840500AF0DE9 /* DNMConverter.framework in Embed Frameworks */,
+				0791ABF71BE7B01C005D0B6F /* DNMUI.framework in Embed Frameworks */,
 				07E4DC8F1BE680C600AF0DE9 /* DNMView.framework in Embed Frameworks */,
 				07E4DC881BE680B800AF0DE9 /* DNMUtility.framework in Embed Frameworks */,
 			);
@@ -56,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0791ABF51BE7B01C005D0B6F /* DNMUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUI.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUI.framework"; sourceTree = "<absolute>"; };
 		07E4DC861BE680B800AF0DE9 /* DNMUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUtility.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<absolute>"; };
 		07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<absolute>"; };
 		07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMView.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMView.framework"; sourceTree = "<absolute>"; };
@@ -84,6 +88,7 @@
 			files = (
 				07E4DC8B1BE680BF00AF0DE9 /* DNMModel.framework in Frameworks */,
 				07E4DC911BE6840500AF0DE9 /* DNMConverter.framework in Frameworks */,
+				0791ABF61BE7B01C005D0B6F /* DNMUI.framework in Frameworks */,
 				07E4DC8E1BE680C600AF0DE9 /* DNMView.framework in Frameworks */,
 				07E4DC871BE680B800AF0DE9 /* DNMUtility.framework in Frameworks */,
 			);
@@ -102,6 +107,7 @@
 		07ECB4571BE5393900C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				0791ABF51BE7B01C005D0B6F /* DNMUI.framework */,
 				07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */,
 				07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */,
 				07E4DC8A1BE680BF00AF0DE9 /* DNMModel.framework */,
