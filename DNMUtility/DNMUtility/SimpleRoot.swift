@@ -1,11 +1,25 @@
+// SimpleRoot.swift - As straight a port as I could get my head aroundof Jim Armstrong's
+// port of Jack Crenshaw's TWBRF simple root finding algorithm. See license below:
 //
-//  SimpleRoot.swift
-//  BezierCurve
+// SimpleRoot.as - A straight port of Jack Crenshaw's TWBRF method for simple roots in an interval.  To use, identify an interval in which
+// the function whose zero is desired has a sign change (via bisection, for example).  Call the findRoot method.
 //
-//  Created by James Bean on 10/26/15.
-//  Copyright © 2015 James Bean. All rights reserved.
+// This program is derived from source bearing the following copyright notice,
 //
-
+// Copyright (c) 2008, Jim Armstrong.  All rights reserved.
+//
+// This software program is supplied 'as is' without any warranty, express,
+// implied, or otherwise, including without limitation all warranties of
+// merchantability or fitness for a particular purpose.  Jim Armstrong shall not
+// be liable for any special incidental, or consequential damages, including,
+// witout limitation, lost revenues, lost profits, or loss of prospective
+// economic advantage, resulting from the use or misuse of this software program.
+//
+// Programmed by Jim Armstrong, (http://algorithmist.wordpress.com)
+// Ported to Degrafa with full permission of author
+/**
+* @version 1.0
+*/
 import QuartzCore
 
 public class SimpleRoot {
