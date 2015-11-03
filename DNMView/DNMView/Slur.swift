@@ -110,6 +110,7 @@ public class Slur: Ligature {
                 if let minSlurYValue = bezierPath.getYValuesAtX(point.x).minElement()
                     where minSlurYValue < point.y
                 {
+                    // regenerates bezier path
                     adjustControlPointsByX(stepSizeX, andY: stepSizeY)
                 }
                 else { break }
@@ -136,7 +137,7 @@ public class Slur: Ligature {
                 if let maxSlurYValue = bezierPath.getYValuesAtX(point.x).maxElement()
                     where maxSlurYValue > point.y
                 {
-                    // regenerate bezierPath
+                    // regenerates bezierPath
                     adjustControlPointsByX(stepSizeX, andY: stepSizeY)
                 }
                 else { break }

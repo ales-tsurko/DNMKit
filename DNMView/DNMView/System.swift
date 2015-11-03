@@ -1537,6 +1537,44 @@ public class System: ViewNode, BuildPattern {
                         }
                     }
                 }
+                else if let graphEvent0 = slurHandler.graphEvent0 {
+                    if let graph0 = graphEvent0.graph {
+                        if let instrument0 = graph0.instrument {
+                            if let performer0 = instrument0.performer {
+                                if eventsNode.hasNode(performer0) &&
+                                    performer0.hasNode(instrument0) &&
+                                    instrument0.hasNode(graph0)
+                                {
+                                    if let slur = slurHandler.slur where slur.superlayer == nil {
+                                        eventsNode.addSublayer(slur)
+                                    }
+                                }
+                                else if let slur = slurHandler.slur where slur.superlayer != nil {
+                                    slur.removeFromSuperlayer()
+                                }
+                            }
+                        }
+                    }
+                }
+                else if let graphEvent1 = slurHandler.graphEvent1 {
+                    if let graph1 = graphEvent1.graph {
+                        if let instrument1 = graph1.instrument {
+                            if let performer1 = instrument1.performer {
+                                if eventsNode.hasNode(performer1) &&
+                                    performer1.hasNode(instrument1) &&
+                                    instrument1.hasNode(graph1)
+                                {
+                                    if let slur = slurHandler.slur where slur.superlayer == nil {
+                                        eventsNode.addSublayer(slur)
+                                    }
+                                }
+                                else if let slur = slurHandler.slur where slur.superlayer != nil {
+                                    slur.removeFromSuperlayer()
+                                }
+                            }
+                        }
+                    }
+                }
                 slurHandler.repositionInContext(eventsNode)
             }
         }

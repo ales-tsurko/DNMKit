@@ -135,7 +135,7 @@ public class SlurHandler {
                 
                 if let index1 = graphEvent1.graph!.events.indexOfObject(graphEvent1) {
                     var eventWithMaxY: GraphEvent?
-                    if index1 > 1 {
+                    if index1 > 0 {
                         for e in 0..<index1 {
                             let event = graphEvent1.graph!.events[e]
                             if eventWithMaxY == nil { eventWithMaxY = event }
