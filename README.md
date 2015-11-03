@@ -1,5 +1,7 @@
 ## DNMKIT
 
+(https://travis-ci.org/jsbean/DNMKit.svg)
+
 Underlying framework for **DNM (Dynamic Notation for Music)**.
 
 It includes several subframeworks:
