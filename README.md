@@ -1,6 +1,6 @@
 ## DNMKIT
 
-(https://travis-ci.org/jsbean/DNMKit.svg)
+[![Build Status](https://travis-ci.org/jsbean/DNMKit.svg)](https://travis-ci.org/jsbean/DNMKit)
 
 Underlying framework for **DNM (Dynamic Notation for Music)**.
 
