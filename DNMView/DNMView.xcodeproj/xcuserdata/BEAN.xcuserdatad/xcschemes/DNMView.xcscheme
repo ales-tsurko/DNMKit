@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07ECB3FE1BE538BB00C9AD08"
-               BuildableName = "DNMViewTests.xctest"
-               BlueprintName = "DNMViewTests"
-               ReferencedContainer = "container:DNMView.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07ECB3F41BE538BB00C9AD08"
-            BuildableName = "DNMView.framework"
-            BlueprintName = "DNMView"
-            ReferencedContainer = "container:DNMView.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07ECB4731BE5393900C9AD08"
-               BuildableName = "DNMKitExample_iOSTests.xctest"
-               BlueprintName = "DNMKitExample_iOSTests"
-               ReferencedContainer = "container:DNMKitExample_iOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

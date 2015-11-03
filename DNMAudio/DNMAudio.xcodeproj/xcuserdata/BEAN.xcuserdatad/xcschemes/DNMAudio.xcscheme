@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07ECB4461BE538DF00C9AD08"
-               BuildableName = "DNMAudioTests.xctest"
-               BlueprintName = "DNMAudioTests"
-               ReferencedContainer = "container:DNMAudio.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07ECB43C1BE538DF00C9AD08"
-            BuildableName = "DNMAudio.framework"
-            BlueprintName = "DNMAudio"
-            ReferencedContainer = "container:DNMAudio.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

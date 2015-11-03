@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07F3E6751BE5471A00948758"
-               BuildableName = "DNMJSONTests.xctest"
-               BlueprintName = "DNMJSONTests"
-               ReferencedContainer = "container:DNMJSON.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07F3E66B1BE5471A00948758"
-            BuildableName = "DNMJSON.framework"
-            BlueprintName = "DNMJSON"
-            ReferencedContainer = "container:DNMJSON.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
