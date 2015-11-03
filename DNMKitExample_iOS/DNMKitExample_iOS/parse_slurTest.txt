@@ -4,15 +4,15 @@ P: EL cc ContinuousController
 
 #
 | 4,8 VN vn
-    1 p 56 (
-    2 p 80 )
-    3 p 70 (
-    4 p 90 )
+    1 p 80 (
+    2 p 56
+    3 p 90 )
+    4 p 90
     6 p 72 (
     3 p 63 )
     2 p 60 (
-    1 p 54.25 )
-    1 p 94 a . (
+    1 p 54.25
+    1 p 94 a .
 
 #
 | 4,8 VN vn
@@ -21,14 +21,14 @@ P: EL cc ContinuousController
     3 p 70 )
     4 p 90 (
     6 p 72 )
-    3 p 63 (
-    2 p 60 )
-    1 p 54.25 (
-    1 p 94 a . )
+    3 p 63
+    2 p 60 (
+    1 p 54.25
+    1 p 94 a .
 
 #
 | 4,8 VN vn
-    1 p 56 (
+    1 p 56 )
     2 p 80
     3 p 70 )
     4 p 90 (

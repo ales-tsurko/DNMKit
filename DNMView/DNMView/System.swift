@@ -999,7 +999,8 @@ public class System: ViewNode, BuildPattern {
         for (_, slurHandlers) in slurHandlersByID {
             for slurHandler in slurHandlers {
                 if let slur = slurHandler.makeSlurInContext(eventsNode) {
-                    eventsNode.addSublayer(slur)
+                    //eventsNode.addSublayer(slur)
+                    eventsNode.insertSublayer(slur, atIndex: 0)
                 }
             }
         }
@@ -1154,7 +1155,6 @@ public class System: ViewNode, BuildPattern {
                         }
                         else if let componentSlurStop = component as? ComponentSlurStop {
                             let id = componentSlurStop.id
-                            
                             if let lastIncomplete = getLastIncompleteSlurHandlerWithID(id) {
                                 lastIncomplete.graphEvent1 = graphEvent
                             }

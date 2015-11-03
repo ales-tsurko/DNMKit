@@ -65,28 +65,7 @@ public class SlurHandler {
     public func repositionInContext(context: CALayer) {
 
         if let slur = slur {
-            
-            /*
-            if slur.superlayer == nil {
-                if let graphEvent0 = graphEvent0, graphEvent1 = graphEvent1 {
-                    if graphEvent0.graph!.instrument!.performer!.superlayer != nil &&
-                        graphEvent1.graph!.instrument!.performer!.superlayer != nil
-                    {
-                        context.addSublayer(slur)
-                    }
-                }
-            }
-            else {
-                if let graphEvent0 = graphEvent0, graphEvent1 = graphEvent1 {
-                    if graphEvent0.graph!.instrument!.performer!.superlayer == nil ||
-                        graphEvent1.graph!.instrument!.performer!.superlayer == nil
-                    {
-                        slur.removeFromSuperlayer()
-                    }
-                }
-            }
-            */
-            
+
             // both ends within same system
             if let graphEvent0 = graphEvent0, graphEvent1 = graphEvent1 {
                 
@@ -99,55 +78,77 @@ public class SlurHandler {
                 {
                     switch graphEvent0.stemDirection {
                     case .Down:
-
+                        // Crash avoidence
                         if index1 > index0 + 1 {
+                            
+                            // TODO: Integrate check collisions for all GraphEvents
                             var eventWithMaxY: GraphEvent?
                             for e in (index0 + 1)..<index1 {
                                 let event = graphEvent0.graph!.events[e]
                                 if eventWithMaxY == nil { eventWithMaxY = event }
                                 else if event.maxY > eventWithMaxY!.maxY { eventWithMaxY = event }
                             }
-                            
                             let x = eventWithMaxY!.x
                             let y = eventWithMaxY!.maxY + 0.5 * g // pad
-                            
                             let point_local = CGPoint(x: x, y: y)
-                            
                             let convertedPoint = context.convertPoint(point_local,
                                 fromLayer: graphEvent0.graph!.eventsLayer
                             )
-                            
-                            print("slur.adjustToAvoidPoint: x: \(x); y: \(y)")
                             slur.adjustToAvoidPoint(convertedPoint)
                         }
-                        
-                        
                         slur.build()
                     case .Up:
-                        // finish
-                        
-                        // then go on
-                        
                         break
                     }
-                    
-                    
-                   
                 }
-                
-
             }
             // frayed at end
-            else if let _ = graphEvent0 where graphEvent1 == nil {
+            else if let graphEvent0 = graphEvent0 where graphEvent1 == nil {
                 let point0 = getConnectionPoint0InContext(context)
                 let point1 = CGPointMake(context.frame.width + 20, point0.y) // hack x val
                 slur.setPoint1(point0, andPoint2: point1)
+                
+                if let index0 = graphEvent0.graph!.events.indexOfObject(graphEvent0) {
+                    let index1 = graphEvent0.graph!.events.count - 1
+                    if index0 < index1 - 1 {
+                        var eventWithMaxY: GraphEvent?
+                        for e in (index0 + 1)..<index1 {
+                            let event = graphEvent0.graph!.events[e]
+                            if eventWithMaxY == nil { eventWithMaxY = event }
+                            else if event.maxY > eventWithMaxY!.maxY { eventWithMaxY = event }
+                        }
+                        let x = eventWithMaxY!.x
+                        let y = eventWithMaxY!.maxY - 0.5 * g // pad
+                        let point_local = CGPoint(x: x, y: y)
+                        let convertedPoint = context.convertPoint(point_local, fromLayer: graphEvent0.graph!.eventsLayer
+                        )
+                        slur.adjustToAvoidPoint(convertedPoint)
+                    }
+                    slur.build()
+                }
             }
             // frayed at beginning
-            else if let _ = graphEvent1 where graphEvent0 == nil {
+            else if let graphEvent1 = graphEvent1 where graphEvent0 == nil {
                 let point1 = getConnectionPoint1InContext(context)
                 let point0 = CGPointMake(-10, point1.y) // hack x val
                 slur.setPoint1(point0, andPoint2: point1)
+                
+                if let index1 = graphEvent1.graph!.events.indexOfObject(graphEvent1) {
+                    var eventWithMaxY: GraphEvent?
+                    if index1 > 1 {
+                        for e in 0..<index1 {
+                            let event = graphEvent1.graph!.events[e]
+                            if eventWithMaxY == nil { eventWithMaxY = event }
+                            else if event.maxY > eventWithMaxY!.maxY { eventWithMaxY = event }
+                        }
+                        let x = eventWithMaxY!.x
+                        let y = eventWithMaxY!.maxY - 0.5 * g // pad
+                        let point_local = CGPoint(x: x, y: y)
+                        let convertedPoint = context.convertPoint(point_local, fromLayer: graphEvent1.graph!.eventsLayer
+                        )
+                        slur.adjustToAvoidPoint(convertedPoint)
+                    }
+                }
             }
         }
     }
