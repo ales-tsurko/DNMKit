@@ -212,6 +212,7 @@
 				TargetAttributes = {
 					07ECB45F1BE5393900C9AD08 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = F8LCL8SXLX;
 					};
 					07ECB4731BE5393900C9AD08 = {
 						CreatedOnToolsVersion = 7.1;
@@ -398,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DNMKitExample_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.DNMKitExample-iOS";
@@ -409,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DNMKitExample_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.DNMKitExample-iOS";

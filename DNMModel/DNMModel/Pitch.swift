@@ -134,7 +134,7 @@ public class Pitch: CustomStringConvertible, Equatable {
     */
     public init(midi: MIDI, resolution: Float? = nil) {
         // add resolution functionality
-        self.midi = midi
+        self.midi = MIDI(value: midi.value, resolution: resolution)
         self.frequency = Frequency(midi: midi)
     }
     
@@ -148,11 +148,13 @@ public class Pitch: CustomStringConvertible, Equatable {
     - returns: Initialized Pitch object
     */
     public init(frequency: Frequency, resolution: Float? = nil) {
-        // add resolution functionality
-        self.frequency = frequency
-        self.midi = MIDI(frequency: frequency)
+        var m = MIDI(frequency: frequency)
+        if let resolution = resolution { m.quantizeToResolution(resolution) }
+        self.midi = m
+        self.frequency = Frequency(midi: m)
     }
     
+    /*
     /**
     Create a Pitch with String. This string can be of a format "C#" which will create a C#
     above middle-c, or of a format "Eb5" which will create an Eb a minor 10th above middle-c.
@@ -165,6 +167,7 @@ public class Pitch: CustomStringConvertible, Equatable {
         self.frequency = Frequency(0.0) // change
         self.midi = MIDI(0.0) // change
     }
+    */
     
     // MARK: Set attributes of a Pitch
     
@@ -249,7 +252,7 @@ public class Pitch: CustomStringConvertible, Equatable {
     
     - returns: Frequency representation of partial
     */
-    public func getFrequencyOfPartial(partial: Int, resolution: Float? = nil) -> Frequency {
+    public func frequencyOfPartial(partial: Int, resolution: Float? = nil) -> Frequency {
         return frequency * Float(partial)
     }
     
@@ -292,3 +295,5 @@ public func <=(lhs: Pitch, rhs: Pitch) -> Bool {
 public func >=(lhs: Pitch, rhs: Pitch) -> Bool {
     return lhs.midi.value >= rhs.midi.value
 }
+
+// TODO: +, +=, -, -=, *, *=, /, /=

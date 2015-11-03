@@ -29,10 +29,26 @@ public struct MIDI: CustomStringConvertible {
     
     - parameter value: Value of MIDI as Float (middle-c (C4) = 60.0, C5 = 72.0, C3 = 48.0)
     
-    - returns: Initialized MIDI object
+    - returns: MIDI
     */
     public init(_ value: Float) {
         self.value = value
+    }
+    
+    /**
+     Create a MIDI with value and resolution (0.25 = 1/8th tone, 0.5 = 1/4-tone, etc)
+     
+     - parameter value:      Value of MIDI as Float (middle-c (C4) = 60.0, C5 = 72.0, C3 = 48.0)
+     - parameter resolution: Resolution of MIDI (0.25 = 1/8th tone, 0.5 = 1/4-tone, 1 = chromatic)
+     
+     - returns: MIDI
+     */
+    public init(value: Float, resolution: Float? = nil) {
+        if let resolution = resolution {
+            self.value = round(value / resolution) * resolution
+        } else {
+            self.value = value
+        }
     }
     
     /**
@@ -40,7 +56,7 @@ public struct MIDI: CustomStringConvertible {
     
     - parameter frequency: Frequency representation of Pitch (middle-c = 261.6)
     
-    - returns: Initialized MIDI object
+    - returns: MIDI
     */
     public init(frequency: Frequency) {
         self.value = 69.0 + (12.0 * (log(frequency.value / 440.0)/log(2.0)))

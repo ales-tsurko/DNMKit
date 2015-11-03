@@ -36,6 +36,24 @@ public struct Frequency: CustomStringConvertible {
         self.value = value
     }
     
+    /*
+    /**
+     Create a Frequency with a value and resolultion
+     
+     - parameter value:      Value of Frequency
+     - parameter resolution: Resolution
+     
+     - returns: (0.25 = 1/8th tone, 0.5 = 1/4-tone, 1 = chromatic)
+     */
+    public init(value: Float, resolution: Float? = nil) {
+        if let resolution = resolution {
+            self.value = round(value / resolution) * resolution
+        } else {
+            self.value = value
+        }
+    }
+    */
+    
     /**
     Create a Frequency with MIDI
     
