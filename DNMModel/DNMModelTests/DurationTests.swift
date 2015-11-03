@@ -129,8 +129,13 @@ class DurationTests: XCTestCase {
     
     func testLessThanHomogeneous() {
         let d1 = Duration(1,8)
+        let d1b = Duration(2,16)
         let d2 = Duration(2,8)
+        let d2b = Duration(4,16)
+        
         XCTAssert(d1 < d2, "Duration is not less than")
+        XCTAssert(d1 <= d2, "Duration is not less than or equal to")
+        XCTAssert(d1 <= d1b, "Duration is not less than or equal to an equivalent Duration")
     }
     
     func testGreaterThanHomogeneous() {
@@ -152,17 +157,45 @@ class DurationTests: XCTestCase {
     }
     
     func testAdditionHeterogeneous() {
-        let d1 = Duration(1,8)
+        var d1 = Duration(1,8)
         let d2 = Duration(2,16)
         let d3 = Duration(2,8)
         XCTAssert(d1 + d2 == d3, "Durations do not add properly")
+        
+        d1 += Duration(1,8)
+        XCTAssert(d1 == Duration(2,8), "Durations not added correctly")
+        
+        let dfull = Duration(1,8)
+        var dhalf = Duration(1,8)
+        dhalf.setScale(0.5)
+        
+        var dsum = Duration(2,8)
+        XCTAssert(dfull + dhalf != dsum, "Durations summed incorrectly with heterogeneous scales")
+        dsum.setScale(0.75)
+        XCTAssert(dfull + dhalf == dsum, "Durations with heterogeneous scales not added correctly")
     }
-    
+
     func testSubtractionHeterogeneous() {
-        let d3 = Duration(3,8)
+        var d3 = Duration(3,8)
         let d216 = Duration(2,16)
         let d28 = Duration(2,8)
         XCTAssert(d3 - d216 == d28, "Durations do not subtract properly")
+        
+        d3 -= Duration(1,8)
+        XCTAssert(d3 == Duration(2,8), "Durations not added correctly")
+        
+        let dfull = Duration(2,8)
+        var dhalf = Duration(1,8)
+        dhalf.setScale(0.5)
+        
+        var ddiff = Duration(2,8)
+        XCTAssert(dfull - dhalf != ddiff, "Durations summed incorrectly with heterogeneous scales")
+        ddiff.setScale(0.75)
+        XCTAssert(dfull - dhalf == ddiff, "Durations with heterogeneous scales not added correctly")
+        
+        let d4 = Duration(4,16)
+        let d2 = Duration(1,8)
+        XCTAssert(d4 - d2 == Duration(1,8), "Durations not subtracted correctly")
     }
     
     func testLessThanHeterogeneous() {
@@ -179,7 +212,26 @@ class DurationTests: XCTestCase {
     
     func testFloatValue() {
         let d = Duration(7,16)
-        assert(d.floatValue != nil, "Duration float value nil")
-        assert(d.floatValue! == (7/16), "Duration float value incorrect")
+        XCTAssert(d.floatValue != nil, "Duration float value nil")
+        XCTAssert(d.floatValue! == (7/16), "Duration float value incorrect")
+    }
+    
+    func testMultiplication() {
+        let d = Duration(1,16)
+        let d3 = d * 3
+        XCTAssert(d3 == Duration(3,16), "Duration not multiplied correctly")
+        
+        var d2 = Duration(1,16)
+        d2 *= 2
+        XCTAssert(d2 == Duration(2,16), "Duration not multipled correctly")
+    }
+    
+    func testDivision() {
+        var d4 = Duration(4,16)
+        let d2 = d4 / 2
+        XCTAssert(d2 == Duration(2,16), "Duration not divided correctly")
+        
+        d4 /= 4
+        XCTAssert(d4 == Duration(1,16), "Duration not divided correctly")
     }
 }
