@@ -7,11 +7,18 @@
 //
 
 import QuartzCore
+import DNMUtility
 
 public class Ligature: CAShapeLayer, BuildPattern {
     
     public var point1: CGPoint?
     public var point2: CGPoint?
+    
+    internal var rise: CGFloat? { return getRise() }
+    internal var run: CGFloat? { return getRun() }
+    internal var length: CGFloat? { return getLength() }
+    internal var slope: CGFloat? { return getSlope() }
+    internal var angle: CGFloat? { return getAngle() }
     
     public var hasBeenBuilt: Bool = false
     
@@ -93,6 +100,34 @@ public class Ligature: CAShapeLayer, BuildPattern {
         lineWidth = 2
         strokeColor = UIColor.grayColor().CGColor
         fillColor = nil
+    }
+    
+    private func getRise() -> CGFloat? {
+        if let point1 = point1, point2 = point2 { return point2.y - point1.y }
+        return nil
+    }
+    
+    private func getRun() -> CGFloat? {
+        if let point1 = point1, point2 = point2 { return point2.x - point1.x }
+        return nil
+    }
+    
+    private func getSlope() -> CGFloat? {
+        if let rise = rise, run = run { return rise / run }
+        return nil
+    }
+    
+    // DEGREES?!
+    private func getAngle() -> CGFloat? {
+        if let slope = slope { return RADIANS_TO_DEGREES(atan(slope)) }
+        return nil
+    }
+    
+    private func getLength() -> CGFloat? {
+        if let rise = rise, run = run {
+            return sqrt(rise * rise + run * run)
+        }
+        return nil
     }
 }
 

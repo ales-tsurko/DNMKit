@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DNMColorManager.colorMode = ColorMode.Dark
+        DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
         
         let scoreInfo = DNMScoreFromShorthand(name: "parse_slurTest")

@@ -27,10 +27,10 @@ public class Slur: Ligature {
     private var angle_degrees: Degrees = 0
     private var angle_radians: Radians = 0
     
-    private var rise: CGFloat? { get { return getRise() } }
-    private var run: CGFloat? { get { return getRun() } }
-    private var slope: CGFloat? { get { return getSlope() } }
-    private var angle: CGFloat? { get { return getAngle() } }
+    //private var rise: CGFloat? { get { return getRise() } }
+    //private var run: CGFloat? { get { return getRun() } }
+    //private var slope: CGFloat? { get { return getSlope() } }
+    //private var angle: CGFloat? { get { return getAngle() } }
     
     // at some point, these will be unnecessary, as they will be derived from controlPoint1/2
     private var controlPoint1_angle: CGFloat = 0
@@ -216,11 +216,13 @@ public class Slur: Ligature {
         
         print("slur set default control point attrs")
         
-        if let angle = angle {
+        if let angle = angle, length = length {
             
             // set default control point length (this is currently static)
-            controlPoint1_length = 2.36 * g
-            controlPoint2_length = 2.36 * g
+            
+            controlPoint1_length = 0.309 * length
+            controlPoint2_length = 0.309 * length
+            print("g: \(g); slurLength: \(length); controlPointLength: \(controlPoint1_length)")
             
             let ratio: CGFloat = 1.236
             let controlPointAngle = RADIANS_TO_DEGREES(atan(ratio))
@@ -355,27 +357,6 @@ public class Slur: Ligature {
             controlPoint2_length = length
             controlPoint2_angle = angle
         }
-    }
-
-    private func getRise() -> CGFloat? {
-        if let point1 = point1, point2 = point2 { return point2.y - point1.y }
-        return nil
-    }
-
-    private func getRun() -> CGFloat? {
-        if let point1 = point1, point2 = point2 { return point2.x - point1.x }
-        return nil
-    }
-
-    private func getSlope() -> CGFloat? {
-        if let rise = rise, run = run { return rise / run }
-        return nil
-    }
-    
-    // DEGREES?!
-    private func getAngle() -> CGFloat? {
-        if let slope = slope { return RADIANS_TO_DEGREES(atan(slope)) }
-        return nil
     }
     
     // ANGLE IN RADIANS: MAKE THIS A MORE GLOBAL FUNCTION!
