@@ -37,7 +37,6 @@ public struct Duration: CustomStringConvertible {
     
     public var floatValue: Float? { get { return getFloatValue() } }
     
-    /*
     public static func random() -> Duration {
         let beatsAmount: Int = randomInt(3, max: 8)
         let subdivisionLevel: Int = 2
@@ -46,7 +45,6 @@ public struct Duration: CustomStringConvertible {
             subdivision: Subdivision(level: subdivisionLevel)
         )
     }
-    */
     
     // MARK: Create a Duration
     
@@ -471,14 +469,12 @@ public func - (left: Duration, right: Duration) -> Duration {
     let floatValueDiff = left.floatValue! * 8 - right.floatValue! * 8
     let beatsDiff = Float(left.beats!.amount) - Float(right.beats!.amount)
     if beatsDiff > 0 {
-        print("beatsDiff > 0: \(beatsDiff); floatValueDiff: \(floatValueDiff)")
         let scale = floatValueDiff / beatsDiff
         duration.setScale(scale)
         return duration
     }
     // adjust to make artificial, one beat duration with extremely weird scale
     else {
-        print("beatsDiff <= 0: \(beatsDiff); floatValueDiff: \(floatValueDiff)")
         duration = Duration(1, duration.subdivision!.value)
         duration.setScale(floatValueDiff) // this may be weird?
         return duration

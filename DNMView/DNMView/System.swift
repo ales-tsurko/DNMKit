@@ -10,6 +10,7 @@ import Foundation
 import DNMUtility
 import DNMModel
 
+/// A Musical System (container of a single line's worth of music)
 public class System: ViewNode, BuildPattern {
     
     // DESTROY --------------------------------------------------------------------------------

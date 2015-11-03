@@ -6,30 +6,30 @@ provides-nominal:
 provides-member:
 - ["C7DNMView6DENode", ""]
 provides-dynamic-lookup:
+- "height"
+- "augmentationDots"
+- "components"
 - "flowVertically"
 - "addAugmentationDotAtX"
-- "setWidthWithContents"
-- "height"
 - "addDurationalExtensionFromLeft"
 - "durationalExtensions"
 - "addDurationalExtension"
+- "setWidthWithContents"
 - "addAugmentationDot"
-- "augmentationDots"
-- "components"
 depends-top-level:
-- "NSCoder"
-- "CALayer"
-- "AugmentationDot"
-- !private "*"
-- "DENode"
 - !private "=="
+- !private "*"
 - !private ">"
 - "AnyObject"
-- "ViewNode"
-- "CGFloat"
+- "NSCoder"
 - "DurationalExtension"
-- !private "CGRectMake"
+- "ViewNode"
 - !private "BooleanLiteralType"
+- "CGFloat"
+- !private "CGRectMake"
+- "CALayer"
+- "DENode"
+- "AugmentationDot"
 depends-member:
 - !private ["PSs9AnyObject", "AugmentationDot"]
 - !private ["PSs9AnyObject", "CGRectMake"]

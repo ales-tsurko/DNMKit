@@ -701,11 +701,6 @@ SANode.swift
 	public func addTremoloAtX(x: CGFloat)
 BezierCurve.swift
 	public protocol BezierCurve
-	var p1: CGPoint { get set }
-	var p2: CGPoint { get set }
-	var uiBezierPath: UIBezierPath { get }
-	var cgPath: CGPath { get }
-	func getYValuesAtX(x: CGFloat) -> [CGFloat]
 	func getXAtY(y: CGFloat) -> [CGFloat]
 	func isWithinBounds(x x: CGFloat) -> Bool
 	func isWithinBounds(y y: CGFloat) -> Bool
@@ -1335,7 +1330,6 @@ BeamsLayer.swift
 	public func startBeamsAtX(x: CGFloat, inRange range: (Int, Int))
 	public func stopBeamsAtX(x: CGFloat, inRange range: (Int, Int))
 System.swift
-	public class System: ViewNode, BuildPattern
 	public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
 	public var viewerID: String?
 	public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]]
