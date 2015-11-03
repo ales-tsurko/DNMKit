@@ -37,6 +37,7 @@ public struct Duration: CustomStringConvertible {
     
     public var floatValue: Float? { get { return getFloatValue() } }
     
+    /*
     public static func random() -> Duration {
         let beatsAmount: Int = randomInt(3, max: 8)
         let subdivisionLevel: Int = 2
@@ -45,7 +46,7 @@ public struct Duration: CustomStringConvertible {
             subdivision: Subdivision(level: subdivisionLevel)
         )
     }
-    
+    */
     
     // MARK: Create a Duration
     
