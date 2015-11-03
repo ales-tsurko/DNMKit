@@ -7,6 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		078A9F011BE835FD00F72AFE /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A9F001BE835FD00F72AFE /* DurationTests.swift */; };
+		078A9F021BE8362E00F72AFE /* Beats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F51BE541CA00948758 /* Beats.swift */; };
+		078A9F031BE8362E00F72AFE /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F61BE541CA00948758 /* Duration.swift */; };
+		078A9F041BE8362E00F72AFE /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F71BE541CA00948758 /* DurationSpan.swift */; };
+		078A9F051BE8362E00F72AFE /* Subdivision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F81BE541CA00948758 /* Subdivision.swift */; };
+		078A9F061BE8362E00F72AFE /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F91BE541CA00948758 /* Tempo.swift */; };
+		078A9F071BE8362E00F72AFE /* TempoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5FA1BE541CA00948758 /* TempoFunction.swift */; };
+		078A9F081BE8362E00F72AFE /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6161BE543BF00948758 /* TempoMarking.swift */; };
+		078A9F091BE8362E00F72AFE /* RehearsalMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6181BE543D400948758 /* RehearsalMarking.swift */; };
+		078A9F0A1BE8362E00F72AFE /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6061BE5429D00948758 /* Measure.swift */; };
+		078A9F0B1BE8363300F72AFE /* GetPitchSpellings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */; };
+		078A9F0C1BE8363300F72AFE /* PitchDyadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */; };
+		078A9F0D1BE8363300F72AFE /* PitchMonadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */; };
+		078A9F0E1BE8363300F72AFE /* PitchPolyphonySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */; };
+		078A9F0F1BE8363300F72AFE /* PitchSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E81BE54B0C00948758 /* PitchSpeller.swift */; };
+		078A9F101BE8363300F72AFE /* PitchSpelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E91BE54B0C00948758 /* PitchSpelling.swift */; };
+		078A9F111BE8363300F72AFE /* PitchSpellingDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6EA1BE54B0C00948758 /* PitchSpellingDyad.swift */; };
+		078A9F121BE8363300F72AFE /* PitchSpellingsByPitchClass.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E6EB1BE54B0C00948758 /* PitchSpellingsByPitchClass.json */; };
+		078A9F131BE8363300F72AFE /* PitchVerticalitySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6EC1BE54B0C00948758 /* PitchVerticalitySpeller.swift */; };
+		078A9F141BE8363600F72AFE /* PitchCoarse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F61BE54B1700948758 /* PitchCoarse.swift */; };
+		078A9F151BE8363600F72AFE /* PitchFine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F71BE54B1700948758 /* PitchFine.swift */; };
+		078A9F161BE8363600F72AFE /* PitchInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F81BE54B1700948758 /* PitchInterval.swift */; };
+		078A9F171BE8363600F72AFE /* PitchLetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6F91BE54B1700948758 /* PitchLetterName.swift */; };
+		078A9F181BE8363600F72AFE /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D81BE54AC500948758 /* Frequency.swift */; };
+		078A9F191BE8363600F72AFE /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D91BE54AC500948758 /* MIDI.swift */; };
+		078A9F1A1BE8363B00F72AFE /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DC1BE54AE200948758 /* Pitch.swift */; };
+		078A9F1B1BE8363B00F72AFE /* PitchDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DD1BE54AE200948758 /* PitchDyad.swift */; };
+		078A9F1C1BE8363B00F72AFE /* PitchPolyphony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */; };
+		078A9F1D1BE8363B00F72AFE /* PitchVerticality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */; };
+		078A9F1E1BE8363F00F72AFE /* InstrumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6041BE5426E00948758 /* InstrumentType.swift */; };
+		078A9F1F1BE8363F00F72AFE /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */; };
+		078A9F201BE8364300F72AFE /* ScoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6941BE547DB00948758 /* ScoreInfo.swift */; };
+		078A9F211BE8364300F72AFE /* DNMScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */; };
+		078A9F221BE8364300F72AFE /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6101BE5439300948758 /* Component.swift */; };
+		078A9F231BE8364300F72AFE /* DurationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6121BE5439B00948758 /* DurationNode.swift */; };
+		078A9F241BE8364300F72AFE /* DurationNodeDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6131BE5439B00948758 /* DurationNodeDyad.swift */; };
 		07B11B421BE6A01F00BD10BB /* DNMScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */; };
 		07E4DCCB1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */; };
 		07ECB3D51BE538AD00C9AD08 /* DNMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3D41BE538AD00C9AD08 /* DNMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		078A9F001BE835FD00F72AFE /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
 		07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModel.swift; sourceTree = "<group>"; };
 		07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PreferredClefsAndTranspositionByInstrumentType.json; sourceTree = "<group>"; };
 		07ECB3D11BE538AD00C9AD08 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +205,7 @@
 			children = (
 				07ECB3E01BE538AD00C9AD08 /* DNMModelTests.swift */,
 				07ECB3E21BE538AD00C9AD08 /* Info.plist */,
+				078A9F001BE835FD00F72AFE /* DurationTests.swift */,
 			);
 			path = DNMModelTests;
 			sourceTree = "<group>";
@@ -339,6 +377,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078A9F121BE8363300F72AFE /* PitchSpellingsByPitchClass.json in Resources */,
+				078A9F1F1BE8363F00F72AFE /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +429,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078A9F1A1BE8363B00F72AFE /* Pitch.swift in Sources */,
+				078A9F041BE8362E00F72AFE /* DurationSpan.swift in Sources */,
+				078A9F071BE8362E00F72AFE /* TempoFunction.swift in Sources */,
+				078A9F0C1BE8363300F72AFE /* PitchDyadSpeller.swift in Sources */,
+				078A9F221BE8364300F72AFE /* Component.swift in Sources */,
+				078A9F051BE8362E00F72AFE /* Subdivision.swift in Sources */,
+				078A9F091BE8362E00F72AFE /* RehearsalMarking.swift in Sources */,
+				078A9F1D1BE8363B00F72AFE /* PitchVerticality.swift in Sources */,
+				078A9F0A1BE8362E00F72AFE /* Measure.swift in Sources */,
 				07ECB3E11BE538AD00C9AD08 /* DNMModelTests.swift in Sources */,
+				078A9F151BE8363600F72AFE /* PitchFine.swift in Sources */,
+				078A9F081BE8362E00F72AFE /* TempoMarking.swift in Sources */,
+				078A9F0D1BE8363300F72AFE /* PitchMonadSpeller.swift in Sources */,
+				078A9F1E1BE8363F00F72AFE /* InstrumentType.swift in Sources */,
+				078A9F141BE8363600F72AFE /* PitchCoarse.swift in Sources */,
+				078A9F0E1BE8363300F72AFE /* PitchPolyphonySpeller.swift in Sources */,
+				078A9F201BE8364300F72AFE /* ScoreInfo.swift in Sources */,
+				078A9F1C1BE8363B00F72AFE /* PitchPolyphony.swift in Sources */,
+				078A9F131BE8363300F72AFE /* PitchVerticalitySpeller.swift in Sources */,
+				078A9F0B1BE8363300F72AFE /* GetPitchSpellings.swift in Sources */,
+				078A9F101BE8363300F72AFE /* PitchSpelling.swift in Sources */,
+				078A9F191BE8363600F72AFE /* MIDI.swift in Sources */,
+				078A9F111BE8363300F72AFE /* PitchSpellingDyad.swift in Sources */,
+				078A9F011BE835FD00F72AFE /* DurationTests.swift in Sources */,
+				078A9F0F1BE8363300F72AFE /* PitchSpeller.swift in Sources */,
+				078A9F021BE8362E00F72AFE /* Beats.swift in Sources */,
+				078A9F241BE8364300F72AFE /* DurationNodeDyad.swift in Sources */,
+				078A9F031BE8362E00F72AFE /* Duration.swift in Sources */,
+				078A9F211BE8364300F72AFE /* DNMScoreModel.swift in Sources */,
+				078A9F181BE8363600F72AFE /* Frequency.swift in Sources */,
+				078A9F231BE8364300F72AFE /* DurationNode.swift in Sources */,
+				078A9F1B1BE8363B00F72AFE /* PitchDyad.swift in Sources */,
+				078A9F061BE8362E00F72AFE /* Tempo.swift in Sources */,
+				078A9F171BE8363600F72AFE /* PitchLetterName.swift in Sources */,
+				078A9F161BE8363600F72AFE /* PitchInterval.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
