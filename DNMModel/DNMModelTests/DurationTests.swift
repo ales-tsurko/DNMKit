@@ -20,10 +20,36 @@ class DurationTests: XCTestCase {
         super.tearDown()
     }
 
-    func testAdditionHomogenous() {
+    func testEqualityHomogeneous() {
+        let d1a = Duration(1,8)
+        let d1b = Duration(1,8)
+        XCTAssert(d1a == d1b, "Duration are not equated properly")
+    }
+    
+    func testAdditionHomogeneous() {
         let d1 = Duration(1,8)
         let d2 = Duration(2,8)
         let d3 = Duration(3,8)
+        XCTAssert(d1 + d2 == d3, "Durations do not add properly")
+    }
+    
+    func testSubtractionHomogeneous() {
+        let d3 = Duration(3,8)
+        let d2 = Duration(2,8)
+        let d1 = Duration(1,8)
+        XCTAssert(d3 - d2 == d1, "Durations do not add properly")
+    }
+    
+    func testEqualityHeterogeneous() {
+        let d1 = Duration(1,8)
+        let d2 = Duration(2,8)
+        XCTAssert(d1 != d2, "Durations are not equated properly")
+    }
+    
+    func testAdditionHeterogeneous() {
+        let d1 = Duration(1,8)
+        let d2 = Duration(2,16)
+        let d3 = Duration(2,8)
         XCTAssert(d1 + d2 == d3, "Durations do not add properly")
     }
 }

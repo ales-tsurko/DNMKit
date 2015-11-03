@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07F3E5B21BE53EFE00948758"
+               BuildableName = "DNMConverterTests.xctest"
+               BlueprintName = "DNMConverterTests"
+               ReferencedContainer = "container:DNMConverter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07F3E5A81BE53EFE00948758"
+            BuildableName = "DNMConverter.framework"
+            BlueprintName = "DNMConverter"
+            ReferencedContainer = "container:DNMConverter.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

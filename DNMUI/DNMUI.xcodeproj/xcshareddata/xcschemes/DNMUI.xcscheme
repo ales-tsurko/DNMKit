@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07F3E58E1BE53CF100948758"
+               BuildableName = "DNMUITests.xctest"
+               BlueprintName = "DNMUITests"
+               ReferencedContainer = "container:DNMUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07F3E5841BE53CF100948758"
+            BuildableName = "DNMUI.framework"
+            BlueprintName = "DNMUI"
+            ReferencedContainer = "container:DNMUI.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
