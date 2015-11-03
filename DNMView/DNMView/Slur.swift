@@ -27,11 +27,6 @@ public class Slur: Ligature {
     private var angle_degrees: Degrees = 0
     private var angle_radians: Radians = 0
     
-    //private var rise: CGFloat? { get { return getRise() } }
-    //private var run: CGFloat? { get { return getRun() } }
-    //private var slope: CGFloat? { get { return getSlope() } }
-    //private var angle: CGFloat? { get { return getAngle() } }
-    
     // at some point, these will be unnecessary, as they will be derived from controlPoint1/2
     private var controlPoint1_angle: CGFloat = 0
     private var controlPoint2_angle: CGFloat = 0
@@ -67,7 +62,6 @@ public class Slur: Ligature {
         super.init(point1: point1, point2: point2)
         setDefaultControlPointAttributes()
         build()
-        print("slur: stemDirection: \(stemDirection)")
     }
     
     public override init() { super.init() }
@@ -91,9 +85,6 @@ public class Slur: Ligature {
     }
     
     public func adjustToAvoidPoint(point: CGPoint) {
-        
-        print("SLUR avoid point: \(point)")
-        
         switch stemDirection {
         case .Down: withinStemDirectionDownAdjustToAvoidPoint(point)
         case .Up: withinStemDirectionUpAdjustToAvoidPoint(point)
@@ -213,18 +204,20 @@ public class Slur: Ligature {
     }
     
     private func setDefaultControlPointAttributes() {
-        
-        print("slur set default control point attrs")
-        
-        if let angle = angle, length = length {
+        if let angle = angle, length = length, run = run {
             
-            // set default control point length (this is currently static)
-            
+            // set default control point lengths
             controlPoint1_length = 0.309 * length
             controlPoint2_length = 0.309 * length
-            print("g: \(g); slurLength: \(length); controlPointLength: \(controlPoint1_length)")
+
+            var ratio: CGFloat = 1.236
             
-            let ratio: CGFloat = 1.236
+            // in the case of distant slur connection points, make less bulbous
+            if run > 100 {
+                let diff = run - 100
+                ratio -= 0.004 * diff
+            }
+            
             let controlPointAngle = RADIANS_TO_DEGREES(atan(ratio))
             let dir: CGFloat = stemDirection == .Down ? 1 : -1
             
