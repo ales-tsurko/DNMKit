@@ -17,7 +17,6 @@
 		078A9F081BE8362E00F72AFE /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6161BE543BF00948758 /* TempoMarking.swift */; };
 		078A9F091BE8362E00F72AFE /* RehearsalMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6181BE543D400948758 /* RehearsalMarking.swift */; };
 		078A9F0A1BE8362E00F72AFE /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6061BE5429D00948758 /* Measure.swift */; };
-		078A9F0B1BE8363300F72AFE /* GetPitchSpellings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */; };
 		078A9F0C1BE8363300F72AFE /* PitchDyadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */; };
 		078A9F0D1BE8363300F72AFE /* PitchMonadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */; };
 		078A9F0E1BE8363300F72AFE /* PitchPolyphonySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */; };
@@ -73,7 +72,6 @@
 		07F3E6E11BE54AE200948758 /* PitchDyad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DD1BE54AE200948758 /* PitchDyad.swift */; };
 		07F3E6E21BE54AE200948758 /* PitchPolyphony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */; };
 		07F3E6E31BE54AE200948758 /* PitchVerticality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */; };
-		07F3E6ED1BE54B0C00948758 /* GetPitchSpellings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */; };
 		07F3E6EE1BE54B0C00948758 /* PitchDyadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */; };
 		07F3E6EF1BE54B0C00948758 /* PitchMonadSpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */; };
 		07F3E6F01BE54B0C00948758 /* PitchPolyphonySpeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */; };
@@ -133,7 +131,6 @@
 		07F3E6DD1BE54AE200948758 /* PitchDyad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchDyad.swift; sourceTree = "<group>"; };
 		07F3E6DE1BE54AE200948758 /* PitchPolyphony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchPolyphony.swift; sourceTree = "<group>"; };
 		07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchVerticality.swift; sourceTree = "<group>"; };
-		07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPitchSpellings.swift; sourceTree = "<group>"; };
 		07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchDyadSpeller.swift; sourceTree = "<group>"; };
 		07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchMonadSpeller.swift; sourceTree = "<group>"; };
 		07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchPolyphonySpeller.swift; sourceTree = "<group>"; };
@@ -260,7 +257,6 @@
 		07F3E6D61BE54AA400948758 /* PitchSpelling */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E6E41BE54B0C00948758 /* GetPitchSpellings.swift */,
 				07F3E6E51BE54B0C00948758 /* PitchDyadSpeller.swift */,
 				07F3E6E61BE54B0C00948758 /* PitchMonadSpeller.swift */,
 				07F3E6E71BE54B0C00948758 /* PitchPolyphonySpeller.swift */,
@@ -399,7 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F3E6071BE5429D00948758 /* Measure.swift in Sources */,
-				07F3E6ED1BE54B0C00948758 /* GetPitchSpellings.swift in Sources */,
 				07F3E6141BE5439B00948758 /* DurationNode.swift in Sources */,
 				07F3E6951BE547DB00948758 /* ScoreInfo.swift in Sources */,
 				07F3E6FB1BE54B1700948758 /* PitchFine.swift in Sources */,
@@ -460,7 +455,6 @@
 				078A9F201BE8364300F72AFE /* ScoreInfo.swift in Sources */,
 				078A9F1C1BE8363B00F72AFE /* PitchPolyphony.swift in Sources */,
 				078A9F131BE8363300F72AFE /* PitchVerticalitySpeller.swift in Sources */,
-				078A9F0B1BE8363300F72AFE /* GetPitchSpellings.swift in Sources */,
 				078A9F101BE8363300F72AFE /* PitchSpelling.swift in Sources */,
 				078A9F191BE8363600F72AFE /* MIDI.swift in Sources */,
 				078A9F111BE8363300F72AFE /* PitchSpellingDyad.swift in Sources */,
