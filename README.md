@@ -12,7 +12,7 @@ It includes several subframeworks:
 * **DNMModel**: Model of music
 * **DNMView**: Graphical representation of the musical model
 * **DNMUI**: Interaction elements
-* **DNMJSON**: Wrapper for [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) with DNM-specific funcionality
+* **DNMJSON**: Wrapper for [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) with DNM-specific funcionality (on the way)
 * **DNMAudio**: Wrapper for [The Amazing Audio Engine](https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine) to provide:
     * Sample-accurate timing of events in playback scenarios
     * Audio playback of pitches
