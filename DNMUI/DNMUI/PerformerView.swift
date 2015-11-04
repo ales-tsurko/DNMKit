@@ -77,6 +77,7 @@ public class PerformerView: UIView {
         
         // clean this up, please
         let page_pad: CGFloat = 25
+        let page_pad_left: CGFloat = 50
         
         // hack
         var maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
@@ -111,6 +112,9 @@ public class PerformerView: UIView {
             let pageView = PageView(page: page, systemViews: systemViewsInRange, performerView: self)
             pageViews.append(pageView)
             
+            pageView.layer.borderColor = UIColor.purpleColor().CGColor
+            pageView.layer.borderWidth = 1
+            
             
             systemIndex = lastSystemIndex + 1
             pages.append(page)
@@ -118,17 +122,6 @@ public class PerformerView: UIView {
         self.pages = pages
     }
 
-    
-    /*
-    public func addSystemViews() {
-        if let currentPage = currentPage {
-            for system in currentPage.systems {
-                let systemView = SystemView(system: system, pageView: currentPageView!)
-                addSubview(systemView)
-            }
-        }
-    }
-    */
     
     public func goToPageAtIndex(index: Int) {
         //print("go to page at index: \(index)")
@@ -170,14 +163,17 @@ public class PerformerView: UIView {
     }
     
     public func setFrame() {
+        let pad_left: CGFloat = 50
+        let pad_top: CGFloat = 12
         if let currentPageView = currentPageView {
             frame = CGRectMake(
-                25, 0.618 * 25, currentPageView.frame.width, currentPageView.frame.height
+                pad_left, pad_top, currentPageView.frame.width, currentPageView.frame.height
             )
         }
-        
+        /*
         if let currentPage = currentPage {
-            frame = CGRectMake(25, 0.618 * 25, currentPage.frame.width, currentPage.frame.height)
+            frame = CGRectMake(pad_left, pad_top, currentPage.frame.width, currentPage.frame.height)
         }
+        */
     }
 }

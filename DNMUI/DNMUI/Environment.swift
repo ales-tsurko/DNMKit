@@ -119,7 +119,8 @@ public class Environment: UIView {
     }
     
     public func setFrame() {
-        if let currentView = currentView { frame = currentView.frame }
+        //if let currentView = currentView { frame = currentView.frame }
+        frame = UIScreen.mainScreen().bounds
     }
     
     // MARK: Page Navigation
@@ -151,6 +152,40 @@ public class Environment: UIView {
         createViews()
         goToViewWithID("omni") // set default view
         goToFirstPage()
+        addPageControlButtons()
+        // addPageControlButtons
+        
+        //layer.borderWidth = 1
+        //layer.borderColor = UIColor.grayColor().CGColor
+    }
+    
+    public func addPageControlButtons() {
+        addPageControlButtonPrevious()
+        addPageControlButtonNext()
+    }
+    
+    private func addPageControlButtonNext() {
+        let nextPageButton = PageControlButton.withType(.Next)!
+        nextPageButton.layer.position = CGPoint(
+            x: frame.width - (0.5 * nextPageButton.frame.width),
+            y: frame.height - (0.5 * nextPageButton.frame.height)
+        )
+        nextPageButton.addTarget(self,
+            action: "goToNextPage", forControlEvents: .TouchUpInside
+        )
+        addSubview(nextPageButton)
+    }
+    
+    private func addPageControlButtonPrevious() {
+        let previousPageButton = PageControlButton.withType(.Previous)!
+        previousPageButton.layer.position = CGPoint(
+            x: 0.5 * previousPageButton.frame.width,
+            y: frame.height - (0.5 * previousPageButton.frame.height)
+        )
+        previousPageButton.addTarget(self,
+            action: "goToPreviousPage", forControlEvents: .TouchUpInside
+        )
+        addSubview(previousPageButton)
     }
     
     // manageSpanners()
@@ -224,8 +259,6 @@ public class Environment: UIView {
             
             manageTempoMarkingsForSystem(system)
             manageRehearsalMarkingsForSystem(system)
-            
-            print("'FINAL' BUILD: system: \(s); height: \(system.frame.height)")
         }
         return systems
     }
