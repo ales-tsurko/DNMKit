@@ -83,19 +83,16 @@ public class SystemView: UIView {
 
     public func stateHasChangedFromButtonSwitchNodeComplex(complex: ButtonSwitchNodeComplex) {
         system.componentTypesShownByID = complex.componentTypesShownByID
-        //system.arrangeNodesWithComponentTypesPresent()
-        
-        
+        system.arrangeNodesWithComponentTypesPresent()
         pageView.systemsNeedReflowing()
         print("system.stateHasChangedFromButtonSwitchNodeComplex: newHeight: \(system.frame.height)")
         
-        /*
+
         // do this within systemsNeedReflowing... up there
         // encapsulate: call from within pageView: pageView.setFramesOfAllSystemViews()
         for systemView in pageView.systemViews {
             systemView.setFrame()
         }
-        */
     }
     
     public func setFrame() {

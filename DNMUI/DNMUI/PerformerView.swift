@@ -48,15 +48,16 @@ public class PerformerView: UIView {
     
     public func systemsNeedReflowing() {
         print("performerView.systemsNeedReflowing()")
+    
         
         // remove pageView subviews
         for pageView in pageViews { pageView.removeFromSuperview() }
         pages = []
         pageViews = []
-        //createPages()
-        
+        createPages()
         // create way of remembering page number -- or systemrange
-        //goToFirstPage()
+        goToFirstPage()
+        setFrame()
     }
     
     
@@ -101,6 +102,7 @@ public class PerformerView: UIView {
         self.pages = pages
     }
     
+    /*
     public func addSystemViews() {
         if let currentPage = currentPage {
             for system in currentPage.systems {
@@ -109,6 +111,7 @@ public class PerformerView: UIView {
             }
         }
     }
+    */
     
     public func goToPageAtIndex(index: Int) {
         //print("go to page at index: \(index)")

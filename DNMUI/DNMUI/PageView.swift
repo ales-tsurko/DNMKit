@@ -23,10 +23,10 @@ public class PageView: UIView {
         super.init(frame: UIScreen.mainScreen().bounds)
         
         layer.addSublayer(page)
-        //addSystemViews()
+        addSystemViews()
         
         //layer.borderColor = UIColor.blueColor().CGColor
-        //rlayer.borderWidth = 1
+        //layer.borderWidth = 1
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
@@ -37,10 +37,17 @@ public class PageView: UIView {
             let systemView = SystemView(system: system, pageView: self)
             systemViews.append(systemView)
             addSubview(systemView)
+            systemView.layer.borderColor = UIColor.greenColor().CGColor
+            systemView.layer.borderWidth = 1
         }
     }
     
+    public func clearSystemViews() {
+        for systemView in systemViews { systemView.removeFromSuperview() }
+    }
+    
     public func systemsNeedReflowing() {
+        clearSystemViews()
         performerView.systemsNeedReflowing()
     }
 }

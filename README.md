@@ -17,6 +17,11 @@ It includes several subframeworks:
     * Sample-accurate timing of events in playback scenarios
     * Audio playback of pitches
     * and so on
+* **DNMOSC** Wrapper for [F53OSC](https://github.com/Figure53/F53OSC) to connect to:
+    * pd / Max/MSP
+    * Supercollider
+    * QLab
+    * and so on
 * **DNMConverter**: Parsers and generators for various formats 
     * Currently only for DNMShorthand text input, later for:
         * JSON
