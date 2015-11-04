@@ -23,7 +23,7 @@ Underlying framework for **DNM (Dynamic Notation for Music)**.
         * and so on
 
 
-#### On the way:
+#### Subframeworks to be implemented:
 
 * **DNMJSON**: Wrapper for [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) with DNM-specific funcionality (on the way)
 * **DNMAudio**: Wrapper for [The Amazing Audio Engine](https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine) to provide:
