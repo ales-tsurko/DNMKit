@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072CE3881BEA1A3300106951 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072CE3871BEA1A3300106951 /* Instrument.swift */; };
 		07ECB3F91BE538BB00C9AD08 /* DNMView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3F81BE538BB00C9AD08 /* DNMView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4001BE538BB00C9AD08 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3F51BE538BB00C9AD08 /* DNMView.framework */; };
 		07ECB4051BE538BB00C9AD08 /* DNMViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4041BE538BB00C9AD08 /* DNMViewTests.swift */; };
@@ -52,7 +53,6 @@
 		07F3E71A1BE66CED00948758 /* Slur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7191BE66CED00948758 /* Slur.swift */; };
 		07F3E71C1BE66D2300948758 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E71B1BE66D2300948758 /* MeasureView.swift */; };
 		07F3E71E1BE66D4000948758 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E71D1BE66D3F00948758 /* DNMModel.framework */; };
-		07F3E7201BE66D6E00948758 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E71F1BE66D6E00948758 /* Instrument.swift */; };
 		07F3E7221BE66D8500948758 /* GraphWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7211BE66D8500948758 /* GraphWaveform.swift */; };
 		07F3E7241BE66DA200948758 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7231BE66DA200948758 /* System.swift */; };
 		07F3E7261BE66DED00948758 /* Waveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7251BE66DED00948758 /* Waveform.swift */; };
@@ -110,6 +110,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072CE3871BEA1A3300106951 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		07ECB3F51BE538BB00C9AD08 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3F81BE538BB00C9AD08 /* DNMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMView.h; sourceTree = "<group>"; };
 		07ECB3FA1BE538BB00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		07F3E7191BE66CED00948758 /* Slur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slur.swift; sourceTree = "<group>"; };
 		07F3E71B1BE66D2300948758 /* MeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		07F3E71D1BE66D3F00948758 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
-		07F3E71F1BE66D6E00948758 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Instrument.swift; path = ../../../DENM_RESTRUCTURE/denm_view/denm_view/Instrument.swift; sourceTree = "<group>"; };
 		07F3E7211BE66D8500948758 /* GraphWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphWaveform.swift; sourceTree = "<group>"; };
 		07F3E7231BE66DA200948758 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		07F3E7251BE66DED00948758 /* Waveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waveform.swift; sourceTree = "<group>"; };
@@ -468,7 +468,7 @@
 				07F3E72A1BE66E4300948758 /* InstrumentEvent.swift */,
 				07F3E72B1BE66E4300948758 /* InstrumentEventHandler.swift */,
 				07F3E72C1BE66E4300948758 /* InstrumentString.swift */,
-				07F3E71F1BE66D6E00948758 /* Instrument.swift */,
+				072CE3871BEA1A3300106951 /* Instrument.swift */,
 			);
 			name = Instrument;
 			sourceTree = "<group>";
@@ -633,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072CE3881BEA1A3300106951 /* Instrument.swift in Sources */,
 				07F3E7511BE6722100948758 /* SubdivisionGraphic.swift in Sources */,
 				07F3E6D11BE54A3D00948758 /* GraphEventNode.swift in Sources */,
 				07F3E7591BE6750F00948758 /* DENode.swift in Sources */,
@@ -654,7 +655,6 @@
 				07F3E76C1BE6762600948758 /* DMLigatureSegment.swift in Sources */,
 				07F3E6BB1BE5499200948758 /* Ligature.swift in Sources */,
 				07F3E6CA1BE54A2100948758 /* GraphEvent.swift in Sources */,
-				07F3E7201BE66D6E00948758 /* Instrument.swift in Sources */,
 				07F3E7321BE66E7B00948758 /* Barline.swift in Sources */,
 				07F3E70E1BE54CC500948758 /* UIColorExtensions.swift in Sources */,
 				07F3E76D1BE6762600948758 /* DMNode.swift in Sources */,
