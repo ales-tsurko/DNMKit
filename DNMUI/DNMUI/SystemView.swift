@@ -32,13 +32,15 @@ public class SystemView: UIView {
     public var stemsSelected: [Stem] = []
     
     // takes in frame from global context
-    public init(system: System, pageView: PageView) {
+    public init(system: System, pageView: PageView? = nil) {
         self.system = system
-        self.pageView = pageView
+        self.pageView = pageView // need to make sure this gets set before UI happens
         super.init(frame: system.frame) // sketch?
 
         manageGestureRecognizers()
         createComponentSelector()
+        
+
     }
     
     private func manageGestureRecognizers() {
@@ -85,9 +87,8 @@ public class SystemView: UIView {
         system.componentTypesShownByID = complex.componentTypesShownByID
         system.arrangeNodesWithComponentTypesPresent()
         pageView.systemsNeedReflowing()
-        print("system.stateHasChangedFromButtonSwitchNodeComplex: newHeight: \(system.frame.height)")
         
-
+        
         // do this within systemsNeedReflowing... up there
         // encapsulate: call from within pageView: pageView.setFramesOfAllSystemViews()
         for systemView in pageView.systemViews {

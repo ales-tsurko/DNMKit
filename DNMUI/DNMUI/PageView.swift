@@ -15,30 +15,26 @@ public class PageView: UIView {
     public var performerView: PerformerView!
     public var systemViews: [SystemView] = []
     
-    public init(page: Page, performerView: PerformerView) {
+    public init(page: Page, systemViews: [SystemView], performerView: PerformerView) {
         self.page = page
         self.performerView = performerView
-        
-        // hack
+        self.systemViews = systemViews
+
         super.init(frame: UIScreen.mainScreen().bounds)
-        
+
         layer.addSublayer(page)
         addSystemViews()
-        
-        //layer.borderColor = UIColor.blueColor().CGColor
-        //layer.borderWidth = 1
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func addSystemViews() {
-        for system in page.systems {
-            let systemView = SystemView(system: system, pageView: self)
-            systemViews.append(systemView)
+        
+        clearSystemViews()
+        for systemView in systemViews {
+            systemView.pageView = self
             addSubview(systemView)
-            systemView.layer.borderColor = UIColor.greenColor().CGColor
-            systemView.layer.borderWidth = 1
         }
     }
     

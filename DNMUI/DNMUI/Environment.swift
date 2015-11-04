@@ -201,11 +201,6 @@ public class Environment: UIView {
         // PRELIMINARY BUILD
         for (s, system) in systems.enumerate() {
             system.build()
-            
-            print("INITIAL BUILD: system: \(s); height: \(system.frame.height)")
-            
-            system.borderWidth = 1
-            system.borderColor = UIColor.redColor().CGColor
         }
         
         // ADD FRAYED LIGATURES, ADD DMNODES IF NECESSARY

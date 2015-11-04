@@ -20,13 +20,17 @@ public class PerformerView: UIView {
     public var pageViews: [PageView] = []
     public var currentPageView: PageView?
     
+    /// All Systems for a given piece of music
     public var systems: [System] = []
+    
+    /// All SystemViews for a given piece of music
     public var systemViews: [SystemView] = []
 
     public init(id: String, systems: [System]) {
         super.init(frame: UIScreen.mainScreen().bounds)
         self.id = id
         self.systems = systems // ALL SYSTEMS
+        self.systemViews = makeSystemViewsForSystems(systems) // ALL SYSTEM VIEWS
         build()
     }
     
@@ -60,13 +64,21 @@ public class PerformerView: UIView {
         setFrame()
     }
     
+    public func makeSystemViewsForSystems(systems: [System]) -> [SystemView] {
+        var systemViews: [SystemView] = []
+        for system in systems {
+            let systemView = SystemView(system: system)
+            systemViews.append(systemView)
+        }
+        return systemViews
+    }
     
     public func createPages() {
         
-        let before = CFAbsoluteTimeGetCurrent()
-        
         // clean this up, please
         let page_pad: CGFloat = 25
+        
+        // hack
         var maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
         
         // remove PageViews as necessary
@@ -74,33 +86,38 @@ public class PerformerView: UIView {
 
         // add systemViews
         
-        
         var pages: [Page] = []
         var systemIndex: Int = 0
         while systemIndex < systems.count {
             let systemRange = System.rangeFromSystems(systems,
                 startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
             )
-            
-            print("PerformerView.createPages() ID: \(id) ------------------------------------")
-            for (s, system) in systemRange.enumerate() {
-                print("system: \(s): \(system); height: \(system.frame.height)")
-            }
+        
             
             // clean up initialization
             let page = Page(systems: systemRange)
             page.build()
             
-            let pageView = PageView(page: page, performerView: self)
-            pageViews.append(pageView)
             
             // make contingency for too-big-a-system
             let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
+            
+            var systemViewsInRange: [SystemView] = []
+            for sv in systemIndex...lastSystemIndex {
+                let systemView = systemViews[sv]
+                systemViewsInRange.append(systemView)
+            }
+            
+            let pageView = PageView(page: page, systemViews: systemViewsInRange, performerView: self)
+            pageViews.append(pageView)
+            
+            
             systemIndex = lastSystemIndex + 1
             pages.append(page)
         }
         self.pages = pages
     }
+
     
     /*
     public func addSystemViews() {
