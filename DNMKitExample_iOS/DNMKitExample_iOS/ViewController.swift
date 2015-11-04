@@ -28,8 +28,18 @@ class ViewController: UIViewController {
         environment = Environment(scoreInfo: scoreInfo)
         environment.build()
         view.addSubview(environment)
+
+        print("after everything is done:")
         
-        // Do any additional setup after loading the view, typically from a nib.
+        if let curPageView = environment.currentView {
+            for (s, system) in curPageView.systems.enumerate() {
+                print("system: \(s); height: \(system.frame.height)")
+            }
+        }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {

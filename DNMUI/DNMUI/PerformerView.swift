@@ -9,6 +9,7 @@
 import QuartzCore
 import DNMView
 
+// Rename as PerformerInterfaceView
 public class PerformerView: UIView {
 
     public var id: String = ""
@@ -20,11 +21,12 @@ public class PerformerView: UIView {
     public var currentPageView: PageView?
     
     public var systems: [System] = []
+    public var systemViews: [SystemView] = []
 
     public init(id: String, systems: [System]) {
         super.init(frame: UIScreen.mainScreen().bounds)
         self.id = id
-        self.systems = systems
+        self.systems = systems // ALL SYSTEMS
         build()
     }
     
@@ -36,7 +38,7 @@ public class PerformerView: UIView {
         goToFirstPage()
         setFrame()
         
-        // encapsulate
+        // encapsulate: setFramesOfSystemViews()
         for pageView in pageViews {
             for systemView in pageView.systemViews {
                 systemView.setFrame()
@@ -44,21 +46,34 @@ public class PerformerView: UIView {
         }
     }
     
-    public func rebuild() {
-
+    public func systemsNeedReflowing() {
+        print("performerView.systemsNeedReflowing()")
+        
+        // remove pageView subviews
+        for pageView in pageViews { pageView.removeFromSuperview() }
+        pages = []
+        pageViews = []
         //createPages()
+        
+        // create way of remembering page number -- or systemrange
         //goToFirstPage()
-        //setFrame()
     }
     
+    
     public func createPages() {
+        
         let before = CFAbsoluteTimeGetCurrent()
         
         // clean this up, please
         let page_pad: CGFloat = 25
         var maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
         
-        subviews.map { $0.removeFromSuperview() }
+        // remove PageViews as necessary
+        for pageView in pageViews { pageView.removeFromSuperview() }
+
+        // add systemViews
+        
+        
         var pages: [Page] = []
         var systemIndex: Int = 0
         while systemIndex < systems.count {
@@ -66,11 +81,15 @@ public class PerformerView: UIView {
                 startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
             )
             
+            print("PerformerView.createPages() ID: \(id) ------------------------------------")
+            for (s, system) in systemRange.enumerate() {
+                print("system: \(s): \(system); height: \(system.frame.height)")
+            }
+            
             // clean up initialization
             let page = Page(systems: systemRange)
             page.build()
             
-
             let pageView = PageView(page: page, performerView: self)
             pageViews.append(pageView)
             
@@ -79,7 +98,6 @@ public class PerformerView: UIView {
             systemIndex = lastSystemIndex + 1
             pages.append(page)
         }
-        
         self.pages = pages
     }
     

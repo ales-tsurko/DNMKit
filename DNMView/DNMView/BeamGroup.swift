@@ -110,14 +110,10 @@ public class BeamGroup: ViewNode, BuildPattern {
     
     public func build() {
         var x: CGFloat = 0
-        
-        print("beam group about to build: durationNode: \(durationNode)")
-        
         descendToBuildWithDurationNode(durationNode!, context: self, x: &x)
         commitTupletBracketGroups() // add in build()
         addNode(beamsLayerGroup!)
         layout()
-        
         
         // HACK: encapsulate, get rid of hard-coded values
         // add slash if !isMetrical

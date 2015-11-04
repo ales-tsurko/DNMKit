@@ -66,7 +66,7 @@ public class InstrumentEventHandler {
                 break
             case .EdgeStart(let hasDashes):
                 
-                print("decorate instrument event: add edge start")
+                //print("decorate instrument event: add edge start")
                 
                 for graphEvent in instrumentEvent!.graphEvents {
                     if let ccGraph = graphEvent.graph as? GraphContinuousController {
@@ -96,7 +96,7 @@ public class InstrumentEventHandler {
                 }
             case .Label(let value):
                 
-                print("instr e handler add label")
+                //print("instr e handler add label")
                 
                 for graphEvent in instrumentEvent!.graphEvents {
                     let label = Label(x: 0, top: 0, height: 20, text: value)

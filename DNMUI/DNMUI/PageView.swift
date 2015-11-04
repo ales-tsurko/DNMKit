@@ -23,7 +23,7 @@ public class PageView: UIView {
         super.init(frame: UIScreen.mainScreen().bounds)
         
         layer.addSublayer(page)
-        addSystemViews()
+        //addSystemViews()
         
         //layer.borderColor = UIColor.blueColor().CGColor
         //rlayer.borderWidth = 1
@@ -38,5 +38,9 @@ public class PageView: UIView {
             systemViews.append(systemView)
             addSubview(systemView)
         }
+    }
+    
+    public func systemsNeedReflowing() {
+        performerView.systemsNeedReflowing()
     }
 }

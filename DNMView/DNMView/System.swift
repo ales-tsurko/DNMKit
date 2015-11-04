@@ -986,10 +986,32 @@ public class System: ViewNode, BuildPattern {
         createSlurHandlers()
         addSlurs()
         setDefaultComponentTypesShownByID()
+        
+        /*
+        if viewerID == "omni" {
+            print("viewID is omni!")
+            componentTypesShownByID = componentTypesByID
+        }
+        */
+        
+
+
+        
+        print("SYSTEM: \(viewerID): componentTypesByID: \(componentTypesByID); componentTypesShownByID: \(componentTypesShownByID)")
+        
+        
+        //arrangeNodesWithComponentTypesPresent()
         hasBeenBuilt = true
     }
     
     private func setDefaultComponentTypesShownByID() {
+        
+        // make sure PERFORMER is in all component types
+        for (id, componentTypes) in componentTypesByID {
+            componentTypesByID[id]!.append("performer")
+        }
+        
+        // then transfer all to componentTypesShown
         for (id, componentTypes) in componentTypesByID {
             componentTypesShownByID[id] = componentTypes
         }
@@ -999,7 +1021,6 @@ public class System: ViewNode, BuildPattern {
         for (_, slurHandlers) in slurHandlersByID {
             for slurHandler in slurHandlers {
                 if let slur = slurHandler.makeSlurInContext(eventsNode) {
-                    //eventsNode.addSublayer(slur)
                     eventsNode.insertSublayer(slur, atIndex: 0)
                 }
             }

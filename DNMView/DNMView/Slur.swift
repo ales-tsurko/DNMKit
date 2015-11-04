@@ -147,8 +147,6 @@ public class Slur: Ligature {
     
     private func adjustControlPointsByX(x: CGFloat, andY y: CGFloat) {
         
-        print("adjust control points by x: \(x); and y: \(y)")
-        
         /*
         // DEAL WITH THE SCALING OF X,Y HERE
         var x1: CGFloat = 0

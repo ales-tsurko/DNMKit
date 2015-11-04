@@ -10,6 +10,7 @@ import QuartzCore
 import DNMModel
 import DNMView
 
+// Consider making this a UIViewController subclass
 public class Environment: UIView {
     
     public var viewSelector: RadioGroupPanelVertical!
@@ -26,7 +27,10 @@ public class Environment: UIView {
     public var systems: [System] = []
     
     public var durationNodes: [DurationNode] = []
+    
+    // Change to Measure, rather than MeasureView
     public var measures: [MeasureView] = []
+    
     public var tempoMarkings: [TempoMarking] = []
     public var rehearsalMarkings: [RehearsalMarking] = []
     
@@ -44,6 +48,7 @@ public class Environment: UIView {
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
         self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
+        
         self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
@@ -53,9 +58,10 @@ public class Environment: UIView {
     public init(scoreInfo: ScoreInfo) {
         super.init(frame: CGRectZero)
         self.iIDsAndInstrumentTypesByPID = scoreInfo.iIDsAndInstrumentTypesByPID
+        
         self.measures = makeMeasureViewsWithMeasures(scoreInfo.measures)
         self.tempoMarkings = scoreInfo.tempoMarkings
-        self.rehearsalMarkings = scoreInfo.rehearsalMarkings // createRehearsalMarkingsWith..._model
+        self.rehearsalMarkings = scoreInfo.rehearsalMarkings
         self.durationNodes = scoreInfo.durationNodes
     }
     
@@ -63,7 +69,6 @@ public class Environment: UIView {
         var measures: [MeasureView] = []
         for measure_model in measures_model {
             let duration = measure_model.duration
-            //let offsetDuration = measure_model.offsetDuration
             let measure = MeasureView(duration: duration)
             measure.hasTimeSignature = measure_model.hasTimeSignature
             measures.append(measure)
@@ -71,45 +76,22 @@ public class Environment: UIView {
         return measures
     }
     
-    /*
-    public init(
-        measures: [Measure] = [],
-        durationNodes: [DurationNode] = [],
-        iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = [],
-        viewerID: String = ""
-    )
-    {
-        super.init(frame: CGRectZero)
-        self.measures = measures
-        self.durationNodes = durationNodes
-        self.viewerID = viewerID
-        self.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
-        
-        let gR = UITapGestureRecognizer(target: self, action: "didTap")
-        addGestureRecognizer(gR)
-    }
-    */
-
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    public func didTap() {
-        
-    }
-    
     public func createViews() {
-
-        viewIDs = []
-        for performerArray in iIDsAndInstrumentTypesByPID {
-            for (id, _) in performerArray {
-               viewIDs.append(id)
-            }
-        }
-        viewIDs.append("omni")
+        
+        // Get ViewIDs
+        let viewIDs = getViewIDs()
         
         for id in viewIDs {
+            
+            // Create all Systems for the whole piece, regardless of Page
             let systems = makeSystemsWithViewerID(id)
+            
+            // Create a Performer(Interface)View, passing ALL Systems!
             let view = PerformerView(id: id, systems: systems)
+            
             viewByID[id] = view
             views.append(view)
         }
@@ -117,11 +99,23 @@ public class Environment: UIView {
     
     public func goToViewWithID(id: String) {
         if let view = viewByID[id] {
-            for subview in subviews { subview.removeFromSuperview() }
+            
+            // Remove currentView
+            if let currentView = currentView { currentView.removeFromSuperview() }
+            
             addSubview(view)
             currentView = view
             setFrame()
         }
+    }
+    
+    private func getViewIDs() -> [String] {
+        var viewIDs: [String] = []
+        for performerArray in iIDsAndInstrumentTypesByPID {
+            for (id, _) in performerArray { viewIDs.append(id) }
+        }
+        viewIDs.append("omni")
+        return viewIDs
     }
     
     public func setFrame() {
@@ -165,20 +159,10 @@ public class Environment: UIView {
         // DurationalExtension
         // Slur
     }
-
-    /*
-    public func createSystems() {
-        self.systems = makeSystems()
-    }
-    */
-    
-    public func createPages() {
-        self.pages = makePages()
-    }
     
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
-        // set properties of measure
+        // this should become unnecessary: set properties of measure
         for (m, measure) in measures.enumerate() {
             measure.number = m + 1
             measure.beatWidth = beatWidth
@@ -215,8 +199,13 @@ public class Environment: UIView {
         }
         
         // PRELIMINARY BUILD
-        for system in systems {
+        for (s, system) in systems.enumerate() {
             system.build()
+            
+            print("INITIAL BUILD: system: \(s); height: \(system.frame.height)")
+            
+            system.borderWidth = 1
+            system.borderColor = UIColor.redColor().CGColor
         }
         
         // ADD FRAYED LIGATURES, ADD DMNODES IF NECESSARY
@@ -224,7 +213,7 @@ public class Environment: UIView {
         manageSlursForSystems(systems)
         
         // COMPLETE BUILD
-        for system in systems {
+        for (s, system) in systems.enumerate() {
             
             // encapsulate
             // make show only view id, unless omni view
@@ -234,76 +223,48 @@ public class Environment: UIView {
             }
             
             system.arrangeNodesWithComponentTypesPresent() // need to get slurs in there somehow
+            
+            // probably not the best place for this
             system.createStems()
             
+            manageTempoMarkingsForSystem(system)
+            manageRehearsalMarkingsForSystem(system)
             
-            // manage tempoMarkings
-            for tempoMarking in tempoMarkings {
-                if tempoMarking.offsetDuration >= system.offsetDuration &&
-                    tempoMarking.offsetDuration < system.totalDuration
-                {
-                    let durationFromSystemStart = tempoMarking.offsetDuration - system.offsetDuration
-                    //let x = graphicalWidth(duration: durationFromSystemStart, beatWidth: beatWidth) + system.infoStartX
-                    let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
-                    
-                    system.addTempoMarkingWithValue(tempoMarking.value, andSubdivisionLevel: tempoMarking.subdivisionLevel, atX: x)
-                }
-            }
-            
-            //
-            for rehearsalMarking in rehearsalMarkings {
-                if rehearsalMarking.offsetDuration >= system.offsetDuration &&
-                    rehearsalMarking.offsetDuration < system.totalDuration
-                {
-                    let durationFromSystemStart = rehearsalMarking.offsetDuration
-                        - system.offsetDuration
-                    
-                    let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
-                    
-                    /*
-                    let x = graphicalWidth(duration: durationFromSystemStart, beatWidth: beatWidth)
-                        + system.infoStartX
-                    */
-                    
-                    if let type = RehearsalMarkingType(rawValue: rehearsalMarking.type) {
-                        system.addRehearsalMarkingWithIndex(rehearsalMarking.index,
-                            type: type, atX: x
-                        )
-                    }
-                }
-            }
+            print("'FINAL' BUILD: system: \(s); height: \(system.frame.height)")
         }
         return systems
     }
     
-    
-    public func makePages() -> [Page] {
-
-        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
-
-        var pages: [Page] = []
-        var systemIndex: Int = 0
-        
-        while systemIndex < systems.count {
-            let systemRange = System.rangeFromSystems(systems,
-                startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
-            )
-
-            // clean up initialization
-            let page = Page(systems: systemRange)
-            //page.left = page_pad
-            page.top = page_pad // hack
-            page.build()
-
-            
-            // make conditional if can't make system cuz its too long
-            let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
-            systemIndex = lastSystemIndex + 1
-            pages.append(page)
+    private func manageRehearsalMarkingsForSystem(system: System) {
+        for rehearsalMarking in rehearsalMarkings {
+            if rehearsalMarking.offsetDuration >= system.offsetDuration &&
+                rehearsalMarking.offsetDuration < system.totalDuration
+            {
+                let durationFromSystemStart = (
+                    rehearsalMarking.offsetDuration - system.offsetDuration
+                )
+                let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
+                if let type = RehearsalMarkingType(rawValue: rehearsalMarking.type) {
+                    system.addRehearsalMarkingWithIndex(rehearsalMarking.index,
+                        type: type, atX: x
+                    )
+                }
+            }
         }
-        return pages
     }
     
+    private func manageTempoMarkingsForSystem(system: System) {
+        for tempoMarking in tempoMarkings {
+            if tempoMarking.offsetDuration >= system.offsetDuration &&
+                tempoMarking.offsetDuration < system.totalDuration
+            {
+                let durationFromSystemStart = tempoMarking.offsetDuration - system.offsetDuration
+                let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
+                
+                system.addTempoMarkingWithValue(tempoMarking.value, andSubdivisionLevel: tempoMarking.subdivisionLevel, atX: x)
+            }
+        }
+    }
     
     public func manageSlursForSystems(systems: [System]) {
         struct SlurSpan {

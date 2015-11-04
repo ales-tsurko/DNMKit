@@ -74,7 +74,8 @@ public class SystemView: UIView {
         addLeaderButtonSwitchNodesForPerformers()
         componentSelector.layoutButtonSwitchNodes()
         setDefaultValuesIfOmniView()
-        stateHasChangedFromButtonSwitchNodeComplex(componentSelector)
+        system.componentTypesShownByID = componentSelector.componentTypesShownByID
+        system.arrangeNodesWithComponentTypesPresent()
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
@@ -82,10 +83,19 @@ public class SystemView: UIView {
 
     public func stateHasChangedFromButtonSwitchNodeComplex(complex: ButtonSwitchNodeComplex) {
         system.componentTypesShownByID = complex.componentTypesShownByID
-        system.arrangeNodesWithComponentTypesPresent()
+        //system.arrangeNodesWithComponentTypesPresent()
         
+        
+        pageView.systemsNeedReflowing()
+        print("system.stateHasChangedFromButtonSwitchNodeComplex: newHeight: \(system.frame.height)")
+        
+        /*
+        // do this within systemsNeedReflowing... up there
         // encapsulate: call from within pageView: pageView.setFramesOfAllSystemViews()
-        for systemView in pageView.systemViews { systemView.setFrame() }
+        for systemView in pageView.systemViews {
+            systemView.setFrame()
+        }
+        */
     }
     
     public func setFrame() {
@@ -115,19 +125,7 @@ public class SystemView: UIView {
             componentSelector.layer.position.x = 0.5 * componentSelector.frame.width
         }
     }
-    
-    /*
-    public func stateHasChangedFromComponentSelector(componentSelector: ComponentSelector) {
-        system.componentTypesShownByID = componentSelector.componentTypesShownByID
-        system.arrangeNodesWithComponentTypesPresent()
-        //pageView.performerView.rebuild()
-        
-        for systemView in pageView.systemViews {
-            systemView.setFrame()
-        }
-        //setFrame()
-    }
-    */
+
     
     public func switchComponentSelector() {
         isShowingComponentSelector ? hideComponentSelector() : showComponentSelector()

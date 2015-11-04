@@ -57,7 +57,6 @@ public class Performer: ViewNode {
         idsAndInstrumentTypes: [(String, InstrumentType)]
     )
     {
-        print("performer add instruments with ids and instrumentTypes: \(idsAndInstrumentTypes)")
         for idAndInstrumentType in idsAndInstrumentTypes {
             let id = idAndInstrumentType.0
             let instrumentType = idAndInstrumentType.1
@@ -107,7 +106,12 @@ public class Performer: ViewNode {
     private func addLabel() {
         // hack
         label = TextLayerConstrainedByHeight(
-            text: id, x: -10, top: 0, height: 10, alignment: .Right, fontName: "Baskerville-SemiBold"
+            text: id,
+            x: -10,
+            top: 0,
+            height: 10,
+            alignment: .Right,
+            fontName: "Baskerville-SemiBold"
         )
         label!.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
         addSublayer(label!)

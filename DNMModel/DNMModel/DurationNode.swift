@@ -90,12 +90,12 @@ public class DurationNode: Node, CustomStringConvertible {
     /// If DurationNode is subdividable (non-tuplet)
     public var isSubdividable: Bool { get { return getIsSubdividable() } }
     
-    
+    // implement
     public class func rangeFromDurationNodes(durationNodes: [DurationNode],
         inDurationSpan durationSpan: DurationSpan
-    )
+    ) -> [DurationNode]
     {
-        // implement below, with cleaner Interface
+        return []
     }
     
     /// From an array of DurationNodes, choose those that fit within the given DurationSpan
