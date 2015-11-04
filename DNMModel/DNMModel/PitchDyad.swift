@@ -41,10 +41,19 @@ public class PitchDyad: CustomStringConvertible {
     - returns: Initialized PitchDyad
     */
     public init(pitch0: Pitch, pitch1: Pitch) {
+        
+        // ensure pitch0 is lower
+        self.pitch0 = [pitch0, pitch1].sort(<).first!
+        
+        // ensure pitch1 is higher
+        self.pitch1 = [pitch0, pitch1].sort(>).first!
+        
+        /*
         var pitches: [Pitch] = [pitch0, pitch1]
         pitches.sortInPlace { $0.pitchClass.midi.value < $1.pitchClass.midi.value }
         self.pitch0 = pitches[0]
         self.pitch1 = pitches[1]
+        */
     }
     
     public func getDescription() -> String {
