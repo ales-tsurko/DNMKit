@@ -24,7 +24,11 @@ class ViewController: UIViewController {
         DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
         
-        // get scoreByTitle
+        var scoreModelsByTitle: [String : DNMScoreModel] = [:]
+        
+        
+        
+        // get scoresByTitles
         
         let scoreModel = DNMScoreModelFromShorthand(fileName: "parse_slurTest")
         print("scoreModel.title: \(scoreModel.title)")

@@ -11,7 +11,7 @@ import DNMModel
 
 public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreModel {
     
-    let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "txt")!
+    let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
     let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
 
     let items = Scanner(code: code).getItems()
@@ -22,3 +22,4 @@ public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreMod
     let scoreModel = interpreter.makeScoreModel()
     return scoreModel
 }
+    

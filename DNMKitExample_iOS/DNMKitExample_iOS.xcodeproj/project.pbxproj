@@ -23,11 +23,11 @@
 		07ECB46B1BE5393900C9AD08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07ECB46A1BE5393900C9AD08 /* Assets.xcassets */; };
 		07ECB46E1BE5393900C9AD08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07ECB46C1BE5393900C9AD08 /* LaunchScreen.storyboard */; };
 		07ECB4791BE5393900C9AD08 /* DNMKitExample_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4781BE5393900C9AD08 /* DNMKitExample_iOSTests.swift */; };
-		07F3E7971BE6801100948758 /* parse_header.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7921BE6801100948758 /* parse_header.txt */; };
-		07F3E7981BE6801100948758 /* parse_JACK.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7931BE6801100948758 /* parse_JACK.txt */; };
-		07F3E7991BE6801100948758 /* parse_slurTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7941BE6801100948758 /* parse_slurTest.txt */; };
-		07F3E79A1BE6801100948758 /* parseThis.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7951BE6801100948758 /* parseThis.txt */; };
-		07F3E79B1BE6801100948758 /* parse_string.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7961BE6801100948758 /* parse_string.txt */; };
+		07F3E7971BE6801100948758 /* parse_header.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7921BE6801100948758 /* parse_header.dnm */; };
+		07F3E7981BE6801100948758 /* parse_JACK.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7931BE6801100948758 /* parse_JACK.dnm */; };
+		07F3E7991BE6801100948758 /* parse_slurTest.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7941BE6801100948758 /* parse_slurTest.dnm */; };
+		07F3E79A1BE6801100948758 /* parseThis.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7951BE6801100948758 /* parseThis.dnm */; };
+		07F3E79B1BE6801100948758 /* parse_string.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07F3E7961BE6801100948758 /* parse_string.dnm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,11 +74,11 @@
 		07ECB4741BE5393900C9AD08 /* DNMKitExample_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMKitExample_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB4781BE5393900C9AD08 /* DNMKitExample_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMKitExample_iOSTests.swift; sourceTree = "<group>"; };
 		07ECB47A1BE5393900C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F3E7921BE6801100948758 /* parse_header.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_header.txt; sourceTree = "<group>"; };
-		07F3E7931BE6801100948758 /* parse_JACK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_JACK.txt; sourceTree = "<group>"; };
-		07F3E7941BE6801100948758 /* parse_slurTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_slurTest.txt; sourceTree = "<group>"; };
-		07F3E7951BE6801100948758 /* parseThis.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parseThis.txt; sourceTree = "<group>"; };
-		07F3E7961BE6801100948758 /* parse_string.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_string.txt; sourceTree = "<group>"; };
+		07F3E7921BE6801100948758 /* parse_header.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_header.dnm; sourceTree = "<group>"; };
+		07F3E7931BE6801100948758 /* parse_JACK.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_JACK.dnm; sourceTree = "<group>"; };
+		07F3E7941BE6801100948758 /* parse_slurTest.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_slurTest.dnm; sourceTree = "<group>"; };
+		07F3E7951BE6801100948758 /* parseThis.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parseThis.dnm; sourceTree = "<group>"; };
+		07F3E7961BE6801100948758 /* parse_string.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parse_string.dnm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +153,11 @@
 		07F3E7911BE67FDF00948758 /* Scores */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E7921BE6801100948758 /* parse_header.txt */,
-				07F3E7931BE6801100948758 /* parse_JACK.txt */,
-				07F3E7941BE6801100948758 /* parse_slurTest.txt */,
-				07F3E7951BE6801100948758 /* parseThis.txt */,
-				07F3E7961BE6801100948758 /* parse_string.txt */,
+				07F3E7921BE6801100948758 /* parse_header.dnm */,
+				07F3E7931BE6801100948758 /* parse_JACK.dnm */,
+				07F3E7941BE6801100948758 /* parse_slurTest.dnm */,
+				07F3E7951BE6801100948758 /* parseThis.dnm */,
+				07F3E7961BE6801100948758 /* parse_string.dnm */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -245,13 +245,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07ECB46E1BE5393900C9AD08 /* LaunchScreen.storyboard in Resources */,
-				07F3E7971BE6801100948758 /* parse_header.txt in Resources */,
-				07F3E79A1BE6801100948758 /* parseThis.txt in Resources */,
-				07F3E7991BE6801100948758 /* parse_slurTest.txt in Resources */,
+				07F3E7971BE6801100948758 /* parse_header.dnm in Resources */,
+				07F3E79A1BE6801100948758 /* parseThis.dnm in Resources */,
+				07F3E7991BE6801100948758 /* parse_slurTest.dnm in Resources */,
 				07ECB46B1BE5393900C9AD08 /* Assets.xcassets in Resources */,
 				07ECB4691BE5393900C9AD08 /* Main.storyboard in Resources */,
-				07F3E7981BE6801100948758 /* parse_JACK.txt in Resources */,
-				07F3E79B1BE6801100948758 /* parse_string.txt in Resources */,
+				07F3E7981BE6801100948758 /* parse_JACK.dnm in Resources */,
+				07F3E79B1BE6801100948758 /* parse_string.dnm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
