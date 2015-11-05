@@ -15,8 +15,7 @@ public class DNMScoreModelManager {
     
     public func scoreModelByTitle() -> [String : DNMScoreModel] {
         var scoreModelByTitle: [String : DNMScoreModel] = [:]
-        
-        
+
         let fileManager = NSFileManager()
         let bundleURL = NSBundle.mainBundle().bundleURL
         let contents: NSArray = try! fileManager.contentsOfDirectoryAtURL(bundleURL,
