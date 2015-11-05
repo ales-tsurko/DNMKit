@@ -152,11 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				07E4DCBF1BE686D500AF0DE9 /* ComponentSelector.swift */,
-				07092F7E1BEAC77500E5F675 /* ViewSelector.swift */,
 				07092F801BEAC7B500E5F675 /* PageControlButton.swift */,
 				07092F821BEAC7F100E5F675 /* PageControlButtonPrevious.swift */,
 				07092F841BEAC80500E5F675 /* PageControlButtonNext.swift */,
 				07092F861BEAC83000E5F675 /* PageControlButtonType.swift */,
+				07092F7E1BEAC77500E5F675 /* ViewSelector.swift */,
 				07E4DCB31BE6869D00AF0DE9 /* ButtonSwitch.swift */,
 				07E4DCB41BE6869D00AF0DE9 /* ButtonSwitchPanel.swift */,
 				07E4DCB51BE6869D00AF0DE9 /* ButtonSwitchPanelWithID.swift */,

@@ -52,6 +52,15 @@ public class RadioGroupPanelVertical: RadioGroupPanel {
     }
     
     internal override func setFrame() {
+        frame = CGRect(
+            x: left,
+            y: top,
+            width: buttonSwitches.first!.frame.width,
+            height: buttonSwitches.last!.frame.maxY + pad
+        )
+
+        /*
         self.frame = CGRectMake(left, top, buttonSwitches.first!.frame.width, buttonSwitches.last!.frame.maxY + pad)
+        */
     }
 }

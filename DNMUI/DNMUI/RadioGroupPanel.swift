@@ -44,9 +44,9 @@ public class RadioGroupPanel: ButtonSwitchPanel {
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    
+    // this is inexcusable, but working...?
     public override func stateHasChangedFromSender(sender: ButtonSwitch) {
-        
-        print("state has changed from sender: \(sender)")
         
         for (id, buttonSwitch) in buttonSwitchByID {
             if id != sender.text { buttonSwitch.switchOff() }
@@ -56,17 +56,9 @@ public class RadioGroupPanel: ButtonSwitchPanel {
             }
             statesByText[sender.text] = sender.isOn
         }
-        
-        //(target as? Environment)?.viewerID = currentButtonSelectedID
-        
+    
         if let environment = target as? Environment {
-            
-            print("target: environment: \(environment)")
             environment.goToViewWithID(currentButtonSelectedID)
         }
-        
-        //(target as? Environment)?.goToViewWithID(currentButtonSelectedID)
-        
-        print("currentButtonSelectedID: \(currentButtonSelectedID)")
     }
 }

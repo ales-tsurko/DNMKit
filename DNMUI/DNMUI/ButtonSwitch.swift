@@ -30,21 +30,6 @@ public class ButtonSwitch: UIButton {
         switchOn()
     }
     
-    /*
-    public init(text: String, id: String? = nil) {
-        super.init(frame: CGRectMake(0, 0, 60, 40))
-        self.text = text
-        self.id = id
-        backgroundColor = UIColor.lightGrayColor()
-        layer.borderColor = UIColor.grayColor().CGColor
-        layer.borderWidth = 1
-        layer.opacity = 0.33
-        setTitle(text, forState: UIControlState.Normal)
-        addTarget(self, action: "switchIsOn", forControlEvents: UIControlEvents.TouchUpInside)
-        switchOn()
-    }
-    */
-    
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
@@ -69,23 +54,8 @@ public class ButtonSwitchMaster: ButtonSwitch {
     
     public override init(width: CGFloat = 60, height: CGFloat = 40, text: String, id: String = "") {
         super.init(width: width, height: height, text: text, id: id)
-        
-        /*
-        self.text = text
-        self.id = id
-        backgroundColor = UIColor.lightGrayColor()
-        //layer.borderColor = UIColor.grayColor().CGColor
-        //layer.borderWidth = 1
-        layer.opacity = 0.33
-        setTitle(text, forState: UIControlState.Normal)
-        addTarget(self, action: "switchIsOn", forControlEvents: UIControlEvents.TouchUpInside)
-        switchOn()
-        */
-        
     }
-    
 
-    
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
 }

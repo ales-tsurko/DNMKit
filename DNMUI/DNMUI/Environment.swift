@@ -48,7 +48,6 @@ public class Environment: UIView {
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
         self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
-        
         self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
@@ -58,31 +57,32 @@ public class Environment: UIView {
     public init(scoreInfo: ScoreInfo) {
         super.init(frame: CGRectZero)
         self.iIDsAndInstrumentTypesByPID = scoreInfo.iIDsAndInstrumentTypesByPID
-        
         self.measures = makeMeasureViewsWithMeasures(scoreInfo.measures)
         self.tempoMarkings = scoreInfo.tempoMarkings
         self.rehearsalMarkings = scoreInfo.rehearsalMarkings
         self.durationNodes = scoreInfo.durationNodes
     }
     
-    private func makeMeasureViewsWithMeasures(measures_model: [Measure]) -> [MeasureView] {
-        var measures: [MeasureView] = []
-        for measure_model in measures_model {
-            let duration = measure_model.duration
-            let measure = MeasureView(duration: duration)
-            measure.hasTimeSignature = measure_model.hasTimeSignature
-            measures.append(measure)
-        }
-        return measures
-    }
+
     
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    public func build() {
+        createViews()
+        goToViewWithID("omni") // set default view
+        goToFirstPage()
+        addPageControlButtons()
+        addViewSelector()
+        
+        layer.borderColor = UIColor.greenColor().CGColor
+        layer.borderWidth = 1
+    }
+    
     public func createViews() {
         
         // Get ViewIDs
-        let viewIDs = getViewIDs()
+        self.viewIDs = getViewIDs()
         
         for id in viewIDs {
             
@@ -103,7 +103,7 @@ public class Environment: UIView {
             // Remove currentView
             if let currentView = currentView { currentView.removeFromSuperview() }
             
-            addSubview(view)
+            insertSubview(view, atIndex: 0) // keep it under any other UI stuff (ViewSelector)
             currentView = view
             setFrame()
         }
@@ -148,15 +148,16 @@ public class Environment: UIView {
         currentView?.goToPreviousPage()
     }
     
-    public func build() {
-        createViews()
-        goToViewWithID("omni") // set default view
-        goToFirstPage()
-        addPageControlButtons()
-        // addPageControlButtons
-        
-        //layer.borderWidth = 1
-        //layer.borderColor = UIColor.grayColor().CGColor
+
+    
+    public func addViewSelector() {
+        let w: CGFloat = 50
+        let viewSelector = ViewSelector(
+            left: 0, top: 0, width: w, target: self, titles: viewIDs
+        )
+        viewSelector.build()
+        viewSelector.layer.position.x = frame.width - (0.5 * viewSelector.frame.width)
+        addSubview(viewSelector)
     }
     
     public func addPageControlButtons() {
@@ -432,5 +433,16 @@ public class Environment: UIView {
                 }
             }
         }
+    }
+    
+    private func makeMeasureViewsWithMeasures(measures_model: [Measure]) -> [MeasureView] {
+        var measures: [MeasureView] = []
+        for measure_model in measures_model {
+            let duration = measure_model.duration
+            let measure = MeasureView(duration: duration)
+            measure.hasTimeSignature = measure_model.hasTimeSignature
+            measures.append(measure)
+        }
+        return measures
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 import DNMUtility
 import DNMView
 
+// DEPRECATE
+/*
 public class ComponentSelector: UIView {
     
     
@@ -163,3 +165,4 @@ public class ComponentSelector: UIView {
         frame = CGRectMake(frame.minX, frame.minY, maxX, maxY)
     }
 }
+*/

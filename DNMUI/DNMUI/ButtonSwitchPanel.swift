@@ -34,8 +34,6 @@ public class ButtonSwitchPanel: UIView {
         self.target = target
         super.init(frame: CGRectMake(left, top, 0, 40 + 10))
         addButtonSwitchesWithTitles(titles)
-        //layer.borderWidth = 1
-        //layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
@@ -94,9 +92,7 @@ public class ButtonSwitchPanel: UIView {
     
     
     internal func setInitialStatesByTextByID() {
-        for buttonSwitch in buttonSwitches {
-            statesByText[buttonSwitch.id] = buttonSwitch.isOn
-        }
+        for buttonSwitch in buttonSwitches { statesByText[buttonSwitch.id] = buttonSwitch.isOn }
         setRememberedStates()
     }
     

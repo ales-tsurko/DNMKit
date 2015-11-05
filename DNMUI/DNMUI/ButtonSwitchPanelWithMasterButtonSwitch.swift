@@ -9,6 +9,7 @@
 import UIKit
 
 // DEPRECATE
+/*
 public class ButtonSwitchPanelWithMasterButtonSwitch: ButtonSwitchPanelWithID {
     
     public var masterButtonSwitch: ButtonSwitchMaster!
@@ -165,3 +166,4 @@ public class ButtonSwitchPanelWithMasterButtonSwitch: ButtonSwitchPanelWithID {
     }
     */
 }
+*/
