@@ -45,6 +45,208 @@ internal class Interpreter {
         self.actions = actions
     }
     
+    internal func makeScoreModel() -> DNMScoreModel {
+        var title: String = ""
+        var pID: String = ""
+        var iID: String = ""
+        var measures: [Measure] = []
+        var durationNodes: [DurationNode] = []
+        var tempoMarkings: [TempoMarking] = []
+        var rehearsalMarkings: [RehearsalMarking] = []
+        
+        for action in actions {
+            var component: Component?
+            switch action {
+            case .Title(let string):
+                print("action is title: \(string)")
+                title = string
+            case .IIDsAndInstrumentTypesByPID(let iIDsAndInstrumentTypesByPID):
+                
+                // Convert String representation of InstrumentType to InstrumentType proper
+                for iIDAndInstrumentType in iIDsAndInstrumentTypesByPID {
+                    for (pID, arrayOfIIDsAndInstrumentTypes) in iIDAndInstrumentType {
+                        var dictToAdd: [ String: [(String, InstrumentType)] ] = [ pID : [] ]
+                        for iIDAndInstrumentType in arrayOfIIDsAndInstrumentTypes {
+                            let iID = iIDAndInstrumentType.0
+                            let value = iIDAndInstrumentType.1
+                            if let instrumentType = InstrumentType(rawValue: value) {
+                                dictToAdd[pID]!.append((iID, instrumentType))
+                                
+                                // add to iIDsByPID
+                                if iIDsByPID[pID] == nil { iIDsByPID[pID] = [iID] }
+                                else { iIDsByPID[pID]!.append(iID) }
+                            }
+                            else { fatalError("Invalid Instrument Type: \(value)") }
+                        }
+                        self.iIDsAndInstrumentTypesByPID.append(dictToAdd)
+                    }
+                }
+            case .PID(let string):
+                if iIDsByPID[string] == nil { fatalError("Undeclared Performer ID") }
+                pID = string
+            case .IID(let string):
+                if iIDsByPID[pID] == nil { fatalError("Undeclared Performer ID") }
+                else if !iIDsByPID[pID]!.contains(string) { fatalError("Undeclared Instrument ID") }
+                iID = string
+            case .DurationAccumulationMode(let mode):
+                switch mode {
+                case "+": durationAccumulationMode = .Increment
+                case "-": durationAccumulationMode = .Decrement
+                case "|":
+                    durationAccumulationMode = .Measure
+                    accumDurInCurMeasure = DurationZero
+                default:
+                    assertionFailure("UNDOCUMENTED DURATION ACCUMULATION MODE")
+                }
+            case .Measure:
+                setDurationOfLastMeasureOfMeasures(&measures)
+                // encapsulate properly
+                let measure = Measure(offsetDuration: curMeasureOffset)
+                measures.append(measure)
+                accumDurInCurMeasure = DurationZero
+            case .HideTimeSignature:
+                if var lastMeasure = measures.last {
+                    lastMeasure.setHasTimeSignature(false)
+                    measures.removeLast()
+                    measures.append(lastMeasure)
+                }
+            case .RehearsalMarking(let type):
+                let rehearsalMarking = RehearsalMarking(
+                    index: 0, type: type, offsetDuration: curMeasureOffset
+                )
+                rehearsalMarkings.append(rehearsalMarking)
+            case .DurationNodeRoot(let duration):
+                
+                // CREATE DURATION NODE
+                // encapsulate ----------------------------------------------------------------
+                let (beats, subdivision) = duration
+                let durationNodeRoot = DurationNode(duration: Duration(beats, subdivision))
+                // ----------------------------------------------------------------------------
+                
+                // SET OFFSET DURATION OF DURATION NODE
+                // encapsulate ----------------------------------------------------------------
+                let offsetDuration: Duration
+                switch durationAccumulationMode {
+                case .Measure:
+                    offsetDuration = curMeasureOffset
+                    accumTotalDur = curMeasureOffset // reset master counter to measure offset
+                    accumDurInCurMeasure = durationNodeRoot.duration
+                case .Increment:
+                    offsetDuration = accumTotalDur
+                    accumDurInCurMeasure += durationNodeRoot.duration
+                case .Decrement:
+                    if let lastDurationNode = durationNodeStack.last {
+                        offsetDuration = lastDurationNode.offsetDuration
+                        accumTotalDur = offsetDuration
+                        accumDurInCurMeasure -= lastDurationNode.duration
+                    }
+                    else { offsetDuration = DurationZero }
+                }
+                durationNodeRoot.offsetDuration = offsetDuration
+                // ----------------------------------------------------------------------------
+                
+                durationNodes.append(durationNodeRoot)
+                durationNodeStack = [durationNodeRoot]
+                accumTotalDur += durationNodeRoot.duration
+                curDepth = 0
+                
+            case .DurationNodeInternal(let beats, let depth):
+                if depth < curDepth {
+                    let amount = curDepth - depth
+                    durationNodeStack.removeLast(amount: amount)
+                }
+                durationNodeStack.last!.addChildWithBeats(beats)
+                let dn = durationNodeStack.last!.children.last! as! DurationNode
+                durationNodeStack.append(dn)
+                curDepth = depth
+            case .DurationNodeLeaf(let beats, let depth):
+                if depth < curDepth {
+                    let amount = curDepth - depth
+                    durationNodeStack.removeLast(amount: amount)
+                }
+                durationNodeStack.last!.addChildWithBeats(beats)
+                let dn = durationNodeStack.last!.children.last! as! DurationNode
+                curDurationNodeLeaf = dn
+                curDepth = depth
+            case .Rest:
+                component = ComponentRest(pID: pID, iID: iID)
+            case .ExtensionStart:
+                component = ComponentExtensionStart(pID: pID, iID: iID)
+            case .ExtensionStop:
+                component = ComponentExtensionStop(pID: pID, iID: iID)
+            case .Pitch(let pitches):
+                component = ComponentPitch(pID: pID, iID: iID, pitches: pitches)
+            case .Dynamic(let marking):
+                component = ComponentDynamic(id: pID, pID: pID, iID: iID, marking: marking)
+            case .DMLigatureStart:
+                component = ComponentDMLigatureStart(id: pID, pID: pID, iID: iID, type: 1) // temp
+            case .DMLigatureStop:
+                component = ComponentDMLigatureStop(id: pID, pID: pID, iID: iID)
+            case .Articulation(let markings):
+                component = ComponentArticulation(pID: pID, iID: iID, markings: markings)
+            case .SlurStart:
+                // to-do: make id an optional thing, should be set in Parser
+                component = ComponentSlurStart(id: pID, pID: pID, iID: iID)
+            case .SlurStop:
+                // see above
+                component = ComponentSlurStop(id: pID, pID: pID, iID: iID)
+            case .NonMetrical:
+                durationNodeStack.last?.isMetrical = false
+            case .NonNumerical:
+                durationNodeStack.last?.isNumerical = false
+            case .Node(let value):
+                component = ComponentNode(pID: pID, iID: iID, value: value)
+            case .EdgeStart(let hasDashes):
+                component = ComponentEdgeStart(pID: pID, iID: iID, hasDashes: hasDashes)
+            case .EdgeStop:
+                component = ComponentEdgeStop(pID: pID, iID: iID)
+            case .Wave:
+                component = ComponentWave(pID: pID, iID: iID)
+            case .Tempo(let value, let subdivisionValue):
+                
+                let oD: Duration
+                if let lastDurationNode = durationNodeStack.last {
+                    oD = lastDurationNode.offsetDuration + lastDurationNode.duration
+                }
+                else { oD = curMeasureOffset }
+                
+                let tempoMarking = TempoMarking(
+                    value: value, subdivisionLevel: subdivisionValue, offsetDuration: oD
+                )
+                tempoMarkings.append(tempoMarking)
+            case .Label(let value):
+                component = ComponentLabel(pID: pID, iID: iID, value: value)
+            case .StringArtificialHarmonic(let pitch):
+                component = ComponentStringArtificialHarmonic(pID: pID, iID: iID, pitch: pitch)
+            case .StringBowDirection(let value):
+                component = ComponentStringBowDirection(pID: pID, iID: iID, bowDirection: value)
+            case .StringNumber(let value):
+                component = ComponentStringNumber(pID: pID, iID: iID, romanNumeral: value)
+            case .GlissandoStart:
+                component = ComponentGlissandoStart(pID: pID, iID: iID)
+            case .GlissandoStop:
+                component = ComponentGlissandoStop(pID: pID, iID: iID)
+            default:
+                break
+            }
+            if let component = component { curDurationNodeLeaf?.addComponent(component) }
+        }
+        
+        setDurationOfLastMeasureOfMeasures(&measures)
+        cleanUpDurationNodes(durationNodes)
+        
+        var scoreModel = DNMScoreModel()
+        scoreModel.title = title
+        scoreModel.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
+        scoreModel.durationNodes = durationNodes
+        scoreModel.measures = measures
+        scoreModel.tempoMarkings = tempoMarkings
+        scoreModel.rehearsalMarkings = rehearsalMarkings
+        
+        return scoreModel
+    }
+    
+    /*
     internal func makeScoreInfo() -> ScoreInfo {
         var pID: String = ""
         var iID: String = ""
@@ -242,6 +444,7 @@ internal class Interpreter {
         )
         return scoreInfo
     }
+    */
     
     private func cleanUpDurationNodes(durationNodes: [DurationNode]) {
         for durationNode in durationNodes {
@@ -288,6 +491,7 @@ internal class Interpreter {
         
         for (id, _) in accumDurInCurMeasureByID { accumDurInCurMeasureByID[id]! = DurationZero }
     }
+
 }
 
 internal enum DurationAccumulationMode {

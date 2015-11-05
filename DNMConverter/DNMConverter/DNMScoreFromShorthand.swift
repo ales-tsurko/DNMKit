@@ -9,16 +9,9 @@
 import Foundation
 import DNMModel
 
-/**
-<#Description#>
-
-- parameter name: <#name description#>
-
-- returns: <#return value description#>
-*/
-public func DNMScoreFromShorthand(name name: String) -> ScoreInfo {
+public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreModel {
     
-    let filePath = NSBundle.mainBundle().pathForResource(name, ofType: "txt")!
+    let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "txt")!
     let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
 
     let items = Scanner(code: code).getItems()
@@ -26,6 +19,6 @@ public func DNMScoreFromShorthand(name name: String) -> ScoreInfo {
     let actions = Parser(tokens: tokens).getActions()
     let interpreter = Interpreter(actions: actions)
     
-    let scoreInfo: ScoreInfo = interpreter.makeScoreInfo()
-    return scoreInfo
+    let scoreModel = interpreter.makeScoreModel()
+    return scoreModel
 }

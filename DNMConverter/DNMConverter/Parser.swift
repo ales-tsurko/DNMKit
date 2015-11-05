@@ -241,14 +241,14 @@ internal class Parser {
     }
     
     private func getActionsForNodeBegunAtIndex(inout index: Int) -> [Action] {
-        let initialLineCount = getLineCountAtIndex(index)
+        let initialLineCount = lineCountAtIndex(index)
 
         var actions: [Action] = []
         index++
         while index < tokens.count {
             
             // check line count
-            let currentLineCount = getLineCountAtIndex(index)
+            let currentLineCount = lineCountAtIndex(index)
             if currentLineCount > initialLineCount {
                 index--
                 return actions
@@ -323,15 +323,26 @@ internal class Parser {
         var instrumentTypes: [String] = []
         
         var instrumentTypeByIIDsByPID: [String : [String : String]] = [:]
-        
-        // [[String : [(String, String)]], [String : (String, String)]]
         var instrumentTypeAndIIDByPID: [ [ String : [ (String, String) ] ] ] = []
-        
-        // just make sure first value is P
-        switch tokens[index] {
-        case .Symbol(let value, _, _):
-            assert(value == "P:", "header must start with a Performer Declaration, for now")
-        default: break
+
+        // encapsulate: getTitle
+        if let titleCommand = valueAtIndex(index) where titleCommand == "Title:" {
+            var title: String = ""
+            index++
+            let initialLineCount = lineCountAtIndex(index)!
+            while index < tokens.count {
+                if let lineCount = lineCountAtIndex(index) where lineCount == initialLineCount {
+                    let value = valueAtIndex(index)!
+                    title = title == "" ? value : title + " \(value)"
+                }
+                else {
+                    index--
+                    break
+                }
+                index++
+            }
+            let action = Action.Title(string: title)
+            actions.append(action)
         }
         
         var curPID: String?
@@ -349,7 +360,7 @@ internal class Parser {
                     let action = Action.IIDsAndInstrumentTypesByPID(
                         instrumentTypeAndIIDByPID: instrumentTypeAndIIDByPID
                     )
-                    actions = [action]
+                    actions.append(action)
                     return actions
                 default:
                     switch id_count {
@@ -536,7 +547,7 @@ internal class Parser {
         return arguments
     }
     
-    private func getValueAtIndex(index: Int) -> String? {
+    private func valueAtIndex(index: Int) -> String? {
         if index >= 0 && index < tokens.count {
             switch tokens[index] {
             case .Symbol(let value, _, _): return value
@@ -546,7 +557,7 @@ internal class Parser {
         return nil
     }
     
-    private func getLineCountAtIndex(index: Int) -> Int? {
+    private func lineCountAtIndex(index: Int) -> Int? {
         if index >= 0 && index < tokens.count {
             switch tokens[index] {
             case .Symbol(_, _, let lineCount): return lineCount
@@ -556,7 +567,7 @@ internal class Parser {
         return nil
     }
     
-    private func getIndentationLevelAtIndex(index: Int) -> Int? {
+    private func indentationLevelAtIndex(index: Int) -> Int? {
         if index >= 0 && index < tokens.count {
             switch tokens[index] {
             case .Symbol(_, let indentationLevel, _): return indentationLevel
@@ -567,6 +578,7 @@ internal class Parser {
     }
 }
 
+/*
 // think about how this is integrated
 internal enum Command: String {
     case Octothorpe = "#"
@@ -583,3 +595,4 @@ internal enum Command: String {
 
     //["#","p","d","a","->","(",")","*", "+", "-", "|"]
 }
+*/

@@ -37,7 +37,6 @@
 		078A9F1D1BE8363B00F72AFE /* PitchVerticality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DF1BE54AE200948758 /* PitchVerticality.swift */; };
 		078A9F1E1BE8363F00F72AFE /* InstrumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6041BE5426E00948758 /* InstrumentType.swift */; };
 		078A9F1F1BE8363F00F72AFE /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */; };
-		078A9F201BE8364300F72AFE /* ScoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6941BE547DB00948758 /* ScoreInfo.swift */; };
 		078A9F211BE8364300F72AFE /* DNMScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */; };
 		078A9F221BE8364300F72AFE /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6101BE5439300948758 /* Component.swift */; };
 		078A9F231BE8364300F72AFE /* DurationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6121BE5439B00948758 /* DurationNode.swift */; };
@@ -65,7 +64,6 @@
 		07F3E6171BE543BF00948758 /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6161BE543BF00948758 /* TempoMarking.swift */; };
 		07F3E6191BE543D400948758 /* RehearsalMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6181BE543D400948758 /* RehearsalMarking.swift */; };
 		07F3E68B1BE5475900948758 /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E68A1BE5475900948758 /* DNMJSON.framework */; };
-		07F3E6951BE547DB00948758 /* ScoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6941BE547DB00948758 /* ScoreInfo.swift */; };
 		07F3E6DA1BE54AC500948758 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D81BE54AC500948758 /* Frequency.swift */; };
 		07F3E6DB1BE54AC500948758 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6D91BE54AC500948758 /* MIDI.swift */; };
 		07F3E6E01BE54AE200948758 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6DC1BE54AE200948758 /* Pitch.swift */; };
@@ -124,7 +122,6 @@
 		07F3E6161BE543BF00948758 /* TempoMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarking.swift; sourceTree = "<group>"; };
 		07F3E6181BE543D400948758 /* RehearsalMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarking.swift; sourceTree = "<group>"; };
 		07F3E68A1BE5475900948758 /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMJSON.framework"; sourceTree = "<group>"; };
-		07F3E6941BE547DB00948758 /* ScoreInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfo.swift; sourceTree = "<group>"; };
 		07F3E6D81BE54AC500948758 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		07F3E6D91BE54AC500948758 /* MIDI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
 		07F3E6DC1BE54AE200948758 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
@@ -189,7 +186,6 @@
 		07ECB3D31BE538AD00C9AD08 /* DNMModel */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E6941BE547DB00948758 /* ScoreInfo.swift */,
 				07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */,
 				07F3E6101BE5439300948758 /* Component.swift */,
 				07F3E6121BE5439B00948758 /* DurationNode.swift */,
@@ -396,7 +392,6 @@
 			files = (
 				07F3E6071BE5429D00948758 /* Measure.swift in Sources */,
 				07F3E6141BE5439B00948758 /* DurationNode.swift in Sources */,
-				07F3E6951BE547DB00948758 /* ScoreInfo.swift in Sources */,
 				07F3E6FB1BE54B1700948758 /* PitchFine.swift in Sources */,
 				07F3E6111BE5439300948758 /* Component.swift in Sources */,
 				07F3E5FB1BE541CA00948758 /* Beats.swift in Sources */,
@@ -452,7 +447,6 @@
 				078A9F1E1BE8363F00F72AFE /* InstrumentType.swift in Sources */,
 				078A9F141BE8363600F72AFE /* PitchCoarse.swift in Sources */,
 				078A9F0E1BE8363300F72AFE /* PitchPolyphonySpeller.swift in Sources */,
-				078A9F201BE8364300F72AFE /* ScoreInfo.swift in Sources */,
 				078A9F1C1BE8363B00F72AFE /* PitchPolyphony.swift in Sources */,
 				078A9F131BE8363300F72AFE /* PitchVerticalitySpeller.swift in Sources */,
 				078A9F101BE8363300F72AFE /* PitchSpelling.swift in Sources */,

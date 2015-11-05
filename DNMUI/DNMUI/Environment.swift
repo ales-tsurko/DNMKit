@@ -54,17 +54,6 @@ public class Environment: UIView {
         self.durationNodes = scoreModel.durationNodes
     }
     
-    public init(scoreInfo: ScoreInfo) {
-        super.init(frame: CGRectZero)
-        self.iIDsAndInstrumentTypesByPID = scoreInfo.iIDsAndInstrumentTypesByPID
-        self.measures = makeMeasureViewsWithMeasures(scoreInfo.measures)
-        self.tempoMarkings = scoreInfo.tempoMarkings
-        self.rehearsalMarkings = scoreInfo.rehearsalMarkings
-        self.durationNodes = scoreInfo.durationNodes
-    }
-    
-
-    
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     

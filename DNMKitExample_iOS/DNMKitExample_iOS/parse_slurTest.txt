@@ -1,3 +1,5 @@
+Title: TitleTest 1 2 3 ; ok..
+
 P: VNI vn Violin
 P: VNII vn Violin
 P: VA va Viola
@@ -5,7 +7,7 @@ P: VC vc Violoncello
 
 #
 | 1,8 VNI vn
-    1 p 60 a .
+    1 p 60 d f [ a .
 
 | 1,8 VNII vn
     1 p 60 a .
@@ -18,7 +20,7 @@ P: VC vc Violoncello
 
 #
 | 2,8 VNI vn
-    2 p 60 a .
+    2 p 60 d ff ] a .
 
 | 2,8 VNII vn
     2 p 60 a .

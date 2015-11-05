@@ -24,8 +24,12 @@ class ViewController: UIViewController {
         DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
         
-        let scoreInfo = DNMScoreFromShorthand(name: "parse_slurTest")
-        environment = Environment(scoreInfo: scoreInfo)
+        // get scoreByTitle
+        
+        let scoreModel = DNMScoreModelFromShorthand(fileName: "parse_slurTest")
+        print("scoreModel.title: \(scoreModel.title)")
+        
+        environment = Environment(scoreModel: scoreModel)
         environment.build()
         view.addSubview(environment)
 
