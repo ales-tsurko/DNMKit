@@ -59,7 +59,6 @@ public class PerformerView: UIView {
         pages = []
         pageViews = []
         createPages()
-        // create way of remembering page number -- or systemrange
         goToFirstPage()
         setFrame()
     }
@@ -111,10 +110,6 @@ public class PerformerView: UIView {
             
             let pageView = PageView(page: page, systemViews: systemViewsInRange, performerView: self)
             pageViews.append(pageView)
-            
-            pageView.layer.borderColor = UIColor.purpleColor().CGColor
-            pageView.layer.borderWidth = 1
-            
             
             systemIndex = lastSystemIndex + 1
             pages.append(page)

@@ -74,9 +74,6 @@ public class Environment: UIView {
         goToFirstPage()
         addPageControlButtons()
         addViewSelector()
-        
-        layer.borderColor = UIColor.greenColor().CGColor
-        layer.borderWidth = 1
     }
     
     public func createViews() {
