@@ -82,29 +82,16 @@ public class ViewNode: CALayer {
     
     public func layout() {
 
-        //print("layout: \(self); atTime: \(CFAbsoluteTimeGetCurrent())")
-
+        CATransaction.setAnimationDuration(0.125)
+        
         if layoutAccumulation_vertical != .None { accumulateVertically() }
         if layoutAccumulation_horizontal != .None { accumulateHorizontally() }
         if layoutFlow_vertical != .None { flowVertically() }
         if layoutFlow_horizontal != .None { flowHorizontally() }
         
-        /*
-        for (node, position) in positionByNode {
-            print("node: \(node); position: \(position)")
-            node.position = position
-        }
-        */
-        
         if setsHeightWithContents { setHeightWithContents() }
         if setsWidthWithContents { setWidthWithContents() }
-        
-        //print("positionByNode: \(positionByNode)")
-        
-        // all at once? probably actually wont solve problem
 
-        
-        
         self.container?.layout()
     }
     
@@ -452,18 +439,18 @@ public class ViewNode: CALayer {
     }
     
     public func moveVerticallyToY(y: CGFloat, animated: Bool) {
-        CATransaction.setDisableActions(true)
+        if !animated { CATransaction.setDisableActions(true) }
         moveVerticallyToY(y)
-        CATransaction.setDisableActions(false)
+        if !animated { CATransaction.setDisableActions(false) }
     }
     
     public func moveVerticallyToY(y: CGFloat) {
         //print("moveVerticallyToY: \(y); \(self)")
-        CATransaction.setDisableActions(true)
-        //if superlayer == nil { CATransaction.setDisableActions(true) }
+        //CATransaction.setDisableActions(true)
+        if superlayer == nil { CATransaction.setDisableActions(true) }
         position.y = y + 0.5 * frame.height
-        //if superlayer == nil { CATransaction.setDisableActions(false) }
-        CATransaction.setDisableActions(true)
+        if superlayer == nil { CATransaction.setDisableActions(false) }
+        //CATransaction.setDisableActions(true)
         
         self.top = y
     }

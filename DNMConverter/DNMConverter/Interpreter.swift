@@ -58,7 +58,6 @@ internal class Interpreter {
             var component: Component?
             switch action {
             case .Title(let string):
-                print("action is title: \(string)")
                 title = string
             case .IIDsAndInstrumentTypesByPID(let iIDsAndInstrumentTypesByPID):
                 

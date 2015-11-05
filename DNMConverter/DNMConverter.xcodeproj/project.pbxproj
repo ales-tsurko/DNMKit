@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07E4DCC51BE68A8400AF0DE9 /* DNMScoreFromShorthand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCC41BE68A8400AF0DE9 /* DNMScoreFromShorthand.swift */; };
+		07DCFCC81BEAF37900AC18B3 /* DNMScoreModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCFCC71BEAF37900AC18B3 /* DNMScoreModelManager.swift */; };
+		07E4DCC51BE68A8400AF0DE9 /* DNMScoreModelFromShorthand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCC41BE68A8400AF0DE9 /* DNMScoreModelFromShorthand.swift */; };
 		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */; };
 		07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */; };
@@ -33,7 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07E4DCC41BE68A8400AF0DE9 /* DNMScoreFromShorthand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreFromShorthand.swift; sourceTree = "<group>"; };
+		07DCFCC71BEAF37900AC18B3 /* DNMScoreModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModelManager.swift; sourceTree = "<group>"; };
+		07E4DCC41BE68A8400AF0DE9 /* DNMScoreModelFromShorthand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModelFromShorthand.swift; sourceTree = "<group>"; };
 		07F3E5A91BE53EFE00948758 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F3E5AC1BE53EFE00948758 /* DNMConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMConverter.h; sourceTree = "<group>"; };
 		07F3E5AE1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +123,8 @@
 				07F3E7821BE67D0E00948758 /* Scanner.swift */,
 				07F3E7831BE67D0E00948758 /* Token.swift */,
 				07F3E7841BE67D0E00948758 /* Tokenizer.swift */,
-				07E4DCC41BE68A8400AF0DE9 /* DNMScoreFromShorthand.swift */,
+				07E4DCC41BE68A8400AF0DE9 /* DNMScoreModelFromShorthand.swift */,
+				07DCFCC71BEAF37900AC18B3 /* DNMScoreModelManager.swift */,
 			);
 			name = Shorthand;
 			sourceTree = "<group>";
@@ -234,12 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07E4DCC51BE68A8400AF0DE9 /* DNMScoreFromShorthand.swift in Sources */,
+				07E4DCC51BE68A8400AF0DE9 /* DNMScoreModelFromShorthand.swift in Sources */,
 				07F3E7881BE67D0E00948758 /* Parser.swift in Sources */,
 				07F3E7861BE67D0E00948758 /* Interpreter.swift in Sources */,
 				07F3E7871BE67D0E00948758 /* Item.swift in Sources */,
 				07F3E78B1BE67D0E00948758 /* Tokenizer.swift in Sources */,
 				07F3E78A1BE67D0E00948758 /* Token.swift in Sources */,
+				07DCFCC81BEAF37900AC18B3 /* DNMScoreModelManager.swift in Sources */,
 				07F3E7891BE67D0E00948758 /* Scanner.swift in Sources */,
 				07F3E7851BE67D0E00948758 /* Action.swift in Sources */,
 			);

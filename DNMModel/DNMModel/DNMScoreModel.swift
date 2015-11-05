@@ -18,7 +18,10 @@ The model of an entire DNMScore. This will contain:
 
 This model will continue expanding as feature set increases
 */
-public struct DNMScoreModel {
+public struct DNMScoreModel: CustomStringConvertible {
+    
+    /// String representation of DNMScoreModel
+    public var description: String { return getDescription() }
     
     /// Title of Work
     public var title: String = ""
@@ -43,31 +46,7 @@ public struct DNMScoreModel {
     
     public init() { }
     
-    /*
-    /**
-    Create a DENMScoreModel
-    
-    - parameter iIDsAndInstrumentTypesByPID: iIDsAndInstrumentTypesByPID
-    - parameter durationNodes:               DurationNodes
-    - parameter measures:                    Measures
-    - parameter tempoMarkings:               TempoMarkings
-    - parameter rehearsalMarkings:           RehearsalMarking
-    
-    - returns: DENMScoreModel
-    */
-    public init(
-        iIDsAndInstrumentTypesByPID: [[String: [(String,InstrumentType)]]] = [],
-        durationNodes: [DurationNode] = [],
-        measures: [Measure] = [],
-        tempoMarkings: [TempoMarking] = [],
-        rehearsalMarkings: [RehearsalMarking] = []
-    )
-    {
-        self.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
-        self.durationNodes = durationNodes
-        self.measures = measures
-        self.tempoMarkings = tempoMarkings
-        self.rehearsalMarkings = rehearsalMarkings
+    private func getDescription() -> String {
+        return "DNMScoreModel: \(title); iIDsAndInstrumentTypesByPID: \(iIDsAndInstrumentTypesByPID)"
     }
-    */
 }

@@ -22,4 +22,17 @@ public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreMod
     let scoreModel = interpreter.makeScoreModel()
     return scoreModel
 }
+
+/*
+public func DNMScoreModelFromShortHand(fileURL fileURL: String) -> DNMScoreModel {
+    let code = try! String(contentsOfFile: fileURL, encoding: NSUTF8StringEncoding)
     
+    let items = Scanner(code: code).getItems()
+    let tokens = Tokenizer(items: items).getTokens()
+    let actions = Parser(tokens: tokens).getActions()
+    let interpreter = Interpreter(actions: actions)
+    
+    let scoreModel = interpreter.makeScoreModel()
+    return scoreModel
+}
+*/
