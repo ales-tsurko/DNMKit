@@ -45,6 +45,10 @@ internal class Parser {
         self.tokens = tokens
     }
     
+    internal func getSpannerBegunAtIndex(inout index: Int) {
+        
+    }
+    
     internal func getActions() -> [Action] {
         var actions: [Action] = []
         var index: Int = 0
@@ -267,6 +271,11 @@ internal class Parser {
                 case "]":
                     let action = Action.EdgeStop(id: "temp")
                     actions.append(action)
+                case "][":
+                    let startAction = Action.EdgeStop(id: "temp")
+                    let stopAction = Action.EdgeStart(hasDashes: true)
+                    actions.append(startAction)
+                    actions.append(stopAction)
                 default:
                     index--
                     return actions
@@ -302,6 +311,11 @@ internal class Parser {
                 case "[":
                     let action = Action.DMLigatureStart(id: "temp")
                     actions.append(action)
+                case "][":
+                    let startAction = Action.DMLigatureStart(id: "temp")
+                    let stopAction = Action.DMLigatureStop(id: "tempo")
+                    actions.append(stopAction)
+                    actions.append(startAction)
                 default:
                     index--
                     return actions

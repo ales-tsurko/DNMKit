@@ -8,7 +8,7 @@ P: VC vc Violoncello cc ContinuousController
 #
 | 1,8 VNI cc
     4 node 0 [ d o [
-    1 node 1 ] [
+    1 node 1 ][
     2 node 0.5 [ d f ] [
 
 + 2,8 VNI cc
