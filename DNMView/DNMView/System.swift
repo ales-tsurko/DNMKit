@@ -986,21 +986,7 @@ public class System: ViewNode, BuildPattern {
         createSlurHandlers()
         addSlurs()
         setDefaultComponentTypesShownByID()
-        
-        /*
-        if viewerID == "omni" {
-            print("viewID is omni!")
-            componentTypesShownByID = componentTypesByID
-        }
-        */
-        
 
-
-        
-        print("SYSTEM: \(viewerID): componentTypesByID: \(componentTypesByID); componentTypesShownByID: \(componentTypesShownByID)")
-        
-        
-        //arrangeNodesWithComponentTypesPresent()
         hasBeenBuilt = true
     }
     
@@ -1134,7 +1120,7 @@ public class System: ViewNode, BuildPattern {
                     else { fatalError("Unable to find Performer or Instrument") }
                     
                     if !instrumentEventHandlerSuccessfullyCreated {
-                        print("instrument event unsuccessfully created!")
+                        //print("instrument event unsuccessfully created!")
                     }
                 }
             }

@@ -34,7 +34,6 @@ public class ButtonSwitchNodeComplex: UIView {
     public var systemView: SystemView?
     public var componentTypesShownByID: [String : [String]] {
         get {
-            print("get component types shown by id: stateByIDByGroupID: \(stateByIDByGroupID)")
             var componentTypesShownByID: [String: [String]] = [:]
             for (groupID, stateByID) in stateByIDByGroupID {
                 for (id, state) in stateByID {
@@ -185,7 +184,6 @@ public class ButtonSwitchNodeComplex: UIView {
             group.updateStateByID()
             stateByIDByGroupID[id] = group.stateByID
         }
-        print("update state by id: \(stateByIDByGroupID)")
     }
     
     public func addButtonSwitchNodeGroupWithID(groupID: String,
@@ -327,7 +325,6 @@ public class ButtonSwitchNodeComplex: UIView {
         if let touch = touches.first {
             let point = touch.locationInView(self)
             let touchedView = hitTest(point, withEvent: nil)
-            print("point: \(point); touchedView: \(touchedView)")
         }
     }
     
@@ -335,7 +332,6 @@ public class ButtonSwitchNodeComplex: UIView {
         if let touch = touches.first {
             let point = touch.locationInView(self)
             let touchedView = hitTest(point, withEvent: nil)
-            print("point: \(point); touchedView: \(touchedView)")
         }
     }
     

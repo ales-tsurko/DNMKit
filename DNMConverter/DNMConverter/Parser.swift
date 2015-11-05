@@ -384,7 +384,6 @@ internal class Parser {
                             instrumentTypeByIIDsByPID[curPID]![curIID] = value
                             
                             if var arrayForCurPID = instrumentTypeAndIIDByPID.last?[curPID] {
-                                print("array for curPID: \(curPID): \(arrayForCurPID)")
                                 arrayForCurPID.append( (curIID, value) )
                                 instrumentTypeAndIIDByPID.removeLast()
                                 instrumentTypeAndIIDByPID.append([curPID : arrayForCurPID])

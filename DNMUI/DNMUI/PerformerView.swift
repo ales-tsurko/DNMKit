@@ -51,10 +51,6 @@ public class PerformerView: UIView {
     }
     
     public func systemsNeedReflowing() {
-        print("performerView.systemsNeedReflowing()")
-    
-        
-        // remove pageView subviews
         for pageView in pageViews { pageView.removeFromSuperview() }
         pages = []
         pageViews = []

@@ -1,101 +1,56 @@
-Title: Field Test 2: drier;run.
+Title: Field Test 2: drier; run.
 
-P: VNI vn Violin
-P: VNII vn Violin
+P: VNI vn Violin cc ContinuousController
+P: VNII vn Violin cc ContinuousController
 P: VA va Viola
-P: VC vc Violoncello
+P: VC vc Violoncello cc ContinuousController
 
 #
-| 1,8 VNI vn
-    1 p 60 d f [ a .
+| 1,8 VNI cc
+    4 node 0 [ d o [
+    1 node 1 ] [
+    2 node 0.5 [ d f ] [
 
-| 1,8 VNII vn
-    1 p 60 a .  (
++ 2,8 VNI cc
+    3 node 0 ] [
+    4 node 0.25 
+    1 node 1
+    2 node 0.75
+    1 node 1 d p ]
 
-| 1,8 VA va
-    1 p 60 a .
 
-| 1,8 VC vc
-    1 p 60 a .
++ 1,8 VNI cc
+    1 node 0 d f [
+    2 node 0.33 d o ]
 
-#
-| 2,8 VNI vn
-    2 p 60 d ff ] a .
 
-| 2,8 VNII vn
-    2 p 60 a . )
-
-| 2,8 VA va
-    2 p 60 a .
-
-| 2,8 VC vc
-    2 p 60 a .
-
-#
-| 3,8 VNI vn
-    1 p 60 a .
-    2 p 60 a .
-
-| 3,8 VNII vn
-    1 p 60 a .
-    2 p 60 a .
-
-| 3,8 VA va
-    1 p 60 a .
-    2 p 60 a .
-
-| 3,8 VC vc
-    1 p 60 a .
-    2 p 60 a .
-
-#
-| 4,8 VNI vn
-    2 p 60 a .
-    2 p 60 a .
-
-| 4,8 VNII vn
-    2 p 60 a .
-    2 p 60 a .
+| 4,8 VNII cc !n !m
+    1 node 0 [ d fff [
+    4 node 1 ] [
+    1 node 0.75 ] [
+    6 node 1 ] [
+    3 node 0 ] [
+    2 node 0.25 ] [
+    1 node 0 ] d ffff ]
 
 | 4,8 VA va
-    2 p 60 a .
-    2 p 60 a .
+    1 p 60.25 d f [
+    2 p 55
+    3 p 70
+    1 p 73.25 d pp ]
 
-| 4,8 VC vc
-    2 p 60 a .
-    2 p 60 a .
+| 4,8 VC vc !n !m
+    1 a_harm 43 a - ( d ppp [
+    2 a_harm 47.5 a - > )
+    3 a_harm 63 d o ] [ a -
+    4 p 41 label pizz. d fff ]
+    1 p 49.5 label arco ( d pp [
+    2 a_harm 67 a > . ) d o ]
 
-#
-| 5,8 VNI vn
-    2 p 60 a .
-    3 p 60 a .
+| 4,8 VC cc
+    1 node 0 [
+    1 node 1 ] [
+    1 node 0 ] [
+    1 node 1 ]
 
-| 5,8 VNII vn
-    2 p 60 a .
-    3 p 60 a .
-
-| 5,8 VA va
-    2 p 60 a .
-    3 p 60 a .
-
-| 5,8 VC vc
-    2 p 60 a .
-    3 p 60 a .
-
-#
-| 6,8 VNI vn
-    3 p 60 a .
-    3 p 60 a .
-
-| 6,8 VNII vn
-    3 p 60 a .
-    3 p 60 a .
-
-| 6,8 VA va
-    3 p 60 a .
-    3 p 60 a .
-
-| 6,8 VC vc
-    3 p 60 a .
-    3 p 60 a .
 

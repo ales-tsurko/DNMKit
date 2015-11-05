@@ -36,11 +36,8 @@ public class SystemView: UIView {
         self.system = system
         self.pageView = pageView // need to make sure this gets set before UI happens
         super.init(frame: system.frame) // sketch?
-
         manageGestureRecognizers()
         createComponentSelector()
-        
-
     }
     
     private func manageGestureRecognizers() {

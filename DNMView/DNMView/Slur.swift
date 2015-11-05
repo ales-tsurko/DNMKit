@@ -260,6 +260,7 @@ public class Slur: Ligature {
                 y: controlPoint2_outside!.y - dir * w
             )
             
+            /*
             // GET RID OF THIS
             // add test dots
             //testDots.map { $0.removeFromSuperlayer() }
@@ -281,6 +282,7 @@ public class Slur: Ligature {
                 addSublayer(dot)
                 testDots.append(dot)
             }
+            */
         }
     }
     
