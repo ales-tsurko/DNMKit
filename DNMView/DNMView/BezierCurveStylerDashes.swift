@@ -10,8 +10,6 @@ import UIKit
 
 public class BezierCurveStylerDashes: BezierCurveStyler {
     
-    // TODO: Init with Dash Width
-    
     public var dashWidth: CGFloat = 5 // default
     
     public init(styledBezierCurve: StyledBezierCurve, dashWidth: CGFloat) {

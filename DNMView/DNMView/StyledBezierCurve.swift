@@ -14,6 +14,9 @@ public protocol StyledBezierCurve {
     var bezierPath: BezierPath! { get set }
     var uiBezierPath: UIBezierPath { get }
     
+    var upperCurve_abstract: BezierCurve? { get set }
+    var lowerCurve_abstract: BezierCurve? { get set }
+    
     //var styledBezierCurve: ConcreteStyledBezierCurve { get set }
     
     //init(styledBezierCurve: ConcreteStyledBezierCurve)

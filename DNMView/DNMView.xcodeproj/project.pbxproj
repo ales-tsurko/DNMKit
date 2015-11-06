@@ -10,6 +10,7 @@
 		072CE3881BEA1A3300106951 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072CE3871BEA1A3300106951 /* Instrument.swift */; };
 		0756818D1BED391700623AF8 /* BezierCurveStylerWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */; };
 		0756818F1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */; };
+		075681911BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */; };
 		07ECB3F91BE538BB00C9AD08 /* DNMView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3F81BE538BB00C9AD08 /* DNMView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4001BE538BB00C9AD08 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3F51BE538BB00C9AD08 /* DNMView.framework */; };
 		07ECB4051BE538BB00C9AD08 /* DNMViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4041BE538BB00C9AD08 /* DNMViewTests.swift */; };
@@ -115,6 +116,7 @@
 		072CE3871BEA1A3300106951 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerWidth.swift; sourceTree = "<group>"; };
 		0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyleWidthVariable.swift; sourceTree = "<group>"; };
+		075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashesVariable.swift; sourceTree = "<group>"; };
 		07ECB3F51BE538BB00C9AD08 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3F81BE538BB00C9AD08 /* DNMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMView.h; sourceTree = "<group>"; };
 		07ECB3FA1BE538BB00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				07F3E69F1BE5489A00948758 /* BezierCurveQuadratic.swift */,
 				07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */,
 				07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */,
+				075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */,
 				0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */,
 				0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */,
 				07F3E6A21BE5489A00948758 /* BezierPath.swift */,
@@ -686,6 +689,7 @@
 				07F3E74F1BE6720B00948758 /* TupletBracket.swift in Sources */,
 				07F3E7471BE6717800948758 /* BeamGroup.swift in Sources */,
 				07F3E7731BE6767200948758 /* RhythmCueGraph.swift in Sources */,
+				075681911BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift in Sources */,
 				07F3E76A1BE6762600948758 /* DMCharacter.swift in Sources */,
 				07F3E70B1BE54CA000948758 /* StaffItem.swift in Sources */,
 				07F3E75B1BE6751C00948758 /* DurationalExtension.swift in Sources */,

@@ -28,18 +28,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         view.backgroundColor = DNMColorManager.backgroundColor
         
         let point1 = CGPoint(x: 100, y: 100)
-        let point2 = CGPoint(x: 400, y: 100)
+        let point2 = CGPoint(x: 435.265, y: 200)
         
         let bezierCurve = BezierCurveLinear(point1: point1, point2: point2)
         var styledCurve: StyledBezierCurve = ConcreteStyledBezierCurve(carrierCurve: bezierCurve)
-        //styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve)
-        //styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve, dashWidth: 20)
-        //styledCurve = BezierCurveStylerWidth(styledBezierCurve: styledCurve, width: 10)
+        
         styledCurve = BezierCurveStyleWidthVariable(
             styledBezierCurve: styledCurve,
             widthAtBeginning: 50,
-            widthAtEnd: 0
+            widthAtEnd: 0,
+            exponent: 1
         )
+        
+        styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve, dashWidth: 20)
         
         let shape = CAShapeLayer()
         shape.path = styledCurve.uiBezierPath.CGPath

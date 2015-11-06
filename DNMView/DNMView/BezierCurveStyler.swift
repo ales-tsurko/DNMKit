@@ -14,6 +14,9 @@ public class BezierCurveStyler: StyledBezierCurve {
     public var carrierCurve: BezierCurve
     public var styledBezierCurve: StyledBezierCurve
     
+    public var upperCurve_abstract: BezierCurve?
+    public var lowerCurve_abstract: BezierCurve?
+    
     public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
     
     public required init(styledBezierCurve: StyledBezierCurve) {
