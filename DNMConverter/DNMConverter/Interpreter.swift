@@ -195,8 +195,10 @@ internal class Interpreter {
                 durationNodeStack.last?.isNumerical = false
             case .Node(let value):
                 component = ComponentNode(pID: pID, iID: iID, value: value)
-            case .EdgeStart(let hasDashes):
-                component = ComponentEdgeStart(pID: pID, iID: iID, hasDashes: hasDashes)
+            case .EdgeStart(let widthArgs, let dashArgs):
+                component = ComponentEdgeStart(
+                    pID: pID, iID: iID, widthArgs: widthArgs, dashArgs: dashArgs
+                )
             case .EdgeStop:
                 component = ComponentEdgeStop(pID: pID, iID: iID)
             case .Wave:

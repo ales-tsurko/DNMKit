@@ -20,7 +20,7 @@ public enum ComponentProperty {
     case ExtensionStart
     case ExtensionStop
     case Node(value: Float)
-    case EdgeStart(hasDashes: Bool)
+    case EdgeStart(widthArgs: [Float], dashArgs: [Float])
     case EdgeStop
     case Wave
     case TempoMarking(value: Int, subdivisionValue: Int)
@@ -31,6 +31,9 @@ public enum ComponentProperty {
     case GlissandoStart
     case GlissandoStop
 }
+
+// component should just be a class:
+// -- inherit pID, iID, name: String, isGraphBearing: default false
 
 public protocol Component {
     var pID: String { get set }
@@ -249,10 +252,10 @@ public struct ComponentEdgeStart: Component {
     public var property: ComponentProperty
     public var isGraphBearing: Bool = true
     
-    public init(pID: String, iID: String, hasDashes: Bool) {
+    public init(pID: String, iID: String, widthArgs: [Float], dashArgs: [Float]) {
         self.pID = pID
         self.iID = iID
-        self.property = ComponentProperty.EdgeStart(hasDashes: hasDashes)
+        self.property = ComponentProperty.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
     }
 }
 

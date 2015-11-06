@@ -36,8 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         styledCurve = BezierCurveStyleWidthVariable(
             styledBezierCurve: styledCurve,
             widthAtBeginning: 50,
-            widthAtEnd: 0,
-            exponent: 1
+            widthAtEnd: 1
         )
         
         styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve, dashWidth: 20)
@@ -45,11 +44,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let shape = CAShapeLayer()
         shape.path = styledCurve.uiBezierPath.CGPath
         shape.fillColor = UIColor.grayColor().CGColor
-        view.layer.addSublayer(shape)
+        //view.layer.addSublayer(shape)
         
-        
-        
-        //addScoreTableView()
+        addScoreTableView()
     }
     
     func addScoreTableView() {

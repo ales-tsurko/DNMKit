@@ -41,7 +41,9 @@ public class GraphEventEdge: CAShapeLayer {
                 return styledCurve.uiBezierPath.CGPath
             }
             else {
-                return curve.cgPath
+                var styledCurve: StyledBezierCurve = ConcreteStyledBezierCurve(carrierCurve: curve)
+                styledCurve = BezierCurveStylerWidth(styledBezierCurve: styledCurve, width: 1)
+                return styledCurve.uiBezierPath.CGPath
             }
         }
         // otherwise, return empty path

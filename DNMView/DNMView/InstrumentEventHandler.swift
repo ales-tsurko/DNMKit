@@ -61,15 +61,33 @@ public class InstrumentEventHandler {
                         }
                     }
                 }
+            case .StringBowDirection(let bowDirection):
+                for graphEvent in instrumentEvent!.graphEvents {
+                    system?.addComponentType("articulations", withID: component.pID)
+                    if let directionType = BowDirection(rawValue: bowDirection) {
+                        if let articulation = ArticulationStringBowDirection.withType(directionType) {
+                            articulation.build()
+                            graphEvent.addArticulation(articulation)
+                        }
+                    }
+                }
+            case .StringNumber(let romanNumeral):
+                for graphEvent in instrumentEvent!.graphEvents {
+                    let articulation = ArticulationStringNumber(romanNumeralString: romanNumeral)
+                    articulation.build()
+                    graphEvent.addArticulation(articulation)
+                }
             case .Node(_):
                 // currently decorated automatically when intiialized, will be extended later
                 break
-            case .EdgeStart(let hasDashes):
+            case .EdgeStart(let widthArgs, let dashArgs):
                 
                 //print("decorate instrument event: add edge start")
                 
                 for graphEvent in instrumentEvent!.graphEvents {
                     if let ccGraph = graphEvent.graph as? GraphContinuousController {
+                        
+                        let hasDashes = dashArgs.count > 0 ? true : false
                         ccGraph.startEdgeAtX(x, withDashes: hasDashes)
                     }
                 }

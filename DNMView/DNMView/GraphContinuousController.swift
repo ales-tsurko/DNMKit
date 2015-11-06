@@ -87,39 +87,5 @@ public class GraphContinuousController: Graph {
                 }
             }
         }
-        
-        
-        
-        /*
-        for x in startEdgesAtXValues {
-            if let node0 = getEventAtX(x) as? GraphEventNode {
-                if let index = events.indexOf(node0) {
-                    
-                    // If not last, manage externally otherwise
-                    if index < events.count - 1 {
-                        if let node1 = events[index + 1] as? GraphEventNode {
-                            let point1 = CGPoint(x: node0.x, y: node0.y)
-                            let point2 = CGPoint(x: node1.x, y: node1.y)
-                            let edge = GraphEventEdge(point1: point1, point2: point2)
-                            insertSublayer(edge, atIndex: 0)
-                        }
-                    }
-                }
-            }
-        }
-        */
-
-        /*
-        for (e, event) in events.enumerate() {
-            if e < events.count - 1 {
-                let node0 = events[e] as! GraphEventNode
-                let node1 = events[e + 1] as! GraphEventNode
-                let point1 = CGPoint(x: node0.x, y: node0.y)
-                let point2 = CGPoint(x: node1.x, y: node1.y)
-                let edge = GraphEventEdge(point1: point1, point2: point2)
-                insertSublayer(edge, atIndex: 0)
-            }
-        }
-        */
     }
 }

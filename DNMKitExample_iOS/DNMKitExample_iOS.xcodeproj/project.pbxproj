@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075681931BED4A0C00623AF8 /* spanner.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 075681921BED4A0C00623AF8 /* spanner.dnm */; };
 		0791ABF61BE7B01C005D0B6F /* DNMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; };
 		0791ABF71BE7B01C005D0B6F /* DNMUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07DCFCCA1BEAFA2500AC18B3 /* givenName.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07DCFCC91BEAFA2500AC18B3 /* givenName.dnm */; };
@@ -57,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		075681921BED4A0C00623AF8 /* spanner.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spanner.dnm; sourceTree = "<group>"; };
 		0791ABF51BE7B01C005D0B6F /* DNMUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUI.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUI.framework"; sourceTree = "<absolute>"; };
 		07DCFCC91BEAFA2500AC18B3 /* givenName.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = givenName.dnm; sourceTree = "<group>"; };
 		07DCFCCB1BEAFA6D00AC18B3 /* takenName.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = takenName.dnm; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				07F3E7941BE6801100948758 /* parse_slurTest.dnm */,
 				07DCFCC91BEAFA2500AC18B3 /* givenName.dnm */,
 				07DCFCCB1BEAFA6D00AC18B3 /* takenName.dnm */,
+				075681921BED4A0C00623AF8 /* spanner.dnm */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				07DCFCCA1BEAFA2500AC18B3 /* givenName.dnm in Resources */,
 				07ECB46E1BE5393900C9AD08 /* LaunchScreen.storyboard in Resources */,
 				07F3E7991BE6801100948758 /* parse_slurTest.dnm in Resources */,
+				075681931BED4A0C00623AF8 /* spanner.dnm in Resources */,
 				07ECB46B1BE5393900C9AD08 /* Assets.xcassets in Resources */,
 				07DCFCCC1BEAFA6D00AC18B3 /* takenName.dnm in Resources */,
 				07ECB4691BE5393900C9AD08 /* Main.storyboard in Resources */,

@@ -42,7 +42,10 @@ internal enum Action {
     
     case Node(value: Float)
     case NodeStop(id: String) // workaround
-    case EdgeStart(hasDashes: Bool) // workaround
+    //case EdgeStart(hasDashes: Bool) // workaround
+    
+    case EdgeStart(widthArgs: [Float], dashArgs: [Float])
+    
     case EdgeStop(id: String) // workaround
     
     case HideTimeSignature(id: String) // workaround

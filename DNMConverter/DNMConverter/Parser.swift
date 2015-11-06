@@ -45,8 +45,28 @@ internal class Parser {
         self.tokens = tokens
     }
     
-    internal func getSpannerBegunAtIndex(inout index: Int) {
-        
+    internal func getSpannerArgumentsBegunAtIndex(inout index: Int) -> ([Float], [Float]) {
+        // [ d
+        var dashArgs: [Float] = []
+        var widthArgs: [Float] = []
+        index++
+        while index < tokens.count {
+            if let value = valueAtIndex(index) {
+                switch value {
+                case "w": widthArgs.append(1)
+                case "d": dashArgs.append(1)
+                default:
+                    index--
+                    return (widthArgs, dashArgs)
+                }
+            }
+            else {
+                index--
+                return (widthArgs, dashArgs)
+            }
+            index++
+        }
+        return (widthArgs, dashArgs)
     }
     
     internal func getActions() -> [Action] {
@@ -266,14 +286,29 @@ internal class Parser {
             case .Symbol(let value, _, _):
                 switch value {
                 case "[":
-                    let action = Action.EdgeStart(hasDashes: true)
+                    let (widthArgs, dashArgs) = getSpannerArgumentsBegunAtIndex(&index)
+                    print("widthArgs: \(widthArgs); dashArgs: \(dashArgs)")
+                    let action: Action = Action.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
+                    
+                    
+                    /*
+                    
+                    if args.contains("d") {
+                        action = Action.EdgeStart(width)
+                    }
+                    else {
+                        action = Action.EdgeStart(hasDashes: false)
+                    }
+                    //let action = Action.EdgeStart(hasDashes: true)
+                    */
                     actions.append(action)
                 case "]":
                     let action = Action.EdgeStop(id: "temp")
                     actions.append(action)
                 case "][":
                     let startAction = Action.EdgeStop(id: "temp")
-                    let stopAction = Action.EdgeStart(hasDashes: true)
+                    let (widthArgs, dashArgs) = getSpannerArgumentsBegunAtIndex(&index)
+                    let stopAction = Action.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
                     actions.append(startAction)
                     actions.append(stopAction)
                 default:
