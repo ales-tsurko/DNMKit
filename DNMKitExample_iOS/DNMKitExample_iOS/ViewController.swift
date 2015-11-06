@@ -24,9 +24,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DNMColorManager.colorMode = ColorMode.Dark
+        DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
-        addScoreTableView()
+        
+        let point1 = CGPoint(x: 100, y: 100)
+        let point2 = CGPoint(x: 400, y: 100)
+        
+        let bezierCurve = BezierCurveLinear(point1: point1, point2: point2)
+        var styledCurve: StyledBezierCurve = ConcreteStyledBezierCurve(carrierCurve: bezierCurve)
+        //styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve)
+        //styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve, dashWidth: 20)
+        //styledCurve = BezierCurveStylerWidth(styledBezierCurve: styledCurve, width: 10)
+        styledCurve = BezierCurveStyleWidthVariable(
+            styledBezierCurve: styledCurve,
+            widthAtBeginning: 50,
+            widthAtEnd: 0
+        )
+        
+        let shape = CAShapeLayer()
+        shape.path = styledCurve.uiBezierPath.CGPath
+        shape.fillColor = UIColor.grayColor().CGColor
+        view.layer.addSublayer(shape)
+        
+        
+        
+        //addScoreTableView()
     }
     
     func addScoreTableView() {

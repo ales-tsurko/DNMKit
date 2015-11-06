@@ -14,6 +14,9 @@ public class ConcreteStyledBezierCurve: StyledBezierCurve {
     public var bezierPath: BezierPath! = BezierPath()
     public var uiBezierPath: UIBezierPath { get { return getUIBezierPath() } }
     
+    public var upperCurve_abstract: BezierCurve?
+    public var lowerCurve_abstract: BezierCurve?
+    
     // public var widthAtT: [CGFloat : CGFloat] = [0.0 : 1, 1.0 : 1]
     
     // for now only:

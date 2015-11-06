@@ -12,6 +12,14 @@ public class BezierCurveStylerDashes: BezierCurveStyler {
     
     // TODO: Init with Dash Width
     
+    public var dashWidth: CGFloat = 5 // default
+    
+    public init(styledBezierCurve: StyledBezierCurve, dashWidth: CGFloat) {
+        super.init(styledBezierCurve: styledBezierCurve)
+        self.dashWidth = dashWidth
+        addDashes()
+    }
+    
     public required init(styledBezierCurve: StyledBezierCurve) {
         super.init(styledBezierCurve: styledBezierCurve)
         addDashes()
@@ -21,12 +29,12 @@ public class BezierCurveStylerDashes: BezierCurveStyler {
         let newPath: BezierPath = BezierPath()
         
         let path = styledBezierCurve.bezierPath
-        let dash_w: CGFloat = 5
+
         var x: CGFloat = 0
-        while x <= (carrierCurve.p2.x - carrierCurve.p1.x) - dash_w {
+        while x <= (carrierCurve.p2.x - carrierCurve.p1.x) - dashWidth {
             
             let left = x + carrierCurve.p1.x
-            let right = x + carrierCurve.p1.x + dash_w
+            let right = x + carrierCurve.p1.x + dashWidth
             
             let y_top_left = path.getYValuesAtX(left).minElement()!
             let y_top_right = path.getYValuesAtX(right).minElement()!
@@ -58,7 +66,7 @@ public class BezierCurveStylerDashes: BezierCurveStyler {
             newPath.addCurve(bottomSide)
             newPath.addCurve(leftSide)
             
-            x += 2 * dash_w
+            x += 2 * dashWidth
         }
         bezierPath = newPath
     }

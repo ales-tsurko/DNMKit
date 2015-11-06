@@ -49,7 +49,6 @@ public class GraphEventEdge: CAShapeLayer {
     }
     
     public func setVisualAttributes() {
-        //strokeColor = JBColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
         fillColor = UIColor.grayscaleColorWithDepthOfField(.Middleground).CGColor
     }
 }
