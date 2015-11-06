@@ -97,6 +97,7 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
         -> GraphEvent {
         let event = GraphEvent(x: x, stemDirection: stemDirection)
         events.append(event)
+        events.sortInPlace { $0.x < $1.x }
         return event
     }
     
@@ -104,6 +105,7 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
         let event = GraphEvent(x: x)
         event.graph = self
         events.append(event)
+        events.sortInPlace { $0.x < $1.x }
         return event
     }
     

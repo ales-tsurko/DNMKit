@@ -42,21 +42,25 @@ public class ViewNode: CALayer {
     public init(accumulateVerticallyFrom layoutAccumulation_vertical: LayoutDirectionVertical) {
         super.init()
         self.layoutAccumulation_vertical = layoutAccumulation_vertical
+        self.drawsAsynchronously = true
     }
     
     public init(accumulateHorizontallyFrom layoutAccumulation_horizontal: LayoutDirectionHorizontal) {
         super.init()
         self.layoutAccumulation_horizontal = layoutAccumulation_horizontal
+        self.drawsAsynchronously = true
     }
     
     public init(flowVerticallyFrom layoutFlow_vertical: LayoutDirectionVertical) {
         super.init()
         self.layoutFlow_vertical = layoutFlow_vertical
+        self.drawsAsynchronously = true
     }
     
     public init(flowHorizontallyFrom layoutFlow_horizontal: LayoutDirectionHorizontal) {
         super.init()
         self.layoutFlow_horizontal = layoutFlow_horizontal
+        self.drawsAsynchronously = true
     }
     
     public init(
@@ -67,9 +71,14 @@ public class ViewNode: CALayer {
         super.init()
         self.layoutFlow_vertical = layoutFlow_vertical
         self.layoutFlow_horizontal = layoutFlow_horizontal
+        self.drawsAsynchronously = true
     }
     
-    public override init() { super.init() }
+    public override init() {
+        super.init()
+        self.drawsAsynchronously = true
+    }
+    
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init(layer: AnyObject) { super.init(layer: layer) }
     

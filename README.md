@@ -35,6 +35,7 @@ Underlying framework for **DNM (Dynamic Notation for Music)**.
     * Supercollider
     * QLab
     * and so on
+* **DNMSVG** Wrapper for [SwiftVG](https://github.com/austinfitzpatrick/SwiftVG) to translate SVG images (e.g. graphics authored in Illustrator, etc.) into musical symbols.
 
 
 

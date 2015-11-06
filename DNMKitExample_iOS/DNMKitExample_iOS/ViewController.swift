@@ -26,12 +26,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
-
-
+        addScoreTableView()
+    }
+    
+    func addScoreTableView() {
         scoreModelByTitle = DNMScoreModelManager().scoreModelByTitle()
         for (title, _) in scoreModelByTitle { scoreTitles.append(title) }
-
-        scoreTableView = UITableView(frame: CGRect(x: 25, y: 25, width: 200, height: 300))
+        
+        // this is sloppy
+        let cellHeight: CGFloat = 40
+        scoreTableView = UITableView(frame:
+            CGRect(x: 25, y: 25, width: 200, height: cellHeight * CGFloat(scoreTitles.count))
+        )
         scoreTableView.dataSource = self
         scoreTableView.delegate = self
         scoreTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -90,7 +96,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         )
         let title = scoreTitles[indexPath.row]
         cell.textLabel?.text = title
+
+        cell.backgroundColor = DNMColorManager.backgroundColor
+        cell.selectionStyle = UITableViewCellSelectionStyle.Gray
+        cell.selectedBackgroundView?.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Background)
+        cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
+        -> CGFloat {
+        return 40
     }
 
     

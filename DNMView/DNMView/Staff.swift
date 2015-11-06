@@ -165,7 +165,7 @@ public class Staff: Graph, Guido {
         commitEvents()
         setFrame()
         adjustLayersYForMinY()
-        //addSkylines()
+        addSkylines()
         hasBeenBuilt = true
     }
     
