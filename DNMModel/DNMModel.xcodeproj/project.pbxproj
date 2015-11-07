@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075681991BED8C9B00623AF8 /* SpannerArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681981BED8C9B00623AF8 /* SpannerArguments.swift */; };
 		078A9F011BE835FD00F72AFE /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A9F001BE835FD00F72AFE /* DurationTests.swift */; };
 		078A9F021BE8362E00F72AFE /* Beats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F51BE541CA00948758 /* Beats.swift */; };
 		078A9F031BE8362E00F72AFE /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F61BE541CA00948758 /* Duration.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		075681981BED8C9B00623AF8 /* SpannerArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpannerArguments.swift; sourceTree = "<group>"; };
 		078A9F001BE835FD00F72AFE /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
 		07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModel.swift; sourceTree = "<group>"; };
 		07E4DCCA1BE68BD300AF0DE9 /* PreferredClefsAndTranspositionByInstrumentType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PreferredClefsAndTranspositionByInstrumentType.json; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				07F3E5C41BE540F500948758 /* Duration */,
 				07ECB3D41BE538AD00C9AD08 /* DNMModel.h */,
 				07ECB3D61BE538AD00C9AD08 /* Info.plist */,
+				075681981BED8C9B00623AF8 /* SpannerArguments.swift */,
 			);
 			path = DNMModel;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				07F3E5FF1BE541CA00948758 /* Tempo.swift in Sources */,
 				07F3E6F21BE54B0C00948758 /* PitchSpelling.swift in Sources */,
 				07F3E6FA1BE54B1700948758 /* PitchCoarse.swift in Sources */,
+				075681991BED8C9B00623AF8 /* SpannerArguments.swift in Sources */,
 				07F3E6EF1BE54B0C00948758 /* PitchMonadSpeller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

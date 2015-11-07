@@ -7,19 +7,23 @@
 //
 
 import QuartzCore
+import DNMModel
 
 public class GraphEventEdge: CAShapeLayer {
     
     public var point1: CGPoint?
     public var point2: CGPoint?
     
-    public var hasDashes: Bool = false
+    //public var hasDashes: Bool = false
+
     
-    public init(point1: CGPoint? = nil, point2: CGPoint? = nil, hasDashes: Bool = false) {
+    public init(
+        point1: CGPoint? = nil, point2: CGPoint? = nil, spannerArguments: SpannerArguments
+    )
+    {
         super.init()
         self.point1 = point1
         self.point2 = point2
-        self.hasDashes = hasDashes
         build()
     }
     
@@ -34,7 +38,16 @@ public class GraphEventEdge: CAShapeLayer {
     
     public func makePath() -> CGPath {
         if let point1 = point1, point2 = point2 {
+
             let curve = BezierCurveLinear(point1: point1, point2: point2)
+            var styledCurve: StyledBezierCurve = ConcreteStyledBezierCurve(carrierCurve: curve)
+            styledCurve = BezierCurveStylerWidth(styledBezierCurve: styledCurve, width: 1)
+
+            // manage Spanner Arguments
+            
+            return styledCurve.uiBezierPath.CGPath
+            
+            /*
             if hasDashes {
                 var styledCurve: StyledBezierCurve = ConcreteStyledBezierCurve(carrierCurve: curve)
                 styledCurve = BezierCurveStylerDashes(styledBezierCurve: styledCurve)
@@ -45,6 +58,8 @@ public class GraphEventEdge: CAShapeLayer {
                 styledCurve = BezierCurveStylerWidth(styledBezierCurve: styledCurve, width: 1)
                 return styledCurve.uiBezierPath.CGPath
             }
+            */
+
         }
         // otherwise, return empty path
         return UIBezierPath().CGPath

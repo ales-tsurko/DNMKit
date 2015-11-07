@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public enum ComponentProperty {
     case SlurStart
     case SlurStop
@@ -20,7 +21,10 @@ public enum ComponentProperty {
     case ExtensionStart
     case ExtensionStop
     case Node(value: Float)
-    case EdgeStart(widthArgs: [Float], dashArgs: [Float])
+    
+    // change to spanner args
+    case EdgeStart(spannerArguments: SpannerArguments)
+    
     case EdgeStop
     case Wave
     case TempoMarking(value: Int, subdivisionValue: Int)
@@ -252,10 +256,10 @@ public struct ComponentEdgeStart: Component {
     public var property: ComponentProperty
     public var isGraphBearing: Bool = true
     
-    public init(pID: String, iID: String, widthArgs: [Float], dashArgs: [Float]) {
+    public init(pID: String, iID: String, spannerArguments: SpannerArguments) {
         self.pID = pID
         self.iID = iID
-        self.property = ComponentProperty.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
+        self.property = ComponentProperty.EdgeStart(spannerArguments: spannerArguments)
     }
 }
 

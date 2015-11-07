@@ -80,18 +80,13 @@ public class InstrumentEventHandler {
             case .Node(_):
                 // currently decorated automatically when intiialized, will be extended later
                 break
-            case .EdgeStart(let widthArgs, let dashArgs):
-                
-                //print("decorate instrument event: add edge start")
-                
+            case .EdgeStart(let spannerArguments):
+
                 for graphEvent in instrumentEvent!.graphEvents {
                     if let ccGraph = graphEvent.graph as? GraphContinuousController {
-                        
-                        let hasDashes = dashArgs.count > 0 ? true : false
-                        ccGraph.startEdgeAtX(x, withDashes: hasDashes)
+                        ccGraph.startEdgeAtX(x, spannerArguments: spannerArguments)
                     }
                 }
-                break
             case .EdgeStop:
                 break
             case .StringNumber(_):
@@ -113,8 +108,6 @@ public class InstrumentEventHandler {
                     }
                 }
             case .Label(let value):
-                
-                //print("instr e handler add label")
                 
                 for graphEvent in instrumentEvent!.graphEvents {
                     let label = Label(x: 0, top: 0, height: 20, text: value)

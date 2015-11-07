@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMModel
 
 internal enum Action {
 
@@ -44,7 +45,7 @@ internal enum Action {
     case NodeStop(id: String) // workaround
     //case EdgeStart(hasDashes: Bool) // workaround
     
-    case EdgeStart(widthArgs: [Float], dashArgs: [Float])
+    case EdgeStart(spannerArguments: SpannerArguments)
     
     case EdgeStop(id: String) // workaround
     

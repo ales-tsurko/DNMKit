@@ -7,12 +7,13 @@
 //
 
 import QuartzCore
+import DNMModel
 
 public class GraphContinuousController: Graph {
     
     private struct Edge {
         var x: CGFloat
-        var hasDashes: Bool
+        var spannerArguments: SpannerArguments
     }
     
     public var edges: [GraphEventEdge] = []
@@ -32,10 +33,8 @@ public class GraphContinuousController: Graph {
     public override init(layer: AnyObject) { super.init(layer: layer) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    public func startEdgeAtX(x: CGFloat, withDashes hasDashes: Bool = false) {
-        //startEdgesAtXValues.append(x)
-
-        let edge = Edge(x: x, hasDashes: hasDashes)
+    public func startEdgeAtX(x: CGFloat, spannerArguments: SpannerArguments) {
+        let edge = Edge(x: x, spannerArguments: spannerArguments)
         _edges.append(edge)
     }
     
@@ -77,11 +76,20 @@ public class GraphContinuousController: Graph {
                     if let node_stop = events[index + 1] as? GraphEventNode {
                         let point1 = CGPoint(x: node_start.x, y: node_start.y)
                         let point2 = CGPoint(x: node_stop.x, y: node_stop.y)
+                        
+                        let graphEventEdge = GraphEventEdge(
+                            point1: point1,
+                            point2: point2,
+                            spannerArguments: edge.spannerArguments
+                        )
+                        
+                        /*
                         let graphEventEdge = GraphEventEdge(
                             point1: point1,
                             point2: point2,
                             hasDashes: edge.hasDashes
                         )
+                        */
                         insertSublayer(graphEventEdge, atIndex: 0)
                     }
                 }

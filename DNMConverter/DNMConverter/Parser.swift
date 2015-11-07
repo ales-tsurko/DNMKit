@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMModel
 
 internal class Parser {
     
@@ -45,28 +46,135 @@ internal class Parser {
         self.tokens = tokens
     }
     
-    internal func getSpannerArgumentsBegunAtIndex(inout index: Int) -> ([Float], [Float]) {
+    internal func getSpannerArgumentsBegunAtIndex(inout index: Int) -> SpannerArguments {
+        var spannerArguments = SpannerArguments()
+        
+        let initialLineCount = lineCountAtIndex(index)!
+        
         // [ d
+        var subCommands = [
+            "^", // exponent
+            "w", // width
+            "d", // dashes
+            "c", // color
+            "cp" // control points
+        ]
+        var exponent: Float = 1
         var dashArgs: [Float] = []
         var widthArgs: [Float] = []
+
         index++
         while index < tokens.count {
             if let value = valueAtIndex(index) {
                 switch value {
-                case "w": widthArgs.append(1)
-                case "d": dashArgs.append(1)
+                case "^":
+                    print("WE've GOT A CARET")
+                    index++
+                    if lineCountAtIndex(index)! > initialLineCount { return spannerArguments }
+                    
+                    switch tokens[index] {
+                    case .Number(let value, _, _):
+                        spannerArguments.exponent = (value as NSString).floatValue
+                        print("should set exponent to spannerArguments: \(spannerArguments)")
+                    default:
+                        print("no Spanner exponent value after caret")
+                        index--
+                        break
+                    }
+                case "w":
+                    print("we've got a W!!!!")
+                    index++
+                    
+                    let widthArgs = getNumberArgumentsForCommandAtIndex(&index)
+                    spannerArguments.widthArgs = widthArgs.map { ($0 as NSString).floatValue }
+                    
                 default:
                     index--
-                    return (widthArgs, dashArgs)
+                    return spannerArguments
                 }
             }
             else {
                 index--
-                return (widthArgs, dashArgs)
+                return spannerArguments
             }
             index++
         }
-        return (widthArgs, dashArgs)
+        return spannerArguments
+    }
+    
+    private func getArgumentsInSet(set: Set<String>, inout forCommandAtIndex index: Int)
+        -> [String]
+    {
+        return []
+    }
+    
+    /*
+    private func getArgumentsWithType(tokenType: Token, inout atIndex index: Int) -> [String] {
+        switch tokenType {
+        case .Number: return getNumberArgumentsForCommandAtIndex(&index)
+        case .Symbol: return []
+        }
+    }
+*/
+    
+    // preferences: maximum value; ensure lineCount
+    private func getNumberArgumentsForCommandAtIndex(inout index:  Int) -> [String]
+    {
+        let initialLineCount: Int = lineCountAtIndex(index)!
+        
+        var args: [String] = []
+        while index < tokens.count {
+            
+            // bail if new line
+            if lineCountAtIndex(index)! > initialLineCount {
+                index--
+                return args
+            }
+            
+            // otherwise, check type of value
+            switch tokens[index] {
+            case .Symbol:
+                
+                // bail if not number
+                index--
+                return args
+            case .Number(let value, _, _):
+                args.append(value)
+            }
+            index++
+        }
+        return args
+    }
+    
+    private func getSymbolArgumentsForCommandAtIndex(inout index:  Int) -> [String] {
+        let initialLineCount: Int = lineCountAtIndex(index)!
+        
+        var args: [String] = []
+        while index < tokens.count {
+            
+            // bail if new line
+            if lineCountAtIndex(index)! > initialLineCount {
+                index--
+                return args
+            }
+            
+            // otherwise, check type of value
+            switch tokens[index] {
+            case .Number:
+                
+                // bail if not number
+                index--
+                return args
+            case .Symbol(let value, _, _):
+                args.append(value)
+            }
+            index++
+        }
+        return args
+    }
+    
+    private func getHeterogeneuousArgumentsForCommand() {
+        
     }
     
     internal func getActions() -> [Action] {
@@ -227,7 +335,6 @@ internal class Parser {
                             actions.append(action)
                         }
                     case "sa_#":
-                        print("STRING NUMBER")
                         index++
                         switch tokens[index] {
                         case .Symbol(let value, _, _):
@@ -236,7 +343,6 @@ internal class Parser {
                         default: break
                         }
                     case "sa_bdir":
-                        print("parser BOW DIRECTION")
                         index++
                         switch tokens[index] {
                         case .Symbol(let value, _, _):
@@ -247,7 +353,6 @@ internal class Parser {
                     default:
                         break
                     }
-            
                 default:
                     // this is a hack; make to ensure alphanumeric components only
                     // -- make helper function String.isAlphaNumeric() -> Bool
@@ -286,29 +391,39 @@ internal class Parser {
             case .Symbol(let value, _, _):
                 switch value {
                 case "[":
-                    let (widthArgs, dashArgs) = getSpannerArgumentsBegunAtIndex(&index)
-                    print("widthArgs: \(widthArgs); dashArgs: \(dashArgs)")
-                    let action: Action = Action.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
+
+                    let spannerArguments = getSpannerArgumentsBegunAtIndex(&index)
                     
+                    print("spannerArguments: \(spannerArguments)")
+                    
+                    
+                    let action = Action.EdgeStart(spannerArguments: spannerArguments)
                     
                     /*
-                    
-                    if args.contains("d") {
-                        action = Action.EdgeStart(width)
-                    }
-                    else {
-                        action = Action.EdgeStart(hasDashes: false)
-                    }
-                    //let action = Action.EdgeStart(hasDashes: true)
+                    let action: Action = Action.EdgeStart(
+                        widthArgs: spannerArguments.widthArgs,
+                        dashArgs: spannerArguments.dashArgs
+                    )
                     */
                     actions.append(action)
                 case "]":
                     let action = Action.EdgeStop(id: "temp")
                     actions.append(action)
                 case "][":
-                    let startAction = Action.EdgeStop(id: "temp")
-                    let (widthArgs, dashArgs) = getSpannerArgumentsBegunAtIndex(&index)
-                    let stopAction = Action.EdgeStart(widthArgs: widthArgs, dashArgs: dashArgs)
+                    
+                    let spannerArguments = getSpannerArgumentsBegunAtIndex(&index)
+                    print("spannerArguments: \(spannerArguments)")
+                    
+                    let startAction = Action.EdgeStart(spannerArguments: spannerArguments)
+                    let stopAction = Action.EdgeStop(id: "temp")
+                    
+                    /*
+                    let stopAction = Action.EdgeStart(
+                        widthArgs: spannerArguments.widthArgs,
+                        dashArgs: spannerArguments.dashArgs
+                    )
+                    */
+
                     actions.append(startAction)
                     actions.append(stopAction)
                 default:
