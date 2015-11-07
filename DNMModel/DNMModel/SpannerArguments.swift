@@ -19,5 +19,6 @@ public struct SpannerArguments {
     public var zigZagArgs: [Float] = []
     public var waveArgs: [Float] = []
     public var controlPointArgs: [Float] = []
+    
     public init() { }
 }

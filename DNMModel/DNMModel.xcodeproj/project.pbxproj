@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		075681991BED8C9B00623AF8 /* SpannerArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681981BED8C9B00623AF8 /* SpannerArguments.swift */; };
+		0756819A1BED999100623AF8 /* SpannerArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681981BED8C9B00623AF8 /* SpannerArguments.swift */; };
 		078A9F011BE835FD00F72AFE /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A9F001BE835FD00F72AFE /* DurationTests.swift */; };
 		078A9F021BE8362E00F72AFE /* Beats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F51BE541CA00948758 /* Beats.swift */; };
 		078A9F031BE8362E00F72AFE /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5F61BE541CA00948758 /* Duration.swift */; };
@@ -188,6 +189,7 @@
 		07ECB3D31BE538AD00C9AD08 /* DNMModel */ = {
 			isa = PBXGroup;
 			children = (
+				075681981BED8C9B00623AF8 /* SpannerArguments.swift */,
 				07B11B411BE6A01F00BD10BB /* DNMScoreModel.swift */,
 				07F3E6101BE5439300948758 /* Component.swift */,
 				07F3E6121BE5439B00948758 /* DurationNode.swift */,
@@ -197,7 +199,6 @@
 				07F3E5C41BE540F500948758 /* Duration */,
 				07ECB3D41BE538AD00C9AD08 /* DNMModel.h */,
 				07ECB3D61BE538AD00C9AD08 /* Info.plist */,
-				075681981BED8C9B00623AF8 /* SpannerArguments.swift */,
 			);
 			path = DNMModel;
 			sourceTree = "<group>";
@@ -438,6 +439,7 @@
 				078A9F0C1BE8363300F72AFE /* PitchDyadSpeller.swift in Sources */,
 				078A9F221BE8364300F72AFE /* Component.swift in Sources */,
 				07EEC3281BE919E7006BC2D8 /* SubdivisionTests.swift in Sources */,
+				0756819A1BED999100623AF8 /* SpannerArguments.swift in Sources */,
 				07EEC32A1BE91BB4006BC2D8 /* PitchTests.swift in Sources */,
 				078A9F051BE8362E00F72AFE /* Subdivision.swift in Sources */,
 				078A9F091BE8362E00F72AFE /* RehearsalMarking.swift in Sources */,

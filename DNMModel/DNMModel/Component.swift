@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public enum ComponentProperty {
     case SlurStart
     case SlurStop
@@ -22,8 +21,8 @@ public enum ComponentProperty {
     case ExtensionStop
     case Node(value: Float)
     
-    // change to spanner args
     case EdgeStart(spannerArguments: SpannerArguments)
+    
     
     case EdgeStop
     case Wave
