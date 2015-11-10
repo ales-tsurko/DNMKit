@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMUtility
 
 // At some point, find way to inject new commands and argument types in here dynamically
 public class Tokenizer {
@@ -34,7 +35,11 @@ public class Tokenizer {
         var metaData: [String : String] = [:]
 
         // deal with ordering later
-        var iIDsAndInstrumentTypesByPID: [String : [(String, String)]] = [:]
+        //var iIDsAndInstrumentTypesByPID: [String : [(String, String)]] = [:]
+        
+        var iIDsAndInstrumentTypesByPID = OrderedDictionary<
+            String, OrderedDictionary<String, (String, String)>
+        >()
         
         let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
         
@@ -65,7 +70,7 @@ public class Tokenizer {
             
             // extend all metadata with lineMetaData (make a clean method for this!)
             for (k,v) in lineMetaData { metaData[k] = v }
-            for (k,v) in performerDeclaration { iIDsAndInstrumentTypesByPID[k] = v }
+            //for (k,v) in performerDeclaration { iIDsAndInstrumentTypesByPID[k] = v }
             
             scanLineWithScanner(lineScanner, andContainer: rootTokenContainer)
             

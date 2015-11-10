@@ -75,7 +75,6 @@ public class Parser {
                 case "SlurStart": manageSlurStartTokenContainer(container)
                 case "SlurStop": manageSlurStopTokenContainer(container)
                     
-                  
                 // shouldn't happen at top-level: only embedded
                 //case "SpannerStart": manageSpannerStartTokenContainer(container)
                 default: break
@@ -91,6 +90,8 @@ public class Parser {
                 }
             }
         }
+        
+        finalizeDurationNodes()
         
         // return something real
         return DNMScoreModel()
@@ -119,7 +120,39 @@ public class Parser {
     private func manageRootDurationToken(token: Token) {
         if let tokenDuration = token as? TokenDuration {
             print(tokenDuration)
+            
+            let rootDurationNode = DurationNode(duration: Duration(tokenDuration.value))
+            setOffsetDurationForNewRootDurationNode(rootDurationNode)
+            addRootDurationNode(rootDurationNode)
+            accumTotalDuration += rootDurationNode.duration
+            currentDurationNodeDepth = 0
         }
+    }
+    
+    private func addRootDurationNode(rootDurationNode: DurationNode) {
+        durationNodes.append(rootDurationNode)
+        durationNodeStack = Stack(items: [rootDurationNode])
+    }
+    
+    private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
+        let offsetDuration: Duration
+        switch durationNodeStackMode {
+        case .Measure:
+            offsetDuration = currentMeasureDurationOffset
+            accumTotalDuration = currentMeasureDurationOffset
+            accumDurationInMeasure = rootDurationNode.duration
+        case .Increment:
+            offsetDuration = accumTotalDuration
+        case .Decrement:
+            if let lastDurationNode = durationNodeStack.top {
+                offsetDuration = lastDurationNode.offsetDuration
+                accumTotalDuration = offsetDuration
+                accumDurationInMeasure -= lastDurationNode.duration
+            } else {
+                offsetDuration = DurationZero
+            }
+        }
+        rootDurationNode.offsetDuration = offsetDuration
     }
     
     // needs to be TokenContainer
@@ -170,7 +203,7 @@ public class Parser {
         currentMeasureDurationOffset += lastMeasure.duration
     }
     
-    private func finalizedDurationNodes(durationNodes: [DurationNode]) {
+    private func finalizeDurationNodes() {
         for durationNode in durationNodes {
             (durationNode.root as! DurationNode).matchDurationsOfTree()
             (durationNode.root as! DurationNode).scaleDurationsOfChildren()

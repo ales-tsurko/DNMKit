@@ -12,7 +12,13 @@ public struct Stack<Element> {
     
     private var items: [Element] = []
     
+    public var top: Element? { return items.last }
+    
     public init() { }
+    
+    public init(items: [Element]) {
+        self.items = items
+    }
     
     mutating func push(item: Element) {
         items.append(item)
