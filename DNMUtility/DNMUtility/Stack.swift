@@ -10,7 +10,9 @@ import Foundation
 
 public struct Stack<Element> {
     
-    var items: [Element] = []
+    private var items: [Element] = []
+    
+    public init() { }
     
     mutating func push(item: Element) {
         items.append(item)

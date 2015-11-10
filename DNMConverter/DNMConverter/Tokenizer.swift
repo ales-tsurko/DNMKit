@@ -510,6 +510,8 @@ public class Tokenizer {
             return
         }
         
+        // This should be a container,
+        // with (value) and (depth) tokens!
         let token = TokenInt(
             identifier: "LeafDuration",
             value: beats!,

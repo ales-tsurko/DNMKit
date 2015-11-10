@@ -36,6 +36,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let tokenizer = Tokenizer()
         let tokenContainer = tokenizer.tokenizeString(code)
         
+        let parser = Parser()
+        parser.parseTokenContainer(tokenContainer)
+        
         print(tokenContainer)
 
         
