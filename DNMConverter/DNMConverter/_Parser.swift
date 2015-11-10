@@ -9,6 +9,7 @@
 import Foundation
 import DNMModel
 
+/*
 internal class Parser {
     
     // d r y
@@ -758,4 +759,5 @@ internal enum Command: String {
 
     //["#","p","d","a","->","(",")","*", "+", "-", "|"]
 }
+*/
 */

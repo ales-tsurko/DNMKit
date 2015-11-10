@@ -8,6 +8,7 @@
 
 import Foundation
 
+/*
 internal enum Item/*: CustomStringConvertible*/ {
     case BOF
     case EOF
@@ -19,3 +20,4 @@ internal enum Item/*: CustomStringConvertible*/ {
     case BlockCommentStop
     case LineCommentStart
 }
+*/

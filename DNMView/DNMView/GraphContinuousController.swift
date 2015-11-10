@@ -82,14 +82,6 @@ public class GraphContinuousController: Graph {
                             point2: point2,
                             spannerArguments: edge.spannerArguments
                         )
-                        
-                        /*
-                        let graphEventEdge = GraphEventEdge(
-                            point1: point1,
-                            point2: point2,
-                            hasDashes: edge.hasDashes
-                        )
-                        */
                         insertSublayer(graphEventEdge, atIndex: 0)
                     }
                 }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/*
 internal class Scanner {
     
     // input
@@ -80,3 +81,4 @@ internal class Scanner {
         return items
     }
 }
+*/
