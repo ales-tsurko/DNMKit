@@ -8,7 +8,7 @@ Underlying framework for **DNM (Dynamic Notation for Music)**.
 
 #### Subframeworks currently implemented:
 
-* **DNMUtility**: Basic helper functions and variables
+* **DNMUtility**: Basic helper functions and data structures
 * **DNMModel**: Model of music
 * **DNMView**: Graphical representation of the musical model
 * **DNMUI**: Interaction elements
