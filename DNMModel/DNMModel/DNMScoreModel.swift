@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMUtility
 
 /**
 The model of an entire DNMScore. This will contain:
@@ -30,7 +31,11 @@ public struct DNMScoreModel: CustomStringConvertible {
     public var composer: String = ""
     
     /// All InstrumentIDs and InstrumentTypes (ordered), organized by PerformerIDs in the piece
-    public var iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]] = []
+    public var _iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]] = []
+    
+    public var iIDsAndInstrumentTypesByPID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
     
      /// All DurationNodes in the piece
     public var durationNodes: [DurationNode] = []
@@ -47,6 +52,10 @@ public struct DNMScoreModel: CustomStringConvertible {
     public init() { }
     
     private func getDescription() -> String {
-        return "DNMScoreModel: \(title); iIDsAndInstrumentTypesByPID: \(iIDsAndInstrumentTypesByPID)"
+        var description: String = "DNMScoreModel: \(title)"
+        description += "; amountMeasures: \(measures.count)"
+        description += "; amountDurationNodes: \(durationNodes.count)"
+        description += "; IIDsAndInstrumentTypesByPID: \(iIDsAndInstrumentTypesByPID)"
+        return description
     }
 }

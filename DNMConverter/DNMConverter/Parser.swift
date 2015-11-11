@@ -85,7 +85,7 @@ public class Parser {
                 case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
                 case "Measure": manageMeasureToken()
                 case "RootDuration": manageRootDurationToken(token)
-                case "LeafDuration": manageLeafDurationToken(token)
+                case "LeafDuration": manageInternalDurationToken(token)
                 default: break
                 }
             }
@@ -93,14 +93,28 @@ public class Parser {
         
         finalizeDurationNodes()
         
+        var scoreModel = DNMScoreModel()
+        scoreModel.title = title
+        scoreModel.measures = measures
+        scoreModel.durationNodes = durationNodes
+        scoreModel.tempoMarkings = tempoMarkings
+        scoreModel.rehearsalMarkings = rehearsalMarkings
+        
         // return something real
-        return DNMScoreModel()
+        return scoreModel
     }
     
     private func manageMeasureToken() {
         setDurationOfLastMeasure()
         let measure = Measure(offsetDuration: currentMeasureDurationOffset)
         measures.append(measure)
+    }
+    
+    private func setDurationOfLastMeasure() {
+        if measures.count == 0 { return }
+        var lastMeasure = measures[measures.count - 1]
+        lastMeasure.duration = accumDurationInMeasure
+        currentMeasureDurationOffset += lastMeasure.duration
     }
     
     private func manageDurationNodeStackModeToken(token: Token) {
@@ -129,34 +143,8 @@ public class Parser {
         }
     }
     
-    private func addRootDurationNode(rootDurationNode: DurationNode) {
-        durationNodes.append(rootDurationNode)
-        durationNodeStack = Stack(items: [rootDurationNode])
-    }
-    
-    private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
-        let offsetDuration: Duration
-        switch durationNodeStackMode {
-        case .Measure:
-            offsetDuration = currentMeasureDurationOffset
-            accumTotalDuration = currentMeasureDurationOffset
-            accumDurationInMeasure = rootDurationNode.duration
-        case .Increment:
-            offsetDuration = accumTotalDuration
-        case .Decrement:
-            if let lastDurationNode = durationNodeStack.top {
-                offsetDuration = lastDurationNode.offsetDuration
-                accumTotalDuration = offsetDuration
-                accumDurationInMeasure -= lastDurationNode.duration
-            } else {
-                offsetDuration = DurationZero
-            }
-        }
-        rootDurationNode.offsetDuration = offsetDuration
-    }
-    
     // needs to be TokenContainer
-    private func manageLeafDurationToken(token: Token) {
+    private func manageInternalDurationToken(token: Token) {
         if let tokenInt = token as? TokenInt {
             print(tokenInt)
         }
@@ -196,11 +184,32 @@ public class Parser {
         
     }
     
-    private func setDurationOfLastMeasure() {
-        if measures.count == 0 { return }
-        var lastMeasure = measures[measures.count - 1]
-        lastMeasure.duration = accumDurationInMeasure
-        currentMeasureDurationOffset += lastMeasure.duration
+
+    
+    private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
+        let offsetDuration: Duration
+        switch durationNodeStackMode {
+        case .Measure:
+            offsetDuration = currentMeasureDurationOffset
+            accumTotalDuration = currentMeasureDurationOffset
+            accumDurationInMeasure = rootDurationNode.duration
+        case .Increment:
+            offsetDuration = accumTotalDuration
+        case .Decrement:
+            if let lastDurationNode = durationNodeStack.top {
+                offsetDuration = lastDurationNode.offsetDuration
+                accumTotalDuration = offsetDuration
+                accumDurationInMeasure -= lastDurationNode.duration
+            } else {
+                offsetDuration = DurationZero
+            }
+        }
+        rootDurationNode.offsetDuration = offsetDuration
+    }
+    
+    private func addRootDurationNode(rootDurationNode: DurationNode) {
+        durationNodes.append(rootDurationNode)
+        durationNodeStack = Stack(items: [rootDurationNode])
     }
     
     private func finalizeDurationNodes() {

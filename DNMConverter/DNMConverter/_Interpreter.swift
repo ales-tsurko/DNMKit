@@ -236,7 +236,7 @@ internal class Interpreter {
         
         var scoreModel = DNMScoreModel()
         scoreModel.title = title
-        scoreModel.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
+        //scoreModel.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
         scoreModel.durationNodes = durationNodes
         scoreModel.measures = measures
         scoreModel.tempoMarkings = tempoMarkings

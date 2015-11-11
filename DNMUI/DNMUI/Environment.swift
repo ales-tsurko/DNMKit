@@ -7,6 +7,7 @@
 //
 
 import QuartzCore
+import DNMUtility
 import DNMModel
 import DNMView
 
@@ -43,11 +44,20 @@ public class Environment: UIView {
 
     public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
+    public var _iIDsAndInstrumentTypesByPID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
+    
     public var viewIDs: [String] = []
     
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
-        self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
+        
+        
+        // FIXME
+        //self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
+        
+        
         self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
@@ -95,8 +105,11 @@ public class Environment: UIView {
         }
     }
     
+    // TODO: Implement changes to OrderedDictionary
     private func getViewIDs() -> [String] {
         var viewIDs: [String] = []
+        
+        
         for performerArray in iIDsAndInstrumentTypesByPID {
             for (id, _) in performerArray { viewIDs.append(id) }
         }

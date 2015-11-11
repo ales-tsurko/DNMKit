@@ -151,51 +151,95 @@ public class Tokenizer {
     
     private func scanPerformerDeclaractionWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-    ) -> [String : [(String, String)]]
+    ) -> OrderedDictionary<String, String>?
     {
+        
+        // This is used to switch between InstrumentID and InstrumentType as they are declared
+        enum InstrumentIDOrType {
+            case ID
+            case Type
+            
+            mutating func switchState() {
+                switch self {
+                case .ID: self = .Type
+                case .Type: self = .ID
+                }
+            }
+        }
         
         let beginLocation = scanner.scanLocation
         var string: NSString?
 
         if scanner.scanString("P:", intoString: &string) {
         
-            var pID: String?
+            var performerID: String
             
-            // create ordered dictionary
-            var iIDsByPID: [(String, String)] = []
+            // deprecate
+            var _iIDsByPID: [(String, String)] = []
+            
+            //var instrumentIDsByPerformerID = OrderedDictionary<String, String>()
+            
+            var instrumentIDsAndInstrumentTypeByPerformerID = OrderedDictionary<
+                String, [(String, String)]
+            >()
             
             // adjust this so that there is a count (0,1) that switches, but this works for now
             
             let set = NSMutableCharacterSet.letterCharacterSet()
+            
+            // Match PerformerID declaration
             if scanner.scanCharactersFromSet(set, intoString: &string) {
-                pID = string as? String
+                
+                // This is the PerformerID
+                performerID = string as! String
+                
+                // This enum will switch every time there is a match
+                var instrumentIDOrType = InstrumentIDOrType.ID
+                
+                var instrumentID: String?
+                var instrumentType: String?
+                
                 while true {
-                    var iID: String?
+                    
                     if scanner.scanCharactersFromSet(set, intoString: &string) {
-                        iID = string as? String
-                        var instrumentType: String?
-                        if scanner.scanCharactersFromSet(set, intoString: &string) {
+                    
+                        switch instrumentIDOrType {
+                        case .ID:
+                            instrumentID = string as? String
+                            instrumentIDOrType.switchState()
+                        case .Type:
                             instrumentType = string as? String
-                            let tuple = (iID!, instrumentType!)
-                            iIDsByPID.append(tuple)
-                        } else {
-                            break
+                            let tuple = (instrumentID!, instrumentType!)
+                            
+                            // ensure ...
+                            if instrumentIDsAndInstrumentTypeByPerformerID[performerID] == nil {
+                                instrumentIDsAndInstrumentTypeByPerformerID[performerID] = []
+                            }
+                            
+                            instrumentIDsAndInstrumentTypeByPerformerID[performerID]!.append(tuple)
+                            instrumentID = nil
+                            instrumentType = nil
+                            instrumentIDOrType.switchState()
                         }
-                    } else {
-                        break
                     }
                 }
             }
             
+            /*
             if iIDsByPID.count == 0 {
                 print("Error: Performer Declared improperly")
                 scanner.scanLocation = beginLocation
-                return [:]
+                return nil
             } else {
+                
+                print("perf decl : \([pID!: iIDsByPID])")
+                
+                
                 return [pID!: iIDsByPID]
             }
+            */
         }
-        return [:]
+        return nil
     }
     
     private func scanSlurStartWithScanner(scanner: NSScanner,

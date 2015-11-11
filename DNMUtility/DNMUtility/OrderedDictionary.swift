@@ -1,5 +1,7 @@
 // From: 
 // https://github.com/lithium3141/SwiftDataStructures/blob/master/SwiftDataStructures/OrderedDictionary.swift
+// and
+// http://nshipster.com/swift-collection-protocols/
 //
 //  OrderedDictionary.swift
 //  DNMUtility
@@ -10,16 +12,21 @@
 
 import Foundation
 
-public struct OrderedDictionary<Tk: Hashable, Tv>: CustomStringConvertible {
+public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomStringConvertible {
     
     public var description: String { return getDescription() }
 
-    var keys: [Tk] = []
-    var values: [Tk : Tv] = [:]
+    public var keys: [Tk] = []
+    public var values: [Tk : Tv] = [:]
     
     public init() { }
     
-    subscript(key: Tk) -> Tv? {
+    // TODO
+    public func appendContentsOfOrderedDictionary(orderedDictionary: OrderedDictionary<Tk, Tv>) {
+        
+    }
+    
+    public subscript(key: Tk) -> Tv? {
         
         get {
             return values[key]
@@ -49,3 +56,43 @@ public struct OrderedDictionary<Tk: Hashable, Tv>: CustomStringConvertible {
         return result
     }
 }
+
+
+/*
+extension OrderedDictionary: SequenceType {
+    
+    public typealias Generator = GeneratorType
+    
+    public func generate() -> Generator {
+        
+        var index = 0
+        return GeneratorOfOne {
+            if index < keys.count {
+                let key = key[index++]
+                return values[key]
+            }
+            return nil
+        }()
+    }
+}
+*/
+
+/*
+
+struct SortedDictionary<Key: Hashable, Value where Key: Comparable>: SequenceType {
+    private var dict: Dictionary<Key, Value>
+    init(_ dict: Dictionary<Key, Value>) {
+        self.dict = dict
+    }
+    func generate() -> GeneratorOf<(Key, Value)> {
+        let values = Array(zip(self.dict.keys, self.dict.values))
+            .sorted {$0.0 < $1.0 }
+        return GeneratorOf(values.generate())
+    }
+    subscript(key: Key) -> Value? {
+        get        { return self.dict[key] }
+        set(value) { self.dict[key] = value }
+    }
+}
+
+*/

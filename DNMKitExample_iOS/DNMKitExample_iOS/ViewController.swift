@@ -37,10 +37,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let tokenContainer = tokenizer.tokenizeString(code)
         
         let parser = Parser()
-        parser.parseTokenContainer(tokenContainer)
+        let scoreModel = parser.parseTokenContainer(tokenContainer)
         
         print(tokenContainer)
+        print(scoreModel)
 
+        
+        for measure in scoreModel.measures {
+            print(measure)
+        }
+        
+        //addScoreTableView()
+        
+        let environment = Environment(scoreModel: scoreModel)
+        view.addSubview(environment)
         
         /*
         let point1 = CGPoint(x: 100, y: 100)
