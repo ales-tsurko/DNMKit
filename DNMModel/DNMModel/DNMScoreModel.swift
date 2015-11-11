@@ -30,9 +30,10 @@ public struct DNMScoreModel: CustomStringConvertible {
     /// Name of Composer -- make space for multiples, colabs, etc.
     public var composer: String = ""
     
-    /** 
-    Ordered Dictionary of PerformerIDs, each with a value of an Ordered Dictionary of 
-    InstrumentIDs and
+    /**
+    Collection of InstrumentIDsWithInstrumentType, organized by PerformerID.
+    These values ensure Performer order and Instrument order,
+    while making it still possible to call for this information by key identifiers.
     */
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>

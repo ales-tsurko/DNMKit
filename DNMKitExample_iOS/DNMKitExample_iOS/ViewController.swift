@@ -40,18 +40,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let scoreModel = parser.parseTokenContainer(tokenContainer)
         
         //print(tokenContainer)
-        //print(scoreModel)
+        print(scoreModel)
 
-        /*
-        for measure in scoreModel.measures {
-            print(measure)
+        for durationNode in scoreModel.durationNodes {
+            print("durationNode.iIDsByPID: \(durationNode.iIDsByPID)")
         }
-        */
         
         //addScoreTableView()
         
-        //let environment = Environment(scoreModel: scoreModel)
-        //view.addSubview(environment)
+        let environment = Environment(scoreModel: scoreModel)
+        environment.build()
+        view.addSubview(environment)
         
         /*
         let point1 = CGPoint(x: 100, y: 100)

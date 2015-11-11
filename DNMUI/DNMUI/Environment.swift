@@ -42,26 +42,28 @@ public class Environment: UIView {
     
     public var componentTypesShownByID: [String : [String]] = [:]
 
-    public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
+    //public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
+    
+    /*
     public var _iIDsAndInstrumentTypesByPID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
     >()
+    */
     
     public var viewIDs: [String] = []
     
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
-        
-        
-        // FIXME
-        //self.iIDsAndInstrumentTypesByPID = scoreModel.iIDsAndInstrumentTypesByPID
-        
-        
+
         self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
         self.durationNodes = scoreModel.durationNodes
+        self.instrumentIDsAndInstrumentTypesByPerformerID = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
@@ -105,15 +107,8 @@ public class Environment: UIView {
         }
     }
     
-    // TODO: Implement changes to OrderedDictionary
     private func getViewIDs() -> [String] {
-        var viewIDs: [String] = []
-        
-        
-        for performerArray in iIDsAndInstrumentTypesByPID {
-            for (id, _) in performerArray { viewIDs.append(id) }
-        }
-        viewIDs.append("omni")
+        let viewIDs = instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
         return viewIDs
     }
     
@@ -214,10 +209,10 @@ public class Environment: UIView {
             
             // what is g here?
             let system = System(g: g, beatWidth: 110, viewerID: id)
-            system.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
             system.offsetDuration = accumDuration
             system.setMeasuresWithMeasures(measureRange)
-
+            system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
+            
             // encapsulate: internal
             let start = system.offsetDuration
             let stop = system.offsetDuration + system.totalDuration // DurationSpan.duration...

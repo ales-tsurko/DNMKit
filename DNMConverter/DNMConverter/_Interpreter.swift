@@ -11,6 +11,7 @@ import Foundation
 import DNMUtility
 import DNMModel
 
+// being deprecated currently
 internal class Interpreter {
     
     internal var actions: [Action]

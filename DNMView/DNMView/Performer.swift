@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DNMUtility
 import DNMModel
 
 // contains 0 -> n instruments
@@ -18,7 +19,6 @@ public class Performer: ViewNode {
     
     public var id: String = ""
     
-    // hmmmmm, check InstrumentType out
     public var instrumentOrder: [String]?
     public var instruments: [Instrument] = []
     public var instrumentByID: [String : Instrument] = [:]
@@ -53,16 +53,27 @@ public class Performer: ViewNode {
         instrument.pad_bottom = 20 // hack
     }
     
+    public func addInstrumentsWithInsturmentTypeByInstrumentID(
+        instrumentTypeByInstrumentID: OrderedDictionary<String, InstrumentType>)
+    {
+        for (instrumentID, instrumentType) in instrumentTypeByInstrumentID {
+            createInstrumentWithInstrumentType(instrumentType, andID: instrumentID)
+        }
+    }
+    
+    /*
     public func addInstrumentsWithIDsAndInstrumentTypes(
         idsAndInstrumentTypes: [(String, InstrumentType)]
     )
     {
+        print("add instruments with ids and instrument types: \(idsAndInstrumentTypes)")
         for idAndInstrumentType in idsAndInstrumentTypes {
             let id = idAndInstrumentType.0
             let instrumentType = idAndInstrumentType.1
             createInstrumentWithInstrumentType(instrumentType, andID: id)
         }
     }
+    */
     
     public func createInstrumentWithInstrumentType(instrumentType: InstrumentType,
         andID id: String
