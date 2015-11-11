@@ -21,9 +21,14 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
     
     public init() { }
     
-    // TODO
-    public func appendContentsOfOrderedDictionary(orderedDictionary: OrderedDictionary<Tk, Tv>) {
-        
+    public mutating func appendContentsOfOrderedDictionary(
+        orderedDictionary: OrderedDictionary<Tk, Tv>
+    )
+    {
+        keys.appendContentsOf(orderedDictionary.keys)
+        for key in orderedDictionary.keys {
+            values.updateValue(orderedDictionary[key]!, forKey: key)
+        }
     }
     
     public subscript(key: Tk) -> Tv? {
@@ -68,50 +73,8 @@ extension OrderedDictionary: SequenceType {
         
         var index = 0
         return anyGenerator {
-            if index < self.keys.count {
-                return zipped[index++]
-            }
+            if index < self.keys.count { return zipped[index++] }
             return nil
         }
     }
 }
-
-
-/*
-extension OrderedDictionary: SequenceType {
-    
-    public typealias Generator = GeneratorType
-    
-    public func generate() -> Generator {
-        
-        var index = 0
-        return GeneratorOfOne {
-            if index < keys.count {
-                let key = key[index++]
-                return values[key]
-            }
-            return nil
-        }()
-    }
-}
-*/
-
-/*
-
-struct SortedDictionary<Key: Hashable, Value where Key: Comparable>: SequenceType {
-    private var dict: Dictionary<Key, Value>
-    init(_ dict: Dictionary<Key, Value>) {
-        self.dict = dict
-    }
-    func generate() -> GeneratorOf<(Key, Value)> {
-        let values = Array(zip(self.dict.keys, self.dict.values))
-            .sorted {$0.0 < $1.0 }
-        return GeneratorOf(values.generate())
-    }
-    subscript(key: Key) -> Value? {
-        get        { return self.dict[key] }
-        set(value) { self.dict[key] = value }
-    }
-}
-
-*/

@@ -38,7 +38,7 @@ public class Tokenizer {
         //var iIDsAndInstrumentTypesByPID: [String : [(String, String)]] = [:]
         
         var iIDsAndInstrumentTypesByPID = OrderedDictionary<
-            String, OrderedDictionary<String, (String, String)>
+            String, OrderedDictionary<String, String>
         >()
         
         let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
@@ -58,6 +58,7 @@ public class Tokenizer {
                 continue
             }
             
+            
             // scan for performer declarations
             if let performerDeclaration = scanPerformerDeclaractionWithScanner(lineScanner,
                 andContainer: rootTokenContainer
@@ -70,7 +71,11 @@ public class Tokenizer {
                     }
                 }
                 print(performerDeclaration)
+                
+                iIDsAndInstrumentTypesByPID.appendContentsOfOrderedDictionary(performerDeclaration)
             }
+            
+            print("ALL OF THEM: \(iIDsAndInstrumentTypesByPID)")
             
             
             
