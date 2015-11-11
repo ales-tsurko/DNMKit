@@ -20,12 +20,19 @@ public struct Stack<Element> {
         self.items = items
     }
     
-    mutating func push(item: Element) {
+    public mutating func push(item: Element) {
         items.append(item)
     }
     
-    mutating func pop(item: Element) -> Element? {
+    public mutating func pop() -> Element? {
         if items.count == 0 { return nil }
         return items.removeLast()
+    }
+    
+    public mutating func pop(amount amount: Int) -> [Element] {
+        if items.count < amount { return [] }
+        var poppedItems: [Element] = []
+        for _ in 0..<amount { poppedItems.append(pop()!) }
+        return poppedItems
     }
 }

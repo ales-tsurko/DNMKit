@@ -7,66 +7,21 @@ P: VC vc Violoncello cc ContinuousController
 
 #
 | 1 8 VN vn
-    1 p 60.25 67.75 [ -d 0 1 d omp [ ^ 2 -w 0 1 0.75 -d 1 0 2 a - (
-    2 p 63.25 d o ]
-    2 p 58 a . )
-
-+ 1 8 VN vn
-    1 p 90 (
-    1 p 59
-    1 p 77 )
-
-+ 1 8 VN vn
-    1 p 60.35 d fff [ -d (
-    1 p 90.35 d o ] a - )
-    2 p 63.25 59.0
-    3 p 60
-
-| 3 8 VC vc
-    1 p 60 d f [ ^ 2
-    1 p 62 a - d p ]
-    1 p 63.25 a .
-
-#
-| 4 8 VC vc
     1 p 60
     1 p 60
+    1 --
+
+
+| 1 8 VC vc
     1 p 60
     1 p 60
 
 #
-| 4 8 VC vc
-    1 p 60
-    1 p 60
-    1 p 60
-    1 p 60
-
-
-#
-| 4 8 VC vc
-    1 p 60
-    1 p 60
+| 1 8 VN vn
     1 p 60
     1 p 60
 
-#
-| 4 8 VC vc
-    1 p 60
-    1 p 60
-    1 p 60
-    1 p 60
-
-#
-| 4 8 VC vc
-    1 p 60
-    1 p 60
-    1 p 60
-    1 p 60
-
-#
-| 4 8 VC vc
-    1 p 60
-    1 p 60
+| 1 8 VC vc
     1 p 60
     1 p 60
 

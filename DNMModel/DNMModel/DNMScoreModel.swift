@@ -11,7 +11,7 @@ import DNMUtility
 
 /**
 The model of an entire DNMScore. This will contain:
-    * InstrumentIDs and InstrumentTypes (ordered) organized by PerformerID
+    * InstrumentTypes organized by InstrumentIDs (ordered), organized by PerformerID (ordered)
     * DurationNodes
     * Measures
     * TempoMarkings
@@ -30,14 +30,15 @@ public struct DNMScoreModel: CustomStringConvertible {
     /// Name of Composer -- make space for multiples, colabs, etc.
     public var composer: String = ""
     
-    /// All InstrumentIDs and InstrumentTypes (ordered), organized by PerformerIDs in the piece
-    public var _iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]] = []
-    
-    public var iIDsAndInstrumentTypesByPID = OrderedDictionary<
+    /** 
+    Ordered Dictionary of PerformerIDs, each with a value of an Ordered Dictionary of 
+    InstrumentIDs and
+    */
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
     >()
     
-     /// All DurationNodes in the piece
+    /// All DurationNodes in the piece
     public var durationNodes: [DurationNode] = []
     
     /// All Measures in the piece
@@ -55,7 +56,7 @@ public struct DNMScoreModel: CustomStringConvertible {
         var description: String = "DNMScoreModel: \(title)"
         description += "; amountMeasures: \(measures.count)"
         description += "; amountDurationNodes: \(durationNodes.count)"
-        description += "; IIDsAndInstrumentTypesByPID: \(iIDsAndInstrumentTypesByPID)"
+        description += "; IIDsAndInstrumentTypesByPID: \(instrumentIDsAndInstrumentTypesByPerformerID)"
         return description
     }
 }

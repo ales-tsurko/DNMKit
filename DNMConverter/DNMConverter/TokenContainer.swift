@@ -25,6 +25,8 @@ public class TokenContainer: Token {
     public var startIndex: Int
     public var stopIndex: Int = -1 // to be calculated with contents
     
+    public var indentationLevel: Int?
+    
     // changes strings to RegExs
     public init(identifier: String, openingValue: String = "", startIndex: Int) {
         self.identifier = identifier
@@ -43,8 +45,7 @@ public class TokenContainer: Token {
         for token in tokens {
             if token is TokenContainer {
                 description += "\n\(token)"
-            }
-            else {
+            } else {
                 description += "\n-- \(token)"
             }
         }

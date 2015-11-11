@@ -8,6 +8,7 @@
 
 import Foundation
 import DNMUtility
+import DNMModel
 
 // At some point, find way to inject new commands and argument types in here dynamically
 public class Tokenizer {
@@ -20,6 +21,10 @@ public class Tokenizer {
     private var index: Int = 0
     private var isInBlockComment: Bool = false
     
+    private var indentationLevelByLine: [Int] = []
+    
+    private var currentIndentationLevel: Int { return indentationLevelByLine[lineCount] }
+    
     public init() { }
     
     public func tokenizeString(string: String) -> TokenContainer {
@@ -29,23 +34,17 @@ public class Tokenizer {
         
         // main scanner that reads one line at a time
         let mainScanner = NSScanner(string: string)
-        
-        // inject the header info here
-        
-        var metaData: [String : String] = [:]
-
-        // deal with ordering later
-        //var iIDsAndInstrumentTypesByPID: [String : [(String, String)]] = [:]
-        
-        var iIDsAndInstrumentTypesByPID = OrderedDictionary<
-            String, OrderedDictionary<String, String>
-        >()
+        mainScanner.charactersToBeSkipped = newLineSet
         
         let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
         
         // read a single line
         while mainScanner.scanUpToCharactersFromSet(newLineSet, intoString: &lineString) {
-
+            
+            // Set indentation level by line
+            let indentationLevel = indentationLevelWithLine(lineString as! String)
+            indentationLevelByLine.append(indentationLevel)
+            
             // this is the scanner for the current line
             let lineScanner = NSScanner(string: lineString as! String)
         
@@ -58,44 +57,37 @@ public class Tokenizer {
                 continue
             }
             
-            
             // scan for performer declarations
-            if let performerDeclaration = scanPerformerDeclaractionWithScanner(lineScanner,
-                andContainer: rootTokenContainer
-            )
-            {
-                for (pID, iTypeByIID) in performerDeclaration {
-                    print("pID: \(pID): \(iTypeByIID)")
-                    for (iID, iType) in iTypeByIID {
-                        print("iID: \(iID): \(iType)")
-                    }
-                }
-                print(performerDeclaration)
-                
-                iIDsAndInstrumentTypesByPID.appendContentsOfOrderedDictionary(performerDeclaration)
-            }
+            scanPerformerDeclaractionWithScanner(lineScanner, andContainer: rootTokenContainer)
             
-            print("ALL OF THEM: \(iIDsAndInstrumentTypesByPID)")
-            
-            
-            
-            // scan for line meta data
-            let lineMetaData = scanHeaderWithScanner(lineScanner,
-                andContainer: rootTokenContainer
-            )
-            
-            // extend all metadata with lineMetaData (make a clean method for this!)
-            for (k,v) in lineMetaData { metaData[k] = v }
-            //for (k,v) in performerDeclaration { iIDsAndInstrumentTypesByPID[k] = v }
-            
+            // scan line for musical events
             scanLineWithScanner(lineScanner, andContainer: rootTokenContainer)
-            
 
-            
             lineStartIndex += lineScanner.string.characters.count
             lineCount++
         }
+        
         return rootTokenContainer
+    }
+    
+    private func indentationLevelWithLine(line: String) -> Int {
+        let whitespaceScanner = NSScanner(string: line)
+        whitespaceScanner.charactersToBeSkipped = nil
+
+        var tabCount: Int = 0
+        var spaceCount: Int = 0
+        
+        var string: NSString?
+        while whitespaceScanner.scanString(" ", intoString: &string) {
+            spaceCount++
+        }
+
+        while whitespaceScanner.scanString("\t", intoString: &string) {
+            tabCount++
+        }
+        
+        let indentationLevel = tabCount + (spaceCount / 4)
+        return indentationLevel
     }
     
     private func scanLineWithScanner(scanner: NSScanner,
@@ -118,8 +110,6 @@ public class Tokenizer {
         scanPIDWithScanner(scanner, andContainer: container)
         scanIIDWithScanner(scanner, andContainer: container)
     }
-    
-
     
     private func scanTopLevelCommandsWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
@@ -170,7 +160,7 @@ public class Tokenizer {
     ) -> OrderedDictionary<String, OrderedDictionary<String, String>>?
     {
         
-        // This is used to switch between InstrumentID and InstrumentType as they are declared
+        // Enum used to switch between InstrumentID and InstrumentType as they are declared
         enum InstrumentIDOrType {
             case ID
             case Type
@@ -184,81 +174,104 @@ public class Tokenizer {
         }
         
         let beginLocation = scanner.scanLocation
+        
         var string: NSString?
-
         if scanner.scanString("P:", intoString: &string) {
         
             var performerID: String
-            
-            // deprecate
-            var _iIDsByPID: [(String, String)] = []
-            
-            //var instrumentIDsByPerformerID = OrderedDictionary<String, String>()
-            
+
+            // DO ALL OF THE ORDERED DICT STUFF IN PARSER!
             var instrumentIDsAndInstrumentTypeByPerformerID = OrderedDictionary<
                 String, OrderedDictionary<String, String>
             >()
             
-            // adjust this so that there is a count (0,1) that switches, but this works for now
-            
-            let set = NSMutableCharacterSet.letterCharacterSet()
+            let letterSet = NSMutableCharacterSet.letterCharacterSet()
             
             // Match PerformerID declaration
-            if scanner.scanCharactersFromSet(set, intoString: &string) {
+            if scanner.scanCharactersFromSet(letterSet, intoString: &string) {
                 
                 // This is the PerformerID
                 performerID = string as! String
                 
-                // This enum will switch every time there is a match
-                var instrumentIDOrType = InstrumentIDOrType.ID
+                let performerDeclarationTokenContainer = TokenContainer(
+                    identifier: "PerformerDeclaration",
+                    openingValue: performerID,
+                    startIndex: beginLocation + lineStartIndex
+                )
                 
-                var instrumentID: String?
-                var instrumentType: String?
+                instrumentIDsAndInstrumentTypeByPerformerID[performerID] = (
+                    OrderedDictionary<String,String>()
+                )
+                
+                var dictForPID = instrumentIDsAndInstrumentTypeByPerformerID[performerID]!
+                
+                var instrumentID: String!
+                var instrumentType: String!
+                
+                // This enum alternates with each symbol found
+                var instrumentIDOrType = InstrumentIDOrType.ID
                 
                 while true {
                     
-                    if scanner.scanCharactersFromSet(set, intoString: &string) {
+                    let beginLocation = scanner.scanLocation
                     
+                    if scanner.scanCharactersFromSet(letterSet, intoString: &string) {
+                        
                         switch instrumentIDOrType {
                         case .ID:
-                            instrumentID = string as? String
+                            instrumentID = string as! String
+                            
+                            // Create Token for InstrumentID
+                            let instrumentIDToken = TokenString(
+                                identifier: "InstrumentID",
+                                value: instrumentID,
+                                startIndex: beginLocation + lineStartIndex
+                            )
+                            
+                            // Commit InstrumentID Token
+                            performerDeclarationTokenContainer.addToken(instrumentIDToken)
+                            
+                            // Switch enum to .Type
                             instrumentIDOrType.switchState()
                         case .Type:
-                            instrumentType = string as? String
-                            let tuple = (instrumentID!, instrumentType!)
+                            instrumentType = string as! String
                             
-                            // ensure ...
-                            if instrumentIDsAndInstrumentTypeByPerformerID[performerID] == nil {
-                                instrumentIDsAndInstrumentTypeByPerformerID[performerID] = (
-                                    OrderedDictionary<String,String>()
-                                )
+                            /*
+                            // Verify that this is a valid InstrumentType (throw error)
+                            // -- save this for parser?
+                            if InstrumentType(rawValue: instrumentType) == nil {
+                                fatalError("Invalid InstrumentType: \(instrumentType)")
                             }
+                            */
                             
-                            instrumentIDsAndInstrumentTypeByPerformerID[performerID]![instrumentID!] = instrumentType
+                            // Create Token for InstrumentType
+                            let instrumentTypeToken = TokenString(
+                                identifier: "InstrumentType",
+                                value: instrumentType,
+                                startIndex: beginLocation + lineStartIndex
+                            )
+                            
+                            // Commit InstrumentType Token
+                            performerDeclarationTokenContainer.addToken(instrumentTypeToken)
+                            
+                            dictForPID[instrumentID] = instrumentType
+                            
+                            // Clear everything
                             instrumentID = nil
                             instrumentType = nil
+                            
+                            // Switch enum to .ID
                             instrumentIDOrType.switchState()
                         }
                     }
                     else {
+
+                        // Commit PerformerDeclaration TokenContainer to root TokenContainer
+                        container.addToken(performerDeclarationTokenContainer)
                         return instrumentIDsAndInstrumentTypeByPerformerID
                     }
                 }
             }
-            
-            /*
-            if iIDsByPID.count == 0 {
-                print("Error: Performer Declared improperly")
-                scanner.scanLocation = beginLocation
-                return nil
-            } else {
-                
-                print("perf decl : \([pID!: iIDsByPID])")
-                
-                
-                return [pID!: iIDsByPID]
-            }
-            */
         }
         return nil
     }
@@ -566,7 +579,7 @@ public class Tokenizer {
         }
     }
     
-    private func scanLeafDurationWithScanner(scanner: NSScanner,
+    private func scanNonRootDurationNodeWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
     {
@@ -580,13 +593,44 @@ public class Tokenizer {
             return
         }
         
-        // This should be a container,
-        // with (value) and (depth) tokens!
+        var identifier: String
+        
+
+        var string: NSString?
+        if scanner.scanString("--", intoString: &string) { identifier = "InternalNodeDuration" }
+        else { identifier = "LeafNodeDuration" }
+        
         let token = TokenInt(
-            identifier: "LeafDuration",
+            identifier: identifier,
             value: beats!,
             startIndex: beginLocation + lineStartIndex,
-            stopIndex: scanner.scanLocation + lineStartIndex - 1 // dirty
+            stopIndex: scanner.scanLocation + lineStartIndex - 1,
+            indentationLevel: currentIndentationLevel
+        )
+        container.addToken(token)
+    }
+    
+    private func scanLeafDurationWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        let beginLocation = scanner.scanLocation
+        var beats: Int?
+        var floatValue: Float = 0.0
+        if scanner.scanFloat(&floatValue) { beats = Int(floatValue) }
+        
+        if beats == nil {
+            scanner.scanLocation = beginLocation
+            return
+        }
+
+        // This should be a container,
+        let token = TokenInt(
+            identifier: "InternalDuration",
+            value: beats!,
+            startIndex: beginLocation + lineStartIndex,
+            stopIndex: scanner.scanLocation + lineStartIndex - 1, // dirty
+            indentationLevel: currentIndentationLevel
         )
         container.addToken(token)
     }

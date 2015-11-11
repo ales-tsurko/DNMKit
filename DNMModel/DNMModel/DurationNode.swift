@@ -295,10 +295,11 @@ public class DurationNode: Node, CustomStringConvertible {
         }
     }
     
-    public func addChildWithBeats(beats: Int) {
+    public func addChildWithBeats(beats: Int) -> DurationNode {
         let child = DurationNode(duration: Duration(beats, duration.subdivision!.value))
         // perhaps do some calculation here...to figure out proper
         addChild(child)
+        return child
         
         //println("children: \(children)")
         

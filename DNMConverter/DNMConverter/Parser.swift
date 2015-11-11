@@ -10,7 +10,6 @@ import Foundation
 import DNMUtility
 import DNMModel
 
-
 public class Parser {
     
     /** 
@@ -47,7 +46,7 @@ public class Parser {
     These values ensure Performer order and Instrument order, 
     while making it still possible to call for this information by key identifiers.
     */
-    private var instrumentIDAndInstrumentTypeByPerformerID = OrderedDictionary<
+    private var instrumentIDAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
     >()
     
@@ -68,7 +67,12 @@ public class Parser {
     
             if let container = token as? TokenContainer {
                 switch container.identifier {
-
+                case "PerformerDeclaration":
+                    do { try managePerformerDeclarationTokenContainer(container) }
+                    catch ParserError.InvalidInstrumentType(let string) {
+                        print("INVALID InstrumentType: \(string)")
+                    } catch _ { print("...?") }
+                    
                 case "Pitch": managePitchTokenContainer(container)
                 case "DynamicMarking": manageDynamicMarkingTokenContainer(container)
                 case "Articulation": manageArticulationTokenContainer(container)
@@ -85,7 +89,8 @@ public class Parser {
                 case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
                 case "Measure": manageMeasureToken()
                 case "RootDuration": manageRootDurationToken(token)
-                case "LeafDuration": manageInternalDurationToken(token)
+                case "InternalNodeDuration": manageInternalDurationToken(token)
+                case "LeafNodeDuration": manageLeafNodeDurationToken(token)
                 default: break
                 }
             }
@@ -93,15 +98,62 @@ public class Parser {
         
         finalizeDurationNodes()
         
+        let scoreModel = makeScoreModel()
+        for dn in durationNodes {
+            print(dn)
+        }
+        
+        // return something real
+        return scoreModel
+    }
+    
+    private func makeScoreModel() -> DNMScoreModel {
         var scoreModel = DNMScoreModel()
         scoreModel.title = title
         scoreModel.measures = measures
         scoreModel.durationNodes = durationNodes
         scoreModel.tempoMarkings = tempoMarkings
         scoreModel.rehearsalMarkings = rehearsalMarkings
-        
-        // return something real
+        scoreModel.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDAndInstrumentTypesByPerformerID
         return scoreModel
+    }
+    
+    private func managePerformerDeclarationTokenContainer(container: TokenContainer) throws {
+        let performerID = container.openingValue
+        
+        var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+            String, OrderedDictionary<String, InstrumentType>
+        >()
+        
+        instrumentIDsAndInstrumentTypesByPerformerID[performerID] = OrderedDictionary<
+            String, InstrumentType
+        >()
+        
+        var dictForPID = instrumentIDsAndInstrumentTypesByPerformerID[performerID]!
+        var lastInstrumentID: String?
+        for token in container.tokens {
+            switch token.identifier {
+            case "InstrumentID":
+                let instrumentID = (token as! TokenString).value
+                lastInstrumentID = instrumentID
+            case "InstrumentType":
+
+                let instrumentTypeString = (token as! TokenString).value
+                
+                guard let instrumentType = InstrumentType(rawValue: instrumentTypeString) else {
+                    throw ParserError.InvalidInstrumentType(string: instrumentTypeString)
+                }
+                
+                if let lastInstrumentID = lastInstrumentID {
+                    dictForPID[lastInstrumentID] = instrumentType
+                }
+            default: break
+            }
+        }
+        
+        self.instrumentIDAndInstrumentTypesByPerformerID.appendContentsOfOrderedDictionary(
+            instrumentIDAndInstrumentTypesByPerformerID
+        )
     }
     
     private func manageMeasureToken() {
@@ -143,10 +195,28 @@ public class Parser {
         }
     }
     
-    // needs to be TokenContainer
+    private func manageLeafNodeDurationToken(token: Token) {
+        if let tokenInt = token as? TokenInt, indentationLevel = tokenInt.indentationLevel {
+            print("manage leaf with beats: \(tokenInt.value); indentation: \(indentationLevel)")
+        }
+    }
+    
+    // FIXME: investigate this
     private func manageInternalDurationToken(token: Token) {
-        if let tokenInt = token as? TokenInt {
-            print(tokenInt)
+        if let tokenInt = token as? TokenInt, indentationLevel = tokenInt.indentationLevel {
+            
+            let beats = tokenInt.value
+            let depth = indentationLevel - 1
+            if depth < currentDurationNodeDepth {
+                let amount = currentDurationNodeDepth - depth
+                durationNodeStack.pop(amount: amount)
+            }
+            if let lastDurationNode = durationNodeStack.top {
+                let lastDurationNodeChild = lastDurationNode.addChildWithBeats(beats)
+                durationNodeStack.push(lastDurationNodeChild)
+                currentDurationNodeLeaf = lastDurationNodeChild
+                currentDurationNodeDepth = depth
+            }
         }
     }
     
@@ -227,8 +297,8 @@ private enum DurationNodeStackMode: String {
     case Decrement = "-"
 }
 
-private enum TokenizerError: ErrorType {
-    case InvalidInstrumentType
+private enum ParserError: ErrorType {
+    case InvalidInstrumentType(string: String)
     case UndeclaredPerformerID
     case UndeclaredInstrumentID
     
