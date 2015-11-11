@@ -11,6 +11,7 @@
 		0798B58D1BF1A2F8002E8781 /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B58A1BF1A2F8002E8781 /* TokenContainer.swift */; };
 		0798B58E1BF1A2F8002E8781 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B58B1BF1A2F8002E8781 /* Tokenizer.swift */; };
 		0798B5921BF1A545002E8781 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B5911BF1A545002E8781 /* Parser.swift */; };
+		079A11111BF3590E007E5427 /* SyntaxHighlightingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */; };
 		07DCFCC81BEAF37900AC18B3 /* _DNMScoreModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */; };
 		07E4DCC51BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */; };
 		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +43,7 @@
 		0798B58A1BF1A2F8002E8781 /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
 		0798B58B1BF1A2F8002E8781 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		0798B5911BF1A545002E8781 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightingStyle.swift; sourceTree = "<group>"; };
 		07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _DNMScoreModelManager.swift; sourceTree = "<group>"; };
 		07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _DNMScoreModelFromShorthand.swift; sourceTree = "<group>"; };
 		07F3E5A91BE53EFE00948758 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 				07F3E7841BE67D0E00948758 /* _Tokenizer.swift */,
 				07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */,
 				07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */,
+				079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */,
 			);
 			name = Shorthand;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				07E4DCC51BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift in Sources */,
 				0798B58E1BF1A2F8002E8781 /* Tokenizer.swift in Sources */,
+				079A11111BF3590E007E5427 /* SyntaxHighlightingStyle.swift in Sources */,
 				0798B58C1BF1A2F8002E8781 /* Token.swift in Sources */,
 				07F3E7881BE67D0E00948758 /* _Parser.swift in Sources */,
 				0798B5921BF1A545002E8781 /* Parser.swift in Sources */,

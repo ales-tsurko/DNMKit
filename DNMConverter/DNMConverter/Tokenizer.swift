@@ -59,9 +59,20 @@ public class Tokenizer {
             }
             
             // scan for performer declarations
-            let performerDeclaration = scanPerformerDeclaractionWithScanner(lineScanner,
+            if let performerDeclaration = scanPerformerDeclaractionWithScanner(lineScanner,
                 andContainer: rootTokenContainer
             )
+            {
+                for (pID, iTypeByIID) in performerDeclaration {
+                    print("pID: \(pID): \(iTypeByIID)")
+                    for (iID, iType) in iTypeByIID {
+                        print("iID: \(iID): \(iType)")
+                    }
+                }
+                print(performerDeclaration)
+            }
+            
+            
             
             // scan for line meta data
             let lineMetaData = scanHeaderWithScanner(lineScanner,
@@ -151,7 +162,7 @@ public class Tokenizer {
     
     private func scanPerformerDeclaractionWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-    ) -> OrderedDictionary<String, String>?
+    ) -> OrderedDictionary<String, OrderedDictionary<String, String>>?
     {
         
         // This is used to switch between InstrumentID and InstrumentType as they are declared
@@ -180,7 +191,7 @@ public class Tokenizer {
             //var instrumentIDsByPerformerID = OrderedDictionary<String, String>()
             
             var instrumentIDsAndInstrumentTypeByPerformerID = OrderedDictionary<
-                String, [(String, String)]
+                String, OrderedDictionary<String, String>
             >()
             
             // adjust this so that there is a count (0,1) that switches, but this works for now
@@ -213,14 +224,19 @@ public class Tokenizer {
                             
                             // ensure ...
                             if instrumentIDsAndInstrumentTypeByPerformerID[performerID] == nil {
-                                instrumentIDsAndInstrumentTypeByPerformerID[performerID] = []
+                                instrumentIDsAndInstrumentTypeByPerformerID[performerID] = (
+                                    OrderedDictionary<String,String>()
+                                )
                             }
                             
-                            instrumentIDsAndInstrumentTypeByPerformerID[performerID]!.append(tuple)
+                            instrumentIDsAndInstrumentTypeByPerformerID[performerID]![instrumentID!] = instrumentType
                             instrumentID = nil
                             instrumentType = nil
                             instrumentIDOrType.switchState()
                         }
+                    }
+                    else {
+                        return instrumentIDsAndInstrumentTypeByPerformerID
                     }
                 }
             }

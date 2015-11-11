@@ -57,6 +57,25 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
     }
 }
 
+extension OrderedDictionary: SequenceType {
+    
+    public typealias Generator = AnyGenerator<(Tk, Tv)>
+    
+    public func generate() -> Generator {
+        
+        var zipped: [(Tk, Tv)] = []
+        for key in keys { zipped.append((key, values[key]!)) }
+        
+        var index = 0
+        return anyGenerator {
+            if index < self.keys.count {
+                return zipped[index++]
+            }
+            return nil
+        }
+    }
+}
+
 
 /*
 extension OrderedDictionary: SequenceType {
