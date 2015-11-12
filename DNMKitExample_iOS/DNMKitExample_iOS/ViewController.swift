@@ -26,7 +26,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
-        
 
         let fileName = "tokenize"
         let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
@@ -38,19 +37,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let parser = Parser()
         let scoreModel = parser.parseTokenContainer(tokenContainer)
-        
-        //print(tokenContainer)
-        print(scoreModel)
 
-        for durationNode in scoreModel.durationNodes {
-            print("durationNode.iIDsByPID: \(durationNode.iIDsByPID)")
+        for token in tokenContainer.tokens {
+            print(token)
         }
         
         //addScoreTableView()
         
+        /*
         let environment = Environment(scoreModel: scoreModel)
         environment.build()
         view.addSubview(environment)
+        */
         
         /*
         let point1 = CGPoint(x: 100, y: 100)

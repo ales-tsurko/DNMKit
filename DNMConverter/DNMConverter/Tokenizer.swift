@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import DNMUtility
-import DNMModel
+//import DNMUtility
+//import DNMModel
 
 // At some point, find way to inject new commands and argument types in here dynamically
 public class Tokenizer {
@@ -34,38 +34,57 @@ public class Tokenizer {
         
         // main scanner that reads one line at a time
         let mainScanner = NSScanner(string: string)
-        mainScanner.charactersToBeSkipped = newLineCharacterSet
+        mainScanner.charactersToBeSkipped = nil
         
         let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
         
-        // read a single line
-        while mainScanner.scanUpToCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
+        while !mainScanner.atEnd {
             
-            // Set indentation level by line
-            let indentationLevel = indentationLevelWithLine(lineString as! String)
-            indentationLevelByLine.append(indentationLevel)
-            
-            // this is the scanner for the current line
-            let lineScanner = NSScanner(string: lineString as! String)
-        
-            lineScanner.charactersToBeSkipped = NSMutableCharacterSet.whitespaceCharacterSet()
-            lineScanner.caseSensitive = true
-
-            scanCommentsWithScanner(lineScanner)
-            if isInBlockComment {
-                lineStartIndex += lineScanner.string.characters.count
-                continue
+            if mainScanner.scanCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
+                print("newlineFound!")
+                lineCount++
+                let lineLength = lineString!.length
+                lineStartIndex += lineLength
+                indentationLevelByLine.append(0)
             }
-            
-            // scan for performer declarations
-            scanPerformerDeclaractionWithScanner(lineScanner, andContainer: rootTokenContainer)
-            
-            // scan line for musical events
-            scanLineWithScanner(lineScanner, andContainer: rootTokenContainer)
-
-            lineStartIndex += lineScanner.string.characters.count
-            lineCount++
+            else {
+                while mainScanner.scanUpToCharactersFromSet(newLineCharacterSet,
+                    intoString: &lineString)
+                {
+                    
+                    let lineLength = lineString!.length
+                    
+                    // Set indentation level by line
+                    let indentationLevel = indentationLevelWithLine(lineString as! String)
+                    indentationLevelByLine.append(indentationLevel)
+                    
+                    // this is the scanner for the current line
+                    let lineScanner = NSScanner(string: lineString as! String)
+                    
+                    lineScanner.charactersToBeSkipped = NSMutableCharacterSet.whitespaceCharacterSet()
+                    lineScanner.caseSensitive = true
+                    
+                    scanCommentsWithScanner(lineScanner)
+                    if isInBlockComment {
+                        lineStartIndex += lineScanner.string.characters.count
+                        continue
+                    }
+                    
+                    // scan for performer declarations
+                    scanPerformerDeclaractionWithScanner(lineScanner, andContainer: rootTokenContainer)
+                    
+                    // scan line for musical events
+                    scanLineWithScanner(lineScanner, andContainer: rootTokenContainer)
+                    
+                    print("lineScanner.string: \(lineScanner.string)")
+                    
+                    lineStartIndex += lineLength
+                    lineCount++
+                }
+            }
         }
+        
+        
         
         return rootTokenContainer
     }
@@ -493,7 +512,7 @@ public class Tokenizer {
             }
         }
         
-        let beginLocation = scanner.scanLocation
+        var beginLocation = scanner.scanLocation + 1
         
         var identifier: String
         var id: String?
@@ -501,11 +520,15 @@ public class Tokenizer {
         var isComplete: Bool = false
         var string: NSString?
         while scanner.scanCharactersFromSet(letterCharacterSet, intoString: &string) {
+            
+            
+            
             switch pIDOrIID {
             case .PID:
                 identifier = "PerformerID"
                 id = string as? String
                 pIDOrIID.switchState()
+                
             case .IID:
                 identifier = "InstrumentID"
                 id = string as? String
@@ -520,6 +543,8 @@ public class Tokenizer {
                 startIndex: beginLocation + lineStartIndex
             )
             container.addToken(token)
+            
+            beginLocation = scanner.scanLocation + 1
             if isComplete { break }
         }
     }
@@ -769,10 +794,7 @@ public class Tokenizer {
     {
         let beginLocation = scanner.scanLocation
         var string: NSString?
-        while scanner.scanString("#", intoString: &string) {
-            
-            // perhaps stop index is not necessary? for strings? just create range with
-            // -- startIndex + string.characters.count
+        if scanner.scanString("#", intoString: &string) {
             
             let token = TokenString(
                 identifier: "Measure",
@@ -784,6 +806,8 @@ public class Tokenizer {
     }
     
     private func scanCommentsWithScanner(scanner: NSScanner) {
+        // do actually create tokens for comments!!!
+        // cuz we still have to do highlighting for those
         scanLineCommentWithScanner(scanner)
         scanBlockCommentStartWithScanner(scanner)
         scanBlockCommentStopWithScanner(scanner)

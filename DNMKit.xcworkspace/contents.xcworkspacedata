@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DNMIDE/DNMIDE.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DNMJSON/DNMJSON.xcodeproj">
    </FileRef>
    <FileRef
