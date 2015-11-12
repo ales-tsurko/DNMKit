@@ -9,6 +9,7 @@
 import Foundation
 import DNMModel
 
+/*
 public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreModel {
     
     let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
@@ -22,6 +23,7 @@ public func DNMScoreModelFromShorthand(fileName fileName: String) -> DNMScoreMod
     let scoreModel = interpreter.makeScoreModel()
     return scoreModel
 }
+*/
 
 /*
 public func DNMScoreModelFromShortHand(fileURL fileURL: String) -> DNMScoreModel {

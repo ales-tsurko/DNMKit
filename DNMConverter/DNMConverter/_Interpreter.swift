@@ -11,6 +11,7 @@ import Foundation
 import DNMUtility
 import DNMModel
 
+// being deprecated currently
 internal class Interpreter {
     
     internal var actions: [Action]
@@ -236,7 +237,7 @@ internal class Interpreter {
         
         var scoreModel = DNMScoreModel()
         scoreModel.title = title
-        scoreModel.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
+        //scoreModel.iIDsAndInstrumentTypesByPID = iIDsAndInstrumentTypesByPID
         scoreModel.durationNodes = durationNodes
         scoreModel.measures = measures
         scoreModel.tempoMarkings = tempoMarkings

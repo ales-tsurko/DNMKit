@@ -27,6 +27,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
         
+
+        let fileName = "tokenize"
+        let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
+        let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        
+        //let str = "#\n| 3 16 VC cc \np 60 d pppfo [ a - . > (\n p 60.25 93 ) \n"
+        let tokenizer = Tokenizer()
+        let tokenContainer = tokenizer.tokenizeString(code)
+        
+        let parser = Parser()
+        let scoreModel = parser.parseTokenContainer(tokenContainer)
+        
+        //print(tokenContainer)
+        print(scoreModel)
+
+        for durationNode in scoreModel.durationNodes {
+            print("durationNode.iIDsByPID: \(durationNode.iIDsByPID)")
+        }
+        
+        //addScoreTableView()
+        
+        let environment = Environment(scoreModel: scoreModel)
+        environment.build()
+        view.addSubview(environment)
+        
+        /*
         let point1 = CGPoint(x: 100, y: 100)
         let point2 = CGPoint(x: 435.265, y: 200)
         
@@ -45,8 +71,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         shape.path = styledCurve.uiBezierPath.CGPath
         shape.fillColor = UIColor.grayColor().CGColor
         //view.layer.addSublayer(shape)
-        
+        */
+
+        /*
         addScoreTableView()
+        */
     }
     
     func addScoreTableView() {

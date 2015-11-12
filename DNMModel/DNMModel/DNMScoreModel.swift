@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import DNMUtility
 
 /**
 The model of an entire DNMScore. This will contain:
-    * InstrumentIDs and InstrumentTypes (ordered) organized by PerformerID
+    * InstrumentTypes organized by InstrumentIDs (ordered), organized by PerformerID (ordered)
     * DurationNodes
     * Measures
     * TempoMarkings
@@ -29,10 +30,16 @@ public struct DNMScoreModel: CustomStringConvertible {
     /// Name of Composer -- make space for multiples, colabs, etc.
     public var composer: String = ""
     
-    /// All InstrumentIDs and InstrumentTypes (ordered), organized by PerformerIDs in the piece
-    public var iIDsAndInstrumentTypesByPID: [[String: [(String, InstrumentType)]]] = []
+    /**
+    Collection of InstrumentIDsWithInstrumentType, organized by PerformerID.
+    These values ensure Performer order and Instrument order,
+    while making it still possible to call for this information by key identifiers.
+    */
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
     
-     /// All DurationNodes in the piece
+    /// All DurationNodes in the piece
     public var durationNodes: [DurationNode] = []
     
     /// All Measures in the piece
@@ -47,6 +54,10 @@ public struct DNMScoreModel: CustomStringConvertible {
     public init() { }
     
     private func getDescription() -> String {
-        return "DNMScoreModel: \(title); iIDsAndInstrumentTypesByPID: \(iIDsAndInstrumentTypesByPID)"
+        var description: String = "DNMScoreModel: \(title)"
+        description += "; amountMeasures: \(measures.count)"
+        description += "; amountDurationNodes: \(durationNodes.count)"
+        description += "; IIDsAndInstrumentTypesByPID: \(instrumentIDsAndInstrumentTypesByPerformerID)"
+        return description
     }
 }

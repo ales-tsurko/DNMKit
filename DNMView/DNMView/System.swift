@@ -31,14 +31,15 @@ public class System: ViewNode, BuildPattern {
     
     /// All GraphEvents contained within this System
     public var graphEvents: [GraphEvent] { return getGraphEvents() }
-
-    /// All InstrumentIDs and InstrumentTypes, organized by PerformerID
-    public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
-    // this should go...
-    public var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] {
-        return getInstrumentTypeAndIIDByPID()
-    }
+    /**
+    Collection of InstrumentIDsWithInstrumentType, organized by PerformerID.
+    These values ensure Performer order and Instrument order,
+    while making it still possible to call for this information by key identifiers.
+    */
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
 
     /** 
     All component types (as `String`) by ID.
@@ -571,10 +572,16 @@ public class System: ViewNode, BuildPattern {
         func sortComponents() {
 
             // encapsulate makeSortedPIDs() -> [String]
-            var sortedPIDs: [String] = []
+            //var sortedPIDs: [String] = []
+            
+            let sortedPIDs = instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 }
+            
+            
+            /*
             for pID_dict in iIDsAndInstrumentTypesByPID {
                 for (pID, _) in pID_dict { sortedPIDs.append(pID) }
             }
+            */
 
             var sortedPerformers = sortedPIDs
             if let viewerID = viewerID where viewerID != "omni" {
@@ -743,28 +750,60 @@ public class System: ViewNode, BuildPattern {
             }
         }
     }
-
+    
+    // TODO: now with OrderedDictionary
     private func makePerformerByIDWithBGStrata(bgStrata: [BGStratum]) -> [String : Performer] {
         var performerByID: [String : Performer] = [:]
         for bgStratum in bgStrata {
-            for (pID, iIDs) in bgStratum.iIDsByPID {
+            for (performerID, instrumentIDs) in bgStratum.iIDsByPID {
+                
+                var instrumentTypeByInstrumentID = OrderedDictionary<String, InstrumentType>()
+                
+                for instrumentID in instrumentIDs {
+                    if let instrumentType = instrumentIDsAndInstrumentTypesByPerformerID[performerID]?[instrumentID]
+                    {
+                        instrumentTypeByInstrumentID[instrumentID] = instrumentType
+                    }
+                }
+                
+                /*
                 var idsAndInstrumentTypes: [(String, InstrumentType)] = []
-                for iID in iIDs {
+                for iID in instrumentIDs {
                     if let instrumentType = instrumentTypeByIIDByPID[pID]?[iID] {
                         idsAndInstrumentTypes.append((iID, instrumentType))
                     }
                 }
-                if let performer = performerByID[pID] {
-                    performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
+                */
+                
+                if let performer = performerByID[performerID] {
+                    performer.addInstrumentsWithInsturmentTypeByInstrumentID(
+                        instrumentTypeByInstrumentID
+                    )
                 }
                 else {
-                    let performer = Performer(id: pID)
-                    performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
+                    let performer = Performer(id: performerID)
+                    performer.addInstrumentsWithInsturmentTypeByInstrumentID(
+                        instrumentTypeByInstrumentID
+                    )
                     performer.pad_bottom = g // HACK
-                    performerByID[pID] = performer
+                    performerByID[performerID] = performer
                     performers.append(performer)
                     eventsNode.addNode(performer)
                 }
+                
+                /*
+                if let performer = performerByID[performerID] {
+                    performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
+                }
+                else {
+                    let performer = Performer(id: performerID)
+                    performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
+                    performer.pad_bottom = g // HACK
+                    performerByID[performerID] = performer
+                    performers.append(performer)
+                    eventsNode.addNode(performer)
+                }
+                */
             }
         }
         return performerByID
@@ -1085,6 +1124,7 @@ public class System: ViewNode, BuildPattern {
             for bgEvent in bgStratum.bgEvents {
                 let durationNode = bgEvent.durationNode
                 
+                // If DurationNode has no graphBearing components, don't try to populate graphs
                 if durationNode.hasOnlyExtensionComponents || durationNode.components.count == 0 {
                     addInstrumentEventHandlerWithBGEvent(bgEvent, andInstrumentEvent: nil)
                     continue
@@ -1119,6 +1159,7 @@ public class System: ViewNode, BuildPattern {
                     }
                     else { fatalError("Unable to find Performer or Instrument") }
                     
+                    // clean up
                     if !instrumentEventHandlerSuccessfullyCreated {
                         //print("instrument event unsuccessfully created!")
                     }
@@ -1286,24 +1327,22 @@ public class System: ViewNode, BuildPattern {
             return stratumClumps
         }
         
-        func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]]) -> [BGStratum] {
+        func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]])
+            -> [BGStratum]
+        {
             var bgStrata: [BGStratum] = []
             for stratum_model in durationNodeStrata {
-                assert(stratum_model.count > 0, "must have more than one durationNode in strata")
-                
                 let pIDs = getPIDsFromStratum(stratum_model)
-                
-                // DEPRECATE!!!!
-                // TEMP -----------------------------------------------------------------------
-                let firstValue = pIDs.first!
+                guard let firstValue = pIDs.first else { continue }
                 var onlyOnePID: Bool {
                     for pID in pIDs { if pID != firstValue { return false } }
                     return true
                 }
-                // TEMP -----------------------------------------------------------------------
                 
                 var stemDirection: StemDirection = .Down
                 var bgStratum_g: CGFloat = g
+               
+                
                 if onlyOnePID {
                     let (s, g) = getStemDirectionAndGForPID(firstValue)
                     stemDirection = s
@@ -1657,6 +1696,8 @@ public class System: ViewNode, BuildPattern {
         return graphEvents.sort {$0.x < $1.x }
     }
     
+    /*
+    // TODO:
     private func getInstrumentTypeAndIIDByPID() -> [String : [String : InstrumentType]] {
         var instrumentTypeByIIDByPID: [String : [String : InstrumentType]] = [:]
         for dict in iIDsAndInstrumentTypesByPID {
@@ -1673,6 +1714,7 @@ public class System: ViewNode, BuildPattern {
         }
         return instrumentTypeByIIDByPID
     }
+    */
     
     private func getNextSystem() -> System? {
         if page == nil { return nil }

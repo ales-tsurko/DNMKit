@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0798B5941BF1A736002E8781 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B5931BF1A736002E8781 /* Stack.swift */; };
+		0798B5961BF1A7DC002E8781 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B5951BF1A7DC002E8781 /* OrderedDictionary.swift */; };
 		07ECB41D1BE538CD00C9AD08 /* DNMUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB41C1BE538CD00C9AD08 /* DNMUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4241BE538CD00C9AD08 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB4191BE538CD00C9AD08 /* DNMUtility.framework */; };
 		07ECB4291BE538CD00C9AD08 /* DNMUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4281BE538CD00C9AD08 /* DNMUtilityTests.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0798B5931BF1A736002E8781 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		0798B5951BF1A7DC002E8781 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		07ECB4191BE538CD00C9AD08 /* DNMUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB41C1BE538CD00C9AD08 /* DNMUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMUtility.h; sourceTree = "<group>"; };
 		07ECB41E1BE538CD00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				07F3E6AA1BE548C700948758 /* SimpleRoot.swift */,
+				0798B5931BF1A736002E8781 /* Stack.swift */,
+				0798B5951BF1A7DC002E8781 /* OrderedDictionary.swift */,
 				07F3E60C1BE5433600948758 /* Direction.swift */,
 				07F3E6081BE542F800948758 /* Node.swift */,
 				07F3E6091BE542F800948758 /* NodePosition.swift */,
@@ -229,8 +235,10 @@
 				07F3E6AB1BE548C700948758 /* SimpleRoot.swift in Sources */,
 				07F3E60D1BE5433600948758 /* Direction.swift in Sources */,
 				07F3E60A1BE542F800948758 /* Node.swift in Sources */,
+				0798B5941BF1A736002E8781 /* Stack.swift in Sources */,
 				07F3E5D01BE5414100948758 /* RegularExpressions.swift in Sources */,
 				07F3E5CD1BE5414100948758 /* ArrayExtensions.swift in Sources */,
+				0798B5961BF1A7DC002E8781 /* OrderedDictionary.swift in Sources */,
 				07F3E60B1BE542F800948758 /* NodePosition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
