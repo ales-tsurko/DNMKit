@@ -6,6 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
+
 import Foundation
 
 public protocol Token: CustomStringConvertible {

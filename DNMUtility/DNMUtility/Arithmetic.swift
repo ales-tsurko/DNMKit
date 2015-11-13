@@ -132,6 +132,7 @@ public func RADIANS_TO_DEGREES(radians: Float) -> Float {
     return radians * (180.0 / Float(M_PI))
 }
 
+/*
 public func DEGREES_TO_RADIANS(degrees: CGFloat) -> CGFloat {
     return degrees / 180.0 * CGFloat(M_PI)
 }
@@ -139,6 +140,7 @@ public func DEGREES_TO_RADIANS(degrees: CGFloat) -> CGFloat {
 public func RADIANS_TO_DEGREES(radians: CGFloat) -> CGFloat {
     return radians * (180.0 / CGFloat(M_PI))
 }
+*/
 
 /*
 /** Degrees to Radian **/

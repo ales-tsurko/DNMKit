@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DNMModel.xcscheme_^#shared#^_</key>
+		<key>DNMModel.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07ECB3D01BE538AD00C9AD08</key>
+		<key>07F0D0F31BF6A37900AE029A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>07ECB3DA1BE538AD00C9AD08</key>
+		<key>07F0D0FD1BF6A37900AE029A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

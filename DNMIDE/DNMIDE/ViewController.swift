@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DNMConverter
 
 class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
@@ -14,6 +15,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         textView = NSTextView(frame: view.frame)
         
@@ -108,11 +110,15 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         andIdentifierString inheritedIdentifierString: String
     )
     {
-        let inheritedID = inheritedIdentifierString == ".root" ? "" : inheritedIdentifierString
-        var identifierString = inheritedID + ".\(token.identifier)"
-        print("traverse to color range with token: inherited: \(inheritedIdentifierString); current: \(identifierString)")
         
+
+        let identifierString: String
+        switch inheritedIdentifierString {
+        case ".root": identifierString = token.identifier
+        default: identifierString = inheritedIdentifierString + ".\(token.identifier)"
+        }
         
+        print(identifierString)
         
         if let container = token as? TokenContainer {
 
@@ -122,7 +128,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         }
         else {
             
-            print("token: \(identifierString)")
             /*
             let start = token.startIndex
             let length = token.stopIndex - token.startIndex + 1

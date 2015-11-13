@@ -12,6 +12,7 @@ import DNMUtility
 import DNMModel
 import DNMView
 import DNMUI
+import DNMJSON_iOS
 
 // TODO: Reintegrate ViewSelector
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -24,6 +25,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let testClass = TestClass()
+        testClass.testMethod()
+        
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
 

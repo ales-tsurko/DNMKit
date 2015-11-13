@@ -10,6 +10,7 @@
 		075681931BED4A0C00623AF8 /* spanner.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 075681921BED4A0C00623AF8 /* spanner.dnm */; };
 		0791ABF61BE7B01C005D0B6F /* DNMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; };
 		0791ABF71BE7B01C005D0B6F /* DNMUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0791ABF51BE7B01C005D0B6F /* DNMUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		079245D41BF6882100E5E1EE /* DNMJSON_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079245D31BF6882100E5E1EE /* DNMJSON_iOS.framework */; };
 		0798B5901BF1A314002E8781 /* tokenize.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 0798B58F1BF1A314002E8781 /* tokenize.dnm */; };
 		07DCFCCA1BEAFA2500AC18B3 /* givenName.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07DCFCC91BEAFA2500AC18B3 /* givenName.dnm */; };
 		07DCFCCC1BEAFA6D00AC18B3 /* takenName.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07DCFCCB1BEAFA6D00AC18B3 /* takenName.dnm */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		075681921BED4A0C00623AF8 /* spanner.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spanner.dnm; sourceTree = "<group>"; };
 		0791ABF51BE7B01C005D0B6F /* DNMUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUI.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUI.framework"; sourceTree = "<absolute>"; };
+		079245D31BF6882100E5E1EE /* DNMJSON_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON_iOS.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMJSON_iOS.framework"; sourceTree = "<group>"; };
 		0798B58F1BF1A314002E8781 /* tokenize.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tokenize.dnm; sourceTree = "<group>"; };
 		07DCFCC91BEAFA2500AC18B3 /* givenName.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = givenName.dnm; sourceTree = "<group>"; };
 		07DCFCCB1BEAFA6D00AC18B3 /* takenName.dnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = takenName.dnm; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				0791ABF61BE7B01C005D0B6F /* DNMUI.framework in Frameworks */,
 				07E4DC8E1BE680C600AF0DE9 /* DNMView.framework in Frameworks */,
 				07E4DC871BE680B800AF0DE9 /* DNMUtility.framework in Frameworks */,
+				079245D41BF6882100E5E1EE /* DNMJSON_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +110,7 @@
 		07ECB4571BE5393900C9AD08 = {
 			isa = PBXGroup;
 			children = (
+				079245D31BF6882100E5E1EE /* DNMJSON_iOS.framework */,
 				0791ABF51BE7B01C005D0B6F /* DNMUI.framework */,
 				07E4DC901BE6840500AF0DE9 /* DNMConverter.framework */,
 				07E4DC8D1BE680C600AF0DE9 /* DNMView.framework */,

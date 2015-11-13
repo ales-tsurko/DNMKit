@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DNMConverter.xcscheme_^#shared#^_</key>
+		<key>DNMConverter.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07F3E5A81BE53EFE00948758</key>
+		<key>07F0CFDE1BF69D1700AE029A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>07F3E5B21BE53EFE00948758</key>
+		<key>07F0CFE81BF69D1700AE029A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

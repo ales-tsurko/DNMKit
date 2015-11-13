@@ -8,7 +8,7 @@
 
 import Foundation
 import DNMJSON
-
+    
 /**
 Collection of attributes for visually representing a Pitch (accidental, pitchClass). With
 1/8-th resolution.

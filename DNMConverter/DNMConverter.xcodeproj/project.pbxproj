@@ -7,165 +7,127 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0798B58C1BF1A2F8002E8781 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B5891BF1A2F8002E8781 /* Token.swift */; };
-		0798B58D1BF1A2F8002E8781 /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B58A1BF1A2F8002E8781 /* TokenContainer.swift */; };
-		0798B58E1BF1A2F8002E8781 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B58B1BF1A2F8002E8781 /* Tokenizer.swift */; };
-		0798B5921BF1A545002E8781 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798B5911BF1A545002E8781 /* Parser.swift */; };
-		079A11111BF3590E007E5427 /* SyntaxHighlightingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */; };
-		07DCFCC81BEAF37900AC18B3 /* _DNMScoreModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */; };
-		07E4DCC51BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */; };
-		07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F3E5AC1BE53EFE00948758 /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */; };
-		07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */; };
-		07F3E7851BE67D0E00948758 /* _Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77E1BE67D0E00948758 /* _Action.swift */; };
-		07F3E7861BE67D0E00948758 /* _Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E77F1BE67D0E00948758 /* _Interpreter.swift */; };
-		07F3E7871BE67D0E00948758 /* _Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7801BE67D0E00948758 /* _Item.swift */; };
-		07F3E7881BE67D0E00948758 /* _Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7811BE67D0E00948758 /* _Parser.swift */; };
-		07F3E7891BE67D0E00948758 /* _Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7821BE67D0E00948758 /* _Scanner.swift */; };
-		07F3E78A1BE67D0E00948758 /* _Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7831BE67D0E00948758 /* _Token.swift */; };
-		07F3E78B1BE67D0E00948758 /* _Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7841BE67D0E00948758 /* _Tokenizer.swift */; };
-		07F3E78D1BE67D4200948758 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E78C1BE67D4200948758 /* DNMUtility.framework */; };
-		07F3E78F1BE67D4700948758 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E78E1BE67D4700948758 /* DNMModel.framework */; };
+		07F0CFE31BF69D1700AE029A /* DNMConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F0CFE21BF69D1700AE029A /* DNMConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F0CFEA1BF69D1700AE029A /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0CFDF1BF69D1700AE029A /* DNMConverter.framework */; };
+		07F0CFEF1BF69D1700AE029A /* DNMConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0CFEE1BF69D1700AE029A /* DNMConverterTests.swift */; };
+		07F0CFFD1BF69D4B00AE029A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0CFF91BF69D4B00AE029A /* Parser.swift */; };
+		07F0CFFE1BF69D4B00AE029A /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0CFFA1BF69D4B00AE029A /* Token.swift */; };
+		07F0CFFF1BF69D4B00AE029A /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0CFFB1BF69D4B00AE029A /* TokenContainer.swift */; };
+		07F0D0001BF69D4B00AE029A /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0CFFC1BF69D4B00AE029A /* Tokenizer.swift */; };
+		07F0D0021BF69D5900AE029A /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D0011BF69D5900AE029A /* DNMJSON.framework */; };
+		07F0D1571BF6A45A00AE029A /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1561BF6A45A00AE029A /* DNMModel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */ = {
+		07F0CFEB1BF69D1700AE029A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F3E5A01BE53EFE00948758 /* Project object */;
+			containerPortal = 07F0CFD61BF69D1700AE029A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07F3E5A81BE53EFE00948758;
+			remoteGlobalIDString = 07F0CFDE1BF69D1700AE029A;
 			remoteInfo = DNMConverter;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0798B5891BF1A2F8002E8781 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		0798B58A1BF1A2F8002E8781 /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
-		0798B58B1BF1A2F8002E8781 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
-		0798B5911BF1A545002E8781 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightingStyle.swift; sourceTree = "<group>"; };
-		07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _DNMScoreModelManager.swift; sourceTree = "<group>"; };
-		07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _DNMScoreModelFromShorthand.swift; sourceTree = "<group>"; };
-		07F3E5A91BE53EFE00948758 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5AC1BE53EFE00948758 /* DNMConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMConverter.h; sourceTree = "<group>"; };
-		07F3E5AE1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMConverterTests.swift; sourceTree = "<group>"; };
-		07F3E5BA1BE53EFE00948758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F3E77E1BE67D0E00948758 /* _Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Action.swift; sourceTree = "<group>"; };
-		07F3E77F1BE67D0E00948758 /* _Interpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Interpreter.swift; sourceTree = "<group>"; };
-		07F3E7801BE67D0E00948758 /* _Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Item.swift; sourceTree = "<group>"; };
-		07F3E7811BE67D0E00948758 /* _Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Parser.swift; sourceTree = "<group>"; };
-		07F3E7821BE67D0E00948758 /* _Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Scanner.swift; sourceTree = "<group>"; };
-		07F3E7831BE67D0E00948758 /* _Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Token.swift; sourceTree = "<group>"; };
-		07F3E7841BE67D0E00948758 /* _Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Tokenizer.swift; sourceTree = "<group>"; };
-		07F3E78C1BE67D4200948758 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
-		07F3E78E1BE67D4700948758 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
+		07F0CFDF1BF69D1700AE029A /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F0CFE21BF69D1700AE029A /* DNMConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMConverter.h; sourceTree = "<group>"; };
+		07F0CFE41BF69D1700AE029A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F0CFE91BF69D1700AE029A /* DNMConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F0CFEE1BF69D1700AE029A /* DNMConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMConverterTests.swift; sourceTree = "<group>"; };
+		07F0CFF01BF69D1700AE029A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F0CFF91BF69D4B00AE029A /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		07F0CFFA1BF69D4B00AE029A /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		07F0CFFB1BF69D4B00AE029A /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
+		07F0CFFC1BF69D4B00AE029A /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		07F0D0011BF69D5900AE029A /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMJSON.framework"; sourceTree = "<group>"; };
+		07F0D1561BF6A45A00AE029A /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMModel.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07F3E5A51BE53EFE00948758 /* Frameworks */ = {
+		07F0CFDB1BF69D1700AE029A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E78D1BE67D4200948758 /* DNMUtility.framework in Frameworks */,
-				07F3E78F1BE67D4700948758 /* DNMModel.framework in Frameworks */,
+				07F0D0021BF69D5900AE029A /* DNMJSON.framework in Frameworks */,
+				07F0D1571BF6A45A00AE029A /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B01BE53EFE00948758 /* Frameworks */ = {
+		07F0CFE61BF69D1700AE029A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B41BE53EFE00948758 /* DNMConverter.framework in Frameworks */,
+				07F0CFEA1BF69D1700AE029A /* DNMConverter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07F3E59F1BE53EFE00948758 = {
+		07F0CFD51BF69D1700AE029A = {
 			isa = PBXGroup;
 			children = (
-				07F3E78E1BE67D4700948758 /* DNMModel.framework */,
-				07F3E78C1BE67D4200948758 /* DNMUtility.framework */,
-				07F3E5AB1BE53EFE00948758 /* DNMConverter */,
-				07F3E5B71BE53EFE00948758 /* DNMConverterTests */,
-				07F3E5AA1BE53EFE00948758 /* Products */,
+				07F0D1561BF6A45A00AE029A /* DNMModel.framework */,
+				07F0D0011BF69D5900AE029A /* DNMJSON.framework */,
+				07F0CFE11BF69D1700AE029A /* DNMConverter */,
+				07F0CFED1BF69D1700AE029A /* DNMConverterTests */,
+				07F0CFE01BF69D1700AE029A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		07F3E5AA1BE53EFE00948758 /* Products */ = {
+		07F0CFE01BF69D1700AE029A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5A91BE53EFE00948758 /* DNMConverter.framework */,
-				07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */,
+				07F0CFDF1BF69D1700AE029A /* DNMConverter.framework */,
+				07F0CFE91BF69D1700AE029A /* DNMConverterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07F3E5AB1BE53EFE00948758 /* DNMConverter */ = {
+		07F0CFE11BF69D1700AE029A /* DNMConverter */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5C31BE540E400948758 /* Shorthand */,
-				07F3E5AC1BE53EFE00948758 /* DNMConverter.h */,
-				07F3E5AE1BE53EFE00948758 /* Info.plist */,
+				07F0CFF91BF69D4B00AE029A /* Parser.swift */,
+				07F0CFFA1BF69D4B00AE029A /* Token.swift */,
+				07F0CFFB1BF69D4B00AE029A /* TokenContainer.swift */,
+				07F0CFFC1BF69D4B00AE029A /* Tokenizer.swift */,
+				07F0CFE21BF69D1700AE029A /* DNMConverter.h */,
+				07F0CFE41BF69D1700AE029A /* Info.plist */,
 			);
 			path = DNMConverter;
 			sourceTree = "<group>";
 		};
-		07F3E5B71BE53EFE00948758 /* DNMConverterTests */ = {
+		07F0CFED1BF69D1700AE029A /* DNMConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				07F3E5B81BE53EFE00948758 /* DNMConverterTests.swift */,
-				07F3E5BA1BE53EFE00948758 /* Info.plist */,
+				07F0CFEE1BF69D1700AE029A /* DNMConverterTests.swift */,
+				07F0CFF01BF69D1700AE029A /* Info.plist */,
 			);
 			path = DNMConverterTests;
-			sourceTree = "<group>";
-		};
-		07F3E5C31BE540E400948758 /* Shorthand */ = {
-			isa = PBXGroup;
-			children = (
-				0798B5891BF1A2F8002E8781 /* Token.swift */,
-				0798B58A1BF1A2F8002E8781 /* TokenContainer.swift */,
-				0798B58B1BF1A2F8002E8781 /* Tokenizer.swift */,
-				0798B5911BF1A545002E8781 /* Parser.swift */,
-				07F3E77E1BE67D0E00948758 /* _Action.swift */,
-				07F3E77F1BE67D0E00948758 /* _Interpreter.swift */,
-				07F3E7801BE67D0E00948758 /* _Item.swift */,
-				07F3E7811BE67D0E00948758 /* _Parser.swift */,
-				07F3E7821BE67D0E00948758 /* _Scanner.swift */,
-				07F3E7831BE67D0E00948758 /* _Token.swift */,
-				07F3E7841BE67D0E00948758 /* _Tokenizer.swift */,
-				07E4DCC41BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift */,
-				07DCFCC71BEAF37900AC18B3 /* _DNMScoreModelManager.swift */,
-				079A11101BF3590E007E5427 /* SyntaxHighlightingStyle.swift */,
-			);
-			name = Shorthand;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		07F3E5A61BE53EFE00948758 /* Headers */ = {
+		07F0CFDC1BF69D1700AE029A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5AD1BE53EFE00948758 /* DNMConverter.h in Headers */,
+				07F0CFE31BF69D1700AE029A /* DNMConverter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07F3E5A81BE53EFE00948758 /* DNMConverter */ = {
+		07F0CFDE1BF69D1700AE029A /* DNMConverter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */;
+			buildConfigurationList = 07F0CFF31BF69D1700AE029A /* Build configuration list for PBXNativeTarget "DNMConverter" */;
 			buildPhases = (
-				07F3E5A41BE53EFE00948758 /* Sources */,
-				07F3E5A51BE53EFE00948758 /* Frameworks */,
-				07F3E5A61BE53EFE00948758 /* Headers */,
-				07F3E5A71BE53EFE00948758 /* Resources */,
+				07F0CFDA1BF69D1700AE029A /* Sources */,
+				07F0CFDB1BF69D1700AE029A /* Frameworks */,
+				07F0CFDC1BF69D1700AE029A /* Headers */,
+				07F0CFDD1BF69D1700AE029A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -173,72 +135,72 @@
 			);
 			name = DNMConverter;
 			productName = DNMConverter;
-			productReference = 07F3E5A91BE53EFE00948758 /* DNMConverter.framework */;
+			productReference = 07F0CFDF1BF69D1700AE029A /* DNMConverter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		07F3E5B21BE53EFE00948758 /* DNMConverterTests */ = {
+		07F0CFE81BF69D1700AE029A /* DNMConverterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */;
+			buildConfigurationList = 07F0CFF61BF69D1700AE029A /* Build configuration list for PBXNativeTarget "DNMConverterTests" */;
 			buildPhases = (
-				07F3E5AF1BE53EFE00948758 /* Sources */,
-				07F3E5B01BE53EFE00948758 /* Frameworks */,
-				07F3E5B11BE53EFE00948758 /* Resources */,
+				07F0CFE51BF69D1700AE029A /* Sources */,
+				07F0CFE61BF69D1700AE029A /* Frameworks */,
+				07F0CFE71BF69D1700AE029A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				07F3E5B61BE53EFE00948758 /* PBXTargetDependency */,
+				07F0CFEC1BF69D1700AE029A /* PBXTargetDependency */,
 			);
 			name = DNMConverterTests;
 			productName = DNMConverterTests;
-			productReference = 07F3E5B31BE53EFE00948758 /* DNMConverterTests.xctest */;
+			productReference = 07F0CFE91BF69D1700AE029A /* DNMConverterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		07F3E5A01BE53EFE00948758 /* Project object */ = {
+		07F0CFD61BF69D1700AE029A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "James Bean";
 				TargetAttributes = {
-					07F3E5A81BE53EFE00948758 = {
-						CreatedOnToolsVersion = 7.1;
+					07F0CFDE1BF69D1700AE029A = {
+						CreatedOnToolsVersion = 7.1.1;
 					};
-					07F3E5B21BE53EFE00948758 = {
-						CreatedOnToolsVersion = 7.1;
+					07F0CFE81BF69D1700AE029A = {
+						CreatedOnToolsVersion = 7.1.1;
 					};
 				};
 			};
-			buildConfigurationList = 07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */;
+			buildConfigurationList = 07F0CFD91BF69D1700AE029A /* Build configuration list for PBXProject "DNMConverter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 07F3E59F1BE53EFE00948758;
-			productRefGroup = 07F3E5AA1BE53EFE00948758 /* Products */;
+			mainGroup = 07F0CFD51BF69D1700AE029A;
+			productRefGroup = 07F0CFE01BF69D1700AE029A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07F3E5A81BE53EFE00948758 /* DNMConverter */,
-				07F3E5B21BE53EFE00948758 /* DNMConverterTests */,
+				07F0CFDE1BF69D1700AE029A /* DNMConverter */,
+				07F0CFE81BF69D1700AE029A /* DNMConverterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		07F3E5A71BE53EFE00948758 /* Resources */ = {
+		07F0CFDD1BF69D1700AE029A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5B11BE53EFE00948758 /* Resources */ = {
+		07F0CFE71BF69D1700AE029A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -248,47 +210,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07F3E5A41BE53EFE00948758 /* Sources */ = {
+		07F0CFDA1BF69D1700AE029A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07E4DCC51BE68A8400AF0DE9 /* _DNMScoreModelFromShorthand.swift in Sources */,
-				0798B58E1BF1A2F8002E8781 /* Tokenizer.swift in Sources */,
-				079A11111BF3590E007E5427 /* SyntaxHighlightingStyle.swift in Sources */,
-				0798B58C1BF1A2F8002E8781 /* Token.swift in Sources */,
-				07F3E7881BE67D0E00948758 /* _Parser.swift in Sources */,
-				0798B5921BF1A545002E8781 /* Parser.swift in Sources */,
-				07F3E7861BE67D0E00948758 /* _Interpreter.swift in Sources */,
-				07F3E7871BE67D0E00948758 /* _Item.swift in Sources */,
-				0798B58D1BF1A2F8002E8781 /* TokenContainer.swift in Sources */,
-				07F3E78B1BE67D0E00948758 /* _Tokenizer.swift in Sources */,
-				07F3E78A1BE67D0E00948758 /* _Token.swift in Sources */,
-				07DCFCC81BEAF37900AC18B3 /* _DNMScoreModelManager.swift in Sources */,
-				07F3E7891BE67D0E00948758 /* _Scanner.swift in Sources */,
-				07F3E7851BE67D0E00948758 /* _Action.swift in Sources */,
+				07F0CFFD1BF69D4B00AE029A /* Parser.swift in Sources */,
+				07F0D0001BF69D4B00AE029A /* Tokenizer.swift in Sources */,
+				07F0CFFE1BF69D4B00AE029A /* Token.swift in Sources */,
+				07F0CFFF1BF69D4B00AE029A /* TokenContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F3E5AF1BE53EFE00948758 /* Sources */ = {
+		07F0CFE51BF69D1700AE029A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E5B91BE53EFE00948758 /* DNMConverterTests.swift in Sources */,
+				07F0CFEF1BF69D1700AE029A /* DNMConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07F3E5B61BE53EFE00948758 /* PBXTargetDependency */ = {
+		07F0CFEC1BF69D1700AE029A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07F3E5A81BE53EFE00948758 /* DNMConverter */;
-			targetProxy = 07F3E5B51BE53EFE00948758 /* PBXContainerItemProxy */;
+			target = 07F0CFDE1BF69D1700AE029A /* DNMConverter */;
+			targetProxy = 07F0CFEB1BF69D1700AE029A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07F3E5BB1BE53EFE00948758 /* Debug */ = {
+		07F0CFF11BF69D1700AE029A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -305,7 +257,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -325,18 +277,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		07F3E5BC1BE53EFE00948758 /* Release */ = {
+		07F0CFF21BF69D1700AE029A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -353,7 +304,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -367,66 +318,76 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		07F3E5BE1BE53EFE00948758 /* Debug */ = {
+		07F0CFF41BF69D1700AE029A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DNMConverter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "i386 x86_64 arm64 arm7 arm7s";
 			};
 			name = Debug;
 		};
-		07F3E5BF1BE53EFE00948758 /* Release */ = {
+		07F0CFF51BF69D1700AE029A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DNMConverter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				VALID_ARCHS = "i386 x86_64 arm64 arm7 arm7s";
 			};
 			name = Release;
 		};
-		07F3E5C11BE53EFE00948758 /* Debug */ = {
+		07F0CFF71BF69D1700AE029A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DNMConverterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		07F3E5C21BE53EFE00948758 /* Release */ = {
+		07F0CFF81BF69D1700AE029A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DNMConverterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMConverterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -435,34 +396,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07F3E5A31BE53EFE00948758 /* Build configuration list for PBXProject "DNMConverter" */ = {
+		07F0CFD91BF69D1700AE029A /* Build configuration list for PBXProject "DNMConverter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BB1BE53EFE00948758 /* Debug */,
-				07F3E5BC1BE53EFE00948758 /* Release */,
+				07F0CFF11BF69D1700AE029A /* Debug */,
+				07F0CFF21BF69D1700AE029A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07F3E5BD1BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverter" */ = {
+		07F0CFF31BF69D1700AE029A /* Build configuration list for PBXNativeTarget "DNMConverter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5BE1BE53EFE00948758 /* Debug */,
-				07F3E5BF1BE53EFE00948758 /* Release */,
+				07F0CFF41BF69D1700AE029A /* Debug */,
+				07F0CFF51BF69D1700AE029A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		07F3E5C01BE53EFE00948758 /* Build configuration list for PBXNativeTarget "DNMConverterTests" */ = {
+		07F0CFF61BF69D1700AE029A /* Build configuration list for PBXNativeTarget "DNMConverterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07F3E5C11BE53EFE00948758 /* Debug */,
-				07F3E5C21BE53EFE00948758 /* Release */,
+				07F0CFF71BF69D1700AE029A /* Debug */,
+				07F0CFF81BF69D1700AE029A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 07F3E5A01BE53EFE00948758 /* Project object */;
+	rootObject = 07F0CFD61BF69D1700AE029A /* Project object */;
 }

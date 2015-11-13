@@ -7,8 +7,8 @@
 //
 
 import Foundation
-//import DNMUtility
-//import DNMModel
+import DNMUtility
+import DNMModel
 
 // At some point, find way to inject new commands and argument types in here dynamically
 public class Tokenizer {
@@ -75,8 +75,6 @@ public class Tokenizer {
                     
                     // scan line for musical events
                     scanLineWithScanner(lineScanner, andContainer: rootTokenContainer)
-                    
-                    print("lineScanner.string: \(lineScanner.string)")
                     
                     lineStartIndex += lineLength
                     lineCount++
@@ -346,7 +344,7 @@ public class Tokenizer {
             while scanner.scanCharactersFromSet(set, intoString: &string) {
                 
                 let token = TokenString(
-                    identifier: "ArticulationMarking",
+                    identifier: "Value",
                     value: string as! String,
                     startIndex: beginLocation + lineStartIndex
                 )
@@ -386,7 +384,7 @@ public class Tokenizer {
                 let stopIndex = scanner.scanLocation
                 
                 let token = TokenFloat(
-                    identifier: "MIDIValue",
+                    identifier: "Value",
                     value: floatValue,
                     startIndex: beginLocation + lineStartIndex,
                     stopIndex: scanner.scanLocation + lineStartIndex - 1
@@ -394,8 +392,9 @@ public class Tokenizer {
                 pitchTokenContainer.addToken(token)
                 beginLocation = scanner.scanLocation
             }
+            scanSpannerStartWithScanner(scanner, andContainer: pitchTokenContainer)
+            scanSpannerStopWithScanner(scanner, andContainer: pitchTokenContainer)
             container.addToken(pitchTokenContainer)
-            scanSpannerWithScanner(scanner, andContainer: pitchTokenContainer)
         }
     }
     
@@ -416,7 +415,7 @@ public class Tokenizer {
             while scanner.scanCharactersFromSet(set, intoString: &string) {
                 let beginLocation = scanner.scanLocation
                 let token = TokenString(
-                    identifier: "DynamicMarkingArgument",
+                    identifier: "Value",
                     value: string as! String,
                     startIndex: beginLocation + lineStartIndex
                 )
@@ -432,7 +431,8 @@ public class Tokenizer {
             }
             
             // TODO: pass new container
-            scanSpannerWithScanner(scanner, andContainer: dynamicMarkingContainer)
+            scanSpannerStartWithScanner(scanner, andContainer: dynamicMarkingContainer)
+            scanSpannerStopWithScanner(scanner, andContainer: dynamicMarkingContainer)
             container.addToken(dynamicMarkingContainer)
         }
     }
@@ -546,10 +546,8 @@ public class Tokenizer {
         }
     }
     
-
-    
     // Find best way to generalize this process!
-    private func scanSpannerWithScanner(scanner: NSScanner,
+    private func scanSpannerStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
     {
@@ -587,7 +585,7 @@ public class Tokenizer {
                     
                     // create single token for argument
                     let token = TokenFloat(
-                        identifier: "SpannerExponentArgument",
+                        identifier: "Value",
                         value: floatValue,
                         startIndex: beginLocation + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex
@@ -613,7 +611,7 @@ public class Tokenizer {
                 
                 while scanner.scanFloat(&floatValue) {
                     let token = TokenFloat(
-                        identifier: "SpannerWidthArgument",
+                        identifier: "Value",
                         value: floatValue,
                         startIndex: beginLocation + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex - 1
@@ -638,7 +636,7 @@ public class Tokenizer {
                 while scanner.scanFloat(&floatValue) {
                     
                     let token = TokenFloat(
-                        identifier: "SpannerDashesArgument",
+                        identifier: "Value",
                         value: floatValue,
                         startIndex: beginLocation + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex - 1
@@ -664,6 +662,28 @@ public class Tokenizer {
                 
             }
             */
+        }
+    }
+    
+    private func scanSpannerStopWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        let beginLocation = scanner.scanLocation
+        
+        print("scan spanner stop")
+        
+        var string: NSString?
+        
+        // order of commands is enforced
+        while scanner.scanString("]", intoString: &string) {
+            
+            let token = TokenString(
+                identifier: "SpannerStop",
+                value: "]",
+                startIndex: beginLocation
+            )
+            container.addToken(token)
         }
     }
     
@@ -711,7 +731,7 @@ public class Tokenizer {
         if scanner.scanString("--", intoString: &string) { identifier = "InternalNodeDuration" }
         else { identifier = "LeafNodeDuration" }
         
-        print("identifier: \(identifier)")
+        
 
         // This should be a container,
         let token = TokenInt(
