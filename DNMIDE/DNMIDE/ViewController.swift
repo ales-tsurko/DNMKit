@@ -16,6 +16,32 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         super.viewDidLoad()
 
         textView = NSTextView(frame: view.frame)
+        
+        //self.view.autoresizesSubviews = true
+        
+        //textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let hConstraint = NSLayoutConstraint(
+            item: textView,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1,
+            constant: 0
+        )
+        
+        view.addConstraint(hConstraint)
+
+        NSLayoutConstraint.activateConstraints([hConstraint])
+        
+        //self.view.addConstraints([hConstraint])
+        /*
+        textView.addConstraints([
+            hConstraint
+        ])
+        */
+
         textView.delegate = self
         textView.richText = true
         textView.textStorage!.delegate = self
@@ -32,17 +58,22 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     }
 
     func textDidChange(notification: NSNotification) {
-    
-        print(notification)
         
         if let string = textView.textStorage?.string {
             let tokenizer = Tokenizer()
-            let container = tokenizer.tokenizeString(string)
-            print(container)
+            let tokenContainer = tokenizer.tokenizeString(string)
+            //print(container)
             
+            /*
             for token in container.tokens {
                 colorRangeWithToken(token)
             }
+            */
+            
+            for token in tokenContainer.tokens {
+                traverseToColorRangeWithToken(tokenContainer, andIdentifierString: "")
+            }
+            
             
             /*
             for token in container.tokens {
@@ -73,34 +104,95 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         }
     }
     
+    func traverseToColorRangeWithToken(token: Token,
+        andIdentifierString inheritedIdentifierString: String
+    )
+    {
+        let inheritedID = inheritedIdentifierString == ".root" ? "" : inheritedIdentifierString
+        var identifierString = inheritedID + ".\(token.identifier)"
+        print("traverse to color range with token: inherited: \(inheritedIdentifierString); current: \(identifierString)")
+        
+        
+        
+        if let container = token as? TokenContainer {
+
+            for token in container.tokens {
+                traverseToColorRangeWithToken(token, andIdentifierString: identifierString)
+            }
+        }
+        else {
+            
+            print("token: \(identifierString)")
+            /*
+            let start = token.startIndex
+            let length = token.stopIndex - token.startIndex + 1
+            
+            if length >= 0 {
+                let range = NSMakeRange(start, length)
+                let colorByIdentifier: [String : NSColor] = [
+                    "Measure": NSColor.grayColor(),
+                    "DurationNodeStackMode": NSColor.grayColor(),
+                    "Articulation": NSColor.blueColor(),
+                    "RootDuration": NSColor.purpleColor(),
+                    "LeafNodeDuration": NSColor.purpleColor(),
+                    "InternalNodeDuration": NSColor.purpleColor(),
+                    "PerformerID": NSColor.orangeColor(),
+                    "InstrumentID": NSColor.orangeColor(),
+                    "PerformerDeclaration": NSColor.yellowColor(),
+                    
+                ]
+                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
+                textView.setTextColor(color, range: range)
+            }
+            */
+        }
+    }
+    
     func colorRangeWithToken(token: Token) {
 
         print("color range with token: \(token)")
         
-        let start = token.startIndex
-        let length = token.stopIndex - token.startIndex + 1
-        
-        if length >= 0 {
-            let range = NSMakeRange(start, length)
+        if let container = token as? TokenContainer {
             
-            let colorByIdentifier: [String : NSColor] = [
-                "Measure": NSColor.grayColor(),
-                "DurationNodeStackMode": NSColor.grayColor(),
-                "Pitch": NSColor.redColor(),
-                "Articulation": NSColor.blueColor(),
-                "RootDuration": NSColor.purpleColor(),
-                "LeafNodeDuration": NSColor.purpleColor(),
-                "InternalNodeDuration": NSColor.purpleColor(),
-                "PerformerID": NSColor.orangeColor(),
-                "InstrumentID": NSColor.orangeColor(),
-                "PerformerDeclaration": NSColor.yellowColor(),
-                "SlurStart": NSColor.yellowColor(),
-                "SlurStop": NSColor.yellowColor()
-            ]
+            print("container: \(token)")
+            let start = token.startIndex
+            let length = token.stopIndex - token.startIndex + 1
             
-            let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
+            if length >= 0 {
+                let range = NSMakeRange(start, length)
+                let colorByIdentifier: [String : NSColor] = [
+                    "Pitch": NSColor.redColor(),
+                    "MIDIValue": NSColor.orangeColor(),
+                    "SlurStart": NSColor.yellowColor(),
+                    "SlurStop": NSColor.yellowColor(),
+                    "Articulation": NSColor.redColor(),
+                    "ArticulationMarking": NSColor.redColor()
+                ]
+                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
+                textView.setTextColor(color, range: range)
+            }
+        }
+        else {
+            let start = token.startIndex
+            let length = token.stopIndex - token.startIndex + 1
+            
+            if length >= 0 {
+                let range = NSMakeRange(start, length)
+                let colorByIdentifier: [String : NSColor] = [
+                    "Measure": NSColor.grayColor(),
+                    "DurationNodeStackMode": NSColor.grayColor(),
+                    "Articulation": NSColor.blueColor(),
+                    "RootDuration": NSColor.purpleColor(),
+                    "LeafNodeDuration": NSColor.purpleColor(),
+                    "InternalNodeDuration": NSColor.purpleColor(),
+                    "PerformerID": NSColor.orangeColor(),
+                    "InstrumentID": NSColor.orangeColor(),
+                    "PerformerDeclaration": NSColor.yellowColor(),
 
-            textView.setTextColor(color, range: range)
+                ]
+                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
+                textView.setTextColor(color, range: range)
+            }
         }
     }
 }

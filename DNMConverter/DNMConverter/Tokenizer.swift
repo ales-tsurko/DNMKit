@@ -38,10 +38,10 @@ public class Tokenizer {
         
         let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
         
+        // CLEAN UP
         while !mainScanner.atEnd {
             
             if mainScanner.scanCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
-                print("newlineFound!")
                 lineCount++
                 let lineLength = lineString!.length
                 lineStartIndex += lineLength
@@ -341,12 +341,12 @@ public class Tokenizer {
                 startIndex: beginLocation + lineStartIndex
             )
 
-            var beginLocation = scanner.scanLocation
+            var beginLocation = scanner.scanLocation + 1
             let set = NSMutableCharacterSet(charactersInString: ".->")
             while scanner.scanCharactersFromSet(set, intoString: &string) {
                 
                 let token = TokenString(
-                    identifier: "ArticulationArgument",
+                    identifier: "ArticulationMarking",
                     value: string as! String,
                     startIndex: beginLocation + lineStartIndex
                 )
@@ -378,7 +378,7 @@ public class Tokenizer {
             // add tokenContainer to container
             var pitchTokenContainer = TokenContainer(
                 identifier: "Pitch",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: beginLocation + lineStartIndex - 1
             )
             
             var floatValue: Float = 0.0
@@ -389,15 +389,12 @@ public class Tokenizer {
                     identifier: "MIDIValue",
                     value: floatValue,
                     startIndex: beginLocation + lineStartIndex,
-                    stopIndex: scanner.scanLocation + lineStartIndex
+                    stopIndex: scanner.scanLocation + lineStartIndex - 1
                 )
-
                 pitchTokenContainer.addToken(token)
                 beginLocation = scanner.scanLocation
             }
-            
             container.addToken(pitchTokenContainer)
-
             scanSpannerWithScanner(scanner, andContainer: pitchTokenContainer)
         }
     }

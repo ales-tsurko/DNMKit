@@ -12,11 +12,10 @@
 		07F736A21BF4CE4F003C73E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F736A11BF4CE4F003C73E1 /* Assets.xcassets */; };
 		07F736A51BF4CE4F003C73E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F736A31BF4CE4F003C73E1 /* Main.storyboard */; };
 		07F736B01BF4CE4F003C73E1 /* DNMIDETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F736AF1BF4CE4F003C73E1 /* DNMIDETests.swift */; };
-		07F736C21BF4D0CF003C73E1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F736BE1BF4D0CF003C73E1 /* Token.swift */; };
-		07F736C31BF4D0CF003C73E1 /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F736BF1BF4D0CF003C73E1 /* TokenContainer.swift */; };
-		07F736C51BF4D0CF003C73E1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F736C11BF4D0CF003C73E1 /* Parser.swift */; };
-		07F736C71BF4D25D003C73E1 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F736C61BF4D25D003C73E1 /* OrderedDictionary.swift */; };
 		07F737CA1BF4FA5E003C73E1 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F737C91BF4FA5E003C73E1 /* Tokenizer.swift */; };
+		07F737CC1BF50C04003C73E1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F737CB1BF50C04003C73E1 /* Token.swift */; };
+		07F737CE1BF50C0B003C73E1 /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F737CD1BF50C0B003C73E1 /* TokenContainer.swift */; };
+		07F737D01BF50C1B003C73E1 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F737CF1BF50C1B003C73E1 /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,11 +39,10 @@
 		07F736AF1BF4CE4F003C73E1 /* DNMIDETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMIDETests.swift; sourceTree = "<group>"; };
 		07F736B11BF4CE4F003C73E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07F736BA1BF4CFA6003C73E1 /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMConverter.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMConverter.framework"; sourceTree = "<absolute>"; };
-		07F736BE1BF4D0CF003C73E1 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		07F736BF1BF4D0CF003C73E1 /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
-		07F736C11BF4D0CF003C73E1 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		07F736C61BF4D25D003C73E1 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		07F737C91BF4FA5E003C73E1 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tokenizer.swift; path = ../../DNMConverter/DNMConverter/Tokenizer.swift; sourceTree = "<group>"; };
+		07F737CB1BF50C04003C73E1 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Token.swift; path = ../../DNMConverter/DNMConverter/Token.swift; sourceTree = "<group>"; };
+		07F737CD1BF50C0B003C73E1 /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenContainer.swift; path = ../../DNMConverter/DNMConverter/TokenContainer.swift; sourceTree = "<group>"; };
+		07F737CF1BF50C1B003C73E1 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderedDictionary.swift; path = ../../DNMUtility/DNMUtility/OrderedDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +87,10 @@
 			children = (
 				07F7369D1BF4CE4F003C73E1 /* AppDelegate.swift */,
 				07F7369F1BF4CE4F003C73E1 /* ViewController.swift */,
-				07F736C61BF4D25D003C73E1 /* OrderedDictionary.swift */,
-				07F736BE1BF4D0CF003C73E1 /* Token.swift */,
-				07F736BF1BF4D0CF003C73E1 /* TokenContainer.swift */,
-				07F736C11BF4D0CF003C73E1 /* Parser.swift */,
+				07F737CB1BF50C04003C73E1 /* Token.swift */,
+				07F737CD1BF50C0B003C73E1 /* TokenContainer.swift */,
 				07F737C91BF4FA5E003C73E1 /* Tokenizer.swift */,
+				07F737CF1BF50C1B003C73E1 /* OrderedDictionary.swift */,
 				07F736A11BF4CE4F003C73E1 /* Assets.xcassets */,
 				07F736A31BF4CE4F003C73E1 /* Main.storyboard */,
 				07F736A61BF4CE4F003C73E1 /* Info.plist */,
@@ -210,13 +207,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F736C21BF4D0CF003C73E1 /* Token.swift in Sources */,
-				07F736C51BF4D0CF003C73E1 /* Parser.swift in Sources */,
 				07F736A01BF4CE4F003C73E1 /* ViewController.swift in Sources */,
+				07F737CE1BF50C0B003C73E1 /* TokenContainer.swift in Sources */,
 				07F737CA1BF4FA5E003C73E1 /* Tokenizer.swift in Sources */,
+				07F737D01BF50C1B003C73E1 /* OrderedDictionary.swift in Sources */,
 				07F7369E1BF4CE4F003C73E1 /* AppDelegate.swift in Sources */,
-				07F736C31BF4D0CF003C73E1 /* TokenContainer.swift in Sources */,
-				07F736C71BF4D25D003C73E1 /* OrderedDictionary.swift in Sources */,
+				07F737CC1BF50C04003C73E1 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

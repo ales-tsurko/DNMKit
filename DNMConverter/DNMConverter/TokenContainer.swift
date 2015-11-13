@@ -14,10 +14,8 @@ public class TokenContainer: Token {
     
     public var description: String { return getDescription() }
     
-    // change to regex
     public var openingValue: String
     
-    // change to [RegEx]
     public var argumentMatches: [String] = []
     
     public var tokens: [Token] = []
@@ -27,21 +25,22 @@ public class TokenContainer: Token {
     
     public var indentationLevel: Int?
     
-    // changes strings to RegExs
     public init(identifier: String, openingValue: String = "", startIndex: Int) {
         self.identifier = identifier
         self.openingValue = openingValue
         self.startIndex = startIndex
+        self.stopIndex = startIndex + openingValue.characters.count
     }
     
     public func addToken(token: Token) {
         tokens.append(token)
+        //if token.stopIndex > stopIndex { stopIndex = token.stopIndex }
     }
     
     private func getDescription() -> String {
         var description: String = "\(identifier)"
         if openingValue != "" { description += ": \(openingValue)" }
-        
+        description += "; from \(startIndex) to \(stopIndex)"
         for token in tokens {
             if token is TokenContainer {
                 description += "\n\(token)"
