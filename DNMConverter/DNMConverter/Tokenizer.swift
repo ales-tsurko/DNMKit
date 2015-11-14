@@ -399,36 +399,37 @@ public class Tokenizer {
     }
     
     private func scanDynamicCommandWithScanner(scanner: NSScanner, andContainer container: TokenContainer) {
-        let beginLocation: Int = scanner.scanLocation
+
         var string: NSString?
-        
-        if scanner.scanString("d", intoString: &string) {
+        let beginLocation: Int = scanner.scanLocation
+        while scanner.scanString("d", intoString: &string) {
             
             let dynamicMarkingContainer = TokenContainer(
                 identifier: "DynamicMarking",
                 openingValue: "d",
-                startIndex: beginLocation
+                startIndex: beginLocation + lineStartIndex
             )
             
             var dynamicMarking: String?
             let set = NSMutableCharacterSet(charactersInString: "opmf")
+            let beginLocation = scanner.scanLocation
             while scanner.scanCharactersFromSet(set, intoString: &string) {
-                let beginLocation = scanner.scanLocation
                 let token = TokenString(
                     identifier: "Value",
                     value: string as! String,
-                    startIndex: beginLocation + lineStartIndex
+                    startIndex: beginLocation + lineStartIndex + 1
                 )
                 dynamicMarkingContainer.addToken(token)
                 dynamicMarking = string as? String
-                break
             }
             
+            /*
             // Unwind scanner if invalid
             if dynamicMarking == nil {
                 scanner.scanLocation = beginLocation
                 return
             }
+            */
             
             // TODO: pass new container
             scanSpannerStartWithScanner(scanner, andContainer: dynamicMarkingContainer)
@@ -670,9 +671,6 @@ public class Tokenizer {
     )
     {
         let beginLocation = scanner.scanLocation
-        
-        print("scan spanner stop")
-        
         var string: NSString?
         
         // order of commands is enforced
@@ -681,36 +679,48 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: "SpannerStop",
                 value: "]",
-                startIndex: beginLocation
+                startIndex: beginLocation + lineStartIndex + 1
             )
             container.addToken(token)
         }
     }
     
+    /*
     private func scanNonRootDurationNodeWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        
+        let beginLocation = scanner.scanLocation + 1
         var beats: Int?
         var floatValue: Float = 0.0
         if scanner.scanFloat(&floatValue) { beats = Int(floatValue) }
         
+        /*
         if beats == nil {
             scanner.scanLocation = beginLocation
             return
         }
+        */
+        
+        var subdivision: Int?
+        floatValue = 0.0
+        if scanner.scanFloat(&floatValue) { subdivision = Int(floatValue) }
+        
+        scanner.scanLocation += 1
+        //if subdivision == nil
         
         // Create Token for RootDurationNode Duration
-        let token = TokenInt(
-            identifier: "RootDuration",
-            value: beats!,
+        let token = TokenDuration(
+            identifier: "RootNodeDuration",
+            value: (beats!, subdivision!),
             startIndex: beginLocation + lineStartIndex,
-            stopIndex: scanner.scanLocation + lineStartIndex - 1,
+            stopIndex: scanner.scanLocation + lineStartIndex,
             indentationLevel: currentIndentationLevel
         )
         container.addToken(token)
     }
+    */
     
     private func scanLeafDurationWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
@@ -771,7 +781,7 @@ public class Tokenizer {
         
         // startIndex and stopIndex not correct
         let token = TokenDuration(
-            identifier: "RootDuration",
+            identifier: "RootNodeDuration",
             value: (beats!, subdivisionValue!),
             startIndex: beginLocation + lineStartIndex,
             stopIndex: scanner.scanLocation + lineStartIndex - 1 // dirty

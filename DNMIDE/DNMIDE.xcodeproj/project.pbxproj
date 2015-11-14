@@ -13,6 +13,10 @@
 		07F0D1B91BF6A74300AE029A /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1B71BF6A74300AE029A /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07F0D1BB1BF6A74800AE029A /* DNMConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1BA1BF6A74800AE029A /* DNMConverter.framework */; };
 		07F0D1BC1BF6A74800AE029A /* DNMConverter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1BA1BF6A74800AE029A /* DNMConverter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F0D1BE1BF6AD8200AE029A /* SyntaxHighlightingStyleSheet.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F0D1BD1BF6AD8200AE029A /* SyntaxHighlightingStyleSheet.json */; };
+		07F0D1C01BF6ADC300AE029A /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1BF1BF6ADC300AE029A /* DNMJSON.framework */; };
+		07F0D1C11BF6ADC300AE029A /* DNMJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1BF1BF6ADC300AE029A /* DNMJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F0D1C31BF6B44F00AE029A /* SyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D1C21BF6B44F00AE029A /* SyntaxHighlighter.swift */; };
 		07F7369E1BF4CE4F003C73E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F7369D1BF4CE4F003C73E1 /* AppDelegate.swift */; };
 		07F736A01BF4CE4F003C73E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F7369F1BF4CE4F003C73E1 /* ViewController.swift */; };
 		07F736A21BF4CE4F003C73E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F736A11BF4CE4F003C73E1 /* Assets.xcassets */; };
@@ -39,6 +43,7 @@
 			files = (
 				07F0D1B91BF6A74300AE029A /* DNMModel.framework in Embed Frameworks */,
 				07F0D1BC1BF6A74800AE029A /* DNMConverter.framework in Embed Frameworks */,
+				07F0D1C11BF6ADC300AE029A /* DNMJSON.framework in Embed Frameworks */,
 				07F0D1B21BF6A73100AE029A /* DNMUtility.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -50,6 +55,9 @@
 		07F0D1B01BF6A73100AE029A /* DNMUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMUtility.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMUtility.framework"; sourceTree = "<absolute>"; };
 		07F0D1B71BF6A74300AE029A /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMModel.framework"; sourceTree = "<absolute>"; };
 		07F0D1BA1BF6A74800AE029A /* DNMConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMConverter.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMConverter.framework"; sourceTree = "<absolute>"; };
+		07F0D1BD1BF6AD8200AE029A /* SyntaxHighlightingStyleSheet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxHighlightingStyleSheet.json; sourceTree = "<group>"; };
+		07F0D1BF1BF6ADC300AE029A /* DNMJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMJSON.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMJSON.framework"; sourceTree = "<absolute>"; };
+		07F0D1C21BF6B44F00AE029A /* SyntaxHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighter.swift; sourceTree = "<group>"; };
 		07F7369A1BF4CE4F003C73E1 /* DNMIDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNMIDE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F7369D1BF4CE4F003C73E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F7369F1BF4CE4F003C73E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +76,7 @@
 			files = (
 				07F0D1B81BF6A74300AE029A /* DNMModel.framework in Frameworks */,
 				07F0D1BB1BF6A74800AE029A /* DNMConverter.framework in Frameworks */,
+				07F0D1C01BF6ADC300AE029A /* DNMJSON.framework in Frameworks */,
 				07F0D1B11BF6A73100AE029A /* DNMUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +94,7 @@
 		07F736911BF4CE4E003C73E1 = {
 			isa = PBXGroup;
 			children = (
+				07F0D1BF1BF6ADC300AE029A /* DNMJSON.framework */,
 				07F0D1BA1BF6A74800AE029A /* DNMConverter.framework */,
 				07F0D1B71BF6A74300AE029A /* DNMModel.framework */,
 				07F0D1B01BF6A73100AE029A /* DNMUtility.framework */,
@@ -111,6 +121,8 @@
 				07F736A11BF4CE4F003C73E1 /* Assets.xcassets */,
 				07F736A31BF4CE4F003C73E1 /* Main.storyboard */,
 				07F736A61BF4CE4F003C73E1 /* Info.plist */,
+				07F0D1BD1BF6AD8200AE029A /* SyntaxHighlightingStyleSheet.json */,
+				07F0D1C21BF6B44F00AE029A /* SyntaxHighlighter.swift */,
 			);
 			path = DNMIDE;
 			sourceTree = "<group>";
@@ -208,6 +220,7 @@
 			files = (
 				07F736A21BF4CE4F003C73E1 /* Assets.xcassets in Resources */,
 				07F736A51BF4CE4F003C73E1 /* Main.storyboard in Resources */,
+				07F0D1BE1BF6AD8200AE029A /* SyntaxHighlightingStyleSheet.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +240,7 @@
 			files = (
 				07F736A01BF4CE4F003C73E1 /* ViewController.swift in Sources */,
 				07F7369E1BF4CE4F003C73E1 /* AppDelegate.swift in Sources */,
+				07F0D1C31BF6B44F00AE029A /* SyntaxHighlighter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

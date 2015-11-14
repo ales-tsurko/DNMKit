@@ -88,7 +88,7 @@ public class PitchSpelling: CustomStringConvertible, Equatable {
     ]
     
     private class PitchSpellingsByPitchClass {
-        class var sharedInstance : JSON {
+        class var sharedInstance: JSON {
             struct Static {
                 static let instance: JSON = Static.getInstance()
                 static func getInstance() -> JSON {

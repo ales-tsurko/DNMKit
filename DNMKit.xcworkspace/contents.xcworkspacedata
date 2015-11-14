@@ -2,16 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:DNMModel/DNMModel.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:DNMConverter/DNMConverter.xcodeproj">
+      location = "group:DNMUtility/DNMUtility.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMJSON/DNMJSON.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DNMIDE/DNMIDE.xcodeproj">
+      location = "group:DNMModel/DNMModel.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMConverter/DNMConverter.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMView/DNMView.xcodeproj">
@@ -26,12 +26,12 @@
       location = "group:DNMAudio/DNMAudio.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DNMUtility/DNMUtility.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:DNMKitExample_iOS/DNMKitExample_iOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DNMKitExample_OSX/DNMKitExample_OSX.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNMIDE/DNMIDE.xcodeproj">
    </FileRef>
 </Workspace>
