@@ -25,6 +25,17 @@ public class InstrumentString: Instrument {
     public override func createGraphsWithComponent(component: Component, andG g: CGFloat) {
         if !component.isGraphBearing { return }
         
+        switch component {
+        case let pitch as ComponentPitch: break
+        case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
+        case let graphNode as ComponentGraphNode: break
+        case let waveform as ComponentWaveform: break
+        default: break
+        }
+        
+        // TODO: flesh out -- reimplement
+        
+        /*
         switch component.property {
         case .Pitch, .StringArtificialHarmonic:
             
@@ -96,12 +107,23 @@ public class InstrumentString: Instrument {
         default: break
         }
         // ------------------------------------------------------------------------------------
+        */
     }
     
     public override func createInstrumentEventWithComponent(component: Component,
         atX x: CGFloat, withStemDirection stemDirection: StemDirection
-        ) -> InstrumentEvent?
+    ) -> InstrumentEvent?
     {
+        
+        switch component {
+        case let pitch as ComponentPitch: break
+        case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
+        case let graphNode as ComponentGraphNode: break
+        case let waveform as ComponentWaveform: break
+        default: break
+        }
+        
+        /*
         //let pID = component.pID, iID = component.iID
         switch component.property {
         case .Pitch, .StringArtificialHarmonic:
@@ -161,6 +183,7 @@ public class InstrumentString: Instrument {
         default:
             break
         }
+        */
         return nil
     }
 }

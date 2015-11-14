@@ -15,7 +15,11 @@ public class Instrument: ViewNode {
     
     //public var uiView: InstrumentView?
     
+
+    // phase out
     public var id: String = ""
+    
+    public var identifier: String = ""
     public var instrumentType: InstrumentType?
     
     public var graphOrder: [String] = []
@@ -76,10 +80,25 @@ public class Instrument: ViewNode {
         if primaryGraphs.containsObject(graph) { addNode(graph) }
     }
     
+    // FIXME: re new Component structure
     public func createInstrumentEventWithComponent(component: Component,
         atX x: CGFloat, withStemDirection stemDirection: StemDirection
     ) -> InstrumentEvent?
     {
+        
+        switch component {
+        case let pitch as ComponentPitch: break
+        case let dynamicMarking as ComponentDynamicMarking: break
+        case let dynamicMarkingSpannerStart as ComponentDynamicMarkingSpannerStart: break
+        case let dynamicMarkingSpannerStop as ComponentDynamicMarkingSpannerStop: break
+        case let articulation as ComponentArticulation: break
+            
+        // TODO: flesh out
+            
+        default: break
+        }
+        
+        /*
         //let pID = component.pID, iID = component.iID
         switch component.property {
         case .Pitch, .StringArtificialHarmonic:
@@ -118,12 +137,25 @@ public class Instrument: ViewNode {
         default:
             break
         }
+        */
         return nil
     }
     
     public func createGraphsWithComponent(component: Component, andG g: CGFloat) {
         if !component.isGraphBearing { return }
         
+        switch component {
+            
+        case let pitch as ComponentPitch: break
+        case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
+        case let graphNode as ComponentGraphNode: break
+            
+        // TODO: flesh out
+            
+        default: break
+        }
+        
+        /*
         // FOR NOW, JUST MAKING SINGLE GRAPH, LATER: MAKE MULTIPLE AS NECESSARY
         // ------------------------------------------------------------------------------------
         switch component.property {
@@ -161,6 +193,7 @@ public class Instrument: ViewNode {
         default: break
         }
         // ------------------------------------------------------------------------------------
+        */
     }
     
     // public funcs for handling events internally

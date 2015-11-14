@@ -118,10 +118,17 @@ public class BGEvent {
 
     private func getStartsExtension() -> Bool {
         for component in durationNode.components {
+            switch component {
+            case is ComponentExtensionStart: return true
+            default: break
+            }
+            
+            /*
             switch component.property {
             case .ExtensionStart: return true
             default: break
             }
+            */
         }
         return false
     }

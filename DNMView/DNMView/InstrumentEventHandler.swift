@@ -30,6 +30,27 @@ public class InstrumentEventHandler {
         if bgEvent == nil { return }
         if instrumentEvent == nil { return }
         let x = bgEvent!.x_objective!
+        
+        // TODO: re implement
+        for component in bgEvent!.durationNode.components {
+            switch component {
+            case let rest as ComponentRest: break
+            case let pitch as ComponentPitch: break
+            case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
+            case let articulation as ComponentArticulation: break
+            case let graphNode as ComponentGraphNode: break
+            case let graphEdgeStart as ComponentGraphEdgeStart: break
+            case let graphEdgeStop as ComponentGraphEdgeStop: break
+            // string number
+            // string bow direction
+            // label
+            default: break
+            }
+        }
+        
+        
+        
+        /*
         for component in bgEvent!.durationNode.components {
             switch component.property {
             case .Rest:
@@ -115,7 +136,9 @@ public class InstrumentEventHandler {
                 }
             default: break
             }
+
         }
+        */
     }
     
 
@@ -213,6 +236,7 @@ public class InstrumentEventHandler {
         return .Down
     }
     
+    /*
     // deprecate, but first, pull necessary bits
     public func _decorateInstrumentEvent() {
         if bgEvent == nil { return }
@@ -291,4 +315,5 @@ public class InstrumentEventHandler {
             }
         }
     }
+    */
 }

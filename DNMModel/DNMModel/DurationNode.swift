@@ -1012,46 +1012,32 @@ public class DurationNode: Node, CustomStringConvertible {
     }
     
     public override func getDescription() -> String {
-
         var description: String = "DurationNode"
-        
         if isRoot { description += " (root)" }
-        if isLeaf { description = " (leaf)" }
+        else if isLeaf { description = "leaf" }
+        else { description = "internal" }
         
+        // add duration info : make this DurationSpan
+        description += ": \(duration), offset: \(offsetDuration)"
+        
+        // add component info
         if components.count > 0 {
-            description += " ["
-            for component in components {
-                description += ", \(component)"
+            description += ": "
+            for (c, component) in components.enumerate() {
+                if c > 0 { description += ", " }
+                description += "\(component)"
             }
-            description += "]"
+            description += ";"
         }
         
+        // traverse children
         if isContainer {
             for child in children {
-                
-                // add new line for each child
                 description += "\n"
-                // add tabs for depth
                 for _ in 0..<child.depth { description += "\t" }
                 description += "\(child)"
             }
         }
-        
-        /*
-        var description: String = "[duration: \(duration), offset: \(offsetDuration)]"
-        if id != nil { description += "; \(id!)" }
-        if isRoot { description += ": ROOT" }
-        if children.count == 0 { description += ": LEAF" }
-        else {
-            description += ": "
-            for child in children {
-                description += "\n"
-                for _ in 0..<child.depth - 1 { description += "\t" }
-                description += "--> \(child)"
-            }
-        }
-        */
-
         return description
     }
 }

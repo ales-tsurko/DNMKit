@@ -286,9 +286,7 @@ public class System: ViewNode, BuildPattern {
         eventsNode.addNode(performer)
     }
     
-    
 
-    
     public func addMeasure(measure: MeasureView) {
         addMeasureComponentsFromMeasure(measure, atX: measure.frame.minX)
     }
@@ -1134,7 +1132,7 @@ public class System: ViewNode, BuildPattern {
                     
                     // interrogate this...
                     var instrumentEventHandlerSuccessfullyCreated: Bool = false
-                    let pID = component.pID, iID = component.iID
+                    let pID = component.performerID, iID = component.instrumentID
                     let x: CGFloat = bgEvent.x_objective!
                     if let performer = performerByID[pID],
                         instrument = performer.instrumentByID[iID]
@@ -1197,12 +1195,16 @@ public class System: ViewNode, BuildPattern {
                 for graphEvent in instrumentEvent.graphEvents {
                     for component in bgEvent.durationNode.components {
                         if let componentSlurStart = component as? ComponentSlurStart {
-                            let id = componentSlurStart.id
+
+                            // TODO: check that this is a valid id!
+                            let id = componentSlurStart.performerID
                             let slurHandler = SlurHandler(id: id, graphEvent0: graphEvent)
                             addSlurHandler(slurHandler)
                         }
                         else if let componentSlurStop = component as? ComponentSlurStop {
-                            let id = componentSlurStop.id
+                            
+                            // TODO: check that this is a valid id!
+                            let id = componentSlurStop.performerID
                             if let lastIncomplete = getLastIncompleteSlurHandlerWithID(id) {
                                 lastIncomplete.graphEvent1 = graphEvent
                             }
@@ -1405,8 +1407,8 @@ public class System: ViewNode, BuildPattern {
         
         struct DMComponentContext {
             var eventHandler: InstrumentEventHandler
-            var componentDynamic: ComponentDynamic?
-            var componentDMLigatures: [ComponentDMLigature] = []
+            var componentDynamic: ComponentDynamicMarking?
+            var componentDMLigatures: [ComponentDynamicMarkingSpanner] = []
             
             init(eventHandler: InstrumentEventHandler) {
                 self.eventHandler = eventHandler
@@ -1443,10 +1445,10 @@ public class System: ViewNode, BuildPattern {
             // create dmComponentContext
             var dmComponentContext = DMComponentContext(eventHandler: eventHandler)
             for component in eventHandler.bgEvent!.durationNode.components {
-                if let componentDMLigature = component as? ComponentDMLigature {
+                if let componentDMLigature = component as? ComponentDynamicMarkingSpanner {
                     dmComponentContext.componentDMLigatures.append(componentDMLigature)
                 }
-                else if let componentDynamic = component as? ComponentDynamic {
+                else if let componentDynamic = component as? ComponentDynamicMarking {
                     dmComponentContext.componentDynamic = componentDynamic
                 }
             }
@@ -1454,7 +1456,9 @@ public class System: ViewNode, BuildPattern {
             // Create DynamicMarkings, ensuring DMNodes (no ligature consideration yet)
             if dmComponentContext.componentDynamic != nil {
                 let x = eventHandler.bgEvent!.x_objective!
-                let id = dmComponentContext.componentDynamic!.id // unsafe
+                
+                // TODO: verify as valid (though temporary ) id
+                let id = dmComponentContext.componentDynamic!.performerID // unsafe
                 
                 var dmNode_height: CGFloat = 2.5 * g
                 
@@ -1469,11 +1473,18 @@ public class System: ViewNode, BuildPattern {
                     dmNodeByID[id]!.pad_bottom = 0.5 * dmNode_height
                 } // hack
                 
+                let marking = dmComponentContext.componentDynamic!.value
+                dmNodeByID[id]!.addDynamicMarkingsWithString(marking, atX: x)
+                
+                // this is why we are refactoring this...
+                // -- you shouldn't have to switch it to extract the property
+                /*
                 switch dmComponentContext.componentDynamic!.property {
                 case .Dynamic(let marking):
                     dmNodeByID[id]!.addDynamicMarkingsWithString(marking, atX: x)
                 default: break
                 }
+                */
             }
             
             // Create DMLigatures only if they are not frayed
@@ -1482,7 +1493,9 @@ public class System: ViewNode, BuildPattern {
                 
                 // if there is a DynamicMarking
                 if let componentDynamic = dmComponentContext.componentDynamic {
-                    let id = componentDynamic.id
+                    
+                    // TODO: verify is valid ID!
+                    let id = componentDynamic.performerID
                     var start_intValue: Int?
                     var stop_intValue: Int?
                     let start_x: CGFloat!
@@ -1500,6 +1513,23 @@ public class System: ViewNode, BuildPattern {
                     }
                     
                     for componentDMLigature in dmComponentContext.componentDMLigatures {
+                        switch componentDMLigature {
+                        case let start as ComponentDynamicMarkingSpannerStart:
+                            if let start_intValue = start_intValue {
+                                dmNodeByID[id]!.startLigatureAtX(start_x,
+                                    withDynamicMarkingIntValue: start_intValue
+                                )
+                            }
+                        case let stop as ComponentDynamicMarkingSpannerStop:
+                            if let stop_intValue = stop_intValue {
+                                dmNodeByID[id]!.stopCurrentLigatureAtX(stop_x,
+                                    withDynamicMarkingIntValue: stop_intValue
+                                )
+                            }
+                        default: break
+                        }
+                        
+                        /*
                         switch componentDMLigature.property {
                         case .DMLigatureStart:
                             if let start_intValue = start_intValue {
@@ -1515,6 +1545,7 @@ public class System: ViewNode, BuildPattern {
                             }
                         default: break
                         }
+                        */
                     }
                 }
             }

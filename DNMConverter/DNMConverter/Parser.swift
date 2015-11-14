@@ -105,8 +105,7 @@ public class Parser {
         
         setDurationOfLastMeasure()
         finalizeDurationNodes()
-        
-        print("durationNodes? : \(durationNodes)")
+
         let scoreModel = makeScoreModel()
         
         // return something real
@@ -197,7 +196,6 @@ public class Parser {
     }
     
     private func manageRootDurationToken(token: Token) {
-        print("manageRootDurationToken")
         if let tokenDuration = token as? TokenDuration {
             let rootDurationNode = DurationNode(duration: Duration(tokenDuration.value))
             setOffsetDurationForNewRootDurationNode(rootDurationNode)
@@ -260,7 +258,6 @@ public class Parser {
     }
     
     private func managePitchTokenContainer(container: TokenContainer) {
-        print("manage pitches")
         var pitches: [Float] = []
         for token in container.tokens {
             if let spannerStart = token as? TokenContainer
@@ -279,8 +276,6 @@ public class Parser {
     }
     
     private func manageDynamicMarkingTokenContainer(container: TokenContainer) {
-        print("manage dynamic markings + spanner")
-        
         var value: String?
         for token in container.tokens {
             switch token.identifier {
@@ -301,7 +296,6 @@ public class Parser {
     }
     
     private func manageArticulationTokenContainer(container: TokenContainer) {
-        print("manage articulation")
         var markings: [String] = []
         for token in container.tokens {
             if let tokenString = token as? TokenString { markings.append(tokenString.value) }
@@ -337,7 +331,6 @@ public class Parser {
     }
     
     private func addRootDurationNode(rootDurationNode: DurationNode) {
-        print("add root durationNode")
         durationNodes.append(rootDurationNode)
         durationNodeContainerStack = Stack(items: [rootDurationNode])
     }

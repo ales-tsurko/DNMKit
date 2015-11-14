@@ -75,9 +75,12 @@ public class ComponentPitch: Component {
             description += ": \(values.first!)"
         }
         else if values.count > 1 {
-            description += ": ["
-            for value in values { description += "\(value)" }
-            description += "]"
+            description += ": { "
+            for (v, value) in values.enumerate() {
+                if v > 0 { description += ", " }
+                description += "\(value)"
+            }
+            description += " }"
         }
         return description
     }
@@ -101,14 +104,19 @@ public class ComponentDynamicMarking: Component {
     }
 }
 
-public class ComponentDynamicMarkingSpannerStart: Component {
+public class ComponentDynamicMarkingSpanner: Component {
+    
+    // something
+}
+
+public class ComponentDynamicMarkingSpannerStart: ComponentDynamicMarkingSpanner {
     
     private override func getIdentifier() -> String {
         return "DynamicMarkingSpannerStart"
     }
 }
 
-public class ComponentDynamicMarkingSpannerStop: Component {
+public class ComponentDynamicMarkingSpannerStop: ComponentDynamicMarkingSpanner {
     
     private override func getIdentifier() -> String {
         return "DynamicMarkingSpannerStop"
@@ -116,6 +124,8 @@ public class ComponentDynamicMarkingSpannerStop: Component {
 }
 
 public class ComponentSlurStart: Component {
+    
+    
     
     private override func getIdentifier() -> String {
         return "SlurStart"
@@ -148,9 +158,12 @@ public class ComponentArticulation: Component {
             description += ": \(values.first!)"
         }
         else if values.count > 1 {
-            description += ": ["
-            for value in values { description += value }
-            description += "]"
+            description += ": { "
+            for (v, value) in values.enumerate() {
+                if v > 0 { description += ", " }
+                description += "\(value)"
+            }
+            description += " }"
         }
         return description
     }
@@ -214,6 +227,28 @@ public class ComponentGraphEdgeStop: Component {
     
     private override func getIdentifier() -> String {
         return "GraphEdgeStop"
+    }
+}
+
+public class ComponentStringArtificialHarmonic: Component {
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "StringArtificialHarmonic"
+    }
+}
+
+public class ComponentWaveform: Component {
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "Waveform"
     }
 }
 

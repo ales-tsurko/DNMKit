@@ -11,6 +11,7 @@
 		0756818D1BED391700623AF8 /* BezierCurveStylerWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */; };
 		0756818F1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */; };
 		075681911BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */; };
+		07D7563D1BF7CEC2001E6DF3 /* ViewArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7563C1BF7CEC2001E6DF3 /* ViewArithmetic.swift */; };
 		07ECB3F91BE538BB00C9AD08 /* DNMView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3F81BE538BB00C9AD08 /* DNMView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4001BE538BB00C9AD08 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3F51BE538BB00C9AD08 /* DNMView.framework */; };
 		07ECB4051BE538BB00C9AD08 /* DNMViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECB4041BE538BB00C9AD08 /* DNMViewTests.swift */; };
@@ -117,6 +118,7 @@
 		0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerWidth.swift; sourceTree = "<group>"; };
 		0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyleWidthVariable.swift; sourceTree = "<group>"; };
 		075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashesVariable.swift; sourceTree = "<group>"; };
+		07D7563C1BF7CEC2001E6DF3 /* ViewArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewArithmetic.swift; sourceTree = "<group>"; };
 		07ECB3F51BE538BB00C9AD08 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3F81BE538BB00C9AD08 /* DNMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMView.h; sourceTree = "<group>"; };
 		07ECB3FA1BE538BB00C9AD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				07F3E7561BE6734300948758 /* DurationNodeExtensions.swift */,
 				07F3E7071BE54C7100948758 /* Label */,
 				07F3E69B1BE5486B00948758 /* BezierCurves */,
+				07D7563C1BF7CEC2001E6DF3 /* ViewArithmetic.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				07F3E7281BE66E0F00948758 /* Performer.swift in Sources */,
 				07F3E73A1BE66E9900948758 /* MeasureNumberNode.swift in Sources */,
 				07F3E6D51BE54A7000948758 /* GraphContinuousControllerStepped.swift in Sources */,
+				07D7563D1BF7CEC2001E6DF3 /* ViewArithmetic.swift in Sources */,
 				07F3E7481BE6717800948758 /* BeamJunction.swift in Sources */,
 				07F3E7771BE6774100948758 /* GraphEventSwitch.swift in Sources */,
 				07F3E69A1BE5483C00948758 /* ViewNode.swift in Sources */,

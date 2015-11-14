@@ -114,11 +114,19 @@ public class BGStratum: ViewNode, BuildPattern {
                 let start: CGFloat = -10
                 let stop = x - pad
                 for component in bgEvent.durationNode.components {
-                    switch component.property {
-                    case .ExtensionStop:
+                    switch component {
+                    case is ComponentExtensionStop:
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
+                    
+                    /*
+                    switch component.property {
+                    case .ExtensionStop: break
+                        
+                    default: break
+                    }
+                    */
                 }
             }
             else if e < bgEvents.count - 1 {
@@ -127,11 +135,19 @@ public class BGStratum: ViewNode, BuildPattern {
                 let start: CGFloat = x + augDotPad + dePad
                 let stop: CGFloat = nextEvent.x_inBGStratum! - dePad
                 for component in bgEvent.durationNode.components {
+                    switch component {
+                    case is ComponentExtensionStart:
+                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
+                    default: break
+                    }
+                    
+                    /*
                     switch component.property {
                     case .ExtensionStart:
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
+                    */
                 }
             }
             else {
@@ -145,12 +161,19 @@ public class BGStratum: ViewNode, BuildPattern {
                 else { stop = UIScreen.mainScreen().bounds.width }
                 
                 for component in bgEvent.durationNode.components {
+                    switch component {
+                    case is ComponentExtensionStart:
+                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
+                    default: break
+                    }
                     
+                    /*
                     switch component.property {
                     case .ExtensionStart:
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
+                    */
                 }
             }
         }
