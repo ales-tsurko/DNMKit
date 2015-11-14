@@ -71,7 +71,10 @@ public class ComponentPitch: Component {
     
     private override func getDescription() -> String {
         var description = identifier
-        if values.count > 0 {
+        if values.count == 1 {
+            description += ": \(values.first!)"
+        }
+        else if values.count > 1 {
             description += ": ["
             for value in values { description += "\(value)" }
             description += "]"
@@ -94,7 +97,7 @@ public class ComponentDynamicMarking: Component {
     }
     
     private override func getDescription() -> String {
-        return identifier + ": [\(value)]"
+        return identifier + ": \(value)"
     }
 }
 
@@ -141,7 +144,10 @@ public class ComponentArticulation: Component {
     
     private override func getDescription() -> String {
         var description: String = identifier
-        if values.count > 0 {
+        if values.count == 1 {
+            description += ": \(values.first!)"
+        }
+        else if values.count > 1 {
             description += ": ["
             for value in values { description += value }
             description += "]"

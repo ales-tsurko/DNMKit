@@ -1016,20 +1016,23 @@ public class DurationNode: Node, CustomStringConvertible {
         var description: String = "DurationNode"
         
         if isRoot { description += " (root)" }
-        if isLeaf { description += " (leaf)" }
+        if isLeaf { description = " (leaf)" }
         
         if components.count > 0 {
             description += " ["
             for component in components {
-                description += "\(component)"
+                description += ", \(component)"
             }
             description += "]"
         }
         
         if isContainer {
             for child in children {
+                
+                // add new line for each child
+                description += "\n"
                 // add tabs for depth
-                for _ in 0..<child.depth - 1 { description += "\t" }
+                for _ in 0..<child.depth { description += "\t" }
                 description += "\(child)"
             }
         }

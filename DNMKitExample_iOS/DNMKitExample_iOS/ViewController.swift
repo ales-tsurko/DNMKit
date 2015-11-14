@@ -30,27 +30,25 @@ class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDe
         //DNMColorManager.colorMode = ColorMode.Dark
         //view.backgroundColor = DNMColorManager.backgroundColor
 
-        //let fileName = "tokenize"
-        //let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
-        //let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        let fileName = "tokenize"
+        let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
+        let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         
-        //print(code)
-        
-        //let t = Tokenizer()
-        
-        
-        //let str = "#\n| 3 16 VC cc \np 60 d pppfo [ a - . > (\n p 60.25 93 ) \n"
-        //let tokenizer = Tokenizer()
-        //let tokenContainer = tokenizer.tokenizeString(code)
-        
-        //let parser = Parser()
-        //let scoreModel = parser.parseTokenContainer(tokenContainer)
+        print(code)
 
-        /*
+        let tokenizer = Tokenizer()
+        let tokenContainer = tokenizer.tokenizeString(code)
+        
+        let parser = Parser()
+        let scoreModel = parser.parseTokenContainer(tokenContainer)
+
+        print(scoreModel)
+        
+        
         for token in tokenContainer.tokens {
             print(token)
         }
-        */
+        
         
         //addScoreTableView()
         

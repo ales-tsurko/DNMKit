@@ -93,7 +93,7 @@ public class Parser {
                 switch token.identifier {
                 case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
                 case "Measure": manageMeasureToken()
-                case "RootDuration": manageRootDurationToken(token)
+                case "RootNodeDuration": manageRootDurationToken(token)
                 case "InternalNodeDuration": manageInternalDurationToken(token)
                 case "LeafNodeDuration": manageLeafNodeDurationToken(token)
                 case "PerformerID": managePerformerIDWithToken(token)
@@ -106,6 +106,7 @@ public class Parser {
         setDurationOfLastMeasure()
         finalizeDurationNodes()
         
+        print("durationNodes? : \(durationNodes)")
         let scoreModel = makeScoreModel()
         
         // return something real
@@ -196,6 +197,7 @@ public class Parser {
     }
     
     private func manageRootDurationToken(token: Token) {
+        print("manageRootDurationToken")
         if let tokenDuration = token as? TokenDuration {
             let rootDurationNode = DurationNode(duration: Duration(tokenDuration.value))
             setOffsetDurationForNewRootDurationNode(rootDurationNode)
@@ -335,6 +337,7 @@ public class Parser {
     }
     
     private func addRootDurationNode(rootDurationNode: DurationNode) {
+        print("add root durationNode")
         durationNodes.append(rootDurationNode)
         durationNodeContainerStack = Stack(items: [rootDurationNode])
     }
