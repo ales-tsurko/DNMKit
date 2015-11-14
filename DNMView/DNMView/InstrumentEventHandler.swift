@@ -34,21 +34,69 @@ public class InstrumentEventHandler {
         // TODO: re implement
         for component in bgEvent!.durationNode.components {
             switch component {
-            case let rest as ComponentRest: break
-            case let pitch as ComponentPitch: break
-            case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
-            case let articulation as ComponentArticulation: break
+            case let rest as ComponentRest:
+                for graphEvent in instrumentEvent!.graphEvents {
+                    graphEvent.isRest = true
+                    graphEvent.graph?.stopLinesAtX(graphEvent.x)
+                }
+            case let pitch as ComponentPitch:
+                for graphEvent in instrumentEvent!.graphEvents {
+                    if let _ = graphEvent.graph as? Staff {
+                        for p in pitch.values {
+                            let pitch = Pitch(midi: MIDI(p))
+                            (graphEvent as? StaffEvent)?.addPitch(pitch)
+                        }
+                    }
+                }
+            case let stringArtificialHarmonic as ComponentStringArtificialHarmonic:
+                let pitch = stringArtificialHarmonic.value
+                for graphEvent in instrumentEvent!.graphEvents {
+                    if graphEvent.graph! is Staff && graphEvent.graph!.id == "fingeredPitch" {
+                        let fingeredPitch = Pitch(midi: MIDI(pitch))
+                        let harmonicPressurePitch = Pitch(midi: MIDI(pitch + 5))
+                        (graphEvent as? StaffEvent)?.addPitch(fingeredPitch, withNoteheadType: .Ord)
+                        (graphEvent as? StaffEvent)?.addPitch(harmonicPressurePitch, withNoteheadType: .DiamondEmpty)
+                    }
+                    else if graphEvent.graph! is Staff && graphEvent.graph!.id == "soundingPitch" {
+                        let soundingPitch = Pitch(midi: MIDI(pitch + 24)) // hack for touch_4 harm
+                        (graphEvent as? StaffEvent)?.addPitch(soundingPitch,
+                            withNoteheadType: .CircleEmpty
+                        )
+                    }
+                }
+            case let articulation as ComponentArticulation:
+                for graphEvent in instrumentEvent!.graphEvents {
+                    // perhaps place this somewhere else...
+                    system?.addComponentType("articulations", withID: articulation.performerID)
+                    for marking in articulation.values {
+                        if let type = ArticulationTypeWithMarking(marking) {
+                            // switch GraphEventArticulation vs StemArticulation
+                            switch type {
+                            case .Tremolo: bgEvent!.addStemArticulationType(type)
+                            default: graphEvent.addArticulationWithType(type)
+                            }
+                        }
+                    }
+                }
             case let graphNode as ComponentGraphNode: break
-            case let graphEdgeStart as ComponentGraphEdgeStart: break
-            case let graphEdgeStop as ComponentGraphEdgeStop: break
+            case let graphEdgeStart as ComponentGraphEdgeStart:
+                for graphEvent in instrumentEvent!.graphEvents {
+                    if let ccGraph = graphEvent.graph as? GraphContinuousController {
+                        
+                        // FIXME: refactor spannerArguments
+                        
+                        //ccGraph.startEdgeAtX(x, spannerArguments: spannerArguments)
+                    }
+                }
+            case let graphEdgeStop as ComponentGraphEdgeStop:
+                
+                break
             // string number
             // string bow direction
             // label
             default: break
             }
         }
-        
-        
         
         /*
         for component in bgEvent!.durationNode.components {
@@ -156,7 +204,6 @@ public class InstrumentEventHandler {
                     else {
                         
                         // NEED TO CHECK THIS, different context than graph
-                        
                         
                         if let _ = instrumentEvent?.instrument {
                             if stem.superlayer == nil {

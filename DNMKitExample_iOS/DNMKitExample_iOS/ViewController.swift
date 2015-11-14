@@ -11,6 +11,7 @@ import DNMUtility
 import DNMJSON
 import DNMModel
 import DNMConverter
+import DNMView
 
 // TODO: Reintegrate ViewSelector
 class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDelegate {
@@ -48,7 +49,6 @@ class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDe
         for token in tokenContainer.tokens {
             print(token)
         }
-        
         
         //addScoreTableView()
         

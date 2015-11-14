@@ -26,10 +26,53 @@ public class InstrumentString: Instrument {
         if !component.isGraphBearing { return }
         
         switch component {
-        case let pitch as ComponentPitch: break
-        case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
-        case let graphNode as ComponentGraphNode: break
-        case let waveform as ComponentWaveform: break
+        case is ComponentPitch, is ComponentStringArtificialHarmonic:
+            if graphByID["soundingPitch"] == nil {
+                let soundingPitch = Staff(id: "soundingPitch", g: g)
+                if let (clefType, transposition, _) = instrumentType?
+                    .preferredClefsAndTransposition.first
+                {
+                    soundingPitch.id = "soundingPitch"
+                    soundingPitch.pad_bottom = g
+                    soundingPitch.pad_top = g
+                    soundingPitch.addClefWithType(clefType, withTransposition: transposition, atX: 15)
+                    addGraph(soundingPitch, isPrimary: false)
+                    staff_soundingPitch = soundingPitch
+                }
+                else { fatalError("Can't find a proper clef and transposition") }
+            }
+            
+            if graphByID["fingeredPitch"] == nil {
+                let fingeredPitch = Staff(id: "fingeredPitch", g: g)
+                if let (clefType, transposition, _) = instrumentType?
+                    .preferredClefsAndTransposition.first
+                {
+                    fingeredPitch.id = "fingeredPitch"
+                    fingeredPitch.pad_bottom = g
+                    fingeredPitch.pad_top = g
+                    fingeredPitch.addClefWithType(clefType,
+                        withTransposition: transposition, atX: 15
+                    ) // HACK
+                    addGraph(fingeredPitch)
+                    staff_fingeredPitch = fingeredPitch
+                }
+                else { fatalError("Can't find a proper clef and transposition") }
+            }
+        case is ComponentGraphNode:
+            if graphByID["node"] == nil {
+                let graph = GraphContinuousController(id: "node")
+                graph.height = 25 // hack
+                graph.pad_bottom = 5 // hack
+                graph.pad_top = 5 // hack
+                graph.addClefAtX(15) // hack
+                addGraph(graph)
+            }
+        case is ComponentWaveform:
+            if graphByID["wave"] == nil {
+                let graph = GraphWaveform(id: "wave", height: 60, width: frame.width) // hack
+                graph.addClefAtX(15) // hack
+                addGraph(graph)
+            }
         default: break
         }
         

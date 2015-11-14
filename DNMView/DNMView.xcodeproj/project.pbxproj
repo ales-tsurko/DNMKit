@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		072CE3881BEA1A3300106951 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072CE3871BEA1A3300106951 /* Instrument.swift */; };
+		073B5D421BF7D26500489430 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073B5D411BF7D26500489430 /* DNMUtility.framework */; };
+		073B5D441BF7D26800489430 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073B5D431BF7D26800489430 /* DNMModel.framework */; };
 		0756818D1BED391700623AF8 /* BezierCurveStylerWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */; };
 		0756818F1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */; };
 		075681911BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */; };
@@ -23,7 +25,6 @@
 		07F3E6A71BE5489A00948758 /* BezierCurveStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */; };
 		07F3E6A81BE5489A00948758 /* BezierCurveStylerDashes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */; };
 		07F3E6A91BE5489A00948758 /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6A21BE5489A00948758 /* BezierPath.swift */; };
-		07F3E6AD1BE548F400948758 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E6AC1BE548F400948758 /* DNMUtility.framework */; };
 		07F3E6AF1BE5490900948758 /* StyledBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */; };
 		07F3E6B11BE5493600948758 /* UIBezierPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B01BE5493600948758 /* UIBezierPathExtensions.swift */; };
 		07F3E6B31BE5494000948758 /* TextLayerContstrainedByHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E6B21BE5494000948758 /* TextLayerContstrainedByHeight.swift */; };
@@ -56,7 +57,6 @@
 		07F3E7181BE66CBD00948758 /* Clef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7171BE66CBD00948758 /* Clef.swift */; };
 		07F3E71A1BE66CED00948758 /* Slur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7191BE66CED00948758 /* Slur.swift */; };
 		07F3E71C1BE66D2300948758 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E71B1BE66D2300948758 /* MeasureView.swift */; };
-		07F3E71E1BE66D4000948758 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F3E71D1BE66D3F00948758 /* DNMModel.framework */; };
 		07F3E7221BE66D8500948758 /* GraphWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7211BE66D8500948758 /* GraphWaveform.swift */; };
 		07F3E7241BE66DA200948758 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7231BE66DA200948758 /* System.swift */; };
 		07F3E7261BE66DED00948758 /* Waveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3E7251BE66DED00948758 /* Waveform.swift */; };
@@ -115,6 +115,8 @@
 
 /* Begin PBXFileReference section */
 		072CE3871BEA1A3300106951 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
+		073B5D411BF7D26500489430 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMUtility.framework"; sourceTree = "<group>"; };
+		073B5D431BF7D26800489430 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMModel.framework"; sourceTree = "<group>"; };
 		0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerWidth.swift; sourceTree = "<group>"; };
 		0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyleWidthVariable.swift; sourceTree = "<group>"; };
 		075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashesVariable.swift; sourceTree = "<group>"; };
@@ -133,7 +135,6 @@
 		07F3E6A01BE5489A00948758 /* BezierCurveStyler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyler.swift; sourceTree = "<group>"; };
 		07F3E6A11BE5489A00948758 /* BezierCurveStylerDashes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashes.swift; sourceTree = "<group>"; };
 		07F3E6A21BE5489A00948758 /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
-		07F3E6AC1BE548F400948758 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
 		07F3E6AE1BE5490900948758 /* StyledBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledBezierCurve.swift; sourceTree = "<group>"; };
 		07F3E6B01BE5493600948758 /* UIBezierPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtensions.swift; sourceTree = "<group>"; };
 		07F3E6B21BE5494000948758 /* TextLayerContstrainedByHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayerContstrainedByHeight.swift; sourceTree = "<group>"; };
@@ -166,7 +167,6 @@
 		07F3E7171BE66CBD00948758 /* Clef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clef.swift; sourceTree = "<group>"; };
 		07F3E7191BE66CED00948758 /* Slur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slur.swift; sourceTree = "<group>"; };
 		07F3E71B1BE66D2300948758 /* MeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
-		07F3E71D1BE66D3F00948758 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<group>"; };
 		07F3E7211BE66D8500948758 /* GraphWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphWaveform.swift; sourceTree = "<group>"; };
 		07F3E7231BE66DA200948758 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		07F3E7251BE66DED00948758 /* Waveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waveform.swift; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F3E6AD1BE548F400948758 /* DNMUtility.framework in Frameworks */,
-				07F3E71E1BE66D4000948758 /* DNMModel.framework in Frameworks */,
+				073B5D421BF7D26500489430 /* DNMUtility.framework in Frameworks */,
+				073B5D441BF7D26800489430 /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,8 +237,8 @@
 		07ECB3EB1BE538BB00C9AD08 = {
 			isa = PBXGroup;
 			children = (
-				07F3E71D1BE66D3F00948758 /* DNMModel.framework */,
-				07F3E6AC1BE548F400948758 /* DNMUtility.framework */,
+				073B5D431BF7D26800489430 /* DNMModel.framework */,
+				073B5D411BF7D26500489430 /* DNMUtility.framework */,
 				07ECB3F71BE538BB00C9AD08 /* DNMView */,
 				07ECB4031BE538BB00C9AD08 /* DNMViewTests */,
 				07ECB3F61BE538BB00C9AD08 /* Products */,
@@ -849,6 +849,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -871,6 +873,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

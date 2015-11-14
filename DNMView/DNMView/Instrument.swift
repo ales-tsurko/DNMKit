@@ -87,13 +87,32 @@ public class Instrument: ViewNode {
     {
         
         switch component {
-        case let pitch as ComponentPitch: break
-        case let dynamicMarking as ComponentDynamicMarking: break
-        case let dynamicMarkingSpannerStart as ComponentDynamicMarkingSpannerStart: break
-        case let dynamicMarkingSpannerStop as ComponentDynamicMarkingSpannerStop: break
-        case let articulation as ComponentArticulation: break
-            
+        case is ComponentPitch, is ComponentStringArtificialHarmonic:
+            assert(graphByID["staff"] != nil, "can't find staff!")
+            if let staff = graphByID["staff"] {
+                let graphEvent = staff.startEventAtX(x, withStemDirection: stemDirection)
+                let instrumentEvent = InstrumentEvent(x: x, stemDirection: stemDirection)
+                instrumentEvent.instrument = self
+                instrumentEvent.addGraphEvent(graphEvent)
+                return instrumentEvent
+            }
+        case let graphNode as ComponentGraphNode:
+            assert(graphByID["node"] != nil, "can't find node graph")
+            if let graph = graphByID["node"] {
+                let graphEvent = (graph as? GraphContinuousController)!.addNodeEventAtX(x,
+                    withValue: graphNode.value, andStemDirection: stemDirection
+                )
+                let instrumentEvent = InstrumentEvent(x: x, stemDirection: stemDirection)
+                instrumentEvent.instrument = self
+                instrumentEvent.addGraphEvent(graphEvent)
+                return instrumentEvent
+            }
+        case is ComponentGraphEdgeStart: break
+        case is ComponentGraphEdgeStop: break
+        case is ComponentWaveform: break
+
         // TODO: flesh out
+        
             
         default: break
         }
@@ -146,9 +165,37 @@ public class Instrument: ViewNode {
         
         switch component {
             
-        case let pitch as ComponentPitch: break
-        case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
-        case let graphNode as ComponentGraphNode: break
+        case is ComponentPitch, is ComponentStringArtificialHarmonic:
+            // create graph if necessary
+            if graphByID["staff"] == nil {
+                let staff = Staff(id: "staff", g: g)
+                if let (clefType, transposition, _) = instrumentType?
+                    .preferredClefsAndTransposition.first
+                {
+                    staff.id = "staff" // hack
+                    staff.pad_bottom = g
+                    staff.pad_top = g
+                    staff.addClefWithType(clefType, withTransposition: transposition, atX: 15) // HACK
+                    addGraph(staff)
+                }
+                else { fatalError("Can't find a proper clef and transposition") }
+            }
+
+        case is ComponentGraphNode:
+            if graphByID["node"] == nil {
+                let graph = GraphContinuousController(id: "node")
+                graph.height = 25 // hack
+                graph.pad_bottom = 5 // hack
+                graph.pad_top = 5 // hack
+                graph.addClefAtX(15) // hack
+                addGraph(graph)
+            }
+        case is ComponentWaveform:
+            if graphByID["wave"] == nil {
+                let graph = GraphWaveform(id: "wave", height: 60, width: frame.width) // hack
+                graph.addClefAtX(15) // hack
+                addGraph(graph)
+            }
             
         // TODO: flesh out
             

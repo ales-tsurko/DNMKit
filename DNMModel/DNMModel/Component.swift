@@ -54,7 +54,7 @@ public class ComponentRest: Component {
 
 public class ComponentPitch: Component {
     
-    public var values: [Float] = []
+    public var values: [Float]
     
     public init(performerID: String, instrumentID: String, values: [Float]) {
         self.values = values
@@ -88,7 +88,7 @@ public class ComponentPitch: Component {
 
 public class ComponentDynamicMarking: Component {
     
-    public var value: String = ""
+    public var value: String
     
     public init(performerID: String, instrumentID: String, value: String) {
         self.value = value
@@ -124,8 +124,6 @@ public class ComponentDynamicMarkingSpannerStop: ComponentDynamicMarkingSpanner 
 }
 
 public class ComponentSlurStart: Component {
-    
-    
     
     private override func getIdentifier() -> String {
         return "SlurStart"
@@ -185,7 +183,7 @@ public class ComponentExtensionStop: Component {
 
 public class ComponentGraphNode: Component {
     
-    public var value: Float = 0
+    public var value: Float
     
     public init(performerID: String, instrumentID: String, value: Float) {
         self.value = value
@@ -231,6 +229,13 @@ public class ComponentGraphEdgeStop: Component {
 }
 
 public class ComponentStringArtificialHarmonic: Component {
+    
+    public var value: Float
+    
+    public init(performerID: String, instrumentID: String, value: Float) {
+        self.value = value
+        super.init(performerID: performerID, instrumentID: instrumentID)
+    }
     
     private override func getIsGraphBearing() -> Bool {
         return true
