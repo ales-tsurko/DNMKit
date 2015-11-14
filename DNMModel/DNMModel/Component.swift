@@ -8,6 +8,212 @@
 
 import Foundation
 
+public class Component: CustomStringConvertible {
+    
+    public var description: String { return getDescription() }
+    
+    public var identifier: String { return getIdentifier() }
+    public var performerID: String
+    public var instrumentID: String
+    
+    // override in subclasses
+    public var isGraphBearing: Bool { return getIsGraphBearing() }
+    
+    public init(
+        performerID: String,
+        instrumentID: String
+    )
+    {
+        self.performerID = performerID
+        self.instrumentID = instrumentID
+    }
+    
+    private func getIsGraphBearing() -> Bool {
+        return false
+    }
+    
+    private func getIdentifier() -> String {
+        return "Abstract component"
+    }
+    
+    private func getDescription() -> String {
+        return identifier
+    }
+}
+
+public class ComponentRest: Component {
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "Rest"
+    }
+}
+
+public class ComponentPitch: Component {
+    
+    public var values: [Float] = []
+    
+    public init(performerID: String, instrumentID: String, values: [Float]) {
+        self.values = values
+        super.init(performerID: performerID, instrumentID: instrumentID)
+    }
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "Pitch"
+    }
+    
+    private override func getDescription() -> String {
+        var description = identifier
+        if values.count > 0 {
+            description += ": ["
+            for value in values { description += "\(value)" }
+            description += "]"
+        }
+        return description
+    }
+}
+
+public class ComponentDynamicMarking: Component {
+    
+    public var value: String = ""
+    
+    public init(performerID: String, instrumentID: String, value: String) {
+        self.value = value
+        super.init(performerID: performerID, instrumentID: instrumentID)
+    }
+    
+    private override func getIdentifier() -> String {
+        return "DynamicMarking"
+    }
+    
+    private override func getDescription() -> String {
+        return identifier + ": [\(value)]"
+    }
+}
+
+public class ComponentDynamicMarkingSpannerStart: Component {
+    
+    private override func getIdentifier() -> String {
+        return "DynamicMarkingSpannerStart"
+    }
+}
+
+public class ComponentDynamicMarkingSpannerStop: Component {
+    
+    private override func getIdentifier() -> String {
+        return "DynamicMarkingSpannerStop"
+    }
+}
+
+public class ComponentSlurStart: Component {
+    
+    private override func getIdentifier() -> String {
+        return "SlurStart"
+    }
+}
+
+public class ComponentSlurStop: Component {
+    
+    private override func getIdentifier() -> String {
+        return "SlurStop"
+    }
+}
+
+public class ComponentArticulation: Component {
+    
+    public var values: [String] = []
+    
+    public init(performerID: String, instrumentID: String, values: [String]) {
+        self.values = values
+        super.init(performerID: performerID, instrumentID: instrumentID)
+    }
+    
+    private override func getIdentifier() -> String {
+        return "Articulation"
+    }
+    
+    private override func getDescription() -> String {
+        var description: String = identifier
+        if values.count > 0 {
+            description += ": ["
+            for value in values { description += value }
+            description += "]"
+        }
+        return description
+    }
+}
+
+public class ComponentExtensionStart: Component {
+    
+    private override func getIdentifier() -> String {
+        return "ExtensionStart"
+    }
+}
+
+public class ComponentExtensionStop: Component {
+    
+    private override func getIdentifier() -> String {
+        return "ExtensionStop"
+    }
+}
+
+public class ComponentGraphNode: Component {
+    
+    public var value: Float = 0
+    
+    public init(performerID: String, instrumentID: String, value: Float) {
+        self.value = value
+        super.init(performerID: performerID, instrumentID: instrumentID)
+    }
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "GraphNode"
+    }
+    
+    private override func getDescription() -> String {
+        return identifier + ": \(value)"
+    }
+}
+
+public class ComponentGraphEdgeStart: Component {
+    
+    // TODO
+    public var spannerValues: Int = 0
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "GraphEdgeStart"
+    }
+}
+
+public class ComponentGraphEdgeStop: Component {
+    
+    private override func getIsGraphBearing() -> Bool {
+        return true
+    }
+    
+    private override func getIdentifier() -> String {
+        return "GraphEdgeStop"
+    }
+}
+
+// TODO: finish implementation of remaining, currently supported things
+
+/*
 public enum ComponentProperty {
     case SlurStart
     case SlurStop
@@ -34,10 +240,12 @@ public enum ComponentProperty {
     case GlissandoStart
     case GlissandoStop
 }
+*/
 
 // component should just be a class:
 // -- inherit pID, iID, name: String, isGraphBearing: default false
 
+/*
 public protocol Component {
     var pID: String { get set }
     var iID: String { get set }
@@ -345,4 +553,4 @@ public struct ComponentStringBowDirection: Component {
         self.property = ComponentProperty.StringBowDirection(direction: bowDirection)
     }
 }
-
+*/

@@ -51,6 +51,8 @@ public class DurationNode: Node, CustomStringConvertible {
     */
     public var isNumerical: Bool = true
     
+    
+    // FIXME
     /// If this DurationNode has only Extension Components (ties) (not a rest, but no info).
     public var hasOnlyExtensionComponents: Bool {
         for component in components {
@@ -281,6 +283,7 @@ public class DurationNode: Node, CustomStringConvertible {
     }
     */
     
+    /*
     public func addRandomComponentsToLeavesWithPID(pID: String, andIID iID: String) {
         for leaf in leaves as! [DurationNode] {
             leaf.addComponent(
@@ -294,6 +297,7 @@ public class DurationNode: Node, CustomStringConvertible {
             //leaf.addComponent(ComponentDynamic(pID: pID, iID: iID, marking: "fff"))
         }
     }
+    */
     
     public func addChildWithBeats(beats: Int) -> DurationNode {
         let child = DurationNode(duration: Duration(beats, duration.subdivision!.value))
@@ -973,14 +977,15 @@ public class DurationNode: Node, CustomStringConvertible {
         return iIDsByPID
     }
     
+    // FIXME
     private func descendToGetIIDsByPID(
         durationNode durationNode: DurationNode,
         inout iIDsByPID: [String : [String]]
     )
     {
-        func addIID(
+        func addInstrumentID(
             iID: String,
-            andPID pID: String,
+            andPerformerID pID: String,
             inout toIIDsByPID iIDsByPID: [String : [String]]
         )
         {
@@ -990,7 +995,10 @@ public class DurationNode: Node, CustomStringConvertible {
         
         
         for component in durationNode.components {
-            addIID(component.iID, andPID: component.pID, toIIDsByPID: &iIDsByPID)
+            addInstrumentID(component.instrumentID,
+                andPerformerID: component.performerID,
+                toIIDsByPID: &iIDsByPID
+            )
         }
         if durationNode.isContainer {
             for child in durationNode.children as! [DurationNode] {
@@ -1005,6 +1013,28 @@ public class DurationNode: Node, CustomStringConvertible {
     
     public override func getDescription() -> String {
 
+        var description: String = "DurationNode"
+        
+        if isRoot { description += " (root)" }
+        if isLeaf { description += " (leaf)" }
+        
+        if components.count > 0 {
+            description += " ["
+            for component in components {
+                description += "\(component)"
+            }
+            description += "]"
+        }
+        
+        if isContainer {
+            for child in children {
+                // add tabs for depth
+                for _ in 0..<child.depth - 1 { description += "\t" }
+                description += "\(child)"
+            }
+        }
+        
+        /*
         var description: String = "[duration: \(duration), offset: \(offsetDuration)]"
         if id != nil { description += "; \(id!)" }
         if isRoot { description += ": ROOT" }
@@ -1017,6 +1047,8 @@ public class DurationNode: Node, CustomStringConvertible {
                 description += "--> \(child)"
             }
         }
+        */
+
         return description
     }
 }

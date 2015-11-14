@@ -81,9 +81,6 @@ public class Tokenizer {
                 }
             }
         }
-        
-        
-        
         return rootTokenContainer
     }
     
@@ -856,8 +853,7 @@ public class Tokenizer {
             scanner.scanUpToCharactersFromSet(newLineCharacterSet, intoString: &string)
         }
     }
-
-        
+  
     // perhaps get indentationLevelByLine first ?
     /*
     // this is not working correcttly

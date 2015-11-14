@@ -113,15 +113,11 @@ public class Parser {
     }
     
     private func managePerformerIDWithToken(token: Token) {
-        print("manage PID: \(token)")
         currentPerformerID = (token as? TokenString)?.value
-        print("currentPID: \(currentPerformerID)")
     }
     
     private func manageInstrumentIDWithToken(token: Token) {
-        print("manage IID: \(token)")
         currentInstrumentID = (token as? TokenString)?.value
-        print("currentIID: \(currentInstrumentID)")
     }
     
     private func makeScoreModel() -> DNMScoreModel {
@@ -192,7 +188,6 @@ public class Parser {
                 durationNodeStackMode = stackMode
             }
         }
-        
         switch durationNodeStackMode {
         case .Measure: accumDurationInMeasure = DurationZero
         case .Increment: break
@@ -251,11 +246,15 @@ public class Parser {
     }
     
     private func manageSlurStartTokenContainer(container: TokenContainer) {
-        // add slur start
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentSlurStart(performerID: pID, instrumentID: iID)
+        addComponent(component)
     }
     
     private func manageSlurStopTokenContainer(container: TokenContainer) {
-        // add slur stop
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentSlurStop(performerID: pID, instrumentID: iID)
+        addComponent(component)
     }
     
     private func managePitchTokenContainer(container: TokenContainer) {
@@ -266,31 +265,54 @@ public class Parser {
                 where spannerStart.identifier == "SpannerStart"
             {
                 // manage glissando
+                // add glissando component
             }
             else if let tokenFloat = token as? TokenFloat {
                 pitches.append(tokenFloat.value)
             }
         }
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
-        let pitchComponent = ComponentPitch(pID: pID, iID: iID, pitches: pitches)
-        print("pitchComponent: \(pitchComponent)")
-        currentDurationNodeLeaf?.addComponent(pitchComponent)
+        let component = ComponentPitch(performerID: pID, instrumentID: iID, values: pitches)
+        addComponent(component)
     }
     
     private func manageDynamicMarkingTokenContainer(container: TokenContainer) {
+        print("manage dynamic markings + spanner")
         
+        var value: String?
+        for token in container.tokens {
+            switch token.identifier {
+            case "Value":
+                value = (token as! TokenString).value
+            default: break
+            }
+            
+            // manage dynamic marking spanner start
+            // manage dynamic marking spanner stop
+            
+        }
+        guard let marking = value, pID = currentPerformerID, iID = currentInstrumentID else {
+            return
+        }
+        let component = ComponentDynamicMarking(performerID: pID, instrumentID: iID, value: marking)
+        addComponent(component)
     }
     
     private func manageArticulationTokenContainer(container: TokenContainer) {
-        
+        print("manage articulation")
+        var markings: [String] = []
+        for token in container.tokens {
+            if let tokenString = token as? TokenString { markings.append(tokenString.value) }
+        }
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentArticulation(performerID: pID, instrumentID: iID, values: markings)
+        addComponent(component)
     }
     
     private func manageSpannerStartTokenContainer(container: TokenContainer) {
-        
-    }
-    
 
-    
+    }
+
     private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
         let offsetDuration: Duration
         switch durationNodeStackMode {
@@ -323,6 +345,10 @@ public class Parser {
             (durationNode.root as! DurationNode).scaleDurationsOfChildren()
             (durationNode.root as! DurationNode).setOffsetDurationOfChildren()
         }
+    }
+    
+    private func addComponent(component: Component) {
+        currentDurationNodeLeaf?.addComponent(component)
     }
 }
 

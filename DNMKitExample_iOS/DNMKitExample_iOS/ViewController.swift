@@ -7,44 +7,50 @@
 //
 
 import UIKit
-import DNMConverter
 import DNMUtility
+import DNMJSON
 import DNMModel
-import DNMView
-import DNMUI
-import DNMJSON_iOS
+import DNMConverter
 
 // TODO: Reintegrate ViewSelector
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDelegate {
     
     var scoreTableView: UITableView!
-    var scoreModelByTitle: [String : DNMScoreModel] = [:]
+    
+    //var scoreModelByTitle: [String : DNMScoreModel] = [:]
     var scoreTitles: [String] = []
-    var environment: Environment!
+    //var environment: Environment!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let testClass = TestClass()
-        testClass.testMethod()
+  
+        let orderedDict = OrderedDictionary<String, String>()
         
-        DNMColorManager.colorMode = ColorMode.Dark
-        view.backgroundColor = DNMColorManager.backgroundColor
+        
+        //DNMColorManager.colorMode = ColorMode.Dark
+        //view.backgroundColor = DNMColorManager.backgroundColor
 
-        let fileName = "tokenize"
-        let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
-        let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        //let fileName = "tokenize"
+        //let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "dnm")!
+        //let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        
+        //print(code)
+        
+        //let t = Tokenizer()
+        
         
         //let str = "#\n| 3 16 VC cc \np 60 d pppfo [ a - . > (\n p 60.25 93 ) \n"
-        let tokenizer = Tokenizer()
-        let tokenContainer = tokenizer.tokenizeString(code)
+        //let tokenizer = Tokenizer()
+        //let tokenContainer = tokenizer.tokenizeString(code)
         
-        let parser = Parser()
-        let scoreModel = parser.parseTokenContainer(tokenContainer)
+        //let parser = Parser()
+        //let scoreModel = parser.parseTokenContainer(tokenContainer)
 
+        /*
         for token in tokenContainer.tokens {
             print(token)
         }
+        */
         
         //addScoreTableView()
         
@@ -80,6 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         */
     }
     
+    /*
     func addScoreTableView() {
         scoreModelByTitle = DNMScoreModelManager().scoreModelByTitle()
         for (title, _) in scoreModelByTitle { scoreTitles.append(title) }
@@ -95,11 +102,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         scoreTableView.tableFooterView = UIView(frame: CGRectZero)
         view.addSubview(scoreTableView)
     }
+    */
     
+    /*
     func showScoreWithTitle(title: String) {
         
     }
+    */
     
+    /*
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         scoreTableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -113,7 +124,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    */
     
+    /*
     func addMenuButton() {
         let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         menuButton.setTitle("menu", forState: UIControlState.Normal)
@@ -125,12 +138,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         view.addSubview(menuButton)
         
     }
+    */
     
+    /*
     func goToMainPage() {
         if environment.superview != nil { environment.removeFromSuperview() }
         view.addSubview(scoreTableView)
     }
+    */
     
+    /*
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -138,7 +155,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreTitles.count
     }
+    */
     
+    /*
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
@@ -154,11 +173,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         return cell
     }
+    */
     
+    /*
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
         -> CGFloat {
         return 40
     }
+    */
 
     
     override func prefersStatusBarHidden() -> Bool {
