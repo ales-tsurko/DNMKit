@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07F0D17F1BF6A6C700AE029A"
+               BlueprintIdentifier = "07778AAF1BF8475900B6A640"
                BuildableName = "DNMUtility.framework"
                BlueprintName = "DNMUtility"
                ReferencedContainer = "container:DNMUtility.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07F0D17F1BF6A6C700AE029A"
+            BlueprintIdentifier = "07778AAF1BF8475900B6A640"
             BuildableName = "DNMUtility.framework"
             BlueprintName = "DNMUtility"
             ReferencedContainer = "container:DNMUtility.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07F0D17F1BF6A6C700AE029A"
+            BlueprintIdentifier = "07778AAF1BF8475900B6A640"
             BuildableName = "DNMUtility.framework"
             BlueprintName = "DNMUtility"
             ReferencedContainer = "container:DNMUtility.xcodeproj">

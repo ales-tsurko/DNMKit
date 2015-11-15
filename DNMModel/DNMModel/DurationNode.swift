@@ -133,6 +133,7 @@ public class DurationNode: Node, CustomStringConvertible {
     */
     
     public class func random() -> DurationNode {
+        
         let amountBeats = randomInt(3, max: 9)
         let duration = Duration(amountBeats,16)
         let amountEvents = randomInt(4, max: 9)

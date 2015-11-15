@@ -12,13 +12,14 @@ import DNMJSON
 import DNMModel
 import DNMConverter
 import DNMView
+//import DNMUI
 
 // TODO: Reintegrate ViewSelector
 class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDelegate {
     
     var scoreTableView: UITableView!
     
-    //var scoreModelByTitle: [String : DNMScoreModel] = [:]
+    var scoreModelByTitle: [String : DNMScoreModel] = [:]
     var scoreTitles: [String] = []
     //var environment: Environment!
     

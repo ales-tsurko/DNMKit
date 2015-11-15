@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DNMUtility.xcscheme_^#shared#^_</key>
+		<key>DNMUtility.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>9</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07F0D17F1BF6A6C700AE029A</key>
+		<key>07778AAF1BF8475900B6A640</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>07F0D1891BF6A6C700AE029A</key>
+		<key>07778AB91BF8475900B6A640</key>
 		<dict>
 			<key>primary</key>
 			<true/>

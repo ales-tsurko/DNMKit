@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07778AE31BF8488800B6A640 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07778AE21BF8488800B6A640 /* DNMUtility.framework */; };
+		07B283501BF7EFFA002967BA /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2834F1BF7EFFA002967BA /* DNMJSON.framework */; };
 		07F0D0F81BF6A37900AE029A /* DNMModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F0D0F71BF6A37900AE029A /* DNMModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07F0D0FF1BF6A37900AE029A /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D0F41BF6A37900AE029A /* DNMModel.framework */; };
 		07F0D1041BF6A37900AE029A /* DNMModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D1031BF6A37900AE029A /* DNMModelTests.swift */; };
@@ -44,8 +46,6 @@
 		07F0D14F1BF6A3C700AE029A /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D12D1BF6A3C700AE029A /* Tempo.swift */; };
 		07F0D1501BF6A3C700AE029A /* TempoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D12E1BF6A3C700AE029A /* TempoFunction.swift */; };
 		07F0D1511BF6A3C700AE029A /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0D12F1BF6A3C700AE029A /* TempoMarking.swift */; };
-		07F0D1531BF6A42700AE029A /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1521BF6A42700AE029A /* DNMUtility.framework */; };
-		07F0D1551BF6A42900AE029A /* DNMJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F0D1541BF6A42900AE029A /* DNMJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07778AE21BF8488800B6A640 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMUtility.framework"; sourceTree = "<group>"; };
+		07B2834F1BF7EFFA002967BA /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMJSON.framework"; sourceTree = "<group>"; };
 		07F0D0F41BF6A37900AE029A /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F0D0F71BF6A37900AE029A /* DNMModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMModel.h; sourceTree = "<group>"; };
 		07F0D0F91BF6A37900AE029A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,8 +101,6 @@
 		07F0D12D1BF6A3C700AE029A /* Tempo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tempo.swift; sourceTree = "<group>"; };
 		07F0D12E1BF6A3C700AE029A /* TempoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoFunction.swift; sourceTree = "<group>"; };
 		07F0D12F1BF6A3C700AE029A /* TempoMarking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarking.swift; sourceTree = "<group>"; };
-		07F0D1521BF6A42700AE029A /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug-iphoneos/DNMUtility.framework"; sourceTree = "<group>"; };
-		07F0D1541BF6A42900AE029A /* DNMJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMJSON.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F0D1531BF6A42700AE029A /* DNMUtility.framework in Frameworks */,
-				07F0D1551BF6A42900AE029A /* DNMJSON.framework in Frameworks */,
+				07B283501BF7EFFA002967BA /* DNMJSON.framework in Frameworks */,
+				07778AE31BF8488800B6A640 /* DNMUtility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +127,8 @@
 		07F0D0EA1BF6A37900AE029A = {
 			isa = PBXGroup;
 			children = (
-				07F0D1541BF6A42900AE029A /* DNMJSON.framework */,
-				07F0D1521BF6A42700AE029A /* DNMUtility.framework */,
+				07778AE21BF8488800B6A640 /* DNMUtility.framework */,
+				07B2834F1BF7EFFA002967BA /* DNMJSON.framework */,
 				07F0D0F61BF6A37900AE029A /* DNMModel */,
 				07F0D1021BF6A37900AE029A /* DNMModelTests */,
 				07F0D0F51BF6A37900AE029A /* Products */,
@@ -258,6 +258,7 @@
 				TargetAttributes = {
 					07F0D0F31BF6A37900AE029A = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = F8LCL8SXLX;
 					};
 					07F0D0FD1BF6A37900AE029A = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -378,11 +379,18 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer: James Bean (T92Z9NC6FX)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: James Bean (T92Z9NC6FX)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -399,9 +407,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "i386 x86_64 arm7 arm7s arm64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -425,11 +435,18 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer: James Bean (T92Z9NC6FX)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: James Bean (T92Z9NC6FX)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -441,6 +458,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				VALID_ARCHS = "i386 x86_64 arm7 arm7s arm64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -450,7 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: James Bean (T92Z9NC6FX)";
@@ -459,14 +478,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)",
-					"$(inherited)/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DNMModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -480,7 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: James Bean (T92Z9NC6FX)";
@@ -489,14 +506,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)",
-					"$(inherited)/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DNMModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
