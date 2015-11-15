@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		072CE3881BEA1A3300106951 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072CE3871BEA1A3300106951 /* Instrument.swift */; };
-		073B5D421BF7D26500489430 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073B5D411BF7D26500489430 /* DNMUtility.framework */; };
-		073B5D441BF7D26800489430 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073B5D431BF7D26800489430 /* DNMModel.framework */; };
 		0756818D1BED391700623AF8 /* BezierCurveStylerWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */; };
 		0756818F1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */; };
 		075681911BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */; };
+		07778AE91BF84A7200B6A640 /* DNMUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07778AE81BF84A7200B6A640 /* DNMUtility.framework */; };
+		07778AEB1BF84DDB00B6A640 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07778AEA1BF84DDB00B6A640 /* DNMModel.framework */; };
 		07D7563D1BF7CEC2001E6DF3 /* ViewArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7563C1BF7CEC2001E6DF3 /* ViewArithmetic.swift */; };
 		07ECB3F91BE538BB00C9AD08 /* DNMView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ECB3F81BE538BB00C9AD08 /* DNMView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07ECB4001BE538BB00C9AD08 /* DNMView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB3F51BE538BB00C9AD08 /* DNMView.framework */; };
@@ -115,11 +115,11 @@
 
 /* Begin PBXFileReference section */
 		072CE3871BEA1A3300106951 /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
-		073B5D411BF7D26500489430 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMUtility.framework"; sourceTree = "<group>"; };
-		073B5D431BF7D26800489430 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMModel.framework"; sourceTree = "<group>"; };
 		0756818C1BED391700623AF8 /* BezierCurveStylerWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerWidth.swift; sourceTree = "<group>"; };
 		0756818E1BED3C1B00623AF8 /* BezierCurveStyleWidthVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStyleWidthVariable.swift; sourceTree = "<group>"; };
 		075681901BED40B100623AF8 /* BezierCurveStylerDashesVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierCurveStylerDashesVariable.swift; sourceTree = "<group>"; };
+		07778AE81BF84A7200B6A640 /* DNMUtility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMUtility.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMUtility.framework"; sourceTree = "<group>"; };
+		07778AEA1BF84DDB00B6A640 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNMModel.framework; path = "../../Library/Developer/Xcode/DerivedData/DNMKit-esdtrfkhfgwporgtaosmhetlvrqe/Build/Products/Debug/DNMModel.framework"; sourceTree = "<group>"; };
 		07D7563C1BF7CEC2001E6DF3 /* ViewArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewArithmetic.swift; sourceTree = "<group>"; };
 		07ECB3F51BE538BB00C9AD08 /* DNMView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ECB3F81BE538BB00C9AD08 /* DNMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMView.h; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073B5D421BF7D26500489430 /* DNMUtility.framework in Frameworks */,
-				073B5D441BF7D26800489430 /* DNMModel.framework in Frameworks */,
+				07778AE91BF84A7200B6A640 /* DNMUtility.framework in Frameworks */,
+				07778AEB1BF84DDB00B6A640 /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,8 +237,8 @@
 		07ECB3EB1BE538BB00C9AD08 = {
 			isa = PBXGroup;
 			children = (
-				073B5D431BF7D26800489430 /* DNMModel.framework */,
-				073B5D411BF7D26500489430 /* DNMUtility.framework */,
+				07778AEA1BF84DDB00B6A640 /* DNMModel.framework */,
+				07778AE81BF84A7200B6A640 /* DNMUtility.framework */,
 				07ECB3F71BE538BB00C9AD08 /* DNMView */,
 				07ECB4031BE538BB00C9AD08 /* DNMViewTests */,
 				07ECB3F61BE538BB00C9AD08 /* Products */,
@@ -599,6 +599,7 @@
 				TargetAttributes = {
 					07ECB3F41BE538BB00C9AD08 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = F8LCL8SXLX;
 					};
 					07ECB3FE1BE538BB00C9AD08 = {
 						CreatedOnToolsVersion = 7.1;
@@ -848,8 +849,9 @@
 		07ECB40A1BE538BB00C9AD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -857,11 +859,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)",
-					"$(inherited)/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = DNMView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,8 +877,9 @@
 		07ECB40B1BE538BB00C9AD08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: James Bean (F8LCL8SXLX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Distribution: James Bean (F8LCL8SXLX)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -884,11 +887,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)",
-					"$(inherited)/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = DNMView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.DNMView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
