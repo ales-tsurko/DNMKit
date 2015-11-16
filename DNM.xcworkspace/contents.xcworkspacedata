@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:DNMModel/DNMModel.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNM_iOS/DNM_iOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DNM_IDE/DNM_IDE.xcodeproj">
+   </FileRef>
+</Workspace>

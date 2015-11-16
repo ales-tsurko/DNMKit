@@ -2,6 +2,6 @@ language: objective-c
 osx_image: xcode7.1
 sudo: false
 
-xcode_workspace: DNMKit.xcworkspace
+xcode_workspace: DNM.xcworkspace
 xcode_scheme: DNMModel
 xcode_sdk: iphonesimulator9.1

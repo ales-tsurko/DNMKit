@@ -4,20 +4,75 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DNMModel.xcscheme_^#shared#^_</key>
+		<key>DNMModelExample_OSX.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>3</integer>
+		</dict>
+		<key>DNMModelExample_iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>DNMModel_OSX.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>DNMModel_iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07F0D0F31BF6A37900AE029A</key>
+		<key>07074CF01BF966B100BFC6FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>07F0D0FD1BF6A37900AE029A</key>
+		<key>07074D001BF966C900BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D0D1BF966DC00BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D161BF966DC00BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D291BF966E800BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D321BF966E800BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D441BF9670D00BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D571BF9670D00BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D681BF9671A00BFC6FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07074D781BF9671A00BFC6FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
