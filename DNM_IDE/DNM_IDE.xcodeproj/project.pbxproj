@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		07074E2F1BF96B1600BFC6FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E2E1BF96B1600BFC6FA /* AppDelegate.swift */; };
-		07074E311BF96B1600BFC6FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E301BF96B1600BFC6FA /* ViewController.swift */; };
 		07074E331BF96B1600BFC6FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07074E321BF96B1600BFC6FA /* Assets.xcassets */; };
 		07074E361BF96B1600BFC6FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07074E341BF96B1600BFC6FA /* Main.storyboard */; };
 		07074E411BF96B1600BFC6FA /* DNM_IDETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E401BF96B1600BFC6FA /* DNM_IDETests.swift */; };
+		07B3C2C81BF9732F00D75383 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3C2C51BF9732F00D75383 /* ViewController.swift */; };
+		07B3C2C91BF9732F00D75383 /* SyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3C2C61BF9732F00D75383 /* SyntaxHighlighter.swift */; };
+		07B3C2CA1BF9732F00D75383 /* SyntaxHighlightingStyleSheet.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B3C2C71BF9732F00D75383 /* SyntaxHighlightingStyleSheet.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,13 +29,15 @@
 /* Begin PBXFileReference section */
 		07074E2B1BF96B1600BFC6FA /* DNM_IDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNM_IDE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07074E2E1BF96B1600BFC6FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07074E301BF96B1600BFC6FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07074E321BF96B1600BFC6FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07074E351BF96B1600BFC6FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07074E371BF96B1600BFC6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07074E3C1BF96B1600BFC6FA /* DNM_IDETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNM_IDETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07074E401BF96B1600BFC6FA /* DNM_IDETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNM_IDETests.swift; sourceTree = "<group>"; };
 		07074E421BF96B1600BFC6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07B3C2C51BF9732F00D75383 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07B3C2C61BF9732F00D75383 /* SyntaxHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighter.swift; sourceTree = "<group>"; };
+		07B3C2C71BF9732F00D75383 /* SyntaxHighlightingStyleSheet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxHighlightingStyleSheet.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				07074E2E1BF96B1600BFC6FA /* AppDelegate.swift */,
-				07074E301BF96B1600BFC6FA /* ViewController.swift */,
+				07B3C2C51BF9732F00D75383 /* ViewController.swift */,
+				07B3C2C61BF9732F00D75383 /* SyntaxHighlighter.swift */,
+				07B3C2C71BF9732F00D75383 /* SyntaxHighlightingStyleSheet.json */,
 				07074E321BF96B1600BFC6FA /* Assets.xcassets */,
 				07074E341BF96B1600BFC6FA /* Main.storyboard */,
 				07074E371BF96B1600BFC6FA /* Info.plist */,
@@ -176,6 +182,7 @@
 			files = (
 				07074E331BF96B1600BFC6FA /* Assets.xcassets in Resources */,
 				07074E361BF96B1600BFC6FA /* Main.storyboard in Resources */,
+				07B3C2CA1BF9732F00D75383 /* SyntaxHighlightingStyleSheet.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07074E311BF96B1600BFC6FA /* ViewController.swift in Sources */,
+				07B3C2C91BF9732F00D75383 /* SyntaxHighlighter.swift in Sources */,
+				07B3C2C81BF9732F00D75383 /* ViewController.swift in Sources */,
 				07074E2F1BF96B1600BFC6FA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +385,7 @@
 				07074E471BF96B1600BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074E481BF96B1600BFC6FA /* Build configuration list for PBXNativeTarget "DNM_IDETests" */ = {
 			isa = XCConfigurationList;
@@ -385,6 +394,7 @@
 				07074E4A1BF96B1600BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
