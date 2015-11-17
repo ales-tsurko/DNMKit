@@ -14,6 +14,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
+            print("filePath: \(filePath)")
+        }
+        let code = 
+        
+        let tokenizer = Tokenizer()
+        tokenizer.tokenizeString(<#T##string: String##String#>)
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

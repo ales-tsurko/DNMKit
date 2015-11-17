@@ -125,6 +125,7 @@
 		07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */; };
 		07074F631BF96F6200BFC6FA /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4D1BF96F6200BFC6FA /* SystemView.swift */; };
 		07074F641BF96F6200BFC6FA /* ViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4E1BF96F6200BFC6FA /* ViewSelector.swift */; };
+		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +261,7 @@
 		07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionRectangle.swift; sourceTree = "<group>"; };
 		07074F4D1BF96F6200BFC6FA /* SystemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
 		07074F4E1BF96F6200BFC6FA /* ViewSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSelector.swift; sourceTree = "<group>"; };
+		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 		07074E631BF96C7C00BFC6FA /* DNM_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				07947C711BFA902A00C97F31 /* Scores */,
 				07074F651BF96F6700BFC6FA /* UI */,
 				07074F381BF96D2C00BFC6FA /* View */,
 				07074E641BF96C7C00BFC6FA /* AppDelegate.swift */,
@@ -448,6 +451,14 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		07947C711BFA902A00C97F31 /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				07947C721BFA906900C97F31 /* test_piece.dnm */,
+			);
+			name = Scores;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -529,6 +540,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */,
 				07074E6F1BF96C7C00BFC6FA /* LaunchScreen.storyboard in Resources */,
 				07074E6C1BF96C7C00BFC6FA /* Assets.xcassets in Resources */,
 				07074E6A1BF96C7C00BFC6FA /* Main.storyboard in Resources */,
@@ -852,6 +864,7 @@
 				07074E801BF96C7D00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074E811BF96C7D00BFC6FA /* Build configuration list for PBXNativeTarget "DNM_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -860,6 +873,7 @@
 				07074E831BF96C7D00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
