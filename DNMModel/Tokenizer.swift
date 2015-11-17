@@ -108,19 +108,59 @@ public class Tokenizer {
     {
         scanHeaderWithScanner(scanner, andContainer: container)
         scanMeasureWithScanner(scanner, andContainer: container)
+        
         scanDurationNodeStackModeWithScanner(scanner, andContainer: container)
         scanDurationWithScanner(scanner, andContainer: container)
         scanLeafDurationWithScanner(scanner, andContainer: container)
+        
+
 
         // wrap this in func: scanTopLevelCommands()
+
+        
         scanPitchCommandWithScanner(scanner, andContainer: container)
         scanDynamicCommandWithScanner(scanner, andContainer: container)
         scanArticulationCommandWithScanner(scanner, andContainer: container)
         
         scanSlurStartWithScanner(scanner, andContainer: container)
         scanSlurStopWithScanner(scanner, andContainer: container)
+        
+        scanExtensionStartWithScanner(scanner, andContainer: container)
+        scanExtensionStopWithScanner(scanner, andContainer: container)
 
         scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
+    }
+    
+    private func scanExtensionStartWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        var startIndex = scanner.scanLocation
+        var string: NSString?
+        if scanner.scanString("->", intoString: &string) {
+            let token = TokenString(
+                identifier: "ExtensionStart",
+                value: "->",
+                startIndex: startIndex + lineStartIndex
+            )
+            container.addToken(token)
+        }
+    }
+    
+    private func scanExtensionStopWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        var startIndex = scanner.scanLocation
+        var string: NSString?
+        if scanner.scanString("<-", intoString: &string) {
+            let token = TokenString(
+                identifier: "ExtensionStop",
+                value: "<-",
+                startIndex: startIndex + lineStartIndex
+            )
+            container.addToken(token)
+        }
     }
     
     private func scanTopLevelCommandsWithScanner(scanner: NSScanner,
@@ -134,7 +174,7 @@ public class Tokenizer {
         andContainer container: TokenContainer
     ) -> [String : String]
     {
-        var beginLocation = scanner.scanLocation
+        var startIndex = scanner.scanLocation
 
         var string: NSString?
         
@@ -160,7 +200,7 @@ public class Tokenizer {
         }
         
         if dictionary.count == 0 {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return [:]
         } else {
             return dictionary
@@ -185,7 +225,7 @@ public class Tokenizer {
             }
         }
         
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         
         var string: NSString?
         if scanner.scanString("P:", intoString: &string) {
@@ -208,7 +248,7 @@ public class Tokenizer {
                 let performerDeclarationTokenContainer = TokenContainer(
                     identifier: "PerformerDeclaration",
                     openingValue: performerID,
-                    startIndex: beginLocation + lineStartIndex
+                    startIndex: startIndex + lineStartIndex
                 )
                 
                 instrumentIDsAndInstrumentTypeByPerformerID[performerID] = (
@@ -225,7 +265,7 @@ public class Tokenizer {
                 
                 while true {
                     
-                    let beginLocation = scanner.scanLocation
+                    let startIndex = scanner.scanLocation
                     
                     if scanner.scanCharactersFromSet(letterCharacterSet, intoString: &string) {
                         
@@ -237,7 +277,7 @@ public class Tokenizer {
                             let instrumentIDToken = TokenString(
                                 identifier: "InstrumentID",
                                 value: instrumentID,
-                                startIndex: beginLocation + lineStartIndex
+                                startIndex: startIndex + lineStartIndex
                             )
                             
                             // Commit InstrumentID Token
@@ -252,7 +292,7 @@ public class Tokenizer {
                             let instrumentTypeToken = TokenString(
                                 identifier: "InstrumentType",
                                 value: instrumentType,
-                                startIndex: beginLocation + lineStartIndex
+                                startIndex: startIndex + lineStartIndex
                             )
                             
                             // Commit InstrumentType Token
@@ -284,17 +324,15 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        var beginLocation = scanner.scanLocation
+        var startIndex = scanner.scanLocation
         var string: NSString?
         
         if scanner.scanString("(", intoString: &string) {
-            
             let slurStartTokenContainer = TokenContainer(
                 identifier: "SlurStart",
                 openingValue: "(",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
-            
             container.addToken(slurStartTokenContainer)
         }
     }
@@ -303,15 +341,14 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var string: NSString?
         
         if scanner.scanString(")", intoString: &string) {
-    
             let slurStopTokenContainer = TokenContainer(
                 identifier: "SlurStop",
                 openingValue: ")",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             container.addToken(slurStopTokenContainer)
         }
@@ -321,38 +358,29 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
-        
+        let startIndex = scanner.scanLocation
         var string: NSString?
         
         var articulationMarkings: [String] = []
         if scanner.scanString("a", intoString: &string) {
-            
             let articulationTokenContainer = TokenContainer(
                 identifier: "Articulation",
                 openingValue: "a",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
-
-            var beginLocation = scanner.scanLocation + 1
+            var startIndex = scanner.scanLocation + 1
             let set = NSMutableCharacterSet(charactersInString: ".->")
             while scanner.scanCharactersFromSet(set, intoString: &string) {
                 
                 let token = TokenString(
                     identifier: "Value",
                     value: string as! String,
-                    startIndex: beginLocation + lineStartIndex
+                    startIndex: startIndex + lineStartIndex
                 )
-                beginLocation = scanner.scanLocation
+                startIndex = scanner.scanLocation
                 articulationTokenContainer.addToken(token)
             }
             container.addToken(articulationTokenContainer)
-        }
-        
-        // Unwind scanner if no articulation markings found
-        if articulationMarkings.count == 0 {
-            scanner.scanLocation = beginLocation
-            return
         }
     }
     
@@ -366,12 +394,12 @@ public class Tokenizer {
         // TODO: add compatibility with note name convention -- convert to MIDI later
         if scanner.scanString("p", intoString: &string) {
             
-            var beginLocation = scanner.scanLocation
+            var startIndex = scanner.scanLocation
             
             // add tokenContainer to container
             var pitchTokenContainer = TokenContainer(
                 identifier: "Pitch",
-                startIndex: beginLocation + lineStartIndex - 1
+                startIndex: startIndex + lineStartIndex - 1
             )
             
             var floatValue: Float = 0.0
@@ -381,11 +409,11 @@ public class Tokenizer {
                 let token = TokenFloat(
                     identifier: "Value",
                     value: floatValue,
-                    startIndex: beginLocation + lineStartIndex,
+                    startIndex: startIndex + lineStartIndex,
                     stopIndex: scanner.scanLocation + lineStartIndex - 1
                 )
                 pitchTokenContainer.addToken(token)
-                beginLocation = scanner.scanLocation
+                startIndex = scanner.scanLocation
             }
             scanSpannerStartWithScanner(scanner, andContainer: pitchTokenContainer)
             scanSpannerStopWithScanner(scanner, andContainer: pitchTokenContainer)
@@ -396,23 +424,23 @@ public class Tokenizer {
     private func scanDynamicCommandWithScanner(scanner: NSScanner, andContainer container: TokenContainer) {
 
         var string: NSString?
-        let beginLocation: Int = scanner.scanLocation
+        let startIndex: Int = scanner.scanLocation
         while scanner.scanString("d", intoString: &string) {
             
             let dynamicMarkingContainer = TokenContainer(
                 identifier: "DynamicMarking",
                 openingValue: "d",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             
             var dynamicMarking: String?
             let set = NSMutableCharacterSet(charactersInString: "opmf")
-            let beginLocation = scanner.scanLocation
+            let startIndex = scanner.scanLocation
             while scanner.scanCharactersFromSet(set, intoString: &string) {
                 let token = TokenString(
                     identifier: "Value",
                     value: string as! String,
-                    startIndex: beginLocation + lineStartIndex + 1
+                    startIndex: startIndex + lineStartIndex + 1
                 )
                 dynamicMarkingContainer.addToken(token)
                 dynamicMarking = string as? String
@@ -421,7 +449,7 @@ public class Tokenizer {
             /*
             // Unwind scanner if invalid
             if dynamicMarking == nil {
-                scanner.scanLocation = beginLocation
+                scanner.scanLocation = startIndex
                 return
             }
             */
@@ -438,7 +466,7 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var performerID: String?
         var string: NSString?
         let set = NSCharacterSet.letterCharacterSet()
@@ -448,13 +476,13 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: "PerformerID",
                 value: performerID!,
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
         }
         
         if performerID == nil || performerID!.characters.count != 2 {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
     }
@@ -465,7 +493,7 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var instrumentID: String?
         var string: NSString?
         let set = NSCharacterSet.letterCharacterSet()
@@ -475,13 +503,13 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: "InstrumentID",
                 value: instrumentID!,
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
         }
         
         if instrumentID == nil || instrumentID!.characters.count != 2 {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
     }
@@ -505,7 +533,7 @@ public class Tokenizer {
             }
         }
         
-        var beginLocation = scanner.scanLocation + 1
+        var startIndex = scanner.scanLocation + 1
         
         var identifier: String
         var id: String?
@@ -533,11 +561,11 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: identifier,
                 value: id!,
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
             
-            beginLocation = scanner.scanLocation + 1
+            startIndex = scanner.scanLocation + 1
             if isComplete { break }
         }
     }
@@ -548,7 +576,7 @@ public class Tokenizer {
     )
     {
     
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
 
         var string: NSString?
         
@@ -558,32 +586,32 @@ public class Tokenizer {
             var spannerTokenContainer = TokenContainer(
                 identifier: "SpannerStart",
                 openingValue: "[",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             
             // scanExponent
             while scanner.scanString("^", intoString: &string) {
                 
                 // dangerous!
-                let beginLocation = scanner.scanLocation
+                let startIndex = scanner.scanLocation
                 var floatValue: Float = 0.0
                 if scanner.scanFloat(&floatValue) {
                     
                     // dangerous!
-                    let beginLocation = scanner.scanLocation
+                    let startIndex = scanner.scanLocation
                     
                     // create tokenContainer for spanner exponent
                     let exponentTokenContainer = TokenContainer(
                         identifier: "SpannerExponent",
                         openingValue: "^",
-                        startIndex: beginLocation
+                        startIndex: startIndex
                     )
                     
                     // create single token for argument
                     let token = TokenFloat(
                         identifier: "Value",
                         value: floatValue,
-                        startIndex: beginLocation + lineStartIndex,
+                        startIndex: startIndex + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex
                     )
                     
@@ -594,12 +622,12 @@ public class Tokenizer {
             
             // scanWidth
             while scanner.scanString("-w", intoString: &string) {
-                var beginLocation = scanner.scanLocation
+                var startIndex = scanner.scanLocation
                 
                 let widthTokenContainer = TokenContainer(
                     identifier: "SpannerWidth",
                     openingValue: "-w",
-                    startIndex: beginLocation + lineStartIndex
+                    startIndex: startIndex + lineStartIndex
                 )
                 
                 var widthArguments: [Float] = []
@@ -609,23 +637,23 @@ public class Tokenizer {
                     let token = TokenFloat(
                         identifier: "Value",
                         value: floatValue,
-                        startIndex: beginLocation + lineStartIndex,
+                        startIndex: startIndex + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex - 1
                     )
                     widthTokenContainer.addToken(token)
-                    beginLocation = scanner.scanLocation
+                    startIndex = scanner.scanLocation
                 }
                 spannerTokenContainer.addToken(widthTokenContainer)
             }
             
             // scanDashes
             while scanner.scanString("-d", intoString: &string) {
-                var beginLocation = scanner.scanLocation
+                var startIndex = scanner.scanLocation
                 
                 let dashesTokenContainer = TokenContainer(
                     identifier: "SpannerDashes",
                     openingValue: "-d",
-                    startIndex: beginLocation + lineStartIndex
+                    startIndex: startIndex + lineStartIndex
                 )
                 
                 var floatValue: Float = 0.0
@@ -634,11 +662,11 @@ public class Tokenizer {
                     let token = TokenFloat(
                         identifier: "Value",
                         value: floatValue,
-                        startIndex: beginLocation + lineStartIndex,
+                        startIndex: startIndex + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex - 1
                     )
                     dashesTokenContainer.addToken(token)
-                    beginLocation = scanner.scanLocation
+                    startIndex = scanner.scanLocation
                 }
                 spannerTokenContainer.addToken(dashesTokenContainer)
             }
@@ -665,7 +693,7 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var string: NSString?
         
         // order of commands is enforced
@@ -674,7 +702,7 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: "SpannerStop",
                 value: "]",
-                startIndex: beginLocation + lineStartIndex + 1
+                startIndex: startIndex + lineStartIndex + 1
             )
             container.addToken(token)
         }
@@ -686,14 +714,14 @@ public class Tokenizer {
     )
     {
         
-        let beginLocation = scanner.scanLocation + 1
+        let startIndex = scanner.scanLocation + 1
         var beats: Int?
         var floatValue: Float = 0.0
         if scanner.scanFloat(&floatValue) { beats = Int(floatValue) }
         
         /*
         if beats == nil {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
         */
@@ -709,7 +737,7 @@ public class Tokenizer {
         let token = TokenDuration(
             identifier: "RootNodeDuration",
             value: (beats!, subdivision!),
-            startIndex: beginLocation + lineStartIndex,
+            startIndex: startIndex + lineStartIndex,
             stopIndex: scanner.scanLocation + lineStartIndex,
             indentationLevel: currentIndentationLevel
         )
@@ -721,13 +749,13 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var beats: Int?
         var floatValue: Float = 0.0
         if scanner.scanFloat(&floatValue) { beats = Int(floatValue) }
         
         if beats == nil {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
 
@@ -742,7 +770,7 @@ public class Tokenizer {
         let token = TokenInt(
             identifier: identifier,
             value: beats!,
-            startIndex: beginLocation + lineStartIndex,
+            startIndex: startIndex + lineStartIndex,
             stopIndex: scanner.scanLocation + lineStartIndex - 1, // dirty
             indentationLevel: currentIndentationLevel
         )
@@ -754,7 +782,7 @@ public class Tokenizer {
     ) {
 
         // in case of failure, unwind to previous location
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         
         // float val to be written to be scanner
         var floatValue: Float = 0.0
@@ -770,7 +798,7 @@ public class Tokenizer {
         }
         
         if beats == nil || subdivisionValue == nil {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
         
@@ -778,7 +806,7 @@ public class Tokenizer {
         let token = TokenDuration(
             identifier: "RootNodeDuration",
             value: (beats!, subdivisionValue!),
-            startIndex: beginLocation + lineStartIndex,
+            startIndex: startIndex + lineStartIndex,
             stopIndex: scanner.scanLocation + lineStartIndex - 1 // dirty
         )
         
@@ -789,7 +817,7 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var stackMode: String?
         var string: NSString?
         let set = NSCharacterSet(charactersInString: "|+-")
@@ -798,14 +826,14 @@ public class Tokenizer {
         }
         
         if stackMode == nil {
-            scanner.scanLocation = beginLocation
+            scanner.scanLocation = startIndex
             return
         }
         
         let token = TokenString(
             identifier: "DurationNodeStackMode",
             value: string as! String,
-            startIndex: beginLocation + lineStartIndex
+            startIndex: startIndex + lineStartIndex
         )
         container.addToken(token)
     }
@@ -814,14 +842,14 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-        let beginLocation = scanner.scanLocation
+        let startIndex = scanner.scanLocation
         var string: NSString?
         if scanner.scanString("#", intoString: &string) {
             
             let token = TokenString(
                 identifier: "Measure",
                 value: "#",
-                startIndex: beginLocation + lineStartIndex
+                startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
         }

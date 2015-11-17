@@ -36,10 +36,10 @@ public class DurationNode: Node, CustomStringConvertible {
     public var instrumentIDsByPerformerID: [String : [String]] { get { return getIIDsByPID() } }
     
     /// If this DurationNode is a continuation from another ("tied")
-    public var hasExtensionBegin: Bool = false
+    public var hasExtensionStart: Bool = false
     
     /// If this DurationNode continues into another ("tied")
-    public var hasExtensionEnd: Bool = false
+    public var hasExtensionStop: Bool = false
     
     /// If this DurationNode shall be represented with metrical beaming
     public var isMetrical: Bool = true
@@ -417,8 +417,8 @@ public class DurationNode: Node, CustomStringConvertible {
     
     - returns: DurationNode object
     */
-    public func setHasExtensionBegin(hasExtensionBegin: Bool) -> DurationNode {
-        self.hasExtensionBegin = hasExtensionBegin
+    public func setHasExtensionStart(hasExtensionStart: Bool) -> DurationNode {
+        self.hasExtensionStart = hasExtensionStart
         return self
     }
     
@@ -429,8 +429,8 @@ public class DurationNode: Node, CustomStringConvertible {
     
     - returns: DurationNode object
     */
-    public func setHasExtensionEnd(hasExtensionEnd: Bool) -> DurationNode {
-        self.hasExtensionEnd = hasExtensionEnd
+    public func setHasExtensionStop(hasExtensionStop: Bool) -> DurationNode {
+        self.hasExtensionStop = hasExtensionStop
         return self
     }
     
@@ -842,7 +842,7 @@ public class DurationNode: Node, CustomStringConvertible {
                 var newLast: [DurationNode] = compound.last!
                 let endNode: DurationNode = array[0].copy()
                 endNode.duration.beats!.setAmount(sum - (accumulated - curBeats))
-                endNode.setHasExtensionBegin(true)
+                endNode.setHasExtensionStart(true)
                 newLast.append(endNode)
                 compound.removeLast()
                 compound.append(newLast)
@@ -851,8 +851,8 @@ public class DurationNode: Node, CustomStringConvertible {
                     while beginBeats > sum {
                         let newNode: DurationNode = array[0].copy()
                         newNode.duration.beats!.setAmount(sum)
-                        newNode.setHasExtensionEnd(true)
-                        newNode.setHasExtensionBegin(true)
+                        newNode.setHasExtensionStop(true)
+                        newNode.setHasExtensionStart(true)
                         compound.append([newNode])
                         beginBeats -= sum
                     }
@@ -860,7 +860,7 @@ public class DurationNode: Node, CustomStringConvertible {
                 if beginBeats > 0 {
                     let newNode: DurationNode = array[0].copy()
                     newNode.duration.beats!.setAmount(beginBeats)
-                    newNode.setHasExtensionEnd(true)
+                    newNode.setHasExtensionStop(true)
                     compound.append([newNode])
                 }
                 array.removeAtIndex(0)
@@ -883,7 +883,7 @@ public class DurationNode: Node, CustomStringConvertible {
             newChild.duration.setBeats(newBeats)
             newChild.duration.subdivision! *= getClosestPowerOfTwo(
                 multiplier: 2, value: newChild.duration.beats!.amount
-                ) * ratio
+            ) * ratio
             multiplied.append(newChild)
         }
         return multiplied

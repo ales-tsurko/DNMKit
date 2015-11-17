@@ -932,7 +932,6 @@ public class System: ViewNode, BuildPattern {
         for durationNode in durationNodes {
             bgStratum.addBeamGroupWithDurationNode(durationNode, atX: accumLeft)
             accumLeft += durationNode.width(beatWidth: beatWidth)
-            //accumLeft += graphicalWidth(duration: durationNode.duration, beatWidth: beatWidth)
         }
     }
 
@@ -1120,6 +1119,10 @@ public class System: ViewNode, BuildPattern {
         for bgStratum in bgStrata {
             for bgEvent in bgStratum.bgEvents {
                 let durationNode = bgEvent.durationNode
+                
+                
+                print("durationNode.components: \(durationNode.components)")
+                print("durationNode.hasOnlyExtensionComponents: \(durationNode.hasOnlyExtensionComponents)")
                 
                 // If DurationNode has no graphBearing components, don't try to populate graphs
                 if durationNode.hasOnlyExtensionComponents || durationNode.components.count == 0 {

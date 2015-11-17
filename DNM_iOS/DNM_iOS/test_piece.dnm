@@ -2,7 +2,19 @@ Title: test piece
 Composer: James Bean
 
 P: VC vc Violoncello
+P: VN vn Violin
 
 #
 | 1 8 VC vc
-    1 p 60 .
+    1 p 60 a - (
+
++ 1 8 VC vc
+    1 p 50 a . )
+
+/*
++ 1 8 VC vc
+    1 <-
+
++ 1 8 VC vc
+    1 p 60
+*/

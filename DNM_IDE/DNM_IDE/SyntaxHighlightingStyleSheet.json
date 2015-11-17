@@ -22,6 +22,15 @@
         "foregroundColor": [1,1,1],
         "backgroundColor": [0.5,1,1]
     },
+    "Articulation": {
+        "foregroundColor": [1,1,1],
+        "backgroundColor": [0.5,1,1],
+        "isBold": true
+    },
+    "Articulation.Value": {
+        "foregroundColor": [1,1,1],
+        "backgroundColor": [0.5,1,1]
+    },
     "DynamicMarking": {
         "foregroundColor": [0.75,1,1],
         "backgroundColor": [0.5,1,1],
@@ -48,5 +57,11 @@
     "RootNodeDuration": {
         "foregroundColor": [0.55, 1, 0.66],
         "isBold": true
+    },
+    "SlurStart": {
+        "foregroundColor": [0.3, 1, 0.66]
+    },
+    "SlurStop": {
+        "foregroundColor": [0.3, 1, 0.66]
     }
 }

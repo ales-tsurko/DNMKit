@@ -79,11 +79,8 @@ public class Parser {
                 case "Pitch": managePitchTokenContainer(container)
                 case "DynamicMarking": manageDynamicMarkingTokenContainer(container)
                 case "Articulation": manageArticulationTokenContainer(container)
-                case "SlurStart": manageSlurStartTokenContainer(container)
-                case "SlurStop": manageSlurStopTokenContainer(container)
-                    
-                // shouldn't happen at top-level: only embedded
-                //case "SpannerStart": manageSpannerStartTokenContainer(container)
+                case "SlurStart": manageSlurStartToken()
+                case "SlurStop": manageSlurStopToken()
                 default: break
                 }
             }
@@ -96,6 +93,8 @@ public class Parser {
                 case "LeafNodeDuration": manageLeafNodeDurationToken(token)
                 case "PerformerID": managePerformerIDWithToken(token)
                 case "InstrumentID": manageInstrumentIDWithToken(token)
+                case "ExtensionStart": manageExtensionStartToken()
+                case "ExtensionStop": manageExtensionStopToken()
                 default: break
                 }
             }
@@ -108,6 +107,20 @@ public class Parser {
         
         // return something real
         return scoreModel
+    }
+    
+    private func manageExtensionStartToken() {
+        print("manage extension start")
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentExtensionStart(performerID: pID, instrumentID: iID)
+        addComponent(component)
+    }
+    
+    private func manageExtensionStopToken() {
+        print("manage extension stop")
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentExtensionStop(performerID: pID, instrumentID: iID)
+        addComponent(component)
     }
     
     private func managePerformerIDWithToken(token: Token) {
@@ -170,6 +183,9 @@ public class Parser {
         setDurationOfLastMeasure()
         let measure = Measure(offsetDuration: currentMeasureDurationOffset)
         measures.append(measure)
+        
+        // set default duration node stacking behavior
+        durationNodeStackMode = .Measure
     }
     
     private func setDurationOfLastMeasure() {
@@ -177,6 +193,8 @@ public class Parser {
         var lastMeasure = measures.removeLast()
         lastMeasure.duration = accumDurationInMeasure
         measures.append(lastMeasure)
+        
+        // set location of next measure to be created
         currentMeasureDurationOffset += lastMeasure.duration
     }
     
@@ -199,6 +217,7 @@ public class Parser {
             setOffsetDurationForNewRootDurationNode(rootDurationNode)
             addRootDurationNode(rootDurationNode)
             accumTotalDuration += rootDurationNode.duration
+            accumDurationInMeasure += rootDurationNode.duration
             currentDurationNodeDepth = 0
         }
     }
@@ -243,13 +262,13 @@ public class Parser {
         }
     }
     
-    private func manageSlurStartTokenContainer(container: TokenContainer) {
+    private func manageSlurStartToken() {
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         let component = ComponentSlurStart(performerID: pID, instrumentID: iID)
         addComponent(component)
     }
     
-    private func manageSlurStopTokenContainer(container: TokenContainer) {
+    private func manageSlurStopToken() {
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         let component = ComponentSlurStop(performerID: pID, instrumentID: iID)
         addComponent(component)
@@ -313,7 +332,7 @@ public class Parser {
         case .Measure:
             offsetDuration = currentMeasureDurationOffset
             accumTotalDuration = currentMeasureDurationOffset
-            accumDurationInMeasure = rootDurationNode.duration
+            //accumDurationInMeasure = rootDurationNode.duration
         case .Increment:
             offsetDuration = accumTotalDuration
         case .Decrement:
@@ -329,6 +348,7 @@ public class Parser {
     }
     
     private func addRootDurationNode(rootDurationNode: DurationNode) {
+        print("add root durationNode: \(rootDurationNode)")
         durationNodes.append(rootDurationNode)
         durationNodeContainerStack = Stack(items: [rootDurationNode])
     }

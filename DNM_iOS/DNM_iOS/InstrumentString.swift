@@ -159,7 +159,23 @@ public class InstrumentString: Instrument {
     {
         
         switch component {
-        case let pitch as ComponentPitch: break
+        case let pitch as ComponentPitch:
+            
+            let instrumentEvent = InstrumentEvent(x: x, stemDirection: stemDirection)
+            if let fingeredPitch = graphByID["fingeredPitch"] {
+                let graphEvent = fingeredPitch.startEventAtX(x, withStemDirection: stemDirection)
+                instrumentEvent.addGraphEvent(graphEvent)
+            }
+            if let soundingPitch = graphByID["soundingPitch"] {
+                let graphEvent = soundingPitch.startEventAtX(x, withStemDirection: stemDirection)
+                graphEvent.isConnectedToStem = false
+                graphEvent.s = 0.75
+                instrumentEvent.addGraphEvent(graphEvent)
+                
+            }
+            instrumentEvent.instrument = self
+            return instrumentEvent
+
         case let stringArtificialHarmonic as ComponentStringArtificialHarmonic: break
         case let graphNode as ComponentGraphNode: break
         case let waveform as ComponentWaveform: break

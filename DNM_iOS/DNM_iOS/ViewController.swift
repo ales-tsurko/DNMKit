@@ -11,16 +11,31 @@ import DNMModel
 
 class ViewController: UIViewController {
 
+    var environment: Environment!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
-            print("filePath: \(filePath)")
-        }
-        let code = 
+        DNMColorManager.colorMode = ColorMode.Dark
+        view.backgroundColor = DNMColorManager.backgroundColor
         
-        let tokenizer = Tokenizer()
-        tokenizer.tokenizeString(<#T##string: String##String#>)
+        if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
+            let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            
+            // encapsulate
+            let tokenizer = Tokenizer()
+            let tokenContainer = tokenizer.tokenizeString(code)
+            print(tokenContainer)
+            let parser = Parser()
+            let scoreModel = parser.parseTokenContainer(tokenContainer)
+            
+            environment = Environment(scoreModel: scoreModel)
+            environment.build()
+            
+            view.addSubview(environment)
+        }
+        
+
         
         
         
@@ -33,5 +48,8 @@ class ViewController: UIViewController {
     }
 
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 }
 

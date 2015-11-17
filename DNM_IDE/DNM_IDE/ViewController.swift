@@ -12,8 +12,7 @@ import DNMModel
 class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
     var textView: NSTextView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,11 +48,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         view.addSubview(textView)
         
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
-        //print(styleSheet)
-        
-        //let measureInfo = styleSheet["Measure"]
-        
-        // Do any additional setup after loading the view.
     }
 
     override var representedObject: AnyObject? {
@@ -71,13 +65,16 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
 
     func textDidChange(notification: NSNotification) {
         
+        
         let selectionRange = textView.selectedRange()
-        print("selectionRange: \(selectionRange)")
+        //print("selectionRange: \(selectionRange)")
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             
             if let string = self.textView.textStorage?.string {
                 let tokenizer = Tokenizer()
                 let tokenContainer = tokenizer.tokenizeString(string)
+        
+                print(tokenContainer)
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     for token in tokenContainer.tokens {
@@ -100,14 +97,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         default: identifierString = inheritedIdentifierString + ".\(token.identifier)"
         }
         
-        //print(identifierString)
-        //print(token)
-        
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
         if let container = token as? TokenContainer {
 
-            //print(identifierString)
-            
             let start = token.startIndex
             let length = token.stopIndex - token.startIndex + 1
             let range = NSMakeRange(start, length)
@@ -120,12 +112,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
                 
                 let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
                 textView.setTextColor(color, range: range)
-                
-                //print("foregroundColor: \(foregroundColor)")
             }
-
             
-            //print(styleSheet[identifierString])
             for token in container.tokens {
                 traverseToColorRangeWithToken(token, andIdentifierString: identifierString)
             }
@@ -133,20 +121,14 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         else {
 
 
+            // set style defaults up here
+            var isBold: Bool = false
+            var foregroundColor: NSColor = NSColor.blackColor()
             
             let start = token.startIndex
             let length = token.stopIndex - token.startIndex + 1
             let range = NSMakeRange(start, length)
-            
-            if let thing = styleSheet[identifierString]["backgroundColor"].array {
-               //print(thing)
-            }
-            /*
-            print(thing)
-            if let bgcolor = thing["backgroundColor"].array {
-                print(bgcolor)
-            }
-            */
+
             
             if let foregroundColor = styleSheet[identifierString]["foregroundColor"].array {
                 

@@ -31,8 +31,11 @@ public class InstrumentEventHandler {
         if instrumentEvent == nil { return }
         let x = bgEvent!.x_objective!
         
+        print("decorate instrument event with components: \(bgEvent!.durationNode.components)")
+        
         // TODO: re implement
         for component in bgEvent!.durationNode.components {
+            
             switch component {
             case let rest as ComponentRest:
                 for graphEvent in instrumentEvent!.graphEvents {
@@ -40,6 +43,9 @@ public class InstrumentEventHandler {
                     graphEvent.graph?.stopLinesAtX(graphEvent.x)
                 }
             case let pitch as ComponentPitch:
+                
+                print("decorate instrument event with pitch")
+                
                 for graphEvent in instrumentEvent!.graphEvents {
                     if let _ = graphEvent.graph as? Staff {
                         for p in pitch.values {

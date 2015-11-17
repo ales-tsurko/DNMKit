@@ -12,7 +12,7 @@ public class Component: CustomStringConvertible {
     
     public var description: String { return getDescription() }
     
-    public var identifier: String { return getIdentifier() }
+    public var identifier: String { return "Abstract Component" }
     public var performerID: String
     public var instrumentID: String
     
@@ -32,10 +32,6 @@ public class Component: CustomStringConvertible {
         return false
     }
     
-    private func getIdentifier() -> String {
-        return "Abstract component"
-    }
-    
     private func getDescription() -> String {
         return identifier
     }
@@ -43,16 +39,16 @@ public class Component: CustomStringConvertible {
 
 public class ComponentRest: Component {
     
+    public override var identifier: String { return "Rest" }
+    
     private override func getIsGraphBearing() -> Bool {
         return true
-    }
-    
-    private override func getIdentifier() -> String {
-        return "Rest"
     }
 }
 
 public class ComponentPitch: Component {
+    
+    public override var identifier: String { return "Pitch" }
     
     public var values: [Float]
     
@@ -63,10 +59,6 @@ public class ComponentPitch: Component {
     
     private override func getIsGraphBearing() -> Bool {
         return true
-    }
-    
-    private override func getIdentifier() -> String {
-        return "Pitch"
     }
     
     private override func getDescription() -> String {
@@ -88,15 +80,13 @@ public class ComponentPitch: Component {
 
 public class ComponentDynamicMarking: Component {
     
+    public override var identifier: String { return "DynamicMarking" }
+    
     public var value: String
     
     public init(performerID: String, instrumentID: String, value: String) {
         self.value = value
         super.init(performerID: performerID, instrumentID: instrumentID)
-    }
-    
-    private override func getIdentifier() -> String {
-        return "DynamicMarking"
     }
     
     private override func getDescription() -> String {
@@ -111,43 +101,33 @@ public class ComponentDynamicMarkingSpanner: Component {
 
 public class ComponentDynamicMarkingSpannerStart: ComponentDynamicMarkingSpanner {
     
-    private override func getIdentifier() -> String {
-        return "DynamicMarkingSpannerStart"
-    }
+    public override var identifier: String { return "DynamicMarkingSpannerStart" }
 }
 
 public class ComponentDynamicMarkingSpannerStop: ComponentDynamicMarkingSpanner {
     
-    private override func getIdentifier() -> String {
-        return "DynamicMarkingSpannerStop"
-    }
+    public override var identifier: String { return "DynamicMarkingSpannerStop" }
 }
 
 public class ComponentSlurStart: Component {
     
-    private override func getIdentifier() -> String {
-        return "SlurStart"
-    }
+    public override var identifier: String { return "SlurStart" }
 }
 
 public class ComponentSlurStop: Component {
     
-    private override func getIdentifier() -> String {
-        return "SlurStop"
-    }
+    public override var identifier: String { return "SlurStop" }
 }
 
 public class ComponentArticulation: Component {
+    
+    public override var identifier: String { return "Articulation" }
     
     public var values: [String] = []
     
     public init(performerID: String, instrumentID: String, values: [String]) {
         self.values = values
         super.init(performerID: performerID, instrumentID: instrumentID)
-    }
-    
-    private override func getIdentifier() -> String {
-        return "Articulation"
     }
     
     private override func getDescription() -> String {
@@ -169,19 +149,17 @@ public class ComponentArticulation: Component {
 
 public class ComponentExtensionStart: Component {
     
-    private override func getIdentifier() -> String {
-        return "ExtensionStart"
-    }
+    public override var identifier: String { return "ExtensionStart" }
 }
 
 public class ComponentExtensionStop: Component {
     
-    private override func getIdentifier() -> String {
-        return "ExtensionStop"
-    }
+    public override var identifier: String { return "ExtensionStop" }
 }
 
 public class ComponentGraphNode: Component {
+    
+    public override var identifier: String { return "GraphNode" }
     
     public var value: Float
     
@@ -192,10 +170,6 @@ public class ComponentGraphNode: Component {
     
     private override func getIsGraphBearing() -> Bool {
         return true
-    }
-    
-    private override func getIdentifier() -> String {
-        return "GraphNode"
     }
     
     private override func getDescription() -> String {
@@ -205,30 +179,28 @@ public class ComponentGraphNode: Component {
 
 public class ComponentGraphEdgeStart: Component {
     
+    public override var identifier: String { return "GraphEdgeStart" }
+    
     // TODO
     public var spannerValues: Int = 0
     
     private override func getIsGraphBearing() -> Bool {
         return true
     }
-    
-    private override func getIdentifier() -> String {
-        return "GraphEdgeStart"
-    }
 }
 
 public class ComponentGraphEdgeStop: Component {
     
+    public override var identifier: String { return "GraphEdgeStop" }
+    
     private override func getIsGraphBearing() -> Bool {
         return true
-    }
-    
-    private override func getIdentifier() -> String {
-        return "GraphEdgeStop"
     }
 }
 
 public class ComponentStringArtificialHarmonic: Component {
+    
+    public override var identifier: String { return "StringArtificialHarmonic" }
     
     public var value: Float
     
@@ -240,20 +212,14 @@ public class ComponentStringArtificialHarmonic: Component {
     private override func getIsGraphBearing() -> Bool {
         return true
     }
-    
-    private override func getIdentifier() -> String {
-        return "StringArtificialHarmonic"
-    }
 }
 
 public class ComponentWaveform: Component {
     
+    public override var identifier: String { return "Waveform" }
+    
     private override func getIsGraphBearing() -> Bool {
         return true
-    }
-    
-    private override func getIdentifier() -> String {
-        return "Waveform"
     }
 }
 

@@ -76,7 +76,6 @@ public class BGStratum: ViewNode, BuildPattern {
     }
     
     public func commitDENode() {
-        
         if deNode != nil {
             addNode(deNode!)
             deNode!.layout()
@@ -84,12 +83,13 @@ public class BGStratum: ViewNode, BuildPattern {
     }
     
     private func createSANodes() {
-
         
     }
     
+    
+    // ISSUE: SLUR STARTING AT INDEX == 0:
     private func createDENode() {
-        // encapsulate: ensureDENode()
+        print("createDENode()")
         if deNode == nil {
             deNode = DENode(left: 0, top: 0, height: 0.5 * beamGroups.first!.g)
             deNode!.pad_bottom = 0.5 * g
@@ -118,14 +118,6 @@ public class BGStratum: ViewNode, BuildPattern {
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
-                    
-                    /*
-                    switch component.property {
-                    case .ExtensionStop: break
-                        
-                    default: break
-                    }
-                    */
                 }
             }
             else if e < bgEvents.count - 1 {
@@ -139,14 +131,6 @@ public class BGStratum: ViewNode, BuildPattern {
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
-                    
-                    /*
-                    switch component.property {
-                    case .ExtensionStart:
-                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
-                    default: break
-                    }
-                    */
                 }
             }
             else {
@@ -157,7 +141,7 @@ public class BGStratum: ViewNode, BuildPattern {
                 
                 let stop: CGFloat
                 if let system = system { stop = system.frame.width + 20 }
-                else { stop = UIScreen.mainScreen().bounds.width }
+                else { stop = UIScreen.mainScreen().bounds.width } // hack
                 
                 for component in bgEvent.durationNode.components {
                     switch component {
@@ -165,14 +149,6 @@ public class BGStratum: ViewNode, BuildPattern {
                         deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
                     default: break
                     }
-                    
-                    /*
-                    switch component.property {
-                    case .ExtensionStart:
-                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
-                    default: break
-                    }
-                    */
                 }
             }
         }
