@@ -311,13 +311,6 @@ public class Parser {
             default: break
             }
         }
-        /*
-        guard let marking = value, pID = currentPerformerID, iID = currentInstrumentID else {
-            return
-        }
-        let component = ComponentDynamicMarking(performerID: pID, instrumentID: iID, value: marking)
-        addComponent(component)
-        */
     }
     
     private func addDynamicMarkingComponentWithValue(value: String,

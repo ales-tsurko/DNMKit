@@ -86,7 +86,7 @@ public class BGStratum: ViewNode, BuildPattern {
         
     }
     
-    
+    // Encapsulate
     // ISSUE: SLUR STARTING AT INDEX == 0:
     private func createDENode() {
         print("createDENode()")
@@ -95,8 +95,10 @@ public class BGStratum: ViewNode, BuildPattern {
             deNode!.pad_bottom = 0.5 * g
             deNode!.pad_top = 0.5 * g
         } // hack
-        for e in 0..<bgEvents.count {
-            let bgEvent = bgEvents[e]
+        
+        for (e, bgEvent) in bgEvents.enumerate() {
+
+            // CLEAN UP
             let dePad = 0.618 * g
             let x: CGFloat = bgEvent.x_inBGStratum!
             let pad: CGFloat = g
@@ -122,6 +124,8 @@ public class BGStratum: ViewNode, BuildPattern {
             }
             else if e < bgEvents.count - 1 {
                 // middle event
+                
+                //let prevEvent = bgEvents[e - 1]
                 let nextEvent = bgEvents[e + 1]
                 let start: CGFloat = x + augDotPad + dePad
                 let stop: CGFloat = nextEvent.x_inBGStratum! - dePad
@@ -319,7 +323,6 @@ public class BGStratum: ViewNode, BuildPattern {
             tbGroupAtDepth[depth]!.pad_bottom = 3 // hack
             tbGroupAtDepth[depth]!.pad_top = 3 // hack
             tbGroupAtDepth[depth]!.depth = depth
-
             tbGroupAtDepth[depth]!.bgStratum = self
         }
     }
@@ -343,8 +346,7 @@ public class BGStratum: ViewNode, BuildPattern {
         // refine
         return stemDirection == .Down ? 0.0618 * frame.height : 0.0618 * frame.height
     }
-    
-    
+ 
     private func getBeamEndY() -> CGFloat {
         if beamsLayerGroup != nil {
             return stemDirection == .Up ? beamsLayerGroup!.frame.height : 0

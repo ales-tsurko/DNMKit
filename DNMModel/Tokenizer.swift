@@ -112,16 +112,10 @@ public class Tokenizer {
         scanDurationNodeStackModeWithScanner(scanner, andContainer: container)
         scanDurationWithScanner(scanner, andContainer: container)
         scanLeafDurationWithScanner(scanner, andContainer: container)
-        
 
-
-        // wrap this in func: scanTopLevelCommands()
-
-        
         scanPitchCommandWithScanner(scanner, andContainer: container)
-        scanDynamicCommandWithScanner(scanner, andContainer: container)
         scanArticulationCommandWithScanner(scanner, andContainer: container)
-        
+        scanDynamicCommandWithScanner(scanner, andContainer: container)
         scanSlurStartWithScanner(scanner, andContainer: container)
         scanSlurStopWithScanner(scanner, andContainer: container)
         
@@ -129,6 +123,13 @@ public class Tokenizer {
         scanExtensionStopWithScanner(scanner, andContainer: container)
 
         scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
+    }
+    
+    private func scanTopLevelCommandsWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        
     }
     
     private func scanExtensionStartWithScanner(scanner: NSScanner,
@@ -163,12 +164,7 @@ public class Tokenizer {
         }
     }
     
-    private func scanTopLevelCommandsWithScanner(scanner: NSScanner,
-        andContainer container: TokenContainer
-    )
-    {
-        
-    }
+    
     
     private func scanHeaderWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
@@ -426,13 +422,11 @@ public class Tokenizer {
         var string: NSString?
         let startIndex: Int = scanner.scanLocation
         while scanner.scanString("d", intoString: &string) {
-            
             let dynamicMarkingContainer = TokenContainer(
                 identifier: "DynamicMarking",
                 openingValue: "d",
                 startIndex: startIndex + lineStartIndex
             )
-            
             var dynamicMarking: String?
             let set = NSMutableCharacterSet(charactersInString: "opmf")
             let startIndex = scanner.scanLocation
@@ -445,18 +439,8 @@ public class Tokenizer {
                 dynamicMarkingContainer.addToken(token)
                 dynamicMarking = string as? String
             }
-            
-            /*
-            // Unwind scanner if invalid
-            if dynamicMarking == nil {
-                scanner.scanLocation = startIndex
-                return
-            }
-            */
-            
-            // TODO: pass new container
-            scanSpannerStartWithScanner(scanner, andContainer: dynamicMarkingContainer)
             scanSpannerStopWithScanner(scanner, andContainer: dynamicMarkingContainer)
+            scanSpannerStartWithScanner(scanner, andContainer: dynamicMarkingContainer)
             container.addToken(dynamicMarkingContainer)
         }
     }
@@ -570,12 +554,14 @@ public class Tokenizer {
         }
     }
     
+    
+    
     // Find best way to generalize this process!
     private func scanSpannerStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
     {
-    
+
         let startIndex = scanner.scanLocation
 
         var string: NSString?
