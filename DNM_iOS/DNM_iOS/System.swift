@@ -1028,7 +1028,7 @@ public class System: ViewNode, BuildPattern {
     private func setDefaultComponentTypesShownByID() {
         
         // make sure PERFORMER is in all component types
-        for (id, componentTypes) in componentTypesByID {
+        for (id, _) in componentTypesByID {
             componentTypesByID[id]!.append("performer")
         }
         
@@ -1209,8 +1209,7 @@ public class System: ViewNode, BuildPattern {
                             let id = componentSlurStop.performerID
                             if let lastIncomplete = getLastIncompleteSlurHandlerWithID(id) {
                                 lastIncomplete.graphEvent1 = graphEvent
-                            }
-                            else {
+                            } else {
                                 let slurHandler = SlurHandler(id: id, graphEvent1: graphEvent)
                                 addSlurHandler(slurHandler)
                             }
@@ -1516,13 +1515,13 @@ public class System: ViewNode, BuildPattern {
                     
                     for componentDMLigature in dmComponentContext.componentDMLigatures {
                         switch componentDMLigature {
-                        case let start as ComponentDynamicMarkingSpannerStart:
+                        case is ComponentDynamicMarkingSpannerStart:
                             if let start_intValue = start_intValue {
                                 dmNodeByID[id]!.startLigatureAtX(start_x,
                                     withDynamicMarkingIntValue: start_intValue
                                 )
                             }
-                        case let stop as ComponentDynamicMarkingSpannerStop:
+                        case is ComponentDynamicMarkingSpannerStop:
                             if let stop_intValue = stop_intValue {
                                 dmNodeByID[id]!.stopCurrentLigatureAtX(stop_x,
                                     withDynamicMarkingIntValue: stop_intValue
@@ -1530,24 +1529,6 @@ public class System: ViewNode, BuildPattern {
                             }
                         default: break
                         }
-                        
-                        /*
-                        switch componentDMLigature.property {
-                        case .DMLigatureStart:
-                            if let start_intValue = start_intValue {
-                                dmNodeByID[id]!.startLigatureAtX(start_x,
-                                    withDynamicMarkingIntValue: start_intValue
-                                )
-                            }
-                        case .DMLigatureStop:
-                            if let stop_intValue = stop_intValue {
-                                dmNodeByID[id]!.stopCurrentLigatureAtX(stop_x,
-                                    withDynamicMarkingIntValue: stop_intValue
-                                )
-                            }
-                        default: break
-                        }
-                        */
                     }
                 }
             }

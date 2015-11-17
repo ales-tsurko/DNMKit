@@ -141,7 +141,7 @@ public class SystemView: UIView {
     }
 
     public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first {
+        if let _ = touches.first {
             
             // text
             for stem in system.stems { stem.deHighlight() }
@@ -227,7 +227,7 @@ public class SystemView: UIView {
         if let touch = touches.first {
             let point = touch.locationInView(self)
             let convertedPoint = layer.convertPoint(point, fromLayer: system)
-            let touchedObj = system.hitTest(convertedPoint)
+            let _ = system.hitTest(convertedPoint)
             selectionRectangle = SelectionRectangle(initialPoint: point)
             durationSelected_start = system.getDurationAtX(point.x)
             layer.addSublayer(selectionRectangle!)

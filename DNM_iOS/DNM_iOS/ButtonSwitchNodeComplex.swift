@@ -135,7 +135,7 @@ public class ButtonSwitchNodeComplex: UIView {
         buttonSwitchNode: ButtonSwitchNode
     ) -> ButtonSwitchNodeGroup?
     {
-        for (id, buttonSwitchNodeGroup) in buttonSwitchNodeGroupByID {
+        for (_, buttonSwitchNodeGroup) in buttonSwitchNodeGroupByID {
             if buttonSwitchNodeGroup.buttonSwitchNodes.containsObject(buttonSwitchNode) {
                 return buttonSwitchNodeGroup
             }
@@ -203,7 +203,7 @@ public class ButtonSwitchNodeComplex: UIView {
         // performLayout()?
         
         var left: CGFloat = 0
-        for (id, group) in buttonSwitchNodeGroupByID {
+        for (_, group) in buttonSwitchNodeGroupByID {
             var top: CGFloat = 0
             for node in group.buttonSwitchNodes {
                 node.layer.position.x = left + 0.5 * node.frame.width
@@ -267,7 +267,7 @@ public class ButtonSwitchNodeComplex: UIView {
         var maxY: CGFloat?
 
         if buttonSwitchNodeGroupByID.count > 0 {
-            for (id, group) in buttonSwitchNodeGroupByID {
+            for (_, group) in buttonSwitchNodeGroupByID {
                 for buttonSwitchNode in group.buttonSwitchNodes {
                     if minX == nil { minX = buttonSwitchNode.frame.minX }
                     if maxX == nil { maxX = buttonSwitchNode.frame.maxX }
@@ -321,17 +321,17 @@ public class ButtonSwitchNodeComplex: UIView {
     }
     
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first {
-            let point = touch.locationInView(self)
-            let touchedView = hitTest(point, withEvent: nil)
-        }
+        
     }
     
     public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        /*
         if let touch = touches.first {
             let point = touch.locationInView(self)
             let touchedView = hitTest(point, withEvent: nil)
         }
+        */
     }
     
     public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {

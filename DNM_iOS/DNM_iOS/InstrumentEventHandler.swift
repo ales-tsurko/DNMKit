@@ -29,7 +29,6 @@ public class InstrumentEventHandler {
     public func decorateInstrumentEvent() {
         if bgEvent == nil { return }
         if instrumentEvent == nil { return }
-        let x = bgEvent!.x_objective!
         
         print("decorate instrument event with components: \(bgEvent!.durationNode.components)")
         
@@ -37,7 +36,7 @@ public class InstrumentEventHandler {
         for component in bgEvent!.durationNode.components {
             
             switch component {
-            case let rest as ComponentRest:
+            case is ComponentRest:
                 for graphEvent in instrumentEvent!.graphEvents {
                     graphEvent.isRest = true
                     graphEvent.graph?.stopLinesAtX(graphEvent.x)
@@ -84,17 +83,17 @@ public class InstrumentEventHandler {
                         }
                     }
                 }
-            case let graphNode as ComponentGraphNode: break
-            case let graphEdgeStart as ComponentGraphEdgeStart:
+            case is ComponentGraphNode: break
+            case is ComponentGraphEdgeStart:
                 for graphEvent in instrumentEvent!.graphEvents {
-                    if let ccGraph = graphEvent.graph as? GraphContinuousController {
+                    if let _ = graphEvent.graph as? GraphContinuousController {
                         
                         // FIXME: refactor spannerArguments
                         
                         //ccGraph.startEdgeAtX(x, spannerArguments: spannerArguments)
                     }
                 }
-            case let graphEdgeStop as ComponentGraphEdgeStop:
+            case is ComponentGraphEdgeStop:
                 
                 break
             // string number

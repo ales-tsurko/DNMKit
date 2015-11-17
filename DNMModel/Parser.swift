@@ -293,22 +293,42 @@ public class Parser {
     }
     
     private func manageDynamicMarkingTokenContainer(container: TokenContainer) {
-        var value: String?
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         for token in container.tokens {
             switch token.identifier {
             case "Value":
-                value = (token as! TokenString).value
+                let value = (token as! TokenString).value
+                addDynamicMarkingComponentWithValue(value, performerID: pID, instrumentID: iID)
+            case "SpannerStart":
+                let component = ComponentDynamicMarkingSpannerStart(
+                    performerID: pID, instrumentID: iID)
+                addComponent(component)
+                
+            case "SpannerStop":
+                let component = ComponentDynamicMarkingSpannerStop(
+                    performerID: pID, instrumentID: iID)
+                addComponent(component)
             default: break
             }
-            
-            // manage dynamic marking spanner start
-            // manage dynamic marking spanner stop
-            
         }
+        /*
         guard let marking = value, pID = currentPerformerID, iID = currentInstrumentID else {
             return
         }
         let component = ComponentDynamicMarking(performerID: pID, instrumentID: iID, value: marking)
+        addComponent(component)
+        */
+    }
+    
+    private func addDynamicMarkingComponentWithValue(value: String,
+        performerID: String, instrumentID: String
+    )
+    {
+        let component = ComponentDynamicMarking(
+            performerID: performerID,
+            instrumentID: instrumentID,
+            value: value
+        )
         addComponent(component)
     }
     

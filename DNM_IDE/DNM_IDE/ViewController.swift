@@ -17,28 +17,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         super.viewDidLoad()
         
         let screenHeight = 800
-        
-        
         view.frame = CGRect(x: 0, y: 0, width: 400, height: screenHeight)
         textView = NSTextView(frame: view.frame)
-        
-        print("textview.frame: \(textView.frame)")
-
-        /*
-        let hConstraint = NSLayoutConstraint(
-            item: textView,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: view,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 1,
-            constant: 0
-        )
-        */
-        
-        //view.addConstraint(hConstraint)
-
-        //NSLayoutConstraint.activateConstraints([hConstraint])
         
         textView.delegate = self
         textView.richText = true
@@ -47,7 +27,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.automaticDashSubstitutionEnabled = false
         view.addSubview(textView)
         
-        let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
+        // make a static var : SyntaxHighlighter
+        //let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
     }
 
     override var representedObject: AnyObject? {

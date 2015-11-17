@@ -101,6 +101,8 @@ public class ComponentDynamicMarkingSpanner: Component {
 
 public class ComponentDynamicMarkingSpannerStart: ComponentDynamicMarkingSpanner {
     
+    // for now, no variables
+    
     public override var identifier: String { return "DynamicMarkingSpannerStart" }
 }
 

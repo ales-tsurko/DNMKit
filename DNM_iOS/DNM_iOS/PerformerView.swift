@@ -71,10 +71,10 @@ public class PerformerView: UIView {
         
         // clean this up, please
         let page_pad: CGFloat = 25
-        let page_pad_left: CGFloat = 50
+        //let page_pad_left: CGFloat = 50
         
         // hack
-        var maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
+        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
         
         // remove PageViews as necessary
         for pageView in pageViews { pageView.removeFromSuperview() }

@@ -190,6 +190,8 @@ public class Environment: UIView {
     
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
+        
+        
         // this should become unnecessary: set properties of measure
         for (m, measure) in measures.enumerate() {
             measure.number = m + 1
@@ -227,16 +229,14 @@ public class Environment: UIView {
         }
         
         // PRELIMINARY BUILD
-        for (s, system) in systems.enumerate() {
-            system.build()
-        }
+        for system in systems { system.build() }
         
         // ADD FRAYED LIGATURES, ADD DMNODES IF NECESSARY
         manageDMLigaturesForSystems(systems)
         manageSlursForSystems(systems)
         
         // COMPLETE BUILD
-        for (s, system) in systems.enumerate() {
+        for system in systems {
             
             // encapsulate
             // make show only view id, unless omni view
