@@ -48,21 +48,32 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         
         
         let selectionRange = textView.selectedRange()
-        //print("selectionRange: \(selectionRange)")
+        print("selectionRange: \(selectionRange)")
+        
+        var lineCount = 0
+        for i in 0..<selectionRange.location {
+            if textView.textStorage?.string[i] == "\n" {
+                lineCount++
+            }
+        }
+        print("lineCount: \(lineCount)")
+        
+        // get index starting line for current line count!
+        
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             
+            /*
             if let string = self.textView.textStorage?.string {
                 let tokenizer = Tokenizer()
                 let tokenContainer = tokenizer.tokenizeString(string)
         
-                print(tokenContainer)
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     for token in tokenContainer.tokens {
                         self.traverseToColorRangeWithToken(tokenContainer, andIdentifierString: "")
                     }
                 }
             }
+            */
         }
     }
     

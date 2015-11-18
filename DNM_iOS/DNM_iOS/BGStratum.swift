@@ -111,7 +111,6 @@ public class BGStratum: ViewNode, BuildPattern {
         guard let deNode = deNode else { return }
         
         let pad = 0.618 * g
-        
         for e in 0..<bgEvents.count {
             
             let curEvent = bgEvents[e]
@@ -148,13 +147,11 @@ public class BGStratum: ViewNode, BuildPattern {
     }
 
     private func createDENode() {
-        
-        // ensure the existence of the DurationalExtensionNode prior to modifying it
         ensureDENode()
         addAugmentationDotsToDENode()
         addDurationalExtensionsToDENode()
         commitDENode()
-        layout() // perhaps not necessary?
+        layout()
     }
     
     public override func layout() {
@@ -204,22 +201,19 @@ public class BGStratum: ViewNode, BuildPattern {
         for beamGroup in beamGroups { handOffBeamGroup(beamGroup) }
     }
     
+    public func handOffTupletBracketGroupsFromBeamGroup(beamGroup: BeamGroup) {
+        for (depth, tbGroup) in beamGroup.tbGroupAtDepth {
+            addTBGroup(tbGroup, atDepth: depth)
+        }
+    }
+    
     public func handOffBeamGroup(beamGroup: BeamGroup) {
-        assert(beamGroup.hasBeenBuilt, "beamGroup must be built to be handed off")
-        
-        // clean up in here
-        
-        // handoff TB, encaps
-        for (depth, tbGroup) in beamGroup.tbGroupAtDepth { addTBGroup(tbGroup, atDepth: depth) }
-        
-        // handoff BEAMS, encaps
+        guard beamGroup.hasBeenBuilt else { return }
+        handOffTupletBracketGroupsFromBeamGroup(beamGroup)
         ensureBeamsLayerGroup()
         beamGroup.beamsLayerGroup!.layout()
-        beamsLayerGroup!.addNode(beamGroup.beamsLayerGroup!)
-        
-        // ligatures, encaps
-        
         beamGroup.bgStratum = self
+        beamsLayerGroup!.addNode(beamGroup.beamsLayerGroup!)
     }
     
     // THIS IS BEING REFACTORED OUT
@@ -248,7 +242,6 @@ public class BGStratum: ViewNode, BuildPattern {
     }
     
     public func build() {
-        // encapsulate
         buildBeamGroups()
         commitBeamGroups()
         commitTBGroups()
@@ -256,7 +249,6 @@ public class BGStratum: ViewNode, BuildPattern {
         createDENode()
         createSANodes()
         layout()
-
         hasBeenBuilt = true
     }
     
@@ -402,6 +394,4 @@ public class BGStratum: ViewNode, BuildPattern {
     }
     */
     // <--------------------------------------------------------------------------------------
-    
-    
 }

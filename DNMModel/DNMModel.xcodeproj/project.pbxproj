@@ -126,6 +126,8 @@
 		07074E551BF96BCD00BFC6FA /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E4E1BF96BCD00BFC6FA /* TokenContainer.swift */; };
 		07074E561BF96BCD00BFC6FA /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */; };
 		07074E571BF96BCD00BFC6FA /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */; };
+		077343801BFBFDBD00F571A2 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */; };
+		077343811BFBFDBD00F571A2 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,6 +281,7 @@
 		07074E4D1BF96BCD00BFC6FA /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		07074E4E1BF96BCD00BFC6FA /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
 		07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -498,6 +501,7 @@
 				07074D9A1BF967DC00BFC6FA /* Random.swift */,
 				07074D9B1BF967DC00BFC6FA /* SimpleRoot.swift */,
 				07074D9C1BF967DC00BFC6FA /* Stack.swift */,
+				0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -911,6 +915,7 @@
 				07074E151BF9685500BFC6FA /* Tempo.swift in Sources */,
 				07074DFB1BF9685500BFC6FA /* PitchMonadSpeller.swift in Sources */,
 				07074D9F1BF967DC00BFC6FA /* ArrayExtensions.swift in Sources */,
+				077343801BFBFDBD00F571A2 /* StringExtensions.swift in Sources */,
 				07074DDF1BF9685500BFC6FA /* DurationNode.swift in Sources */,
 				07074DE31BF9685500BFC6FA /* DurationSpan.swift in Sources */,
 				07074DDD1BF9685500BFC6FA /* Duration.swift in Sources */,
@@ -973,6 +978,7 @@
 				07074E161BF9685500BFC6FA /* Tempo.swift in Sources */,
 				07074DFC1BF9685500BFC6FA /* PitchMonadSpeller.swift in Sources */,
 				07074DA01BF967DC00BFC6FA /* ArrayExtensions.swift in Sources */,
+				077343811BFBFDBD00F571A2 /* StringExtensions.swift in Sources */,
 				07074DE01BF9685500BFC6FA /* DurationNode.swift in Sources */,
 				07074DE41BF9685500BFC6FA /* DurationSpan.swift in Sources */,
 				07074DDE1BF9685500BFC6FA /* Duration.swift in Sources */,
@@ -1452,6 +1458,7 @@
 				07074D211BF966DC00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D221BF966DC00BFC6FA /* Build configuration list for PBXNativeTarget "DNMModel_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1460,6 +1467,7 @@
 				07074D241BF966DC00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D3B1BF966E800BFC6FA /* Build configuration list for PBXNativeTarget "DNMModel_OSX" */ = {
 			isa = XCConfigurationList;
@@ -1468,6 +1476,7 @@
 				07074D3D1BF966E800BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D3E1BF966E800BFC6FA /* Build configuration list for PBXNativeTarget "DNMModel_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1476,6 +1485,7 @@
 				07074D401BF966E800BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D5F1BF9670D00BFC6FA /* Build configuration list for PBXNativeTarget "DNMModelExample_iOS" */ = {
 			isa = XCConfigurationList;
@@ -1484,6 +1494,7 @@
 				07074D611BF9670D00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D621BF9670D00BFC6FA /* Build configuration list for PBXNativeTarget "DNMModelExample_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1492,6 +1503,7 @@
 				07074D641BF9670D00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D801BF9671A00BFC6FA /* Build configuration list for PBXNativeTarget "DNMModelExample_OSX" */ = {
 			isa = XCConfigurationList;
@@ -1500,6 +1512,7 @@
 				07074D821BF9671A00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07074D831BF9671A00BFC6FA /* Build configuration list for PBXNativeTarget "DNMModelExample_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1508,6 +1521,7 @@
 				07074D851BF9671A00BFC6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
