@@ -15,7 +15,26 @@ public protocol Token: CustomStringConvertible {
     var identifier: String { get set }
     var startIndex: Int { get set }
     var stopIndex: Int { get set }
-    var indentationLevel: Int? { get set }
+    //var indentationLevel: Int? { get set }
+}
+
+public struct TokenIndent: Token {
+    
+    public var description: String { return getDescription() }
+    
+    public var identifier: String
+    public var startIndex: Int
+    public var stopIndex: Int
+    
+    public init(startIndex: Int, stopIndex: Int) {
+        self.identifier = "Indentation"
+        self.startIndex = startIndex
+        self.stopIndex = stopIndex
+    }
+    
+    private func getDescription() -> String {
+        return "\(identifier) from \(startIndex) to \(stopIndex)"
+    }
 }
 
 public struct TokenString: Token {
