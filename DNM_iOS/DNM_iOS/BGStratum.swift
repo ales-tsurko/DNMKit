@@ -86,76 +86,73 @@ public class BGStratum: ViewNode, BuildPattern {
         
     }
     
-    // Encapsulate
-    // ISSUE: SLUR STARTING AT INDEX == 0:
-    private func createDENode() {
-        print("createDENode()")
+    private func ensureDENode() {
         if deNode == nil {
             deNode = DENode(left: 0, top: 0, height: 0.5 * beamGroups.first!.g)
             deNode!.pad_bottom = 0.5 * g
             deNode!.pad_top = 0.5 * g
-        } // hack
+        }
+    }
+    
+    private func addAugmentationDotsToDENode() {
+        guard let deNode = deNode else { return }
+        let augDotPad = g
         
-        for (e, bgEvent) in bgEvents.enumerate() {
-
-            // CLEAN UP
-            let dePad = 0.618 * g
-            let x: CGFloat = bgEvent.x_inBGStratum!
-            let pad: CGFloat = g
-
-            let hasAugDot: Bool = bgEvent.beamGroup!.isMetrical &&
-                bgEvent.durationNode.duration.beats!.amount % 3 == 0
-                ? true : false
-            
-            let augDotPad = hasAugDot ? 0.75 * g : 0
-            if hasAugDot { deNode!.addAugmentationDotAtX(x + augDotPad) }
-            
-            if e == 0 {
-                // first event
-                let start: CGFloat = -10
-                let stop = x - pad
-                for component in bgEvent.durationNode.components {
-                    switch component {
-                    case is ComponentExtensionStop:
-                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
-                    default: break
-                    }
-                }
+        // set amount of of augmentation dots... (2 for 7, 3 and so on)
+        for bgEvent in bgEvents {
+            if bgEvent.hasAugmentationDot {
+                let x = bgEvent.x_objective!
+                bgEvent.augmentationDot = deNode.addAugmentationDotAtX(x + augDotPad)
             }
-            else if e < bgEvents.count - 1 {
-                // middle event
-                
-                //let prevEvent = bgEvents[e - 1]
-                let nextEvent = bgEvents[e + 1]
-                let start: CGFloat = x + augDotPad + dePad
-                let stop: CGFloat = nextEvent.x_inBGStratum! - dePad
-                for component in bgEvent.durationNode.components {
-                    switch component {
-                    case is ComponentExtensionStart:
-                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
-                    default: break
-                    }
+        }
+    }
+    
+    private func addDurationalExtensionsToDENode() {
+        guard let deNode = deNode else { return }
+        
+        let pad = 0.618 * g
+        
+        for e in 0..<bgEvents.count {
+            
+            let curEvent = bgEvents[e]
+            
+            // first event
+            if e == 0 {
+                if curEvent.stopsExtension {
+                    let start: CGFloat = -2 * pad
+                    let stop = curEvent.x_objective! - pad
+                    deNode.addDurationalExtensionFromLeft(start, toRight: stop)
                 }
             }
             else {
-
+                let prevEvent = bgEvents[e - 1]
+                if curEvent.stopsExtension {
+                    let x = prevEvent.augmentationDot?.frame.maxX ?? prevEvent.x_objective!
+                    let start = x + pad
+                    let stop = curEvent.x_objective! - pad // refine
+                    deNode.addDurationalExtensionFromLeft(start, toRight: stop)
+                }
+                
                 // last event
-                let start: CGFloat = x + augDotPad + dePad
-                //let stop: CGFloat = frame.width
-                
-                let stop: CGFloat
-                if let system = system { stop = system.frame.width + 20 }
-                else { stop = UIScreen.mainScreen().bounds.width } // hack
-                
-                for component in bgEvent.durationNode.components {
-                    switch component {
-                    case is ComponentExtensionStart:
-                        deNode!.addDurationalExtensionFromLeft(start, toRight: stop)
-                    default: break
+                if e == bgEvents.count - 1 {
+                    if curEvent.startsExtension {
+                        let start_x = curEvent.augmentationDot?.frame.maxX ?? curEvent.x_objective!
+                        let start = start_x + pad
+                        let stop_x = system?.frame.width ?? UIScreen.mainScreen().bounds.width
+                        let stop = stop_x + 2 * pad
+                        deNode.addDurationalExtensionFromLeft(start, toRight: stop)
                     }
                 }
             }
         }
+    }
+
+    private func createDENode() {
+        
+        // ensure the existence of the DurationalExtensionNode prior to modifying it
+        ensureDENode()
+        addAugmentationDotsToDENode()
+        addDurationalExtensionsToDENode()
         commitDENode()
         layout() // perhaps not necessary?
     }

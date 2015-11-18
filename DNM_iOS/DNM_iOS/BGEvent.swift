@@ -9,6 +9,7 @@
 import Foundation
 import DNMModel
 
+/// Graphical representation of DurationNode leaf
 public class BGEvent {
     
     // model
@@ -30,9 +31,58 @@ public class BGEvent {
     public var stemArticulationTypes: [ArticulationType] = []
     
     public var hasAugmentationDot: Bool { return getHasAugmentationDot() }
+    public var augmentationDot: AugmentationDot?
+    
+    public var startsExtension: Bool { return getStartsExentsion() }
+    public var stopsExtension: Bool { return getStopsExtension() }
+    
+    public var x: CGFloat = 0
+    
+    // check this for recursive placement within BGContainer(s)
+    // objective currently works to depth = 2 ?
+    public var x_inBGContainer: CGFloat? { get { return getX_inBGContainer() } }
+    public var x_inBeamGroup: CGFloat? { get { return getX_inBeamGroup() } }
+    public var x_inBGStratum: CGFloat? { get { return getX_inBGStratum() } }
+    public var x_objective: CGFloat? { get { return getX_objective() } }
+    
+    public var depth: Int?
+    
+    public init(durationNode: DurationNode, x: CGFloat) {
+        self.x = x
+        self.durationNode = durationNode
+        self.depth = durationNode.depth
+        self.beamJunction = BeamJunctionMake(durationNode)
+    }
     
     public func addStemArticulationType(type: ArticulationType) {
         stemArticulationTypes.append(type)
+    }
+    
+    private func getHasAugmentationDot() -> Bool {
+        if let beamGroup = beamGroup {
+            return beamGroup.isMetrical && durationNode.duration.beats!.amount % 3 == 0
+        } else { return durationNode.duration.beats!.amount % 3 == 0 }
+    }
+    
+    private func getIsRest() -> Bool {
+        for component in durationNode.components {
+            if component is ComponentRest { return true }
+        }
+        return false
+    }
+    
+    private func getStopsExtension() -> Bool {
+        for component in durationNode.components {
+            if component is ComponentExtensionStop { return true }
+        }
+        return false
+    }
+    
+    private func getStartsExentsion() -> Bool {
+        for component in durationNode.components {
+            if component is ComponentExtensionStart { return true }
+        }
+        return false
     }
     
     private func getNext() -> BGEvent? {
@@ -84,59 +134,7 @@ public class BGEvent {
         }
         return nil
     }
-    
-    public var x: CGFloat = 0
-    
-    // check this for recursive placement within BGContainer(s)
-    // objective currently works to depth = 2 ?
-    public var x_inBGContainer: CGFloat? { get { return getX_inBGContainer() } }
-    public var x_inBeamGroup: CGFloat? { get { return getX_inBeamGroup() } }
-    public var x_inBGStratum: CGFloat? { get { return getX_inBGStratum() } }
-    public var x_objective: CGFloat? { get { return getX_objective() } }
-    
-    public var startsExtension: Bool { get { return getStartsExtension() } }
-    
-    public var depth: Int?
-    
-    public init(durationNode: DurationNode, x: CGFloat) {
-        self.x = x
-        self.durationNode = durationNode
-        self.depth = durationNode.depth
-        self.beamJunction = BeamJunctionMake(durationNode)
-    }
 
-    private func getStartsExtension() -> Bool {
-        for component in durationNode.components {
-            switch component {
-            case is ComponentExtensionStart: return true
-            default: break
-            }
-            
-            /*
-            switch component.property {
-            case .ExtensionStart: return true
-            default: break
-            }
-            */
-        }
-        return false
-    }
-    
-    private func getHasAugmentationDot() -> Bool {
-        if let beamGroup = beamGroup {
-            return beamGroup.isMetrical && durationNode.duration.beats!.amount % 3 == 0
-        } else { return durationNode.duration.beats!.amount % 3 == 0 }
-    }
-    
-    private func getIsRest() -> Bool {
-        for component in durationNode.components {
-            if component is ComponentRest {
-                return true
-            }
-        }
-        return false
-    }
-    
     private func getX_inBGContainer() -> CGFloat? {
         return x
     }

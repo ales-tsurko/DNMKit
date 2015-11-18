@@ -43,9 +43,16 @@ public class DENode: ViewNode {
     public override init(layer: AnyObject) { super.init(layer: layer) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    public func addAugmentationDotAtX(x: CGFloat) {
+    public func addAugmentationDotAtX(x: CGFloat) -> AugmentationDot {
         let augmentationDot = AugmentationDot(x: x, y: 0.5 * height, width: height)
         addAugmentationDot(augmentationDot)
+        return augmentationDot
+    }
+
+    public func addAugmentationDot(augmentationDot: AugmentationDot) {
+        augmentationDots.append(augmentationDot)
+        components.append(augmentationDot)
+        addSublayer(augmentationDot)
     }
     
     public func addDurationalExtensionFromLeft(left: CGFloat, toRight right: CGFloat) {
@@ -55,16 +62,17 @@ public class DENode: ViewNode {
         addDurationalExtension(durationalExtension)
     }
     
-    public func addAugmentationDot(augmentationDot: AugmentationDot) {
-        augmentationDots.append(augmentationDot)
-        components.append(augmentationDot)
-        addSublayer(augmentationDot)
-    }
-    
     public func addDurationalExtension(durationalExtension: DurationalExtension) {
         durationalExtensions.append(durationalExtension)
         components.append(durationalExtension)
         addSublayer(durationalExtension)
+    }
+    
+    public func augmentationDotAtX(x: CGFloat) -> AugmentationDot? {
+        for augmentationDot in augmentationDots {
+            if augmentationDot.x == x { return augmentationDot }
+        }
+        return nil
     }
 
     override func flowVertically() {
