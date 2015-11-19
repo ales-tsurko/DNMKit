@@ -56,6 +56,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         setCurrentLineWithCurrentSelection()
         setDefaultStyleForCurrentLine()
         highlightCurrentLine()
+        let appDelegate = NSApplication.sharedApplication().delegate
+        print("app delegate: \(appDelegate)")
+        
     }
     
     func setDefaultStyleForCurrentLine() {

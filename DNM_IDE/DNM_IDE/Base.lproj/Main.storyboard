@@ -657,6 +657,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <binding destination="rEu-04-G8C" name="representedFilename" keyPath="self.window" id="MJ2-FX-z98"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="t8X-Ze-OFV" kind="relationship" relationship="window.shadowedContentViewController" id="Tlh-cj-7Lb"/>

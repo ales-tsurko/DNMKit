@@ -12,12 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var fileName: String?
-    
-    //var window: NSWindow!
+    var fileURL: NSURL?
+    var string: String = ""
     
     @IBAction func menuSelected(sender: NSMenuItem) {
         print("\(sender.title) was selected")
 
+        
         
         if let fileName = fileName {
             // don't open save panel
@@ -27,15 +28,58 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let savePanel = NSSavePanel()
             savePanel.beginWithCompletionHandler { (result: Int) -> () in
                 if result == NSFileHandlingPanelOKButton {
-                    print("ok: \(savePanel.nameFieldStringValue)")
-                    
+                    self.fileName = savePanel.nameFieldStringValue
+                    self.fileURL = savePanel.URL
                 }
                 else {
                     print("cancel")
                 }
             }
         }
+        saveFile()
+    }
+    
+    func saveFile() {
         
+        print("URL: \(fileURL)")
+        // get text file
+        if let vc = NSApplication
+            .sharedApplication()
+            .keyWindow?
+            .contentViewController as? ViewController
+        {
+            print("view controller? : \(vc)")
+            if let string = vc.textView.textStorage?.string {
+                print(string)
+                
+                if let dir : NSString = NSSearchPathForDirectoriesInDomains(
+                    NSSearchPathDirectory.DocumentDirectory,
+                    NSSearchPathDomainMask.AllDomainsMask,
+                    true
+                ).first
+                {
+                    let path = dir.stringByAppendingPathComponent(fileName!);
+                    
+                    //writing
+                    do {
+                        try string.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+                    }
+                    catch {
+                        print("couldn't save")
+                    }
+                    
+                    /*
+                    //reading
+                    do {
+                        let text2 = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+                    }
+                    catch {/* error handling here */}
+                    */
+                }
+                
+            }
+        }
+
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
