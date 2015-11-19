@@ -9,10 +9,21 @@
 import Cocoa
 import DNMModel
 
+struct Line {
+    let string: String
+    let startIndex: Int
+    let stopIndex: Int
+    var length: Int { return (stopIndex - startIndex) + 1 }
+    var range: NSRange { return NSMakeRange(startIndex, length) }
+}
+
 class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
     var textView: NSTextView!
     var fileTokenizer = Tokenizer()
+    var currentLine: Line?
+    
+    let defaultFont: NSFont = NSFont(name: "Menlo", size: 12)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +35,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.delegate = self
         textView.richText = true
         textView.textStorage!.delegate = self
-        textView.font = NSFont(name: "Menlo", size: 12)
+        textView.font = defaultFont
         textView.automaticDashSubstitutionEnabled = false
         view.addSubview(textView)
         
@@ -38,121 +49,37 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         }
     }
     
-    // func getLineAtIndex(index: Int) -> Int { // get index from selectionRange }
-    
-    // do on background thread, do tokenization of everything
-    // but main thread to just the line
-    // or find the correct insertion point
-    // and insert the next tokens where necessary
-
     func textDidChange(notification: NSNotification) {
-        
-        let range = NSMakeRange(0, textView.textStorage!.characters.count)
-        textView.setTextColor(NSColor.blackColor(), range: range)
-        
-        let i = textView.selectedRange().location
-        if let (lineCount, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(i) {
-            
-            if let lineStopIndex = lineStopIndexOfLineContainingIndex(i) {
-                
-                print("lineCount: \(lineCount), lineStartIndex: \(lineStartIndex); lineStopIndex: \(lineStopIndex)")
-                
-                let len = (lineStopIndex - lineStartIndex) + 1
-                let lineRange = NSMakeRange(lineStartIndex, len)
-                print(lineRange)
-                
-                self.textView.setTextColor(NSColor.redColor(), range: lineRange)
-            }
-        }
-        
-        
-        
-        
-        /*
-        // do this with NSScanner?
 
-        // make func: rangeOfCurrentlySelectedLine() -> (Int, Int)
-        // two internal funcs:  (lineCount,lineStartIndex), and lineStopIndex
-        
-        var lc = 0 // rename as lineCount in context
-        var lsi = 0 // rename as lineStartIndex in context
-        
-        guard let textStorage = textView.textStorage where textStorage.characters.count > 0
-            else { return }
-        
-        let newLineScanner = NSScanner(string: textStorage.string)
-        print("string: \(newLineScanner.string)")
-        newLineScanner.charactersToBeSkipped = nil
-        
-        // get count of current line, and start index of current line
-        
-        var str: NSString?
-        while newLineScanner.scanLocation < selectionRange.location {
-            if newLineScanner.scanString("\n", intoString: &str) {
-                lc++
-                lsi = newLineScanner.scanLocation - 1
-            } else {
-                newLineScanner.scanLocation++
-            }
-        }
-        
-        // get stop index of current line
-        // get stopIndexOfLine
-        newLineScanner.scanLocation == selectionRange.location
-        newLineScanner.scanUpToString("\n", intoString: &str)
-        let lstopi = newLineScanner.scanLocation - 1
-
-        var lineCount = 0
-        var lineStartIndex: Int = 0
-        for i in 0..<selectionRange.location {
-            if textView.textStorage?.string[i] == "\n" {
-                lineCount++
-                lineStartIndex = i
-            }
-        }
-        
-        var lineStopIndex: Int = -1
-        for i in selectionRange.location..<textView.textStorage!.characters.count {
-            if textView.textStorage?.string[i] == "\n" {
-                lineStopIndex = i - 1
-                break
-            }
-        }
-        if lineStopIndex == -1 {
-            lineStopIndex = textView.textStorage!.characters.count - 1
-        }
-        */
-        
-        /*
-        print("lineCount: \(lineCount); lc: \(lc); lineStartIndex: \(lineStartIndex);  lsi: \(lineStartIndex); lineStopIndex: \(lineStopIndex); lstopi: \(lstopi)")
-        
-
-        
+        setCurrentLineWithCurrentSelection()
+        setDefaultStyleForCurrentLine()
+        highlightCurrentLine()
+    }
+    
+    func setDefaultStyleForCurrentLine() {
+        guard let currentLine = currentLine else { return }
+        textView.setFont(defaultFont, range: currentLine.range)
+        // deal with fgcolor, bgcolor, bold, italic,
+    }
+    
+    func highlightCurrentLine() {
+        guard let currentLine = currentLine else { return }
         let tokenizer = Tokenizer()
-        
-        // sloppy
-        guard textView.textStorage != nil && textView.textStorage!.characters.count > 0 else { return
-        }
-        let string = textView.textStorage!.string[lineStartIndex...lineStopIndex]
-        
-        let tokenContainer = tokenizer.scanLine(string, startingAtIndex: lineStartIndex)
-        print(tokenContainer)
-        */
-        
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
-            
-            /*
-            if let string = self.textView.textStorage?.string {
-                let tokenizer = Tokenizer()
-                let tokenContainer = tokenizer.tokenizeString(string)
-        
-                dispatch_async(dispatch_get_main_queue()) {
-                    for token in tokenContainer.tokens {
-                        self.traverseToColorRangeWithToken(tokenContainer, andIdentifierString: "")
-                    }
-                }
-            }
-            */
+        let tokenContainer = tokenizer.tokenizeString(currentLine.string)
+        print("highlight line --------------------------------------------------------")
+        traverseToColorRangeWithToken(tokenContainer, andIdentifierString: "")
+    }
+    
+    func setCurrentLineWithCurrentSelection() {
+        let i = textView.selectedRange().location
+        if let (lineCount, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(i),
+            lineStopIndex = lineStopIndexOfLineContainingIndex(i),
+            textStorage = textView.textStorage where textStorage.string.characters.count > 0
+        {
+            let string = textView.textStorage!.string[lineStartIndex...lineStopIndex]
+            currentLine = Line(
+                string: string, startIndex: lineStartIndex, stopIndex: lineStopIndex
+            )
         }
     }
     
@@ -206,18 +133,27 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         andIdentifierString inheritedIdentifierString: String
     )
     {
-
+        guard let currentLine = currentLine else { return }
+        
         let identifierString: String
         switch inheritedIdentifierString {
         case ".root": identifierString = token.identifier
         default: identifierString = inheritedIdentifierString + ".\(token.identifier)"
         }
         
+        print("identifierString: \(identifierString)")
+        
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
         if let container = token as? TokenContainer {
-
-            let start = token.startIndex
-            let length = token.stopIndex - token.startIndex + 1
+            
+            
+            
+            let start = token.startIndex + currentLine.startIndex
+            let stop = token.stopIndex + currentLine.startIndex
+            let length = stop - start + 1
+            
+            print("token start: \(start); stop: \(stop)")
+            
             let range = NSMakeRange(start, length)
             
             if let foregroundColor = styleSheet[identifierString]["foregroundColor"].array {
@@ -241,10 +177,13 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             var isBold: Bool = false
             var foregroundColor: NSColor = NSColor.blackColor()
             
-            let start = token.startIndex
-            let length = token.stopIndex - token.startIndex + 1
+            let start = token.startIndex + currentLine.startIndex
+            let stop = token.stopIndex + currentLine.startIndex
+            let length = stop - start + 1
+            
+            print("token start: \(start); stop: \(stop)")
+            
             let range = NSMakeRange(start, length)
-
             
             if let foregroundColor = styleSheet[identifierString]["foregroundColor"].array {
                 
