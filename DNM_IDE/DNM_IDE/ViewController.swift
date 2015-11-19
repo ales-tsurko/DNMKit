@@ -19,25 +19,27 @@ struct Line {
 
 class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
-    var textView: NSTextView!
+    @IBOutlet var textView: NSTextView!
     var fileTokenizer = Tokenizer()
     var currentLine: Line?
     
     let defaultFont: NSFont = NSFont(name: "Menlo", size: 12)!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*
         let screenHeight = 800
         view.frame = CGRect(x: 0, y: 0, width: 400, height: screenHeight)
         textView = NSTextView(frame: view.frame)
+        */
         
         textView.delegate = self
         textView.richText = true
         textView.textStorage!.delegate = self
         textView.font = defaultFont
         textView.automaticDashSubstitutionEnabled = false
-        view.addSubview(textView)
+        //view.addSubview(textView)
         
         // make a static var : SyntaxHighlighter
         //let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
@@ -162,7 +164,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
                 let saturation = CGFloat(foregroundColor[1].floatValue)
                 let brightness = CGFloat(foregroundColor[2].floatValue)
                 
-                let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+                let color = NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+                //let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
                 textView.setTextColor(color, range: range)
             }
             

@@ -14,7 +14,7 @@
         "foregroundColor": [0.7,1,0.66]
     },
     "Pitch": {
-        "foregroundColor": [1,1,1],
+        "foregroundColor": [1,0.75,0.5],
         "backgroundColor": [0.5,1,1],
         "isBold": true
     },
@@ -23,7 +23,7 @@
         "backgroundColor": [0.5,1,1]
     },
     "Articulation": {
-        "foregroundColor": [1,1,1],
+        "foregroundColor": [1,0.75,0.5],
         "backgroundColor": [0.5,1,1],
         "isBold": true
     },
@@ -32,7 +32,7 @@
         "backgroundColor": [0.5,1,1]
     },
     "DynamicMarking": {
-        "foregroundColor": [0.75,1,1],
+        "foregroundColor": [1,0.75,1],
         "backgroundColor": [0.5,1,1],
         "isBold": true
     },
