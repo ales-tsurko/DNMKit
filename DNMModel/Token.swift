@@ -9,6 +9,7 @@
 
 import Foundation
 
+// TODO: get rid of indentation level as a property -- instead, this will be its own Token
 public protocol Token: CustomStringConvertible {
     
     // lets?

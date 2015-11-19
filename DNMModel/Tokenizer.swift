@@ -8,28 +8,71 @@
 
 import Foundation
 
-
-
-// At some point, find way to inject new commands and argument types in here dynamically
 public class Tokenizer {
     
-    private struct Line {
+    // currently public for the sake of testing, but should be private, ultimately
+    public struct Line: CustomStringConvertible {
+        
+        public var description: String { return getDescription() }
+        
         let string: String
         let startIndex: Int
         let stopIndex: Int
-        let indentationLevel: Int
+        var indentationLevel: Int { return getIndentationLevel() }
         
         init(string: String, startingAtIndex startIndex: Int) {
             self.string = string
             self.startIndex = startIndex
             self.stopIndex = startIndex + string.characters.count
-            self.indentationLevel = 0 // temp
+        }
+        
+        private func getIndentationLevel() -> Int {
+            
+            // create scanner to isolate just the initial whitespace characters
+            let scanner = NSScanner(string: string)
+            scanner.charactersToBeSkipped = nil
+            
+            // create non-whitespace character set
+            let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
+            characterSet.formUnionWithCharacterSet(
+                NSMutableCharacterSet.punctuationCharacterSet()
+            )
+            
+            // create a string of just the leading whitespace for this line
+            var ws: NSString?
+            scanner.scanUpToCharactersFromSet(characterSet, intoString: &ws)
+            
+            if ws != nil {
+                // scan through each character in the leading whitespace of this line
+                let whiteSpaceScanner = NSScanner(string: ws as! String)
+                whiteSpaceScanner.charactersToBeSkipped = nil
+                
+                // get the amount of spaces and tabs in the leading whitespace of this line
+                var spaceCount: Int = 0
+                var tabCount: Int = 0
+                while !whiteSpaceScanner.atEnd {
+                    if whiteSpaceScanner.scanString("\t", intoString: &ws) { tabCount++ }
+                    else if whiteSpaceScanner.scanString(" ", intoString: &ws) { spaceCount++ }
+                    else { whiteSpaceScanner.scanLocation++ }
+                }
+                let indentationLevel = Int(floor(Float(spaceCount) / 4)) + tabCount
+                return indentationLevel
+            }
+            return 0
+        }
+        
+        private func getDescription() -> String {
+            var description: String = "Line: "
+            description += "'\(string)': from \(startIndex) to \(stopIndex)"
+            description += " indent: \(indentationLevel)"
+            return description
         }
     }
     
-    private struct LineCollection: CustomStringConvertible {
+    // currently public for the sake of testing, though should be private ultimately
+    public struct LineCollection: CustomStringConvertible {
         
-        var description: String { return getDescription() }
+        public var description: String { return getDescription() }
 
         var lines: [Line]
         
@@ -45,14 +88,20 @@ public class Tokenizer {
         
         mutating func addLine(line: Line) {
             lines.append(line)
-            lines.sort { $0.startIndex < $1.startIndex }
+            lines.sortInPlace { $0.startIndex < $1.startIndex }
         }
         
         func lineStartingAtIndex(index: Int) -> Line? {
+            if lines.count == 0 { return nil }
+            for line in lines { if line.startIndex == index { return line } }
             return nil
         }
         
         func lineIncludingIndex(index: Int) -> Line? {
+            if lines.count == 0 { return nil }
+            for line in lines {
+                if line.startIndex <= index && line.stopIndex >= index { return line }
+            }
             return nil
         }
         
@@ -83,6 +132,7 @@ public class Tokenizer {
     public init() { }
     
     private func addLineWithString(string: String, startingAtIndex startIndex: Int) {
+        print("add line with string: \(string)")
         lines.addLineWithString(string, startingAtIndex: startIndex)
     }
     
@@ -95,8 +145,8 @@ public class Tokenizer {
         let mainScanner = NSScanner(string: string)
         mainScanner.charactersToBeSkipped = nil
         
-        
         while !mainScanner.atEnd {
+            print(mainScanner.scanLocation)
             if mainScanner.scanCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
                 // manage newLine
             }
@@ -107,41 +157,20 @@ public class Tokenizer {
                 )
                 {
                     let lineString = lineString as! String
-                    let indentationLevel = indentationLevelOfString(lineString)
                     addLineWithString(lineString, startingAtIndex: startIndex)
                 }
             }
         }
+        
+        // temp
         return nil
     }
     
-    private func indentationLevelOfString(string: String) -> Int {
-
-        // create scanner to isolate just the initial whitespace characters
-        let scanner = NSScanner(string: string)
-        scanner.charactersToBeSkipped = nil
-
-        // create non-whitespace character set
-        var characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
-        characterSet.formUnionWithCharacterSet(NSMutableCharacterSet.punctuationCharacterSet())
+    public func tokenizeLine(line: Line) -> TokenContainer? {
         
-        // create a string of just the leading whitespace for this line
-        var ws: NSString?
-        scanner.scanUpToCharactersFromSet(characterSet, intoString: &ws)
+        var lineString: NSString?
         
-        // scan through each character in the leading whitespace of this line
-        let whiteSpaceScanner = NSScanner(string: ws as! String)
-        whiteSpaceScanner.charactersToBeSkipped = nil
-
-        // get the amount of spaces and tabs in the leading whitespace of this line
-        var spaceCount: Int = 0
-        var tabCount: Int = 0
-        while !whiteSpaceScanner.atEnd {
-            if whiteSpaceScanner.scanString("\t", intoString: &ws) { tabCount++ }
-            else if whiteSpaceScanner.scanString(" ", intoString: &ws) { spaceCount++ }
-        }
-        let indentationLevel = Int(floor(Float(spaceCount) / 4)) + tabCount
-        return indentationLevel
+        return nil
     }
     
     public func tokenizeString(string: String) -> TokenContainer {
@@ -211,46 +240,26 @@ public class Tokenizer {
         // create tokenContainer, which will contain all of the tokens for this line
         let lineContainer = TokenContainer(identifier: "root", startIndex: 0)
         //let lineString: NSString?
-        scanIndentationWithScanner(lineScanner, andContainer: lineContainer)
+        //scanIndentationWithScanner(lineScanner, andContainer: lineContainer)
         
         return lineContainer
     }
-    
-    private func scanIndentationWithScanner(scanner: NSScanner,
-        andContainer container: TokenContainer
-    )
-    {
-        var lineString: NSString?
-        while scanner.scanUpToCharactersFromSet(alphanumericCharacterSet,
-            intoString: &lineString
-        )
-        {
-            
-        }
+   
+    public func scanLine(string: String, startingAtIndex startIndex: Int) -> TokenContainer {
+        
+        print("line: \(string)")
+        
+        let lineScanner = NSScanner(string: string)
+        lineScanner.charactersToBeSkipped = nil
+        
+        let rootContainer = TokenContainer(identifier: "root", openingValue: "", startIndex: 0)
+        
+        // how to set this gracefully
+        lineStartIndex = startIndex
+        
+        scanLineWithScanner(lineScanner, andContainer: rootContainer)
+        return rootContainer
     }
-    
-    private func indentationLevelWithLine(line: String) -> Int {
-        let whitespaceScanner = NSScanner(string: line)
-        whitespaceScanner.charactersToBeSkipped = nil
-        
-        var tabCount: Int = 0
-        var spaceCount: Int = 0
-        
-        var string: NSString?
-        while whitespaceScanner.scanString(" ", intoString: &string) {
-            spaceCount++
-        }
-        
-        while whitespaceScanner.scanString("\t", intoString: &string) {
-            tabCount++
-        }
-        
-        let indentationLevel = tabCount + (spaceCount / 4)
-        return indentationLevel
-    }
-    
-    
-
     
     private func scanLineWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
@@ -286,7 +295,7 @@ public class Tokenizer {
     
     private func scanExtensionStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-    )
+    ) -> Bool
     {
         var startIndex = scanner.scanLocation
         var string: NSString?
@@ -297,6 +306,9 @@ public class Tokenizer {
                 startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
+            return true
+        } else {
+            return false
         }
     }
     
@@ -880,6 +892,27 @@ public class Tokenizer {
         container.addToken(token)
     }
     */
+    
+    
+    private func indentationLevelWithLine(line: String) -> Int {
+        let whitespaceScanner = NSScanner(string: line)
+        whitespaceScanner.charactersToBeSkipped = nil
+        
+        var tabCount: Int = 0
+        var spaceCount: Int = 0
+        
+        var string: NSString?
+        while whitespaceScanner.scanString(" ", intoString: &string) {
+            spaceCount++
+        }
+        
+        while whitespaceScanner.scanString("\t", intoString: &string) {
+            tabCount++
+        }
+        
+        let indentationLevel = tabCount + (spaceCount / 4)
+        return indentationLevel
+    }
     
     private func scanLeafDurationWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer

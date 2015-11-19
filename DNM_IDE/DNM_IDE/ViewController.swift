@@ -12,6 +12,7 @@ import DNMModel
 class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
     var textView: NSTextView!
+    var fileTokenizer = Tokenizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +47,97 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
 
     func textDidChange(notification: NSNotification) {
         
+        let range = NSMakeRange(0, textView.textStorage!.characters.count)
+        textView.setTextColor(NSColor.blackColor(), range: range)
         
-        let selectionRange = textView.selectedRange()
-        print("selectionRange: \(selectionRange)")
+        let i = textView.selectedRange().location
+        if let (lineCount, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(i) {
+            
+            if let lineStopIndex = lineStopIndexOfLineContainingIndex(i) {
+                
+                print("lineCount: \(lineCount), lineStartIndex: \(lineStartIndex); lineStopIndex: \(lineStopIndex)")
+                
+                let len = (lineStopIndex - lineStartIndex) + 1
+                let lineRange = NSMakeRange(lineStartIndex, len)
+                print(lineRange)
+                
+                self.textView.setTextColor(NSColor.redColor(), range: lineRange)
+            }
+        }
         
+        
+        
+        
+        /*
+        // do this with NSScanner?
+
+        // make func: rangeOfCurrentlySelectedLine() -> (Int, Int)
+        // two internal funcs:  (lineCount,lineStartIndex), and lineStopIndex
+        
+        var lc = 0 // rename as lineCount in context
+        var lsi = 0 // rename as lineStartIndex in context
+        
+        guard let textStorage = textView.textStorage where textStorage.characters.count > 0
+            else { return }
+        
+        let newLineScanner = NSScanner(string: textStorage.string)
+        print("string: \(newLineScanner.string)")
+        newLineScanner.charactersToBeSkipped = nil
+        
+        // get count of current line, and start index of current line
+        
+        var str: NSString?
+        while newLineScanner.scanLocation < selectionRange.location {
+            if newLineScanner.scanString("\n", intoString: &str) {
+                lc++
+                lsi = newLineScanner.scanLocation - 1
+            } else {
+                newLineScanner.scanLocation++
+            }
+        }
+        
+        // get stop index of current line
+        // get stopIndexOfLine
+        newLineScanner.scanLocation == selectionRange.location
+        newLineScanner.scanUpToString("\n", intoString: &str)
+        let lstopi = newLineScanner.scanLocation - 1
+
         var lineCount = 0
+        var lineStartIndex: Int = 0
         for i in 0..<selectionRange.location {
             if textView.textStorage?.string[i] == "\n" {
                 lineCount++
+                lineStartIndex = i
             }
         }
-        print("lineCount: \(lineCount)")
         
-        // get index starting line for current line count!
+        var lineStopIndex: Int = -1
+        for i in selectionRange.location..<textView.textStorage!.characters.count {
+            if textView.textStorage?.string[i] == "\n" {
+                lineStopIndex = i - 1
+                break
+            }
+        }
+        if lineStopIndex == -1 {
+            lineStopIndex = textView.textStorage!.characters.count - 1
+        }
+        */
+        
+        /*
+        print("lineCount: \(lineCount); lc: \(lc); lineStartIndex: \(lineStartIndex);  lsi: \(lineStartIndex); lineStopIndex: \(lineStopIndex); lstopi: \(lstopi)")
+        
+
+        
+        let tokenizer = Tokenizer()
+        
+        // sloppy
+        guard textView.textStorage != nil && textView.textStorage!.characters.count > 0 else { return
+        }
+        let string = textView.textStorage!.string[lineStartIndex...lineStopIndex]
+        
+        let tokenContainer = tokenizer.scanLine(string, startingAtIndex: lineStartIndex)
+        print(tokenContainer)
+        */
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             
@@ -77,12 +156,57 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         }
     }
     
+    // really, we should build up lines
+    
+    func lineCountAndLineStartIndexOfLineContainingIndex(index: Int) -> (Int, Int)? {
+        
+        if let textStorage = textView.textStorage where textStorage.characters.count > 0 {
+
+            // create scanner that looks for newline strings
+            let scanner = NSScanner(string: textStorage.string)
+            scanner.charactersToBeSkipped = nil
+            
+            var lineCount = 0
+            var lineStartIndex = 0
+            
+            var str: NSString?
+            while scanner.scanLocation < index {
+                if scanner.scanString("\n", intoString: &str) {
+                    lineCount++
+                    lineStartIndex = scanner.scanLocation - 1
+                } else {
+                    scanner.scanLocation++
+                }
+            }
+            return (lineCount, lineStartIndex)
+        }
+        return nil
+    }
+    
+    func lineStopIndexOfLineContainingIndex(index: Int) -> Int? {
+        // get line start index
+        guard textView.textStorage != nil && textView.textStorage!.characters.count > 0 else {
+            return nil
+        }
+        
+        if let (_, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(index) {
+            let textStorage = textView.textStorage!
+            let scanner = NSScanner(string: textStorage.string)
+            scanner.charactersToBeSkipped = nil
+            scanner.scanLocation = index
+            
+            var str: NSString?
+            scanner.scanUpToString("\n", intoString: &str)
+            return scanner.scanLocation - 1
+        }
+        return nil
+    }
+    
     func traverseToColorRangeWithToken(token: Token,
         andIdentifierString inheritedIdentifierString: String
     )
     {
-        
-        
+
         let identifierString: String
         switch inheritedIdentifierString {
         case ".root": identifierString = token.identifier

@@ -14,11 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let string = "\t\t\t    1 2 3\n"
+        let string = "#\n| 4 8 VN vn Violin\n\t1 p 60 d fff [\n\t\t1 p 60"
         
         let tokenizer = Tokenizer()
         tokenizer._tokenizeString(string)
-        
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
