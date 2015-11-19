@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         if let fileName = fileName {
-            // don't open save panel
+            self.saveFile()
         }
         else {
             // open it
@@ -30,13 +30,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if result == NSFileHandlingPanelOKButton {
                     self.fileName = savePanel.nameFieldStringValue
                     self.fileURL = savePanel.URL
+
+                    print("ok: fileURL: \(self.fileURL)")
+                    self.saveFile()
                 }
                 else {
                     print("cancel")
                 }
             }
         }
-        saveFile()
+
     }
     
     func saveFile() {
@@ -52,6 +55,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let string = vc.textView.textStorage?.string {
                 print(string)
                 
+                if let fileURL = fileURL {
+                    let filePath = fileURL.absoluteString
+                    do {
+                        print("saving path: \(string) at path: \(filePath)")
+                        try string.writeToURL(fileURL, atomically: false, encoding: NSUTF8StringEncoding)
+                        //try string.writeToFile(filePath, atomically: false, encoding: NSUTF8StringEncoding)
+                    }
+                    catch let error {
+                        print("couldn't save: \(error)")
+                    }
+                }
+                
+                /*
                 if let dir : NSString = NSSearchPathForDirectoriesInDomains(
                     NSSearchPathDirectory.DocumentDirectory,
                     NSSearchPathDomainMask.AllDomainsMask,
@@ -59,8 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 ).first
                 {
                     let path = dir.stringByAppendingPathComponent(fileName!);
-                    
-                    //writing
+
                     do {
                         try string.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
                     }
@@ -76,10 +91,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     catch {/* error handling here */}
                     */
                 }
-                
+                */
             }
         }
-
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
