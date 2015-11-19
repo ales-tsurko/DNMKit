@@ -8,7 +8,31 @@
 
 import Foundation
 
+
 public class Tokenizer {
+
+    public enum ArgumentType: String {
+        case String
+        case Int
+        case Float
+        case Duration
+        case DynamicMarking
+        case Articulation
+        case Spanner
+    }
+    
+    public struct TopLevelCommand {
+        
+        var identifier: String
+        var openingValue: String
+        var allowableTypes: [ArgumentType]
+        
+        public init(identifier: String, openingValue: String, allowableTypes: [ArgumentType]) {
+            self.identifier = identifier
+            self.openingValue = openingValue
+            self.allowableTypes = allowableTypes
+        }
+    }
     
     // currently public for the sake of testing, but should be private, ultimately
     public struct Line: CustomStringConvertible {
@@ -112,6 +136,22 @@ public class Tokenizer {
         }
     }
     
+    public class TopLevelCommands {
+        class var sharedInstance: JSON {
+            struct Static {
+                static let instance: JSON = Static.getInstance()
+                static func getInstance() -> JSON {
+                    let bundle = NSBundle(forClass: TopLevelCommands.self)
+                    let filePath = bundle.pathForResource("TopLevelCommands", ofType: "json")!
+                    let jsonData = NSData.dataWithContentsOfMappedFile(filePath) as! NSData
+                    let jsonObj = JSON(data: jsonData)
+                    return jsonObj
+                }
+            }
+            return Static.instance
+        }
+    }
+    
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     private let newLineCharacterSet = NSCharacterSet.newlineCharacterSet()
     private let letterCharacterSet = NSCharacterSet.letterCharacterSet()
@@ -126,52 +166,91 @@ public class Tokenizer {
     
     private var currentIndentationLevel: Int { return indentationLevelByLine[lineCount] }
     
+    public var topLevelCommands: [TopLevelCommand] = []
+    
     //private var lines: [Line] = []
     private var lines: LineCollection = LineCollection()
     
-    public init() { }
-    
+    public init() {
+        _setDefaultTopLevelCommands()
+    }
+
     private func addLineWithString(string: String, startingAtIndex startIndex: Int) {
         print("add line with string: \(string)")
         lines.addLineWithString(string, startingAtIndex: startIndex)
     }
     
-    // this is temporary method name, which will later be called token
-    public func _tokenizeString(string: String) -> TokenContainer? {
-        
-        var lineString: NSString?
-        
-        // create a scanner for an entire string
-        let mainScanner = NSScanner(string: string)
-        mainScanner.charactersToBeSkipped = nil
-        
-        while !mainScanner.atEnd {
-            print(mainScanner.scanLocation)
-            if mainScanner.scanCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
-                // manage newLine
-            }
-            else {
-                let startIndex: Int = mainScanner.scanLocation
-                while mainScanner.scanUpToCharactersFromSet(newLineCharacterSet,
-                    intoString: &lineString
-                )
-                {
-                    let lineString = lineString as! String
-                    addLineWithString(lineString, startingAtIndex: startIndex)
+    private func _setDefaultTopLevelCommands() {
+        let tlcs = TopLevelCommands.sharedInstance
+        for tlc in tlcs.arrayValue {
+            
+            // identifier of top level command: for token creation / syntax highlighting
+            let identifier = tlc["identifier"].stringValue
+            
+            // the string value that opens the command (e.g. "p" or "d")
+            let openingValue = tlc["openingValue"].stringValue
+            
+            // allowable types for this command -- may have 0 values
+            var allowableTypes: [ArgumentType] = []
+            if let allowables = tlc["allowableTypes"].array {
+                for allowableTypeJSON in allowables {
+                    let allowableTypeString = allowableTypeJSON.stringValue
+                    if let argumentType = ArgumentType(rawValue: allowableTypeString) {
+                        allowableTypes.append(argumentType)
+                    }
                 }
             }
+            let topLevelCommand = TopLevelCommand(
+                identifier: identifier,
+                openingValue: openingValue,
+                allowableTypes: allowableTypes
+            )
+            topLevelCommands.append(topLevelCommand)
+            //print("id: \(identifier); openingVal: \(openingValue); types: \(allowableTypes)")
         }
-        
-        // temp
-        return nil
+        for tlc in topLevelCommands {
+            print(tlc)
+        }
     }
     
-    public func tokenizeLine(line: Line) -> TokenContainer? {
-        
-        var lineString: NSString?
-        
-        return nil
+    private func attemptToScanTopLevelCommand(command: TopLevelCommand,
+        withScanner scanner: NSScanner, andContainer container: TokenContainer
+    )
+    {
+        let startIndex: Int = scanner.scanLocation
+        var str: NSString?
+        if scanner.scanString(command.openingValue, intoString: &str) {
+            for type in command.allowableTypes {
+                attemptToScanArgumentType(type, withScanner: scanner, andContainer: container)
+            }
+        }
     }
+    
+    private func attemptToScanArgumentType(argumentType: ArgumentType,
+        withScanner scanner: NSScanner, andContainer container: TokenContainer
+    )
+    {
+        switch argumentType {
+        case .String: break
+        case .Int: break
+        case .Float: break
+        case .Duration: break
+        case .DynamicMarking: break
+        case .Articulation: break
+        case .Spanner: break
+        }
+    }
+    
+    private func _scanTopLevelCommands(string: String) {
+        
+        var lineStr: NSString?
+        let mainScanner = NSScanner(string: string)
+        mainScanner.charactersToBeSkipped = nil
+        let rootTokenContainer = TokenContainer(identifier: "root", startIndex: 0)
+        
+        
+    }
+    
     
     public func tokenizeString(string: String) -> TokenContainer {
         
@@ -384,7 +463,6 @@ public class Tokenizer {
             container.addToken(token)
         }
     }
-
     
     private func scanNonMetricalDurationNodeModeWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
@@ -1183,6 +1261,38 @@ public class Tokenizer {
             scanner.scanUpToCharactersFromSet(newLineCharacterSet, intoString: &string)
         }
     }
+    
+        /*
+    // this is temporary method name, which will later be called token
+    public func _tokenizeString(string: String) -> TokenContainer? {
+        
+        var lineString: NSString?
+        
+        // create a scanner for an entire string
+        let mainScanner = NSScanner(string: string)
+        mainScanner.charactersToBeSkipped = nil
+        
+        while !mainScanner.atEnd {
+            print(mainScanner.scanLocation)
+            if mainScanner.scanCharactersFromSet(newLineCharacterSet, intoString: &lineString) {
+                // manage newLine
+            }
+            else {
+                let startIndex: Int = mainScanner.scanLocation
+                while mainScanner.scanUpToCharactersFromSet(newLineCharacterSet,
+                    intoString: &lineString
+                )
+                {
+                    let lineString = lineString as! String
+                    addLineWithString(lineString, startingAtIndex: startIndex)
+                }
+            }
+        }
+        
+        // temp
+        return nil
+    }
+    */
   
     // perhaps get indentationLevelByLine first ?
     /*

@@ -128,6 +128,8 @@
 		07074E571BF96BCD00BFC6FA /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */; };
 		077343801BFBFDBD00F571A2 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */; };
 		077343811BFBFDBD00F571A2 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */; };
+		07F38C761BFE3E5F0093493F /* TopLevelCommands.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F38C751BFE3E5F0093493F /* TopLevelCommands.json */; };
+		07F38C771BFE3E5F0093493F /* TopLevelCommands.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F38C751BFE3E5F0093493F /* TopLevelCommands.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +284,7 @@
 		07074E4E1BF96BCD00BFC6FA /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
 		07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		07F38C751BFE3E5F0093493F /* TopLevelCommands.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TopLevelCommands.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,6 +586,7 @@
 				07074E4D1BF96BCD00BFC6FA /* Token.swift */,
 				07074E4E1BF96BCD00BFC6FA /* TokenContainer.swift */,
 				07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */,
+				07F38C751BFE3E5F0093493F /* TopLevelCommands.json */,
 			);
 			name = ShorthandParser;
 			sourceTree = "<group>";
@@ -825,6 +829,7 @@
 			files = (
 				07074E071BF9685500BFC6FA /* PitchSpellingsByPitchClass.json in Resources */,
 				07074E0D1BF9685500BFC6FA /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */,
+				07F38C761BFE3E5F0093493F /* TopLevelCommands.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +846,7 @@
 			files = (
 				07074E081BF9685500BFC6FA /* PitchSpellingsByPitchClass.json in Resources */,
 				07074E0E1BF9685500BFC6FA /* PreferredClefsAndTranspositionByInstrumentType.json in Resources */,
+				07F38C771BFE3E5F0093493F /* TopLevelCommands.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
