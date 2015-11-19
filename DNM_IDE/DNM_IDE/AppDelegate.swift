@@ -15,10 +15,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var fileURL: NSURL?
     var string: String = ""
     
-    @IBAction func menuSelected(sender: NSMenuItem) {
-        print("\(sender.title) was selected")
-
-        
+    @IBAction func openMenuItemSelected(sender: NSMenuItem) {
+        print("open")
+        let openPanel = NSOpenPanel()
+        openPanel.beginWithCompletionHandler { (result: Int) -> () in
+            
+        }
+    }
+    
+    @IBAction func saveMenuItemSelected(sender: NSMenuItem) {
         
         if let fileName = fileName {
             self.saveFile()
@@ -39,95 +44,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
-
     }
     
     func saveFile() {
-        
-        print("URL: \(fileURL)")
-        // get text file
+
         if let vc = NSApplication
             .sharedApplication()
             .keyWindow?
             .contentViewController as? ViewController
         {
-            print("view controller? : \(vc)")
-            if let string = vc.textView.textStorage?.string {
-                print(string)
-                
-                if let fileURL = fileURL {
-                    let filePath = fileURL.absoluteString
-                    do {
-                        print("saving path: \(string) at path: \(filePath)")
-                        try string.writeToURL(fileURL, atomically: false, encoding: NSUTF8StringEncoding)
-                        //try string.writeToFile(filePath, atomically: false, encoding: NSUTF8StringEncoding)
-                    }
-                    catch let error {
-                        print("couldn't save: \(error)")
-                    }
+            if let string = vc.textView.textStorage?.string, fileURL = fileURL {
+                do {
+                    try string.writeToURL(fileURL,
+                        atomically: false,
+                        encoding: NSUTF8StringEncoding
+                    )
                 }
-                
-                /*
-                if let dir : NSString = NSSearchPathForDirectoriesInDomains(
-                    NSSearchPathDirectory.DocumentDirectory,
-                    NSSearchPathDomainMask.AllDomainsMask,
-                    true
-                ).first
-                {
-                    let path = dir.stringByAppendingPathComponent(fileName!);
-
-                    do {
-                        try string.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
-                    }
-                    catch {
-                        print("couldn't save")
-                    }
-                    
-                    /*
-                    //reading
-                    do {
-                        let text2 = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-                    }
-                    catch {/* error handling here */}
-                    */
+                catch let error {
+                    print("couldn't save: \(error)")
                 }
-                */
             }
         }
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        /*
-        let height = NSScreen.mainScreen()?.frame.height ?? 800
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 400, height: height),
-            styleMask: NSTitledWindowMask
-                | NSClosableWindowMask
-                | NSMiniaturizableWindowMask
-                | NSResizableWindowMask,
-            backing: NSBackingStoreType.Buffered,
-            `defer`: true
-        )
         
-        let textView = NSTextView(frame: window.frame)
-        textView.string = "hello"
-        window.contentView!.addSubview(textView)
-        
-        window.contentView!.autoresizesSubviews = true
-        textView.autoresizingMask = [
-            NSAutoresizingMaskOptions.ViewHeightSizable,
-            NSAutoresizingMaskOptions.ViewWidthSizable
-        ]
-        
-        let controller = NSWindowController(window: window)
-        window.makeKeyAndOrderFront(window)
-        */
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
 
+    func application(sender: NSApplication, openFile filename: String) -> Bool {
+        print("application open file")
+        return false
+    }
     
 }
 

@@ -7,11 +7,25 @@
         "foregroundColor": [0,0,0.5],
         "isBold": true
     },
+    "PerformerDeclaraction": {
+        "foregroundColor": [0,0,0.5]
+    },
+    "PerformerDeclaration.PerformerID": {
+        "foregroundColor": [0.5,1,0.5],
+        "isBold": true
+    },
+    "PerformerDeclaraction.InstrumentID": {
+        "foregroundColor": [0,0,0.5]
+    },
+    "PerformerDeclaration.InstrumentType": {
+        "foregroundColor": [0,0.5,0.5]
+    },
     "PerformerID": {
-        "foregroundColor": [0.7,1,0.66]
+        "foregroundColor": [0,0,0.5],
+        "isBold": true
     },
     "InstrumentID": {
-        "foregroundColor": [0.7,1,0.66]
+        "foregroundColor": [0,0,0.5]
     },
     "Pitch": {
         "foregroundColor": [1,0.75,0.5],

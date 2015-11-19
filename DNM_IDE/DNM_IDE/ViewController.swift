@@ -27,22 +27,15 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        let screenHeight = 800
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: screenHeight)
-        textView = NSTextView(frame: view.frame)
-        */
-        
+        setUpTextView()
+    }
+    
+    private func setUpTextView() {
         textView.delegate = self
         textView.richText = true
         textView.textStorage!.delegate = self
         textView.font = defaultFont
         textView.automaticDashSubstitutionEnabled = false
-        //view.addSubview(textView)
-        
-        // make a static var : SyntaxHighlighter
-        //let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
     }
 
     override var representedObject: AnyObject? {
@@ -52,13 +45,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     }
     
     func textDidChange(notification: NSNotification) {
-
         setCurrentLineWithCurrentSelection()
         setDefaultStyleForCurrentLine()
         highlightCurrentLine()
-        let appDelegate = NSApplication.sharedApplication().delegate
-        print("app delegate: \(appDelegate)")
-        
     }
     
     func setDefaultStyleForCurrentLine() {
@@ -71,7 +60,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         guard let currentLine = currentLine else { return }
         let tokenizer = Tokenizer()
         let tokenContainer = tokenizer.tokenizeString(currentLine.string)
-        print("highlight line --------------------------------------------------------")
         traverseToColorRangeWithToken(tokenContainer, andIdentifierString: "")
     }
     
@@ -81,7 +69,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             lineStopIndex = lineStopIndexOfLineContainingIndex(i),
             textStorage = textView.textStorage where textStorage.string.characters.count > 0
         {
-            let string = textView.textStorage!.string[lineStartIndex...lineStopIndex]
+            // prevent crash
+            if lineStopIndex > textStorage.string.characters.count - 1 { return }
+            let string = textStorage.string[lineStartIndex...lineStopIndex]
             currentLine = Line(
                 string: string, startIndex: lineStartIndex, stopIndex: lineStopIndex
             )
@@ -146,18 +136,14 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         default: identifierString = inheritedIdentifierString + ".\(token.identifier)"
         }
         
-        print("identifierString: \(identifierString)")
-        
+        print(identifierString)
+
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
         if let container = token as? TokenContainer {
-            
-            
             
             let start = token.startIndex + currentLine.startIndex
             let stop = token.stopIndex + currentLine.startIndex
             let length = stop - start + 1
-            
-            print("token start: \(start); stop: \(stop)")
             
             let range = NSMakeRange(start, length)
             
@@ -166,9 +152,12 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
                 let hue = CGFloat(foregroundColor[0].floatValue)
                 let saturation = CGFloat(foregroundColor[1].floatValue)
                 let brightness = CGFloat(foregroundColor[2].floatValue)
-                
-                let color = NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: 1)
-                //let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+                let color = NSColor(
+                    calibratedHue: hue,
+                    saturation: saturation,
+                    brightness: brightness,
+                    alpha: 1
+                )
                 textView.setTextColor(color, range: range)
             }
             
@@ -177,8 +166,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             }
         }
         else {
-
-
             // set style defaults up here
             var isBold: Bool = false
             var foregroundColor: NSColor = NSColor.blackColor()
@@ -186,8 +173,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             let start = token.startIndex + currentLine.startIndex
             let stop = token.stopIndex + currentLine.startIndex
             let length = stop - start + 1
-            
-            print("token start: \(start); stop: \(stop)")
+
             
             let range = NSMakeRange(start, length)
             
@@ -199,12 +185,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
                 
                 let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
 
-                
                 textView.setTextColor(color, range: range)
-
-                
-                //print("foregroundColor: \(foregroundColor)")
             }
+            
             
             let fontManager = NSFontManager.sharedFontManager()
             if let isBold = styleSheet[identifierString]["isBold"].bool where isBold {
@@ -216,7 +199,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             else {
                 
                 //print("NOT BOLD")
-                let font = fontManager.fontWithFamily("Menlo", traits: NSFontTraitMask.UnboldFontMask, weight: 0, size: 12)!
+                let font = fontManager.fontWithFamily("Menlo",
+                    traits: NSFontTraitMask.UnboldFontMask, weight: 0, size: 12
+                )!
                 textView.setFont(font, range: range)
             }
             

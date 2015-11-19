@@ -210,7 +210,7 @@ public class Tokenizer {
                     lineScanner.charactersToBeSkipped = NSMutableCharacterSet.whitespaceCharacterSet()
                     lineScanner.caseSensitive = true
                     
-                    scanCommentsWithScanner(lineScanner)
+                    scanCommentsWithScanner(lineScanner, andContainer: rootTokenContainer)
                     if isInBlockComment {
                         lineStartIndex += lineScanner.string.characters.count
                         continue
@@ -228,21 +228,6 @@ public class Tokenizer {
             }
         }
         return rootTokenContainer
-    }
-    
-    public func tokenizeLine(string: String, startingAtIndex lineStartIndex: Int)
-        -> TokenContainer
-    {
-        // create the scanner for this line
-        let lineScanner = NSScanner(string: string)
-        lineScanner.charactersToBeSkipped = nil
-
-        // create tokenContainer, which will contain all of the tokens for this line
-        let lineContainer = TokenContainer(identifier: "root", startIndex: 0)
-        //let lineString: NSString?
-        //scanIndentationWithScanner(lineScanner, andContainer: lineContainer)
-        
-        return lineContainer
     }
    
     public func scanLine(string: String, startingAtIndex startIndex: Int) -> TokenContainer {
@@ -272,6 +257,11 @@ public class Tokenizer {
         scanDurationWithScanner(scanner, andContainer: container)
         scanLeafDurationWithScanner(scanner, andContainer: container)
 
+        print("about to scan top level commands")
+        scanTopLevelCommandsWithScanner(scanner, andContainer: container)
+        
+        /*
+        // all top level commands
         scanPitchCommandWithScanner(scanner, andContainer: container)
         scanArticulationCommandWithScanner(scanner, andContainer: container)
         scanDynamicCommandWithScanner(scanner, andContainer: container)
@@ -280,22 +270,141 @@ public class Tokenizer {
         
         scanExtensionStartWithScanner(scanner, andContainer: container)
         scanExtensionStopWithScanner(scanner, andContainer: container)
-
+        */
+        
+        print("after scanLocation: \(scanner.scanLocation)")
         scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
     }
     
-    /*
     private func scanTopLevelCommandsWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
     {
+        print("scanTopLevelCommands")
+        let topLevelCommands = [
+            
+            // duration node root timing states
+            "!n", // non-numerical state for current root duration node
+            "!m", // non-metrical state for current root duration node
+            "->", // extension start
+            "<-", // extension stop
+            "*", // rest
+            "p", // pitch
+            "a", // articulation
+            "d", // dynamic
+            "(", // slur start
+            ")", // slur stop
+            "art_harm", // artificial harmonic
+            "nat_harm", // natural harmonic
+            "pizz" // pizzicato
+        ]
         
+        var unwindToIndex: Int = scanner.scanLocation
+        while !scanner.atEnd {
+            print("scanner.scanLocation: \(scanner.scanLocation)")
+
+            var match = false
+            
+            // check all top level commands for match
+            for command in topLevelCommands {
+                
+                print("check for match: \(command)")
+                
+                var str: NSString?
+                
+                
+                let startIndex = scanner.scanLocation
+                
+                
+                print("command loop: location \(scanner.scanLocation)")
+                
+                
+                if scanner.scanString(command, intoString: &str) {
+                    
+                    match = true
+                    print("scanned command!: \(command): startIndex: \(startIndex); scanLocation: \(scanner.scanLocation)")
+                    
+                    // unwind scanner to just before consuming command
+                    scanner.scanLocation = startIndex
+                    
+                    // do the appropriate thing for each command
+                    scanTopLevelCommand(command, withScanner: scanner, andContainer: container)
+                    unwindToIndex = scanner.scanLocation
+                }
+                
+                else {
+                    print("no top level commands here!")
+                    if scanner.atEnd { break }
+                }
+            }
+            
+            print("match? \(match)")
+            if !match {
+                scanner.scanLocation++
+            }
+        }
+        
+        // in makes sure that we don't consume the whole string
+        scanner.scanLocation = unwindToIndex
     }
-    */
+    
+    private func scanTopLevelCommand(command: String,
+        withScanner scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        switch command {
+        //case "*": break // scanRest(....)
+        case "p": scanPitchCommandWithScanner(scanner, andContainer: container)
+        case "a": scanArticulationCommandWithScanner(scanner, andContainer: container)
+        case "d": scanDynamicCommandWithScanner(scanner, andContainer: container)
+        case "(": scanSlurStartWithScanner(scanner, andContainer: container)
+        case ")": scanSlurStopWithScanner(scanner, andContainer: container)
+        case "->": scanExtensionStartWithScanner(scanner, andContainer: container)
+        case "<-": scanExtensionStopWithScanner(scanner, andContainer: container)
+        case "!n": scanNonNumericalDurationNodeModeWithScanner(scanner, andContainer: container)
+        case "!m": scanNonMetricalDurationNodeModeWithScanner(scanner, andContainer: container)
+        default: scanner.scanLocation++
+        }
+    }
+    
+    
+    private func scanNonNumericalDurationNodeModeWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        var startIndex = scanner.scanLocation
+        var str: NSString?
+        if scanner.scanString("!n", intoString: &str) {
+            let token = TokenString(
+                identifier: "NonNumericalDurationNodeMode",
+                value: "!n",
+                startIndex: startIndex + lineStartIndex
+            )
+            container.addToken(token)
+        }
+    }
+
+    
+    private func scanNonMetricalDurationNodeModeWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
+        var startIndex = scanner.scanLocation
+        var str: NSString?
+        if scanner.scanString("!m", intoString: &str) {
+            let token = TokenString(
+                identifier: "NonMetricalDurationNodeMode",
+                value: "!m",
+                startIndex: startIndex + lineStartIndex
+            )
+            container.addToken(token)
+        }
+    }
     
     private func scanExtensionStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-    ) -> Bool
+    )
     {
         var startIndex = scanner.scanLocation
         var string: NSString?
@@ -306,9 +415,6 @@ public class Tokenizer {
                 startIndex: startIndex + lineStartIndex
             )
             container.addToken(token)
-            return true
-        } else {
-            return false
         }
     }
     
@@ -388,6 +494,13 @@ public class Tokenizer {
         var string: NSString?
         if scanner.scanString("P:", intoString: &string) {
         
+            let performerDeclarationTokenContainer = TokenContainer(
+                identifier: "PerformerDeclaration",
+                openingValue: "P:",
+                startIndex: startIndex + lineStartIndex
+            )
+            
+            
             var performerID: String
 
             // DO ALL OF THE ORDERED DICT STUFF IN PARSER!
@@ -403,11 +516,13 @@ public class Tokenizer {
                 // This is the PerformerID
                 performerID = string as! String
                 
-                let performerDeclarationTokenContainer = TokenContainer(
-                    identifier: "PerformerDeclaration",
-                    openingValue: performerID,
+                let performerIDToken = TokenString(
+                    identifier: "PerformerID",
+                    value: performerID,
                     startIndex: startIndex + lineStartIndex
                 )
+                
+                performerDeclarationTokenContainer.addToken(performerIDToken)
                 
                 instrumentIDsAndInstrumentTypeByPerformerID[performerID] = (
                     OrderedDictionary<String,String>()
@@ -435,7 +550,7 @@ public class Tokenizer {
                             let instrumentIDToken = TokenString(
                                 identifier: "InstrumentID",
                                 value: instrumentID,
-                                startIndex: startIndex + lineStartIndex
+                                startIndex: startIndex + lineStartIndex + 1
                             )
                             
                             // Commit InstrumentID Token
@@ -443,6 +558,7 @@ public class Tokenizer {
                             
                             // Switch enum to .Type
                             instrumentIDOrType.switchState()
+                            
                         case .Type:
                             instrumentType = string as! String
                             
@@ -450,7 +566,7 @@ public class Tokenizer {
                             let instrumentTypeToken = TokenString(
                                 identifier: "InstrumentType",
                                 value: instrumentType,
-                                startIndex: startIndex + lineStartIndex
+                                startIndex: startIndex + lineStartIndex + 1
                             )
                             
                             // Commit InstrumentType Token
@@ -596,7 +712,7 @@ public class Tokenizer {
                 let token = TokenString(
                     identifier: "Value",
                     value: string as! String,
-                    startIndex: startIndex + lineStartIndex + 1
+                    startIndex: startIndex + lineStartIndex + 1 // why is this?
                 )
                 dynamicMarkingContainer.addToken(token)
                 dynamicMarking = string as? String
@@ -1024,25 +1140,44 @@ public class Tokenizer {
         }
     }
     
-    private func scanCommentsWithScanner(scanner: NSScanner) {
+    private func scanCommentsWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
         // do actually create tokens for comments!!!
         // cuz we still have to do highlighting for those
-        scanLineCommentWithScanner(scanner)
-        scanBlockCommentStartWithScanner(scanner)
-        scanBlockCommentStopWithScanner(scanner)
+        scanLineCommentWithScanner(scanner, andContainer: container)
+        scanBlockCommentStartWithScanner(scanner, andContainer: container)
+        scanBlockCommentStopWithScanner(scanner, andContainer: container)
     }
     
-    private func scanBlockCommentStartWithScanner(scanner: NSScanner) {
+    private func scanBlockCommentStartWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
         var string: NSString?
-        if scanner.scanString("/*", intoString: &string) { isInBlockComment = true }
+        let startIndex: Int = scanner.scanLocation
+        if scanner.scanString("/*", intoString: &string) {
+            
+            let token = TokenBlockCommentStart(startIndex: startIndex)
+            container.addToken(token)
+            
+            isInBlockComment = true
+        }
     }
     
-    private func scanBlockCommentStopWithScanner(scanner: NSScanner) {
+    private func scanBlockCommentStopWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
         var string: NSString?
         if scanner.scanString("*/", intoString: &string) { isInBlockComment = false }
     }
     
-    private func scanLineCommentWithScanner(scanner: NSScanner) {
+    private func scanLineCommentWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    )
+    {
         var string: NSString?
         if scanner.scanString("//", intoString: &string) {
             scanner.scanUpToCharactersFromSet(newLineCharacterSet, intoString: &string)

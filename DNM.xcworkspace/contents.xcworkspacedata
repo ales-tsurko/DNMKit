@@ -10,4 +10,7 @@
    <FileRef
       location = "group:DNM_IDE/DNM_IDE.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Scores">
+   </FileRef>
 </Workspace>

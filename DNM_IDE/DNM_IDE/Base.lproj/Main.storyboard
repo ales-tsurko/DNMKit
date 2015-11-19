@@ -65,7 +65,7 @@
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
+                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="wDE-mZ-vNG"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
@@ -89,7 +89,7 @@
                                         </menuItem>
                                         <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
-                                                <action selector="menuSelected:" target="Voe-Tx-rLC" id="ucS-m1-exO"/>
+                                                <action selector="saveMenuItemSelected:" target="Voe-Tx-rLC" id="vNv-lq-D8k"/>
                                                 <binding destination="80D-Oo-dJU" name="value" keyPath="values.savePanel" id="1xA-if-dXE"/>
                                             </connections>
                                         </menuItem>
