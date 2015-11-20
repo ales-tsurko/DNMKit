@@ -29,15 +29,13 @@ class ViewController: UIViewController {
             let parser = Parser()
             let scoreModel = parser.parseTokenContainer(tokenContainer)
             
+            print("scoreModel: \(scoreModel)")
+            
             environment = Environment(scoreModel: scoreModel)
             environment.build()
             
             view.addSubview(environment)
         }
-        
-
-        
-        
         
         // Do any additional setup after loading the view, typically from a nib.
     }

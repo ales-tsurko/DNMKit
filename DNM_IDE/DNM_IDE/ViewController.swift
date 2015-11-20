@@ -137,7 +137,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         default: identifierString = inheritedIdentifierString + ".\(token.identifier)"
         }
         
-        print(identifierString)
+        print("\(identifierString): \(token)")
 
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
         if let container = token as? TokenContainer {

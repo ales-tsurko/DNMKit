@@ -36,7 +36,7 @@
         "foregroundColor": [0,0,0.5]
     },
     "Pitch": {
-        "foregroundColor": [1,0.75,0.5],
+        "foregroundColor": [0.15,1,1],
         "backgroundColor": [0.5,1,1],
         "isBold": true
     },
@@ -54,7 +54,7 @@
         "backgroundColor": [0.5,1,1]
     },
     "DynamicMarking": {
-        "foregroundColor": [1,0.75,1],
+        "foregroundColor": [0.15,1,1],
         "backgroundColor": [0.5,1,1],
         "isBold": true
     },
@@ -85,5 +85,13 @@
     },
     "SlurStop": {
         "foregroundColor": [0.3, 1, 0.66]
+    },
+    "ExtensionStart": {
+        "foregroundColor": [0,0,0.5],
+        "isBold": true
+    },
+    "ExtensionStop": {
+        "foregroundColor": [0,0,0.5],
+        "isBold": true
     }
 }

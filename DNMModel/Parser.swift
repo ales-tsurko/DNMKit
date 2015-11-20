@@ -143,7 +143,19 @@ public class Parser {
     }
     
     private func managePerformerDeclarationTokenContainer(container: TokenContainer) throws {
-        let performerID = container.openingValue
+        
+        print("manage perf decl: token \(container)")
+        
+        var performerID: String {
+            for token in container.tokens {
+                switch token.identifier {
+                case "PerformerID":
+                    return (token as! TokenString).value
+                default: break
+                }
+            }
+            return ""
+        }
         
         // Create the ordered dictionary that will contain the order dictionary for this PID
         var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<

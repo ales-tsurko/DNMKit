@@ -119,7 +119,7 @@ public struct TokenString: Token {
         self.identifier = identifier
         self.value = value
         self.startIndex = startIndex
-        self.stopIndex = startIndex + value.characters.count
+        self.stopIndex = startIndex + value.characters.count - 1 // check
         self.indentationLevel = indentationLevel
     }
     
