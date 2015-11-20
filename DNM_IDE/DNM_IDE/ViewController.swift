@@ -37,6 +37,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.font = defaultFont
         textView.automaticDashSubstitutionEnabled = false
         textView.automaticSpellingCorrectionEnabled = false
+        textView.backgroundColor = NSColor(hue: 0, saturation: 0, brightness: 0.03, alpha: 1)
+        textView.insertionPointColor = NSColor.whiteColor()
     }
 
     override var representedObject: AnyObject? {

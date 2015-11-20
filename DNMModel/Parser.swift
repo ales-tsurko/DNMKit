@@ -83,7 +83,6 @@ public class Parser {
                 case "SlurStart": manageSlurStartToken()
                 case "SlurStop": manageSlurStopToken()
                 
-
                 case "Measure": manageMeasureToken()
                     
                 case "ExtensionStart": manageExtensionStartToken()
