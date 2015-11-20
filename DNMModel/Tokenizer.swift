@@ -516,6 +516,8 @@ public class Tokenizer {
             
             let letterCharacterSet = NSMutableCharacterSet.letterCharacterSet()
             
+            let startIndex = scanner.scanLocation + lineStartIndex + 1
+            
             // Match PerformerID declaration
             if scanner.scanCharactersFromSet(letterCharacterSet, intoString: &string) {
                 
@@ -525,7 +527,7 @@ public class Tokenizer {
                 let performerIDToken = TokenString(
                     identifier: "PerformerID",
                     value: performerID,
-                    startIndex: startIndex + lineStartIndex
+                    startIndex: startIndex
                 )
                 
                 performerDeclarationTokenContainer.addToken(performerIDToken)
@@ -544,7 +546,7 @@ public class Tokenizer {
                 
                 while true {
                     
-                    let startIndex = scanner.scanLocation
+                    let startIndex = scanner.scanLocation + lineStartIndex + 1
                     
                     if scanner.scanCharactersFromSet(instrumentTypeCharacterSet,
                         intoString: &string
@@ -559,7 +561,7 @@ public class Tokenizer {
                             let instrumentIDToken = TokenString(
                                 identifier: "InstrumentID",
                                 value: instrumentID,
-                                startIndex: startIndex + lineStartIndex + 1
+                                startIndex: startIndex// + lineStartIndex
                             )
                             
                             // Commit InstrumentID Token
@@ -575,7 +577,7 @@ public class Tokenizer {
                             let instrumentTypeToken = TokenString(
                                 identifier: "InstrumentType",
                                 value: instrumentType,
-                                startIndex: startIndex + lineStartIndex + 1
+                                startIndex: startIndex// + lineStartIndex
                             )
                             
                             // Commit InstrumentType Token

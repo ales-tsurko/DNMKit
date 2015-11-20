@@ -19,17 +19,17 @@
         "foregroundColor": [0,0,0.5]
     },
     "PerformerDeclaration.PerformerID": {
-        "foregroundColor": [0.076,0.487,0.9],
+        "foregroundColor": [0.7425,0.3,0.9],
         "isBold": true
     },
-    "PerformerDeclaraction.InstrumentID": {
+    "PerformerDeclaration.InstrumentID": {
         "foregroundColor": [0.076,0.487,0.9]
     },
     "PerformerDeclaration.InstrumentType": {
-        "foregroundColor": [0.076,0.487,0.9]
+        "foregroundColor": [0.076,0.2,1]
     },
     "PerformerID": {
-        "foregroundColor": [0.076,0.487,0.9],
+        "foregroundColor": [0.7425,0.3,0.9],
         "isBold": true
     },
     "InstrumentID": {
@@ -67,7 +67,7 @@
         "foregroundColor": [0, 0, 0.9]
     },
     "RootNodeDuration": {
-        "foregroundColor": [0, 0, 0.9],
+        "foregroundColor": [0, 0, 0.9]
     },
     "SlurStart": {
         "foregroundColor": [0.3, 1, 0.66]
