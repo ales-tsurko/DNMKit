@@ -228,7 +228,7 @@ public class Tokenizer {
     
     private func _scanTopLevelCommandsWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         print("_scanTopLevelCommands")
         
@@ -265,7 +265,7 @@ public class Tokenizer {
     ) -> Bool
     {
         print("attempt to scan top level command: \(command); scanLoc: \(scanner.scanLocation)")
-        let startIndex: Int = lineStartIndex + scanner.scanLocation
+        let startIndex: Int = lineStartIndex + scanner.scanLocation + 1
 
         var str: NSString?
         if scanner.scanString(command.openingValue, intoString: &str) {
@@ -522,6 +522,8 @@ public class Tokenizer {
         let rootContainer = TokenContainer(identifier: "root", openingValue: "", startIndex: 0)
         scanLineWithScanner(lineScanner, andContainer: rootContainer)
         
+        print(rootContainer)
+        
         // return TokenContainer
         return rootContainer
     }
@@ -558,6 +560,8 @@ public class Tokenizer {
         */
         
         print("after scanLocation: \(scanner.scanLocation)")
+        
+        print("tokenContainer: \(container)")
 
     }
     
@@ -583,7 +587,7 @@ public class Tokenizer {
     }
     */
     
-    
+    /*
     private func scanNonNumericalDurationNodeModeWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
     )
@@ -615,6 +619,7 @@ public class Tokenizer {
             container.addToken(token)
         }
     }
+    */
     
     /*
     private func scanExtensionStartWithScanner(scanner: NSScanner,
