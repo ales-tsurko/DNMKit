@@ -55,7 +55,8 @@ public struct DNMScoreModel: CustomStringConvertible {
     public init() { }
     
     private func getDescription() -> String {
-        var description: String = "DNMScoreModel: \(title)"
+        var description: String = ""
+        if title != "" { description += ": \(title)" }
         description += "; amountMeasures: \(measures.count)"
         description += "; amountDurationNodes: \(durationNodes.count)"
         description += "; IIDsAndInstrumentTypesByPID: \(instrumentIDsAndInstrumentTypesByPerformerID)"

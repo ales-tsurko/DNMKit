@@ -81,20 +81,21 @@ public class Parser {
                 case "Articulation": manageArticulationTokenContainer(container)
                 case "SlurStart": manageSlurStartToken()
                 case "SlurStop": manageSlurStopToken()
+                case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
+                case "Measure": manageMeasureToken()
+                case "ExtensionStart": manageExtensionStartToken()
+                case "ExtensionStop": manageExtensionStopToken()
                 default: break
                 }
             }
             else {
                 switch token.identifier {
-                case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
-                case "Measure": manageMeasureToken()
+
                 case "RootNodeDuration": manageRootDurationToken(token)
                 case "InternalNodeDuration": manageInternalDurationToken(token)
                 case "LeafNodeDuration": manageLeafNodeDurationToken(token)
                 case "PerformerID": managePerformerIDWithToken(token)
                 case "InstrumentID": manageInstrumentIDWithToken(token)
-                case "ExtensionStart": manageExtensionStartToken()
-                case "ExtensionStop": manageExtensionStopToken()
                 default: break
                 }
             }
@@ -192,9 +193,15 @@ public class Parser {
     }
     
     private func manageMeasureToken() {
+        
+        print("manage measure token")
+        
         setDurationOfLastMeasure()
         let measure = Measure(offsetDuration: currentMeasureDurationOffset)
         measures.append(measure)
+        accumDurationInMeasure = DurationZero
+        
+        print("measures: \(measures)")
         
         // set default duration node stacking behavior
         durationNodeStackMode = .Measure

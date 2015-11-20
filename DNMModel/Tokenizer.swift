@@ -432,15 +432,12 @@ public class Tokenizer {
     {
 
         scanHeaderWithScanner(scanner, andContainer: container)
-
-        scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
         
-        scanDurationWithScanner(scanner, andContainer: container)
         scanLeafDurationWithScanner(scanner, andContainer: container)
         
         _scanTopLevelCommandsWithScanner(scanner, andContainer: container)
-        
-        //scanTopLevelCommandsWithScanner(scanner, andContainer: container)
+        scanDurationWithScanner(scanner, andContainer: container)
+        scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
     }
     
 
@@ -486,7 +483,6 @@ public class Tokenizer {
         andContainer container: TokenContainer
     ) -> OrderedDictionary<String, OrderedDictionary<String, String>>?
     {
-        print("scan perf decl.")
         // Enum used to switch between InstrumentID and InstrumentType as they are declared
         enum InstrumentIDOrType {
             case ID

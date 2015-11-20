@@ -198,6 +198,10 @@ public class Environment: UIView {
             measure.beatWidth = beatWidth
         }
         
+        for measure in measures {
+            print(measure)
+        }
+        
         let maximumWidth = UIScreen.mainScreen().bounds.width - 2 * page_pad
         var systems: [System] = []
         var measureIndex: Int = 0
@@ -206,6 +210,8 @@ public class Environment: UIView {
             let measureRange = MeasureView.rangeFromMeasures(measures,
                 startingAtIndex: measureIndex, constrainedByMaximumTotalWidth: maximumWidth
             )
+            
+            print("measure range: \(measureRange)")
             
             // what is g here?
             let system = System(g: g, beatWidth: 110, viewerID: id)
