@@ -430,12 +430,12 @@ public class Tokenizer {
         andContainer container: TokenContainer
     )
     {
-
         scanHeaderWithScanner(scanner, andContainer: container)
-        
         scanLeafDurationWithScanner(scanner, andContainer: container)
         
+        // rename to non-temp
         _scanTopLevelCommandsWithScanner(scanner, andContainer: container)
+        
         scanDurationWithScanner(scanner, andContainer: container)
         scanPerformerIDAndInstrumentIDWithScanner(scanner, andContainer: container)
     }
@@ -506,8 +506,7 @@ public class Tokenizer {
                 openingValue: "P:",
                 startIndex: startIndex + lineStartIndex
             )
-            
-            
+
             var performerID: String
 
             // DO ALL OF THE ORDERED DICT STUFF IN PARSER!
@@ -668,6 +667,19 @@ public class Tokenizer {
         let startIndex = scanner.scanLocation
 
         var string: NSString?
+        
+        
+        // this does enforce order
+        
+        if scanner.scanString("]", intoString: &string) {
+            
+            var spannerTokenContainer = TokenContainer(
+                identifier: "SpannerStop",
+                openingValue: "]",
+                startIndex: startIndex + lineStartIndex
+            )
+            container.addToken(spannerTokenContainer)
+        }
         
         // order of commands is enforced
         if scanner.scanString("[", intoString: &string) {
