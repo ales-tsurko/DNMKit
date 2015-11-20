@@ -647,11 +647,11 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: identifier,
                 value: id!,
-                startIndex: startIndex
+                startIndex: startIndex + 1
             )
             container.addToken(token)
             
-            startIndex = scanner.scanLocation + lineStartIndex //+ 1
+            startIndex = scanner.scanLocation + lineStartIndex
             if isComplete { break }
         }
     }
@@ -850,8 +850,6 @@ public class Tokenizer {
         if scanner.scanString("--", intoString: &string) { identifier = "InternalNodeDuration" }
         else { identifier = "LeafNodeDuration" }
         
-        
-
         // This should be a container,
         let token = TokenInt(
             identifier: identifier,

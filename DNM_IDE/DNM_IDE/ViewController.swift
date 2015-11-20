@@ -36,6 +36,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.textStorage!.delegate = self
         textView.font = defaultFont
         textView.automaticDashSubstitutionEnabled = false
+        textView.automaticSpellingCorrectionEnabled = false
     }
 
     override var representedObject: AnyObject? {
