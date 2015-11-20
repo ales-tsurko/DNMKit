@@ -29,7 +29,7 @@ public class TokenContainer: Token {
         self.identifier = identifier
         self.openingValue = openingValue
         self.startIndex = startIndex
-        self.stopIndex = startIndex + openingValue.characters.count
+        self.stopIndex = startIndex + openingValue.characters.count - 1
     }
     
     public func addToken(token: Token) {

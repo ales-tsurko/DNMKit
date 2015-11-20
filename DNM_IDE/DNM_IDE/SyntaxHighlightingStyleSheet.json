@@ -3,7 +3,15 @@
         "foregroundColor": [0,0,0.5],
         "isBold": true
     },
-    "DurationNodeStackMode": {
+    "DurationNodeStackModeMeasure": {
+        "foregroundColor": [0,0,0.5],
+        "isBold": true
+    },
+    "DurationNodeStackModeIncrement": {
+        "foregroundColor": [0,0,0.5],
+        "isBold": true
+    },
+    "DurationNodeStackModeDecrement": {
         "foregroundColor": [0,0,0.5],
         "isBold": true
     },

@@ -53,6 +53,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     func setDefaultStyleForCurrentLine() {
         guard let currentLine = currentLine else { return }
         textView.setFont(defaultFont, range: currentLine.range)
+        textView.setTextColor(NSColor.greenColor(), range: currentLine.range)
         // deal with fgcolor, bgcolor, bold, italic,
     }
     
