@@ -10,5 +10,12 @@ P: VC vc Violoncello
     2 p 52 d o )
 
 | 4 8 VN vn
-    2 p 60
-    3 p 58 d fff
+    2 p 60 d fff
+    4 p 62
+    1 p 63
+
+#
+| 4 8 VC vc
+    3 p 40 d o a -
+    2 p 45 d f a .
+

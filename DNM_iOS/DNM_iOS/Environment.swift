@@ -198,6 +198,7 @@ public class Environment: UIView {
             measure.beatWidth = beatWidth
         }
         
+        print("measures ---------------------------")
         for measure in measures {
             print(measure)
         }

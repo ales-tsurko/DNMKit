@@ -79,12 +79,22 @@ public class Parser {
                 case "Pitch": managePitchTokenContainer(container)
                 case "DynamicMarking": manageDynamicMarkingTokenContainer(container)
                 case "Articulation": manageArticulationTokenContainer(container)
+                
                 case "SlurStart": manageSlurStartToken()
                 case "SlurStop": manageSlurStopToken()
-                case "DurationNodeStackMode": manageDurationNodeStackModeToken(token)
+                
+
                 case "Measure": manageMeasureToken()
+                    
                 case "ExtensionStart": manageExtensionStartToken()
                 case "ExtensionStop": manageExtensionStopToken()
+                    
+                case "DurationNodeStackModeIncrement": durationNodeStackMode = .Increment
+                case "DurationNodeStackModeDecrement": durationNodeStackMode = .Decrement
+                case "DurationNodeStackModeMeasure":
+                    durationNodeStackMode = .Measure
+                    accumDurationInMeasure = DurationZero
+
                 default: break
                 }
             }
@@ -109,6 +119,22 @@ public class Parser {
         // return something real
         return scoreModel
     }
+    
+    
+    /*
+    private func manageDurationNodeStackModeToken(token: Token) {
+        if let tokenString = token as? TokenString {
+            if let stackMode = DurationNodeStackMode(rawValue: tokenString.value) {
+                durationNodeStackMode = stackMode
+            }
+        }
+        switch durationNodeStackMode {
+        case .Measure: accumDurationInMeasure = DurationZero
+        case .Increment: break
+        case .Decrement: break // currently, not supported?
+        }
+    }
+    */
     
     private func manageExtensionStartToken() {
         print("manage extension start")
@@ -199,6 +225,8 @@ public class Parser {
         setDurationOfLastMeasure()
         let measure = Measure(offsetDuration: currentMeasureDurationOffset)
         measures.append(measure)
+        
+        
         accumDurationInMeasure = DurationZero
         
         print("measures: \(measures)")
@@ -209,26 +237,19 @@ public class Parser {
     
     private func setDurationOfLastMeasure() {
         if measures.count == 0 { return }
+        
+        // pop last measure to modify
         var lastMeasure = measures.removeLast()
         lastMeasure.duration = accumDurationInMeasure
+        
+        // push last measure back on stack
         measures.append(lastMeasure)
         
         // set location of next measure to be created
         currentMeasureDurationOffset += lastMeasure.duration
     }
     
-    private func manageDurationNodeStackModeToken(token: Token) {
-        if let tokenString = token as? TokenString {
-            if let stackMode = DurationNodeStackMode(rawValue: tokenString.value) {
-                durationNodeStackMode = stackMode
-            }
-        }
-        switch durationNodeStackMode {
-        case .Measure: accumDurationInMeasure = DurationZero
-        case .Increment: break
-        case .Decrement: break // currently, not supported?
-        }
-    }
+    
     
     private func manageRootDurationToken(token: Token) {
         if let tokenDuration = token as? TokenDuration {
