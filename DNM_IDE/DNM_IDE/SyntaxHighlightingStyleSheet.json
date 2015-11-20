@@ -19,66 +19,55 @@
         "foregroundColor": [0,0,0.5]
     },
     "PerformerDeclaration.PerformerID": {
-        "foregroundColor": [0.5,1,0.5],
+        "foregroundColor": [0.076,0.487,0.9],
         "isBold": true
     },
     "PerformerDeclaraction.InstrumentID": {
-        "foregroundColor": [0,0,0.5]
+        "foregroundColor": [0.076,0.487,0.9]
     },
     "PerformerDeclaration.InstrumentType": {
-        "foregroundColor": [0,0.5,0.5]
+        "foregroundColor": [0.076,0.487,0.9]
     },
     "PerformerID": {
-        "foregroundColor": [0,0,0.5],
+        "foregroundColor": [0.076,0.487,0.9],
         "isBold": true
     },
     "InstrumentID": {
-        "foregroundColor": [0,0,0.5]
+        "foregroundColor": [0.076,0.487,0.9]
     },
     "Pitch": {
-        "foregroundColor": [0.15,1,1],
-        "backgroundColor": [0.5,1,1],
-        "isBold": true
+        "foregroundColor": [0.57,0.75,1]
     },
     "Pitch.Value": {
-        "foregroundColor": [1,1,1],
-        "backgroundColor": [0.5,1,1]
+        "foregroundColor": [0.57,0.25,1]
     },
     "Articulation": {
-        "foregroundColor": [1,0.75,0.5],
-        "backgroundColor": [0.5,1,1],
-        "isBold": true
+        "foregroundColor": [0.27,0.64,0.75]
     },
     "Articulation.Value": {
-        "foregroundColor": [1,1,1],
-        "backgroundColor": [0.5,1,1]
+        "foregroundColor": [0.27,0.33,0.9]
     },
     "DynamicMarking": {
-        "foregroundColor": [0.15,1,1],
-        "backgroundColor": [0.5,1,1],
-        "isBold": true
+        "foregroundColor": [0,0.75,1]
     },
     "DynamicMarking.Value": {
-        "foregroundColor": [0.85,1,1],
-        "backgroundColor": [0.5,1,1]
+        "foregroundColor": [0,0.25,1]
     },
     "DynamicMarking.SpannerStart": {
-        "foregroundColor": [0.1,1,1],
+        "foregroundColor": [0,0.25,1],
         "isBold": true
     },
     "DynamicMarking.SpannerStop": {
-        "foregroundColor": [0.1,1,1],
-        "isBold": true
+        "foregroundColor": [0,0.25,1]
     },
     "LeafNodeDuration": {
-        "foregroundColor": [0.55, 1, 0.66]
+        "foregroundColor": [0, 0, 0.9]
     },
     "InternalNodeDuration": {
-        "foregroundColor": [0.55, 1, 0.66]
+        "foregroundColor": [0, 0, 0.9]
     },
     "RootNodeDuration": {
-        "foregroundColor": [0.55, 1, 0.66],
-        "isBold": true
+        "foregroundColor": [0, 0, 0.9],
     },
     "SlurStart": {
         "foregroundColor": [0.3, 1, 0.66]
@@ -87,11 +76,11 @@
         "foregroundColor": [0.3, 1, 0.66]
     },
     "ExtensionStart": {
-        "foregroundColor": [0,0,0.5],
+        "foregroundColor": [0,0,0.9],
         "isBold": true
     },
     "ExtensionStop": {
-        "foregroundColor": [0,0,0.5],
+        "foregroundColor": [0,0,0.9],
         "isBold": true
     }
 }

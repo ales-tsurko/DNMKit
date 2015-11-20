@@ -24,6 +24,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     var currentLine: Line?
     
     let defaultFont: NSFont = NSFont(name: "Menlo", size: 12)!
+    let defaultTextColor = NSColor(hue: 0, saturation: 0, brightness: 0.9, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     func setDefaultStyleForCurrentLine() {
         guard let currentLine = currentLine else { return }
         textView.setFont(defaultFont, range: currentLine.range)
-        textView.setTextColor(NSColor.greenColor(), range: currentLine.range)
+        textView.setTextColor(defaultTextColor, range: currentLine.range)
         // deal with fgcolor, bgcolor, bold, italic,
     }
     
