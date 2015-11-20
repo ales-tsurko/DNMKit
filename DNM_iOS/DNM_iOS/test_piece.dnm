@@ -5,14 +5,20 @@ P: VN vn Violin
 P: VC vc Violoncello
 
 #
+| 2 8 VN vn
+    2 p 60 d fff
+    4 p 62
+    1 p 63
+
++ 2 8 VN vn
+    1 p 60
+    2 p 62
+
+
 | 4 8 VC vc
     3 p 50 d f (
     2 p 52 d o )
 
-| 4 8 VN vn
-    2 p 60 d fff
-    4 p 62
-    1 p 63
 
 #
 | 4 8 VC vc

@@ -88,12 +88,10 @@ public class Parser {
                     
                 case "ExtensionStart": manageExtensionStartToken()
                 case "ExtensionStop": manageExtensionStopToken()
-                    
-                case "DurationNodeStackModeIncrement": durationNodeStackMode = .Increment
-                case "DurationNodeStackModeDecrement": durationNodeStackMode = .Decrement
-                case "DurationNodeStackModeMeasure":
-                    durationNodeStackMode = .Measure
-                    accumDurationInMeasure = DurationZero
+
+                case "DurationNodeStackModeMeasure": manageDurationNodeStackModeMeasure()
+                case "DurationNodeStackModeIncrement": manageDurationNodeStackModeIncrement()
+                case "DurationNodeStackModeDecrement": manageDurationNodeStackModeDecrement()
 
                 default: break
                 }
@@ -118,6 +116,19 @@ public class Parser {
         
         // return something real
         return scoreModel
+    }
+    
+    private func manageDurationNodeStackModeMeasure() {
+        durationNodeStackMode = .Measure
+        accumDurationInMeasure = DurationZero
+    }
+    
+    private func manageDurationNodeStackModeIncrement() {
+        durationNodeStackMode = .Increment
+    }
+    
+    private func manageDurationNodeStackModeDecrement() {
+        
     }
     
     
