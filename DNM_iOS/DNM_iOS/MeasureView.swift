@@ -47,8 +47,6 @@ public class MeasureView: ViewNode, BuildPattern {
     //public var mgRects: [MetronomeGridRect] = []
     //public var mgRectsShown: Bool = true // temporary!
     
-    // TODO: Do this in the Measure (MODEL), with the maximum width version in MeasureView (here)
-
     public class func rangeFromMeasures(
         measures: [MeasureView],
         startingAtIndex index: Int,
