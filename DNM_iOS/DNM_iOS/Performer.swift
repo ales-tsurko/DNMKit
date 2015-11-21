@@ -6,7 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import DNMModel
 
 // contains 0 -> n instruments

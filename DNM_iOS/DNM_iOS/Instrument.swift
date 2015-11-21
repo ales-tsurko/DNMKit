@@ -6,7 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import DNMModel
 
 // container 0 -> n Graphs (Staffs for now)

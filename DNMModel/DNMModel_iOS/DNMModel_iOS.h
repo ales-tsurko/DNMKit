@@ -6,7 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 //! Project version number for DNMModel_iOS.
 FOUNDATION_EXPORT double DNMModel_iOSVersionNumber;

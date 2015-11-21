@@ -6,7 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
-import QuartzCore
+import UIKit
 import DNMModel
 
 public class GraphEventEdge: CAShapeLayer {

@@ -128,9 +128,9 @@
 		071E9E051C00EC4F008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E0C1C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
 		071E9E131C00EC4F008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */; };
-		071E9E171C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
-		071E9E181C00EC4F008D1263 /* DNMModel_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		074710931BFFC40D0084ED61 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074710921BFFC40D0084ED61 /* ScoreManager.swift */; };
+		0757EE2C1C00F65E00C900E7 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0757EE2B1C00F65E00C900E7 /* DNMModel.framework */; };
+		0757EE2D1C00F65F00C900E7 /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0757EE2B1C00F65E00C900E7 /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
 /* End PBXBuildFile section */
 
@@ -156,23 +156,16 @@
 			remoteGlobalIDString = 07074E601BF96C7C00BFC6FA;
 			remoteInfo = DNM_iOS;
 		};
-		071E9E151C00EC4F008D1263 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07074E591BF96C7C00BFC6FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 071E9E011C00EC4F008D1263;
-			remoteInfo = DNMModel_iOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		071E9CB01C00DFAE008D1263 /* Embed Frameworks */ = {
+		0757EE2E1C00F65F00C900E7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				071E9E181C00EC4F008D1263 /* DNMModel_iOS.framework in Embed Frameworks */,
+				0757EE2D1C00F65F00C900E7 /* DNMModel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +302,7 @@
 		071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMModel_iOSTests.swift; sourceTree = "<group>"; };
 		071E9E141C00EC4F008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		074710921BFFC40D0084ED61 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		0757EE2B1C00F65E00C900E7 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNM-bgaeeqiyuglnglbivgyqjtaretph/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<absolute>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -317,7 +311,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				071E9E171C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */,
+				0757EE2C1C00F65E00C900E7 /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +343,7 @@
 		07074E581BF96C7C00BFC6FA = {
 			isa = PBXGroup;
 			children = (
+				0757EE2B1C00F65E00C900E7 /* DNMModel.framework */,
 				07074E631BF96C7C00BFC6FA /* DNM_iOS */,
 				07074E781BF96C7C00BFC6FA /* DNM_iOSTests */,
 				071E9E031C00EC4F008D1263 /* DNMModel_iOS */,
@@ -575,12 +570,11 @@
 				07074E5D1BF96C7C00BFC6FA /* Sources */,
 				07074E5E1BF96C7C00BFC6FA /* Frameworks */,
 				07074E5F1BF96C7C00BFC6FA /* Resources */,
-				071E9CB01C00DFAE008D1263 /* Embed Frameworks */,
+				0757EE2E1C00F65F00C900E7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				071E9E161C00EC4F008D1263 /* PBXTargetDependency */,
 			);
 			name = DNM_iOS;
 			productName = DNM_iOS;
@@ -888,11 +882,6 @@
 			target = 07074E601BF96C7C00BFC6FA /* DNM_iOS */;
 			targetProxy = 071E9E0F1C00EC4F008D1263 /* PBXContainerItemProxy */;
 		};
-		071E9E161C00EC4F008D1263 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 071E9E011C00EC4F008D1263 /* DNMModel_iOS */;
-			targetProxy = 071E9E151C00EC4F008D1263 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1141,6 +1130,7 @@
 				071E9E1B1C00EC4F008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		071E9E1C1C00EC4F008D1263 /* Build configuration list for PBXNativeTarget "DNMModel_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1149,6 +1139,7 @@
 				071E9E1E1C00EC4F008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
