@@ -27,5 +27,4 @@ public class GraphEventEdgeHandler {
         self.hasDashes = hasDashes
     }
     
-    
 }

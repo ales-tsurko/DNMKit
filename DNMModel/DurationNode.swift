@@ -29,22 +29,8 @@ public class DurationNode: Node, CustomStringConvertible {
     public var components: [Component] = []
     
     public var isRest: Bool {
-        print("durationnode get is rest")
-        
-        
-        if !isLeaf {
-            print("not a leaf -- cant be a rest")
-            return false
-        }
-        
-        for component in components {
-            print("component: \(component)")
-            if !(component is ComponentRest) {
-                print("not a rest: return !.isRest")
-                return false
-            }
-        }
-        print("this is a rest!")
+        if !isLeaf { return false }
+        for component in components { if !(component is ComponentRest) { return false } }
         return true
     }
     

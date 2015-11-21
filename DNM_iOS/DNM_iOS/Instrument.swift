@@ -13,7 +13,6 @@ import DNMModel
 public class Instrument: ViewNode {
     
     //public var uiView: InstrumentView?
-    
 
     // phase out
     public var id: String = ""

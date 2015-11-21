@@ -64,6 +64,11 @@ public struct DurationSpan: Equatable, CustomStringConvertible {
         self.stopDuration = duration + startDuration
     }
     
+
+    public func containsDuration(duration: Duration) -> Bool {
+        return duration >= startDuration && duration < stopDuration
+    }
+    
     /**
     Get the DurationSpanRelationship between this DurationSpan and another DurationSpan.
     The possible relationships are: .None, .Adjacent, and .Overlapping.
@@ -88,6 +93,13 @@ public struct DurationSpan: Equatable, CustomStringConvertible {
     
     private func getDescription() -> String {
         return "start: \(startDuration); stop: \(stopDuration); total: \(duration)"
+    }
+}
+
+public extension Duration {
+    
+    public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
+        return durationSpan.containsDuration(self)
     }
 }
 

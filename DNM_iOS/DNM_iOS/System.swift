@@ -1081,11 +1081,30 @@ public class System: ViewNode, BuildPattern {
     private func manageGraphLines() {
         
         print("manage graph lines")
-        /*
-        for measure in measures {
-            //print("measure.durationSpan: \(measure.durationSpan)")
+        print("measures -------------------------")
+
+        for measure in measureViews {
+            
+            //
+            
+            // if eventHandler.instrument is contained within measure, stop line at measure.left
+            
+            
+            print(measure.durationSpan)
+            print("event handlers -----------------------------")
+            for eventHandler in instrumentEventHandlers {
+                
+                // if eventhandler exists within measure...
+                if eventHandler.isContainedWithinDurationSpan(measure.durationSpan) {
+
+                    if let instrument = eventHandler.instrumentEvent?.instrument {
+                        print("performer contained within measure: \(instrument)")
+                    }
+                }
+            }
         }
-        */
+        
+        // does graph contain any events within the measure? if not: stop lines at measure
         
         for (_, performer) in performerByID {
             for (_, instrument) in performer.instrumentByID {

@@ -26,10 +26,10 @@ P: VC vc Violoncello
 
 + 2 8
     1 p 60 )
-    3 p 82
+    3 p 60
 
 + 1 8
-    1 p 70 d ffff
+    1 *
 
 | 4 8 VC vc
     3 p 40 d o a -
@@ -42,20 +42,20 @@ P: VC vc Violoncello
     1 p 80
 
 | 3 8 VC vc
-    2 p 60.25
+    2 p 60.25 (
     1 p 48 60.5
-    2 p 58
+    2 p 58 )
 
 #
 | 4 8 VN vn
     1 p 60
     1 p 60
-    1 p 60
+    1 *
     1 p 60
 
 | 4 8 VC vc
     1 p 60
-    1 p 60
+    1 *
     1 p 60
     1 p 60
 

@@ -20,37 +20,39 @@ public class InstrumentEventHandler {
     
     private var stemDirection: StemDirection { get { return getStemDirection() } }
     
-    public init(bgEvent: BGEvent?, instrumentEvent: InstrumentEvent? = nil, system: System? = nil) {
+    public init(
+        bgEvent: BGEvent?,
+        instrumentEvent: InstrumentEvent? = nil,
+        system: System? = nil
+    )
+    {
         self.bgEvent = bgEvent
         self.instrumentEvent = instrumentEvent
         self.system = system
+    }
+    
+    public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
+        guard let bgEvent = bgEvent else { return false }
+        let offsetDuration = bgEvent.durationNode.offsetDuration
+        print("duration span: \(durationSpan): durNode.offsetDur: \(offsetDuration)")
+        return durationSpan.containsDuration(offsetDuration)
     }
     
     public func decorateInstrumentEvent() {
         if bgEvent == nil { return }
         if instrumentEvent == nil { return }
         
-        print("decorate instrument event with components: \(bgEvent!.durationNode.components)")
-        
         // TODO: re implement
         for component in bgEvent!.durationNode.components {
             
             switch component {
             case is ComponentRest:
-                print("decorate component rest!")
                 for graphEvent in instrumentEvent!.graphEvents {
-                    //graphEvent.isRest = true
-                    
                     if graphEvent is GraphEventRest {
                         print("this graph event is a rest!: graph?: \(graphEvent.graph)")
                     }
-                    
-                    //graphEvent.graph?.stopLinesAtX(graphEvent.x)
                 }
             case let pitch as ComponentPitch:
-                
-                print("decorate instrument event with pitch")
-                
                 for graphEvent in instrumentEvent!.graphEvents {
                     if let _ = graphEvent.graph as? Staff {
                         for p in pitch.values {
