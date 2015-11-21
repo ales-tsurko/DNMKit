@@ -225,20 +225,22 @@ public class Parser {
     }
     
     private func manageMeasureToken() {
-        
-        print("manage measure token")
-        
         setDurationOfLastMeasure()
         let measure = Measure(offsetDuration: currentMeasureDurationOffset)
-        measures.append(measure)
-        
-        
+        //measures.append(measure)
+        addMeasure(measure)
+
+        // set offset of the location from the start of the current measure to DurationZero
         accumDurationInMeasure = DurationZero
-        
-        print("measures: \(measures)")
         
         // set default duration node stacking behavior
         durationNodeStackMode = .Measure
+    }
+    
+    private func addMeasure(var measure: Measure) {
+        measure.number = measures.count + 1
+        measures.append(measure)
+        print("add measure: number: \(measure.number)")
     }
     
     private func setDurationOfLastMeasure() {
@@ -254,8 +256,6 @@ public class Parser {
         // set location of next measure to be created
         currentMeasureDurationOffset += lastMeasure.duration
     }
-    
-    
     
     private func manageRootDurationToken(token: Token) {
         if let tokenDuration = token as? TokenDuration {

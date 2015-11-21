@@ -15,6 +15,9 @@ public struct Measure: Equatable {
   
     // TODO: DurationSpan
     
+    // 1-based count of numbers (index + 1)
+    public var number: Int = 0
+    
     // DEPRECATE THESE?
     /// Duration of Measure
     public var duration: Duration = DurationZero

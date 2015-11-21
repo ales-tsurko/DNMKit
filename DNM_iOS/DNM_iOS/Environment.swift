@@ -192,13 +192,15 @@ public class Environment: UIView {
     
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
-        measureViews = makeMeasureViewsWithMeasures(measures)
+        //measureViews = makeMeasureViewsWithMeasures(measures)
         
+        /*
         // this should become unnecessary: set properties of measure
         for (m, measure) in measureViews.enumerate() {
             measure.number = m + 1
             measure.beatWidth = beatWidth
         }
+        */
         
         print("measures ---------------------------")
         

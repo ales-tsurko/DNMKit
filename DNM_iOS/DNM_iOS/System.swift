@@ -349,15 +349,7 @@ public class System: ViewNode, BuildPattern {
     // currently in environment, but it should be shoved in here?
     // perhaps: MeasureViewManageer
     private func makeMeasureViewsWithMeasures(measures: [Measure]) -> [MeasureView] {
-        var measureViews: [MeasureView] = []
-        // for measure in measures { let measureView = MeasureView(measure: measure) }
-
-        for measure in measures {
-            let duration = measure.duration
-            let measureView = MeasureView(duration: duration)
-            measureView.hasTimeSignature = measure.hasTimeSignature
-            measureViews.append(measureView)
-        }
+        let measureViews: [MeasureView] = measures.map { MeasureView(measure: $0) }
         return measureViews
     }
     

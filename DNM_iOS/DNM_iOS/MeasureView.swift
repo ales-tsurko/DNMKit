@@ -21,11 +21,9 @@ public class MeasureView: ViewNode, BuildPattern {
     public var offsetDur: Duration = DurationZero
     public var dur: Duration?
     
-    public var durationSpan: DurationSpan {
-        print("measure.getDurationSpan: dur?: \(dur); offsetDur: \(offsetDur)")
-        guard let duration = dur else { return DurationSpan() }
-        return DurationSpan(duration: dur!, startDuration: offsetDur)
-    }
+    public var durationSpan: DurationSpan!
+        
+
     
     //var left: CGFloat = 0
     public var g: CGFloat = 0
@@ -74,8 +72,11 @@ public class MeasureView: ViewNode, BuildPattern {
     
     public init(measure: Measure) {
         self.measure = measure
+        self.hasTimeSignature = measure.hasTimeSignature
+        self.durationSpan = measure.durationSpan
         self.offsetDur = measure.offsetDuration
         self.dur = measure.duration
+        self.number = measure.number
         super.init()
     }
     
