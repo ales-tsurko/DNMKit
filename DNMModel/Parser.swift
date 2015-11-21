@@ -77,23 +77,17 @@ public class Parser {
                     } catch _ { print("...?") }
                     
                 case "Rest": manageRestToken()
-                    
                 case "Pitch": managePitchTokenContainer(container)
                 case "DynamicMarking": manageDynamicMarkingTokenContainer(container)
                 case "Articulation": manageArticulationTokenContainer(container)
-                
                 case "SlurStart": manageSlurStartToken()
                 case "SlurStop": manageSlurStopToken()
-                
                 case "Measure": manageMeasureToken()
-                    
                 case "ExtensionStart": manageExtensionStartToken()
                 case "ExtensionStop": manageExtensionStopToken()
-
                 case "DurationNodeStackModeMeasure": manageDurationNodeStackModeMeasure()
                 case "DurationNodeStackModeIncrement": manageDurationNodeStackModeIncrement()
                 case "DurationNodeStackModeDecrement": manageDurationNodeStackModeDecrement()
-
                 default: break
                 }
             }
@@ -108,17 +102,9 @@ public class Parser {
                 }
             }
         }
-        
         setDurationOfLastMeasure()
         finalizeDurationNodes()
-
         let scoreModel = makeScoreModel()
-        
-        for durationNode in durationNodes where durationNode.isRest {
-            print(durationNode)
-        }
-        
-        // return something real
         return scoreModel
     }
     
