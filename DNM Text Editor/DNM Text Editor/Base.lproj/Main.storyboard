@@ -667,7 +667,7 @@
                 </windowController>
                 <customObject id="6ww-IC-N74" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54" y="366"/>
+            <point key="canvasLocation" x="55" y="360"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yNq-eF-YZM">

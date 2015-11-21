@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07074E601BF96C7C00BFC6FA"
-               BuildableName = "DNM_iOS.app"
-               BlueprintName = "DNM_iOS"
-               ReferencedContainer = "container:DNM_iOS.xcodeproj">
+               BlueprintIdentifier = "071E9CBC1C00E07B008D1263"
+               BuildableName = "DNM Text Editor.app"
+               BlueprintName = "DNM Text Editor"
+               ReferencedContainer = "container:DNM Text Editor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07074E741BF96C7C00BFC6FA"
-               BuildableName = "DNM_iOSTests.xctest"
-               BlueprintName = "DNM_iOSTests"
-               ReferencedContainer = "container:DNM_iOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "071E9E0A1C00EC4F008D1263"
-               BuildableName = "DNMModel_iOSTests.xctest"
-               BlueprintName = "DNMModel_iOSTests"
-               ReferencedContainer = "container:DNM_iOS.xcodeproj">
+               BlueprintIdentifier = "071E9CCF1C00E07B008D1263"
+               BuildableName = "DNM Text EditorTests.xctest"
+               BlueprintName = "DNM Text EditorTests"
+               ReferencedContainer = "container:DNM Text Editor.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07074E601BF96C7C00BFC6FA"
-            BuildableName = "DNM_iOS.app"
-            BlueprintName = "DNM_iOS"
-            ReferencedContainer = "container:DNM_iOS.xcodeproj">
+            BlueprintIdentifier = "071E9CBC1C00E07B008D1263"
+            BuildableName = "DNM Text Editor.app"
+            BlueprintName = "DNM Text Editor"
+            ReferencedContainer = "container:DNM Text Editor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07074E601BF96C7C00BFC6FA"
-            BuildableName = "DNM_iOS.app"
-            BlueprintName = "DNM_iOS"
-            ReferencedContainer = "container:DNM_iOS.xcodeproj">
+            BlueprintIdentifier = "071E9CBC1C00E07B008D1263"
+            BuildableName = "DNM Text Editor.app"
+            BlueprintName = "DNM Text Editor"
+            ReferencedContainer = "container:DNM Text Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07074E601BF96C7C00BFC6FA"
-            BuildableName = "DNM_iOS.app"
-            BlueprintName = "DNM_iOS"
-            ReferencedContainer = "container:DNM_iOS.xcodeproj">
+            BlueprintIdentifier = "071E9CBC1C00E07B008D1263"
+            BuildableName = "DNM Text Editor.app"
+            BlueprintName = "DNM Text Editor"
+            ReferencedContainer = "container:DNM Text Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

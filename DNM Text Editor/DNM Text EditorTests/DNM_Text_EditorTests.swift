@@ -1,15 +1,15 @@
 //
-//  DNMModel_iOSTests.swift
-//  DNMModel_iOSTests
+//  DNM_Text_EditorTests.swift
+//  DNM Text EditorTests
 //
 //  Created by James Bean on 11/21/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
 import XCTest
-@testable import DNMModel_iOS
+@testable import DNM_Text_Editor
 
-class DNMModel_iOSTests: XCTestCase {
+class DNM_Text_EditorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

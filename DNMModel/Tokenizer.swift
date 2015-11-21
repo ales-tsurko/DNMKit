@@ -623,7 +623,7 @@ public class Tokenizer {
             }
         }
         
-        var startIndex = scanner.scanLocation + lineStartIndex
+        var startIndex = scanner.scanLocation + lineStartIndex + 1
         
         var identifier: String
         var id: String?
@@ -649,11 +649,11 @@ public class Tokenizer {
             let token = TokenString(
                 identifier: identifier,
                 value: id!,
-                startIndex: startIndex + 1
+                startIndex: startIndex
             )
             container.addToken(token)
             
-            startIndex = scanner.scanLocation + lineStartIndex
+            startIndex = scanner.scanLocation + lineStartIndex + 1
             if isComplete { break }
         }
     }

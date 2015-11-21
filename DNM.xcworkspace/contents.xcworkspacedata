@@ -8,7 +8,7 @@
       location = "group:DNM_iOS/DNM_iOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DNM_IDE/DNM_IDE.xcodeproj">
+      location = "group:DNM Text Editor/DNM Text Editor.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Scores">

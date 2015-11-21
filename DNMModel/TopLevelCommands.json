@@ -8,6 +8,14 @@
         "openingValue": "*"
     },
     {
+        "identifier": "ExtensionStart",
+        "openingValue": "->"
+    },
+    {
+        "identifier": "ExtensionStop",
+         "openingValue": "<-"
+    },
+    {
         "identifier": "Pitch",
         "openingValue": "p",
         "allowableTypes": ["Float", "Spanner"]
@@ -26,14 +34,6 @@
         "identifier": "Node",
         "openingValue": "node",
         "allowableTypes": ["Float", "Spanner"]
-    },
-    {
-        "identifier": "ExtensionStart",
-        "openingValue": "->"
-    },
-    {
-        "identifier": "ExtensionStop",
-         "openingValue": "<-"
     },
     {
         "identifier": "SlurStart",
