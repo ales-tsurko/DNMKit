@@ -1,0 +1,66 @@
+[
+    {
+        "identifier": "Measure",
+        "openingValue": "#"
+    },
+    {
+        "identifier": "Rest",
+        "openingValue": "*"
+    },
+    {
+        "identifier": "ExtensionStart",
+        "openingValue": "->"
+    },
+    {
+        "identifier": "ExtensionStop",
+         "openingValue": "<-"
+    },
+    {
+        "identifier": "Pitch",
+        "openingValue": "p",
+        "allowableTypes": ["Float", "Spanner"]
+    },
+    {
+        "identifier": "DynamicMarking",
+        "openingValue": "d",
+        "allowableTypes": ["DynamicMarking", "Spanner"]
+    },
+    {
+        "identifier": "Articulation",
+        "openingValue": "a",
+        "allowableTypes": ["Articulation"]
+    },
+    {
+        "identifier": "Node",
+        "openingValue": "node",
+        "allowableTypes": ["Float", "Spanner"]
+    },
+    {
+        "identifier": "SlurStart",
+        "openingValue": "("
+    },
+    {
+        "identifier": "SlurStop",
+        "openingValue": ")"
+    },
+    {
+        "identifier": "NonNumericalDurationNodeMode",
+        "openingValue": "!n"
+    },
+    {
+        "identifier": "NonMetricalDurationNodeMode",
+        "openingValue": "!m"
+    },
+    {
+        "identifier": "DurationNodeStackModeMeasure",
+        "openingValue": "|"
+    },
+    {
+        "identifier": "DurationNodeStackModeIncrement",
+        "openingValue": "+"
+    },
+    {
+        "identifier": "DurationNodeStackModeDecrement",
+        "openingValue": "-"
+    }
+]

@@ -1,0 +1,13 @@
+P: VN vn Violin
+P: VC vc Violoncello
+
+#
+| 4 8 VN vn
+	1 p 60 d fff [ (
+	1 p 62.25 d o ]
+	2 p 68 a - )
+
++ 4 8 VN vn
+	1 p 60 ->
+	2 <-
+	2 p 60
