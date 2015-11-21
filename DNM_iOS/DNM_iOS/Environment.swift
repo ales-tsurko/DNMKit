@@ -28,7 +28,9 @@ public class Environment: UIView {
     public var durationNodes: [DurationNode] = []
     
     // Change to Measure, rather than MeasureView
-    public var measures: [MeasureView] = []
+    public var measures: [Measure] = []
+    
+    public var measureViews: [MeasureView] = []
     
     public var tempoMarkings: [TempoMarking] = []
     public var rehearsalMarkings: [RehearsalMarking] = []
@@ -36,6 +38,7 @@ public class Environment: UIView {
     public var g: CGFloat = 10 // ?! // hack
     public var beatWidth: CGFloat = 110 // ?! // hack
     
+    // get rid of this
     public var page_pad: CGFloat = 25
     
     public var componentTypesShownByID: [String : [String]] = [:]
@@ -57,7 +60,7 @@ public class Environment: UIView {
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
 
-        self.measures = makeMeasureViewsWithMeasures(scoreModel.measures)
+        self.measures = scoreModel.measures
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
         self.durationNodes = scoreModel.durationNodes
@@ -141,7 +144,6 @@ public class Environment: UIView {
     }
     
 
-    
     public func addViewSelector() {
         let w: CGFloat = 50
         let viewSelector = ViewSelector(
@@ -190,52 +192,65 @@ public class Environment: UIView {
     
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
-        
+        measureViews = makeMeasureViewsWithMeasures(measures)
         
         // this should become unnecessary: set properties of measure
-        for (m, measure) in measures.enumerate() {
+        for (m, measure) in measureViews.enumerate() {
             measure.number = m + 1
             measure.beatWidth = beatWidth
         }
         
         print("measures ---------------------------")
-        for measure in measures {
-            print(measure)
-        }
+        
+        for measure in measures { print(measure) }
         
         let maximumWidth = UIScreen.mainScreen().bounds.width - 2 * page_pad
+        let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
+        print("maximumDuration: \(maximumDuration)")
         var systems: [System] = []
         var measureIndex: Int = 0
         var accumDuration: Duration = DurationZero
         while measureIndex < measures.count {
-            let measureRange = MeasureView.rangeFromMeasures(measures,
-                startingAtIndex: measureIndex, constrainedByMaximumTotalWidth: maximumWidth
-            )
             
-            if measureRange.count == 0 {
-                fatalError("get a bigger screen: can't put a single measure on here...")
+            if let measureRange = Measure.rangeFromMeasures(measures,
+                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
+            )
+            {
+                print("measureRange: \(measureRange)")
+                let system = System(g: g, beatWidth: 110, viewerID: id)
+                system.offsetDuration = accumDuration
+                
+                // set the Measure range (model)
+                system.setMeasuresWithMeasures(measureRange)
+                
+                system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
+                
+                // encapsulate: internal
+                let start = system.offsetDuration
+                let stop = system.offsetDuration + system.totalDuration // DurationSpan.duration...
+                let durationNodeRange = DurationNode.rangeFromDurationNodes(durationNodes,
+                    afterDuration: start, untilDuration: stop
+                )
+                system.durationNodes = durationNodeRange
+                systems.append(system)
+                
+                if let lastMeasure = measureRange.last {
+                    if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
+                        measureIndex = lastMeasureIndex + 1
+                        
+                        // system.durationSpan.duration
+                        accumDuration += system.totalDuration
+                    }
+                    
+                    
+                    /*
+                    if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
+                        measureIndex = lastMeasureIndex + 1
+                        accumDuration += system.totalDuration // DurationSpan.stopDuration
+                    }
+                    */
+                }
             }
-            print("measure range: \(measureRange)")
-            
-            // what is g here?
-            let system = System(g: g, beatWidth: 110, viewerID: id)
-            system.offsetDuration = accumDuration
-            system.setMeasuresWithMeasures(measureRange)
-            system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
-            
-            // encapsulate: internal
-            let start = system.offsetDuration
-            let stop = system.offsetDuration + system.totalDuration // DurationSpan.duration...
-            let durationNodeRange = DurationNode.rangeFromDurationNodes(durationNodes,
-                afterDuration: start, untilDuration: stop
-            )
-            system.durationNodes = durationNodeRange
-            systems.append(system)
-            
-            // encapsulate: increment shit
-            let lastMeasureIndex: Int = measures.indexOf(measureRange.last!)!
-            measureIndex = lastMeasureIndex + 1
-            accumDuration += system.totalDuration // DurationSpan.stopDuration
         }
         
         // PRELIMINARY BUILD
@@ -264,6 +279,19 @@ public class Environment: UIView {
             manageRehearsalMarkingsForSystem(system)
         }
         return systems
+    }
+    
+    private func makeMeasureViewsWithMeasures(measures: [Measure]) -> [MeasureView] {
+        var measureViews: [MeasureView] = []
+        // for measure in measures { let measureView = MeasureView(measure: measure) }
+        
+        for measure in measures {
+            let duration = measure.duration
+            let measureView = MeasureView(duration: duration)
+            measureView.hasTimeSignature = measure.hasTimeSignature
+            measureViews.append(measureView)
+        }
+        return measureViews
     }
     
     private func manageRehearsalMarkingsForSystem(system: System) {
@@ -437,14 +465,5 @@ public class Environment: UIView {
         }
     }
     
-    private func makeMeasureViewsWithMeasures(measures_model: [Measure]) -> [MeasureView] {
-        var measures: [MeasureView] = []
-        for measure_model in measures_model {
-            let duration = measure_model.duration
-            let measure = MeasureView(duration: duration)
-            measure.hasTimeSignature = measure_model.hasTimeSignature
-            measures.append(measure)
-        }
-        return measures
-    }
+
 }

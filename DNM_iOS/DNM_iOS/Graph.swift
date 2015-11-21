@@ -115,16 +115,6 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
         return event
     }
     
-    /*
-    public func startEventAtX(x: CGFloat) -> GraphEvent {
-        let event = GraphEvent(x: x)
-        event.graph = self
-        events.append(event)
-        events.sortInPlace { $0.x < $1.x }
-        return event
-    }
-    */
-    
     public func getEventAtX(x: CGFloat) -> GraphEvent? {
         // possible for multiple? that should raise its own issue...
         for event in events { if event.x == x { return event } }

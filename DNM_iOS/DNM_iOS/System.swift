@@ -91,8 +91,11 @@ public class System: ViewNode, BuildPattern {
     /// Layer for Barlines. First (most background) layer of EventsNode
     private let barlinesLayer = CALayer()
     
+    /// All Measures (model) contained in this System
+    public var measures: [Measure] = []
+    
     /// All MeasureViews contained in this System
-    public var measures: [MeasureView] = []
+    public var measureViews: [MeasureView] = []
     
     /// All DurationNodes contained in this System
     public var durationNodes: [DurationNode] = []
@@ -321,24 +324,41 @@ public class System: ViewNode, BuildPattern {
     
     - parameter measures: All MeasureViews in this System
     */
-    public func setMeasuresWithMeasures(measures: [MeasureView]) {
+    public func setMeasuresWithMeasures(measures: [Measure]) {
+        // convert measures to measureViews
         self.measures = measures
+        self.measureViews = makeMeasureViewsWithMeasures(measures)
         var accumLeft: CGFloat = infoStartX
         var accumDur: Duration = DurationZero
-        for measure in measures {
-            measure.system = self
-            setGraphicalAttributesOfMeasure(measure, left: accumLeft)
-            handoffTimeSignatureFromMeasure(measure)
-            handoffMeasureNumberFromMeasure(measure)
+        for measureView in measureViews {
+            measureView.system = self
+            setGraphicalAttributesOfMeasureView(measureView, left: accumLeft)
+            handoffTimeSignatureFromMeasureView(measureView)
+            handoffMeasureNumberFromMeasureView(measureView)
             
             // temp
             //handoffMGRectsFromMeasure(measure)
             
-            addBarlinesForMeasure(measure)
-            accumLeft += measure.frame.width
-            accumDur += measure.dur!
+            addBarlinesForMeasureView(measureView)
+            accumLeft += measureView.frame.width
+            accumDur += measureView.dur!
         }
         totalDuration = accumDur
+    }
+    
+    // currently in environment, but it should be shoved in here?
+    // perhaps: MeasureViewManageer
+    private func makeMeasureViewsWithMeasures(measures: [Measure]) -> [MeasureView] {
+        var measureViews: [MeasureView] = []
+        // for measure in measures { let measureView = MeasureView(measure: measure) }
+
+        for measure in measures {
+            let duration = measure.duration
+            let measureView = MeasureView(duration: duration)
+            measureView.hasTimeSignature = measure.hasTimeSignature
+            measureViews.append(measureView)
+        }
+        return measureViews
     }
     
     /**
@@ -937,28 +957,28 @@ public class System: ViewNode, BuildPattern {
 
     override func setWidthWithContents() {
         if measures.count > 0 {
-            frame = CGRectMake(frame.minX, frame.minY, measures.last!.frame.maxX, frame.height)
+            frame = CGRectMake(frame.minX, frame.minY, measureViews.last!.frame.maxX, frame.height)
         }
         else {
             frame = CGRectMake(frame.minX, frame.minY, 1000, frame.height)
         }
     }
     
-    private func setGraphicalAttributesOfMeasure(measure: MeasureView, left: CGFloat) {
-        measure.g = g
-        measure.beatWidth = beatWidth
-        measure.build()
-        measure.moveHorizontallyToX(left, animated: false)
+    private func setGraphicalAttributesOfMeasureView(measureView: MeasureView, left: CGFloat) {
+        measureView.g = g
+        measureView.beatWidth = beatWidth
+        measureView.build()
+        measureView.moveHorizontallyToX(left, animated: false)
     }
     
     // takes in a graphically built measure, that has been positioned within the system
-    private func addBarlinesForMeasure(measure: MeasureView) {
-        addBarlineLeftForMeasure(measure)
-        if measure === measures.last! { addBarlineRightForMeasure(measure) }
+    private func addBarlinesForMeasureView(measureView: MeasureView) {
+        addBarlineLeftForMeasureView(measureView)
+        if measureView === measureViews.last! { addBarlineRightForMeasureView(measureView) }
     }
     
-    private func addBarlineLeftForMeasure(measure: MeasureView) {
-        let barlineLeft = Barline(x: measure.frame.minX, top: 0, bottom: frame.height)
+    private func addBarlineLeftForMeasureView(measureView: MeasureView) {
+        let barlineLeft = Barline(x: measureView.frame.minX, top: 0, bottom: frame.height)
         barlineLeft.lineWidth = 6
         barlineLeft.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Background).CGColor
         barlineLeft.opacity = 0.5
@@ -966,8 +986,8 @@ public class System: ViewNode, BuildPattern {
         barlinesLayer.insertSublayer(barlineLeft, atIndex: 0)
     }
 
-    private func addBarlineRightForMeasure(measure: MeasureView) {
-        let barlineRight = Barline(x: measure.frame.maxX, top: 0, bottom: frame.height)
+    private func addBarlineRightForMeasureView(measureView: MeasureView) {
+        let barlineRight = Barline(x: measureView.frame.maxX, top: 0, bottom: frame.height)
         barlineRight.lineWidth = 6
         barlineRight.strokeColor = UIColor.grayscaleColorWithDepthOfField(.Background).CGColor
         barlineRight.opacity = 0.5
@@ -1067,11 +1087,19 @@ public class System: ViewNode, BuildPattern {
     }
     
     private func manageGraphLines() {
+        
+        print("manage graph lines")
+        /*
+        for measure in measures {
+            //print("measure.durationSpan: \(measure.durationSpan)")
+        }
+        */
+        
         for (_, performer) in performerByID {
             for (_, instrument) in performer.instrumentByID {
                 for (_, graph) in instrument.graphByID {
                     if measures.count > 0 {
-                        graph.stopLinesAtX(measures.last!.frame.maxX)
+                        graph.stopLinesAtX(measureViews.last!.frame.maxX)
                     }
                     else { graph.stopLinesAtX(frame.width) }
                     graph.build()
@@ -1565,15 +1593,15 @@ public class System: ViewNode, BuildPattern {
     }
     */
     
-    private func handoffTimeSignatureFromMeasure(measure: MeasureView) {
-        if let timeSignature = measure.timeSignature {
-            addTimeSignature(timeSignature, atX: measure.frame.minX)
+    private func handoffTimeSignatureFromMeasureView(measureView: MeasureView) {
+        if let timeSignature = measureView.timeSignature {
+            addTimeSignature(timeSignature, atX: measureView.frame.minX)
         }
     }
     
-    private func handoffMeasureNumberFromMeasure(measure: MeasureView) {
-        if measure.measureNumber != nil {
-            addMeasureNumber(measure.measureNumber!, atX: measure.frame.minX)
+    private func handoffMeasureNumberFromMeasureView(measureView: MeasureView) {
+        if measureView.measureNumber != nil {
+            addMeasureNumber(measureView.measureNumber!, atX: measureView.frame.minX)
         }
     }
     

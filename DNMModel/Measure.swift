@@ -11,15 +11,21 @@ import Foundation
 /**
 Musical Measure
 */
-public struct Measure {
+public struct Measure: Equatable {
   
     // TODO: DurationSpan
     
+    // DEPRECATE THESE?
     /// Duration of Measure
     public var duration: Duration = DurationZero
     
     /// Offset Duration of Measure (in current implementation: from the beginning of the piece)
     public var offsetDuration: Duration = DurationZero
+    
+    // make this the default object that is interfaced with
+    public var durationSpan: DurationSpan {
+        return DurationSpan(duration: duration, startDuration: offsetDuration)
+    }
     
     /** 
     When graphically represented, 
@@ -31,22 +37,21 @@ public struct Measure {
     public static func rangeFromMeasures(
         measures: [Measure],
         startingAtIndex index: Int,
-        constrainedByMaximumTotalDuration maximumDuration: Duration
-    ) -> [Measure]
+        constrainedByDuration maximumDuration: Duration
+    ) -> [Measure]?
     {
         var measureRange: [Measure] = []
         var m: Int = index
-        //var accumLeft: CGFloat = 0
         var accumDur: Duration = DurationZero
         while m < measures.count && accumDur < maximumDuration {
             if accumDur + measures[m].duration <= maximumDuration {
                 measureRange.append(measures[m])
                 accumDur += measures[m].duration
-                //accumLeft += measures[m].frame.width
                 m++
             }
             else { break }
         }
+        if measureRange.count == 0 { return nil }
         return measureRange
     }
     
@@ -70,4 +75,8 @@ public struct Measure {
     public mutating func setHasTimeSignature(hasTimeSignature: Bool) {
         self.hasTimeSignature = hasTimeSignature
     }
+}
+
+public func ==(lhs: Measure, rhs: Measure) -> Bool {
+    return lhs.durationSpan == rhs.durationSpan
 }

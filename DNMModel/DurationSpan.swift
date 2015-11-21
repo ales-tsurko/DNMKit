@@ -11,7 +11,7 @@ import Foundation
 /**
 Span between two Durations
 */
-public struct DurationSpan: CustomStringConvertible {
+public struct DurationSpan: Equatable, CustomStringConvertible {
     
     public var description: String { get { return getDescription() } }
     
@@ -104,6 +104,13 @@ public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> 
         }).first!.durationSpan.stopDuration
         return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
     }
+}
+
+public func ==(lhs: DurationSpan, rhs: DurationSpan) -> Bool {
+    return (
+        lhs.startDuration == rhs.startDuration &&
+        lhs.stopDuration == rhs.stopDuration
+    )
 }
 
 
