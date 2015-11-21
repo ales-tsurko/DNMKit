@@ -76,6 +76,8 @@ public class Parser {
                         print("INVALID InstrumentType: \(string)")
                     } catch _ { print("...?") }
                     
+                case "Rest": manageRestToken()
+                    
                 case "Pitch": managePitchTokenContainer(container)
                 case "DynamicMarking": manageDynamicMarkingTokenContainer(container)
                 case "Articulation": manageArticulationTokenContainer(container)
@@ -97,7 +99,6 @@ public class Parser {
             }
             else {
                 switch token.identifier {
-
                 case "RootNodeDuration": manageRootDurationToken(token)
                 case "InternalNodeDuration": manageInternalDurationToken(token)
                 case "LeafNodeDuration": manageLeafNodeDurationToken(token)
@@ -113,8 +114,19 @@ public class Parser {
 
         let scoreModel = makeScoreModel()
         
+        for durationNode in durationNodes where durationNode.isRest {
+            print(durationNode)
+        }
+        
         // return something real
         return scoreModel
+    }
+    
+    private func manageRestToken() {
+        print("manage rest token")
+        guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
+        let component = ComponentRest(performerID: pID, instrumentID:  iID)
+        addComponent(component)
     }
     
     private func manageDurationNodeStackModeMeasure() {
@@ -129,22 +141,6 @@ public class Parser {
     private func manageDurationNodeStackModeDecrement() {
         
     }
-    
-    
-    /*
-    private func manageDurationNodeStackModeToken(token: Token) {
-        if let tokenString = token as? TokenString {
-            if let stackMode = DurationNodeStackMode(rawValue: tokenString.value) {
-                durationNodeStackMode = stackMode
-            }
-        }
-        switch durationNodeStackMode {
-        case .Measure: accumDurationInMeasure = DurationZero
-        case .Increment: break
-        case .Decrement: break // currently, not supported?
-        }
-    }
-    */
     
     private func manageExtensionStartToken() {
         print("manage extension start")

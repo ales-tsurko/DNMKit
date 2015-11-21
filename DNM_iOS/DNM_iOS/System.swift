@@ -1132,6 +1132,8 @@ public class System: ViewNode, BuildPattern {
                 
                 for component in bgEvent.durationNode.components {
                     
+                    print("create instr e handler: \(component)")
+                    
                     // interrogate this...
                     var instrumentEventHandlerSuccessfullyCreated: Bool = false
                     let pID = component.performerID, iID = component.instrumentID
@@ -1141,7 +1143,12 @@ public class System: ViewNode, BuildPattern {
                     {
                         let (stemDirection, g) = getStemDirectionAndGForPID(pID)
                         if component.isGraphBearing {
+                            
+                            if component is ComponentRest {
+                                print("component rest is graphBearing")
+                            }
 
+                            
                             instrument.createGraphsWithComponent(component, andG: g)
                             if let instrumentEvent = instrument.createInstrumentEventWithComponent(
                                 component,
@@ -1149,6 +1156,7 @@ public class System: ViewNode, BuildPattern {
                                 withStemDirection: stemDirection
                             )
                             {
+                                print("instrument event success: \(instrumentEvent.graphEvents)")
                                 addInstrumentEventHandlerWithBGEvent(bgEvent,
                                     andInstrumentEvent: instrumentEvent
                                 )

@@ -20,8 +20,6 @@ public class GraphEvent: CALayer, BuildPattern {
     
     public var slurConnectionY: CGFloat?
     
-    public var isRest: Bool = false
-    
     public var articulations: [Articulation] = []
     public var labels: [Label] = []
     

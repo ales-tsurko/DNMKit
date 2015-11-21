@@ -27,7 +27,26 @@ public class DurationNode: Node, CustomStringConvertible {
     public var durationSpan: DurationSpan { get { return getDurationSpan() } }
     
     public var components: [Component] = []
-    public var isRest: Bool { get { return components.count == 0 && isLeaf } }
+    
+    public var isRest: Bool {
+        print("durationnode get is rest")
+        
+        
+        if !isLeaf {
+            print("not a leaf -- cant be a rest")
+            return false
+        }
+        
+        for component in components {
+            print("component: \(component)")
+            if !(component is ComponentRest) {
+                print("not a rest: return !.isRest")
+                return false
+            }
+        }
+        print("this is a rest!")
+        return true
+    }
     
     // phase out
     public var iIDsByPID : [String : [String]] { get { return getIIDsByPID() } }
@@ -1020,6 +1039,7 @@ public class DurationNode: Node, CustomStringConvertible {
         // add duration info : make this DurationSpan
         description += ": \(duration), offset: \(offsetDuration)"
         
+        if isRest { description += " (rest)" }
         // add component info
         if components.count > 0 {
             description += ": "

@@ -212,6 +212,9 @@ public class Environment: UIView {
                 startingAtIndex: measureIndex, constrainedByMaximumTotalWidth: maximumWidth
             )
             
+            if measureRange.count == 0 {
+                fatalError("get a bigger screen: can't put a single measure on here...")
+            }
             print("measure range: \(measureRange)")
             
             // what is g here?

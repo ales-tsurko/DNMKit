@@ -26,7 +26,7 @@ public class InstrumentString: Instrument {
         if !component.isGraphBearing { return }
         
         switch component {
-        case is ComponentPitch, is ComponentStringArtificialHarmonic:
+        case is ComponentPitch, is ComponentStringArtificialHarmonic, is ComponentRest:
             if graphByID["soundingPitch"] == nil {
                 let soundingPitch = Staff(id: "soundingPitch", g: g)
                 if let (clefType, transposition, _) = instrumentType?
@@ -159,6 +159,16 @@ public class InstrumentString: Instrument {
     {
         
         switch component {
+        case is ComponentRest:
+            
+            // clean this all up please
+            let instrumentEvent = InstrumentEvent(x: x, stemDirection: stemDirection)
+            if let fingeredPitch = graphByID["fingeredPitch"] {
+                let graphEvent = fingeredPitch.startRestAtX(x, withStemDirection: stemDirection)
+                instrumentEvent.addGraphEvent(graphEvent)
+            }
+            instrumentEvent.instrument = self
+            return instrumentEvent
         case is ComponentPitch:
             
             let instrumentEvent = InstrumentEvent(x: x, stemDirection: stemDirection)
@@ -171,7 +181,6 @@ public class InstrumentString: Instrument {
                 graphEvent.isConnectedToStem = false
                 graphEvent.s = 0.75
                 instrumentEvent.addGraphEvent(graphEvent)
-                
             }
             instrumentEvent.instrument = self
             return instrumentEvent

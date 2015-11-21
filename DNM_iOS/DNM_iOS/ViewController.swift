@@ -19,9 +19,9 @@ class ViewController: UIViewController {
         DNMColorManager.colorMode = ColorMode.Dark
         view.backgroundColor = DNMColorManager.backgroundColor
         
-        ScoreManager.allScores()
+        //ScoreManager.allScores()
         
-        /*
+        
         if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
             let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
             
@@ -39,7 +39,6 @@ class ViewController: UIViewController {
             
             view.addSubview(environment)
         }
-        */
         
         // Do any additional setup after loading the view, typically from a nib.
     }

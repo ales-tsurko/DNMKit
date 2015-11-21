@@ -37,9 +37,15 @@ public class InstrumentEventHandler {
             
             switch component {
             case is ComponentRest:
+                print("decorate component rest!")
                 for graphEvent in instrumentEvent!.graphEvents {
-                    graphEvent.isRest = true
-                    graphEvent.graph?.stopLinesAtX(graphEvent.x)
+                    //graphEvent.isRest = true
+                    
+                    if graphEvent is GraphEventRest {
+                        print("this graph event is a rest!: graph?: \(graphEvent.graph)")
+                    }
+                    
+                    //graphEvent.graph?.stopLinesAtX(graphEvent.x)
                 }
             case let pitch as ComponentPitch:
                 

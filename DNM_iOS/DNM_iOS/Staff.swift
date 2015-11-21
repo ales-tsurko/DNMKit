@@ -78,15 +78,19 @@ public class Staff: Graph, Guido {
     ) -> GraphEvent
     {
         let event = StaffEvent(x: x, stemDirection: stemDirection, staff: self, stem: nil)
+        event.graph = self
         events.append(event)
+        startLinesAtX(x)
         return event
     }
     
+    /*
     public override func startEventAtX(x: CGFloat) -> StaffEvent {
         let event = StaffEvent(x: x, g: g, s: s, staff: self, stem: nil)
         events.append(event)
         return event
     }
+    */
     
     public func middleCPositionAtX(x: CGFloat) -> CGFloat? {
         if clefs.count == 0 { return nil }

@@ -86,7 +86,7 @@ public class Instrument: ViewNode {
     {
         
         switch component {
-        case is ComponentPitch, is ComponentStringArtificialHarmonic:
+        case is ComponentPitch, is ComponentStringArtificialHarmonic, is ComponentRest:
             assert(graphByID["staff"] != nil, "can't find staff!")
             if let staff = graphByID["staff"] {
                 let graphEvent = staff.startEventAtX(x, withStemDirection: stemDirection)
@@ -163,6 +163,8 @@ public class Instrument: ViewNode {
         if !component.isGraphBearing { return }
         
         switch component {
+        case is ComponentRest:
+            print("create graph with component rest! -- not implemented yet!")
             
         case is ComponentPitch, is ComponentStringArtificialHarmonic:
             // create graph if necessary
