@@ -419,13 +419,13 @@
 		071E9E311C00EC84008D1263 /* DNMModel_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				07428C771C017A7C00A1E76B /* NodeTests.swift */,
 				07428C721C017A7C00A1E76B /* BeatsTest.swift */,
 				07428C831C017A7C00A1E76B /* SubdivisionTests.swift */,
 				07428C741C017A7C00A1E76B /* DurationTests.swift */,
 				07428C731C017A7C00A1E76B /* DurationNodeTests.swift */,
 				07428C751C017A7C00A1E76B /* LetterNameTests.swift */,
 				07428C761C017A7C00A1E76B /* MIDITests.swift */,
-				07428C771C017A7C00A1E76B /* NodeTests.swift */,
 				07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */,
 				07428C791C017A7C00A1E76B /* PitchDyadTests.swift */,
 				07428C7A1C017A7C00A1E76B /* PitchIntervalTests.swift */,

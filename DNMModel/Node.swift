@@ -143,19 +143,17 @@ public class Node {
     }
     
     
-    /*
     /**
     Remove child Node residing at a given index
     
     - parameter node: child Node to remove
     */
     public func removeChild(node: Node) {
-        assert(!isLeaf, "Node is a leaf, cannot possibly remove node")
-        assert(hasChild(node), "does not contain child, cannot remove")
-        let index: Int? = children.indexOfObject(node)
-        children.removeAtIndex(index!)
+        guard !isLeaf && hasChild(node) else { return }
+        if let index: Int? = children.indexOfObject(node) {
+            children.removeAtIndex(index!)
+        }
     }
-    */
     
     /**
     Deep copy of Node. A new Node is created with all attributes equivalant to original.

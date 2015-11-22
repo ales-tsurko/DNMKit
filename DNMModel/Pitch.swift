@@ -303,9 +303,7 @@ public class Pitch: CustomStringConvertible, Equatable {
             if spelling!.letterName == .C && spelling!.coarse == 0 && spelling!.fine == -0.25 {
                 octave += 1
             }
-            else if spelling!.letterName == .C && spelling!.coarse == -0.5 {
-                octave += 1
-            }
+            else if spelling!.letterName == .C && spelling!.coarse == -0.5 { octave += 1 }
         }
         return octave
     }

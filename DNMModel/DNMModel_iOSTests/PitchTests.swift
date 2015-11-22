@@ -9,8 +9,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchTests: XCTestCase {
 
     override func setUp() {
@@ -53,7 +53,7 @@ class PitchTests: XCTestCase {
     
     func testGetFrequencyOfPartial() {
         let p = Pitch(midi: MIDI(69.0))
-        let p8va = p.getFrequencyOfPartial(2)
+        let p8va = p.frequencyOfPartial(2)
         assert(p8va.value == 880.0, "freq of partial (2) incorrect")
     }
     
@@ -99,5 +99,3 @@ class PitchTests: XCTestCase {
         print(randomPitches)
     }
 }
-
-*/

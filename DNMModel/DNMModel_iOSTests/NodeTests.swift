@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class NodeTests: XCTestCase {
     
     override func setUp() {
@@ -310,5 +310,3 @@ class NodeTests: XCTestCase {
         
     }
 }
-
-*/
