@@ -13,7 +13,7 @@ Use filename extension: ```.dnm```
 
 Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 
-#### Text Input Format
+### Text Input Format
 
 **Declare Performers** (humans doing things) with:    
 - ```Performer identifier``` (string, I've been using two uppercase letters)
@@ -41,6 +41,14 @@ Add another instrument to a performer's arsenal:
 P: VN vn Violin
 P: VC vc Violoncello cc ContinuousController
 ```
+
+#### Start a piece
+
+```#``` Add a Measure (you don't need to know the length, it gets calculated based on whats inside)
+```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
+```+``` Start new rhythm after the last rhythm
+```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
+
 
 Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
 
