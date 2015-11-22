@@ -98,8 +98,7 @@ To add events, we indent and start with the relative durational value of an even
     1 p 62
     1 p 64
 ```
-
-Resulting in <img src="/img/do_re_mi.png" width="400">
+<img src="/img/do_re_mi.png" width="400">
 
 
 #### Projects
