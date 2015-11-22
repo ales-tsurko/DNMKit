@@ -99,7 +99,8 @@ To add events, we indent and start with the relative durational value of an even
     1 p 64
 ```
 
-Resulting in ![do re mi](/img/do_re_mi.png)
+
+Resulting in <img src="https://github.com/favicon.ico" width="48">
 
 
 
