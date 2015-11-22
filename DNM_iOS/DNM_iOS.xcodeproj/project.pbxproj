@@ -128,11 +128,11 @@
 		071E9E051C00EC4F008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E0C1C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
 		071E9E131C00EC4F008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */; };
-		073652931C0266D10012F057 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073652921C0266D10012F057 /* DNMModel.framework */; };
-		073652941C0266D10012F057 /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073652921C0266D10012F057 /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		074710931BFFC40D0084ED61 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074710921BFFC40D0084ED61 /* ScoreManager.swift */; };
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
+		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
+		2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,7 +166,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				073652941C0266D10012F057 /* DNMModel.framework in Embed Frameworks */,
+				2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,11 +302,10 @@
 		071E9E0B1C00EC4F008D1263 /* DNMModel_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMModel_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMModel_iOSTests.swift; sourceTree = "<group>"; };
 		071E9E141C00EC4F008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		073652921C0266D10012F057 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/DNM-bgaeeqiyuglnglbivgyqjtaretph/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<absolute>"; };
 		074710921BFFC40D0084ED61 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
-		2BEFAF6E1C01FB0B006C00D6 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,7 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073652931C0266D10012F057 /* DNMModel.framework in Frameworks */,
+				2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +345,7 @@
 		07074E581BF96C7C00BFC6FA = {
 			isa = PBXGroup;
 			children = (
-				073652921C0266D10012F057 /* DNMModel.framework */,
+				2BF054301C027566006414FE /* DNMModel.framework */,
 				07074E631BF96C7C00BFC6FA /* DNM_iOS */,
 				07074E781BF96C7C00BFC6FA /* DNM_iOSTests */,
 				071E9E031C00EC4F008D1263 /* DNMModel_iOS */,
