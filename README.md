@@ -22,9 +22,27 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 
 Example:
 
+Add a performer and their instruments: (Violinisit who is just playing Violin)
+
 ```Swift
 P: VN vn Violin
 ```
+
+Add another: (Cellist who is just playing Violoncello)
+
+```Swift
+P: VN vn Violin
+P: VC vc Violoncello
+```
+
+Add another instrument to a performer's arsenal: 
+
+```Swift
+P: VN vn Violin
+P: VC vc Violoncello cc ContinuousController
+```
+
+Note: these ```InstrumentTypes``` must strictly conform to the list of possible InstrumentTypes. This list is coming shortly.
 
 
 
