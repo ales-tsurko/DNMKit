@@ -70,7 +70,16 @@ To this point, we have only created a container of events, but we haven't actual
 
 ```
 
-**Add events***
+**Add events**
+
+To add events, we start with the relative durational value of an event. List them like this:
+
+```Swift
+| 3 8
+        1 // relative durational value of 1
+        1
+        1
+```
 
 
 #### Projects
