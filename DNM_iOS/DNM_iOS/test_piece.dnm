@@ -2,15 +2,6 @@ P: VN vn Violin
 P: VC vc Violoncello
 
 #
-| 3 8 VC vc
-    1 p 50.25 a > d f [ (
-    2 p 57
-    1 p 80 a - d o ] )
-
 | 1 8 VN vn
-    1 p 60.25 70.5 80 ( d f [
-    2 p 80.5 88.25 90 a > ) d o ] [
-
-+ 2 8
-    1 p 61 (
-    2 p 75.25 d f ] a - )
+    1 *
+    1 p 60

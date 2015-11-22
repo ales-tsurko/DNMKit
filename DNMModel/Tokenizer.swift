@@ -162,8 +162,7 @@ public class Tokenizer {
     private var instrumentTypeCharacterSet: NSCharacterSet {
         return makeInstrumentTypeCharacterSet()
     }
-    
-    
+
     private var lineCount: Int = 0
     private var lineStartIndex: Int = 0
     private var index: Int = 0

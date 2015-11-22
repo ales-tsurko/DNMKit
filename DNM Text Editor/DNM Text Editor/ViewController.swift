@@ -192,7 +192,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             let stop = token.stopIndex + currentLine.startIndex
             let length = stop - start + 1
 
-            
             let range = NSMakeRange(start, length)
             
             if let foregroundColor = styleSheet[identifierString]["foregroundColor"].array {
@@ -201,7 +200,9 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
                 let saturation = CGFloat(foregroundColor[1].floatValue)
                 let brightness = CGFloat(foregroundColor[2].floatValue)
                 
-                let color = NSColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+                let color = NSColor(
+                    hue: hue, saturation: saturation, brightness: brightness, alpha: 1
+                )
 
                 textView.setTextColor(color, range: range)
             }

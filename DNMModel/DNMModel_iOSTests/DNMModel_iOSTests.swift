@@ -7,8 +7,9 @@
 //
 
 import XCTest
-@testable import DNMModel_iOS
+@testable import DNMModel
 
+/*
 class DNMModel_iOSTests: XCTestCase {
     
     override func setUp() {
@@ -34,3 +35,5 @@ class DNMModel_iOSTests: XCTestCase {
     }
     
 }
+
+*/
