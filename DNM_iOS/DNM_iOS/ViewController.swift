@@ -16,7 +16,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pitch =
+        do {
+            let pitch = try Pitch(string: "cs4")
+        }
+        catch let error {
+            print(error)
+        }
+        
         
         
         DNMColorManager.colorMode = ColorMode.Light
