@@ -108,21 +108,30 @@ In the near future, string representations of pitch will be supported (e.g., ```
 **Top-level commands**
 - ```*``` Rest
 - ```p``` Pitch
-    - Float values
+    - Float values equivalent to MIDI values (60 = middle-c, 62 = d above middle-c)
 - ```a``` Articulation
     - ```>```
     - ```.```
-    - ```-```)
+    - ```-```
 - ```d``` DynamicMarking
     - Any combination of values ```opmf``` (e.g., ```fff```, ```ppp```, ```mp```, ```offfp```)
-    - Spanner{Start/Start} ```[```, ```]```
+    - Spanner{Start/Stop} ```[```, ```]```
 - ```(``` Slur start
 - ```)``` Slur stop
 - ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
 - ```<-``` Stop a durational extension ("tie")
 
-And a little more complicated
+And a little more complicated:
 
+```Swift
+| 2 8 VN vn
+    1 p 60 a > . d fff [
+    1 p 62 a .
+    1 p 64 a - d ppp ] ->
+
++ 1 8 VN vn
+    1 <-
+```
 
 #### Projects
 
