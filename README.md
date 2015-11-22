@@ -65,8 +65,8 @@ P: VC vc Violoncello cc ContinuousController
 To this point, we have only created a container of events, but we haven't actually create any events yet.
 
 ```Swift
-# // measure
-| 3 8 // dotted quarter rhythm container, starting on the downbeat
+# // start measure
+| 3 8 // create dotted quarter rhythm container, starting on the downbeat
 
 ```
 
@@ -101,19 +101,27 @@ To add events, we indent and start with the relative durational value of an even
 
 In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
 
-In the near future, string representations of pitch will be supported, as well (e.g., ```c_q#_up_4``` = 60.75, etc.)
+In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
 
 <img src="/img/do_re_mi.png" width="400">
 
 **Top-level commands**
 - ```*``` Rest
-- ```p``` Pitch (float values, spanner start (for gliss), soon: string (eqbup5 = e quarter flat up octave 5))
-- ```a``` Articulation (currently: ```-```, ```.```, ```>```)
-- ```d``` DynamicMarking (any combination of ```ompf```, spanner start (for hairpin))
+- ```p``` Pitch
+    - Float values
+- ```a``` Articulation
+    - ```>```
+    - ```.```
+    - ```-```)
+- ```d``` DynamicMarking
+    - Any combination of values ```opmf``` (e.g., ```fff```, ```ppp```, ```mp```, ```offfp```)
+    - Spanner{Start/Start} ```[```, ```]```
 - ```(``` Slur start
 - ```)``` Slur stop
 - ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
 - ```<-``` Stop a durational extension ("tie")
+
+And a little more complicated
 
 
 #### Projects
