@@ -519,6 +519,7 @@
 					};
 					071E9E3F1C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 525ACQ9A3N;
 					};
 					071E9E481C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
@@ -880,7 +881,8 @@
 		071E9E521C00EC96008D1263 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer: James Bean (T92Z9NC6FX)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -893,6 +895,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.DNMModel-OSX";
 				PRODUCT_NAME = DNMModel;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -901,7 +904,8 @@
 		071E9E531C00EC96008D1263 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer: James Bean (T92Z9NC6FX)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -914,6 +918,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.DNMModel-OSX";
 				PRODUCT_NAME = DNMModel;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -966,6 +971,7 @@
 				071E9E371C00EC84008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		071E9E381C00EC84008D1263 /* Build configuration list for PBXNativeTarget "DNMModel_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -974,6 +980,7 @@
 				071E9E3A1C00EC84008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		071E9E511C00EC96008D1263 /* Build configuration list for PBXNativeTarget "DNMModel_OSX" */ = {
 			isa = XCConfigurationList;
@@ -982,6 +989,7 @@
 				071E9E531C00EC96008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		071E9E541C00EC96008D1263 /* Build configuration list for PBXNativeTarget "DNMModel_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -990,6 +998,7 @@
 				071E9E561C00EC96008D1263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
