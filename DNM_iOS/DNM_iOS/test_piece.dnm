@@ -4,4 +4,7 @@ P: VN vn Violin
 | 2 8 VN vn
     1 p 60 a > . d fff [
     1 p 62 a .
-    1 p 64 a - d ppp ]
+    1 p 64 a - d ppp ] ->
+
++ 1 8
+    1 <-
