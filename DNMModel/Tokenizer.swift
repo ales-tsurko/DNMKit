@@ -12,8 +12,8 @@ import Foundation
 public class Tokenizer {
     
     /**
-     Command that switches the Tokenizer to scan for tailored information types
-     */
+    Command that switches the Tokenizer to scan for tailored information types
+    */
     public struct TopLevelCommand {
         
         private var identifier: String
@@ -21,14 +21,14 @@ public class Tokenizer {
         private var allowableTypes: [ArgumentType]
         
         /**
-         Create a TopLevelCommand with identifier, opening value and allowable types.
-         
-         - parameter identifier:     String that is used by syntax highlighter to highlighter
-         - parameter openingValue:   String that switches Tokenizer onto tailored path
-         - parameter allowableTypes: Types that the Tokenizer can scan for
-         
-         - returns: TopLevelCommand
-         */
+        Create a TopLevelCommand with identifier, opening value and allowable types.
+
+        - parameter identifier:     String that is used by syntax highlighter to highlighter
+        - parameter openingValue:   String that switches Tokenizer onto tailored path
+        - parameter allowableTypes: Types that the Tokenizer can scan for
+
+        - returns: TopLevelCommand
+        */
         public init(identifier: String, openingValue: String, allowableTypes: [ArgumentType]) {
             self.identifier = identifier
             self.openingValue = openingValue
@@ -37,17 +37,17 @@ public class Tokenizer {
     }
     
     /**
-     Type of input that the Tokenizer may scan for a given context
-     
-     - String:         String value
-     - Int:            Integer value
-     - Float:          Float value
-     - PitchString:    String representation of Pitch (e.g., c#4, d_qf_up_7, etc)
-     - Duration:       Pair of Integer values (separated by single space)
-     - DynamicMarking: Any combination of "opmf" (e.g., mf, fff, ppp, offfpp, etc)
-     - Articulation:   Single instance of [., >, -]
-     - Spanner:        Generic type that manages interpolations between values (e.g, hairpin)
-     */
+    Type of input that the Tokenizer may scan for a given context
+
+    - String:         String value
+    - Int:            Integer value
+    - Float:          Float value
+    - PitchString:    String representation of Pitch (e.g., c#4, d_qf_up_7, etc)
+    - Duration:       Pair of Integer values (separated by single space)
+    - DynamicMarking: Any combination of "opmf" (e.g., mf, fff, ppp, offfpp, etc)
+    - Articulation:   Single instance of [., >, -]
+    - Spanner:        Generic type that manages interpolations between values (e.g, hairpin)
+    */
     public enum ArgumentType: String {
         case String
         case Int
@@ -60,8 +60,8 @@ public class Tokenizer {
     }
     
     /**
-     Single line of text, with helpful information
-     */
+    Single line of text, with helpful information
+    */
     public struct Line: CustomStringConvertible {
         
         public var description: String { return getDescription() }
@@ -121,8 +121,8 @@ public class Tokenizer {
     }
     
     /**
-     Collection of Line objects, with helpful methods
-     */
+    Collection of Line objects, with helpful methods
+    */
     public struct LineCollection: CustomStringConvertible {
         
         public var description: String { return getDescription() }
@@ -234,12 +234,12 @@ public class Tokenizer {
     }
     
     /**
-     Create a TokenContainer for a given string (e.g., an entire file of DNMShorthand format)
-     
-     - parameter string: String of DNMShorthand code of any length
-     
-     - returns: TokenContainer
-     */
+    Create a TokenContainer for a given string (e.g., an entire file of DNMShorthand format)
+
+    - parameter string: String of DNMShorthand code of any length
+
+    - returns: TokenContainer
+    */
     public func tokenizeString(string: String) -> TokenContainer {
         
         // the string for the current line
@@ -631,7 +631,7 @@ public class Tokenizer {
     
     private func scanPerformerIDAndInstrumentIDWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         
         // Enum used to switch between PerformerID and InstrumentID
@@ -800,19 +800,7 @@ public class Tokenizer {
             
             container.addToken(spannerTokenContainer)
             
-            /*
-            // scanColor
-            while scanner.scanString("c", intoString: &string) {
-            
-            }
-            */
-            
-            /*
-            // scanControlPoints
-            while scanner.scanString("cp", intoString: &string) {
-            
-            }
-            */
+            // TODO: scan color, control points, etc.
             return true
         }
         return false
@@ -820,7 +808,7 @@ public class Tokenizer {
     
     private func scanSpannerStopWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         let startIndex = scanner.scanLocation
         var string: NSString?
@@ -859,7 +847,7 @@ public class Tokenizer {
     
     private func scanLeafDurationWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         let startIndex = scanner.scanLocation
         var beats: Int?
@@ -926,7 +914,7 @@ public class Tokenizer {
     
     private func scanCommentsWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         scanLineCommentWithScanner(scanner, andContainer: container)
         scanBlockCommentStartWithScanner(scanner, andContainer: container)
@@ -950,7 +938,7 @@ public class Tokenizer {
     
     private func scanBlockCommentStopWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         var string: NSString?
         if scanner.scanString("*/", intoString: &string) { isInBlockComment = false }
@@ -958,7 +946,7 @@ public class Tokenizer {
     
     private func scanLineCommentWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         var string: NSString?
         if scanner.scanString("//", intoString: &string) {
