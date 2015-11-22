@@ -150,11 +150,12 @@ P: VC vc Violoncello
 
 | 3 8 VC vc
     4 p 55.25 a - d p [ (
-    1 p 60.5 a - > d f ] [ )
+    1 p 60.5 a - > d f ] [ ) ->
     2 --
-        1 p 45.5 (
-        3 p 41 a > d pp ] )
-        1 p 59.75 a . d pppp
+        1 <-
+        3 p 41 a > d pp ] (
+        1 p 59.75 a . d pppp )
+
 
 ```
 
