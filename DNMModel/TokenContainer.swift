@@ -8,11 +8,18 @@
 
 import Foundation
 
+/**
+TokenContainer is an hierarchical structure containing 0...n tokens 
+(which may be TokenContainers, themselves)
+*/
 public class TokenContainer: Token {
+
+    /// String representation of TokenContainer
+    public var description: String { return getDescription() }
     
+    /// Identifier of TokenContainer
     public var identifier: String
     
-    public var description: String { return getDescription() }
     
     public var openingValue: String
     
