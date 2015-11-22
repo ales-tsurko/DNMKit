@@ -20,6 +20,10 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 - ```1...n``` pairs of ```Instrument identifiers``` and ```InstrumentTypes```
     - ```Instrument identifier``` (string, I've been using two lowercase letters)
 
+
+Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
+
+
 **Example**:
 
 Add a performer and their instruments: (Violinisit who is just playing Violin)
@@ -52,7 +56,6 @@ P: VC vc Violoncello cc ContinuousController
 - ```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
 
 
-Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
 
 
 
