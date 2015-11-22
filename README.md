@@ -65,8 +65,8 @@ P: VC vc Violoncello cc ContinuousController
 To this point, we have only created a container of events, but we haven't actually create any events yet.
 
 ```Swift
-#
-| 3 8
+# // measure
+| 3 8 // dotted quarter rhythm container, starting on the downbeat
 
 ```
 
