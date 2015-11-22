@@ -48,7 +48,7 @@ P: VC vc Violoncello cc ContinuousController
 
 #### Start a piece
 
-```#``` Add a Measure (you don't need to know the length, it gets calculated based on whats inside)
+```#``` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
 
 **Declare where to put a new event**
 - ```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
@@ -72,14 +72,25 @@ To this point, we have only created a container of events, but we haven't actual
 
 **Add events**
 
-To add events, we start with the relative durational value of an event. List them like this:
+To add events, we start with the relative durational value of an event.
 
 ```Swift
-| 3 8
+| 1 8
     1 // relative durational value of 1
-    1
-    1
 ```
+
+**Add ```Components``` to the rhythmic values
+
+```Swift
+| 2 8
+    1 p 60
+    1 p 62
+    1 p 64
+```
+
+
+
+
 
 
 #### Projects
