@@ -46,7 +46,7 @@ P: VC vc Violoncello cc ContinuousController
 
 ```#``` Add a Measure (you don't need to know the length, it gets calculated based on whats inside)
 
-**Declare where to put a new event
+**Declare where to put a new event**
 - ```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
 - ```+``` Start new rhythm after the last rhythm
 - ```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
