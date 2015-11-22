@@ -48,7 +48,7 @@ P: VC vc Violoncello cc ContinuousController
 
 #### Start a piece
 
-```#``` Add a Measure (you don't need to know the length, it gets calculated based on whats inside)
+```#``` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
 
 **Declare where to put a new event**
 - ```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
@@ -59,27 +59,108 @@ P: VC vc Violoncello cc ContinuousController
 
 ```b s``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). Currently, only powers-of-two are allowed (```4, 8, 16, 32``` etc...).
 
-**Example**: ```3 8```: Three eighth notes, or a dotted quarter
+**Example**: ```3 8```: Three eighth notes, or a dotted quarter.
 
 
 To this point, we have only created a container of events, but we haven't actually create any events yet.
 
 ```Swift
-# // measure
-| 3 8 // dotted quarter rhythm container, starting on the downbeat
+# // start measure
+| 3 8 // create dotted quarter rhythm container, starting on the downbeat
 
+```
+
+**Declare who is doing the rhythm**
+```Swift
+| 3 8 VN vn // PerformerID: VN, InstrumentID: vn (InstrumentType: Violin)
+```
+
+or
+
+```Swift
+| 3 8 VC cc // PerformerID: VC, InstrumentID: cc (InstrumentType: ContinuousController)
 ```
 
 **Add events**
 
-To add events, we start with the relative durational value of an event. List them like this:
+To add events, we indent and start with the relative durational value of an event.
 
 ```Swift
-| 3 8
+| 1 8
     1 // relative durational value of 1
-    1
-    1
 ```
+
+**Add ```Components``` to the rhythmic values**
+
+```Swift
+| 2 8 VN vn
+    1 p 60 // do
+    1 p 62 // re 
+    1 p 64 // mi
+```
+
+In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
+
+In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
+
+<img src="/img/do_re_mi.png" height="200">
+
+**Top-level commands**
+- ```*``` Rest
+- ```p``` Pitch
+    - Float values equivalent to MIDI values (60 = middle-c, 62 = d above middle-c)
+- ```a``` Articulation
+    - ```>```
+    - ```.```
+    - ```-```
+- ```d``` DynamicMarking
+    - Any combination of values ```opmf``` (e.g., ```fff```, ```ppp```, ```mp```, ```offfp```)
+    - Spanner{Start/Stop} ```[```, ```]```
+- ```(``` Slur start
+- ```)``` Slur stop
+- ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
+- ```<-``` Stop a durational extension ("tie")
+
+And a little more complicated:
+
+```Swift
+| 2 8 VN vn
+    1 p 60 a > . d fff [
+    1 p 62 a .
+    1 p 64 a - d ppp ] ->
+
++ 1 8 // PerformerID and InstrumentID remembered here
+    1 <-
+```
+
+<img src="/img/do_re_mi_plus.png" height="200">
+
+```Swift
+P: VN vn Violin
+P: VC vc Violoncello
+
+#
+| 2 8 VN vn
+    1 p 60 a > . d fff [
+    1 p 62 a .
+    1 p 64 a - d ppp ] ->
+
++ 1 8
+    1 <-
+
+| 3 8 VC vc
+    4 p 55.25 a - d p [ (
+    1 p 60.5 a - > d f ] [ ) ->
+    2 --
+        1 <-
+        3 p 41 a > d pp ] (
+        1 p 59.75 a . d pppp )
+
+
+```
+
+<img src="/img/do_re_mi_plus_plus.png" height="275">
+
 
 
 #### Projects
