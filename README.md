@@ -17,11 +17,9 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 
 **Declare Performers** (humans doing things) with:    
 - ```Performer identifier``` (string, I've been using two uppercase letters)
-- ```1...n``` pairs of ```Instrument identifiers``` and ```InstrumentTypes```
+- ```1...n``` pairs of
     - ```Instrument identifier``` (string, I've been using two lowercase letters)
-
-
-Note: these ```InstrumentTypes``` must strictly match an item in the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18). 
+    - ```InstrumentTypes``` (note: these ```InstrumentTypes``` must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18).)
 
 
 **Example**:
