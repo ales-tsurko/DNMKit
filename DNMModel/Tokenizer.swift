@@ -143,7 +143,7 @@ public class Tokenizer {
                 static func getInstance() -> JSON {
                     let bundle = NSBundle(forClass: TopLevelCommands.self)
                     let filePath = bundle.pathForResource("TopLevelCommands", ofType: "json")!
-                    let jsonData = NSData.dataWithContentsOfMappedFile(filePath) as! NSData
+                    let jsonData = NSData(contentsOfFile: filePath)!
                     let jsonObj = JSON(data: jsonData)
                     return jsonObj
                 }
@@ -316,7 +316,7 @@ public class Tokenizer {
             addToken(token)
         }
         
-        var startIndex: Int = lineStartIndex + scanner.scanLocation
+        let startIndex: Int = lineStartIndex + scanner.scanLocation
         switch argumentType {
         case .String:
             var str: NSString?
@@ -447,7 +447,7 @@ public class Tokenizer {
     ) -> [String : String]
     {
         
-        var startIndex = scanner.scanLocation// + lineStartIndex
+        let startIndex = scanner.scanLocation// + lineStartIndex
         //if scanner.scanLocation > 0 { startIndex += 1 }
         
         var string: NSString?
@@ -675,7 +675,7 @@ public class Tokenizer {
         
         if scanner.scanString("]", intoString: &string) {
             
-            var spannerTokenContainer = TokenContainer(
+            let spannerTokenContainer = TokenContainer(
                 identifier: "SpannerStop",
                 openingValue: "]",
                 startIndex: startIndex + lineStartIndex
@@ -686,7 +686,7 @@ public class Tokenizer {
         // order of commands is enforced
         if scanner.scanString("[", intoString: &string) {
             
-            var spannerTokenContainer = TokenContainer(
+            let spannerTokenContainer = TokenContainer(
                 identifier: "SpannerStart",
                 openingValue: "[",
                 startIndex: startIndex + lineStartIndex
@@ -946,7 +946,7 @@ public class Tokenizer {
 
     private func makeInstrumentTypeCharacterSet() -> NSMutableCharacterSet {
         let underscoreCharSet = NSMutableCharacterSet(charactersInString: "_")
-        var alphanumericCharSet = NSMutableCharacterSet.alphanumericCharacterSet()
+        let alphanumericCharSet = NSMutableCharacterSet.alphanumericCharacterSet()
         alphanumericCharSet.formUnionWithCharacterSet(underscoreCharSet)
         return alphanumericCharSet
     }

@@ -24,7 +24,7 @@ public class SyntaxHighlighter {
                     let filePath = bundle.pathForResource("SyntaxHighlightingStyleSheet",
                         ofType: "json"
                     )!
-                    let jsonData: NSData = NSData.dataWithContentsOfMappedFile(filePath) as! NSData
+                    let jsonData = NSData(contentsOfFile: filePath)!
                     let jsonObj: JSON = JSON(data: jsonData)
                     return jsonObj
                 }
