@@ -133,6 +133,9 @@ And a little more complicated:
     1 <-
 ```
 
+<img src="/img/do_re_mi_plus.png" width="400">
+
+
 #### Projects
 
 * **DNMMODEL**: iOS / OSX framework that includes:
