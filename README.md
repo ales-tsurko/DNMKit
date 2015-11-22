@@ -79,7 +79,7 @@ To add events, we start with the relative durational value of an event.
     1 // relative durational value of 1
 ```
 
-**Add ```Components``` to the rhythmic values
+**Add ```Components``` to the rhythmic values**
 
 ```Swift
 | 2 8
