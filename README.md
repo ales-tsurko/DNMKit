@@ -129,11 +129,37 @@ And a little more complicated:
     1 p 62 a .
     1 p 64 a - d ppp ] ->
 
-+ 1 8 VN vn
++ 1 8 // PerformerID and InstrumentID remembered here
     1 <-
 ```
 
 <img src="/img/do_re_mi_plus.png" height="200">
+
+```Swift
+P: VN vn Violin
+P: VC vc Violoncello
+
+#
+| 2 8 VN vn
+    1 p 60 a > . d fff [
+    1 p 62 a .
+    1 p 64 a - d ppp ] ->
+
++ 1 8
+    1 <-
+
+| 3 8 VC vc
+    4 p 55.25 a - d p [ (
+    1 p 60.5 a - > d f ] [ )
+    2 --
+        1 p 45.5 (
+        3 p 41 a > d pp ] )
+        1 p 59.75 a . d pppp
+
+```
+
+<img src="/img/do_re_mi_plus_plus.png" height="275">
+
 
 
 #### Projects
