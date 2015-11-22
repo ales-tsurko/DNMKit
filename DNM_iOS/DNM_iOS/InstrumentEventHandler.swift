@@ -34,7 +34,6 @@ public class InstrumentEventHandler {
     public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
         guard let bgEvent = bgEvent else { return false }
         let offsetDuration = bgEvent.durationNode.offsetDuration
-        print("duration span: \(durationSpan): durNode.offsetDur: \(offsetDuration)")
         return durationSpan.containsDuration(offsetDuration)
     }
     
@@ -255,32 +254,34 @@ public class InstrumentEventHandler {
         else { fatalError("could not create stem") }
     }
     
+    // this could use thinking, and refining
     private func getInfoEndYInContext(context: CALayer) -> CGFloat {
         if bgEvent == nil { return 0 }
         
-        if let instrumentEvent = instrumentEvent {
-            return context.convertY(instrumentEvent.stemEndY,
-                fromLayer: instrumentEvent.instrument!
-            )
+        // instrument event where there is substantial event on infoEndY side
+        if let instrumentEvent = instrumentEvent where !instrumentEvent.hasOnlyRestEvents,
+            let instrument = instrumentEvent.instrument
+        {
+            // get stemEndY from instrumentEvent, convert it to coordinate space of context
+            return context.convertY(instrumentEvent.stemEndY, fromLayer: instrument)
         }
-        else {
-            if let bgStratum = bgEvent?.bgStratum {
-                switch bgStratum.stemDirection {
-                case .Down:
-                    if let deNode = bgStratum.deNode {
-                        return context.convertY(deNode.frame.maxY, fromLayer: bgStratum)
-                    }
-                    else {
-                        return context.convertY(bgStratum.frame.height, fromLayer: bgStratum)
-                    }
-                case .Up:
-                    if let deNode = bgStratum.deNode {
-                        return context.convertY(deNode.frame.minY, fromLayer: bgStratum)
-                    }
-                    else { return context.convertY(0, fromLayer: bgStratum) }
+        else if let bgStratum = bgEvent?.bgStratum {
+            switch bgStratum.stemDirection {
+            case .Down:
+                if let deNode = bgStratum.deNode {
+                    return context.convertY(deNode.frame.maxY, fromLayer: bgStratum)
+                } else {
+                    return context.convertY(bgStratum.frame.height, fromLayer: bgStratum)
+                }
+            case .Up:
+                if let deNode = bgStratum.deNode {
+                    return context.convertY(deNode.frame.minY, fromLayer: bgStratum)
+                } else {
+                    return context.convertY(0, fromLayer: bgStratum)
                 }
             }
         }
+        
         return 0
     }
     

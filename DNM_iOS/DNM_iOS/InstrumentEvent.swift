@@ -23,6 +23,11 @@ public class InstrumentEvent: CALayer {
     
     public var stemEndY: CGFloat { return getStemEndY() } // make getter
     
+    public var hasOnlyRestEvents: Bool {
+        for graphEvent in graphEvents { if !(graphEvent is GraphEventRest) { return false } }
+        return true
+    }
+    
     public init(x: CGFloat, stemDirection: StemDirection, stem: Stem? = nil) {
         super.init()
         self.x = x

@@ -258,4 +258,13 @@ class DurationNodeTests: XCTestCase {
             }
         }
     }
+    
+    func testRest() {
+        let durationNode = DurationNode(duration: Duration(3,16))
+        XCTAssert(durationNode.isRest, "durationNode with no components should be a rest")
+        let restComponent = ComponentRest(performerID: "", instrumentID: "")
+        durationNode.addComponent(restComponent)
+        XCTAssert(durationNode.isRest, "durationNode with only rest components should be a rest")
+        print("durationNode: \(durationNode)")
+    }
 }

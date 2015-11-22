@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-// TO-DO: PADS AT INIT!
+// clean up, add documentation
 public class BGStratum: ViewNode, BuildPattern {
     
     public override var description: String { get { return getDescription() } }
@@ -50,11 +50,8 @@ public class BGStratum: ViewNode, BuildPattern {
     public var tbLigaturesAtDepth: [Int : [TBLigature]] = [:]
     public var augmentationDots: [AugmentationDot] = []
     
+    // make verbose title at some point: instrumentsIDsByPerformerID
     public var iIDsByPID: [String: [String]] { get { return getIIDsByPID() } }
-
-    
-    // THIS IS BEING REFACTORED OUT
-    //public var mgNodeAtDepth: [Int : MGNode] = [:]
 
     public init(stemDirection: StemDirection = .Down, g: CGFloat = 12, s: CGFloat = 1) {
         super.init()
@@ -267,7 +264,7 @@ public class BGStratum: ViewNode, BuildPattern {
     }
     */
     
-    
+    /*
     public func addTestStems() {
         for event in bgEvents {
             let x = event.x + event.bgContainer!.left + event.bgContainer!.beamGroup!.left
@@ -278,6 +275,7 @@ public class BGStratum: ViewNode, BuildPattern {
             addSublayer(stem)
         }
     }
+    */
     
     private func makeSortedTBGroups() -> [TBGroup] {
         var tbgs: [TBGroup] = []
