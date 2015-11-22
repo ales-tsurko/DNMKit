@@ -16,8 +16,8 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 #### Text Input Format
 
 **Declare Performers** (humans doing things) with:
-    * Performer identifier (string, I've been using two uppercase letters)
-    * ```1...n``` pairs of Instrument identifiers and InstrumentType
+    - Performer identifier (string, I've been using two uppercase letters)
+    - ```1...n``` pairs of Instrument identifiers and InstrumentType
         * Instrument identifier (string, I've been using two lowercase letters)
 
 
