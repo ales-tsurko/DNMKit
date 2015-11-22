@@ -21,7 +21,7 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
     - ```Instrument identifier``` (string, I've been using two lowercase letters)
 
 
-Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
+Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18). 
 
 
 **Example**:
@@ -39,7 +39,7 @@ P: VN vn Violin
 P: VC vc Violoncello
 ```
 
-Add another instrument to a performer's arsenal: 
+Add another instrument to a performer's arsenal, perhaps a foot-pedal: 
 
 ```Swift
 P: VN vn Violin
@@ -55,8 +55,8 @@ P: VC vc Violoncello cc ContinuousController
 - ```+``` Start new rhythm after the last rhythm
 - ```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
 
-
-
+**Start a rhythmic event**
+```*b s*``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```) (currently, only powers-of-two are allowed)
 
 
 #### Projects
