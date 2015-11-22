@@ -4,38 +4,17 @@
 
 Work-in-progress.
 
-Underlying framework for **DNM (Dynamic Notation for Music)**.
+iPad based music notation renderer.
 
-#### Subframeworks currently implemented:
+#### Projects
 
-* **DNMUtility**: Basic helper functions and data structures
-* **DNMModel**: Model of music
-* **DNMView**: Graphical representation of the musical model
-* **DNMUI**: Interaction elements
-* **DNMConverter**: Parsers and generators for various formats 
-    * Currently only for DNMShorthand text input, later for:
-        * JSON
-        * MusicXML
-        * Abjad
-        * Bach
-        * OpenMusic
-        * PWGL
-        * and so on
+* **DNMMODEL**: iOS / OSX framework that includes:
+    * Model of music
+    * Parser for DNMShorthand
+    * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for JSON i/o
+    
 
+* **DNM_iOS**: iOS application for graphical representation of music
 
-#### Subframeworks to be implemented:
-
-* **DNMJSON**: Wrapper for [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) with DNM-specific funcionality (on the way)
-* **DNMAudio**: Wrapper for [The Amazing Audio Engine](https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine) to provide:
-    * Sample-accurate timing of events in playback scenarios
-    * Audio playback of pitches
-    * and so on
-* **DNMOSC** Wrapper for [F53OSC](https://github.com/Figure53/F53OSC) to connect to:
-    * pd / Max/MSP
-    * Supercollider
-    * QLab
-    * and so on
-* **DNMSVG** Wrapper for [SwiftVG](https://github.com/austinfitzpatrick/SwiftVG) to translate SVG images (e.g. graphics authored in Illustrator, etc.) into musical symbols.
-
-
+* **DNM Text Editor**: Simple text editor with text highlighting specific to DNMShorthand
 
