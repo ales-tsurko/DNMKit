@@ -57,7 +57,7 @@ P: VC vc Violoncello cc ContinuousController
 
 **Start a rhythmic event**
 
-```*b* *s*``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). (currently, only powers-of-two are allowed (```4, 8, 16, 32, 64, 128, etc...```))
+*b* *s* Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). (currently, only powers-of-two are allowed (```4, 8, 16, 32, 64, 128, etc...```))
 
 
 #### Projects
