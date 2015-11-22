@@ -46,12 +46,10 @@ P: VC vc Violoncello cc ContinuousController
 
 ```#``` Add a Measure (you don't need to know the length, it gets calculated based on whats inside)
 
-```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
-
-```+``` Start new rhythm after the last rhythm
-
-```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
-
+**Declare where to put a new event
+- ```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
+- ```+``` Start new rhythm after the last rhythm
+- ```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
 
 
 Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
