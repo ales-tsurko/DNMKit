@@ -103,7 +103,7 @@ In this case, we use the ```p``` command to declare a pitch value. Currently, MI
 
 In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
 
-<img src="/img/do_re_mi.png" width="400">
+<img src="/img/do_re_mi.png" height="200">
 
 **Top-level commands**
 - ```*``` Rest
@@ -133,7 +133,7 @@ And a little more complicated:
     1 <-
 ```
 
-<img src="/img/do_re_mi_plus.png" width="400">
+<img src="/img/do_re_mi_plus.png" height="200">
 
 
 #### Projects
