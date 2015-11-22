@@ -121,9 +121,8 @@ public class Staff: Graph, Guido {
     }
     
     public override func stopLinesAtX(x: CGFloat) {
-        assert(lastLinesX != nil, "must have started a line to stop a line")
+        //assert(lastLinesX != nil, "must have started a line to stop a line")
         lineActions.append(LineActionStop(x: x))
-        
         lastLinesX = nil
     }
     
@@ -267,8 +266,8 @@ public class Staff: Graph, Guido {
             if lineActionsWithCurrentXValue.filter({ $0 is LineActionStart }).count > 0 {
                 if lastX == nil { lastX = lineAction.x }
             }
-            else {
-                commitLineFromLeft(lastX!, toRight: lineAction.x)
+            else if let _lastX = lastX {
+                commitLineFromLeft(_lastX, toRight: lineAction.x)
                 lastX = nil
             }
             allLineActions = allLineActions.filter({ $0.x > lineAction.x })
