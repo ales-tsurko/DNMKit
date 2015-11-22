@@ -153,20 +153,56 @@ public class Pitch: CustomStringConvertible, Equatable {
         self.frequency = Frequency(midi: m)
     }
     
-    /*
     /**
     Create a Pitch with String. This string can be of a format "C#" which will create a C#
     above middle-c, or of a format "Eb5" which will create an Eb a minor 10th above middle-c.
+    At this point, the actual pitch spelling prescribed by you here is ignored. Further
+    down the line, perhaps the pitch spelling will be enforced here.
     
     - parameter string: String representation of Pitch
     
     - returns: Initialized Pitch object if you didn't fuck up the formatting of the String.
     */
     public init?(string: String) {
+        
+        // format Eb5
+        
+        let scanner = NSScanner(string: string)
+        scanner.caseSensitive = true
+        var str: NSString?
+        
+        let characterSet = NSMutableCharacterSet.uppercaseLetterCharacterSet()
+        characterSet.formUnionWithCharacterSet(
+            NSMutableCharacterSet.lowercaseLetterCharacterSet()
+        )
+        
+        if scanner.scanCharactersFromSet(characterSet, intoString: &str) {
+            print("found letter name: \(str!)")
+            
+            // scan for q (quartersharp)
+            var isQuarter = false
+            if scanner.scanString("q", intoString: &str) {
+                isQuarter = true
+                print("is quarter sharp")
+            }
+            
+            // look for coarse
+            if scanner.scanString("b", intoString: &str) {
+                print("is flat type")
+            }
+            
+            if scanner.scanString("s", intoString: &str) {
+                print("is sharp type")
+            }
+        }
+        
+    
+        
+        
+        
         self.frequency = Frequency(0.0) // change
         self.midi = MIDI(0.0) // change
     }
-    */
     
     // MARK: Set attributes of a Pitch
     
