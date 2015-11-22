@@ -21,7 +21,7 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
     - ```Instrument identifier``` (string, I've been using two lowercase letters)
 
 
-Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18). 
+Note: these ```InstrumentTypes``` must strictly match an item in the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18). 
 
 
 **Example**:
@@ -32,7 +32,7 @@ Add a performer and their instruments: (Violinisit who is just playing Violin)
 P: VN vn Violin
 ```
 
-Add another: (Cellist who is just playing Violoncello)
+Add another performer: (Cellist who is just playing Violoncello)
 
 ```Swift
 P: VN vn Violin
@@ -57,7 +57,20 @@ P: VC vc Violoncello cc ContinuousController
 
 **Start a rhythmic event**
 
-```b: Int s: Int``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). (currently, only powers-of-two are allowed (```4, 8, 16, 32, 64, 128, etc...```))
+```b s``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). Currently, only powers-of-two are allowed (```4, 8, 16, 32``` etc...).
+
+**Example**: ```3 8```: Three eighth notes, or a dotted quarter
+
+
+To this point, we have only created a container of events, but we haven't actually create any events yet.
+
+```Swift
+#
+| 3 8
+
+```
+
+**Add events***
 
 
 #### Projects
