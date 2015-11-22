@@ -225,10 +225,10 @@ public class Tokenizer {
     public var topLevelCommands: [TopLevelCommand] = []
     
     /**
-     Create a Tokenizer
-     
-     - returns: Tokenizer
-     */
+    Create a Tokenizer
+
+    - returns: Tokenizer
+    */
     public init() {
         setDefaultTopLevelCommands()
     }
