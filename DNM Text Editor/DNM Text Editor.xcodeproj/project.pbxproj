@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		071E9CC71C00E07B008D1263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E9CC61C00E07B008D1263 /* Assets.xcassets */; };
 		071E9CD51C00E07B008D1263 /* DNM_Text_EditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9CD41C00E07B008D1263 /* DNM_Text_EditorTests.swift */; };
+		073652901C0255740012F057 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0736528F1C0255740012F057 /* DNMModel.framework */; };
+		073652911C0255740012F057 /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0736528F1C0255740012F057 /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07428C711C012C8100A1E76B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07428C6F1C012C8100A1E76B /* Main.storyboard */; };
 		0757EE1E1C00EF8500C900E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE1A1C00EF8500C900E7 /* AppDelegate.swift */; };
 		0757EE1F1C00EF8500C900E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE1B1C00EF8500C900E7 /* ViewController.swift */; };
 		0757EE201C00EF8500C900E7 /* SyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE1C1C00EF8500C900E7 /* SyntaxHighlighter.swift */; };
 		0757EE211C00EF8500C900E7 /* SyntaxHighlightingStyleSheet.json in Resources */ = {isa = PBXBuildFile; fileRef = 0757EE1D1C00EF8500C900E7 /* SyntaxHighlightingStyleSheet.json */; };
-		2BEFAF6C1C01F84C006C00D6 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEFAF6B1C01F84C006C00D6 /* DNMModel.framework */; };
-		2BEFAF6D1C01F84C006C00D6 /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEFAF6B1C01F84C006C00D6 /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2BEFAF6D1C01F84C006C00D6 /* DNMModel.framework in Embed Frameworks */,
+				073652911C0255740012F057 /* DNMModel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,12 +49,12 @@
 		071E9CD01C00E07B008D1263 /* DNM Text EditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DNM Text EditorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9CD41C00E07B008D1263 /* DNM_Text_EditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNM_Text_EditorTests.swift; sourceTree = "<group>"; };
 		071E9CD61C00E07B008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0736528F1C0255740012F057 /* DNMModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DNMModel.framework; sourceTree = "<group>"; };
 		07428C701C012C8100A1E76B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0757EE1A1C00EF8500C900E7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0757EE1B1C00EF8500C900E7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0757EE1C1C00EF8500C900E7 /* SyntaxHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighter.swift; sourceTree = "<group>"; };
 		0757EE1D1C00EF8500C900E7 /* SyntaxHighlightingStyleSheet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxHighlightingStyleSheet.json; sourceTree = "<group>"; };
-		2BEFAF6B1C01F84C006C00D6 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = DNMModel.framework; path = "/Users/alestsurko/Library/Developer/Xcode/DerivedData/Build/Products/Debug-iphoneos/DNMModel.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BEFAF6C1C01F84C006C00D6 /* DNMModel.framework in Frameworks */,
+				073652901C0255740012F057 /* DNMModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +79,7 @@
 		071E9CB41C00E07B008D1263 = {
 			isa = PBXGroup;
 			children = (
-				2BEFAF6B1C01F84C006C00D6 /* DNMModel.framework */,
+				0736528F1C0255740012F057 /* DNMModel.framework */,
 				071E9CBF1C00E07B008D1263 /* DNM Text Editor */,
 				071E9CD31C00E07B008D1263 /* DNM Text EditorTests */,
 				071E9CBE1C00E07B008D1263 /* Products */,

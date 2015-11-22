@@ -1,0 +1,3 @@
+framework module DNMModel {
+    header "DNMModel-Swift.h"
+}

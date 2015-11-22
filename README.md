@@ -6,6 +6,13 @@ Work-in-progress.
 
 iPad based music notation renderer.
 
+
+#### Create a file
+
+Use filename extension: ```.dnm```
+Save anywhere in project (to be retrieved from NSBundle.mainBundle()...)
+
+
 #### Projects
 
 * **DNMMODEL**: iOS / OSX framework that includes:
