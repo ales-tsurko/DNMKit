@@ -325,7 +325,6 @@ public class System: ViewNode, BuildPattern {
     - parameter measures: All MeasureViews in this System
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
-        // convert measures to measureViews
         self.measures = measures
         self.measureViews = makeMeasureViewsWithMeasures(measures)
         var accumLeft: CGFloat = infoStartX
@@ -335,10 +334,6 @@ public class System: ViewNode, BuildPattern {
             setGraphicalAttributesOfMeasureView(measureView, left: accumLeft)
             handoffTimeSignatureFromMeasureView(measureView)
             handoffMeasureNumberFromMeasureView(measureView)
-            
-            // temp
-            //handoffMGRectsFromMeasure(measure)
-            
             addBarlinesForMeasureView(measureView)
             accumLeft += measureView.frame.width
             accumDur += measureView.dur!
@@ -396,6 +391,7 @@ public class System: ViewNode, BuildPattern {
     Arrange all ViewNodes contained within this System to show only those selected.
     */
     public func arrangeNodesWithComponentTypesPresent() {
+        
         organizeIDsByComponentType()
         
         func addPerformersShown() {
@@ -697,20 +693,20 @@ public class System: ViewNode, BuildPattern {
         // adjustPerformerBrackets()
         // adjustMetronomeGridRects()
     }
-
     
     private func organizeIDsByComponentType() {
-        
-        // encapsulate this, put this somewhere early and smart
+        addPerfomerComponentTypeToComponentTypesByID()
+        createIDsByComponentType()
+        createIDsShownByComponentType()
+        createIDsHiddenByComponentType()
+    }
+    
+    private func addPerfomerComponentTypeToComponentTypesByID() {
         for (id, componentTypes) in componentTypesByID {
             if !componentTypes.contains("performer") {
                 componentTypesByID[id]!.append("performer")
             }
         }
-        
-        createIDsByComponentType()
-        createIDsShownByComponentType()
-        createIDsHiddenByComponentType()
     }
     
     private func createIDsByComponentType() {
@@ -1084,11 +1080,20 @@ public class System: ViewNode, BuildPattern {
         print("measures -------------------------")
 
         for measure in measureViews {
-            
-            //
-            
+
+            // dict of Instrument : Bool (isContainedWithinMeasure)
             // if eventHandler.instrument is contained within measure, stop line at measure.left
+            //var allInstruments: [Instrument] = []
             
+            var eventsContainedInMeasureByInstrument: [Instrument : [InstrumentEventHandler]] = [:]
+            
+            // initialize each array for each instrument (on the way, flattening all instr.)
+            for performer in performers {
+                for (_, instrument) in performer.instrumentByID {
+                    //allInstruments.append(instrument)
+                    eventsContainedInMeasureByInstrument[instrument] = []
+                }
+            }
             
             print(measure.durationSpan)
             print("event handlers -----------------------------")
@@ -1099,6 +1104,20 @@ public class System: ViewNode, BuildPattern {
 
                     if let instrument = eventHandler.instrumentEvent?.instrument {
                         print("performer contained within measure: \(instrument)")
+                        eventsContainedInMeasureByInstrument[instrument]!.append(eventHandler)
+                    }
+                }
+            }
+            
+            print("events contained in measure: \(eventsContainedInMeasureByInstrument)")
+            
+            for (instrument, eventHandlers) in eventsContainedInMeasureByInstrument {
+                if eventHandlers.count == 0 {
+                    print("NO EVENTS IN THIS MEASURE: CUT THE LINES OFF!")
+                    for (_, graph) in instrument.graphByID {
+                        let x = measure.frame.minX
+                        print("measure left: \(x)")
+                        graph.stopLinesAtX(x)
                     }
                 }
             }
@@ -1159,10 +1178,6 @@ public class System: ViewNode, BuildPattern {
             for bgEvent in bgStratum.bgEvents {
                 let durationNode = bgEvent.durationNode
                 
-                
-                print("durationNode.components: \(durationNode.components)")
-                print("durationNode.hasOnlyExtensionComponents: \(durationNode.hasOnlyExtensionComponents)")
-                
                 // If DurationNode has no graphBearing components, don't try to populate graphs
                 if durationNode.hasOnlyExtensionComponents || durationNode.components.count == 0 {
                     addInstrumentEventHandlerWithBGEvent(bgEvent, andInstrumentEvent: nil)
@@ -1170,10 +1185,6 @@ public class System: ViewNode, BuildPattern {
                 }
                 
                 for component in bgEvent.durationNode.components {
-                    
-                    print("create instr e handler: \(component)")
-                    
-                    // interrogate this...
                     var instrumentEventHandlerSuccessfullyCreated: Bool = false
                     let pID = component.performerID, iID = component.instrumentID
                     let x: CGFloat = bgEvent.x_objective!
@@ -1183,11 +1194,6 @@ public class System: ViewNode, BuildPattern {
                         let (stemDirection, g) = getStemDirectionAndGForPID(pID)
                         if component.isGraphBearing {
                             
-                            if component is ComponentRest {
-                                print("component rest is graphBearing")
-                            }
-
-                            
                             instrument.createGraphsWithComponent(component, andG: g)
                             if let instrumentEvent = instrument.createInstrumentEventWithComponent(
                                 component,
@@ -1195,7 +1201,6 @@ public class System: ViewNode, BuildPattern {
                                 withStemDirection: stemDirection
                             )
                             {
-                                print("instrument event success: \(instrumentEvent.graphEvents)")
                                 addInstrumentEventHandlerWithBGEvent(bgEvent,
                                     andInstrumentEvent: instrumentEvent
                                 )

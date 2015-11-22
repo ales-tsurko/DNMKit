@@ -16,12 +16,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DNMColorManager.colorMode = ColorMode.Dark
+        do {
+            let pitch = try Pitch(string: "c_qs_down_4")
+            print(pitch)
+        }
+        catch let error {
+            print(error)
+        }
+        
+        DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
         
         //ScoreManager.allScores()
-        
-        
+
         if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
             let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
             

@@ -18,7 +18,7 @@
     {
         "identifier": "Pitch",
         "openingValue": "p",
-        "allowableTypes": ["Float", "Spanner"]
+        "allowableTypes": ["Float", "PitchString", "Spanner"]
     },
     {
         "identifier": "DynamicMarking",

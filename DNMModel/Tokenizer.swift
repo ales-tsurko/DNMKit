@@ -15,6 +15,7 @@ public class Tokenizer {
         case String
         case Int
         case Float
+        case PitchString
         case Duration
         case DynamicMarking
         case Articulation
@@ -161,8 +162,7 @@ public class Tokenizer {
     private var instrumentTypeCharacterSet: NSCharacterSet {
         return makeInstrumentTypeCharacterSet()
     }
-    
-    
+
     private var lineCount: Int = 0
     private var lineStartIndex: Int = 0
     private var index: Int = 0
@@ -337,9 +337,13 @@ public class Tokenizer {
                 )
                 return true
             }
+        case .PitchString:
+            
+            print("pitch string?!?!?!")
+            // todo: implement the mini parsing process in the Pitch(string: _)
+            
         case .Duration:
 
-            
             break
         case .DynamicMarking:
             let charSet = NSCharacterSet(charactersInString: dynamicMarkingsString)
