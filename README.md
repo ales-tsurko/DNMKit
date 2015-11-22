@@ -9,8 +9,11 @@ iPad based music notation renderer.
 
 #### Create a file
 
-Use filename extension: ```.dnm```
-Save anywhere in project (to be retrieved from NSBundle.mainBundle()...)
+Use filename extension: ```.dnm``` 
+
+Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
+
+
 
 
 #### Projects
