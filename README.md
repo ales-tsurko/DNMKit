@@ -76,9 +76,9 @@ To add events, we start with the relative durational value of an event. List the
 
 ```Swift
 | 3 8
-        1 // relative durational value of 1
-        1
-        1
+    1 // relative durational value of 1
+    1
+    1
 ```
 
 
