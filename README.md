@@ -70,9 +70,20 @@ To this point, we have only created a container of events, but we haven't actual
 
 ```
 
+**Declare who is doing the rhythm**
+```Swift
+| 3 8 VN vn // PerformerID: VN, InstrumentID: vn (InstrumentType: Violin)
+```
+
+or
+
+```Swift
+| 3 8 VC cc // PerformerID: VC, InstrumentID: cc (InstrumentType: ContinuousController)
+```
+
 **Add events**
 
-To add events, we start with the relative durational value of an event.
+To add events, we indent and start with the relative durational value of an event.
 
 ```Swift
 | 1 8
@@ -82,7 +93,7 @@ To add events, we start with the relative durational value of an event.
 **Add ```Components``` to the rhythmic values**
 
 ```Swift
-| 2 8
+| 2 8 VN vn
     1 p 60
     1 p 62
     1 p 64
