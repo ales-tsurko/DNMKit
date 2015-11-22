@@ -42,7 +42,7 @@ P: VN vn Violin
 P: VC vc Violoncello cc ContinuousController
 ```
 
-Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly.
+Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly. Temporary list can be seen [here](https://github.com/jsbean/DNMKit/issues/18).
 
 
 
