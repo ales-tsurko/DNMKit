@@ -149,11 +149,8 @@ public class Pitch: CustomStringConvertible, Equatable {
     
     - returns: Initialized Pitch object if you didn't fuck up the formatting of the String.
     */
-    public init(var string: String) throws {
+    public convenience init(var string: String) throws {
 
-        self.frequency = Frequency(0.0) // change
-        self.midi = MIDI(0.0) // change
-        
         enum StringInitError: ErrorType {
             case InvalidString
             case InvalidLetterName
@@ -169,43 +166,41 @@ public class Pitch: CustomStringConvertible, Equatable {
         let firstChar = String(string.characters.first!)
         if let letterName = PitchLetterName.pitchLetterNameWithString(string: firstChar) {
             
-            //
+            // trim off first char
             string = string[1...string.characters.count - 1]
             
             let scanner = NSScanner(string: string)
-            scanner.charactersToBeSkipped = nil
+            scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "_")
             scanner.caseSensitive = true
             var str: NSString?
             
             // quarter tone
             var quarterTone: Float = 1
             if scanner.scanString("q", intoString: &str) { quarterTone = 0.5 }
-            print("quartertone: \(quarterTone)")
             
             // half tone
-            var halfToneCharSet = NSCharacterSet(charactersInString: "s#")
+            let halfToneCharSet = NSCharacterSet(charactersInString: "s#")
             var halfTone: Float = 0
             if scanner.scanString("b", intoString: &str) { halfTone = -1 }
             else if scanner.scanCharactersFromSet(halfToneCharSet, intoString: &str) {
                 halfTone = 1
             }
-            print("half tone: \(halfTone)")
             
             var eighthTone: Float = 0
             if scanner.scanString("up", intoString: &str) { eighthTone = 0.25 }
             else if scanner.scanString("down", intoString: &str) { eighthTone = -0.25 }
-            print("eighthTone: \(eighthTone)")
             
             var octave: Float = 4 // default to octave starting at middle c
             var floatValue: Float = 0.0
             if scanner.scanFloat(&floatValue) { octave = floatValue }
-            print("octave: \(octave)")
             
             let midi: Float = (
-                (octave + 1) * 12 + letterName.rawValue + quarterTone * halfTone + eighthTone
+                (octave + 1) * 12
+                    + letterName.rawValue
+                    + quarterTone * halfTone
+                    + eighthTone
             )
-            print("midi: \(midi)")
-            
+            self.init(midi: MIDI(midi))
             
         } else {
             throw StringInitError.InvalidLetterName

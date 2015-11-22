@@ -17,13 +17,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            let pitch = try Pitch(string: "cs4")
+            let pitch = try Pitch(string: "c_qs_down_4")
+            print(pitch)
         }
         catch let error {
             print(error)
         }
-        
-        
         
         DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor
