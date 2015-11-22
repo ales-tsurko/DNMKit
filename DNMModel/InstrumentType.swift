@@ -249,7 +249,7 @@ public enum InstrumentType: String {
                     let filePath = bundle.pathForResource(
                         "PreferredClefsAndTranspositionByInstrumentType", ofType: "json"
                     )!
-                    let jsonData: NSData = NSData.dataWithContentsOfMappedFile(filePath) as! NSData
+                    let jsonData = NSData(contentsOfFile: filePath)!
                     let jsonObj: JSON = JSON(data: jsonData)
                     return jsonObj
                 }

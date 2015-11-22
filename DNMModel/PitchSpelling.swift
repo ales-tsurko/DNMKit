@@ -95,7 +95,7 @@ public class PitchSpelling: CustomStringConvertible, Equatable {
                     let filePath = bundle.pathForResource("PitchSpellingsByPitchClass",
                         ofType: "json"
                     )!
-                    let jsonData: NSData = NSData.dataWithContentsOfMappedFile(filePath) as! NSData
+                    let jsonData = NSData(contentsOfFile: filePath)!
                     let jsonObj: JSON = JSON(data: jsonData)
                     return jsonObj
                 }
