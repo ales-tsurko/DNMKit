@@ -99,7 +99,9 @@ To add events, we indent and start with the relative durational value of an even
     1 p 64 // mi
 ```
 
-In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. In the near future, string representations of pitch will be supported, as well (e.g., c_q#_up = 60.75, etc.)
+In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
+
+In the near future, string representations of pitch will be supported, as well (e.g., ```c_q#_up_4``` = 60.75, etc.)
 
 <img src="/img/do_re_mi.png" width="400">
 
