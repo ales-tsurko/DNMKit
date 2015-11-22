@@ -574,7 +574,7 @@
 					};
 					071E9E3F1C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 525ACQ9A3N;
+						DevelopmentTeam = F8LCL8SXLX;
 					};
 					071E9E481C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
