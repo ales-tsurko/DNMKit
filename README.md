@@ -20,6 +20,13 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
     * ```1...n``` pairs of ```Instrument identifiers``` and ```InstrumentTypes```
         * ```Instrument identifier``` (string, I've been using two lowercase letters)
 
+Example:
+
+```Swift
+P: VN vn Violin
+```
+
+
 
 #### Projects
 
