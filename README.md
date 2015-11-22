@@ -92,19 +92,6 @@ To add events, we indent and start with the relative durational value of an even
 
 **Add ```Components``` to the rhythmic values**
 
-```Swift
-| 2 8 VN vn
-    1 p 60 // do
-    1 p 62 // re 
-    1 p 64 // mi
-```
-
-In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
-
-In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
-
-<img src="/img/do_re_mi.png" height="200">
-
 **Top-level commands**
 - ```*``` Rest
 - ```p``` Pitch
@@ -120,6 +107,19 @@ In the near future, string representations of pitch will be supported (e.g., ```
 - ```)``` Slur stop
 - ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
 - ```<-``` Stop a durational extension ("tie")
+
+```Swift
+| 2 8 VN vn
+    1 p 60 // do
+    1 p 62 // re 
+    1 p 64 // mi
+```
+
+In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
+
+In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
+
+<img src="/img/do_re_mi.png" height="200">
 
 And a little more complicated:
 
