@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchDyadSpellerTests: XCTestCase {
 
     override func setUp() {
@@ -120,8 +120,8 @@ class PitchDyadSpellerTests: XCTestCase {
     
     func testOneSpelledNaturalEighthTone() {
         let p0 = Pitch(midi: MIDI(60.25))
-        p0.setPitchSpelling(GetPitchSpellings.forPitch(p0).first!)
-        print("PITCH 0: \(p0)")
+        //p0.setPitchSpelling(GetPitchSpellings.forPitch(p0).first!)
+        //print("PITCH 0: \(p0)")
         
         let p1 = Pitch(midi: MIDI(63))
         let p2 = Pitch(midi: MIDI(63.25))
@@ -142,8 +142,8 @@ class PitchDyadSpellerTests: XCTestCase {
     
     func testOneSpelledQuarterEighthTone() {
         let p0 = Pitch(midi: MIDI(60.25))
-        p0.setPitchSpelling(GetPitchSpellings.forPitch(p0).second!)
-        print("PITCH 0: \(p0)")
+        //p0.setPitchSpelling(GetPitchSpellings.forPitch(p0).second!)
+        //print("PITCH 0: \(p0)")
         
         let p1 = Pitch(midi: MIDI(63))
         let p2 = Pitch(midi: MIDI(63.25))
@@ -337,5 +337,3 @@ class PitchDyadSpellerTests: XCTestCase {
     }
     */
 }
-
-*/

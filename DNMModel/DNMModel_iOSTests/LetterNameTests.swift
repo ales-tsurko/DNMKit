@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class LetterNameTests: XCTestCase {
 
     override func setUp() {
@@ -27,5 +27,3 @@ class LetterNameTests: XCTestCase {
         print(a)
     }
 }
-
-*/

@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class MIDITests: XCTestCase {
 
     override func setUp() {
@@ -37,5 +37,3 @@ class MIDITests: XCTestCase {
         assert(n.value == 60.5, "value not quantized to resolution correctly")
     }
 }
-
-*/
