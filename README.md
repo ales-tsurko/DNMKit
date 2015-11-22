@@ -20,7 +20,7 @@ Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
 - ```1...n``` pairs of ```Instrument identifiers``` and ```InstrumentTypes```
     - ```Instrument identifier``` (string, I've been using two lowercase letters)
 
-Example:
+**Example**:
 
 Add a performer and their instruments: (Violinisit who is just playing Violin)
 
@@ -42,7 +42,7 @@ P: VN vn Violin
 P: VC vc Violoncello cc ContinuousController
 ```
 
-Note: these ```InstrumentTypes``` must strictly conform to the list of possible InstrumentTypes. This list is coming shortly.
+Note: these ```InstrumentTypes``` must strictly conform to the list of possible ```InstrumentTypes```. This list is coming shortly.
 
 
 
