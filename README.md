@@ -59,7 +59,7 @@ P: VC vc Violoncello cc ContinuousController
 
 ```b s``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). Currently, only powers-of-two are allowed (```4, 8, 16, 32``` etc...).
 
-**Example**: ```3 8```: Three eighth notes, or a dotted quarter
+**Example**: ```3 8```: Three eighth notes, or a dotted quarter.
 
 
 To this point, we have only created a container of events, but we haven't actually create any events yet.
@@ -94,11 +94,24 @@ To add events, we indent and start with the relative durational value of an even
 
 ```Swift
 | 2 8 VN vn
-    1 p 60
-    1 p 62
-    1 p 64
+    1 p 60 // do
+    1 p 62 // re 
+    1 p 64 // mi
 ```
+
+In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. In the near future, string representations of pitch will be supported, as well (e.g., c_q#_up = 60.75, etc.)
+
 <img src="/img/do_re_mi.png" width="400">
+
+**Top-level commands**
+- ```*``` Rest
+- ```p``` Pitch (float values, spanner start (for gliss), soon: string (eqbup5 = e quarter flat up octave 5))
+- ```a``` Articulation (currently: ```-```, ```.```, ```>```)
+- ```d``` DynamicMarking (any combination of ```ompf```, spanner start (for hairpin))
+- ```(``` Slur start
+- ```)``` Slur stop
+- ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
+- ```<-``` Stop a durational extension ("tie")
 
 
 #### Projects
