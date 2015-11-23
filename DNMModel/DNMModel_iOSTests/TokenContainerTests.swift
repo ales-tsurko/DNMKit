@@ -29,7 +29,10 @@ class TokenContainerTests: XCTestCase {
         XCTAssert(tc.stopIndex == 9, "stop index incorrect")
     }
     
-    // TODO: testDescription() 
+    func testDescription() {
+        let tc = TokenContainer(identifier: "container", openingValue: "C", startIndex: 0)
+        XCTAssert(tc.description == "container: C; from 0 to 0", "description wrong")
+    }
     
     func testAddToken() {
         let tc = TokenContainer(identifier: "testContainer", openingValue: "t", startIndex: 0)
