@@ -48,10 +48,24 @@ class InstrumentTypeTests: XCTestCase {
         
         for clarinet in clarinets {
             
-            XCTAssert(Clarinet.containsInstrumentType(clarinet.self), "clarinet doesn't contain: \(clarinet)")
-            XCTAssert(Woodwinds.containsInstrumentType(clarinet.self), "woodwinds doesn't contain: \(clarinet)")
+            XCTAssert(Clarinet.has(clarinet.self), "clarinet doesn't contain: \(clarinet)")
+            XCTAssert(Woodwinds.has(clarinet.self), "woodwinds doesn't contain: \(clarinet)")
         }
     }
     
+    func testGetMembers() {
+        let strings: [InstrumentType] = [.Violin, .Viola, .Violoncello, .Guitar]
+        for string in strings {
+            XCTAssert(Strings.getMembers().contains(string.self), "string.members does not include: \(string)")
+            
+            XCTAssert(string.isInInstrumentFamily(Strings), "\(string) is not in instrument family String")
+        }
+        
+        // fill out
+    }
+    
+    func getSubfamilies() {
+        
+    }
     // TODO: testPreferredClefsAndTransposition
 }

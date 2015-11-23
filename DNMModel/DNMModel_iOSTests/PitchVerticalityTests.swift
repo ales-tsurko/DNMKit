@@ -102,6 +102,7 @@ class PitchVerticalityTests: XCTestCase {
         print("dyads: \(verticality.dyads!)")
     }
     
+    /*
     func testRemoveDuplicates() {
         let verticality: PitchVerticality = PitchVerticality()
         for _ in 0..<4 {
@@ -115,6 +116,7 @@ class PitchVerticalityTests: XCTestCase {
         print(verticality)
         XCTAssert(verticality.pitches.count == 4, "duplicated not removed correctly")
     }
+    */
     
     func testInitWithTwoVerticalities() {
         let verticality0 = PitchVerticality(pitches: Pitch.random(5))
