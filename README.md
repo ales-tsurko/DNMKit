@@ -84,7 +84,7 @@ or
 To add events, we indent and start with the relative durational value of an event.
 
 ```Swift
-| 1 8
+| 1 8 VN vn
     1 // relative durational value of 1
 ```
 
