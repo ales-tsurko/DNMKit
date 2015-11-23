@@ -96,6 +96,11 @@ public struct DurationSpan: Equatable, CustomStringConvertible {
     }
 }
 
+public var DurationSpanZero = DurationSpan(
+    startDuration: DurationZero,
+    stopDuration: DurationZero
+)
+
 public extension Duration {
     
     public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
