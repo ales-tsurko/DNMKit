@@ -9,17 +9,17 @@ iPad based music notation renderer.
 
 #### Create a file
 
-Use filename extension: ```.dnm``` 
+Use filename extension: `.dnm`
 
-Save anywhere in project (to be retrieved from ```NSBundle.mainBundle()```)
+Save anywhere in project (to be retrieved from `NSBundle.mainBundle()`)
 
 ### Text Input Format
 
 **Declare Performers** (humans doing things) with:    
-- ```Performer identifier``` (string, I've been using two uppercase letters)
-- ```1...n``` pairs of
-    - ```Instrument identifier``` (string, I've been using two lowercase letters)
-    - ```InstrumentTypes``` (note: these ```InstrumentTypes``` must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18).)
+- `Performer identifier` (string, I've been using two uppercase letters)
+- `1...n` pairs of
+    - `Instrument identifier` (string, I've been using two lowercase letters)
+    - `InstrumentTypes` (note: these `InstrumentTypes` must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18).)
 
 
 **Example**:
@@ -46,18 +46,18 @@ P: VC vc Violoncello cc ContinuousController
 
 #### Start a piece
 
-```#``` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
+`#` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
 
 **Declare where to put a new event**
-- ```|``` Start new rhythm on beat of current measure (optional if first rhythm of measure)
-- ```+``` Start new rhythm after the last rhythm
-- ```-``` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
+- `|` Start new rhythm on beat of current measure (optional if first rhythm of measure)
+- `+` Start new rhythm after the last rhythm
+- `-` Start new rhythm at the onset of the last rhythm (not supported yet, not tested)
 
 **Start a rhythmic event**
 
-```b s``` Create a rhythmic container with the duration of Beats (```b```) and Subdivision value (```s```). Currently, only powers-of-two are allowed (```4, 8, 16, 32``` etc...).
+`b s` Create a rhythmic container with the duration of Beats (`b`) and Subdivision value (`s`). Currently, only powers-of-two are allowed (`4, 8, 16, 32` etc...).
 
-**Example**: ```3 8```: Three eighth notes, or a dotted quarter.
+**Example**: `3 8`: Three eighth notes, or a dotted quarter.
 
 
 To this point, we have only created a container of events, but we haven't actually create any events yet.
@@ -91,20 +91,20 @@ To add events, we indent and start with the relative durational value of an even
 **Add ```Components``` to the rhythmic values**
 
 **Top-level commands**
-- ```*``` Rest
-- ```p``` Pitch
+- `*` Rest
+- `p` Pitch
     - Float values equivalent to MIDI values (60 = middle-c, 62 = d above middle-c)
-- ```a``` Articulation
-    - ```>```
-    - ```.```
-    - ```-```
-- ```d``` DynamicMarking
-    - Any combination of values ```opmf``` (e.g., ```fff```, ```ppp```, ```mp```, ```offfp```)
-    - Spanner{Start/Stop} ```[```, ```]```
-- ```(``` Slur start
-- ```)``` Slur stop
-- ```->``` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
-- ```<-``` Stop a durational extension ("tie")
+- `a` Articulation
+    - `>`
+    - `.`
+    - `-`
+- `d` DynamicMarking
+    - Any combination of values `opmf` (e.g., `fff`, `ppp`, `mp`, `offfp`)
+    - Spanner{Start/Stop} `[`, `]`
+- `(` Slur start
+- `)` Slur stop
+- `->` Start a durational extension ("tie") -- this will be deprecated soon, as it is superfluous
+- `<-` Stop a durational extension ("tie")
 
 ```Swift
 | 2 8 VN vn
@@ -113,9 +113,9 @@ To add events, we indent and start with the relative durational value of an even
     1 p 64 // mi
 ```
 
-In this case, we use the ```p``` command to declare a pitch value. Currently, MIDI values are the supported type. 
+In this case, we use the `p` command to declare a pitch value. Currently, MIDI values are the supported type. 
 
-In the near future, string representations of pitch will be supported (e.g., ```c_q#_up_4``` = 60.75)
+In the near future, string representations of pitch will be supported (e.g., `c_q#_up_4` = 60.75)
 
 <img src="/img/do_re_mi.png" height="200">
 
