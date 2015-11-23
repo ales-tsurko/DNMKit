@@ -1049,3 +1049,18 @@ public class DurationNode: Node {
         return description
     }
 }
+
+// MAKE EXTENSION -- add to DurationNode as class func
+public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> DurationSpan {
+    if durationNodes.count == 0 { return DurationSpan() }
+    else {
+        let nds = durationNodes
+        let startDuration = nds.sort({
+            $0.durationSpan.startDuration < $1.durationSpan.startDuration
+        }).first!.durationSpan.startDuration
+        let stopDuration = nds.sort({
+            $0.durationSpan.stopDuration > $1.durationSpan.stopDuration
+        }).first!.durationSpan.stopDuration
+        return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
+    }
+}
