@@ -11,12 +11,10 @@ import Foundation
 /**
 DurationNode is a hierarchical structure with an accompanying datum of Duration. NYI: Partition
 */
-public class DurationNode: Node, CustomStringConvertible {
+public class DurationNode: Node {
     
+    // deprecate
     public var id: String?
-    
-    // MARK: String Representation
-    public override var description: String { get { return getDescription() } }
     
     // MARK: Attributes
     
@@ -28,11 +26,8 @@ public class DurationNode: Node, CustomStringConvertible {
     
     public var components: [Component] = []
     
-    public var isRest: Bool {
-        if !isLeaf { return false }
-        for component in components { if !(component is ComponentRest) { return false } }
-        return true
-    }
+    public var isRest: Bool { return getIsRest() }
+    
     
     // phase out
     public var iIDsByPID : [String : [String]] { get { return getIIDsByPID() } }
@@ -941,6 +936,13 @@ public class DurationNode: Node, CustomStringConvertible {
         let sum: Int = relativeDurationsOfChildren!.sum()
         let beats: Int = duration.beats!.amount
         return sum == beats
+    }
+    
+    
+    private func getIsRest() -> Bool {
+        if !isLeaf { return false }
+        for component in components { if !(component is ComponentRest) { return false } }
+        return true
     }
     
     /**

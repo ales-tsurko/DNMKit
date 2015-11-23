@@ -224,5 +224,3 @@ public class ComponentWaveform: Component {
         return true
     }
 }
-
-// TODO: finish implementation of remaining, currently supported things
