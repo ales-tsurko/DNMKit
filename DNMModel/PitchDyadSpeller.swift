@@ -382,9 +382,6 @@ public class PitchDyadSpeller {
                 spellings.append(spelling)
             }
             
-            // DEPRECATED
-            //for ps in GetPitchSpellings.forPitch(dyad.pitch0) { spellings.append(ps) }
-            //for ps in GetPitchSpellings.forPitch(dyad.pitch1) { spellings.append(ps) }
             
             let leastSharp = getLeastSharp(spellings)
             spellPitch(leastSharp.pitch, withSpelling: leastSharp)

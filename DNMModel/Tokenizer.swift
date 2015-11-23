@@ -691,12 +691,9 @@ public class Tokenizer {
     {
         
         let startIndex = scanner.scanLocation
-        
         var string: NSString?
         
-        
-        // this does enforce order
-        
+        // this does enforce order: refactor to achieve loop (as with top-level-commands)
         if scanner.scanString("]", intoString: &string) {
             
             let spannerTokenContainer = TokenContainer(

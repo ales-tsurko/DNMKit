@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchSpellingTests: XCTestCase {
 
     override func setUp() {
@@ -39,7 +39,7 @@ class PitchSpellingTests: XCTestCase {
         var p: Float = 60.0
         while p < 84 {
             let pitch: Pitch = Pitch(midi: MIDI(p))
-            for spelling in GetPitchSpellings.forPitch(pitch) {
+            for spelling in PitchSpelling.pitchSpellingsForPitch(pitch: pitch) {
                 print("PitchSpelling: \(spelling): sharpness: \(spelling.sharpness)")
             }
             p += 0.25
@@ -75,5 +75,3 @@ class PitchSpellingTests: XCTestCase {
         assert(ps0 == ps1, "pitch spellings not equiv")
     }
 }
-
-*/

@@ -24,16 +24,16 @@ class MIDITests: XCTestCase {
 
     func testInit() {
         let m = MIDI(60.0)
-        assert(m.value == 60.0, "value not set correclty")
+        XCTAssert(m.value == 60.0, "value not set correclty")
     }
     
     func testQuantizeToResolution() {
         var m = MIDI(60.23)
         m.quantizeToResolution(0.25)
-        assert(m.value == 60.25, "value not quantized to resolution correctly")
+        XCTAssert(m.value == 60.25, "value not quantized to resolution correctly")
         
         var n = MIDI(60.27)
         n.quantizeToResolution(0.5)
-        assert(n.value == 60.5, "value not quantized to resolution correctly")
+        XCTAssert(n.value == 60.5, "value not quantized to resolution correctly")
     }
 }

@@ -432,19 +432,6 @@
 				071FF1D01C029AC40009CD19 /* ShorthandParser */,
 				071FF1CF1C029ABB0009CD19 /* Utility */,
 				07428C731C017A7C00A1E76B /* DurationNodeTests.swift */,
-				07428C751C017A7C00A1E76B /* LetterNameTests.swift */,
-				07428C761C017A7C00A1E76B /* MIDITests.swift */,
-				07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */,
-				07428C791C017A7C00A1E76B /* PitchDyadTests.swift */,
-				07428C7A1C017A7C00A1E76B /* PitchIntervalTests.swift */,
-				07428C7B1C017A7C00A1E76B /* PitchPolyphonySpellerTests.swift */,
-				07428C7C1C017A7C00A1E76B /* PitchPolyphonyTests.swift */,
-				07428C7D1C017A7C00A1E76B /* PitchSpellerTests.swift */,
-				07428C7E1C017A7C00A1E76B /* PitchSpellingDyadTests.swift */,
-				07428C7F1C017A7C00A1E76B /* PitchSpellingTests.swift */,
-				07428C801C017A7C00A1E76B /* PitchTests.swift */,
-				07428C811C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift */,
-				07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */,
 				071E9E321C00EC84008D1263 /* DNMModel_iOSTests.swift */,
 				071E9E341C00EC84008D1263 /* Info.plist */,
 			);
@@ -490,6 +477,19 @@
 		071FF1D71C02A8710009CD19 /* Pitch */ = {
 			isa = PBXGroup;
 			children = (
+				07428C751C017A7C00A1E76B /* LetterNameTests.swift */,
+				07428C761C017A7C00A1E76B /* MIDITests.swift */,
+				07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */,
+				07428C791C017A7C00A1E76B /* PitchDyadTests.swift */,
+				07428C7A1C017A7C00A1E76B /* PitchIntervalTests.swift */,
+				07428C7B1C017A7C00A1E76B /* PitchPolyphonySpellerTests.swift */,
+				07428C7C1C017A7C00A1E76B /* PitchPolyphonyTests.swift */,
+				07428C7D1C017A7C00A1E76B /* PitchSpellerTests.swift */,
+				07428C7E1C017A7C00A1E76B /* PitchSpellingDyadTests.swift */,
+				07428C7F1C017A7C00A1E76B /* PitchSpellingTests.swift */,
+				07428C801C017A7C00A1E76B /* PitchTests.swift */,
+				07428C811C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift */,
+				07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */,
 			);
 			name = Pitch;
 			sourceTree = "<group>";

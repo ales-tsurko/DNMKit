@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchSpellerTests: XCTestCase {
 
     override func setUp() {
@@ -22,5 +22,3 @@ class PitchSpellerTests: XCTestCase {
         super.tearDown()
     }
 }
-
-*/

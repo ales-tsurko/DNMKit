@@ -26,49 +26,49 @@ class PitchTests: XCTestCase {
     func testInit() {
         // create pitch with midi
         let pM = Pitch(midi: MIDI(69.0))
-        assert(pM.midi.value == 69.0, "midi not set correctly")
-        assert(pM.frequency.value == 440, "frequency not set correctly")
+        XCTAssert(pM.midi.value == 69.0, "midi not set correctly")
+        XCTAssert(pM.frequency.value == 440, "frequency not set correctly")
         
         // change frequency
         pM.setFrequency(Frequency(880))
-        assert(pM.midi.value == 81.0, "midi not set correctly")
-        assert(pM.frequency.value == 880, "frequency not set correctly")
+        XCTAssert(pM.midi.value == 81.0, "midi not set correctly")
+        XCTAssert(pM.frequency.value == 880, "frequency not set correctly")
         
         // create pitch with frequency
         let pF = Pitch(frequency: Frequency(440))
-        assert(pF.midi.value == 69.0, "midi not set correctly")
-        assert(pF.frequency.value == 440.0, "frequency not set correctly")
+        XCTAssert(pF.midi.value == 69.0, "midi not set correctly")
+        XCTAssert(pF.frequency.value == 440.0, "frequency not set correctly")
         
         // change midi
         pF.setMIDI(MIDI(81.0))
-        assert(pF.midi.value == 81.0, "midi not set correctly")
-        assert(pF.frequency.value == 880.0, "frequency not set correctly")
+        XCTAssert(pF.midi.value == 81.0, "midi not set correctly")
+        XCTAssert(pF.frequency.value == 880.0, "frequency not set correctly")
     }
     
     func testGetMIDIOfPartial() {
         let p = Pitch(midi: MIDI(60))
         let p8va = p.getMIDIOfPartial(2)
-        assert(p8va.value == 72, "midi of partial (2) incorrect")
+        XCTAssert(p8va.value == 72, "midi of partial (2) incorrect")
     }
     
     func testGetFrequencyOfPartial() {
         let p = Pitch(midi: MIDI(69.0))
         let p8va = p.frequencyOfPartial(2)
-        assert(p8va.value == 880.0, "freq of partial (2) incorrect")
+        XCTAssert(p8va.value == 880.0, "freq of partial (2) incorrect")
     }
     
     func testPitchClass() {
         let p = Pitch(midi: MIDI(69.0))
-        assert(p.pitchClass.midi.value == 9.0, "pitchClass not set correctly")
+        XCTAssert(p.pitchClass.midi.value == 9.0, "pitchClass not set correctly")
     }
     
     func testResolution() {
         let chromatic = Pitch(midi: MIDI(60.0))
-        assert(chromatic.resolution == 1.0, "resolution incorrect")
+        XCTAssert(chromatic.resolution == 1.0, "resolution incorrect")
         let quarterTone = Pitch(midi: MIDI(60.5))
-        assert(quarterTone.resolution == 0.5, "resolution incorrect")
+        XCTAssert(quarterTone.resolution == 0.5, "resolution incorrect")
         let eighthTone = Pitch(midi: MIDI(60.25))
-        assert(eighthTone.resolution == 0.25, "resolution incorrect")
+        XCTAssert(eighthTone.resolution == 0.25, "resolution incorrect")
     }
     
     func testOctave() {
@@ -77,7 +77,7 @@ class PitchTests: XCTestCase {
         var index: Int = 0
         while index < pitches.count {
             let pitch = Pitch(midi: MIDI(pitches[index]))
-            assert(pitch.octave == octaves[index], "octave incorrect")
+            XCTAssert(pitch.octave == octaves[index], "octave incorrect")
             index++
         }
     }
