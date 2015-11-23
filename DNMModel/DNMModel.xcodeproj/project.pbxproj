@@ -123,6 +123,7 @@
 		071FF1D61C029DF50009CD19 /* TokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071FF1D51C029DF50009CD19 /* TokenizerTests.swift */; };
 		072621741C03BB25001A665A /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621731C03BB25001A665A /* OrderedDictionaryTests.swift */; };
 		072621761C03C2ED001A665A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621751C03C2ED001A665A /* Parser.swift */; };
+		072621781C03CBE8001A665A /* DNMScoreModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621771C03CBE8001A665A /* DNMScoreModelTests.swift */; };
 		07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C721C017A7C00A1E76B /* BeatsTest.swift */; };
 		07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C731C017A7C00A1E76B /* DurationNodeTests.swift */; };
 		07428C861C017A7C00A1E76B /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C741C017A7C00A1E76B /* DurationTests.swift */; };
@@ -230,6 +231,7 @@
 		071FF1D51C029DF50009CD19 /* TokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizerTests.swift; sourceTree = "<group>"; };
 		072621731C03BB25001A665A /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
 		072621751C03C2ED001A665A /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		072621771C03CBE8001A665A /* DNMScoreModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModelTests.swift; sourceTree = "<group>"; };
 		07428C721C017A7C00A1E76B /* BeatsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTest.swift; sourceTree = "<group>"; };
 		07428C731C017A7C00A1E76B /* DurationNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeTests.swift; sourceTree = "<group>"; };
 		07428C741C017A7C00A1E76B /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				071470AA1C02C4DA00D847D3 /* ComponentTests.swift */,
+				072621771C03CBE8001A665A /* DNMScoreModelTests.swift */,
 			);
 			name = ScoreModel;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				072621741C03BB25001A665A /* OrderedDictionaryTests.swift in Sources */,
 				071470A71C02B04D00D847D3 /* InstrumentTypeTests.swift in Sources */,
 				07428C8A1C017A7C00A1E76B /* PitchDyadSpellerTests.swift in Sources */,
+				072621781C03CBE8001A665A /* DNMScoreModelTests.swift in Sources */,
 				07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */,
 				07428C8B1C017A7C00A1E76B /* PitchDyadTests.swift in Sources */,
 				071FF1D21C029AEB0009CD19 /* TokenTests.swift in Sources */,
