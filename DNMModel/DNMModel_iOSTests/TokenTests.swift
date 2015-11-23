@@ -56,4 +56,23 @@ class TokenTests: XCTestCase {
         XCTAssert(td.stopIndex == 2, "stop index incorrect")
         print("TokenDuration: \(td)")
     }
+    
+    func testTokenLineComment() {
+        let tlc = TokenLineComment(startIndex: 0, stopIndex: 30)
+        XCTAssert(tlc.startIndex == 0, "start index incorrect")
+        XCTAssert(tlc.stopIndex == 30, "stop index wrong")
+        print("TokenLineComment: \(tlc)")
+    }
+    
+    func testBlockCommentStart() {
+        let tbcstart = TokenBlockCommentStart(startIndex: 40)
+        XCTAssert(tbcstart.startIndex == 40, "start index incorrect")
+        print("TokenBlockCommentStart: \(tbcstart)")
+    }
+    
+    func testBlockCommentStop() {
+        let tbcstop = TokenBlockCommentStop(startIndex: 80)
+        XCTAssert(tbcstop.startIndex == 80, "stop index incorrect")
+        print("TokenBlockCommentStop: \(tbcstop)")
+    }
 }

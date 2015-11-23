@@ -19,64 +19,7 @@ public protocol Token: CustomStringConvertible {
     var stopIndex: Int { get set }
 }
 
-
-public struct TokenLineComment: Token {
-    
-    public var description: String { return getDescription() }
-    
-    public var identifier: String
-    public var startIndex: Int
-    public var stopIndex: Int
-    
-    public init(startIndex: Int, stopIndex: Int) {
-        self.identifier = "LineComment"
-        self.startIndex = startIndex
-        self.stopIndex = stopIndex
-    }
-    
-    private func getDescription() -> String {
-        return "\(identifier) from \(startIndex) to \(stopIndex)"
-    }
-}
-
-public struct TokenBlockCommentStart: Token {
-    
-    public var description: String { return getDescription() }
-    
-    public var identifier: String
-    public var startIndex: Int
-    public var stopIndex: Int
-    
-    public init(startIndex: Int) {
-        self.identifier = "BlockCommentStart"
-        self.startIndex = startIndex
-        self.stopIndex = startIndex + 1
-    }
-    
-    private func getDescription() -> String {
-        return "\(identifier) from \(startIndex) to \(stopIndex)"
-    }
-}
-
-public struct TokenBlockCommentStop: Token {
-    
-    public var description: String { return getDescription() }
-    
-    public var identifier: String
-    public var startIndex: Int
-    public var stopIndex: Int
-    
-    public init(startIndex: Int) {
-        self.identifier = "BlockCommentStop"
-        self.startIndex = startIndex
-        self.stopIndex = startIndex + 1
-    }
-    
-    private func getDescription() -> String {
-        return "\(identifier) from \(startIndex) to \(stopIndex)"
-    }
-}
-
+/*
 public struct TokenIndent: Token {
     
     public var description: String { return getDescription() }
@@ -95,6 +38,7 @@ public struct TokenIndent: Token {
         return "\(identifier) from \(startIndex) to \(stopIndex)"
     }
 }
+*/
 
 public struct TokenString: Token {
     
@@ -221,5 +165,62 @@ public struct TokenDuration: Token {
     
     private func getDescription() -> String {
         return "\(identifier): \(value); from \(startIndex) to \(stopIndex)"
+    }
+}
+
+public struct TokenLineComment: Token {
+    
+    public var description: String { return getDescription() }
+    
+    public var identifier: String
+    public var startIndex: Int
+    public var stopIndex: Int
+    
+    public init(startIndex: Int, stopIndex: Int) {
+        self.identifier = "LineComment"
+        self.startIndex = startIndex
+        self.stopIndex = stopIndex
+    }
+    
+    private func getDescription() -> String {
+        return "\(identifier) from \(startIndex) to \(stopIndex)"
+    }
+}
+
+public struct TokenBlockCommentStart: Token {
+    
+    public var description: String { return getDescription() }
+    
+    public var identifier: String
+    public var startIndex: Int
+    public var stopIndex: Int
+    
+    public init(startIndex: Int) {
+        self.identifier = "BlockCommentStart"
+        self.startIndex = startIndex
+        self.stopIndex = startIndex + 1
+    }
+    
+    private func getDescription() -> String {
+        return "\(identifier) from \(startIndex) to \(stopIndex)"
+    }
+}
+
+public struct TokenBlockCommentStop: Token {
+    
+    public var description: String { return getDescription() }
+    
+    public var identifier: String
+    public var startIndex: Int
+    public var stopIndex: Int
+    
+    public init(startIndex: Int) {
+        self.identifier = "BlockCommentStop"
+        self.startIndex = startIndex
+        self.stopIndex = startIndex + 1
+    }
+    
+    private func getDescription() -> String {
+        return "\(identifier) from \(startIndex) to \(stopIndex)"
     }
 }
