@@ -13,7 +13,7 @@ public class InstrumentFamily {
     internal static var members: [InstrumentType] { get { return getMembers() } }
     internal static var subfamilies: [InstrumentFamily.Type] { get { return getSubfamilies() } }
     
-    // make a clean, fast wrapper:
+    // little wrapper for containsInstrumentType(_)
     public static func has(instrumentType: InstrumentType) -> Bool {
         return self.containsInstrumentType(instrumentType)
     }
