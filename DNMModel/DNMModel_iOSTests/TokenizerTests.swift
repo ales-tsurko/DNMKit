@@ -72,5 +72,35 @@ class TokenizerTests: XCTestCase {
         XCTAssert(dmValueToken.value == "offfmp", "dynamic marking not tokenized correctly")
     }
     
+    func tokenizeArticulationSingleValue() {
+        let string = "a - . >"
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a articulation
+        XCTAssert(tokenContainer.tokens.first!.identifier == "Articulation", "articulation token not created")
+        
+        // and is a container itself
+        XCTAssert(tokenContainer.tokens.first! is TokenContainer, "not token container")
+        
+        // and has three values tokens
+        let articulationContainer = tokenContainer.tokens.first as! TokenContainer
+        XCTAssert(articulationContainer.tokens.count == 3, "all three articulations not created")
+        
+        let tenutoToken = articulationContainer.tokens[0] as! TokenString
+        let staccatoToken = articulationContainer.tokens[1] as! TokenString
+        let accentToken = articulationContainer.tokens[2] as! TokenString
+        
+        XCTAssert(tenutoToken.identifier == "Value", "id incorrect")
+        XCTAssert(tenutoToken.value == "-", "tenuto not set correctly")
+        XCTAssert(staccatoToken.identifier == "Value", "id inccorect")
+        XCTAssert(staccatoToken.value == ".", "staccato not set correctly")
+        XCTAssert(accentToken.identifier == "Value", "id incorrect")
+        XCTAssert(accentToken.value == ">", "accent not set correctly")
+    }
+    
     // TODO: check start / stop values
 }
