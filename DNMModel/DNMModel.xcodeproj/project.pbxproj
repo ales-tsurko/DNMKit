@@ -115,6 +115,9 @@
 		071E9EC41C00EE4D008D1263 /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074DD41BF9685500BFC6FA /* Tempo.swift */; };
 		071E9EC51C00EE4D008D1263 /* TempoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074DD51BF9685500BFC6FA /* TempoFunction.swift */; };
 		071E9EC61C00EE4D008D1263 /* TempoMarking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074DD61BF9685500BFC6FA /* TempoMarking.swift */; };
+		071FF1D21C029AEB0009CD19 /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071FF1D11C029AEB0009CD19 /* TokenTests.swift */; };
+		071FF1D41C029BC40009CD19 /* TokenContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071FF1D31C029BC40009CD19 /* TokenContainerTests.swift */; };
+		071FF1D61C029DF50009CD19 /* TokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071FF1D51C029DF50009CD19 /* TokenizerTests.swift */; };
 		07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C721C017A7C00A1E76B /* BeatsTest.swift */; };
 		07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C731C017A7C00A1E76B /* DurationNodeTests.swift */; };
 		07428C861C017A7C00A1E76B /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C741C017A7C00A1E76B /* DurationTests.swift */; };
@@ -214,6 +217,9 @@
 		071E9E491C00EC96008D1263 /* DNMModel_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMModel_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E4E1C00EC96008D1263 /* DNMModel_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMModel_OSXTests.swift; sourceTree = "<group>"; };
 		071E9E501C00EC96008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		071FF1D11C029AEB0009CD19 /* TokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
+		071FF1D31C029BC40009CD19 /* TokenContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainerTests.swift; sourceTree = "<group>"; };
+		071FF1D51C029DF50009CD19 /* TokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizerTests.swift; sourceTree = "<group>"; };
 		07428C721C017A7C00A1E76B /* BeatsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTest.swift; sourceTree = "<group>"; };
 		07428C731C017A7C00A1E76B /* DurationNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeTests.swift; sourceTree = "<group>"; };
 		07428C741C017A7C00A1E76B /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
@@ -419,7 +425,8 @@
 		071E9E311C00EC84008D1263 /* DNMModel_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				07428C771C017A7C00A1E76B /* NodeTests.swift */,
+				071FF1D01C029AC40009CD19 /* ShorthandParser */,
+				071FF1CF1C029ABB0009CD19 /* Utility */,
 				07428C721C017A7C00A1E76B /* BeatsTest.swift */,
 				07428C831C017A7C00A1E76B /* SubdivisionTests.swift */,
 				07428C741C017A7C00A1E76B /* DurationTests.swift */,
@@ -459,6 +466,24 @@
 				071E9E501C00EC96008D1263 /* Info.plist */,
 			);
 			path = DNMModel_OSXTests;
+			sourceTree = "<group>";
+		};
+		071FF1CF1C029ABB0009CD19 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				07428C771C017A7C00A1E76B /* NodeTests.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		071FF1D01C029AC40009CD19 /* ShorthandParser */ = {
+			isa = PBXGroup;
+			children = (
+				071FF1D11C029AEB0009CD19 /* TokenTests.swift */,
+				071FF1D31C029BC40009CD19 /* TokenContainerTests.swift */,
+				071FF1D51C029DF50009CD19 /* TokenizerTests.swift */,
+			);
+			name = ShorthandParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,7 +727,9 @@
 				071E9E331C00EC84008D1263 /* DNMModel_iOSTests.swift in Sources */,
 				07428C8C1C017A7C00A1E76B /* PitchIntervalTests.swift in Sources */,
 				07428C911C017A7C00A1E76B /* PitchSpellingTests.swift in Sources */,
+				071FF1D41C029BC40009CD19 /* TokenContainerTests.swift in Sources */,
 				07428C941C017A7C00A1E76B /* PitchVerticalityTests.swift in Sources */,
+				071FF1D61C029DF50009CD19 /* TokenizerTests.swift in Sources */,
 				07428C901C017A7C00A1E76B /* PitchSpellingDyadTests.swift in Sources */,
 				07428C8F1C017A7C00A1E76B /* PitchSpellerTests.swift in Sources */,
 				07428C871C017A7C00A1E76B /* LetterNameTests.swift in Sources */,
@@ -710,6 +737,7 @@
 				07428C8A1C017A7C00A1E76B /* PitchDyadSpellerTests.swift in Sources */,
 				07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */,
 				07428C8B1C017A7C00A1E76B /* PitchDyadTests.swift in Sources */,
+				071FF1D21C029AEB0009CD19 /* TokenTests.swift in Sources */,
 				07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */,
 				07428C881C017A7C00A1E76B /* MIDITests.swift in Sources */,
 				07428C951C017A7C00A1E76B /* SubdivisionTests.swift in Sources */,
