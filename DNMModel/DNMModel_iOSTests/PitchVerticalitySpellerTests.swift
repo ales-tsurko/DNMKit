@@ -191,6 +191,7 @@ class PitchVerticalitySpellerTests: XCTestCase {
         for p in pitches { print(p) }
     }
     
+    /*
     func testSpellTwoVerticalitiesMerged() {
         for _ in 0..<25 {
             let verticality0 = PitchVerticality(pitches: Pitch.random(4, min: 60, max: 84, resolution: 0.25))
@@ -209,6 +210,7 @@ class PitchVerticalitySpellerTests: XCTestCase {
             for p in verticality1.pitches { print(p) }
         }
     }
+    */
     
     func testA_Gsharp_Bflat() {
         let midi: [Float] = [68.0,69.0,70.0]
