@@ -139,6 +139,7 @@ public struct TokenInt: Token {
     
     public var value: Int
     
+    // stop value should not be necessary
     public init(
         identifier: String,
         value: Int,
@@ -170,6 +171,7 @@ public struct TokenFloat: Token {
     
     public var value: Float
     
+    // perhaps stop index can be calculated as well (turn into string locally, count chars here)
     public init(
         identifier: String,
         value: Float,
