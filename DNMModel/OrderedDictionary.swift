@@ -13,7 +13,8 @@
 
 import Foundation
 
-public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomStringConvertible {
+public struct OrderedDictionary<Tk: Hashable, Tv: Equatable where Tk: Comparable>: Equatable, CustomStringConvertible
+{
     
     public var description: String { return getDescription() }
 
@@ -80,4 +81,18 @@ extension OrderedDictionary: SequenceType {
             return nil
         }
     }
+}
+
+public func ==<Tk: Hashable, Tv: Equatable where Tk: Comparable>(
+    lhs: OrderedDictionary<Tk, Tv>, rhs: OrderedDictionary<Tk, Tv>
+) -> Bool {
+    if lhs.keys != rhs.keys { return false }
+    
+    // for each lhs key, check if rhs has value for key, and if that value is the same
+    for key in lhs.keys {
+        if rhs.values[key] == nil || rhs.values[key]! != lhs.values[key]! {
+            return false
+        }
+    }
+    return true
 }

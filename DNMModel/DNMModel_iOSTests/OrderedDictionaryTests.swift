@@ -107,4 +107,20 @@ class OrderedDictionaryTests: XCTestCase {
         XCTAssert(keys == ["first", "second", "third", "fourth"], "keys wrong")
         XCTAssert(vals == ["numberOne", "numberTwo", "numberThree", "numberFour"], "vals wrong")
     }
+    
+    func testEquatable() {
+        var od0 = OrderedDictionary<String, String>()
+        od0["first"] = "numberOne"
+        od0["second"] = "numberTwo"
+        od0["third"] = "numberThree"
+        od0["fourth"] = "numberFour"
+        
+        var od1 = OrderedDictionary<String, String>()
+        od1["first"] = "numberOne"
+        od1["second"] = "numberTwo"
+        od1["third"] = "numberThree"
+        od1["fourth"] = "numberFour"
+        
+        XCTAssert(od0 == od1, "should be ==")
+    }
 }

@@ -11,19 +11,24 @@ import Foundation
 /// Create DNMScoreModel from a TokenContainer (produced by Tokenizer, tokenizing a DNM file)
 public class Parser {
     
-    /** 
-    Manner in which the current DurationNode is placed in time
-    - Measure: place DurationNode at beginning of current Measure
-    - Increment: place DurationNode immediately after last DurationNode
-    - Decrement: place DurationNode at beginning of last DurationNode
-    */
-    private var durationNodeStackMode: DurationNodeStackMode = .Measure
+    // TODO: add "current" to all values that are global variables that change (often) in process
     
+
     /// Stack of DurationNodes, used to embed DurationNodes into other ones
     //private var durationNodeContainerStack = Stack<DurationNode>()
     
     // use instead of above
     private var durationNodeContainerStack = Stack<DurationNode>()
+    
+    
+    /**
+     Manner in which the current DurationNode is placed in time
+     - Measure: place DurationNode at beginning of current Measure
+     - Increment: place DurationNode immediately after last DurationNode
+     - Decrement: place DurationNode at beginning of last DurationNode
+     */
+    private var currentDurationNodeStackMode: DurationNodeStackMode = .Measure
+    
     
     /// Current DurationNodeLeaf which shall be decorated with Components
     private var currentDurationNodeLeaf: DurationNode?
@@ -85,13 +90,8 @@ public class Parser {
             if let container = token as? TokenContainer {
                 switch container.identifier {
                 case "PerformerDeclaration":
-                    
-                    do {
-                        try managePerformerDeclarationTokenContainer(container)
-                    }
-                    catch let error {
-                        print(error)
-                    }
+                    do { try managePerformerDeclarationTokenContainer(container) }
+                    catch let error { print(error) }
                     
                 case "Rest": manageRestToken()
                 case "Pitch": managePitchTokenContainer(container)
@@ -133,12 +133,12 @@ public class Parser {
     }
     
     private func manageDurationNodeStackModeMeasure() {
-        durationNodeStackMode = .Measure
+        currentDurationNodeStackMode = .Measure
         accumDurationInMeasure = DurationZero
     }
     
     private func manageDurationNodeStackModeIncrement() {
-        durationNodeStackMode = .Increment
+        currentDurationNodeStackMode = .Increment
     }
     
     private func manageDurationNodeStackModeDecrement() {
@@ -233,7 +233,7 @@ public class Parser {
         accumDurationInMeasure = DurationZero
         
         // set default duration node stacking behavior
-        durationNodeStackMode = .Measure
+        currentDurationNodeStackMode = .Measure
     }
     
     private func addMeasure(var measure: Measure) {
@@ -386,7 +386,7 @@ public class Parser {
     // this needs to be tested thoroughly
     private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
         let offsetDuration: Duration
-        switch durationNodeStackMode {
+        switch currentDurationNodeStackMode {
         case .Measure:
             offsetDuration = currentMeasureDurationOffset
             accumTotalDuration = currentMeasureDurationOffset
