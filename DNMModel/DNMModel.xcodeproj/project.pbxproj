@@ -425,11 +425,12 @@
 		071E9E311C00EC84008D1263 /* DNMModel_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				071FF1DB1C02A8840009CD19 /* ScoreModel */,
+				071FF1DA1C02A87D0009CD19 /* InstrumentType */,
+				071FF1D91C02A8780009CD19 /* Duration */,
+				071FF1D71C02A8710009CD19 /* Pitch */,
 				071FF1D01C029AC40009CD19 /* ShorthandParser */,
 				071FF1CF1C029ABB0009CD19 /* Utility */,
-				07428C721C017A7C00A1E76B /* BeatsTest.swift */,
-				07428C831C017A7C00A1E76B /* SubdivisionTests.swift */,
-				07428C741C017A7C00A1E76B /* DurationTests.swift */,
 				07428C731C017A7C00A1E76B /* DurationNodeTests.swift */,
 				07428C751C017A7C00A1E76B /* LetterNameTests.swift */,
 				07428C761C017A7C00A1E76B /* MIDITests.swift */,
@@ -484,6 +485,37 @@
 				071FF1D51C029DF50009CD19 /* TokenizerTests.swift */,
 			);
 			name = ShorthandParser;
+			sourceTree = "<group>";
+		};
+		071FF1D71C02A8710009CD19 /* Pitch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pitch;
+			sourceTree = "<group>";
+		};
+		071FF1D91C02A8780009CD19 /* Duration */ = {
+			isa = PBXGroup;
+			children = (
+				07428C721C017A7C00A1E76B /* BeatsTest.swift */,
+				07428C831C017A7C00A1E76B /* SubdivisionTests.swift */,
+				07428C741C017A7C00A1E76B /* DurationTests.swift */,
+			);
+			name = Duration;
+			sourceTree = "<group>";
+		};
+		071FF1DA1C02A87D0009CD19 /* InstrumentType */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = InstrumentType;
+			sourceTree = "<group>";
+		};
+		071FF1DB1C02A8840009CD19 /* ScoreModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ScoreModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
