@@ -125,6 +125,7 @@
 		072621761C03C2ED001A665A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621751C03C2ED001A665A /* Parser.swift */; };
 		072621781C03CBE8001A665A /* DNMScoreModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621771C03CBE8001A665A /* DNMScoreModelTests.swift */; };
 		0726217A1C03D08C001A665A /* DurationSpanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072621791C03D08C001A665A /* DurationSpanTests.swift */; };
+		0726217C1C03DCF6001A665A /* FrequencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726217B1C03DCF6001A665A /* FrequencyTests.swift */; };
 		07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C721C017A7C00A1E76B /* BeatsTest.swift */; };
 		07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C731C017A7C00A1E76B /* DurationNodeTests.swift */; };
 		07428C861C017A7C00A1E76B /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C741C017A7C00A1E76B /* DurationTests.swift */; };
@@ -234,6 +235,7 @@
 		072621751C03C2ED001A665A /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		072621771C03CBE8001A665A /* DNMScoreModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNMScoreModelTests.swift; sourceTree = "<group>"; };
 		072621791C03D08C001A665A /* DurationSpanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpanTests.swift; sourceTree = "<group>"; };
+		0726217B1C03DCF6001A665A /* FrequencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyTests.swift; sourceTree = "<group>"; };
 		07428C721C017A7C00A1E76B /* BeatsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTest.swift; sourceTree = "<group>"; };
 		07428C731C017A7C00A1E76B /* DurationNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeTests.swift; sourceTree = "<group>"; };
 		07428C741C017A7C00A1E76B /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				07428C801C017A7C00A1E76B /* PitchTests.swift */,
 				07428C811C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift */,
 				07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */,
+				0726217B1C03DCF6001A665A /* FrequencyTests.swift */,
 			);
 			name = Pitch;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				07428C8C1C017A7C00A1E76B /* PitchIntervalTests.swift in Sources */,
 				07428C911C017A7C00A1E76B /* PitchSpellingTests.swift in Sources */,
 				071FF1D41C029BC40009CD19 /* TokenContainerTests.swift in Sources */,
+				0726217C1C03DCF6001A665A /* FrequencyTests.swift in Sources */,
 				07428C941C017A7C00A1E76B /* PitchVerticalityTests.swift in Sources */,
 				071FF1D61C029DF50009CD19 /* TokenizerTests.swift in Sources */,
 				07428C901C017A7C00A1E76B /* PitchSpellingDyadTests.swift in Sources */,

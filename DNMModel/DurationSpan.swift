@@ -119,9 +119,3 @@ public func ==(lhs: DurationSpan, rhs: DurationSpan) -> Bool {
 public enum DurationSpanRelationship {
     case None, Adjacent, Overlapping
 }
-
-extension Duration {
-    public func isInDurationSpan(durationSpan: DurationSpan) -> Bool {
-        return self >= durationSpan.startDuration && self <= durationSpan.stopDuration
-    }
-}

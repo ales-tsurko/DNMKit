@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: convert to FloatLiteralConvertible
+
 /**
 Frequency of Pitch
 */
@@ -117,7 +119,8 @@ func *(lhs: Frequency, rhs: Float) -> Frequency {
     return Frequency(lhs.value * rhs)
 }
 
+/*
 func %(lhs: Frequency, rhs: Float) -> Frequency {
     return Frequency(lhs.value % rhs)
 }
-
+*/

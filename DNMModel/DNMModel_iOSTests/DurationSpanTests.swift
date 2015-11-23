@@ -99,4 +99,5 @@ class DurationSpanTests: XCTestCase {
         XCTAssert(dsa_0a.relationShipWithDurationSpan(dsa_1b) == .Adjacent, "should be adjacent")
         XCTAssert(dsa_1b.relationShipWithDurationSpan(dsa_0b) == .Adjacent, "should be adjacent")
     }
+
 }
