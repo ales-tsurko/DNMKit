@@ -26,6 +26,7 @@ class DurationSpanTests: XCTestCase {
         XCTAssert(ds0.startDuration == DurationZero, "should be 0")
         XCTAssert(ds0.stopDuration == DurationZero, "should be 0")
         XCTAssert(ds0.duration == DurationZero, "should be 0")
+        print(ds0)
         
         let ds1 = DurationSpan(startDuration: Duration(3,8), stopDuration: Duration(4,4))
         XCTAssert(ds1.startDuration == Duration(3,8), "start dur wrong")
@@ -41,5 +42,46 @@ class DurationSpanTests: XCTestCase {
         XCTAssert(ds3.startDuration == Duration(1,8), "start dur wrong")
         XCTAssert(ds3.stopDuration == Duration(9,16), "stop dur wrong")
         XCTAssert(ds3.duration == Duration(7,16), "dur wrong")
+    }
+    
+    func testContainsDuration() {
+        let ds = DurationSpan(duration: Duration(9,16), andAnotherDuration: Duration(1,8))
+        
+        // duration in duration span
+        let d0 = Duration(2,8)
+        XCTAssert(ds.containsDuration(d0), "should contain the duration")
+        XCTAssert(d0.isContainedWithinDurationSpan(ds), "should be contained within duration")
+        
+        // not in duration span
+        let d1 = Duration(11,16)
+        XCTAssert(
+            !d1.isContainedWithinDurationSpan(ds),
+            "should not be contained within the duration"
+        )
+    }
+    
+    func testRelationshipWithDurationSpan() {
+        
+        // test none
+        let dsn_0 = DurationSpan(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let dsn_1 = DurationSpan(startDuration: Duration(6,8), stopDuration: Duration(9,8))
+        XCTAssert(dsn_0.relationShipWithDurationSpan(dsn_1) == .None, "should be none")
+        
+        // test overlapping
+        let dso_0 = DurationSpan(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let dso_1 = DurationSpan(startDuration: Duration(3,8), stopDuration: Duration(9,8))
+        XCTAssert(
+            dso_0.relationShipWithDurationSpan(dso_1) == .Overlapping, "should be overlapping"
+        )
+        
+        // test adjacent before
+        let dsa_0a = DurationSpan(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let dsa_1a = DurationSpan(startDuration: DurationZero, stopDuration: Duration(2,8))
+        XCTAssert(dsa_0a.relationShipWithDurationSpan(dsa_1a) == .Adjacent, "should be adjacent")
+        
+        // test adjacent after
+        let dsa_0b = DurationSpan(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let dsa_1b = DurationSpan(startDuration: Duration(5,8), stopDuration: Duration(9,8))
+        XCTAssert(dsa_0a.relationShipWithDurationSpan(dsa_1b) == .Adjacent, "should be adjacent")
     }
 }
