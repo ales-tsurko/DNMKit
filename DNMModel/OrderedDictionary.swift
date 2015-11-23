@@ -20,6 +20,8 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
     public var keys: [Tk] = []
     public var values: [Tk : Tv] = [:]
     
+    public var count: Int { return keys.count }
+    
     public init() { }
     
     public mutating func appendContentsOfOrderedDictionary(
@@ -53,13 +55,13 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
     }
     
     private func getDescription() -> String {
-        var result = "{\n"
+        var description: String = "Ordered Dictionary: [\n"
         for i in 0..<keys.count {
             let key = keys[i]
-            result += "[\(i): \(key) => \(self[key])\n"
+            description += "\t(\(i), \(key)): \(self[key]!)\n"
         }
-        result += "}"
-        return result
+        description += "]"
+        return description
     }
 }
 

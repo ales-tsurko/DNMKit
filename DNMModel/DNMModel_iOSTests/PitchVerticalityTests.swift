@@ -102,6 +102,32 @@ class PitchVerticalityTests: XCTestCase {
         print("dyads: \(verticality.dyads!)")
     }
     
+    func testClearPitchSpellings() {
+        let pitch = Pitch(midi: MIDI(60))
+        pitch.spelling = PitchSpelling(pitch: pitch, coarse: 0, fine: 0, letterName: .C)
+        let pitchVerticality = PitchVerticality(pitches: [pitch])
+        pitchVerticality.clearPitchSpellings()
+        for p in pitchVerticality.pitches {
+            XCTAssert(p.spelling == nil, "pitch spellings not cleared")
+        }
+    }
+    
+    func testGetAllPitchesHaveBeenSpelledTrue() {
+        let pitchVerticality = PitchVerticality()
+        let pitches = Pitch.random(5)
+        pitchVerticality.pitches = pitches
+        let pVSpeller = PitchVerticalitySpeller(verticality: pitchVerticality)
+        pVSpeller.spell()
+        XCTAssert(pitchVerticality.allPitchesHaveBeenSpelled, "all pitches have not been spelled")
+    }
+    
+    func testGetAllPitchesHasBeenSpelledFalse() {
+        let pitchVerticality = PitchVerticality()
+        let pitches = Pitch.random(5)
+        pitchVerticality.pitches = pitches
+        XCTAssert(!pitchVerticality.allPitchesHaveBeenSpelled, "pitches shouldn't be spelled")
+    }
+    
     /*
     func testRemoveDuplicates() {
         let verticality: PitchVerticality = PitchVerticality()
