@@ -26,7 +26,7 @@ class TokenizerTests: XCTestCase {
         print(t)
     }
     
-    func tokenizePitch() {
+    func testTokenizePitch() {
         let string = "p 60.25"
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
@@ -49,7 +49,7 @@ class TokenizerTests: XCTestCase {
         XCTAssert(pitchValueToken.value == 60.25, "value not 60.25")
     }
     
-    func tokenizerDynamicSingleValue() {
+    func testTokenizeDynamicSingleValue() {
         let string = "d offfmp"
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
@@ -72,7 +72,36 @@ class TokenizerTests: XCTestCase {
         XCTAssert(dmValueToken.value == "offfmp", "dynamic marking not tokenized correctly")
     }
     
-    func tokenizerSlurStart() {
+    func testTokenizeDynamicWithSpanner() {
+        let string = "d offfmp ["
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a dynamic
+        XCTAssert(tokenContainer.tokens.first!.identifier == "DynamicMarking", "dynamic marking token not created")
+        
+        // and is a container itself
+        XCTAssert(tokenContainer.tokens.first! is TokenContainer, "not token container")
+        
+        // and has a value
+        let dynamicMarkingContainer = tokenContainer.tokens.first as! TokenContainer
+        XCTAssert(dynamicMarkingContainer.tokens.first!.identifier == "Value", "value token not created")
+        
+        // of offfpp
+        let dmValueToken = dynamicMarkingContainer.tokens.first as! TokenString
+        XCTAssert(dmValueToken.value == "offfmp", "dynamic marking not tokenized correctly")
+        
+        // and contains a spanner token
+        XCTAssert(dynamicMarkingContainer.tokens.second! is TokenContainer, "spanner not added")
+        
+        let spannerToken = dynamicMarkingContainer.tokens.second as! TokenContainer
+        XCTAssert(spannerToken.identifier == "SpannerStart", "spanner start token not created")
+    }
+    
+    func testTokenizeSlurStart() {
         let string = "("
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
@@ -84,7 +113,31 @@ class TokenizerTests: XCTestCase {
         XCTAssert(tokenContainer.tokens.first!.identifier == "SlurStart", "slur start token not created")
     }
     
-    func tokenizeSlurStop() {
+    func testTokenizeExtensionStart() {
+        let string = "->"
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a extension start
+        XCTAssert(tokenContainer.tokens.first!.identifier == "ExtensionStart", "extension start token not created")
+    }
+
+    func testTokenizeExtensionStop() {
+        let string = "<-"
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a extension stop
+        XCTAssert(tokenContainer.tokens.first!.identifier == "ExtensionStop", "extension stop token not created")
+    }
+    
+    func testTtokenizeSlurStop() {
         let string = ")"
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
@@ -96,7 +149,7 @@ class TokenizerTests: XCTestCase {
         XCTAssert(tokenContainer.tokens.first!.identifier == "SlurStop", "slur stop token not created")
     }
     
-    func tokenizeRest() {
+    func testTokenizeRest() {
         let string = "*"
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
@@ -108,7 +161,7 @@ class TokenizerTests: XCTestCase {
         XCTAssert(tokenContainer.tokens.first!.identifier == "Rest", "rest token not created")
     }
     
-    func tokenizeArticulationSingleValue() {
+    func testTokenizeArticulationSingleValue() {
         let string = "a - . >"
         let t = Tokenizer()
         let tokenContainer = t.tokenizeString(string)
