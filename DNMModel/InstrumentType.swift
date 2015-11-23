@@ -40,10 +40,11 @@ public class InstrumentFamily {
         public static let Violin: InstrumentType = .Violin
         public static let Viola: InstrumentType = .Viola
         public static let Violoncello: InstrumentType = .Violoncello
+        public static let Contrabass: InstrumentType = .Contrabass
         public static let Guitar: InstrumentType = .Guitar
         
         internal override class func getMembers() -> [InstrumentType] {
-            return [Violin, Viola, Violoncello, Guitar]
+            return [Violin, Viola, Violoncello, Contrabass, Guitar]
         }
     }
     
@@ -164,6 +165,7 @@ public enum InstrumentType: String {
     case Violin
     case Viola
     case Violoncello
+    case Contrabass
     case Guitar
     
     case Flute_Piccolo

@@ -65,7 +65,8 @@ public struct Measure: Equatable {
     
     - returns: Measure
     */
-    public init(offsetDuration: Duration) {
+    public init(duration: Duration = DurationZero, offsetDuration: Duration = DurationZero) {
+        self.duration = duration
         self.offsetDuration = offsetDuration
     }
     

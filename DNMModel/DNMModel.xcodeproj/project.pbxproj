@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071470A71C02B04D00D847D3 /* InstrumentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071470A61C02B04D00D847D3 /* InstrumentTypeTests.swift */; };
+		071470A91C02B70B00D847D3 /* MeasureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071470A81C02B70B00D847D3 /* MeasureTests.swift */; };
 		071E9E271C00EC84008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E261C00EC84008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E2E1C00EC84008D1263 /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E241C00EC84008D1263 /* DNMModel.framework */; };
 		071E9E331C00EC84008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E321C00EC84008D1263 /* DNMModel_iOSTests.swift */; };
@@ -207,6 +208,7 @@
 		07074E4E1BF96BCD00BFC6FA /* TokenContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
 		07074E4F1BF96BCD00BFC6FA /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		071470A61C02B04D00D847D3 /* InstrumentTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentTypeTests.swift; sourceTree = "<group>"; };
+		071470A81C02B70B00D847D3 /* MeasureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureTests.swift; sourceTree = "<group>"; };
 		071E9E241C00EC84008D1263 /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E261C00EC84008D1263 /* DNMModel_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMModel_iOS.h; sourceTree = "<group>"; };
 		071E9E281C00EC84008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				07428C721C017A7C00A1E76B /* BeatsTest.swift */,
 				07428C831C017A7C00A1E76B /* SubdivisionTests.swift */,
 				07428C741C017A7C00A1E76B /* DurationTests.swift */,
+				071470A81C02B70B00D847D3 /* MeasureTests.swift */,
 			);
 			name = Duration;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */,
 				07428C881C017A7C00A1E76B /* MIDITests.swift in Sources */,
 				07428C951C017A7C00A1E76B /* SubdivisionTests.swift in Sources */,
+				071470A91C02B70B00D847D3 /* MeasureTests.swift in Sources */,
 				07428C931C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift in Sources */,
 				07428C861C017A7C00A1E76B /* DurationTests.swift in Sources */,
 				07428C8E1C017A7C00A1E76B /* PitchPolyphonyTests.swift in Sources */,
