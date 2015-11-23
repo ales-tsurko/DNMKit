@@ -72,6 +72,42 @@ class TokenizerTests: XCTestCase {
         XCTAssert(dmValueToken.value == "offfmp", "dynamic marking not tokenized correctly")
     }
     
+    func tokenizerSlurStart() {
+        let string = "("
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a slurStart
+        XCTAssert(tokenContainer.tokens.first!.identifier == "SlurStart", "slur start token not created")
+    }
+    
+    func tokenizeSlurStop() {
+        let string = ")"
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a slurStart
+        XCTAssert(tokenContainer.tokens.first!.identifier == "SlurStop", "slur stop token not created")
+    }
+    
+    func tokenizeRest() {
+        let string = "*"
+        let t = Tokenizer()
+        let tokenContainer = t.tokenizeString(string)
+        
+        // should have one token(container)
+        XCTAssert(tokenContainer.tokens.count == 1, "tokens created incorrectly")
+        
+        // which is a slurStart
+        XCTAssert(tokenContainer.tokens.first!.identifier == "Rest", "rest token not created")
+    }
+    
     func tokenizeArticulationSingleValue() {
         let string = "a - . >"
         let t = Tokenizer()
