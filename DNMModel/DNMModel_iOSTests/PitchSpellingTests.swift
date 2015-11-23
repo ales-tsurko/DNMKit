@@ -114,6 +114,8 @@ class PitchSpellingTests: XCTestCase {
         XCTAssert(fSharp <= gFlat, "g flat not greater than or equal to f sharp")
         XCTAssert(gFlat > fSharp, "g flat not less than f sharp")
         XCTAssert(gFlat >= fSharp, "g flat not less than or equal to f sharp")
+        
+        // fill out for more complex relationships
     }
     
     
