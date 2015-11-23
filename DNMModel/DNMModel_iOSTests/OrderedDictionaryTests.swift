@@ -122,5 +122,19 @@ class OrderedDictionaryTests: XCTestCase {
         od1["fourth"] = "numberFour"
         
         XCTAssert(od0 == od1, "should be ==")
+        
+        od1["first"] = nil
+        XCTAssert(od0 != od1, "should be !=")
+        
+        // test order not preserved: should be !=
+        od1["first"] = "numberOne"
+        XCTAssert(od0 != od1, "should be !=")
+        
+        od1["first"] = nil
+        XCTAssert(od0 != od1, "should be !=")
+        
+        // test order preserved
+        od1.insertValue("numberOne", forKey: "first", atIndex: 0)
+        XCTAssert(od0 == od1, "should be ==")
     }
 }

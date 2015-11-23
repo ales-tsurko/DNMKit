@@ -35,6 +35,11 @@ public struct OrderedDictionary<Tk: Hashable, Tv: Equatable where Tk: Comparable
         }
     }
     
+    public mutating func insertValue(value: Tv, forKey key: Tk, atIndex index: Int) {
+        keys.insert(key, atIndex: index)
+        values[key] = value
+    }
+    
     public subscript(key: Tk) -> Tv? {
         
         get {
@@ -90,9 +95,12 @@ public func ==<Tk: Hashable, Tv: Equatable where Tk: Comparable>(
     
     // for each lhs key, check if rhs has value for key, and if that value is the same
     for key in lhs.keys {
-        if rhs.values[key] == nil || rhs.values[key]! != lhs.values[key]! {
-            return false
-        }
+        if rhs.values[key] == nil || rhs.values[key]! != lhs.values[key]! { return false }
+    }
+    
+    // do the same for rhs keys to lhs values
+    for key in rhs.keys {
+        if lhs.values[key] == nil || lhs.values[key]! != rhs.values[key]! { return false }
     }
     return true
 }
