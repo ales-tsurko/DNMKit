@@ -28,10 +28,6 @@ public class DurationNode: Node {
     
     public var isRest: Bool { return getIsRest() }
     
-    
-    // phase out
-    public var iIDsByPID : [String : [String]] { get { return getIIDsByPID() } }
-    
     /// All Instrument ID values organized by Performer ID keys
     public var instrumentIDsByPerformerID: [String : [String]] { get { return getIIDsByPID() } }
     
@@ -62,7 +58,7 @@ public class DurationNode: Node {
         return true
     }
     
-
+    /*
     public func distanceFromDurationNode(durationNode: DurationNode) -> Duration? {
         // TODO
         return nil
@@ -72,6 +68,7 @@ public class DurationNode: Node {
         // TODO
         return nil
     }
+    */
     
     // MARK: Analyze DurationNode
     
@@ -91,6 +88,7 @@ public class DurationNode: Node {
     /// If DurationNode is subdividable (non-tuplet)
     public var isSubdividable: Bool { get { return getIsSubdividable() } }
     
+    /*
     // implement
     public class func rangeFromDurationNodes(durationNodes: [DurationNode],
         inDurationSpan durationSpan: DurationSpan
@@ -98,7 +96,9 @@ public class DurationNode: Node {
     {
         return []
     }
+    */
     
+
     /// From an array of DurationNodes, choose those that fit within the given DurationSpan
     public class func rangeFromDurationNodes(
         durationNodes: [DurationNode],
@@ -116,20 +116,9 @@ public class DurationNode: Node {
                 durationNodeRange.append(durationNode)
             }
         }
+        // make nil returnable if count == 0
         return durationNodeRange
     }
-    
-    /*
-    // DEPRECATE?
-    public class func rangeFromDurationNodes(
-        durationNodes: [DurationNode],
-        startingAtIndex index: Int,
-        constrainedByMaximumTotalDuration: Duration
-    ) -> [DurationNode]
-    {
-        return []
-    }
-    */
     
     public class func random() -> DurationNode {
         
