@@ -146,6 +146,7 @@
 		07428C951C017A7C00A1E76B /* SubdivisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C831C017A7C00A1E76B /* SubdivisionTests.swift */; };
 		07B3A12A1C03FE8100595939 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A1291C03FE8100595939 /* PitchClass.swift */; };
 		07B3A12E1C0411AA00595939 /* TempoMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */; };
+		07B3A1301C0413F300595939 /* RehearsalMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +260,7 @@
 		0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		07B3A1291C03FE8100595939 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarkingTests.swift; sourceTree = "<group>"; };
+		07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarkingTests.swift; sourceTree = "<group>"; };
 		07F38C751BFE3E5F0093493F /* TopLevelCommands.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TopLevelCommands.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 /* End PBXFileReference section */
 
@@ -527,6 +529,7 @@
 				071470A81C02B70B00D847D3 /* MeasureTests.swift */,
 				072621791C03D08C001A665A /* DurationSpanTests.swift */,
 				07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */,
+				07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */,
 			);
 			name = Duration;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				071FF1D61C029DF50009CD19 /* TokenizerTests.swift in Sources */,
 				07B3A12E1C0411AA00595939 /* TempoMarkingTests.swift in Sources */,
 				07428C901C017A7C00A1E76B /* PitchSpellingDyadTests.swift in Sources */,
+				07B3A1301C0413F300595939 /* RehearsalMarkingTests.swift in Sources */,
 				071470AB1C02C4DA00D847D3 /* ComponentTests.swift in Sources */,
 				07428C8F1C017A7C00A1E76B /* PitchSpellerTests.swift in Sources */,
 				07428C871C017A7C00A1E76B /* PitchLetterNameTests.swift in Sources */,
