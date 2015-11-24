@@ -291,5 +291,3 @@ public func <=(lhs: Pitch, rhs: Pitch) -> Bool {
 public func >=(lhs: Pitch, rhs: Pitch) -> Bool {
     return lhs.midi.value >= rhs.midi.value
 }
-
-// TODO: +, +=, -, -=, *, *=, /, /=

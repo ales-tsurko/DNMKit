@@ -147,6 +147,7 @@
 		07B3A12A1C03FE8100595939 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A1291C03FE8100595939 /* PitchClass.swift */; };
 		07B3A12E1C0411AA00595939 /* TempoMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */; };
 		07B3A1301C0413F300595939 /* RehearsalMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */; };
+		07B3A1311C04258000595939 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A1291C03FE8100595939 /* PitchClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -848,6 +849,7 @@
 				071E9EA91C00EE48008D1263 /* PitchInterval.swift in Sources */,
 				071E9EA31C00EE48008D1263 /* MIDI.swift in Sources */,
 				071E9EA41C00EE48008D1263 /* Pitch.swift in Sources */,
+				07B3A1311C04258000595939 /* PitchClass.swift in Sources */,
 				071E9E8C1C00EE3E008D1263 /* SpannerArguments.swift in Sources */,
 				071E9E821C00EE3A008D1263 /* StringExtensions.swift in Sources */,
 				071E9EAA1C00EE48008D1263 /* PitchLetterName.swift in Sources */,
