@@ -305,7 +305,7 @@ public class Tokenizer {
     // scan a single line with an inherited scanner and container
     private func scanLineWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        )
+    )
     {
         scanHeaderWithScanner(scanner, andContainer: container)
         scanLeafDurationWithScanner(scanner, andContainer: container)
@@ -342,7 +342,7 @@ public class Tokenizer {
     // attempt to scan a single top level command
     private func scanTopLevelCommand(command: TopLevelCommand,
         withScanner scanner: NSScanner, andContainer parentContainer: TokenContainer
-        ) -> Bool
+    ) -> Bool
     {
         var startIndex: Int = lineStartIndex + scanner.scanLocation
         
@@ -452,6 +452,13 @@ public class Tokenizer {
             // Need to implement this, see Pitch(string: String)
             break
         }
+        return false
+    }
+    
+    private func scanPitchWithScanner(scanner: NSScanner,
+        andContainer container: TokenContainer
+    ) -> Bool
+    {
         return false
     }
     
@@ -994,4 +1001,73 @@ public class Tokenizer {
     private func addLineWithString(string: String, startingAtIndex startIndex: Int) {
         lines.addLineWithString(string, startingAtIndex: startIndex)
     }
+}
+
+/**
+ Create a float representing a MIDI value with a properly formatted string.
+ - Defaults: octave starting at middle-c (c4), natural
+ - Specify sharp: "#" or "s"
+ - Specify flat: "b"
+ - Specify quarterSharp: "q#", "qs"
+ - Specify quarterFlat: "qf"
+ - Specify eighthTones: "gup", "d_qf_down_7", etc
+ - Underscores are ignored, and helpful for visualization
+ 
+ For example:
+ - "c" or "C" = middleC
+ - "d#","ds","ds4","d_s_4" = midi value 63.0 ("d sharp" above middle c)
+ - "eqb5","e_qf_5" = midi value 75.5
+ - "eb_up" = midi value 63.25
+
+ 
+ - parameter string: String representation of Pitch
+ 
+ - returns: Float representation of Pitch if you didn't fuck up the formatting of the String.
+ */
+public func midiFloatWithString(string: String) -> Float? {
+    
+    if string == "" { return nil }
+    
+    let scanner = NSScanner(string: string)
+    scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "_")
+    scanner.caseSensitive = true
+    var str: NSString?
+    
+    let firstChar = String(string.characters.first!)
+    if let letterName = PitchLetterName.pitchLetterNameWithString(string: firstChar) {
+        
+        // trim off first char
+        //string = string[1..<string.characters.count]
+        scanner.scanLocation++
+        
+        // quarter tone
+        var quarterTone: Float = 1
+        if scanner.scanString("q", intoString: &str) { quarterTone = 0.5 }
+        
+        // half tone
+        let halfToneCharSet = NSCharacterSet(charactersInString: "s#")
+        var halfTone: Float = 0
+        if scanner.scanString("b", intoString: &str) { halfTone = -1 }
+        else if scanner.scanCharactersFromSet(halfToneCharSet, intoString: &str) {
+            halfTone = 1
+        }
+        
+        var eighthTone: Float = 0
+        if scanner.scanString("up", intoString: &str) { eighthTone = 0.25 }
+        else if scanner.scanString("down", intoString: &str) { eighthTone = -0.25 }
+        
+        var octave: Float = 4 // default to octave starting at middle c
+        var floatValue: Float = 0.0
+        if scanner.scanFloat(&floatValue) { octave = floatValue }
+        
+        let midi: Float = (
+            (octave + 1) * 12
+                + letterName.distanceFromC
+                + quarterTone * halfTone
+                + eighthTone
+        )
+        
+        return midi
+    }
+    return nil
 }

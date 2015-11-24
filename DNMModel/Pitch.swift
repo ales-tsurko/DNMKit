@@ -13,15 +13,6 @@ Pitch
 */
 public class Pitch: CustomStringConvertible, Equatable {
     
-    public enum StringInitError: ErrorType {
-        case InvalidString
-        case InvalidLetterName
-        case InvalidEighthToneIndicator
-        case InvalidQuarterToneIndicator
-        case InvalidHalfToneIndicator
-        case InvalidOctave
-    }
-    
     // MARK: String Representation
     
     /// Printable description of Pitch
@@ -149,64 +140,30 @@ public class Pitch: CustomStringConvertible, Equatable {
     // move this to Parser, and call it from there... get it outta here!
     
     /**
-    Create a Pitch with String. This string can be of a format "C#" which will create a C#
-    above middle-c, or of a format "Eb5" which will create an Eb a minor 10th above middle-c.
-    At this point, the actual pitch spelling prescribed by you here is ignored. Further
-    down the line, perhaps the pitch spelling will be enforced here.
+    Create a Pitch with String.
+    - Defaults: octave starting at middle-c (c4), natural
+    - Specify sharp: "#" or "s"
+    - Specify flat: "b"
+    - Specify quarterSharp: "q#", "qs"
+    - Specify quarterFlat: "qf"
+    - Specify eighthTones: "gup", "d_qf_down_7", etc
+    - Underscores are ignored, and helpful for visualization
+    
+    For example:
+    - "c" or "C" = middleC
+    - "d#","ds","ds4","d_s_4" = midi value 63.0 ("d sharp" above middle c)
+    - "eqb5","e_qf_5" = midi value 75.5
+    - "eb_up" = midi value 63.25
     
     - parameter string: String representation of Pitch
     
     - returns: Initialized Pitch object if you didn't fuck up the formatting of the String.
     */
-    public convenience init(var string: String) throws {
-
-        // throw error if empty string
-        if string == "" { throw StringInitError.InvalidString }
-        
-        let firstChar = String(string.characters.first!)
-        if let letterName = PitchLetterName.pitchLetterNameWithString(string: firstChar) {
-            
-            // trim off first char
-            string = string[1..<string.characters.count]
-            
-            let scanner = NSScanner(string: string)
-            scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "_")
-            scanner.caseSensitive = true
-            var str: NSString?
-            
-            // quarter tone
-            var quarterTone: Float = 1
-            if scanner.scanString("q", intoString: &str) { quarterTone = 0.5 }
-            
-            // half tone
-            let halfToneCharSet = NSCharacterSet(charactersInString: "s#")
-            var halfTone: Float = 0
-            if scanner.scanString("b", intoString: &str) { halfTone = -1 }
-            else if scanner.scanCharactersFromSet(halfToneCharSet, intoString: &str) {
-                halfTone = 1
-            }
-            
-            var eighthTone: Float = 0
-            if scanner.scanString("up", intoString: &str) { eighthTone = 0.25 }
-            else if scanner.scanString("down", intoString: &str) { eighthTone = -0.25 }
-            
-            var octave: Float = 4 // default to octave starting at middle c
-            var floatValue: Float = 0.0
-            if scanner.scanFloat(&floatValue) { octave = floatValue }
-
-            let midi: Float = (
-                (octave + 1) * 12
-                    + letterName.distanceFromC
-                    + quarterTone * halfTone
-                    + eighthTone
-            )
-            
+    public convenience init?(string: String) {
+        if let midi = midiFloatWithString(string) {
             self.init(midi: MIDI(midi))
-            
-            // SPELL PITCH?
-            
         } else {
-            throw StringInitError.InvalidLetterName
+            return nil
         }
     }
     

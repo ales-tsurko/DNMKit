@@ -26,6 +26,12 @@ class TokenizerTests: XCTestCase {
         print(t)
     }
     
+    func testMidiFloatWithString() {
+        let string = "c"
+        XCTAssert(midiFloatWithString(string) != nil, "bad string: \(string)")
+        
+    }
+    
     func testTokenizePitch() {
         let string = "p 60.25"
         let t = Tokenizer()

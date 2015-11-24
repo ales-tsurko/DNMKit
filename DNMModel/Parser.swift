@@ -13,7 +13,6 @@ public class Parser {
     
     // TODO: add "current" to all values that are global variables that change (often) in process
     
-
     /// Stack of DurationNodes, used to embed DurationNodes into other ones
     //private var durationNodeContainerStack = Stack<DurationNode>()
     
