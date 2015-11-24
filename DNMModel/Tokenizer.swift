@@ -692,7 +692,7 @@ public class Tokenizer {
     // Find best way to generalize this process!
     private func scanSpannerStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        ) -> Bool
+    ) -> Bool
     {
         
         let startIndex = scanner.scanLocation
@@ -722,7 +722,7 @@ public class Tokenizer {
             while scanner.scanString("^", intoString: &string) {
                 
                 // dangerous!
-                let startIndex = scanner.scanLocation
+                let expStartIndex = scanner.scanLocation
                 var floatValue: Float = 0.0
                 if scanner.scanFloat(&floatValue) {
                     
@@ -740,7 +740,7 @@ public class Tokenizer {
                     let token = TokenFloat(
                         identifier: "Value",
                         value: floatValue,
-                        startIndex: startIndex + lineStartIndex,
+                        startIndex: expStartIndex + lineStartIndex,
                         stopIndex: scanner.scanLocation + lineStartIndex
                     )
                     
@@ -759,7 +759,6 @@ public class Tokenizer {
                     startIndex: startIndex + lineStartIndex
                 )
                 
-                var widthArguments: [Float] = []
                 var floatValue: Float = 0.0
                 
                 while scanner.scanFloat(&floatValue) {

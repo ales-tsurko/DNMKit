@@ -16,79 +16,130 @@ public class PitchDyadSpeller {
     // MARK: String Representation
     
     /// Printed description of PitchSpellerDyad
-    public var description: String = "PitchSpellerDyad: ___"
+    public var description: String = "PitchSpellerDyad"
     
     // MARK: Attributes
     
     /// PitchDyad spelled by PitchSpellerDyad
     public var dyad: PitchDyad
     
-    public var prevailingFine: Float?
-    
-    /// All possible PitchSpelling combinations for PitchDyad
-    public var allPSDyads: [PitchSpellingDyad] { get { return getAllPSDyads() } }
-    
-    public var stepPreserving: [PitchSpellingDyad] {
-        get { return getStepPreserving() }
-    }
-    
-    public var fineMatching: [PitchSpellingDyad] {
-        get { return getFineMatching() }
-    }
-    
-    public var coarseMatching: [PitchSpellingDyad] {
-        get { return getCoarseMatching() }
-    }
-    
-    public var desiredFine: Float?
-    
-    public var desiredCoarseDirection: Float?
-    
-    public var desiredCoarseResolution: Float?
-    
-    public var coarseDirectionMatching: [PitchSpellingDyad] {
-        get { return getCoarseDirectionMatching() }
-    }
-    public var coarseResolutionMatching: [PitchSpellingDyad] {
-        get { return getCoarseResolutionMatching() }
-    }
-    
     public var bothPitchesHaveBeenSpelled: Bool {
-        get { return getBothPitchesHaveBeenSpelled() } }
+        return getBothPitchesHaveBeenSpelled() }
     
     public var onePitchHasBeenSpelled: Bool {
-        get { return getOnePitchHasBeenSpelled() }
+        return getOnePitchHasBeenSpelled()
     }
     
     public var neitherPitchHasBeenSpelled: Bool {
-        get { return getNeitherPitchHasBeenSpelled() }
+        return getNeitherPitchHasBeenSpelled()
     }
     
     public var canBeSpelledObjectively: Bool {
-        get { return getCanBeSpelledObjectively() }
+        return getCanBeSpelledObjectively()
     }
     
+
+    
+    /// All possible PitchSpelling combinations for PitchDyad
+    public var allPSDyads: [PitchSpellingDyad] { return getAllPSDyads() }
+    
+    /// All PitchSpellingDyads that preserve interval quality properly
+    public var stepPreserving: [PitchSpellingDyad] { return getStepPreserving() }
+    
+    /// All PitchSpellingDyads that preserve fine direction (1/8th-tone arrow direction)
+    public var fineMatching: [PitchSpellingDyad] { return getFineMatching() }
+    
+    /// All PitchSpellingDyads that preserve coarse (flat == flat, quarterFlat != flat)
+    public var coarseMatching: [PitchSpellingDyad] { return getCoarseMatching() }
+    
+    /// All PitchSpellingDyads that preserve coarse direction (sharp == quarterSharp)
+    public var coarseDirectionMatching: [PitchSpellingDyad] {
+        return getCoarseDirectionMatching()
+    }
+    
+    /// All PitchSpellingDyads that preserve coarse resolution (sharp == flat, sharp != qsharp)
+    public var coarseResolutionMatching: [PitchSpellingDyad] {
+        return getCoarseResolutionMatching()
+    }
+    
+    /**
+    In the case of pitches with an 1/8th-tone resolution (0.25), prevailingFine is used to
+    ensure same fine direction for both pitches in dyad (if necessary)
+    */
+    public var prevailingFine: Float?
+    
+    // MARK: Spelling with desired properties
+    
+    /**
+    Fine value desired (in the context of a PitchVerticality, if other pitches require a
+    specific fine value)
+    */
+    public var desiredFine: Float?
+    
+    /**
+    Coarse direction value desired (in the context of a PitchVerticality, if other pitches 
+    require a specific coarse direction)
+    */
+    public var desiredCoarseDirection: Float?
+    
+    /**
+    Coarse resolution value desired (in the context of a PitchVerticality, if other pitches
+    require a specific coarse coarse resolution)
+    */
+    public var desiredCoarseResolution: Float?
+    
+    /**
+    Create a PitchDyadSpeller with a PitchDyad (pair of Pitches)
+
+    - parameter dyad: Pair of Pitches
+
+    - returns: PitchDyadSpeller
+    */
     public init(dyad: PitchDyad) {
         self.dyad = dyad
     }
     
+    /**
+    Spell with a desired fine value
+
+    - parameter fine: Fine value (1/8th-tone direction (0, 0.25, -0.25))
+    */
     public func spellWithDesiredFine(fine: Float) {
         self.desiredFine = fine
         spell()
     }
     
+    /**
+    Spell with a desired coarse direction value
+
+    - parameter coarseDirection: Coarse direction value (0, 1, -1)
+    */
     public func spellWithDesiredCoarseDirection(coarseDirection: Float) {
         self.desiredCoarseDirection = coarseDirection
         spell()
     }
     
+    /**
+    Spell with a desired coarse resolution value
+
+    - parameter coarseResolution: Coarse resolution value (0.5, 1)
+    */
     public func spellWithDesiredCoarseResolution(coarseResolution: Float) {
         self.desiredCoarseResolution = coarseResolution
         spell()
     }
     
-    public func spell() {
-        //spellPitchesObjectivelyIfPossible()
+    /**
+    Spell the pitches of the Dyad. If this PitchDyadSpeller is NOT being used within a
+    PitchVerticalitySpeller (which, probably shouldn't happen -- but for testing purposes, 
+    this is left as a possibility), set shouldSpellPitchesObjectively to true. This will
+    automatically set the PitchSpelling for Pitches that have a single possible PitchSpelling.
+
+    - parameter shouldSpellPitchesObjectively: Spell pitches objectively if possible
+    */
+    public func spell(spellPitchesObjectively shouldSpellPitchesObjectively: Bool = false) {
+        if shouldSpellPitchesObjectively { spellPitchesObjectivelyIfPossible() }
+
         if bothPitchesHaveBeenSpelled {
             //print("both have been spelled")
             /* pass */
@@ -104,7 +155,11 @@ public class PitchDyadSpeller {
     }
     
     public func oneSpelled() {
-        assert(onePitchHasBeenSpelled, "one pitch must be spelled")
+        guard onePitchHasBeenSpelled else {
+            print("neither pitch has been spelled, i quit")
+            return
+        }
+        
         let unspelled: Pitch = dyad.pitch0.hasBeenSpelled ? dyad.pitch1 : dyad.pitch0
         let spelled: Pitch = dyad.pitch0.hasBeenSpelled ? dyad.pitch0 : dyad.pitch1
         switch spelled.resolution {

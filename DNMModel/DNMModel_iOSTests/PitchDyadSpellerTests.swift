@@ -27,6 +27,8 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(65))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
+        print("PitchDyadSpelling: \(speller)")
+        
     }
     
     func testOneSpelled() {
@@ -41,7 +43,8 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(68.25))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        print("STEP PRESERVING: \(speller.stepPreserving)")
+        speller.spell()
+        XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
     func testCoarseMatching() {
@@ -49,13 +52,15 @@ class PitchDyadSpellerTests: XCTestCase {
         let nat1 = Pitch(midi: MIDI(65))
         let natDyad = PitchDyad(pitch0: nat0, pitch1: nat1)
         let natSpeller = PitchDyadSpeller(dyad: natDyad)
-        print("NATURAL COARSE MATCHING: \(natSpeller.coarseMatching)")
+        natSpeller.spell()
+        XCTAssert(natSpeller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
         
         let sharpFlat0 = Pitch(midi: MIDI(61))
         let sharpFlat1 = Pitch(midi: MIDI(63))
         let sharpFlatDyad = PitchDyad(pitch0: sharpFlat0, pitch1: sharpFlat1)
         let sharpFlatSpeller = PitchDyadSpeller(dyad: sharpFlatDyad)
-        print("SHARP / FLAT COARSE MATCHING: \(sharpFlatSpeller.coarseMatching)")
+        sharpFlatSpeller.spell()
+        XCTAssert(sharpFlatSpeller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
     func testCoarseDirectionMatching() {
@@ -63,7 +68,8 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(63.0))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        print("COARSE DIRECTION MATCHING: \(speller.coarseDirectionMatching)")
+        speller.spell()
+        XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
     func testCoarseResolutionMatching() {
@@ -71,7 +77,8 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(71.75))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        print("COARSE RESOLUTION MATCHING: \(speller.coarseResolutionMatching)")
+        speller.spell()
+        XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
     func testFineMatching() {
@@ -79,31 +86,30 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(71.75))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        print("FINE MATCHING: \(speller.fineMatching)")
+        speller.spell()
+        XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
-    func testAllPreferenceArrays() {
+    func testQuarterFlatMatching() {
         let p0 = Pitch(midi: MIDI(63.5))
         let p1 = Pitch(midi: MIDI(69.75))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        
-        print("pitch0: \(p0) || pitch1: \(p1) =============================================")
-        print("step preserving: \(speller.stepPreserving)")
-        print("coarse matching: \(speller.coarseMatching)")
-        print("coarse resolution matching: \(speller.coarseResolutionMatching)")
-        print("coarse direction matching: \(speller.coarseDirectionMatching)")
-        print("fine matching: \(speller.fineMatching)")
+        speller.spell(spellPitchesObjectively: true)
     }
     
     func testOneSpelledNatural() {
+        
+        // do this better
+        
         let pitchPairs: [[Float]] = [[60,63],[60,66],[60,68],[60,71],[60,72],[60,73]]
         for pair in pitchPairs {
             let p0 = Pitch(midi: MIDI(pair.first!))
             let p1 = Pitch(midi: MIDI(pair.last!))
             let dyad = PitchDyad(pitch0: p0, pitch1: p1)
             let speller = PitchDyadSpeller(dyad: dyad)
-            print("dyad: \(dyad)")
+            speller.spell()
+            XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
         }
     }
     
@@ -129,21 +135,18 @@ class PitchDyadSpellerTests: XCTestCase {
         
         let dyad0 = PitchDyad(pitch0: p0, pitch1: p1)
         let speller0 = PitchDyadSpeller(dyad: dyad0)
-        print("dyad: \(dyad0)")
         
         let dyad1 = PitchDyad(pitch0: p0, pitch1: p2)
         let speller1 = PitchDyadSpeller(dyad: dyad1)
-        print("dyad: \(dyad1)")
         
         let dyad2 = PitchDyad(pitch0: p0, pitch1: p3)
         let speller2 = PitchDyadSpeller(dyad: dyad2)
-        print("dyad: \(dyad2)")
     }
     
     func testOneSpelledQuarterEighthTone() {
         let p0 = Pitch(midi: MIDI(60.25))
-        //p0.setPitchSpelling(GetPitchSpellings.forPitch(p0).second!)
-        //print("PITCH 0: \(p0)")
+        p0.setPitchSpelling(p0.possibleSpellings.second!)
+
         
         let p1 = Pitch(midi: MIDI(63))
         let p2 = Pitch(midi: MIDI(63.25))
@@ -151,15 +154,15 @@ class PitchDyadSpellerTests: XCTestCase {
         
         let dyad0 = PitchDyad(pitch0: p0, pitch1: p1)
         let speller0 = PitchDyadSpeller(dyad: dyad0)
-        print("dyad: \(dyad0)")
+        speller0.spell()
         
         let dyad1 = PitchDyad(pitch0: p0, pitch1: p2)
         let speller1 = PitchDyadSpeller(dyad: dyad1)
-        print("dyad: \(dyad1)")
+        speller1.spell()
         
         let dyad2 = PitchDyad(pitch0: p0, pitch1: p3)
         let speller2 = PitchDyadSpeller(dyad: dyad2)
-        print("dyad: \(dyad2)")
+        speller2.spell()
     }
     
     func testCNaturalENaturalDown() {
@@ -167,27 +170,27 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(63.75))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
-        print("dyad: \(dyad)")
+        speller.spell()
     }
     
+    /*
     func testNeitherSpelled() {
         var pitch0MIDI: Float = 60.0
         while pitch0MIDI < 72 {
-            print("\(pitch0MIDI) ==========================================================")
+            //print("\(pitch0MIDI) ==========================================================")
             var pitch1MIDI: Float = pitch0MIDI + 0.25
             while pitch1MIDI < pitch0MIDI + 12.0 {
                 let pitch0 = Pitch(midi: MIDI(pitch0MIDI))
                 let pitch1 = Pitch(midi: MIDI(pitch1MIDI))
                 let dyad = PitchDyad(pitch0: pitch0, pitch1: pitch1)
                 let speller = PitchDyadSpeller(dyad: dyad)
-                print(dyad)
-                if speller.bothPitchesHaveBeenSpelled { print("success") }
-                else { print("fail") }
+                speller.spell()
                 pitch1MIDI += 0.25
             }
             pitch0MIDI += 0.25
         }
     }
+    */
     
     func testSpellWithDesiredFine_0() {
         let p0 = Pitch(midi: MIDI(60.25))
