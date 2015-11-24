@@ -3,5 +3,5 @@ osx_image: xcode7.1
 sudo: false
 
 xcode_workspace: DNM.xcworkspace
-xcode_scheme: DNMModel_iOS
+xcode_scheme: DNM_iOS
 xcode_sdk: iphonesimulator9.1

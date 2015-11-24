@@ -43,11 +43,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.insertionPointColor = NSColor.whiteColor()
     }
 
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
+
     
     func textDidChange(notification: NSNotification) {
         setCurrentLineWithCurrentSelection()
@@ -188,117 +184,41 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             var isBold: Bool = false
             var foregroundColor: NSColor = NSColor.blackColor()
             
+            // make range
             let start = token.startIndex + currentLine.startIndex
             let stop = token.stopIndex + currentLine.startIndex
             let length = stop - start + 1
-
             let range = NSMakeRange(start, length)
             
             if let foregroundColor = styleSheet[identifierString]["foregroundColor"].array {
-                
                 let hue = CGFloat(foregroundColor[0].floatValue)
                 let saturation = CGFloat(foregroundColor[1].floatValue)
                 let brightness = CGFloat(foregroundColor[2].floatValue)
-                
                 let color = NSColor(
                     hue: hue, saturation: saturation, brightness: brightness, alpha: 1
                 )
-
                 textView.setTextColor(color, range: range)
             }
             
             
             let fontManager = NSFontManager.sharedFontManager()
             if let isBold = styleSheet[identifierString]["isBold"].bool where isBold {
-                
-                //print("SHOULD BE BOLD!")
                 let boldFont = fontManager.fontWithFamily("Menlo", traits: NSFontTraitMask.BoldFontMask, weight: 0, size: 12)!
                 textView.setFont(boldFont, range: range)
             }
             else {
-                
-                //print("NOT BOLD")
                 let font = fontManager.fontWithFamily("Menlo",
                     traits: NSFontTraitMask.UnboldFontMask, weight: 0, size: 12
                 )!
                 textView.setFont(font, range: range)
             }
-            
-
-            
-            /*
-            let start = token.startIndex
-            let length = token.stopIndex - token.startIndex + 1
-            
-            if length >= 0 {
-                let range = NSMakeRange(start, length)
-                let colorByIdentifier: [String : NSColor] = [
-                    "Measure": NSColor.grayColor(),
-                    "DurationNodeStackMode": NSColor.grayColor(),
-                    "Articulation": NSColor.blueColor(),
-                    "RootDuration": NSColor.purpleColor(),
-                    "LeafNodeDuration": NSColor.purpleColor(),
-                    "InternalNodeDuration": NSColor.purpleColor(),
-                    "PerformerID": NSColor.orangeColor(),
-                    "InstrumentID": NSColor.orangeColor(),
-                    "PerformerDeclaration": NSColor.yellowColor(),
-                    
-                ]
-                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
-                textView.setTextColor(color, range: range)
-            }
-            */
         }
     }
     
-    /*
-    func colorRangeWithToken(token: Token) {
-
-        //print("color range with token: \(token)")
-        
-        if let container = token as? TokenContainer {
-            
-            print("container: \(token)")
-            let start = token.startIndex
-            let length = token.stopIndex - token.startIndex + 1
-            
-            if length >= 0 {
-                let range = NSMakeRange(start, length)
-                let colorByIdentifier: [String : NSColor] = [
-                    "Pitch": NSColor.redColor(),
-                    "MIDIValue": NSColor.orangeColor(),
-                    "SlurStart": NSColor.yellowColor(),
-                    "SlurStop": NSColor.yellowColor(),
-                    "Articulation": NSColor.redColor(),
-                    "ArticulationMarking": NSColor.redColor()
-                ]
-                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
-                textView.setTextColor(color, range: range)
-            }
-        }
-        else {
-            let start = token.startIndex
-            let length = token.stopIndex - token.startIndex + 1
-            
-            if length >= 0 {
-                let range = NSMakeRange(start, length)
-                let colorByIdentifier: [String : NSColor] = [
-                    "Measure": NSColor.grayColor(),
-                    "DurationNodeStackMode": NSColor.grayColor(),
-                    "Articulation": NSColor.blueColor(),
-                    "RootDuration": NSColor.purpleColor(),
-                    "LeafNodeDuration": NSColor.purpleColor(),
-                    "InternalNodeDuration": NSColor.purpleColor(),
-                    "PerformerID": NSColor.orangeColor(),
-                    "InstrumentID": NSColor.orangeColor(),
-                    "PerformerDeclaration": NSColor.yellowColor(),
-
-                ]
-                let color = colorByIdentifier[token.identifier] ?? NSColor.blackColor()
-                textView.setTextColor(color, range: range)
-            }
+    override var representedObject: AnyObject? {
+        didSet {
+            // Update the view, if already loaded.
         }
     }
-    */
 }
 
