@@ -44,9 +44,6 @@ public class Pitch: CustomStringConvertible, Equatable {
     /// All possible PitchSpellings of Pitch
     public var possibleSpellings: [PitchSpelling] {
         get { return PitchSpelling.pitchSpellingsForPitch(pitch: self) }
-        
-        
-        //get { return GetPitchSpellings.forPitch(self) }
     }
     
     /// Check if this Pitch has been spelled
@@ -205,9 +202,6 @@ public class Pitch: CustomStringConvertible, Equatable {
         } else {
             throw StringInitError.InvalidLetterName
         }
-        
-
-
     }
     
     // MARK: Set attributes of a Pitch

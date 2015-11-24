@@ -22,6 +22,32 @@ class PitchTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testGetOctave() {
+        
+    }
+    
+    func testPossibleSpellings() {
+        var p: Float = 60.0
+        while p < 72 {
+            let pitch = Pitch(midi: MIDI(p))
+            print(pitch.possibleSpellings)
+            p += 0.25
+        }
+    }
+    
+    func testMiddleC() {
+        let middleC = Pitch.middleC()
+        XCTAssert(middleC.midi.value == 60.0, "should be 60")
+    }
+    
+    func testCopy() {
+        let p0 = Pitch(midi: MIDI(72.25))
+        p0.spelling = p0.possibleSpellings.first!
+        let p1 = p0.copy()
+        XCTAssert(p0 == p1, "should be ==")
+        XCTAssert(p1.spelling == nil, "should be nil")
+    }
 
     func testInit() {
         // create pitch with midi
@@ -43,6 +69,12 @@ class PitchTests: XCTestCase {
         pF.setMIDI(MIDI(81.0))
         XCTAssert(pF.midi.value == 81.0, "midi not set correctly")
         XCTAssert(pF.frequency.value == 880.0, "frequency not set correctly")
+    }
+    
+    func testComparison() {
+        let p0 = Pitch(midi: MIDI(60))
+        let p1 = Pitch(midi: MIDI(60.25))
+        XCTAssert(p1 >= p0, "should be >=")
     }
     
     func testGetMIDIOfPartial() {
@@ -91,6 +123,11 @@ class PitchTests: XCTestCase {
         for _ in 0..<50 {
             let pitch: Pitch = Pitch.random(36.0, max: 50.0, resolution: 0.5)
             print(pitch)
+        }
+        
+        let pitches = Pitch.random(10, min: 30, max: 90, resolution: 0.25)
+        for p in pitches {
+            print(p)
         }
     }
     
