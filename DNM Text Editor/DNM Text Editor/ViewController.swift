@@ -43,8 +43,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         textView.insertionPointColor = NSColor.whiteColor()
     }
 
-
-    
+    // move all of this else where
     func textDidChange(notification: NSNotification) {
         setCurrentLineWithCurrentSelection()
         setDefaultStyleForCurrentLine()
@@ -90,9 +89,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             )
         }
     }
-    
-    // really, we should build up lines
-    
     func lineCountAndLineStartIndexOfLineContainingIndex(index: Int) -> (Int, Int)? {
         
         if let textStorage = textView.textStorage where textStorage.characters.count > 0 {
@@ -119,7 +115,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     }
     
     func lineStopIndexOfLineContainingIndex(index: Int) -> Int? {
-        // get line start index
         guard textView.textStorage != nil && textView.textStorage!.characters.count > 0 else {
             return nil
         }
