@@ -58,9 +58,15 @@ class DurationNodeTests: XCTestCase {
         dn.addComponent(ComponentExtensionStart(performerID: "", instrumentID: ""))
         XCTAssert(dn.hasOnlyExtensionComponents, "should only have one extension component")
         
+        XCTAssert(dn.hasExtensionStart, "should have extension start")
+        XCTAssert(!dn.hasExtensionStop, "should not have extension start")
+        
         // add extension stop
         dn.addComponent(ComponentExtensionStop(performerID: "", instrumentID: ""))
         XCTAssert(dn.hasOnlyExtensionComponents, "should have two extension components")
+        
+        XCTAssert(dn.hasExtensionStart, "should have extension start")
+        XCTAssert(dn.hasExtensionStop, "should have extension start")
         
         // add pitch
         dn.addComponent(ComponentPitch(performerID: "", instrumentID: "", values: [60]))

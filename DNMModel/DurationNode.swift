@@ -32,11 +32,13 @@ public class DurationNode: Node {
     public var instrumentIDsByPerformerID: [String : [String]] { get { return getIIDsByPID() } }
     
     /// If this DurationNode is a continuation from another ("tied")
-    public var hasExtensionStart: Bool = false
+    public var hasExtensionStart: Bool { return getHasExtensionStart() }
     
     /// If this DurationNode continues into another ("tied")
-    public var hasExtensionStop: Bool = false
+    public var hasExtensionStop: Bool { return getHasExtensionStop() }
     
+    
+
     /// If this DurationNode shall be represented with metrical beaming
     public var isMetrical: Bool = true
     
@@ -49,14 +51,8 @@ public class DurationNode: Node {
     
     // FIXME
     /// If this DurationNode has only Extension Components (ties) (not a rest, but no info).
-    public var hasOnlyExtensionComponents: Bool {
-        for component in components {
-            if !(component is ComponentExtensionStart) && !(component is ComponentExtensionStop) {
-                return false
-            }
-        }
-        return true
-    }
+    public var hasOnlyExtensionComponents: Bool { return getHasOnlyExtensionComponents() }
+    
     
     /*
     public func distanceFromDurationNode(durationNode: DurationNode) -> Duration? {
@@ -333,6 +329,7 @@ public class DurationNode: Node {
         if sequence.count == 1 {
             (children.first! as! DurationNode).duration.setSubdivision(duration.subdivision!)
         }
+        
         setOffsetDurationOfChildren()
         return self
     }
@@ -363,7 +360,6 @@ public class DurationNode: Node {
             var newOffsetDuration = offsetDuration
             
             if child.isContainer {
-                print("child is container: scale of child.children: \(child.scaleOfChildren)")
                 traverseToSetOffsetDurationOfChildrenOfDurationNode(child,
                     andOffsetDuration: &newOffsetDuration
                 )
@@ -399,6 +395,7 @@ public class DurationNode: Node {
         }
     }
     
+    /*
     /**
     Set if DurationNode is extended at the beginning
     
@@ -422,6 +419,7 @@ public class DurationNode: Node {
         self.hasExtensionStop = hasExtensionStop
         return self
     }
+    */
     
     // MARK: Operations
     
@@ -831,7 +829,8 @@ public class DurationNode: Node {
                 var newLast: [DurationNode] = compound.last!
                 let endNode: DurationNode = array[0].copy()
                 endNode.duration.beats!.setAmount(sum - (accumulated - curBeats))
-                endNode.setHasExtensionStart(true)
+                endNode.addComponent(ComponentExtensionStart())
+                //endNode.setHasExtensionStart(true)
                 newLast.append(endNode)
                 compound.removeLast()
                 compound.append(newLast)
@@ -840,8 +839,8 @@ public class DurationNode: Node {
                     while beginBeats > sum {
                         let newNode: DurationNode = array[0].copy()
                         newNode.duration.beats!.setAmount(sum)
-                        newNode.setHasExtensionStop(true)
-                        newNode.setHasExtensionStart(true)
+                        newNode.addComponent(ComponentExtensionStop())
+                        newNode.addComponent(ComponentExtensionStart())
                         compound.append([newNode])
                         beginBeats -= sum
                     }
@@ -849,7 +848,7 @@ public class DurationNode: Node {
                 if beginBeats > 0 {
                     let newNode: DurationNode = array[0].copy()
                     newNode.duration.beats!.setAmount(beginBeats)
-                    newNode.setHasExtensionStop(true)
+                    newNode.addComponent(ComponentExtensionStop())
                     compound.append([newNode])
                 }
                 array.removeAtIndex(0)
@@ -1005,6 +1004,30 @@ public class DurationNode: Node {
     
     private func getDurationSpan() -> DurationSpan {
         return DurationSpan(duration: duration, startDuration: offsetDuration)
+    }
+    
+    private func getHasExtensionStart() -> Bool {
+        for component in components {
+            if component is ComponentExtensionStart { return true }
+        }
+        return false
+    }
+    
+    private func getHasExtensionStop() -> Bool {
+        for component in components {
+            if component is ComponentExtensionStop { return true }
+        }
+        return false
+    }
+    
+    
+    private func getHasOnlyExtensionComponents() -> Bool {
+        for component in components {
+            if !(component is ComponentExtensionStart) && !(component is ComponentExtensionStop) {
+                return false
+            }
+        }
+        return true
     }
     
     public override func getDescription() -> String {

@@ -152,11 +152,19 @@ public class ComponentArticulation: Component {
 public class ComponentExtensionStart: Component {
     
     public override var identifier: String { return "ExtensionStart" }
+    
+    public convenience init() {
+        self.init(performerID: "", instrumentID: "")
+    }
 }
 
 public class ComponentExtensionStop: Component {
     
     public override var identifier: String { return "ExtensionStop" }
+    
+    public convenience init() {
+        self.init(performerID: "", instrumentID: "")
+    }
 }
 
 public class ComponentGraphNode: Component {
