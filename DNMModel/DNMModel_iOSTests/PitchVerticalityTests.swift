@@ -112,6 +112,7 @@ class PitchVerticalityTests: XCTestCase {
         }
     }
     
+    /*
     func testGetAllPitchesHaveBeenSpelledTrue() {
         let pitchVerticality = PitchVerticality()
         let pitches = Pitch.random(5)
@@ -120,6 +121,7 @@ class PitchVerticalityTests: XCTestCase {
         pVSpeller.spell()
         XCTAssert(pitchVerticality.allPitchesHaveBeenSpelled, "all pitches have not been spelled")
     }
+    */
     
     func testGetAllPitchesHasBeenSpelledFalse() {
         let pitchVerticality = PitchVerticality()

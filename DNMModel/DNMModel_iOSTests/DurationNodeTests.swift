@@ -25,7 +25,7 @@ class DurationNodeTests: XCTestCase {
     
     func testInit() {
         var durNode: DurationNode = DurationNode(duration: Duration(5,16))
-        assert(durNode.duration == Duration(5,16))
+        XCTAssert(durNode.duration == Duration(5,16))
     }
     
     
@@ -40,11 +40,11 @@ class DurationNodeTests: XCTestCase {
         
         // copy duration node
         let newDurNode: DurationNode = durNode.copy()
-        assert(durNode.duration == newDurNode.duration, "dur not set correctly")
-        assert((newDurNode.children[0] as! DurationNode).duration == child1.duration, "child dur not set correctly")
-        assert(newDurNode.children[0] !== child1, "durNodes equiv")
-        assert(newDurNode.children.count == 3, "all durNodes not added")
-        assert(durNode !== newDurNode, "nodes are equiv")
+        XCTAssert(durNode.duration == newDurNode.duration, "dur not set correctly")
+        XCTAssert((newDurNode.children[0] as! DurationNode).duration == child1.duration, "child dur not set correctly")
+        XCTAssert(newDurNode.children[0] !== child1, "durNodes equiv")
+        XCTAssert(newDurNode.children.count == 3, "all durNodes not added")
+        XCTAssert(durNode !== newDurNode, "nodes are equiv")
     }
     
     /*
@@ -54,8 +54,8 @@ class DurationNodeTests: XCTestCase {
         let child2 = DurationNode(duration: Duration(4,16))
         durNode.addChild(child1)
         durNode.addChild(child2)
-        assert(durNode.children.count == 2, "children not added correctly")
-        assert(durNode.relativeDurationsOfChildren! == [3,4], "rel durs incrorrect")
+        XCTAssert(durNode.children.count == 2, "children not added correctly")
+        XCTAssert(durNode.relativeDurationsOfChildren! == [3,4], "rel durs incrorrect")
     }
     */
     
@@ -68,7 +68,7 @@ class DurationNodeTests: XCTestCase {
         durNode.addChild(child2)
         durNode.addChild(child3)
         print("durNode before level: \(durNode)")
-        assert(durNode.getMaximumSubdivisionOfChildren()! == Subdivision(value: 128), "getMaxSubdivision not called correctly")
+        XCTAssert(durNode.getMaximumSubdivisionOfChildren()! == Subdivision(value: 128), "getMaxSubdivision not called correctly")
         durNode.levelDurationsOfChildren()
         print("durNode after level: \(durNode)")
         
@@ -87,8 +87,8 @@ class DurationNodeTests: XCTestCase {
         print("durNode before reduce: \(durNode)")
         durNode.reduceDurationsOfChildren()
         print("durNode after reduce: \(durNode)")
-        assert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
-        assert(child2.duration.beats!.amount == 16, "beats incorrect")
+        XCTAssert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
+        XCTAssert(child2.duration.beats!.amount == 16, "beats incorrect")
         durNode.reduceDurationsOfChildren()
         print("durNode after second reduce: \(durNode)")
     }
@@ -104,8 +104,8 @@ class DurationNodeTests: XCTestCase {
         print("durNode before matchDurationsOfChildren: \(durNode)")
         durNode.matchDurationsOfChildren()
         print("durNode after matchDurationsOfChildren: \(durNode)")
-        assert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
-        assert(child2.duration.beats!.amount == 16, "beats incorrect")
+        XCTAssert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
+        XCTAssert(child2.duration.beats!.amount == 16, "beats incorrect")
     }
     
     func testGetMaximumSubdivisionOfSequence() {
@@ -114,7 +114,7 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let maxSubd = DurationNode.getMaximumSubdivisionOfSequence(sequence)
-        assert(maxSubd! == Subdivision(value: 64), "not correct max subdivision")
+        XCTAssert(maxSubd! == Subdivision(value: 64), "not correct max subdivision")
     }
     
     func testGetMinimumSubdivisionOfSequence() {
@@ -123,7 +123,7 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let minSubd = DurationNode.getMinimumSubdivisionOfSequence(sequence)
-        assert(minSubd! == Subdivision(value: 8), "not correct min subdivision")
+        XCTAssert(minSubd! == Subdivision(value: 8), "not correct min subdivision")
     }
     
     func testGetRelativeDurationsOfSequence() {
@@ -133,7 +133,7 @@ class DurationNodeTests: XCTestCase {
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let relDurs = DurationNode.getRelativeDurationsOfSequence(sequence)
         print("sequence before relDur get: \(sequence)")
-        assert(relDurs == [2,8,1], "relative durations incorrect")
+        XCTAssert(relDurs == [2,8,1], "relative durations incorrect")
         print("sequence after relDur get: \(sequence)")
     }
     
@@ -148,7 +148,7 @@ class DurationNodeTests: XCTestCase {
         dn.addChild(dn1)
         dn.addChild(dn2)
         let relDurs = dn.relativeDurationsOfChildren!
-        assert(relDurs == [2,8,1], "relative durations incorrect")
+        XCTAssert(relDurs == [2,8,1], "relative durations incorrect")
         */
     }
     
@@ -158,14 +158,14 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let areEquiv = DurationNode.allSubdivisionsOfSequenceAreEquivalent(sequence)
-        assert(areEquiv == false, "subd equiv incorrect")
+        XCTAssert(areEquiv == false, "subd equiv incorrect")
         
         let dn3 = DurationNode(duration: Duration(1,32))
         let dn4 = DurationNode(duration: Duration(1,32))
         let dn5 = DurationNode(duration: Duration(1,32))
         let sequence2: [DurationNode] = [dn3, dn4, dn5]
         let areEquiv2 = DurationNode.allSubdivisionsOfSequenceAreEquivalent(sequence2)
-        assert(areEquiv2 == true, "subd equiv incorrect")
+        XCTAssert(areEquiv2 == true, "subd equiv incorrect")
     }
     
     

@@ -47,17 +47,13 @@ public class PitchDyad: CustomStringConvertible {
         
         // ensure pitch1 is higher
         self.pitch1 = [pitch0, pitch1].sort(>).first!
-        
-        /*
-        var pitches: [Pitch] = [pitch0, pitch1]
-        pitches.sortInPlace { $0.pitchClass.midi.value < $1.pitchClass.midi.value }
-        self.pitch0 = pitches[0]
-        self.pitch1 = pitches[1]
-        */
+    }
+    
+    public func clearPitchSpellings() {
+        for pitch in [pitch0, pitch1] { pitch.clearPitchSpelling() }
     }
     
     public func getDescription() -> String {
-        
         return "[\(pitch0), \(pitch1)]"
     }
 }

@@ -38,8 +38,6 @@ public class PitchDyadSpeller {
         return getCanBeSpelledObjectively()
     }
     
-
-    
     /// All possible PitchSpelling combinations for PitchDyad
     public var allPSDyads: [PitchSpellingDyad] { return getAllPSDyads() }
     
@@ -131,13 +129,20 @@ public class PitchDyadSpeller {
     
     /**
     Spell the pitches of the Dyad. If this PitchDyadSpeller is NOT being used within a
-    PitchVerticalitySpeller (which, probably shouldn't happen -- but for testing purposes, 
+    PitchVerticalitySpeller (which, probably shouldn't happen -- but for testing purposes,
     this is left as a possibility), set shouldSpellPitchesObjectively to true. This will
     automatically set the PitchSpelling for Pitches that have a single possible PitchSpelling.
+    Same thing with mustSpellBothPitches, this will be cleaned up higher in the chain when
+    using a PitchVerticalitySpeller, but use it for testing
 
-    - parameter shouldSpellPitchesObjectively: Spell pitches objectively if possible
+    - parameter mustSpellBothPitches:          Must spell both Pitches in Dyad
+    - parameter shouldSpellPitchesObjectively: Spell pitches with only one pitch spelling
     */
-    public func spell(spellPitchesObjectively shouldSpellPitchesObjectively: Bool = false) {
+    public func spell(
+        enforceBothPitchesSpelled mustSpellBothPitches: Bool = false,
+        spellPitchesObjectively shouldSpellPitchesObjectively: Bool = false
+    )
+    {
         if shouldSpellPitchesObjectively { spellPitchesObjectivelyIfPossible() }
 
         if bothPitchesHaveBeenSpelled {
@@ -145,23 +150,33 @@ public class PitchDyadSpeller {
             /* pass */
         }
         else if neitherPitchHasBeenSpelled {
-            //print("neither has been spelled")
             neitherSpelled()
         }
         else if onePitchHasBeenSpelled {
-            //print("one has been spelled")
             oneSpelled()
+        }
+        
+        // set default values to pitches if there's just no other solution
+        if mustSpellBothPitches {
+            for pitch in [dyad.pitch0, dyad.pitch1] {
+                if !pitch.hasBeenSpelled {
+                    pitch.setPitchSpelling(pitch.possibleSpellings.first!)
+                }
+            }
         }
     }
     
+    // make private?
     public func oneSpelled() {
-        guard onePitchHasBeenSpelled else {
-            print("neither pitch has been spelled, i quit")
-            return
-        }
+        guard onePitchHasBeenSpelled else { return }
         
+        // get spelled pitch
         let unspelled: Pitch = dyad.pitch0.hasBeenSpelled ? dyad.pitch1 : dyad.pitch0
+        
+        // get unspelled pitch
         let spelled: Pitch = dyad.pitch0.hasBeenSpelled ? dyad.pitch0 : dyad.pitch1
+        
+        // orient self around resolution of spelled pitch
         switch spelled.resolution {
         case 0.50: oneSpelledQuarterTone(spelled: spelled, unspelled: unspelled)
         case 0.25: oneSpelledEighthTone(spelled: spelled, unspelled: unspelled)
@@ -169,6 +184,7 @@ public class PitchDyadSpeller {
         }
     }
     
+    // make private
     public func oneSpelledHalfTone(spelled spelled: Pitch, unspelled: Pitch) {
         // filter step preserving to include more-global fine-match: encapsulate
         if desiredFine != nil && unspelled.resolution == 0.25 {
@@ -239,13 +255,8 @@ public class PitchDyadSpeller {
         }
     }
     
+    // make private
     public func oneSpelledQuarterTone(spelled spelled: Pitch, unspelled: Pitch) {
-        
-        
-        
-        // IF MORE-GLOBAL FINE MATCH REQUIRED
-        
-        
         
         // filter step preserving to include more-global fine-match: encapsulate
         if desiredFine != nil && unspelled.resolution == 0.25 {
@@ -321,6 +332,7 @@ public class PitchDyadSpeller {
         
     }
     
+    // make private
     public func oneSpelledEighthTone(spelled spelled: Pitch, unspelled: Pitch) {
         prevailingFine = spelled.spelling!.fine
         
@@ -423,6 +435,7 @@ public class PitchDyadSpeller {
         }
     }
     
+    // make private
     public func neitherSpelled() {
         
         // ENCAPSULATE
@@ -611,13 +624,6 @@ public class PitchDyadSpeller {
     
     public func getCoarseMatching() -> [PitchSpellingDyad] {
         var coarseMatching: [PitchSpellingDyad] = []
-        
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        */
-
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
@@ -629,15 +635,6 @@ public class PitchDyadSpeller {
     
     public func getCoarseResolutionMatching() -> [PitchSpellingDyad] {
         var coarseResolutionMatching: [PitchSpellingDyad] = []
-        
-        
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-          */
-                
-                
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
@@ -653,13 +650,6 @@ public class PitchDyadSpeller {
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-
-        */
                 if psDyad.isCoarseDirectionMatching { coarseDirectionMatching.append(psDyad) }
             }
         }
@@ -672,15 +662,6 @@ public class PitchDyadSpeller {
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        
-                
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        */
-
-
                 if psDyad.isFineMatching { fineMatching.append(psDyad) }
             }
         }
@@ -693,12 +674,6 @@ public class PitchDyadSpeller {
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        */
                 if psDyad.isStepPreserving { stepPreserving.append(psDyad) }
             }
         }
@@ -708,25 +683,21 @@ public class PitchDyadSpeller {
     private func getAllPSDyads() -> [PitchSpellingDyad] {
         var allPSDyads: [PitchSpellingDyad] = []
         
-        
         for ps0 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch0) {
             for ps1 in PitchSpelling.pitchSpellingsForPitch(pitch: dyad.pitch1) {
                 let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        
-        /*
-        for ps0 in GetPitchSpellings.forPitch(dyad.pitch0) {
-            for ps1 in GetPitchSpellings.forPitch(dyad.pitch1) {
-                let psDyad = PitchSpellingDyad(ps0: ps0, ps1: ps1)
-        */
-                
                 allPSDyads.append(psDyad)
             }
         }
         return allPSDyads
     }
     
-    private func getSpellingForUnspelledFromPSDyad(psDyad: PitchSpellingDyad) -> PitchSpelling {
+    private func getSpellingForUnspelledFromPSDyad(psDyad: PitchSpellingDyad)
+        -> PitchSpelling
+    {
+        // manage this better
         assert(onePitchHasBeenSpelled, "one pitch must be spelled")
+        
         return dyad.pitch0.hasBeenSpelled ? psDyad.pitchSpelling1 : psDyad.pitchSpelling0
     }
     
