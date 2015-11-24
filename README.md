@@ -24,7 +24,7 @@ Save anywhere in project (to be retrieved from `NSBundle.mainBundle()`)
 
 **Example**:
 
-Add a performer and their instruments: (Violinisit who is just playing Violin)
+Add a performer and their instruments: (Violinist who is just playing Violin)
 
 ```Swift
 P: VN vn Violin
