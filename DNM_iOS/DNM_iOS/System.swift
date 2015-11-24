@@ -1292,7 +1292,7 @@ public class System: ViewNode, BuildPattern {
         
         func getPIDsFromDurationNode(durationNode: DurationNode) -> [String] {
             var pids: [String] = []
-            for (pid, _) in durationNode.iIDsByPID { pids.append(pid) }
+            for (pid, _) in durationNode.instrumentIDsByPerformerID { pids.append(pid) }
             return pids
         }
         
