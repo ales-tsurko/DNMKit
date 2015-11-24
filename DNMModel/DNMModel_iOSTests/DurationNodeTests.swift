@@ -24,7 +24,7 @@ class DurationNodeTests: XCTestCase {
 
     
     func testInit() {
-        var durNode: DurationNode = DurationNode(duration: Duration(5,16))
+        let durNode: DurationNode = DurationNode(duration: Duration(5,16))
         XCTAssert(durNode.duration == Duration(5,16))
     }
     
@@ -90,6 +90,11 @@ class DurationNodeTests: XCTestCase {
         root.addChild(c3)
         
         XCTAssert(root.instrumentIDsByPerformerID == ["VN": ["vn","vx"], "VC": ["vc"]], "iids wrong")
+    }
+    
+    func testAddChildWithBeats() {
+        let root = DurationNode(duration: Duration(1,16))
+        root.addChildWithBeats(1)
     }
     
     func testSubdivisionOfChildren() {

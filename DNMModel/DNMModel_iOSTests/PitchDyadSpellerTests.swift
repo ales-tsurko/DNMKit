@@ -36,6 +36,8 @@ class PitchDyadSpellerTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(67.25))
         let dyad = PitchDyad(pitch0: p0, pitch1: p1)
         let speller = PitchDyadSpeller(dyad: dyad)
+        speller.spell(enforceBothPitchesSpelled: true, spellPitchesObjectively: true)
+        XCTAssert(speller.bothPitchesHaveBeenSpelled, "both pitches should be spelled")
     }
     
     func testStepPreserving() {

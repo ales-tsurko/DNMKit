@@ -61,7 +61,7 @@ class DurationTests: XCTestCase {
         let d2 = Duration(3,8)
         XCTAssert(d1 + d2 == Duration(13,16), "durs not added correctly")
         let d3 = Duration(2,4)
-        var d4 = Duration(13,32)
+        let d4 = Duration(13,32)
         XCTAssert(d3 + d4 == Duration(29,32), "durs not added correctly")
         let d5 = d3 - d4
         XCTAssert(d5 == Duration(3,32), "durs not subtracted correctly")

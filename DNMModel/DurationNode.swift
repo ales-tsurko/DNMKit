@@ -48,8 +48,6 @@ public class DurationNode: Node {
     */
     public var isNumerical: Bool = true
     
-    
-    // FIXME
     /// If this DurationNode has only Extension Components (ties) (not a rest, but no info).
     public var hasOnlyExtensionComponents: Bool { return getHasOnlyExtensionComponents() }
     
@@ -93,7 +91,6 @@ public class DurationNode: Node {
         return []
     }
     */
-    
 
     /// From an array of DurationNodes, choose those that fit within the given DurationSpan
     public class func rangeFromDurationNodes(
@@ -130,7 +127,9 @@ public class DurationNode: Node {
         return durationNode
     }
     
-    public class func getMaximumSubdivisionOfSequence(sequence: [DurationNode]) -> Subdivision? {
+    public class func getMaximumSubdivisionOfSequence(sequence: [DurationNode])
+        -> Subdivision?
+    {
         var maxSubdivision: Subdivision?
         for child in sequence {
             if maxSubdivision == nil || child.duration.subdivision! > maxSubdivision! {
@@ -140,7 +139,9 @@ public class DurationNode: Node {
         return maxSubdivision
     }
     
-    public class func getMinimumSubdivisionOfSequence(sequence: [DurationNode]) -> Subdivision? {
+    public class func getMinimumSubdivisionOfSequence(sequence: [DurationNode])
+        -> Subdivision?
+    {
         var minSubdivision: Subdivision?
         for child in sequence {
             if minSubdivision == nil || child.duration.subdivision! < minSubdivision! {
@@ -456,12 +457,13 @@ public class DurationNode: Node {
         node = newParent
     }
     
-    
+    // should be private
     public func matchDurationsOfTree() {
         var node = self
         traverseToMatchDurationsOfTree(&node)
     }
     
+    // should be private
     private func traverseToMatchDurationsOfTree(inout node: DurationNode) {
         if node.isContainer {
             node.matchDurationToChildren_destructive()
@@ -472,6 +474,7 @@ public class DurationNode: Node {
         }
     }
     
+    // should be private?
     public func scaleDurationsOfTree(scale scale: Float) -> DurationNode {
         duration.setScale(scale)
         scaleDurationsOfChildren()
@@ -512,80 +515,33 @@ public class DurationNode: Node {
         }
     }
     
-    // make this private, can only happen on INIT_WITH_SEQ() !!!!
+    // make this private, can only happen on INIT_WITH_SEQ()
     private func matchDurationToChildren_destructive() {
-        
-        //print("matchDurationToChildren_destructive")
         
         for child in children as! [DurationNode] {
             child.duration.respellAccordingToSubdivision(duration.subdivision!)
         }
-        let beats: Int = duration.beats!.amount
         
+        let beats: Int = duration.beats!.amount
         var reduced: [Int] = []
         let relDurs = relativeDurationsOfChildren!
         let relDursGCD = gcd(relDurs)
         for d in relDurs { reduced.append(d / relDursGCD) }
-        
-        //print("reduced: \(reduced)")
-        
         let sum: Int = reduced.sum()
-        
-        //print("beats: \(beats); sum: \(sum); relativeDurations: \(reduced)")
-        
         if sum < beats {
-            //let closestPowerOfTwo = getClosestPowerOfTwo(multiplier: sum, value: beats)
-            //print("closestPowerOfTwo: \(closestPowerOfTwo)")
-            
-            //let scale: Int = closestPowerOfTwo / sum
-            //print("scale: \(scale)")
-
             for c in 0..<children.count {
                 let child = children[c] as! DurationNode
                 child.duration.respellAccordingToBeats(reduced[c])
             }
-            
-            /*
-            for child in children as! [DurationNode] {
-            child.duration *= scale
-            }
-            */
- 
-            
         }
         else if sum > beats {
-            
-            //print("parent duration: \(duration)")
-            
-            //print("sum: \(sum) > beats: \(beats)")
-            
             let closestPowerOfTwo = getClosestPowerOfTwo(multiplier: beats, value: sum)
-            
-            //print("closestPowerOfTwo: \(closestPowerOfTwo)")
-            
             let scale: Int = closestPowerOfTwo / beats
-            
-            //print("scale: \(scale)")
-            
             let newBeats = duration.beats!.amount * scale
-            
-            //print("children before: \(children)")
-            
-            //print("parent dur before: \(duration)")
             duration.respellAccordingToBeats(newBeats)
-            //print("parent dur after: \(duration)")
-            
-            // only being respelled to 4 not 8? why!??!??!
-            
             for child in children as! [DurationNode] {
-                
-                // something has to happen in here!!!!
-                
                 child.duration.setSubdivision(duration.subdivision!)
             }
-            
-            //print("reduced beats: \(reduced)")
-            //print("children after: \(children)")
         }
         
         for c in 0..<children.count {
@@ -940,14 +896,6 @@ public class DurationNode: Node {
         if !isContainer { return nil }
         // match (level, reduce) children to parent
         return (children[0] as! DurationNode).duration.subdivision!
-        
-        /*
-        // ensure that all subdivisions are ==
-        if isContainer {
-        return (children[0] as! DurationNode).duration.subdivision!
-        }
-        else { return nil }
-        */
     }
     
     private func getScaleOfChildren() -> Float {
