@@ -13,10 +13,19 @@ Pitch
 */
 public class Pitch: CustomStringConvertible, Equatable {
     
+    public enum StringInitError: ErrorType {
+        case InvalidString
+        case InvalidLetterName
+        case InvalidEighthToneIndicator
+        case InvalidQuarterToneIndicator
+        case InvalidHalfToneIndicator
+        case InvalidOctave
+    }
+    
     // MARK: String Representation
     
     /// Printable description of Pitch
-    public var description: String { get { return getDescription() } }
+    public var description: String { return getDescription() }
     
     // MARK: Attributes
     
@@ -26,12 +35,12 @@ public class Pitch: CustomStringConvertible, Equatable {
     /// Frequency representation of Pitch (middle-c = 261.6)
     public var frequency: Frequency
     
-    /// Modulo 12 representation of Pitch
-    public var pitchClass: Pitch { get { return Pitch(midi: self.midi % 12.0) } }
+    /// Modulo 12 representation of Pitch // dedicated class?
+    public var pitchClass: Pitch { return PitchClass(pitch: self) }
     
     /// Resolution of Pitch (1.0 = chromatic, 0.5 = 1/4-tone, 0.25 = 1/8-tone)
     public var resolution: Float {
-        get { return midi.value % 1 == 0 ? 1.0 : midi.value % 0.5 == 0 ? 0.5 : 0.25 }
+        return midi.value % 1 == 0 ? 1.0 : midi.value % 0.5 == 0 ? 0.5 : 0.25
     }
     
     public var octave: Int { get { return getOctave() } }
@@ -43,11 +52,11 @@ public class Pitch: CustomStringConvertible, Equatable {
     
     /// All possible PitchSpellings of Pitch
     public var possibleSpellings: [PitchSpelling] {
-        get { return PitchSpelling.pitchSpellingsForPitch(pitch: self) }
+        return PitchSpelling.pitchSpellingsForPitch(pitch: self)
     }
     
     /// Check if this Pitch has been spelled
-    public var hasBeenSpelled: Bool { get { return spelling != nil } }
+    public var hasBeenSpelled: Bool { return spelling != nil }
     
     // NYI: Create random pitch with Frequency
     
@@ -136,6 +145,9 @@ public class Pitch: CustomStringConvertible, Equatable {
         self.frequency = Frequency(midi: m)
     }
     
+    // TODO: init(var string: String, andEnforceSpelling shouldEnforceSpelling: Bool) throws
+    // move this to Parser, and call it from there... get it outta here!
+    
     /**
     Create a Pitch with String. This string can be of a format "C#" which will create a C#
     above middle-c, or of a format "Eb5" which will create an Eb a minor 10th above middle-c.
@@ -148,15 +160,6 @@ public class Pitch: CustomStringConvertible, Equatable {
     */
     public convenience init(var string: String) throws {
 
-        enum StringInitError: ErrorType {
-            case InvalidString
-            case InvalidLetterName
-            case InvalidEighthToneIndicator
-            case InvalidQuarterToneIndicator
-            case InvalidHalfToneIndicator
-            case InvalidOctave
-        }
-
         // throw error if empty string
         if string == "" { throw StringInitError.InvalidString }
         
@@ -164,7 +167,7 @@ public class Pitch: CustomStringConvertible, Equatable {
         if let letterName = PitchLetterName.pitchLetterNameWithString(string: firstChar) {
             
             // trim off first char
-            string = string[1...string.characters.count - 1]
+            string = string[1..<string.characters.count]
             
             let scanner = NSScanner(string: string)
             scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "_")
@@ -190,14 +193,17 @@ public class Pitch: CustomStringConvertible, Equatable {
             var octave: Float = 4 // default to octave starting at middle c
             var floatValue: Float = 0.0
             if scanner.scanFloat(&floatValue) { octave = floatValue }
-            
+
             let midi: Float = (
                 (octave + 1) * 12
-                    + letterName.rawValue
+                    + letterName.distanceFromC
                     + quarterTone * halfTone
                     + eighthTone
             )
+            
             self.init(midi: MIDI(midi))
+            
+            // SPELL PITCH?
             
         } else {
             throw StringInitError.InvalidLetterName

@@ -24,7 +24,7 @@ class PitchTests: XCTestCase {
     }
     
     func testGetOctave() {
-        
+        // TODO
     }
     
     func testPossibleSpellings() {
@@ -69,6 +69,103 @@ class PitchTests: XCTestCase {
         pF.setMIDI(MIDI(81.0))
         XCTAssert(pF.midi.value == 81.0, "midi not set correctly")
         XCTAssert(pF.frequency.value == 880.0, "frequency not set correctly")
+        
+        let pF_res = Pitch(frequency: Frequency(436), resolution: 0.5)
+        XCTAssert(pF_res.midi.value == 69, "resolution not set correclty")
+    }
+    
+    func testInitWithString() {
+        
+        // test empty string
+        var string = ""
+        do { let _ = try Pitch(string: string) }
+        catch Pitch.StringInitError.InvalidString { }
+        catch let error { XCTFail("wrong StringInitError: \(error)") }
+    
+        // try an invalid lettername
+        for str in ["h", "i", "j", "X", "Z", "T"] {
+            do { let _ = try Pitch(string: str) }
+            catch Pitch.StringInitError.InvalidLetterName { }
+            catch let error { XCTFail("wrong StringInitError: \(error)") }
+        }
+        
+        // try all valid
+        for str in ["a","b","c","d","e","f","g","A","B","C","D","E","F","G"] {
+            do { let _ = try Pitch(string: str) }
+            catch let error { XCTFail("\(error)") }
+        }
+        
+        // test half tones
+        for str in ["cs", "c#"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 61.0, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
+        
+        // test octave
+        string = "eb4"
+        do {
+            let pitch = try Pitch(string: string)
+            XCTAssert(pitch.midi.value == 63.0, "bad pitch: \(pitch)")
+        }
+        catch let error { XCTFail("\(error)") }
+        
+        string = "eb5"
+        do {
+            let pitch = try Pitch(string: string)
+            XCTAssert(pitch.midi.value == 75.0, "bad pitch: \(pitch)")
+        }
+        catch let error { XCTFail("\(error)") }
+
+        // more tests -- scan through all float values
+        
+        // test quarter flat, ignore "_"
+        for str in ["eqb","e_qb"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 63.5, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
+
+        // test quarter sharp, ignore "_"
+        for str in ["eqs","eq#","e_q#","e_qs"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 64.5, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
+        
+        // now with octaves
+        for str in ["eqs6","e_qs_6", "eq#6", "e_q#_6"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 88.5, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
+        
+
+        // test eighth tones down
+        for str in ["gqbdown5", "g_qb_down_5"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 78.25, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
+        
+        // test eighth tones up
+        for str in ["a#up4","asup","a_#_up","a_s_up4"] {
+            do {
+                let pitch = try Pitch(string: str)
+                XCTAssert(pitch.midi.value == 70.25, "bad pitch: \(pitch)")
+            }
+            catch let error { XCTFail("\(error)") }
+        }
     }
     
     func testComparison() {

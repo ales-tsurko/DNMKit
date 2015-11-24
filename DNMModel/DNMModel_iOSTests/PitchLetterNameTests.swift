@@ -1,5 +1,5 @@
 //
-//  LetterNameTests.swift
+//  PitchLetterNameTests.swift
 //  denm
 //
 //  Created by James Bean on 3/23/15.
@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 @testable import DNMModel
 
-class LetterNameTests: XCTestCase {
+class PitchLetterNameTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

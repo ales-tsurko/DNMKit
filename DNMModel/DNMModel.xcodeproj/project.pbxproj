@@ -129,7 +129,7 @@
 		07428C841C017A7C00A1E76B /* BeatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C721C017A7C00A1E76B /* BeatsTest.swift */; };
 		07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C731C017A7C00A1E76B /* DurationNodeTests.swift */; };
 		07428C861C017A7C00A1E76B /* DurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C741C017A7C00A1E76B /* DurationTests.swift */; };
-		07428C871C017A7C00A1E76B /* LetterNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C751C017A7C00A1E76B /* LetterNameTests.swift */; };
+		07428C871C017A7C00A1E76B /* PitchLetterNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C751C017A7C00A1E76B /* PitchLetterNameTests.swift */; };
 		07428C881C017A7C00A1E76B /* MIDITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C761C017A7C00A1E76B /* MIDITests.swift */; };
 		07428C891C017A7C00A1E76B /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C771C017A7C00A1E76B /* NodeTests.swift */; };
 		07428C8A1C017A7C00A1E76B /* PitchDyadSpellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */; };
@@ -144,6 +144,7 @@
 		07428C931C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C811C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift */; };
 		07428C941C017A7C00A1E76B /* PitchVerticalityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */; };
 		07428C951C017A7C00A1E76B /* SubdivisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C831C017A7C00A1E76B /* SubdivisionTests.swift */; };
+		07B3A12A1C03FE8100595939 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A1291C03FE8100595939 /* PitchClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,7 +240,7 @@
 		07428C721C017A7C00A1E76B /* BeatsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatsTest.swift; sourceTree = "<group>"; };
 		07428C731C017A7C00A1E76B /* DurationNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeTests.swift; sourceTree = "<group>"; };
 		07428C741C017A7C00A1E76B /* DurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTests.swift; sourceTree = "<group>"; };
-		07428C751C017A7C00A1E76B /* LetterNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterNameTests.swift; sourceTree = "<group>"; };
+		07428C751C017A7C00A1E76B /* PitchLetterNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchLetterNameTests.swift; sourceTree = "<group>"; };
 		07428C761C017A7C00A1E76B /* MIDITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDITests.swift; sourceTree = "<group>"; };
 		07428C771C017A7C00A1E76B /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchDyadSpellerTests.swift; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchVerticalityTests.swift; sourceTree = "<group>"; };
 		07428C831C017A7C00A1E76B /* SubdivisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubdivisionTests.swift; sourceTree = "<group>"; };
 		0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		07B3A1291C03FE8100595939 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		07F38C751BFE3E5F0093493F /* TopLevelCommands.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TopLevelCommands.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 /* End PBXFileReference section */
 
@@ -385,6 +387,7 @@
 				07074DCE1BF9685500BFC6FA /* PitchVerticality.swift */,
 				07074DCF1BF9685500BFC6FA /* PitchVerticalitySpeller.swift */,
 				07074DD01BF9685500BFC6FA /* PreferredClefsAndTranspositionByInstrumentType.json */,
+				07B3A1291C03FE8100595939 /* PitchClass.swift */,
 			);
 			name = Pitch;
 			sourceTree = "<group>";
@@ -495,7 +498,7 @@
 		071FF1D71C02A8710009CD19 /* Pitch */ = {
 			isa = PBXGroup;
 			children = (
-				07428C751C017A7C00A1E76B /* LetterNameTests.swift */,
+				07428C751C017A7C00A1E76B /* PitchLetterNameTests.swift */,
 				07428C761C017A7C00A1E76B /* MIDITests.swift */,
 				07428C781C017A7C00A1E76B /* PitchDyadSpellerTests.swift */,
 				07428C791C017A7C00A1E76B /* PitchDyadTests.swift */,
@@ -744,6 +747,7 @@
 				071E9E961C00EE47008D1263 /* PitchInterval.swift in Sources */,
 				071E9E901C00EE47008D1263 /* MIDI.swift in Sources */,
 				071E9E911C00EE47008D1263 /* Pitch.swift in Sources */,
+				07B3A12A1C03FE8100595939 /* PitchClass.swift in Sources */,
 				071E9E871C00EE3D008D1263 /* SpannerArguments.swift in Sources */,
 				071E9E761C00EE39008D1263 /* StringExtensions.swift in Sources */,
 				071E9E971C00EE47008D1263 /* PitchLetterName.swift in Sources */,
@@ -790,7 +794,7 @@
 				07428C901C017A7C00A1E76B /* PitchSpellingDyadTests.swift in Sources */,
 				071470AB1C02C4DA00D847D3 /* ComponentTests.swift in Sources */,
 				07428C8F1C017A7C00A1E76B /* PitchSpellerTests.swift in Sources */,
-				07428C871C017A7C00A1E76B /* LetterNameTests.swift in Sources */,
+				07428C871C017A7C00A1E76B /* PitchLetterNameTests.swift in Sources */,
 				0726217A1C03D08C001A665A /* DurationSpanTests.swift in Sources */,
 				07428C921C017A7C00A1E76B /* PitchTests.swift in Sources */,
 				072621741C03BB25001A665A /* OrderedDictionaryTests.swift in Sources */,

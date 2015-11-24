@@ -189,12 +189,13 @@ public class SystemView: UIView {
                     }
                 }
                 
-                
                 // find out which stems to highlight
                 var stemsHighlighted: [Stem] = []
                 for bgStratum in system.bgStrata {
                     for bgEvent in bgStratum.bgEvents {
-                        if bgEvent.durationNode.offsetDuration.isInDurationSpan(durationSpan) {
+                        if bgEvent.durationNode.offsetDuration
+                            .isContainedWithinDurationSpan(durationSpan)
+                        {
                             for pID in pIDsSelected {
                                 if bgEvent.durationNode.iIDsByPID[pID] != nil {
                                     if let stem = bgEvent.stem {
