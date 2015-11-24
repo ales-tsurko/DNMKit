@@ -8,13 +8,10 @@
 
 import Foundation
 
-public enum PitchCoarse: String, CustomStringConvertible {
-    
-    case Natural = "Natural"
-    case Sharp = "Sharp"
-    case QuarterSharp = "QuarterSharp"
-    case Flat = "Flat"
-    case QuarterFlat = "QuarterFlat"
-    
-    public var description: String { get { return self.rawValue } }
+public enum PitchCoarse: String {
+    case Natural
+    case Sharp
+    case QuarterSharp
+    case Flat
+    case QuarterFlat
 }
