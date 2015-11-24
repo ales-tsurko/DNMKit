@@ -301,10 +301,10 @@ public class System: ViewNode, BuildPattern {
     - parameter x:                Horizontal placement of TempoMarking
     */
     public func addTempoMarkingWithValue(value: Int,
-        andSubdivisionLevel subdivisionLevel: Int, atX x: CGFloat
+        andSubdivisionValue subdivisionValue: Int, atX x: CGFloat
     )
     {
-        temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionLevel: subdivisionLevel, atX: x)
+        temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionValue: subdivisionValue, atX: x)
     }
     
     /**

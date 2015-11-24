@@ -103,7 +103,7 @@ public class TemporalInfoNode: ViewNode {
     }
     
     public func addTempoMarkingWithValue(value: Int,
-        andSubdivisionLevel subdivisionLevel: Int, atX x: CGFloat
+        andSubdivisionValue subdivisionValue: Int, atX x: CGFloat
     )
     {
         var x = x
@@ -114,7 +114,7 @@ public class TemporalInfoNode: ViewNode {
         }
 
         let tempoMarking = TempoMarkingView(
-            left: x, height: 0.382 * height, value: value, subdivisionLevel: subdivisionLevel
+            left: x, height: 0.382 * height, value: value, subdivisionValue: subdivisionValue
         )
         addTempoMarking(tempoMarking)
     }
