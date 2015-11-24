@@ -689,8 +689,6 @@ public class Tokenizer {
         }
     }
     
-    
-    
     // Find best way to generalize this process!
     private func scanSpannerStartWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
