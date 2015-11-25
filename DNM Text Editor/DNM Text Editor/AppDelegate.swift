@@ -16,7 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var string: String = ""
     
     @IBAction func openMenuItemSelected(sender: NSMenuItem) {
-        print("open")
         let openPanel = NSOpenPanel()
         openPanel.beginWithCompletionHandler { (result: Int) -> () in
             
@@ -25,22 +24,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func saveMenuItemSelected(sender: NSMenuItem) {
         
-        if let fileName = fileName {
-            self.saveFile()
-        }
+        if fileName != nil { self.saveFile() }
         else {
-            // open it
+            // open the save panel
             let savePanel = NSSavePanel()
             savePanel.beginWithCompletionHandler { (result: Int) -> () in
                 if result == NSFileHandlingPanelOKButton {
                     self.fileName = savePanel.nameFieldStringValue
                     self.fileURL = savePanel.URL
-
-                    print("ok: fileURL: \(self.fileURL)")
                     self.saveFile()
                 }
                 else {
-                    print("cancel")
+                    // cancel
                 }
             }
         }
@@ -55,13 +50,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         {
             if let string = vc.textView.textStorage?.string, fileURL = fileURL {
                 do {
-                    try string.writeToURL(fileURL,
+                    try? string.writeToURL(fileURL,
                         atomically: false,
                         encoding: NSUTF8StringEncoding
                     )
                 }
                 catch let error {
-                    print("couldn't save: \(error)")
+
                 }
             }
         }

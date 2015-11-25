@@ -77,7 +77,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     
     func setCurrentLineWithCurrentSelection() {
         let i = textView.selectedRange().location
-        if let (lineCount, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(i),
+        if let (_, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(i),
             lineStopIndex = lineStopIndexOfLineContainingIndex(i),
             textStorage = textView.textStorage where textStorage.string.characters.count > 0
         {
@@ -119,7 +119,8 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             return nil
         }
         
-        if let (_, lineStartIndex) = lineCountAndLineStartIndexOfLineContainingIndex(index) {
+        // hmmm...
+        if let (_, _) = lineCountAndLineStartIndexOfLineContainingIndex(index) {
             let textStorage = textView.textStorage!
             let scanner = NSScanner(string: textStorage.string)
             scanner.charactersToBeSkipped = nil
@@ -175,9 +176,12 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             }
         }
         else {
+            
+            /*
             // set style defaults up here
             var isBold: Bool = false
             var foregroundColor: NSColor = NSColor.blackColor()
+            */
             
             // make range
             let start = token.startIndex + currentLine.startIndex

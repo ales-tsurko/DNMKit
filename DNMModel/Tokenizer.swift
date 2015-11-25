@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 /// Creates Tokens of incoming text, tailored for the DNMShorthand Text Input Language
 public class Tokenizer {
     
