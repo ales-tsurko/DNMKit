@@ -97,6 +97,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             )
         }
     }
+    
     func lineCountAndLineStartIndexOfLineContainingIndex(index: Int) -> (Int, Int)? {
         
         if let textStorage = textView.textStorage where textStorage.characters.count > 0 {
@@ -331,7 +332,45 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         default: break
         }
     }
-
+    
+    @IBAction func didPressEnterInPasswordField(sender: NSSecureTextField) {
+        let username = usernameField.stringValue
+        let password = passwordField.stringValue
+        
+        if username.characters.count > 0 && password.characters.count >= 8 {
+            
+            switch signInOrOutorUpButton.title {
+            case "SIGN UP":
+                
+                let user = PFUser()
+                user.username = username
+                user.password = password
+                do {
+                    try user.signUp()
+                    updateLoginStatusLabel()
+                    enterSignOutMode()
+                }
+                catch {
+                    print("could not sign up user")
+                }
+            case "SIGN IN":
+                
+                // attempt to log in with username
+                do {
+                    try PFUser.logInWithUsername(username, password: password)
+                    updateLoginStatusLabel()
+                    enterSignOutMode()
+                }
+                catch {
+                    print(error)
+                }
+            default:
+                print("invalid sign in or out or up state")
+            }
+        }
+    }
+    
+    /*
     @IBAction func didPressEnterInPasswordField(sender: NSSecureTextField) {
         let username = usernameField.stringValue
         let password = passwordField.stringValue
@@ -368,5 +407,6 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             }
         }
     }
+    */
 }
 
