@@ -25,6 +25,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    
+    @IBAction func saveAsMenuItemSelected(sender: NSMenuItem) {
+     
+        // open the save panel
+        let savePanel = NSSavePanel()
+        savePanel.beginWithCompletionHandler { (result: Int) -> () in
+            if result == NSFileHandlingPanelOKButton {
+                self.fileName = savePanel.nameFieldStringValue
+                self.fileURL = savePanel.URL
+                self.saveFile()
+            }
+            else {
+                // cancel
+            }
+        }
+    }
+    
+    
     @IBAction func saveMenuItemSelected(sender: NSMenuItem) {
         
         if fileName != nil { self.saveFile() }
@@ -42,20 +60,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
-        
-       
     }
     
     func saveFile() {
-
-        // parse stuff?
         
         if let vc = NSApplication
             .sharedApplication()
             .keyWindow?
             .contentViewController as? ViewController
         {
-            // combine these two better
+
+            // user chosen directory
             if let string = vc.textView.textStorage?.string, fileURL = fileURL {
                 do {
                     try string.writeToURL(fileURL,
@@ -68,6 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             
+            // parse datastore
             if let string = vc.textView.textStorage?.string {
                 if let scoreData = string.dataUsingEncoding(NSUTF8StringEncoding) {
                     print("scoreData: \(scoreData)")
