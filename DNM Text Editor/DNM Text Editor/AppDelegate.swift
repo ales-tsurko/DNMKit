@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import Parse
+import Bolts
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -39,6 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
+        
+       
     }
     
     func saveFile() {
@@ -50,20 +54,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         {
             if let string = vc.textView.textStorage?.string, fileURL = fileURL {
                 do {
-                    try? string.writeToURL(fileURL,
+                    try string.writeToURL(fileURL,
                         atomically: false,
                         encoding: NSUTF8StringEncoding
                     )
                 }
                 catch let error {
-
+                    print(error)
                 }
             }
         }
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        Parse.enableLocalDatastore()
         
+        // connect to DNM app on Parse
+        Parse.setApplicationId("C0t9tBbniTyxCSkyhkG06uJM7lUQ8Cbhl8qMQz7L",
+            clientKey: "wHC4msb5rU8MhUF0E3GW0sJbTgLU5yA3x5WUAGlS"
+        )
+        
+        // should i do this? seems weird, and not helpful ... yet?
+        //PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
+
+
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

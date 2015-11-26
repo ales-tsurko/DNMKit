@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  ViewControllerTest
+//  DNMIDE
 //
-//  Created by James Bean on 11/25/15.
+//  Created by James Bean on 11/12/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
@@ -11,6 +11,7 @@ import DNMModel
 import Parse
 import Bolts
 
+/*
 struct Line {
     let string: String
     let startIndex: Int
@@ -19,39 +20,46 @@ struct Line {
     var range: NSRange { return NSMakeRange(startIndex, length) }
 }
 
-class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
+class _ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegate {
 
     @IBOutlet var textView: NSTextView!
-    @IBOutlet weak var loginStatusLabel: NSTextField!
-    @IBOutlet weak var signInOrOutorUpButton: NSButton!
-    @IBOutlet weak var signUpButton: NSButton!
-    @IBOutlet weak var usernameField: NSTextField!
-    @IBOutlet weak var passwordField: NSSecureTextField!
     
-    // colors
-    let green = NSColor(hue: 0.405, saturation: 0.75, brightness: 1, alpha: 1)
-    let green_light = NSColor(hue: 0.405, saturation: 0.33, brightness: 1, alpha: 1)
-    let blue = NSColor(hue: 0.58, saturation: 0.75, brightness: 1, alpha: 1)
-    let blue_light = NSColor(hue: 0.58, saturation: 0.33, brightness: 1, alpha: 1)
-    let orange = NSColor(hue: 0.07, saturation: 0.33, brightness: 1.0, alpha: 1)
-    let red = NSColor(hue: 0, saturation: 0.75, brightness: 1.0, alpha: 1)
+    var fileTokenizer = Tokenizer()
+    var currentLine: Line?
     
     let defaultFont: NSFont = NSFont(name: "Menlo", size: 12)!
     let defaultTextColor = NSColor(hue: 0, saturation: 0, brightness: 0.9, alpha: 1)
     
-    var currentLine: Line?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTextView()
-        setupParse()
-        updateLoginStatusLabel()
-        establishUserState()
-        
-        // for background layer
-        view.wantsLayer = true
     }
     
+    override func viewDidAppear() {
+        if PFUser.currentUser() == nil {
+            print("curent user nil")
+            // should log in controller
+            //let logInViewController = NSViewController()
+            //presentViewControllerAsSheet(logInViewController)
+
+        }
+        else {
+            print("current user: \(PFUser.currentUser()!.username)")
+        }
+    }
+    
+    private func setUpTextView() {
+        textView.delegate = self
+        textView.richText = true
+        textView.textStorage!.delegate = self
+        textView.font = defaultFont
+        textView.automaticDashSubstitutionEnabled = false
+        textView.automaticSpellingCorrectionEnabled = false
+        textView.backgroundColor = NSColor(hue: 0, saturation: 0, brightness: 0.03, alpha: 1)
+        textView.insertionPointColor = NSColor.whiteColor()
+    }
+
+    // move all of this else where
     func textDidChange(notification: NSNotification) {
         setCurrentLineWithCurrentSelection()
         setDefaultStyleForCurrentLine()
@@ -69,7 +77,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         
         let lightColor = NSColor(hue: 0, saturation: 0, brightness: 1, alpha: 1)
         textStorage.addAttribute(
-        NSBackgroundColorAttributeName, value: lightColor, range: currentLine.range
+            NSBackgroundColorAttributeName, value: lightColor, range: currentLine.range
         )
         */
         
@@ -100,7 +108,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     func lineCountAndLineStartIndexOfLineContainingIndex(index: Int) -> (Int, Int)? {
         
         if let textStorage = textView.textStorage where textStorage.characters.count > 0 {
-            
+
             // create scanner that looks for newline strings
             let scanner = NSScanner(string: textStorage.string)
             scanner.charactersToBeSkipped = nil
@@ -143,7 +151,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     
     func traverseToColorRangeWithToken(token: Token,
         andIdentifierString inheritedIdentifierString: String
-        )
+    )
     {
         guard let currentLine = currentLine else { return }
         
@@ -154,7 +162,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
         }
         
         print("\(identifierString): \(token)")
-        
+
         let styleSheet = SyntaxHighlighter.StyleSheet.sharedInstance
         if let container = token as? TokenContainer {
             
@@ -216,157 +224,17 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
             else {
                 let font = fontManager.fontWithFamily("Menlo",
                     traits: NSFontTraitMask.UnboldFontMask, weight: 0, size: 12
-                    )!
+                )!
                 textView.setFont(font, range: range)
             }
         }
     }
     
-    private func setUpTextView() {
-        textView.delegate = self
-        textView.richText = true
-        textView.textStorage!.delegate = self
-        textView.font = defaultFont
-        textView.automaticDashSubstitutionEnabled = false
-        textView.automaticSpellingCorrectionEnabled = false
-        textView.backgroundColor = NSColor(hue: 0, saturation: 0, brightness: 0.03, alpha: 1)
-        textView.insertionPointColor = NSColor.whiteColor()
-    }
-    
-    func setupParse() {
-        Parse.enableLocalDatastore()
-        Parse.setApplicationId("C0t9tBbniTyxCSkyhkG06uJM7lUQ8Cbhl8qMQz7L",
-            clientKey: "wHC4msb5rU8MhUF0E3GW0sJbTgLU5yA3x5WUAGlS"
-        )
-    }
-    
-    func establishUserState() {
-        PFUser.currentUser() == nil ? enterSignInMode() : enterSignOutMode()
-    }
-    
-    override func awakeFromNib() {
-        if let layer = self.view.layer {
-            layer.backgroundColor = NSColor.darkGrayColor().CGColor
-        }
-    }
-
     override var representedObject: AnyObject? {
         didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
-    func setColor(color: NSColor, forButton button: NSButton) {
-        let title = NSMutableAttributedString(attributedString: button.attributedTitle)
-        let range = NSMakeRange(0, title.length)
-        title.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
-        button.attributedTitle = title
-    }
-
-    func updateLoginStatusLabel() {
-        if let username = PFUser.currentUser()?.username {
-            loginStatusLabel.stringValue = "logged in as \(username)"
-            loginStatusLabel.textColor = green
-        }
-        else {
-            loginStatusLabel.stringValue = "offline"
-            loginStatusLabel.textColor = orange
-        }
-    }
-
-    @IBAction func didPressSignInOrOutButton(button: NSButton) {
-        
-        switch button.title {
-        case "SIGN IN":
-            enterSignInMode()
-        case "SIGN OUT":
-            enterSignInMode()
-            signOut()
-        case "SIGN UP":
-            break
-        default: break
-        }
-    }
-    
-    func enterSignInMode() {
-        signInOrOutorUpButton.title = "SIGN IN"
-        setColor(green, forButton: signInOrOutorUpButton)
-        signUpButton.title = "SIGN UP?"
-        setColor(blue_light, forButton: signUpButton)
-        
-        usernameField.hidden = false
-        passwordField.hidden = false
-        signUpButton.hidden = false
-    }
-    
-    func enterSignUpMode() {
-        signInOrOutorUpButton.title = "SIGN UP"
-        setColor(blue, forButton: signInOrOutorUpButton)
-        signUpButton.title = "SIGN IN?"
-        setColor(green_light, forButton: signUpButton)
-    }
-    
-    func enterSignOutMode() {
-        signInOrOutorUpButton.title = "SIGN OUT"
-        setColor(red, forButton: signInOrOutorUpButton)
-
-        usernameField.hidden = true
-        usernameField.stringValue = ""
-        passwordField.hidden = true
-        passwordField.stringValue = ""
-        signUpButton.hidden = true
-    }
-    
-    func signOut() {
-        PFUser.logOut()
-        updateLoginStatusLabel()
-    }
-
-    @IBAction func didPressSignUpButton(sender: AnyObject) {
-        switch signUpButton.title {
-        case "SIGN UP?":
-            enterSignUpMode()
-        case "SIGN IN?":
-            enterSignInMode()
-        default: break
-        }
-    }
-
-    @IBAction func didPressEnterInPasswordField(sender: NSSecureTextField) {
-        let username = usernameField.stringValue
-        let password = passwordField.stringValue
-
-        if username.characters.count > 0 && password.characters.count >= 8 {
-
-            switch signInOrOutorUpButton.title {
-            case "SIGN UP":
-                
-                let user = PFUser()
-                user.username = username
-                user.password = password
-                do {
-                    try user.signUp()
-                    updateLoginStatusLabel()
-                    enterSignOutMode()
-                }
-                catch {
-                    print("could not sign up user")
-                }
-            case "SIGN IN":
-                
-                // attempt to log in with username
-                do {
-                    try PFUser.logInWithUsername(username, password: password)
-                    updateLoginStatusLabel()
-                    enterSignOutMode()
-                }
-                catch {
-                    print(error)
-                }
-            default:
-                print("invalid sign in or out or up state")
-            }
+            // Update the view, if already loaded.
         }
     }
 }
 
+*/

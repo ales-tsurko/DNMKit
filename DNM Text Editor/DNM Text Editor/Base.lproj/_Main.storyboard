@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4hQ-uD-u6H">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
@@ -10,11 +10,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="ViewControllerTest" id="1Xt-HY-uBw">
+                            <menuItem title="DNM_IDE" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="ViewControllerTest" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="DNM_IDE" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About ViewControllerTest" id="5kV-Vb-QxS">
+                                        <menuItem title="About DNM_IDE" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -28,7 +28,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide ViewControllerTest" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide DNM_IDE" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -46,7 +46,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit ViewControllerTest" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit DNM_IDE" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -65,7 +65,7 @@
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="Jns-sY-pr2"/>
+                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="wDE-mZ-vNG"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
@@ -89,7 +89,8 @@
                                         </menuItem>
                                         <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
-                                                <action selector="saveMenuItemSelected:" target="Voe-Tx-rLC" id="6IN-1I-7eD"/>
+                                                <action selector="saveMenuItemSelected:" target="Voe-Tx-rLC" id="vNv-lq-D8k"/>
+                                                <binding destination="80D-Oo-dJU" name="value" keyPath="values.savePanel" id="1xA-if-dXE"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
@@ -627,7 +628,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="ViewControllerTest Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="DNM_IDE Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -643,161 +644,176 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DNM_Text_Editor" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="80D-Oo-dJU"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="75.5" y="-111"/>
         </scene>
         <!--Window Controller-->
-        <scene sceneID="R2V-B0-nI4">
+        <scene sceneID="e0O-sP-gtx">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="DNM Text Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController storyboardIdentifier="MasterWindowController" showSeguePresentationStyle="single" id="rEu-04-G8C" sceneMemberID="viewController">
+                    <window key="window" identifier="mainWindow" title="dnm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="d8d-bE-jhQ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <binding destination="rEu-04-G8C" name="representedFilename" keyPath="self.window" id="MJ2-FX-z98"/>
+                        </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="4hQ-uD-u6H" kind="relationship" relationship="window.shadowedContentViewController" id="6Hj-c0-dz0"/>
                     </connections>
                 </windowController>
-                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="6ww-IC-N74" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="28" y="360"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <!--MasterViewController-->
+        <scene sceneID="Sxq-Kd-faf">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="DNM_Text_Editor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="831" height="270"/>
+                <viewController title="MasterViewController" identifier="MainViewController" storyboardIdentifier="MainViewController" id="4hQ-uD-u6H" customClass="MasterViewController" customModule="DNM_Text_Editor" sceneMemberID="viewController">
+                    <view key="view" id="Gbo-mo-ccB">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                    <connections>
+                        <segue destination="iHs-kl-jdl" kind="show" identifier="logIn" id="fht-hp-DIx"/>
+                    </connections>
+                </viewController>
+                <customObject id="v1E-Lk-9Fs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28" y="754"/>
+        </scene>
+        <!--LogInViewController-->
+        <scene sceneID="gGT-yE-kqL">
+            <objects>
+                <viewController title="LogInViewController" storyboardIdentifier="LogInViewController " id="iHs-kl-jdl" customClass="LogInViewController" customModule="DNM_Text_Editor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4A9-oP-qck">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy3-4S-aE9">
-                                <rect key="frame" x="0.0" y="20" width="831" height="250"/>
-                                <clipView key="contentView" id="ih5-q1-f13">
-                                    <rect key="frame" x="0.0" y="0.0" width="831" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Ldp-FJ-N29">
-                                            <rect key="frame" x="0.0" y="0.0" width="831" height="250"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="831" height="250"/>
-                                            <size key="maxSize" width="835" height="10000000"/>
-                                            <color key="insertionPointColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="831" height="250"/>
-                                            <size key="maxSize" width="835" height="10000000"/>
-                                        </textView>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.40819896106439563" green="0.86367582070707072" blue="0.37558494124135677" alpha="1" colorSpace="calibratedRGB"/>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="RAD-6D-2Ms">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="eTs-Qq-KHZ">
-                                    <rect key="frame" x="815" y="0.0" width="16" height="250"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gEp-uP-wMS">
-                                <rect key="frame" x="786" y="0.0" width="41" height="23"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="offline" id="wM9-vA-a3v">
-                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZZj-Vr-YJH">
+                                <rect key="frame" x="124" y="219" width="203" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="203" id="V5J-wv-8jr"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="GyR-yK-r1D">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Swa-Xq-POu">
+                                <rect key="frame" x="124" y="156" width="203" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ldq-eD-Dld">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uos-uZ-Qat">
+                                <rect key="frame" x="183" y="136" width="85" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="8MR-e0-FzP"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="password" id="lLC-g0-Rwv">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qcP-ac-kb8">
-                                <rect key="frame" x="7" y="-5" width="71" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="GG9-BE-evy"/>
-                                </constraints>
-                                <buttonCell key="cell" type="bevel" title="SIGN IN" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="Q0F-Fs-Gza">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PR2-o6-yWH">
+                                <rect key="frame" x="184" y="87" width="83" height="32"/>
+                                <buttonCell key="cell" type="push" title="Sign in" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="chY-4l-pHh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="14" name="AvenirNext-Regular"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="didPressSignInOrOutButton:" target="XfG-lQ-9wD" id="lUO-4Z-GcO"/>
-                                </connections>
                             </button>
-                            <textField hidden="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="37O-eA-Po2">
-                                <rect key="frame" x="77" y="0.0" width="91" height="23"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e6p-So-s8Z">
+                                <rect key="frame" x="176" y="22" width="99" height="32"/>
+                                <buttonCell key="cell" type="push" title="Sign up..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Snc-8l-FyU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2im-V0-VL9">
+                                <rect key="frame" x="190" y="199" width="71" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="87" id="hJ4-tL-All"/>
+                                    <constraint firstAttribute="width" constant="67" id="0tc-hC-8CX"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="username" id="L2m-pw-AEw">
-                                    <font key="font" size="13" name="AvenirNext-Medium"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="username" id="NmP-fP-7pJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <secureTextField hidden="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eDx-aJ-Lau">
-                                <rect key="frame" x="177" y="-3" width="96" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="92" id="7LZ-qB-nce"/>
-                                    <constraint firstAttribute="height" constant="22" id="tvc-v3-0VX"/>
-                                </constraints>
-                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="password" usesSingleLineMode="YES" id="kww-GF-Lqg">
-                                    <font key="font" size="13" name="AvenirNext-Medium"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <allowedInputSourceLocales>
-                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                    </allowedInputSourceLocales>
-                                </secureTextFieldCell>
-                                <connections>
-                                    <action selector="didPressEnterInPasswordField:" target="XfG-lQ-9wD" id="jiO-Wv-nWC"/>
-                                </connections>
-                            </secureTextField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="elZ-Q1-VPE">
-                                <rect key="frame" x="286" y="-5" width="71" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="vWv-qD-Dy7"/>
-                                </constraints>
-                                <buttonCell key="cell" type="bevel" title="SIGN UP?" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="V6b-a2-Tc8">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="14" name="AvenirNext-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="didPressSignUpButton:" target="XfG-lQ-9wD" id="ngQ-hx-DVr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="qcP-ac-kb8" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="7" id="1OI-f5-83l"/>
-                            <constraint firstItem="37O-eA-Po2" firstAttribute="baseline" secondItem="gEp-uP-wMS" secondAttribute="baseline" id="2EA-Fi-jfm"/>
-                            <constraint firstItem="elZ-Q1-VPE" firstAttribute="top" secondItem="qcP-ac-kb8" secondAttribute="top" id="2Ph-ys-Qa2"/>
-                            <constraint firstItem="Fy3-4S-aE9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="3mF-Lh-wah"/>
-                            <constraint firstAttribute="bottom" secondItem="Fy3-4S-aE9" secondAttribute="bottom" constant="20" symbolic="YES" id="7vf-e4-1h6"/>
-                            <constraint firstAttribute="trailing" secondItem="Fy3-4S-aE9" secondAttribute="trailing" id="DmW-B8-kTj"/>
-                            <constraint firstItem="37O-eA-Po2" firstAttribute="centerY" secondItem="qcP-ac-kb8" secondAttribute="centerY" constant="-0.5" id="FEo-qE-sc1"/>
-                            <constraint firstItem="qcP-ac-kb8" firstAttribute="baseline" secondItem="elZ-Q1-VPE" secondAttribute="baseline" id="N9T-qg-8Mg"/>
-                            <constraint firstAttribute="trailing" secondItem="gEp-uP-wMS" secondAttribute="trailing" constant="6" id="OLQ-s5-zBw"/>
-                            <constraint firstItem="eDx-aJ-Lau" firstAttribute="leading" secondItem="37O-eA-Po2" secondAttribute="trailing" constant="13" id="Pnk-QC-Ksg"/>
-                            <constraint firstItem="elZ-Q1-VPE" firstAttribute="leading" secondItem="eDx-aJ-Lau" secondAttribute="trailing" constant="15" id="RlN-uj-7g5"/>
-                            <constraint firstAttribute="bottom" secondItem="37O-eA-Po2" secondAttribute="bottom" id="aha-tC-RRZ"/>
-                            <constraint firstAttribute="bottom" secondItem="eDx-aJ-Lau" secondAttribute="bottom" constant="-3" id="bjg-xb-YlS"/>
-                            <constraint firstAttribute="bottom" secondItem="qcP-ac-kb8" secondAttribute="bottom" constant="-5" id="djl-Sv-HBS"/>
-                            <constraint firstItem="37O-eA-Po2" firstAttribute="leading" secondItem="qcP-ac-kb8" secondAttribute="trailing" constant="1" id="tA1-V4-5JC"/>
-                            <constraint firstItem="Fy3-4S-aE9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="zar-ep-78s"/>
+                            <constraint firstItem="2im-V0-VL9" firstAttribute="centerX" secondItem="4A9-oP-qck" secondAttribute="centerX" id="5NH-Fr-5U6"/>
+                            <constraint firstItem="Swa-Xq-POu" firstAttribute="leading" secondItem="ZZj-Vr-YJH" secondAttribute="leading" id="F3y-FF-YhC"/>
+                            <constraint firstItem="PR2-o6-yWH" firstAttribute="centerX" secondItem="e6p-So-s8Z" secondAttribute="centerX" id="GAx-z6-k8E"/>
+                            <constraint firstItem="Swa-Xq-POu" firstAttribute="top" secondItem="2im-V0-VL9" secondAttribute="bottom" constant="21" id="Kzg-85-cl4"/>
+                            <constraint firstItem="ZZj-Vr-YJH" firstAttribute="trailing" secondItem="Swa-Xq-POu" secondAttribute="trailing" id="MtX-aK-4Jz"/>
+                            <constraint firstItem="ZZj-Vr-YJH" firstAttribute="top" secondItem="4A9-oP-qck" secondAttribute="top" constant="59" id="QRG-Pk-JRu"/>
+                            <constraint firstItem="e6p-So-s8Z" firstAttribute="top" secondItem="PR2-o6-yWH" secondAttribute="bottom" constant="44" id="a3W-KS-uZ6"/>
+                            <constraint firstItem="uos-uZ-Qat" firstAttribute="centerX" secondItem="Swa-Xq-POu" secondAttribute="centerX" id="meT-bC-LcO"/>
+                            <constraint firstItem="PR2-o6-yWH" firstAttribute="top" secondItem="uos-uZ-Qat" secondAttribute="bottom" constant="21" id="r3v-u0-fdA"/>
+                            <constraint firstItem="2im-V0-VL9" firstAttribute="top" secondItem="ZZj-Vr-YJH" secondAttribute="bottom" constant="3" id="tNa-S8-RDz"/>
+                            <constraint firstItem="uos-uZ-Qat" firstAttribute="top" secondItem="Swa-Xq-POu" secondAttribute="bottom" constant="3" id="tQ7-sC-ahe"/>
+                            <constraint firstItem="Swa-Xq-POu" firstAttribute="centerX" secondItem="4A9-oP-qck" secondAttribute="centerX" id="wdL-z5-DtF"/>
+                            <constraint firstItem="uos-uZ-Qat" firstAttribute="centerX" secondItem="PR2-o6-yWH" secondAttribute="centerX" id="zXL-rR-Gze"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="didPressEnterInPasswordField" destination="eDx-aJ-Lau" id="Tze-L4-bT5"/>
-                        <outlet property="loginStatusLabel" destination="gEp-uP-wMS" id="U3S-u8-tSM"/>
-                        <outlet property="passwordField" destination="eDx-aJ-Lau" id="pIN-yM-sgk"/>
-                        <outlet property="signInOrOutButton" destination="qcP-ac-kb8" id="qbr-ZU-66s"/>
-                        <outlet property="signInOrOutorUpButton" destination="qcP-ac-kb8" id="kDn-oG-Kyg"/>
-                        <outlet property="signUpButton" destination="elZ-Q1-VPE" id="7UF-Dr-SuQ"/>
-                        <outlet property="textView" destination="Ldp-FJ-N29" id="Y89-qq-ZYZ"/>
-                        <outlet property="usernameField" destination="37O-eA-Po2" id="ex3-gI-QNf"/>
+                        <outlet property="passwordField" destination="Swa-Xq-POu" id="ntu-hF-mKv"/>
+                        <outlet property="usernameField" destination="ZZj-Vr-YJH" id="s7U-rP-Le2"/>
                     </connections>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Zuy-dV-ss9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="205.5" y="698"/>
+            <point key="canvasLocation" x="575" y="754"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yNq-eF-YZM">
+            <objects>
+                <viewController id="t8X-Ze-OFV" customClass="ViewController" customModule="DNM_Text_Editor" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="4XO-Gg-D4t">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="302"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" id="WkC-7i-1VY">
+                            <rect key="frame" x="0.0" y="0.0" width="450" height="302"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Bzz-Uo-tHd">
+                                    <rect key="frame" x="0.0" y="0.0" width="462" height="302"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="450" height="302"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="450" height="302"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="LBa-6m-Y5k">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YBV-v6-lPg">
+                            <rect key="frame" x="434" y="0.0" width="16" height="302"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <connections>
+                        <outlet property="textView" destination="Bzz-Uo-tHd" id="y6F-IA-mPV"/>
+                    </connections>
+                </viewController>
+                <customObject id="L6s-C7-ehY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="360"/>
         </scene>
     </scenes>
 </document>
