@@ -13,6 +13,7 @@ import Bolts
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    // make the transient nature of these things more apparent
     var fileName: String?
     var fileURL: NSURL?
     var string: String = ""
@@ -47,11 +48,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func saveFile() {
 
+        // parse stuff?
+        
         if let vc = NSApplication
             .sharedApplication()
             .keyWindow?
             .contentViewController as? ViewController
         {
+            // combine these two better
             if let string = vc.textView.textStorage?.string, fileURL = fileURL {
                 do {
                     try string.writeToURL(fileURL,
@@ -63,31 +67,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     print(error)
                 }
             }
+            
+            if let string = vc.textView.textStorage?.string {
+                if let scoreData = string.dataUsingEncoding(NSUTF8StringEncoding) {
+                    print("scoreData: \(scoreData)")
+                    let scoreFile = PFFile(data: scoreData)
+                    let score = PFObject(className: "Score")
+                    score["username"] = PFUser.currentUser()?.username
+                    score["title"] = "new piece"
+                    score["score"] = scoreFile
+                    do {
+                        try score.save()
+                    }
+                    catch {
+                        print("couldnt save: \(error)")
+                    }
+                }
+            }
         }
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        Parse.enableLocalDatastore()
         
-        // connect to DNM app on Parse
-        Parse.setApplicationId("C0t9tBbniTyxCSkyhkG06uJM7lUQ8Cbhl8qMQz7L",
-            clientKey: "wHC4msb5rU8MhUF0E3GW0sJbTgLU5yA3x5WUAGlS"
-        )
-        
-        // should i do this? seems weird, and not helpful ... yet?
-        //PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
-
-
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-
-    func application(sender: NSApplication, openFile filename: String) -> Bool {
-        print("application open file")
-        return false
-    }
-    
 }
 
