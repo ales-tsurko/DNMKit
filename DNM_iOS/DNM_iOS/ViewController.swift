@@ -27,10 +27,7 @@ class ViewController: UIViewController {
             let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
             
             // encapsulate
-            @IBOutlet weak var usernameField: NSTextField!
             let tokenizer = Tokenizer()
-            @IBOutlet weak var passwordField: NSTextField!
-            @IBOutlet weak var passwordField: NSTextField!
             let tokenContainer = tokenizer.tokenizeString(code)
             print(tokenContainer)
             let parser = Parser()

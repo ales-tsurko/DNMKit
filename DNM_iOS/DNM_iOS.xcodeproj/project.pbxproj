@@ -128,6 +128,18 @@
 		071E9E051C00EC4F008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E0C1C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
 		071E9E131C00EC4F008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */; };
+		0723211B1C07664300D21F61 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321191C07664300D21F61 /* Bolts.framework */; };
+		0723211C1C07664300D21F61 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723211A1C07664300D21F61 /* Parse.framework */; };
+		0723211E1C07666700D21F61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723211D1C07666700D21F61 /* AudioToolbox.framework */; };
+		072321201C07666D00D21F61 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723211F1C07666D00D21F61 /* CFNetwork.framework */; };
+		072321221C07667200D21F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321211C07667200D21F61 /* CoreGraphics.framework */; };
+		072321241C07667700D21F61 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321231C07667700D21F61 /* CoreLocation.framework */; };
+		072321261C07667C00D21F61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321251C07667C00D21F61 /* QuartzCore.framework */; };
+		072321281C07668000D21F61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321271C07668000D21F61 /* Security.framework */; };
+		0723212A1C07668500D21F61 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072321291C07668500D21F61 /* StoreKit.framework */; };
+		0723212C1C07668B00D21F61 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212B1C07668B00D21F61 /* SystemConfiguration.framework */; };
+		0723212E1C07669100D21F61 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212D1C07669100D21F61 /* libz.tbd */; };
+		072321301C07669800D21F61 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212F1C07669800D21F61 /* libsqlite3.tbd */; };
 		074710931BFFC40D0084ED61 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074710921BFFC40D0084ED61 /* ScoreManager.swift */; };
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
@@ -302,6 +314,18 @@
 		071E9E0B1C00EC4F008D1263 /* DNMModel_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNMModel_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNMModel_iOSTests.swift; sourceTree = "<group>"; };
 		071E9E141C00EC4F008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		072321191C07664300D21F61 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		0723211A1C07664300D21F61 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0723211D1C07666700D21F61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0723211F1C07666D00D21F61 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		072321211C07667200D21F61 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		072321231C07667700D21F61 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		072321251C07667C00D21F61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		072321271C07668000D21F61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		072321291C07668500D21F61 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0723212B1C07668B00D21F61 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0723212D1C07669100D21F61 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0723212F1C07669800D21F61 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		074710921BFFC40D0084ED61 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
@@ -313,7 +337,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072321301C07669800D21F61 /* libsqlite3.tbd in Frameworks */,
+				0723212E1C07669100D21F61 /* libz.tbd in Frameworks */,
+				0723212C1C07668B00D21F61 /* SystemConfiguration.framework in Frameworks */,
+				0723212A1C07668500D21F61 /* StoreKit.framework in Frameworks */,
+				072321281C07668000D21F61 /* Security.framework in Frameworks */,
+				072321261C07667C00D21F61 /* QuartzCore.framework in Frameworks */,
+				072321241C07667700D21F61 /* CoreLocation.framework in Frameworks */,
+				072321221C07667200D21F61 /* CoreGraphics.framework in Frameworks */,
+				072321201C07666D00D21F61 /* CFNetwork.framework in Frameworks */,
+				0723211E1C07666700D21F61 /* AudioToolbox.framework in Frameworks */,
 				2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */,
+				0723211C1C07664300D21F61 /* Parse.framework in Frameworks */,
+				0723211B1C07664300D21F61 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +381,18 @@
 		07074E581BF96C7C00BFC6FA = {
 			isa = PBXGroup;
 			children = (
+				0723212F1C07669800D21F61 /* libsqlite3.tbd */,
+				0723212D1C07669100D21F61 /* libz.tbd */,
+				0723212B1C07668B00D21F61 /* SystemConfiguration.framework */,
+				072321291C07668500D21F61 /* StoreKit.framework */,
+				072321271C07668000D21F61 /* Security.framework */,
+				072321251C07667C00D21F61 /* QuartzCore.framework */,
+				072321231C07667700D21F61 /* CoreLocation.framework */,
+				072321211C07667200D21F61 /* CoreGraphics.framework */,
+				0723211F1C07666D00D21F61 /* CFNetwork.framework */,
+				0723211D1C07666700D21F61 /* AudioToolbox.framework */,
+				072321191C07664300D21F61 /* Bolts.framework */,
+				0723211A1C07664300D21F61 /* Parse.framework */,
 				2BF054301C027566006414FE /* DNMModel.framework */,
 				07074E631BF96C7C00BFC6FA /* DNM_iOS */,
 				07074E781BF96C7C00BFC6FA /* DNM_iOSTests */,

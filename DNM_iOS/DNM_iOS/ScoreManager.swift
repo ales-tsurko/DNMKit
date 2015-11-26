@@ -37,9 +37,6 @@ public class ScoreManager {
         let predicate = NSPredicate(format: "pathExtension == 'dnm'")
         
         for fileURL in contents.filteredArrayUsingPredicate(predicate) {
-            let fileName = fileURL.lastPathComponent
-            let parts = fileName.componentsSeparatedByString(".")
-            
             let url = fileURL as! NSURL
             if let scoreModel = DNMScoreModel(url: url) { print(scoreModel) }
         }
