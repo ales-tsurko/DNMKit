@@ -54,8 +54,6 @@ public class TempoMarkingView: CALayer {
         frame = CGRectMake(left, top, numberLayer.frame.maxX, height)
     }
     
-    
-    
     public func addNumberLayer() {
         numberLayer = TextLayerConstrainedByHeight(
             text: "\(value)",
