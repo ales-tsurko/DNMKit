@@ -218,6 +218,15 @@ public class Environment: UIView {
         var accumDuration: Duration = DurationZero
         while measureIndex < measures.count {
             
+            let interval = DurationInterval(
+                startDuration: accumDuration,
+                stopDuration: accumDuration + maximumDuration
+            )
+            
+            if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
+                print("_measureRange: \(_measureRange)")
+            }
+            
             if let measureRange = Measure.rangeFromMeasures(measures,
                 startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
             )

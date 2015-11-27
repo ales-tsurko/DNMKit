@@ -11,7 +11,7 @@ import Foundation
 /**
 Musical Measure
 */
-public struct Measure: Equatable {
+public struct Measure: DurationSpanning, Equatable {
   
     // TODO: DurationSpan
     
@@ -25,6 +25,12 @@ public struct Measure: Equatable {
     /// Offset Duration of Measure (in current implementation: from the beginning of the piece)
     public var offsetDuration: Duration = DurationZero
     
+    // CLEAN UP
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: duration, startDuration: offsetDuration)
+    }
+    
+    // deprecate
     // make this the default object that is interfaced with
     public var durationSpan: DurationSpan {
         return DurationSpan(duration: duration, startDuration: offsetDuration)
@@ -35,6 +41,40 @@ public struct Measure: Equatable {
     should the Duration of this Measure be shown with a TimeSignature
     */
     public var hasTimeSignature: Bool = true
+    
+    /*
+    public static func rangeFromArray<T : DurationSpanning>(array: [T],
+        withinDurationInterval durationInterval: DurationInterval)
+    throws -> [T]
+    {
+        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During]
+        let filtered = array.filter {
+            validRelationships.contains(
+                $0.durationInterval.relationshipToDurationInterval(durationInterval)
+            )
+        }
+        if filtered.count == 0 { throw DurationIntervalRangeError.Error }
+        return filtered
+    }
+    */
+    
+    // throws instead of nil
+    // Measure should have DurationInterval set properly by the time this should come up
+    public static func _rangeFromMeasures(measures: [Measure],
+        withinDurationInterval durationInterval: DurationInterval
+    ) -> [Measure]?
+    {
+
+        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During]
+        let filtered = measures.filter {
+            return validRelationships.contains(
+                $0.durationInterval.relationshipToDurationInterval(durationInterval)
+            )
+        }
+        print("filtered: \(filtered)")
+        if filtered.count == 0 { return nil }
+        return filtered
+    }
     
     // TODO: Test this
     public static func rangeFromMeasures(
