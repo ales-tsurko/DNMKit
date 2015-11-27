@@ -10,7 +10,7 @@ import UIKit
 import DNMModel
 
 /// A Musical System (container of a single line's worth of music)
-public class System: ViewNode, BuildPattern {
+public class System: ViewNode, BuildPattern, DurationSpanning {
     
     // DESTROY --------------------------------------------------------------------------------
     public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
@@ -92,7 +92,7 @@ public class System: ViewNode, BuildPattern {
     private let barlinesLayer = CALayer()
     
     /// All Measures (model) contained in this System
-    public var measures: [Measure] = []
+    public var measures: [Measure] = [] { didSet { setMeasuresWithMeasures(measures) } }
     
     /// All MeasureViews contained in this System
     public var measureViews: [MeasureView] = []
@@ -115,8 +115,13 @@ public class System: ViewNode, BuildPattern {
     /// The Duration of this System
     public var totalDuration: Duration = DurationZero
     
+    // make a better interface for this
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: totalDuration, startDuration: offsetDuration)
+    }
+    
     /// DurationSpan of System
-    public var durationSpan: DurationSpan { get { return DurationSpan() } }
+    //public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
     /// System following this System on the Page containing this System. May be `nil`.
     public var nextSystem: System? { get { return getNextSystem() } }
@@ -325,8 +330,11 @@ public class System: ViewNode, BuildPattern {
     - parameter measures: All MeasureViews in this System
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
-        self.measures = measures
+        
+        // create MeasureViews with Measures
         self.measureViews = makeMeasureViewsWithMeasures(measures)
+        
+        // don't set
         var accumLeft: CGFloat = infoStartX
         var accumDur: Duration = DurationZero
         for measureView in measureViews {

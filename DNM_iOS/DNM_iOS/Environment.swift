@@ -36,9 +36,6 @@ public class Environment: UIView {
     
     public var durationNodes: [DurationNode] = []
     
-    
-    // 
-    
     public var g: CGFloat = 10 // ?! // hack
     public var beatWidth: CGFloat = 110 // ?! // hack
     
@@ -180,26 +177,7 @@ public class Environment: UIView {
         addSubview(previousPageButton)
     }
     
-    // manageSpanners()
-    public func manageHorizontalLigatures() {
-        // DMLigature
-        // DurationalExtension
-        // Slur
-    }
-    
     public func makeSystemsWithViewerID(id: String) -> [System] {
-        
-        //measureViews = makeMeasureViewsWithMeasures(measures)
-        
-        /*
-        // this should become unnecessary: set properties of measure
-        for (m, measure) in measureViews.enumerate() {
-            measure.number = m + 1
-            measure.beatWidth = beatWidth
-        }
-        */
-        
-        print("measures ---------------------------")
         
         for measure in measures { print(measure) }
         
@@ -218,16 +196,19 @@ public class Environment: UIView {
             )
             
             do {
+                
+                // create range of measures to define the next System
                 let measureRange = try Measure.rangeFromArray(measures,
                     withinDurationInterval: interval
                 )
                 
-                print("measureRange: \(measureRange)")
+                
+                // start System init: clean up
                 let system = System(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
-                
+                system.measures = measureRange
                 // set the Measure range (model)
-                system.setMeasuresWithMeasures(measureRange)
+                //system.setMeasuresWithMeasures(measureRange)
                 
                 system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
                 
