@@ -37,6 +37,23 @@ class DurationIntervalTests: XCTestCase {
         print(di)
     }
     
+    func testMakeUnionWithDurationInterval() {
+        let di0 = DurationInterval(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let di1 = DurationInterval(startDuration: Duration(3,8), stopDuration: Duration(6,8))
+        let union = di0.makeUnionWithDurationInterval(di1)
+        XCTAssert(union.startDuration == Duration(2,8), "should be 2,8")
+        XCTAssert(union.stopDuration == Duration(6,8), "should be 6,8")
+    }
+    
+    func testUnionWithDurationIntervals() {
+        let di0 = DurationInterval(startDuration: Duration(2,8), stopDuration: Duration(5,8))
+        let di1 = DurationInterval(startDuration: Duration(3,8), stopDuration: Duration(4,8))
+        let di2 = DurationInterval(startDuration: Duration(4,8), stopDuration: Duration(9,8))
+        let union = DurationInterval.unionWithDurationIntervals([di0, di1, di2])
+        XCTAssert(union.startDuration == Duration(2,8), "start duration should be 2,8")
+        XCTAssert(union.stopDuration == Duration(9,8), "stop duration should be 9,8")
+    }
+    
     func containsDuration() {
         let di = DurationInterval(startDuration: Duration(3,8), stopDuration: Duration(7,8))
         XCTAssert(!di.containsDuration(Duration(2,8)), "should not contain duration before")

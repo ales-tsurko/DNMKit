@@ -21,8 +21,10 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     /// Span of this DurationInterval
     public var duration: Duration = DurationZero
     
-    public static func unionWithDurationIntervals(durationIntervals: [DurationInterval]) -> DurationInterval {
-        
+    public static func unionWithDurationIntervals(durationIntervals: [DurationInterval]) ->
+        DurationInterval
+    {
+    
         let start = durationIntervals.sort {
             $0.startDuration < $1.startDuration
         }.first!.startDuration
@@ -141,10 +143,10 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     }
 }
 
-/// Identity DurationInterval
-public let DurationIntervalZero = DurationInterval()
-
 public func ==(lhs: DurationInterval, rhs: DurationInterval) -> Bool {
     return lhs.relationshipToDurationInterval(rhs) == .Equal
 }
+
+/// Identity DurationInterval
+public let DurationIntervalZero = DurationInterval()
 

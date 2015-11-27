@@ -37,27 +37,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.layer.borderColor = UIColor.grayColor().CGColor
         tableView.layer.borderWidth = 1
-        
-        
-
-        
-        // check parse status
-        
     }
     
     func manageLoginStatus() {
-        if let currentUser = PFUser.currentUser() { enterSignedInMode() }
-        else {
-            
+
+        if PFUser.currentUser() == nil {
             PFUser.logInWithUsernameInBackground(testUsername, password: testPassword) {
                 (user, error) -> () in
-                
                 if let error = error { print("could not log in: \(error)") }
-                print("completion block being performed")
             }
-            
             enterSignInMode()
         }
+        else { enterSignedInMode() }
     }
     
     override func viewDidAppear(animated: Bool) {

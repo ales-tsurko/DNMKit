@@ -1329,41 +1329,30 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
         }
         
         func getStratumClumps() -> [[DurationNode]] {
-            
+
             // First pass: get initial stratum clumps
             var stratumClumps: [[DurationNode]] = []
             durationNodeLoop: for durationNode in durationNodes {
 
-                var relationships: [IntervalRelationship] = []
-                
                 // Create initial stratum if none yet
                 if stratumClumps.count == 0 {
                     stratumClumps = [[durationNode]]
                     continue durationNodeLoop
                 }
+                
                 // Find if we can clump the remaining durationNodes onto a stratum
                 var matchFound: Bool = false
                 stratumLoop: for s in 0..<stratumClumps.count {
                     
                     let durationIntervals = stratumClumps[s].map { $0.durationInterval }
                     
-                    let stratum_durationInterval = DurationInterval.unionWithDurationIntervals(durationIntervals)
-                    
-                    
-                    //let stratum_durationSpan = makeDurationSpanWithDurationNodes(stratumClumps[s])
+                    let stratum_durationInterval = DurationInterval.unionWithDurationIntervals(
+                        durationIntervals
+                    )
                     
                     let relationship: IntervalRelationship = durationNode.durationInterval.relationshipToDurationInterval(stratum_durationInterval)
-                    
-                    /*
-                    let relationship = stratum_durationSpan.relationShipWithDurationSpan(
-                        durationNode.durationSpan
-                    )
-                    */
-                    relationships.append(relationship)
-                    
-                    let validRelationships: IntervalRelationship = [ .Starts, .Finishes ]
-                    
-                    if validRelationships.contains(relationship) {
+
+                    if relationship == .Meets {
                         var stratum = stratumClumps[s]
                         let stratum_pids = getPIDsFromStratum(stratum)
                         let dn_pids = getPIDsFromDurationNode(durationNode)
@@ -1377,26 +1366,6 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
                             }
                         }
                     }
-                    
-                    /*
-                    switch relationship {
-                        
-                    case .Adjacent:
-                        var stratum = stratumClumps[s]
-                        let stratum_pids = getPIDsFromStratum(stratum)
-                        let dn_pids = getPIDsFromDurationNode(durationNode)
-                        for pid in dn_pids {
-                            if stratum_pids.contains(pid) {
-                                stratumClumps.removeAtIndex(s)
-                                stratum.append(durationNode)
-                                stratumClumps.insert(stratum, atIndex: s)
-                                matchFound = true
-                                break stratumLoop
-                            }
-                        }
-                    default: break
-                    }
-                    */
                 }
                 if !matchFound { stratumClumps.append([durationNode]) }
             }
