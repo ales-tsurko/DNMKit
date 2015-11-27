@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // CLEAN THIS UP
-        
         
         DNMColorManager.colorMode = ColorMode.Light
         view.backgroundColor = DNMColorManager.backgroundColor

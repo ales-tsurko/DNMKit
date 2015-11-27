@@ -36,25 +36,15 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.layer.borderColor = UIColor.grayColor().CGColor
         tableView.layer.borderWidth = 1
-        
-        PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
-        
-        addTestObject()
 
-        // manage login status
-        
-        // test login status
-        
         
         // check parse status
-        if let currentUser = PFUser.currentUser() {
-            print("current user: \(currentUser.username)")
-            enterSignedInMode()
-        }
+        
+    }
+    
+    func manageLoginStatus() {
+        if let currentUser = PFUser.currentUser() { enterSignedInMode() }
         else {
-            
-            loginStatusLabel.text = "offline"
-            
             
             PFUser.logInWithUsernameInBackground(testUsername, password: testPassword) {
                 (user, error) -> () in
@@ -63,12 +53,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("completion block being performed")
             }
             
-            // enter sign in mode
-            print("offline")
             enterSignInMode()
         }
-
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -78,8 +64,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         print("about to reload table view data")
         tableView.reloadData()
-        
-            }
+    }
     
     func addTestObject() {
         print("add test object")

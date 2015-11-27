@@ -37,8 +37,6 @@ public class DurationNode: Node {
     /// If this DurationNode continues into another ("tied")
     public var hasExtensionStop: Bool { return getHasExtensionStop() }
     
-    
-
     /// If this DurationNode shall be represented with metrical beaming
     public var isMetrical: Bool = true
     

@@ -13,7 +13,7 @@ Duration of time. Currently existing in a metrically-defined context. This will 
 clock-time-defined contexts, as well as "free" contexts, which defer concepts of spacing and
 timing to the graphical context.
 */
-public struct Duration: CustomStringConvertible {
+public struct Duration: Comparable, CustomStringConvertible {
     
     // MARK: String Representation
     
