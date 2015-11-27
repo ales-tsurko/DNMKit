@@ -86,4 +86,13 @@ class DurationIntervalTests: XCTestCase {
         di0 = DurationInterval(startDuration: Duration(6,8), stopDuration: Duration(8,8))
         XCTAssert(di0.relationshipToDurationInterval(di1) == .Finishes, "should be finishes")
     }
+    
+    func testEquality() {
+        let di0 = DurationInterval(startDuration: Duration(1,8), stopDuration: Duration(2,8))
+        var di1 = DurationInterval(startDuration: Duration(1,8), stopDuration: Duration(2,8))
+        XCTAssert(di0 == di1, "should be equal")
+        
+        di1 = DurationInterval(startDuration: Duration(3,8), stopDuration: Duration(5,8))
+        XCTAssert(di0 != di1, "should not be equal")
+    }
 }
