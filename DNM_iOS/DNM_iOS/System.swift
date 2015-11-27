@@ -1329,6 +1329,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
         }
         
         func getStratumClumps() -> [[DurationNode]] {
+            
             // First pass: get initial stratum clumps
             var stratumClumps: [[DurationNode]] = []
             durationNodeLoop: for durationNode in durationNodes {
