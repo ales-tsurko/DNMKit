@@ -140,9 +140,12 @@
 		0723212C1C07668B00D21F61 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212B1C07668B00D21F61 /* SystemConfiguration.framework */; };
 		0723212E1C07669100D21F61 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212D1C07669100D21F61 /* libz.tbd */; };
 		072321301C07669800D21F61 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212F1C07669800D21F61 /* libsqlite3.tbd */; };
+		072321341C0780B200D21F61 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072321331C0780B200D21F61 /* MasterViewController.swift */; };
 		074710931BFFC40D0084ED61 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074710921BFFC40D0084ED61 /* ScoreManager.swift */; };
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
+		07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */; };
+		07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */; };
 		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
 		2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -326,9 +329,12 @@
 		0723212B1C07668B00D21F61 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0723212D1C07669100D21F61 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0723212F1C07669800D21F61 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		072321331C0780B200D21F61 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		074710921BFFC40D0084ED61 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
+		07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
+		07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -416,12 +422,12 @@
 		07074E631BF96C7C00BFC6FA /* DNM_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				072321321C07809100D21F61 /* ViewControllers */,
 				07947C711BFA902A00C97F31 /* Scores */,
 				074710911BFFC3A60084ED61 /* Store */,
 				07074F651BF96F6700BFC6FA /* UI */,
 				07074F381BF96D2C00BFC6FA /* View */,
 				07074E641BF96C7C00BFC6FA /* AppDelegate.swift */,
-				07074E661BF96C7C00BFC6FA /* ViewController.swift */,
 				07074E681BF96C7C00BFC6FA /* Main.storyboard */,
 				07074E6B1BF96C7C00BFC6FA /* Assets.xcassets */,
 				07074E6D1BF96C7C00BFC6FA /* LaunchScreen.storyboard */,
@@ -582,6 +588,17 @@
 				071E9E141C00EC4F008D1263 /* Info.plist */,
 			);
 			path = DNMModel_iOSTests;
+			sourceTree = "<group>";
+		};
+		072321321C07809100D21F61 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				07074E661BF96C7C00BFC6FA /* ViewController.swift */,
+				072321331C0780B200D21F61 /* MasterViewController.swift */,
+				07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */,
+				07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		074710911BFFC3A60084ED61 /* Store */ = {
@@ -813,6 +830,7 @@
 				07074F0E1BF96D1D00BFC6FA /* GraphWaveform.swift in Sources */,
 				07074F181BF96D1D00BFC6FA /* MeasureNumberNode.swift in Sources */,
 				07074F131BF96D1D00BFC6FA /* InstrumentEventHandler.swift in Sources */,
+				07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */,
 				07074EE11BF96D1D00BFC6FA /* Articulation.swift in Sources */,
 				07074EF41BF96D1D00BFC6FA /* BGEvent.swift in Sources */,
 				07074F001BF96D1D00BFC6FA /* DNMColorManager.swift in Sources */,
@@ -851,6 +869,7 @@
 				07074EE21BF96D1D00BFC6FA /* AugmentationDot.swift in Sources */,
 				07074EF31BF96D1D00BFC6FA /* BGContainer.swift in Sources */,
 				07074EF61BF96D1D00BFC6FA /* BuildPattern.swift in Sources */,
+				072321341C0780B200D21F61 /* MasterViewController.swift in Sources */,
 				07074EF91BF96D1D00BFC6FA /* ConcreteStyledBezierCurve.swift in Sources */,
 				07074F0D1BF96D1D00BFC6FA /* GraphSwitch.swift in Sources */,
 				07074EED1BF96D1D00BFC6FA /* BezierCurveStyler.swift in Sources */,
@@ -870,6 +889,7 @@
 				07074EF71BF96D1D00BFC6FA /* Clef.swift in Sources */,
 				07074F531BF96F6200BFC6FA /* ButtonSwitchNodeMaster.swift in Sources */,
 				07074F211BF96D1D00BFC6FA /* Slur.swift in Sources */,
+				07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */,
 				07074EFB1BF96D1D00BFC6FA /* DepthOfField.swift in Sources */,
 				07074EFF1BF96D1D00BFC6FA /* DMNode.swift in Sources */,
 				07074F301BF96D1D00BFC6FA /* TMNode.swift in Sources */,

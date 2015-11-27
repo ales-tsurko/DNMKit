@@ -15,25 +15,29 @@ public class Environment: UIView {
     public var viewSelector: RadioGroupPanelVertical!
     public var viewSelectorDot: UIView!
     
+    // MARK: Views
+    
     public var views: [PerformerView] = []
     public var viewByID: [String: PerformerView] = [:]
     public var currentView: PerformerView?
+    
+    // MARK: Pages
     
     public var pages: [Page] = []
     public var currentPage: Page?
     public var currentPageIndex: Int?
     
     public var systems: [System] = []
+    public var measures: [Measure] = []
+    public var measureViews: [MeasureView] = []
+    public var tempoMarkings: [TempoMarking] = []
+    public var rehearsalMarkings: [RehearsalMarking] = []
+    
     
     public var durationNodes: [DurationNode] = []
     
-    // Change to Measure, rather than MeasureView
-    public var measures: [Measure] = []
     
-    public var measureViews: [MeasureView] = []
-    
-    public var tempoMarkings: [TempoMarking] = []
-    public var rehearsalMarkings: [RehearsalMarking] = []
+    // 
     
     public var g: CGFloat = 10 // ?! // hack
     public var beatWidth: CGFloat = 110 // ?! // hack
