@@ -61,14 +61,14 @@ class MeasureTests: XCTestCase {
         }
         let maxDur = Duration(19, 16)
         let interval = DurationInterval(startDuration: DurationZero, stopDuration: maxDur)
+        
         do {
             let range = try Measure.rangeFromArray(measures, withinDurationInterval: interval)
+            XCTAssert(range.count == 2, "should have two measures in there")
         }
         catch {
             print(error)
         }
-        
-        
     }
     
     func testDurationInterval() {

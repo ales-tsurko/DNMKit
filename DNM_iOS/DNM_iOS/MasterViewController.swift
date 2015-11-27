@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import DNMModel
 import Parse
 import Bolts
 
 class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: UI
- 
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginStatusLabel: UILabel!
     @IBOutlet weak var signInOrUpOrOnLabel: UILabel!
@@ -36,6 +37,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.layer.borderColor = UIColor.grayColor().CGColor
         tableView.layer.borderWidth = 1
+        
+        
 
         
         // check parse status

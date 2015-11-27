@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DNMModel
 
 class ScoreViewController: UIViewController {
 
@@ -14,10 +15,32 @@ class ScoreViewController: UIViewController {
     @IBOutlet weak var nextPageButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     
+    var environment: Environment!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DNMColorManager.colorMode = .Light
+        view.backgroundColor = DNMColorManager.backgroundColor
 
-        // Do any additional setup after loading the view.
+        if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
+            let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            
+            // encapsulate
+            let tokenizer = Tokenizer()
+            let tokenContainer = tokenizer.tokenizeString(code)
+            print(tokenContainer)
+            let parser = Parser()
+            let scoreModel = parser.parseTokenContainer(tokenContainer)
+            
+            print("scoreModel: \(scoreModel)")
+            
+            environment = Environment(scoreModel: scoreModel)
+            environment.build()
+            
+            view.addSubview(environment)
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

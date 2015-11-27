@@ -46,18 +46,11 @@ public class Environment: UIView {
     public var page_pad: CGFloat = 25
     
     public var componentTypesShownByID: [String : [String]] = [:]
-
-    //public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
     
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
     >()
     
-    /*
-    public var _iIDsAndInstrumentTypesByPID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
-    >()
-    */
     
     public var viewIDs: [String] = []
     
@@ -218,19 +211,17 @@ public class Environment: UIView {
         var accumDuration: Duration = DurationZero
         while measureIndex < measures.count {
             
+            // make interval for next range of measures
             let interval = DurationInterval(
                 startDuration: accumDuration,
                 stopDuration: accumDuration + maximumDuration
             )
             
-            if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
-                print("_measureRange: \(_measureRange)")
-            }
-            
-            if let measureRange = Measure.rangeFromMeasures(measures,
-                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
-            )
-            {
+            do {
+                let measureRange = try Measure.rangeFromArray(measures,
+                    withinDurationInterval: interval
+                )
+                
                 print("measureRange: \(measureRange)")
                 let system = System(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
@@ -260,12 +251,31 @@ public class Environment: UIView {
                     
                     /*
                     if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
-                        measureIndex = lastMeasureIndex + 1
-                        accumDuration += system.totalDuration // DurationSpan.stopDuration
+                    measureIndex = lastMeasureIndex + 1
+                    accumDuration += system.totalDuration // DurationSpan.stopDuration
                     }
                     */
                 }
+
             }
+            catch {
+                print("could not create measure range: \(error)")
+            }
+
+            /*
+            if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
+                print("_measureRange: \(_measureRange)")
+            }
+            */
+            
+            /*
+            if let measureRange = Measure.rangeFromMeasures(measures,
+                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
+            )
+            {
+                
+            }
+            */
         }
         
         // PRELIMINARY BUILD
