@@ -11,7 +11,7 @@ import Foundation
 /**
 DurationNode is a hierarchical structure with an accompanying datum of Duration. NYI: Partition
 */
-public class DurationNode: Node {
+public class DurationNode: Node, DurationSpanning {
     
     // deprecate
     public var id: String?
@@ -22,7 +22,12 @@ public class DurationNode: Node {
     public var duration: Duration
     public var offsetDuration: Duration = DurationZero
     
-    public var durationSpan: DurationSpan { get { return getDurationSpan() } }
+    // make better interface
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: duration, startDuration: offsetDuration)
+    }
+    
+    //public var durationSpan: DurationSpan { get { return getDurationSpan() } }
     
     public var components: [Component] = []
     
@@ -1008,6 +1013,7 @@ public class DurationNode: Node {
     }
 }
 
+/*
 // MAKE EXTENSION -- add to DurationNode as class func
 public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> DurationSpan {
     if durationNodes.count == 0 { return DurationSpan() }
@@ -1022,3 +1028,4 @@ public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> 
         return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
     }
 }
+*/

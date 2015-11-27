@@ -8,11 +8,19 @@
 
 import Foundation
 
-public class DurationNodeDyad {
+public class DurationNodeDyad: DurationSpanning {
     
     public var durationNode0: DurationNode
     public var durationNode1: DurationNode
 
+    // clean up
+    public var durationInterval: DurationInterval {
+        return durationNode0.durationInterval.makeUnionWithDurationInterval(
+            durationNode0.durationInterval
+        )
+    }
+    
+    /*
     public var durationSpan: DurationSpan {
         get {
             let startDuration = [
@@ -26,8 +34,29 @@ public class DurationNodeDyad {
             return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
         }
     }
+    */
 
-    public var relationship: DurationNodeDyadRelationship { get { return getRelationship() } }
+    
+    // this is a sloppy adapter
+    // change to IntervalRelationship
+    public var relationship: DurationNodeDyadRelationship {
+        let r = durationNode0.durationInterval.relationshipToDurationInterval(durationNode1.durationInterval)
+        
+        let none: [IntervalRelationship] = [.TakesPlaceBefore, .TakesPlaceAfter]
+        let adjacent: [IntervalRelationship] = [.Starts, .Finishes]
+        
+        if none.contains(r) {
+            return .None
+        }
+        else if adjacent.contains(r) {
+            return .Adjacent
+        }
+        else {
+            return .Overlapping
+        }
+    }
+
+    
     public var hasMatchingPIDs: Bool { get { return getHasMatchingPIDs() } }
     
     private func getHasMatchingPIDs() -> Bool {

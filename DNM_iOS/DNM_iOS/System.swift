@@ -1311,10 +1311,18 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
             var overlaps: Bool = false
             for dn0 in stratum {
                 for dn1 in otherStratum {
+
+                    // EXPERIMENTAL
+                    
+                    let dyad = DurationNodeDyad(durationNode0: dn0, durationNode1: dn1)
+                    if dyad.relationship == .Overlapping { overlaps = true }
+
+                    /*
                     let relationship = dn0.durationSpan.relationShipWithDurationSpan(
                         dn1.durationSpan
                     )
                     if relationship == .Overlapping { overlaps = true }
+                    */
                 }
             }
             return overlaps
@@ -1325,7 +1333,8 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
             var stratumClumps: [[DurationNode]] = []
             durationNodeLoop: for durationNode in durationNodes {
 
-                var relationships: [DurationSpanRelationship] = []
+                var relationships: [IntervalRelationship] = []
+                
                 // Create initial stratum if none yet
                 if stratumClumps.count == 0 {
                     stratumClumps = [[durationNode]]
@@ -1334,12 +1343,43 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
                 // Find if we can clump the remaining durationNodes onto a stratum
                 var matchFound: Bool = false
                 stratumLoop: for s in 0..<stratumClumps.count {
-                    let stratum_durationSpan = makeDurationSpanWithDurationNodes(stratumClumps[s])
+                    
+                    let durationIntervals = stratumClumps[s].map { $0.durationInterval }
+                    
+                    let stratum_durationInterval = DurationInterval.unionWithDurationIntervals(durationIntervals)
+                    
+                    
+                    //let stratum_durationSpan = makeDurationSpanWithDurationNodes(stratumClumps[s])
+                    
+                    let relationship: IntervalRelationship = durationNode.durationInterval.relationshipToDurationInterval(stratum_durationInterval)
+                    
+                    /*
                     let relationship = stratum_durationSpan.relationShipWithDurationSpan(
                         durationNode.durationSpan
                     )
+                    */
                     relationships.append(relationship)
+                    
+                    let validRelationships: IntervalRelationship = [ .Starts, .Finishes ]
+                    
+                    if validRelationships.contains(relationship) {
+                        var stratum = stratumClumps[s]
+                        let stratum_pids = getPIDsFromStratum(stratum)
+                        let dn_pids = getPIDsFromDurationNode(durationNode)
+                        for pid in dn_pids {
+                            if stratum_pids.contains(pid) {
+                                stratumClumps.removeAtIndex(s)
+                                stratum.append(durationNode)
+                                stratumClumps.insert(stratum, atIndex: s)
+                                matchFound = true
+                                break stratumLoop
+                            }
+                        }
+                    }
+                    
+                    /*
                     switch relationship {
+                        
                     case .Adjacent:
                         var stratum = stratumClumps[s]
                         let stratum_pids = getPIDsFromStratum(stratum)
@@ -1355,6 +1395,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
                         }
                     default: break
                     }
+                    */
                 }
                 if !matchFound { stratumClumps.append([durationNode]) }
             }
@@ -1417,7 +1458,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
                 bgStratum.beatWidth = beatWidth
                 bgStratum.pad_bottom = 0.5 * g
                 for durationNode in stratum_model {
-                    let offset_fromSystem = durationNode.durationSpan.startDuration - offsetDuration
+                    let offset_fromSystem = durationNode.durationInterval.startDuration - offsetDuration
                     let x = infoStartX + offset_fromSystem.width(beatWidth: beatWidth)
                     bgStratum.addBeamGroupWithDurationNode(durationNode, atX: x)
                 }

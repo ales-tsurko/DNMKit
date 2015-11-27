@@ -21,6 +21,18 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     /// Span of this DurationInterval
     public var duration: Duration = DurationZero
     
+    public static func unionWithDurationIntervals(durationIntervals: [DurationInterval]) -> DurationInterval {
+        
+        let start = durationIntervals.sort {
+            $0.startDuration < $1.startDuration
+        }.first!.startDuration
+        
+        let stop = durationIntervals.sort {
+            $0.stopDuration > $1.stopDuration
+        }.first!.stopDuration
+        return DurationInterval(startDuration: start, stopDuration: stop)
+    }
+    
     /**
     Create a DurationInterval
 
@@ -83,6 +95,12 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     */
     public func containsDuration(duration: Duration) -> Bool {
         return duration >= startDuration && duration < stopDuration
+    }
+    
+    public func makeUnionWithDurationInterval(other: DurationInterval) -> DurationInterval {
+        let start = [startDuration, other.startDuration].sort(<).first!
+        let stop = [stopDuration, other.stopDuration].sort(>).first!
+        return DurationInterval(startDuration: start, stopDuration: stop)
     }
     
     /**
