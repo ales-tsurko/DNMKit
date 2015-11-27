@@ -35,6 +35,7 @@ extension DurationSpanning {
     }
 }
 
+// are there other errortypes here?
 public enum DurationIntervalRangeError: ErrorType {
     case Error
 }

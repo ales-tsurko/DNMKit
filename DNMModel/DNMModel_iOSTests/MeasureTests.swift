@@ -49,6 +49,28 @@ class MeasureTests: XCTestCase {
         XCTAssert(range!.count == 2, "should have two measures in there")
     }
     
+    func testRangeFromArray() {
+        
+
+        var measures: [Measure] = []
+        var accumDur: Duration = DurationZero
+        for _ in 0..<8 {
+            let measure = Measure(duration: Duration(4,8), offsetDuration: accumDur)
+            measures.append(measure)
+            accumDur += measure.duration
+        }
+        let maxDur = Duration(19, 16)
+        let interval = DurationInterval(startDuration: DurationZero, stopDuration: maxDur)
+        do {
+            let range = try Measure.rangeFromArray(measures, withinDurationInterval: interval)
+        }
+        catch {
+            print(error)
+        }
+        
+        
+    }
+    
     func testDurationInterval() {
         let m = Measure(duration: Duration(3,16), offsetDuration: Duration(2,8))
 
