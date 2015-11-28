@@ -17,30 +17,37 @@ class ScoreViewController: UIViewController {
     
     var environment: Environment!
     
+    var scoreModel: DNMScoreModel?
+    var scoreString: String?
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, scoreString: String?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.scoreString = scoreString
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func manageColorMode() {
         
         DNMColorManager.colorMode = .Light
         view.backgroundColor = DNMColorManager.backgroundColor
-
-        if let filePath = NSBundle.mainBundle().pathForResource("test_piece", ofType: "dnm") {
-            let code = try! String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
-            
-            // encapsulate
-            let tokenizer = Tokenizer()
-            let tokenContainer = tokenizer.tokenizeString(code)
-            print(tokenContainer)
-            let parser = Parser()
-            let scoreModel = parser.parseTokenContainer(tokenContainer)
-            
-            print("scoreModel: \(scoreModel)")
-            
-            environment = Environment(scoreModel: scoreModel)
-            environment.build()
-            
-            view.addSubview(environment)
-        }
-
+    }
+    
+    func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
+        manageColorMode()
+        createEnviromentWithScoreModel(scoreModel)
+    }
+    
+    func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
+        environment = Environment(scoreModel: scoreModel)
+        environment.build()
+        view.addSubview(environment)
     }
 
     override func didReceiveMemoryWarning() {

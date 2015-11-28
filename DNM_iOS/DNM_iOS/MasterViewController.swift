@@ -23,40 +23,53 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    private var scoreObjectSelected: PFObject?
+    private var scoreStringSelected: String?
+    private var scoreModelSelected: DNMScoreModel?
 
     // MARK: Score Object Management
     var scoreObjects: [PFObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+    }
+    
+    func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.layer.borderColor = UIColor.grayColor().CGColor
-        tableView.layer.borderWidth = 1
     }
     
     func manageLoginStatus() {
-
-        if PFUser.currentUser() == nil {
-            
-            /*
-            PFUser.logInWithUsernameInBackground(testUsername, password: testPassword) {
-                (user, error) -> () in
-                if let error = error { print("could not log in: \(error)") }
-            }
-            */
-            enterSignInMode()
-        }
-        else { enterSignedInMode() }
+        PFUser.currentUser() == nil ? enterSignInMode() : enterSignedInMode()
     }
     
     override func viewDidAppear(animated: Bool) {
-        
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
-        
-        print("about to reload table view data")
         tableView.reloadData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("prepare for segue: \(segue)")
+        if let id = segue.identifier where id == "showScore" {
+            print("segue: showScore)")
+            let newVC = segue.destinationViewController as! ScoreViewController
+            if let scoreModel = scoreModelSelected {
+                print("scoreModelSelected: \(scoreStringSelected)")
+                newVC.showScoreWithScoreModel(scoreModel)
+            }
+        }
+    }
+    
+    func makeScoreModelWithString(string: String) -> DNMScoreModel {
+        let tokenizer = Tokenizer()
+        let tokenContainer = tokenizer.tokenizeString(string)
+        let parser = Parser()
+        let scoreModel = parser.parseTokenContainer(tokenContainer)
+        print("make scoreModel with string: scoreModel: \(scoreModel)")
+        return scoreModel
     }
 
     /*
@@ -130,7 +143,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //
     func enterSignInMode() {
-        print("enter sign in mode")
         loginStatusLabel.hidden = true
         usernameField.hidden = false
         passwordField.hidden = false
@@ -167,7 +179,14 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did select row at indexPath: \(indexPath)")
+        print("did select row")
+        if let scoreString = scoreObjects[indexPath.row]["text"] {
+            print("score string: \(scoreString)")
+            let scoreModel = makeScoreModelWithString(scoreString as! String)
+            scoreModelSelected = scoreModel
+            print("score model selected: \(scoreModelSelected)")
+            performSegueWithIdentifier("showScore", sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

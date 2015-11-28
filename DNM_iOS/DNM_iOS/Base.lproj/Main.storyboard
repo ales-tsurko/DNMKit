@@ -33,9 +33,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="282" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="OFY-yn-TKI" kind="showDetail" identifier="showScore" animates="NO" action="showViewController:sender:" id="TNT-ix-4hJ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -131,6 +128,7 @@
                         <outlet property="signInOrUpOrOnLabel" destination="3kq-RT-Vy3" id="mjT-Ir-6i0"/>
                         <outlet property="tableView" destination="xyS-7X-zgc" id="Z3Y-Tz-Tkr"/>
                         <outlet property="usernameField" destination="Caa-XT-01H" id="vCs-gT-aCs"/>
+                        <segue destination="OFY-yn-TKI" kind="show" identifier="showScore" animates="NO" id="Cb3-bX-1xv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Sy-MP-ykL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -85,13 +85,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             // parse datastore
             if let string = vc.textView.textStorage?.string {
-                if let scoreData = string.dataUsingEncoding(NSUTF8StringEncoding) {
-                    print("scoreData: \(scoreData)")
-                    let scoreFile = PFFile(data: scoreData)
+                if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) {
+                    //print("scoreData: \(scoreData)")
+                    //let scoreFile = PFFile(data: scoreData)
                     let score = PFObject(className: "Score")
                     score["username"] = PFUser.currentUser()?.username
-                    score["title"] = "new piece"
-                    score["score"] = scoreFile
+                    score["title"] = fileName
+                    score["text"] = string
+                    //score["score"] = scoreFile
                     do {
                         try score.save()
                     }
