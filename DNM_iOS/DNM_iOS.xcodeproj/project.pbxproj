@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07074E651BF96C7C00BFC6FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E641BF96C7C00BFC6FA /* AppDelegate.swift */; };
-		07074E671BF96C7C00BFC6FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074E661BF96C7C00BFC6FA /* ViewController.swift */; };
 		07074E6A1BF96C7C00BFC6FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07074E681BF96C7C00BFC6FA /* Main.storyboard */; };
 		07074E6C1BF96C7C00BFC6FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07074E6B1BF96C7C00BFC6FA /* Assets.xcassets */; };
 		07074E6F1BF96C7C00BFC6FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07074E6D1BF96C7C00BFC6FA /* LaunchScreen.storyboard */; };
@@ -193,7 +192,6 @@
 /* Begin PBXFileReference section */
 		07074E611BF96C7C00BFC6FA /* DNM_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNM_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07074E641BF96C7C00BFC6FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07074E661BF96C7C00BFC6FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07074E691BF96C7C00BFC6FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07074E6B1BF96C7C00BFC6FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07074E6E1BF96C7C00BFC6FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -599,7 +597,6 @@
 		072321321C07809100D21F61 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				07074E661BF96C7C00BFC6FA /* ViewController.swift */,
 				072321331C0780B200D21F61 /* MasterViewController.swift */,
 				07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */,
 				07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */,
@@ -869,7 +866,6 @@
 				07074F1B1BF96D1D00BFC6FA /* Page.swift in Sources */,
 				07074F581BF96F6200BFC6FA /* ComponentSelector.swift in Sources */,
 				07074F5E1BF96F6200BFC6FA /* PageView.swift in Sources */,
-				07074E671BF96C7C00BFC6FA /* ViewController.swift in Sources */,
 				07074EF01BF96D1D00BFC6FA /* BezierCurveStylerWidth.swift in Sources */,
 				07074F2D1BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift in Sources */,
 				07074F1D1BF96D1D00BFC6FA /* Polygon.swift in Sources */,

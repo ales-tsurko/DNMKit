@@ -26,10 +26,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: Score Object Management
     var scoreObjects: [PFObject] = []
-    
-    // kill
-    let testUsername = "jsbean"
-    let testPassword = "w1pjcmyk"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +38,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func manageLoginStatus() {
 
         if PFUser.currentUser() == nil {
+            
+            /*
             PFUser.logInWithUsernameInBackground(testUsername, password: testPassword) {
                 (user, error) -> () in
                 if let error = error { print("could not log in: \(error)") }
             }
+            */
             enterSignInMode()
         }
         else { enterSignedInMode() }
@@ -59,14 +58,15 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("about to reload table view data")
         tableView.reloadData()
     }
-    
+
+    /*
     func addTestObject() {
         print("add test object")
         
         // need to get url of files (perhaps that are presaved?)
         
         let string = "p 60 d fff a -"
-        if let scoreData = string.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) {
             let score = PFObject(className: "Score")
             score["username"] = testUsername
             score["title"] = "newest piece"
@@ -87,45 +87,43 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    */
     
     func fetchAllObjectsFromLocalDatastore() {
-        print("fetch all objects from local datastore")
-        let query = PFQuery(className: "Score")
-        query.fromLocalDatastore()
-        query.whereKey("username", equalTo: testUsername)
-        
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> () in
-            
-            print("find objects with block: objects: \(objects); error: \(error)")
-            
-            if let error = error { print(error) }
-            else if let objects = objects {
-                self.scoreObjects = objects
-                self.tableView.reloadData()
+        if let username = PFUser.currentUser()?.username {
+            let query = PFQuery(className: "Score")
+            query.fromLocalDatastore()
+            query.whereKey("username", equalTo: username)
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> () in
+                if let error = error { print(error) }
+                else if let objects = objects {
+                    self.scoreObjects = objects
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     func fetchAllObjects() {
-        
-        PFObject.unpinAllObjectsInBackground()
-        
-        let query = PFQuery(className: "Score")
-        query.whereKey("username", equalTo: testUsername)
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> () in
-            if let error = error {
-                // error
-            }
-            else if let objects = objects {
-                self.scoreObjects = objects
-                
-                do {
-                    try PFObject.pinAll(objects)
+        if let username = PFUser.currentUser()?.username {
+            PFObject.unpinAllObjectsInBackground()
+            let query = PFQuery(className: "Score")
+            query.whereKey("username", equalTo: username)
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> () in
+                if error != nil {
+                    // error
                 }
-                catch {
-                    print("couldnt pin")
+                else if let objects = objects {
+                    self.scoreObjects = objects
+                    
+                    do {
+                        try PFObject.pinAll(objects)
+                    }
+                    catch {
+                        print("couldnt pin")
+                    }
+                    self.fetchAllObjectsFromLocalDatastore()
                 }
-                self.fetchAllObjectsFromLocalDatastore()
             }
         }
     }

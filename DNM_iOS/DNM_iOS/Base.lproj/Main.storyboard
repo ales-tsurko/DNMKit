@@ -6,24 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DNM_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-15" y="1285"/>
-        </scene>
         <!--MasterViewController-->
         <scene sceneID="DJM-7S-1oU">
             <objects>
@@ -167,12 +149,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3t-KH-tAu">
-                                <rect key="frame" x="239" y="289" width="123" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMi-jU-bTZ">
                                 <rect key="frame" x="8" y="562" width="30" height="30"/>
                                 <state key="normal" title="&lt;"/>
@@ -197,13 +173,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="M3t-KH-tAu" firstAttribute="centerY" secondItem="Aal-Eg-Iak" secondAttribute="centerY" id="4zo-jT-BGT"/>
-                            <constraint firstItem="ueo-p0-WOQ" firstAttribute="baseline" secondItem="hbS-Ao-GW6" secondAttribute="baseline" id="97z-y9-ExD"/>
+                            <constraint firstItem="hbS-Ao-GW6" firstAttribute="baseline" secondItem="ueo-p0-WOQ" secondAttribute="baseline" id="2l4-p1-fHC"/>
+                            <constraint firstItem="hbS-Ao-GW6" firstAttribute="centerX" secondItem="Aal-Eg-Iak" secondAttribute="centerX" id="A4b-OG-1aQ"/>
                             <constraint firstItem="hMi-jU-bTZ" firstAttribute="leading" secondItem="Aal-Eg-Iak" secondAttribute="leadingMargin" constant="-12" id="AvE-My-OBT"/>
-                            <constraint firstItem="hbS-Ao-GW6" firstAttribute="centerX" secondItem="M3t-KH-tAu" secondAttribute="centerX" id="GSI-6J-COY"/>
-                            <constraint firstItem="M3t-KH-tAu" firstAttribute="top" secondItem="JDK-yF-PSp" secondAttribute="bottom" constant="269" id="PwU-Vc-2IV"/>
-                            <constraint firstItem="hMi-jU-bTZ" firstAttribute="baseline" secondItem="hbS-Ao-GW6" secondAttribute="baseline" id="W8n-AX-cI4"/>
-                            <constraint firstItem="M3t-KH-tAu" firstAttribute="centerX" secondItem="Aal-Eg-Iak" secondAttribute="centerX" id="o19-Hf-2Mk"/>
+                            <constraint firstItem="hbS-Ao-GW6" firstAttribute="baseline" secondItem="hMi-jU-bTZ" secondAttribute="baseline" id="lkE-RB-hdr"/>
                             <constraint firstItem="54w-Lq-zme" firstAttribute="top" secondItem="hMi-jU-bTZ" secondAttribute="bottom" constant="8" symbolic="YES" id="p9W-rN-8Rb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ueo-p0-WOQ" secondAttribute="trailing" constant="-10" id="u1v-w2-3Zm"/>
                         </constraints>

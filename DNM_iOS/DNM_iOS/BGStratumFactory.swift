@@ -13,7 +13,11 @@ public class BGStratumFactory {
     
     // system: System?
     
+    
     public init(durationNodeStrata: [DurationNodeStratum]) {
+        
+        
+        /*
         var bgStrata: [BGStratum] = []
         
         // get this outta here...
@@ -27,6 +31,7 @@ public class BGStratumFactory {
             let bgStratum = BGStratum()
             // todo
         }
+        */
     }
     
     private func performerIDsInStratum(stratum: DurationNodeStratum) -> [String] {
