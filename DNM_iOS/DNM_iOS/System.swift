@@ -1292,6 +1292,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     // Encapsulate in BGStratumFactory or something
     private func createBGStrata() {
         
+        /*
         func getPIDsFromStratum(stratum: [DurationNode]) -> [String] {
             var pids: [String] = []
             for dn in stratum { pids += getPIDsFromDurationNode(dn) }
@@ -1311,18 +1312,8 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
             var overlaps: Bool = false
             for dn0 in stratum {
                 for dn1 in otherStratum {
-
-                    // EXPERIMENTAL
-                    
                     let dyad = DurationNodeDyad(durationNode0: dn0, durationNode1: dn1)
                     if dyad.relationship == .Overlapping { overlaps = true }
-
-                    /*
-                    let relationship = dn0.durationSpan.relationShipWithDurationSpan(
-                        dn1.durationSpan
-                    )
-                    if relationship == .Overlapping { overlaps = true }
-                    */
                 }
             }
             return overlaps
@@ -1400,13 +1391,29 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
             }
             return stratumClumps
         }
+        */
         
         func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]])
             -> [BGStratum]
         {
+            
+            // temp
+            func performerIDsInStratum(stratum: DurationNodeStratum) -> [String] {
+                var performerIDs: [String] = []
+                for dn in stratum { performerIDs += performerIDsInDurationNode(dn) }
+                return performerIDs
+            }
+            
+            // temp
+            func performerIDsInDurationNode(durationNode: DurationNode) -> [String] {
+                return Array<String>(durationNode.instrumentIDsByPerformerID.keys)
+            }
+            
+            
+            // isolate sizing
             var bgStrata: [BGStratum] = []
             for stratum_model in durationNodeStrata {
-                let pIDs = getPIDsFromStratum(stratum_model)
+                let pIDs = performerIDsInStratum(stratum_model)
                 guard let firstValue = pIDs.first else { continue }
                 var onlyOnePID: Bool {
                     for pID in pIDs { if pID != firstValue { return false } }
@@ -1437,10 +1444,16 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
             }
             return bgStrata
         }
-        
+
+        /*
         let stratumClumps = getStratumClumps()
         let strata_model = makeStrataWithDisparateStratumClumps(stratumClumps)
-        let bgStrata = makeBGStrataFromDurationNodeStrata(strata_model)
+        */
+        
+        let durationNodeArranger = DurationNodeStratumArranger(durationNodes: durationNodes)
+        let durationNodeStrata = durationNodeArranger.makeDurationNodeStrata(
+        )
+        let bgStrata = makeBGStrataFromDurationNodeStrata(durationNodeStrata)
         
         
         // encapsulate: set initial bgStratum "rhythm" by id

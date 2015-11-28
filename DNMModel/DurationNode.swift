@@ -27,12 +27,10 @@ public class DurationNode: Node, DurationSpanning {
         return DurationInterval(duration: duration, startDuration: offsetDuration)
     }
     
-    //public var durationSpan: DurationSpan { get { return getDurationSpan() } }
-    
     public var components: [Component] = []
     
     public var isRest: Bool { return getIsRest() }
-    
+
     /// All Instrument ID values organized by Performer ID keys
     public var instrumentIDsByPerformerID: [String : [String]] { get { return getIIDsByPID() } }
     
@@ -1012,6 +1010,9 @@ public class DurationNode: Node, DurationSpanning {
         return description
     }
 }
+
+
+public typealias DurationNodeStratum = [DurationNode]
 
 /*
 // MAKE EXTENSION -- add to DurationNode as class func

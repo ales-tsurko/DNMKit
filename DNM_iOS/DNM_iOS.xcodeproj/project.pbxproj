@@ -142,6 +142,8 @@
 		072321301C07669800D21F61 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723212F1C07669800D21F61 /* libsqlite3.tbd */; };
 		072321341C0780B200D21F61 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072321331C0780B200D21F61 /* MasterViewController.swift */; };
 		074710931BFFC40D0084ED61 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074710921BFFC40D0084ED61 /* ScoreManager.swift */; };
+		0751EA061C091E59008693C2 /* DurationNodeStratumArranger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751EA051C091E59008693C2 /* DurationNodeStratumArranger.swift */; };
+		0751EA081C092E3A008693C2 /* BGStratumFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751EA071C092E3A008693C2 /* BGStratumFactory.swift */; };
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
 		07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */; };
@@ -331,6 +333,8 @@
 		0723212F1C07669800D21F61 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		072321331C0780B200D21F61 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		074710921BFFC40D0084ED61 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		0751EA051C091E59008693C2 /* DurationNodeStratumArranger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationNodeStratumArranger.swift; sourceTree = "<group>"; };
+		0751EA071C092E3A008693C2 /* BGStratumFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGStratumFactory.swift; sourceTree = "<group>"; };
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
 		07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
@@ -472,6 +476,8 @@
 				07074E991BF96D1D00BFC6FA /* BGContainer.swift */,
 				07074E9A1BF96D1D00BFC6FA /* BGEvent.swift */,
 				07074E9B1BF96D1D00BFC6FA /* BGStratum.swift */,
+				0751EA071C092E3A008693C2 /* BGStratumFactory.swift */,
+				0751EA051C091E59008693C2 /* DurationNodeStratumArranger.swift */,
 				07074E9C1BF96D1D00BFC6FA /* BuildPattern.swift */,
 				07074E9D1BF96D1D00BFC6FA /* Clef.swift */,
 				07074E9E1BF96D1D00BFC6FA /* ColorMode.swift */,
@@ -857,6 +863,7 @@
 				07074EE91BF96D1D00BFC6FA /* BezierCurve.swift in Sources */,
 				07074F271BF96D1D00BFC6FA /* StemDirection.swift in Sources */,
 				07074F5F1BF96F6200BFC6FA /* PerformerView.swift in Sources */,
+				0751EA061C091E59008693C2 /* DurationNodeStratumArranger.swift in Sources */,
 				07074F041BF96D1D00BFC6FA /* DynamicMarking.swift in Sources */,
 				07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */,
 				07074F1B1BF96D1D00BFC6FA /* Page.swift in Sources */,
@@ -880,6 +887,7 @@
 				07074EE31BF96D1D00BFC6FA /* Barline.swift in Sources */,
 				07074EF81BF96D1D00BFC6FA /* ColorMode.swift in Sources */,
 				07074F5A1BF96F6200BFC6FA /* PageControlButton.swift in Sources */,
+				0751EA081C092E3A008693C2 /* BGStratumFactory.swift in Sources */,
 				07074F341BF96D1D00BFC6FA /* UIColorExtensions.swift in Sources */,
 				07074F151BF96D1D00BFC6FA /* Label.swift in Sources */,
 				07074F1A1BF96D1D00BFC6FA /* Notehead.swift in Sources */,
