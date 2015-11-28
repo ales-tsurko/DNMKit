@@ -20,11 +20,6 @@ class ScoreViewController: UIViewController {
     var scoreModel: DNMScoreModel?
     var scoreString: String?
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, scoreString: String?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.scoreString = scoreString
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -34,7 +29,6 @@ class ScoreViewController: UIViewController {
     }
     
     func manageColorMode() {
-        
         DNMColorManager.colorMode = .Light
         view.backgroundColor = DNMColorManager.backgroundColor
     }

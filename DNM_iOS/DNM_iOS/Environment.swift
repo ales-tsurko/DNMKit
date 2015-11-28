@@ -109,6 +109,7 @@ public class Environment: UIView {
     
     public func setFrame() {
         //if let currentView = currentView { frame = currentView.frame }
+        //
         frame = UIScreen.mainScreen().bounds
     }
     
@@ -224,18 +225,8 @@ public class Environment: UIView {
                 if let lastMeasure = measureRange.last {
                     if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
                         measureIndex = lastMeasureIndex + 1
-                        
-                        // system.durationSpan.duration
                         accumDuration += system.totalDuration
                     }
-                    
-                    
-                    /*
-                    if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
-                    measureIndex = lastMeasureIndex + 1
-                    accumDuration += system.totalDuration // DurationSpan.stopDuration
-                    }
-                    */
                 }
 
             }
@@ -462,14 +453,9 @@ public class Environment: UIView {
                         systems[s].eventsNode.insertNode(dmNode,
                             afterNode: systems[s].performerByID[id]!
                         )
-                        
-                        // dmNode.startLigature
-                        // dmNode.completeHalfOpenToX
                     }
                 }
             }
         }
     }
-    
-
 }

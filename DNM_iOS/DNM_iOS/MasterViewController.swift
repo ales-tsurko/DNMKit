@@ -11,14 +11,18 @@ import DNMModel
 import Parse
 import Bolts
 
-class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// TODO: manage signed in / signed out: tableview.reloadData
+
+class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     // MARK: UI
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginStatusLabel: UILabel!
-    @IBOutlet weak var signInOrUpOrOnLabel: UILabel!
-    @IBOutlet weak var signInOrUpLabel: UILabel!
+    
+    @IBOutlet weak var signInOrOutOrUpButton: UIButton!
+    @IBOutlet weak var signInOrUpButton: UIButton!
+    
     @IBOutlet weak var dnmLogoLabel: UILabel!
     
     @IBOutlet weak var usernameField: UITextField!
@@ -29,11 +33,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var scoreModelSelected: DNMScoreModel?
 
     // MARK: Score Object Management
+    
     var scoreObjects: [PFObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setUpTextFields()
+    }
+    
+    func setUpTextFields() {
+        usernameField.delegate = self
+        passwordField.delegate = self
     }
     
     func setupTableView() {
@@ -41,24 +52,31 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
     }
     
-    func manageLoginStatus() {
-        PFUser.currentUser() == nil ? enterSignInMode() : enterSignedInMode()
-    }
-    
     override func viewDidAppear(animated: Bool) {
+        manageLoginStatus()
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
         tableView.reloadData()
     }
     
+    func manageLoginStatus() {
+        PFUser.currentUser() == nil ? enterSignInMode() : enterSignedInMode()
+    }
+    
+    func updateLoginStatusLabel() {
+        if let username = PFUser.currentUser()?.username {
+            loginStatusLabel.hidden = false
+            loginStatusLabel.text = "logged in as \(username)"
+        } else {
+            loginStatusLabel.hidden = true
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("prepare for segue: \(segue)")
         if let id = segue.identifier where id == "showScore" {
-            print("segue: showScore)")
-            let newVC = segue.destinationViewController as! ScoreViewController
+            let scoreViewController = segue.destinationViewController as! ScoreViewController
             if let scoreModel = scoreModelSelected {
-                print("scoreModelSelected: \(scoreStringSelected)")
-                newVC.showScoreWithScoreModel(scoreModel)
+                scoreViewController.showScoreWithScoreModel(scoreModel)
             }
         }
     }
@@ -68,41 +86,11 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tokenContainer = tokenizer.tokenizeString(string)
         let parser = Parser()
         let scoreModel = parser.parseTokenContainer(tokenContainer)
-        print("make scoreModel with string: scoreModel: \(scoreModel)")
         return scoreModel
     }
-
-    /*
-    func addTestObject() {
-        print("add test object")
-        
-        // need to get url of files (perhaps that are presaved?)
-        
-        let string = "p 60 d fff a -"
-        if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) {
-            let score = PFObject(className: "Score")
-            score["username"] = testUsername
-            score["title"] = "newest piece"
-            //score["score"] = scoreFile
-            score["text"] = "yes yes yes yes yes"
-            print("scoreObj: \(score)")
-            
-            score.saveEventually { (success, error) -> Void in
-                if success {
-                    print("success!")
-                }
-                else {
-                    
-                }
-                if let error = error {
-                    print("could not save: \(error)")
-                }
-            }
-        }
-    }
-    */
     
     func fetchAllObjectsFromLocalDatastore() {
+        print("fetch all local objects")
         if let username = PFUser.currentUser()?.username {
             let query = PFQuery(className: "Score")
             query.fromLocalDatastore()
@@ -118,6 +106,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func fetchAllObjects() {
+        print("fetch all objects")
         if let username = PFUser.currentUser()?.username {
             PFObject.unpinAllObjectsInBackground()
             let query = PFQuery(className: "Score")
@@ -128,7 +117,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 else if let objects = objects {
                     self.scoreObjects = objects
-                    
                     do {
                         try PFObject.pinAll(objects)
                     }
@@ -143,33 +131,126 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //
     func enterSignInMode() {
+        
+        signInOrOutOrUpButton.hidden = false
+        signInOrOutOrUpButton.setTitle("SIGN IN", forState: .Normal)
+        
+        signInOrUpButton.hidden = false
+        signInOrUpButton.setTitle("SIGN UP?", forState: .Normal)
+
         loginStatusLabel.hidden = true
+        
         usernameField.hidden = false
         passwordField.hidden = false
     }
     
     // signed in
     func enterSignedInMode() {
+
+        fetchAllObjectsFromLocalDatastore()
+        fetchAllObjects()
+
         usernameField.hidden = true
+        usernameField.text = nil
+        
         passwordField.hidden = true
+        passwordField.text = nil
+        
+        updateLoginStatusLabel()
+        
+        /*
         loginStatusLabel.hidden = false
         if let username = PFUser.currentUser()?.username {
             loginStatusLabel.text = "logged in as \(username)"
         }
+        */
+        
+        signInOrUpButton.hidden = true
+        
+        signInOrOutOrUpButton.hidden = false
+        signInOrOutOrUpButton.setTitle("SIGN OUT?", forState: .Normal)
+
     }
     
     // need to sign up
     func enterSignUpmMode() {
-        print("enter sign up mode")
+        signInOrOutOrUpButton.setTitle("SIGN UP", forState: .Normal)
+        signInOrUpButton.setTitle("SIGN IN?", forState: .Normal)
     }
 
+    
+    @IBAction func didEnterPassword(sender: AnyObject) {
+
+        if let username = usernameField.text, password = passwordField.text {
+            
+            // make sure its legit
+            if username.characters.count > 0 && password.characters.count >= 8 {
+                
+                // disable keyboard
+                passwordField.resignFirstResponder()
+                
+                switch signInOrOutOrUpButton.currentTitle! {
+                case "SIGN UP":
+                    let user = PFUser()
+                    user.username = username
+                    user.password = password
+                    do {
+                        try user.signUp()
+                        enterSignedInMode()
+                    }
+                    catch {
+                        print("could not sign up user")
+                    }
+
+                case "SIGN IN":
+                    do {
+                        try PFUser.logInWithUsername(username, password: password)
+                        enterSignedInMode()
+                    }
+                    catch {
+                        print(error)
+                    }
+                default: break
+                }
+            }
+        }
+    }
+    
+    @IBAction func didPressSignInOrOutOrUpButton(sender: AnyObject) {
+        print("sign in or out or up")
+        
+        if let title = signInOrOutOrUpButton.currentTitle {
+            print("title: \(title)")
+            if title == "SIGN OUT?" {
+                print("SIGN OUT? CLICKED")
+                if PFUser.currentUser() != nil {
+                    PFUser.logOutInBackground()
+                    
+                    scoreObjects = []
+                    tableView.reloadData()
+                    
+                    enterSignInMode()
+                    
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func didPressSignInOrUpButton(sender: AnyObject) {
+        if let title = signInOrUpButton.currentTitle {
+            if title == "SIGN UP?" {
+                enterSignUpmMode()
+            } else if title == "SIGN IN?" {
+                enterSignInMode()
+            }
+        }
+    }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
-        
-        print("tableview cell for row at index path: \(indexPath.row)")
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
             forIndexPath: indexPath
         ) as! MasterTableViewCell
@@ -179,12 +260,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did select row")
         if let scoreString = scoreObjects[indexPath.row]["text"] {
-            print("score string: \(scoreString)")
             let scoreModel = makeScoreModelWithString(scoreString as! String)
             scoreModelSelected = scoreModel
-            print("score model selected: \(scoreModelSelected)")
             performSegueWithIdentifier("showScore", sender: self)
         }
     }
