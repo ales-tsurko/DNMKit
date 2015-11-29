@@ -12,7 +12,7 @@ To create an account (which will enable you to transfer scores to any device), c
 
 You can work offline, saving files to your computer locally. Use filename extension: `.dnm`.
 
-When you save a file (and are logged in), the score will be saved in the cloud, to be displayed on an iPad.
+When you save a file (and are logged in), the score will be saved in the cloud, to be displayed on an iPad elsewhere.
 
 
 
@@ -22,6 +22,8 @@ When you save a file (and are logged in), the score will be saved in the cloud, 
 ```
 Title: This is my Title
 ```
+
+This is the title which will show up on the iPad ScoreSelector to be chosen from by the performer.
 
 N.B.: Richer metadata to be added over time (Composer, Dates, Ensembles, notes for Electronics, etc.).
 
