@@ -15,10 +15,13 @@ import Bolts
 
 class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
-    // MARK: UI
+    // MARK: - UI
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scoreSelectorTableView: UITableView!
     
+    @IBOutlet weak var colorModeLabel: UILabel!
+    @IBOutlet weak var colorModeLightLabel: UILabel!
+    @IBOutlet weak var colorModeDarkLabel: UILabel!
     
     @IBOutlet weak var loginStatusLabel: UILabel!
     @IBOutlet weak var signInOrOutOrUpButton: UIButton!
@@ -30,7 +33,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var passwordField: UITextField!
     
     //private var scoreObjectSelected: PFObject?
-    private var scoreStringSelected: String?
+    //private var scoreStringSelected: String?
     private var scoreModelSelected: DNMScoreModel?
 
     // MARK: Score Object Management
@@ -39,25 +42,49 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         setupTableView()
-        setUpTextFields()
+        setupTextFields()
     }
     
-    func setUpTextFields() {
+    func setupTextFields() {
         usernameField.delegate = self
         passwordField.delegate = self
     }
     
+    func setupView() {
+        setDefaultColorMode()
+        updateColorMode()
+    }
+    
+    func setDefaultColorMode() {
+        DNMColorManager.colorMode = .Dark
+    }
+    
+    func updateColorMode() {
+        view.backgroundColor = DNMColorManager.backgroundColor
+        scoreSelectorTableView.reloadData()
+        colorModeLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        colorModeLightLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        colorModeDarkLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        
+        // textfields
+        usernameField.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Background)
+        usernameField.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        passwordField.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Background)
+        passwordField.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+    }
+    
     func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        scoreSelectorTableView.delegate = self
+        scoreSelectorTableView.dataSource = self
     }
     
     override func viewDidAppear(animated: Bool) {
         manageLoginStatus()
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
-        tableView.reloadData()
+        scoreSelectorTableView.reloadData()
     }
     
     func manageLoginStatus() {
@@ -99,7 +126,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if let error = error { print(error) }
                 else if let objects = objects {
                     self.scoreObjects = objects
-                    self.tableView.reloadData()
+                    self.scoreSelectorTableView.reloadData()
+                    
+                    print("resize table view")
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // resize table view
+                        var frame = self.scoreSelectorTableView.frame
+                        let height = self.scoreSelectorTableView.contentSize.height
+                        if height < frame.height { frame.size.height = height }
+                        self.scoreSelectorTableView.frame = frame
+                        self.scoreSelectorTableView.scrollEnabled = false
+                    }
                 }
             }
         }
@@ -128,6 +166,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //
     func enterSignInMode() {
+
+        // hide score selector table view -- later: animate offscreen left
+        scoreSelectorTableView.hidden = true
         
         signInOrOutOrUpButton.hidden = false
         signInOrOutOrUpButton.setTitle("SIGN IN", forState: .Normal)
@@ -146,6 +187,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
+        
+        scoreSelectorTableView.hidden = false
+        
         updateLoginStatusLabel()
         
         // hide username field, clear contents
@@ -218,7 +262,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     PFUser.logOutInBackground()
                     
                     scoreObjects = []
-                    tableView.reloadData()
+                    scoreSelectorTableView.reloadData()
                     
                     enterSignInMode()
                     
@@ -242,10 +286,17 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
+
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
             forIndexPath: indexPath
         ) as! ScoreSelectorTableViewCell
         cell.textLabel?.text = scoreObjects[indexPath.row]["title"] as? String
+        cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
+        
+        let selBGView = UIView()
+        selBGView.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Middleground)
+        cell.selectedBackgroundView = selBGView
         
         return cell
     }
@@ -265,6 +316,17 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func didChangeValueOfSwitch(sender: UISwitch) {
+        
+        // state on = dark, off = light
+        switch sender.on {
+        case true: DNMColorManager.colorMode = ColorMode.Dark
+        case false: DNMColorManager.colorMode = ColorMode.Light
+        }
+        updateColorMode()
+    }
+    
     
     /*
     // MARK: - Navigation

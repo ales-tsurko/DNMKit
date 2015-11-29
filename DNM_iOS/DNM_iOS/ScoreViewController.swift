@@ -39,6 +39,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func setupTableView() {
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
+        viewSelectorTableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     func manageColorMode() {
@@ -104,7 +105,9 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
     /*
     // MARK: - Navigation

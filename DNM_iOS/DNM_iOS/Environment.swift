@@ -71,7 +71,6 @@ public class Environment: UIView {
         goToViewWithID("omni") // set default view
         goToFirstPage()
         addPageControlButtons()
-        addViewSelector()
     }
     
     public func createViews() {
