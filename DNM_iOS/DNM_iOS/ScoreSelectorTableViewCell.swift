@@ -9,7 +9,7 @@
 import UIKit
 
 // Change to ScoreSelectorTableViewCell
-class MasterTableViewCell: UITableViewCell {
+class ScoreSelectorTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

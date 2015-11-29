@@ -55,13 +55,9 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         environment = Environment(scoreModel: scoreModel)
         environment.build()
         view.insertSubview(environment, atIndex: 0)
-        //view.addSubview(environment)
-        
-        // populate viewIDs
         
         // createViewIDs
         viewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
-        //viewSelectorTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

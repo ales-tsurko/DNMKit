@@ -250,7 +250,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
             forIndexPath: indexPath
-        ) as! MasterTableViewCell
+        ) as! ScoreSelectorTableViewCell
         cell.textLabel?.text = scoreObjects[indexPath.row]["title"] as? String
         
         return cell

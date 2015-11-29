@@ -146,7 +146,7 @@
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
 		07C6D6061C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */; };
-		07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */; };
+		07CC12B11C07EB250006A232 /* ScoreSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */; };
 		07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */; };
 		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
 		2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -337,7 +337,7 @@
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
 		07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSelectorTableViewCell.swift; sourceTree = "<group>"; };
-		07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
+		07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -602,7 +602,7 @@
 				072321331C0780B200D21F61 /* MasterViewController.swift */,
 				07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */,
 				07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */,
-				07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */,
+				07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -836,7 +836,7 @@
 				07074F0E1BF96D1D00BFC6FA /* GraphWaveform.swift in Sources */,
 				07074F181BF96D1D00BFC6FA /* MeasureNumberNode.swift in Sources */,
 				07074F131BF96D1D00BFC6FA /* InstrumentEventHandler.swift in Sources */,
-				07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */,
+				07CC12B11C07EB250006A232 /* ScoreSelectorTableViewCell.swift in Sources */,
 				07074EE11BF96D1D00BFC6FA /* Articulation.swift in Sources */,
 				07074EF41BF96D1D00BFC6FA /* BGEvent.swift in Sources */,
 				07074F001BF96D1D00BFC6FA /* DNMColorManager.swift in Sources */,
