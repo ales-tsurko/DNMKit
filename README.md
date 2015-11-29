@@ -19,7 +19,7 @@ When you save a file (and are logged in), the score will be saved in the cloud, 
 ### Author a score
 
 **Add a title**:
-```Swift
+```
 Title: This is my Title
 ```
 
