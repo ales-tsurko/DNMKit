@@ -29,9 +29,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // make good decisions re: UX and order of loading pages / views asynchrously
-        
         setupTableView()
         // create views
     }
@@ -39,11 +37,35 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func setupTableView() {
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
-        viewSelectorTableView.tableFooterView = UIView(frame: CGRectZero)
+        //resizeViewSelectorTableViewIfNecessary()
+    }
+    
+    // generalize this: tableView.resizeToFitContents() ?
+    func resizeViewSelectorTableViewIfNecessary() {
+        print("rezie view selector")
+        dispatch_async(dispatch_get_main_queue()) {
+            var frame = self.viewSelectorTableView.frame
+            let height = self.viewSelectorTableView.contentSize.height
+            
+            print("contentsHeight: \(height); frameheight: \(frame.height)")
+            if height <= frame.height {
+                frame.size.height = height
+                self.viewSelectorTableView.frame = frame
+                self.viewSelectorTableView.scrollEnabled = false
+            } else {
+                self.viewSelectorTableView.scrollEnabled = true
+            }
+
+            print("actual frame: \(self.viewSelectorTableView.frame)")
+        }
     }
     
     func manageColorMode() {
         view.backgroundColor = DNMColorManager.backgroundColor
+        
+        let bgView = UIView()
+        bgView.backgroundColor = DNMColorManager.backgroundColor
+        viewSelectorTableView.backgroundView = bgView
     }
     
     func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
@@ -58,6 +80,9 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // createViewIDs
         viewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
+        
+        viewSelectorTableView.reloadData()
+        resizeViewSelectorTableViewIfNecessary() // wtf!
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,14 +119,33 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        /*
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell",
+        
+        // make a specific one
+        // format:
+        // PerformerID -- bold
+        // - InstrumentID (InstrumentType)
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("scoreSelectorCell",
             forIndexPath: indexPath
-        ) as! MasterTableViewCell
-        */
+        ) as! ScoreSelectorTableViewCell
+        
         cell.textLabel?.text = viewIDs[indexPath.row]
+        
+        // SET COLOR IF VIEWER ID, or OMNI
+        
+        // color
+        cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
+        
+        // make cleaner
+        let selBGView = UIView()
+        selBGView.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Middleground)
+        cell.selectedBackgroundView = selBGView
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: CGRectZero)
     }
     
     override func prefersStatusBarHidden() -> Bool {

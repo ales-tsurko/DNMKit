@@ -13,9 +13,12 @@ import Bolts
 
 // TODO: manage signed in / signed out: tableview.reloadData
 
-class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
-    // MARK: - UI
+class MasterViewController: UIViewController,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UITextFieldDelegate
+{
+   // MARK: - UI
     
     @IBOutlet weak var scoreSelectorTableView: UITableView!
     
@@ -32,8 +35,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    //private var scoreObjectSelected: PFObject?
-    //private var scoreStringSelected: String?
     private var scoreModelSelected: DNMScoreModel?
 
     // MARK: Score Object Management
@@ -43,7 +44,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupTableView()
+        setupScoreSelectorTableView()
+        resizeScoreSelectorTableViewIfNecessary()
         setupTextFields()
     }
     
@@ -64,6 +66,11 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateColorMode() {
         view.backgroundColor = DNMColorManager.backgroundColor
         scoreSelectorTableView.reloadData()
+        let bgView = UIView()
+        bgView.backgroundColor = DNMColorManager.backgroundColor
+        scoreSelectorTableView.backgroundView = bgView
+        
+        
         colorModeLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         colorModeLightLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         colorModeDarkLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
@@ -73,11 +80,31 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         usernameField.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         passwordField.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Background)
         passwordField.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
+        
+        dnmLogoLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
     }
     
-    func setupTableView() {
+    func setupScoreSelectorTableView() {
         scoreSelectorTableView.delegate = self
         scoreSelectorTableView.dataSource = self
+    }
+    
+    // being called too many times -- figure out the multithread issue here
+    func resizeScoreSelectorTableViewIfNecessary() {
+        
+        /*
+        dispatch_async(dispatch_get_main_queue()) {
+            var frame = self.scoreSelectorTableView.frame
+            let height = self.scoreSelectorTableView.contentSize.height
+            if height <= frame.height {
+                frame.size.height = height
+                self.scoreSelectorTableView.frame = frame
+                self.scoreSelectorTableView.scrollEnabled = false
+            } else {
+                self.scoreSelectorTableView.scrollEnabled = true
+            }
+        }
+        */
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -85,6 +112,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
         scoreSelectorTableView.reloadData()
+        resizeScoreSelectorTableViewIfNecessary()
     }
     
     func manageLoginStatus() {
@@ -127,16 +155,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 else if let objects = objects {
                     self.scoreObjects = objects
                     self.scoreSelectorTableView.reloadData()
-
-                    // encapsulate
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // resize table view
-                        var frame = self.scoreSelectorTableView.frame
-                        let height = self.scoreSelectorTableView.contentSize.height
-                        if height < frame.height { frame.size.height = height }
-                        self.scoreSelectorTableView.frame = frame
-                        self.scoreSelectorTableView.scrollEnabled = false
-                    }
+                    self.resizeScoreSelectorTableViewIfNecessary()
                 }
             }
         }
@@ -186,6 +205,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
+        
         
         scoreSelectorTableView.hidden = false
         
@@ -264,7 +284,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     scoreSelectorTableView.reloadData()
                     
                     enterSignInMode()
-                    
                 }
             }
         }
@@ -288,7 +307,11 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
             forIndexPath: indexPath
         ) as! ScoreSelectorTableViewCell
+        
+        // text
         cell.textLabel?.text = scoreObjects[indexPath.row]["title"] as? String
+        
+        // color
         cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
         
@@ -310,6 +333,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreObjects.count
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {
