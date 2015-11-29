@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DNMModel
 import Parse
 import Bolts
 
@@ -64,12 +65,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func saveFile() {
         
+        print("save file")
+        
         if let vc = NSApplication
             .sharedApplication()
             .keyWindow?
             .contentViewController as? ViewController
         {
-
+            
+            // make method: saveToLocalDirectory()
             // user chosen directory
             if let string = vc.textView.textStorage?.string, fileURL = fileURL {
                 do {
@@ -83,14 +87,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             
+            // make method:
             // parse datastore
             if let string = vc.textView.textStorage?.string {
+                
+
+                // temp
+                let scoreModel = Parser().parseTokenContainer(Tokenizer().tokenizeString(string))
+                
+                print("scoremodel: \(scoreModel)")
+                
+                let title = scoreModel.metadata["Title"] ?? fileName
+                
                 if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) {
                     //print("scoreData: \(scoreData)")
                     //let scoreFile = PFFile(data: scoreData)
                     let score = PFObject(className: "Score")
                     score["username"] = PFUser.currentUser()?.username
-                    score["title"] = fileName
+                    score["title"] = title
                     score["text"] = string
                     //score["score"] = scoreFile
                     do {
