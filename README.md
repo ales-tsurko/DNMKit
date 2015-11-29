@@ -18,6 +18,8 @@ When you save a file (and are logged in), the score will be saved in the cloud, 
 
 ### Author a score
 
+In the text file that you have just started with the **DNM Text Editor**, start by adding a title, then declaring the performers in the work.
+
 ####Add a title:
 ```
 Title: This is my Title
