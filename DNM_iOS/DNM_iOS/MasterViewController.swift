@@ -70,6 +70,7 @@ class MasterViewController: UIViewController,
         bgView.backgroundColor = DNMColorManager.backgroundColor
         scoreSelectorTableView.backgroundView = bgView
         
+        loginStatusLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.MiddleForeground)
         
         colorModeLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         colorModeLightLabel.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
@@ -233,6 +234,12 @@ class MasterViewController: UIViewController,
     }
 
     
+    @IBAction func didEnterUsername(sender: AnyObject) {
+    
+        passwordField.becomeFirstResponder()
+    }
+    
+    
     @IBAction func didEnterPassword(sender: AnyObject) {
 
         if let username = usernameField.text, password = passwordField.text {
@@ -273,10 +280,10 @@ class MasterViewController: UIViewController,
     @IBAction func didPressSignInOrOutOrUpButton(sender: AnyObject) {
         print("sign in or out or up")
         
+        // don't this by text
+        
         if let title = signInOrOutOrUpButton.currentTitle {
-            print("title: \(title)")
             if title == "SIGN OUT?" {
-                print("SIGN OUT? CLICKED")
                 if PFUser.currentUser() != nil {
                     PFUser.logOutInBackground()
                     
