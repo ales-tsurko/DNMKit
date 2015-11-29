@@ -14,7 +14,7 @@ You can work offline, saving files to your computer locally. Use filename extens
 
 When you save a file (and are logged in), the score will be saved in the cloud, to be displayed on an iPad elsewhere.
 
-
+---
 
 ### Author a score
 
@@ -60,7 +60,7 @@ You can add any number of `Instruments` to a `Performer's` arsenal, just keep li
 
 *Let me know if there is any clunkiness with the syntax highlighting.*
 
-#### Start a piece
+####Start a piece
 
 `#` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
 
@@ -174,6 +174,18 @@ P: VC vc Violoncello
 ```
 
 <img src="/img/do_re_mi_plus_plus.png" height="275">
+
+---
+
+### Display the score on an iPad
+
+Build and run DNM_iOS. Requires iOS / iphonesimulator 9.1. *If that doesn't work, file an issue.*
+
+Sign in with the username and password you have set up (or create one).
+
+If you have saved a score, the scores should show up on the left once you sign in.
+
+Click on a score, it should load. Currently, it takes a long time to load, because everything is currently synchronous. That will be changed over time.
 
 ---
 
