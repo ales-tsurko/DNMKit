@@ -178,13 +178,13 @@ P: VC vc Violoncello
 
 ### Display the score on an iPad
 
-Build and run DNM_iOS. Requires iOS / iphonesimulator 9.1. *If that doesn't work, file an issue.*
+Build and run **DNM_iOS**. Requires iOS / iphonesimulator 9.1. *If that doesn't work, file an issue.*
 
 Sign in with the username and password you have set up (or create one).
 
 If you have saved a score, the scores should show up on the left once you sign in.
 
-Click on a score, it should load. Currently, it takes a long time to load, because everything is currently synchronous. That will be changed over time.
+Click on a score, it should load. Currently, it takes a long time to load, because everything is synchronous. That will be changed over time.
 
 ---
 
