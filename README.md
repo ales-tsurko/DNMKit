@@ -73,10 +73,9 @@ You can add any number of `Instruments` to a `Performer's` arsenal, just keep li
 
 `b s` Create a rhythmic container with the duration of Beats (`b`) and Subdivision value (`s`). Currently, only powers-of-two are allowed (`4, 8, 16, 32` etc...).
 
-**Example**: `3 8`: Three eighth notes, or a dotted quarter.
+For example, `3 8`: Three eighth notes, or a dotted quarter.
 
-
-To this point, we have only created a container of events, but we haven't actually create any events yet.
+At this point, we have only created a container of events, but we haven't actually create any events yet.
 
 ```Swift
 # // start measure
