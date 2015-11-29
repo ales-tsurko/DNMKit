@@ -2,18 +2,28 @@
 
 [![Build Status](https://travis-ci.org/jsbean/DNMKit.svg)](https://travis-ci.org/jsbean/DNMKit)
 
-Work-in-progress.
+iPad based music notation renderer. Work-in-progress.
 
-iPad based music notation renderer.
+### Create a file
+
+Build and run **DNM Text Editor**. If that doesn't work, file an issue.
+
+To create an account (which will enable you to transfer scores to any device), create a username and password. This will create an account within [Parse](https://github.com/ParsePlatform).
+
+You can work offline, saving files to your computer locally. Use filename extension: `.dnm`.
+
+When you save a file (and are logged in), the score will be saved in the cloud, to be displayed on an iPad.
 
 
-#### Create a file
 
-Use filename extension: `.dnm`
+### Author a score
 
-Save anywhere in project (to be retrieved from `NSBundle.mainBundle()`)
+**Add a title**:
+```Swift
+Title: This is my Title
+```
 
-### Text Input Format
+N.B.: Richer metadata to be added over time (Composer, Dates, Ensembles, notes for Electronics, etc.).
 
 **Declare Performers** (humans doing things) with:    
 - `Performer identifier` (string, I've been using two uppercase letters)
