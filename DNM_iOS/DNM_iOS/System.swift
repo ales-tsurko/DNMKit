@@ -10,7 +10,7 @@ import UIKit
 import DNMModel
 
 /// A Musical System (container of a single line's worth of music)
-public class System: ViewNode, BuildPattern {
+public class System: ViewNode, BuildPattern, DurationSpanning {
     
     // DESTROY --------------------------------------------------------------------------------
     public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
@@ -92,7 +92,7 @@ public class System: ViewNode, BuildPattern {
     private let barlinesLayer = CALayer()
     
     /// All Measures (model) contained in this System
-    public var measures: [Measure] = []
+    public var measures: [Measure] = [] { didSet { setMeasuresWithMeasures(measures) } }
     
     /// All MeasureViews contained in this System
     public var measureViews: [MeasureView] = []
@@ -115,8 +115,13 @@ public class System: ViewNode, BuildPattern {
     /// The Duration of this System
     public var totalDuration: Duration = DurationZero
     
+    // make a better interface for this
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: totalDuration, startDuration: offsetDuration)
+    }
+    
     /// DurationSpan of System
-    public var durationSpan: DurationSpan { get { return DurationSpan() } }
+    //public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
     /// System following this System on the Page containing this System. May be `nil`.
     public var nextSystem: System? { get { return getNextSystem() } }
@@ -325,8 +330,11 @@ public class System: ViewNode, BuildPattern {
     - parameter measures: All MeasureViews in this System
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
-        self.measures = measures
+        
+        // create MeasureViews with Measures
         self.measureViews = makeMeasureViewsWithMeasures(measures)
+        
+        // don't set
         var accumLeft: CGFloat = infoStartX
         var accumDur: Duration = DurationZero
         for measureView in measureViews {
@@ -1284,6 +1292,7 @@ public class System: ViewNode, BuildPattern {
     // Encapsulate in BGStratumFactory or something
     private func createBGStrata() {
         
+        /*
         func getPIDsFromStratum(stratum: [DurationNode]) -> [String] {
             var pids: [String] = []
             for dn in stratum { pids += getPIDsFromDurationNode(dn) }
@@ -1303,36 +1312,38 @@ public class System: ViewNode, BuildPattern {
             var overlaps: Bool = false
             for dn0 in stratum {
                 for dn1 in otherStratum {
-                    let relationship = dn0.durationSpan.relationShipWithDurationSpan(
-                        dn1.durationSpan
-                    )
-                    if relationship == .Overlapping { overlaps = true }
+                    let dyad = DurationNodeDyad(durationNode0: dn0, durationNode1: dn1)
+                    if dyad.relationship == .Overlapping { overlaps = true }
                 }
             }
             return overlaps
         }
         
         func getStratumClumps() -> [[DurationNode]] {
+
             // First pass: get initial stratum clumps
             var stratumClumps: [[DurationNode]] = []
             durationNodeLoop: for durationNode in durationNodes {
 
-                var relationships: [DurationSpanRelationship] = []
                 // Create initial stratum if none yet
                 if stratumClumps.count == 0 {
                     stratumClumps = [[durationNode]]
                     continue durationNodeLoop
                 }
+                
                 // Find if we can clump the remaining durationNodes onto a stratum
                 var matchFound: Bool = false
                 stratumLoop: for s in 0..<stratumClumps.count {
-                    let stratum_durationSpan = makeDurationSpanWithDurationNodes(stratumClumps[s])
-                    let relationship = stratum_durationSpan.relationShipWithDurationSpan(
-                        durationNode.durationSpan
+                    
+                    let durationIntervals = stratumClumps[s].map { $0.durationInterval }
+                    
+                    let stratum_durationInterval = DurationInterval.unionWithDurationIntervals(
+                        durationIntervals
                     )
-                    relationships.append(relationship)
-                    switch relationship {
-                    case .Adjacent:
+                    
+                    let relationship: IntervalRelationship = durationNode.durationInterval.relationshipToDurationInterval(stratum_durationInterval)
+
+                    if relationship == .Meets {
                         var stratum = stratumClumps[s]
                         let stratum_pids = getPIDsFromStratum(stratum)
                         let dn_pids = getPIDsFromDurationNode(durationNode)
@@ -1345,7 +1356,6 @@ public class System: ViewNode, BuildPattern {
                                 break stratumLoop
                             }
                         }
-                    default: break
                     }
                 }
                 if !matchFound { stratumClumps.append([durationNode]) }
@@ -1381,13 +1391,29 @@ public class System: ViewNode, BuildPattern {
             }
             return stratumClumps
         }
+        */
         
         func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]])
             -> [BGStratum]
         {
+            
+            // temp
+            func performerIDsInStratum(stratum: DurationNodeStratum) -> [String] {
+                var performerIDs: [String] = []
+                for dn in stratum { performerIDs += performerIDsInDurationNode(dn) }
+                return performerIDs
+            }
+            
+            // temp
+            func performerIDsInDurationNode(durationNode: DurationNode) -> [String] {
+                return Array<String>(durationNode.instrumentIDsByPerformerID.keys)
+            }
+            
+            
+            // isolate sizing
             var bgStrata: [BGStratum] = []
             for stratum_model in durationNodeStrata {
-                let pIDs = getPIDsFromStratum(stratum_model)
+                let pIDs = performerIDsInStratum(stratum_model)
                 guard let firstValue = pIDs.first else { continue }
                 var onlyOnePID: Bool {
                     for pID in pIDs { if pID != firstValue { return false } }
@@ -1409,7 +1435,7 @@ public class System: ViewNode, BuildPattern {
                 bgStratum.beatWidth = beatWidth
                 bgStratum.pad_bottom = 0.5 * g
                 for durationNode in stratum_model {
-                    let offset_fromSystem = durationNode.durationSpan.startDuration - offsetDuration
+                    let offset_fromSystem = durationNode.durationInterval.startDuration - offsetDuration
                     let x = infoStartX + offset_fromSystem.width(beatWidth: beatWidth)
                     bgStratum.addBeamGroupWithDurationNode(durationNode, atX: x)
                 }
@@ -1418,10 +1444,16 @@ public class System: ViewNode, BuildPattern {
             }
             return bgStrata
         }
-        
+
+        /*
         let stratumClumps = getStratumClumps()
         let strata_model = makeStrataWithDisparateStratumClumps(stratumClumps)
-        let bgStrata = makeBGStrataFromDurationNodeStrata(strata_model)
+        */
+        
+        let durationNodeArranger = DurationNodeStratumArranger(durationNodes: durationNodes)
+        let durationNodeStrata = durationNodeArranger.makeDurationNodeStrata(
+        )
+        let bgStrata = makeBGStrataFromDurationNodeStrata(durationNodeStrata)
         
         
         // encapsulate: set initial bgStratum "rhythm" by id

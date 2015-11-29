@@ -54,8 +54,6 @@ public class TempoMarkingView: CALayer {
         frame = CGRectMake(left, top, numberLayer.frame.maxX, height)
     }
     
-    
-    
     public func addNumberLayer() {
         numberLayer = TextLayerConstrainedByHeight(
             text: "\(value)",
@@ -73,7 +71,7 @@ public class TempoMarkingView: CALayer {
     public func addSubdivisionGraphic() {
         let level = Subdivision(value: value).level
         subdivisionGraphic = SubdivisionGraphic(
-            x: 0, top: 0, height: height, stemDirection: .Down, amountBeams: subdivisionValue
+            x: 0, top: 0, height: height, stemDirection: .Down, amountBeams: level
         )
         subdivisionGraphic.position.x = 0.5 * subdivisionGraphic.frame.width
         addSublayer(subdivisionGraphic)

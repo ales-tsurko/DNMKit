@@ -15,46 +15,42 @@ public class Environment: UIView {
     public var viewSelector: RadioGroupPanelVertical!
     public var viewSelectorDot: UIView!
     
+    // MARK: - Views
+    
     public var views: [PerformerView] = []
     public var viewByID: [String: PerformerView] = [:]
     public var currentView: PerformerView?
+    
+    // MARK: - Pages
     
     public var pages: [Page] = []
     public var currentPage: Page?
     public var currentPageIndex: Int?
     
-    public var systems: [System] = []
+    // MARK: - Model
     
-    public var durationNodes: [DurationNode] = []
-    
-    // Change to Measure, rather than MeasureView
     public var measures: [Measure] = []
-    
-    public var measureViews: [MeasureView] = []
-    
     public var tempoMarkings: [TempoMarking] = []
     public var rehearsalMarkings: [RehearsalMarking] = []
+    public var durationNodes: [DurationNode] = []
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
+    
+    
+    // MARK: - View Components
+    
+    public var systems: [System] = []
+    public var measureViews: [MeasureView] = []
+    
+    // MARK: - Size
     
     public var g: CGFloat = 10 // ?! // hack
     public var beatWidth: CGFloat = 110 // ?! // hack
     
     // get rid of this
     public var page_pad: CGFloat = 25
-    
-    public var componentTypesShownByID: [String : [String]] = [:]
 
-    //public var iIDsAndInstrumentTypesByPID: [[String : [(String, InstrumentType)]]] = []
-    
-    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
-    >()
-    
-    /*
-    public var _iIDsAndInstrumentTypesByPID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
-    >()
-    */
-    
     public var viewIDs: [String] = []
     
     public init(scoreModel: DNMScoreModel) {
@@ -75,7 +71,6 @@ public class Environment: UIView {
         goToViewWithID("omni") // set default view
         goToFirstPage()
         addPageControlButtons()
-        addViewSelector()
     }
     
     public func createViews() {
@@ -96,6 +91,7 @@ public class Environment: UIView {
         }
     }
     
+    // did select cell at path
     public func goToViewWithID(id: String) {
         if let view = viewByID[id] {
             
@@ -115,6 +111,7 @@ public class Environment: UIView {
     
     public func setFrame() {
         //if let currentView = currentView { frame = currentView.frame }
+        //
         frame = UIScreen.mainScreen().bounds
     }
     
@@ -183,26 +180,7 @@ public class Environment: UIView {
         addSubview(previousPageButton)
     }
     
-    // manageSpanners()
-    public func manageHorizontalLigatures() {
-        // DMLigature
-        // DurationalExtension
-        // Slur
-    }
-    
     public func makeSystemsWithViewerID(id: String) -> [System] {
-        
-        //measureViews = makeMeasureViewsWithMeasures(measures)
-        
-        /*
-        // this should become unnecessary: set properties of measure
-        for (m, measure) in measureViews.enumerate() {
-            measure.number = m + 1
-            measure.beatWidth = beatWidth
-        }
-        */
-        
-        print("measures ---------------------------")
         
         for measure in measures { print(measure) }
         
@@ -214,17 +192,23 @@ public class Environment: UIView {
         var accumDuration: Duration = DurationZero
         while measureIndex < measures.count {
             
-            if let measureRange = Measure.rangeFromMeasures(measures,
-                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
+            // make interval for next range of measures
+            let interval = DurationInterval(
+                startDuration: accumDuration,
+                stopDuration: accumDuration + maximumDuration
             )
-            {
-                print("measureRange: \(measureRange)")
+            
+            do {
+                
+                // create range of measures to define the next System
+                let measureRange = try Measure.rangeFromArray(measures,
+                    withinDurationInterval: interval
+                )
+
+                // start System init: clean up
                 let system = System(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
-                
-                // set the Measure range (model)
-                system.setMeasuresWithMeasures(measureRange)
-                
+                system.measures = measureRange
                 system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
                 
                 // encapsulate: internal
@@ -239,20 +223,29 @@ public class Environment: UIView {
                 if let lastMeasure = measureRange.last {
                     if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
                         measureIndex = lastMeasureIndex + 1
-                        
-                        // system.durationSpan.duration
                         accumDuration += system.totalDuration
                     }
-                    
-                    
-                    /*
-                    if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
-                        measureIndex = lastMeasureIndex + 1
-                        accumDuration += system.totalDuration // DurationSpan.stopDuration
-                    }
-                    */
                 }
+
             }
+            catch {
+                print("could not create measure range: \(error)")
+            }
+
+            /*
+            if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
+                print("_measureRange: \(_measureRange)")
+            }
+            */
+            
+            /*
+            if let measureRange = Measure.rangeFromMeasures(measures,
+                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
+            )
+            {
+                
+            }
+            */
         }
         
         // PRELIMINARY BUILD
@@ -458,14 +451,9 @@ public class Environment: UIView {
                         systems[s].eventsNode.insertNode(dmNode,
                             afterNode: systems[s].performerByID[id]!
                         )
-                        
-                        // dmNode.startLigature
-                        // dmNode.completeHalfOpenToX
                     }
                 }
             }
         }
     }
-    
-
 }

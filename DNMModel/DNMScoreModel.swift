@@ -23,6 +23,9 @@ public struct DNMScoreModel: CustomStringConvertible {
     /// String representation of DNMScoreModel
     public var description: String { return getDescription() }
     
+    public var metadata: [String: String] = [:]
+    
+    // deprecate -- in metadata
     /// Title of Work
     public var title: String = ""
     
@@ -54,7 +57,8 @@ public struct DNMScoreModel: CustomStringConvertible {
     
     private func getDescription() -> String {
         var description: String = ""
-        if title != "" { description += ": \(title)" }
+        //if title != "" { description += ": \(title)" }
+        description += "; metadata: \(metadata)"
         description += "; amountMeasures: \(measures.count)"
         description += "; amountDurationNodes: \(durationNodes.count)"
         description += "; IIDsAndInstrumentTypesByPID: \(instrumentIDsAndInstrumentTypesByPerformerID)"

@@ -10,22 +10,16 @@ import Foundation
 
 /// Create DNMScoreModel from a TokenContainer (produced by Tokenizer, tokenizing a DNM file)
 public class Parser {
-    
-    // TODO: add "current" to all values that are global variables that change (often) in process
-    
+
     /// Stack of DurationNodes, used to embed DurationNodes into other ones
-    //private var durationNodeContainerStack = Stack<DurationNode>()
-    
-    // use instead of above
     private var durationNodeContainerStack = Stack<DurationNode>()
     
-    
     /**
-     Manner in which the current DurationNode is placed in time
-     - Measure: place DurationNode at beginning of current Measure
-     - Increment: place DurationNode immediately after last DurationNode
-     - Decrement: place DurationNode at beginning of last DurationNode
-     */
+    Manner in which the current DurationNode is placed in time
+    - Measure: place DurationNode at beginning of current Measure
+    - Increment: place DurationNode immediately after last DurationNode
+    - Decrement: place DurationNode at beginning of last DurationNode
+    */
     private var currentDurationNodeStackMode: DurationNodeStackMode = .Measure
     
     
@@ -49,6 +43,7 @@ public class Parser {
     
     private var currentPerformerID: String?
     private var currentInstrumentID: String?
+    private var currentMetadataKey: String?
     
     /**
     Collection of InstrumentIDsWithInstrumentType, organized by PerformerID.
@@ -61,6 +56,7 @@ public class Parser {
     
     // MARK: DNMScoreModel values
     
+    private var metadata: [String: String] = [:]
     private var title: String = ""
     private var durationNodes: [DurationNode] = []
     private var measures: [Measure] = []
@@ -114,6 +110,8 @@ public class Parser {
                 case "LeafNodeDuration": manageLeafNodeDurationToken(token)
                 case "PerformerID": managePerformerIDWithToken(token)
                 case "InstrumentID": manageInstrumentIDWithToken(token)
+                case "MetadataKey": manageMetadataKeyToken(token)
+                case "MetadataValue": manageMetadataValueToken(token)
                 default: break
                 }
             }
@@ -124,8 +122,20 @@ public class Parser {
         return scoreModel
     }
     
+    private func manageMetadataKeyToken(token: Token) {
+        currentMetadataKey = (token as? TokenString)?.value
+    }
+    
+    private func manageMetadataValueToken(token: Token) {
+        if let key = currentMetadataKey {
+            if let value = (token as? TokenString)?.value {
+                metadata[key] = value
+                currentMetadataKey = nil
+            }
+        }
+    }
+    
     private func manageRestToken() {
-        print("manage rest token")
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         let component = ComponentRest(performerID: pID, instrumentID:  iID)
         addComponent(component)
@@ -166,7 +176,8 @@ public class Parser {
     
     private func makeScoreModel() -> DNMScoreModel {
         var scoreModel = DNMScoreModel()
-        scoreModel.title = title
+        //scoreModel.title = title
+        scoreModel.metadata = metadata
         scoreModel.measures = measures
         scoreModel.durationNodes = durationNodes
         scoreModel.tempoMarkings = tempoMarkings

@@ -33,11 +33,56 @@ class MeasureTests: XCTestCase {
         XCTAssert(_m_.duration == Duration(2,8), "duration set incorrectly")
     }
     
-    func testDurationSpan() {
+    func test_RangeFromMeasures() {
+        let maximumDuration = Duration(19, 16)
+        var measures: [Measure] = []
+        var accumDur: Duration = DurationZero
+        for _ in 0..<8 {
+            let measure = Measure(duration: Duration(4,8), offsetDuration: accumDur)
+            measures.append(measure)
+            accumDur += measure.duration
+        }
+        
+        let interval = DurationInterval(startDuration: DurationZero, stopDuration: maximumDuration)
+        let range = Measure._rangeFromMeasures(measures, withinDurationInterval: interval)
+        XCTAssert(range != nil, "should not be nil")
+        XCTAssert(range!.count == 2, "should have two measures in there")
+    }
+    
+    func testRangeFromArray() {
+        
+
+        var measures: [Measure] = []
+        var accumDur: Duration = DurationZero
+        for _ in 0..<8 {
+            let measure = Measure(duration: Duration(4,8), offsetDuration: accumDur)
+            measures.append(measure)
+            accumDur += measure.duration
+        }
+        let maxDur = Duration(19, 16)
+        let interval = DurationInterval(startDuration: DurationZero, stopDuration: maxDur)
+        
+        do {
+            let range = try Measure.rangeFromArray(measures, withinDurationInterval: interval)
+            XCTAssert(range.count == 2, "should have two measures in there")
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    func testDurationInterval() {
         let m = Measure(duration: Duration(3,16), offsetDuration: Duration(2,8))
-        XCTAssert(m.durationSpan.duration == Duration(3,16), "duration span duration wrong")
-        XCTAssert(m.durationSpan.startDuration == Duration(2,8), "duration span start duration wrong")
-        XCTAssert(m.durationSpan.stopDuration == Duration(7,16), "duration span stop duration wrong")
+
+        XCTAssert(m.durationInterval.duration == Duration(3,16),
+            "duration interval duration wrong"
+        )
+        XCTAssert(m.durationInterval.startDuration == Duration(2,8),
+            "duration interval start duration wrong"
+        )
+        XCTAssert(m.durationInterval.stopDuration == Duration(7,16),
+            "duration interval stop duration wrong"
+        )
     }
     
     func testHasTimeSignature() {

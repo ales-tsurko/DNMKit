@@ -50,6 +50,9 @@ public class BGStratum: ViewNode, BuildPattern {
     public var tbLigaturesAtDepth: [Int : [TBLigature]] = [:]
     public var augmentationDots: [AugmentationDot] = []
     
+    public var instrumentIDsByPerformerID: [String: [String]] { return getIIDsByPID() }
+
+    // deprecate
     // make verbose title at some point: instrumentsIDsByPerformerID
     public var iIDsByPID: [String: [String]] { get { return getIIDsByPID() } }
 
