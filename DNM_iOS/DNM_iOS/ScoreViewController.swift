@@ -43,7 +43,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func manageColorMode() {
-        DNMColorManager.colorMode = .Light
         view.backgroundColor = DNMColorManager.backgroundColor
     }
     

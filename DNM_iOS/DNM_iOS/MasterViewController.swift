@@ -127,9 +127,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 else if let objects = objects {
                     self.scoreObjects = objects
                     self.scoreSelectorTableView.reloadData()
-                    
-                    print("resize table view")
-                    
+
+                    // encapsulate
                     dispatch_async(dispatch_get_main_queue()) {
                         // resize table view
                         var frame = self.scoreSelectorTableView.frame
@@ -286,7 +285,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
-
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
             forIndexPath: indexPath
         ) as! ScoreSelectorTableViewCell
@@ -294,6 +292,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
         
+        // make cleaner
         let selBGView = UIView()
         selBGView.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Middleground)
         cell.selectedBackgroundView = selBGView
