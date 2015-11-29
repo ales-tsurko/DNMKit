@@ -18,7 +18,7 @@ When you save a file (and are logged in), the score will be saved in the cloud, 
 
 ### Author a score
 
-**Add a title**:
+####Add a title:
 ```
 Title: This is my Title
 ```
@@ -27,22 +27,22 @@ This is the title which will show up on the iPad ScoreSelector to be chosen from
 
 N.B.: Richer metadata to be added over time (Composer, Dates, Ensembles, notes for Electronics, etc.).
 
-**Declare Performers** (humans doing things) with:    
-- `Performer identifier` (string, I've been using two uppercase letters)
-- `1...n` pairs of
-    - `Instrument identifier` (string, I've been using two lowercase letters)
-    - `InstrumentTypes` (note: these `InstrumentTypes` must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18).)
+####Declare Performers
 
+Use the `P:` command, followed by an alphanumeric `String` to declare a the `PerformerID` for a `Performer` (a human that does things). This `PerformerID` will be used within the text file to declare who is performing what musical information.
 
-**Example**:
+```
+P: VN
+```
 
-Add a performer and their instruments: (Violinist who is just playing Violin)
+Then, declare the `Instruments` that are played by the declared `Performer` (e.g., a flutist may play their flute, and sing, while playing a kick drum, and controlling MaxMSP with a foot pedal). After the `PerformerID`, enter an `InstrumentID`, also an alphanumeric `String`, and the `InstrumentType` of this instrument (which must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18))
 
-```Swift
+For example, a violinist, who is just playing Violin.
+```
 P: VN vn Violin
 ```
 
-Add another performer: (Cellist who is just playing Violoncello)
+Add another performer: a cellist who is just playing Violoncello.
 
 ```Swift
 P: VN vn Violin
@@ -55,6 +55,10 @@ Add another instrument to a performer's arsenal, perhaps a foot-pedal:
 P: VN vn Violin
 P: VC vc Violoncello cc ContinuousController
 ```
+
+You can add any number of `Instruments` to a `Performer's` arsenal, just keep listing the pairs of `InstrumentID` and `InstrumentType` as necessary.
+
+Let me know if there is any clunkiness with the syntax highlighting.
 
 #### Start a piece
 
