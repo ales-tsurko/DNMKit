@@ -144,7 +144,7 @@ class ViewController: NSViewController, NSTextViewDelegate, NSTextStorageDelegat
     
     func traverseToColorRangeWithToken(token: Token,
         andIdentifierString inheritedIdentifierString: String
-        )
+    )
     {
         guard let currentLine = currentLine else { return }
         

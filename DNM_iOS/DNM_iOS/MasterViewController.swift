@@ -146,21 +146,15 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
-
+        updateLoginStatusLabel()
+        
+        // hide username field, clear contents
         usernameField.hidden = true
         usernameField.text = nil
         
+        // hide password field, clear contents
         passwordField.hidden = true
         passwordField.text = nil
-        
-        updateLoginStatusLabel()
-        
-        /*
-        loginStatusLabel.hidden = false
-        if let username = PFUser.currentUser()?.username {
-            loginStatusLabel.text = "logged in as \(username)"
-        }
-        */
         
         signInOrUpButton.hidden = true
         
