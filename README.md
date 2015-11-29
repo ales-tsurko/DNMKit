@@ -6,7 +6,7 @@ iPad based music notation renderer. Work-in-progress.
 
 ### Create a file
 
-Build and run **DNM Text Editor**. If that doesn't work, file an issue.
+Build and run **DNM Text Editor**. *If that doesn't work, file an issue.*
 
 To create an account (which will enable you to transfer scores to any device), create a username and password. This will create an account within [Parse](https://github.com/ParsePlatform).
 
@@ -58,7 +58,7 @@ P: VC vc Violoncello cc ContinuousController
 
 You can add any number of `Instruments` to a `Performer's` arsenal, just keep listing the pairs of `InstrumentID` and `InstrumentType` as necessary.
 
-Let me know if there is any clunkiness with the syntax highlighting.
+*Let me know if there is any clunkiness with the syntax highlighting.*
 
 #### Start a piece
 
