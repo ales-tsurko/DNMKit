@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchSpellingDyadTests: XCTestCase {
 
     override func setUp() {
@@ -22,6 +22,7 @@ class PitchSpellingDyadTests: XCTestCase {
         super.tearDown()
     }
 
+    // TODO: make assertions
     func testGetSteps() {
         let p0 = Pitch(midi: MIDI(63.25))
         let p1 = Pitch(midi: MIDI(67.5))
@@ -82,8 +83,6 @@ class PitchSpellingDyadTests: XCTestCase {
         let ps3 = PitchSpelling(pitch: pitch, coarse: 1.0, fine: 0.25, letterName: .D, octave: 4)
         let psd1 = PitchSpellingDyad(ps0: ps2, ps1: ps3)
         
-        assert(psd0 == psd1, "pitch spelling dyads not equiv")
+        XCTAssert(psd0 == psd1, "pitch spelling dyads not equiv")
     }
 }
-
-*/

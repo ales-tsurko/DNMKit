@@ -1,8 +1,8 @@
 //
-//  PitchSpellerTests.swift
-//  denm_0
+//  PitchLetterNameTests.swift
+//  denm
 //
-//  Created by James Bean on 3/17/15.
+//  Created by James Bean on 3/23/15.
 //  Copyright (c) 2015 James Bean. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 @testable import DNMModel
 
-class PitchSpellerTests: XCTestCase {
+class PitchLetterNameTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -20,5 +20,10 @@ class PitchSpellerTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+
+    func testInit() {
+        let a = PitchLetterName.A
+        print(a)
     }
 }

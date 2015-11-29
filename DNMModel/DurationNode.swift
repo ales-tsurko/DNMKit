@@ -11,12 +11,10 @@ import Foundation
 /**
 DurationNode is a hierarchical structure with an accompanying datum of Duration. NYI: Partition
 */
-public class DurationNode: Node, CustomStringConvertible {
+public class DurationNode: Node {
     
+    // deprecate
     public var id: String?
-    
-    // MARK: String Representation
-    public override var description: String { get { return getDescription() } }
     
     // MARK: Attributes
     
@@ -28,24 +26,19 @@ public class DurationNode: Node, CustomStringConvertible {
     
     public var components: [Component] = []
     
-    public var isRest: Bool {
-        if !isLeaf { return false }
-        for component in components { if !(component is ComponentRest) { return false } }
-        return true
-    }
-    
-    // phase out
-    public var iIDsByPID : [String : [String]] { get { return getIIDsByPID() } }
+    public var isRest: Bool { return getIsRest() }
     
     /// All Instrument ID values organized by Performer ID keys
     public var instrumentIDsByPerformerID: [String : [String]] { get { return getIIDsByPID() } }
     
     /// If this DurationNode is a continuation from another ("tied")
-    public var hasExtensionStart: Bool = false
+    public var hasExtensionStart: Bool { return getHasExtensionStart() }
     
     /// If this DurationNode continues into another ("tied")
-    public var hasExtensionStop: Bool = false
+    public var hasExtensionStop: Bool { return getHasExtensionStop() }
     
+    
+
     /// If this DurationNode shall be represented with metrical beaming
     public var isMetrical: Bool = true
     
@@ -55,19 +48,11 @@ public class DurationNode: Node, CustomStringConvertible {
     */
     public var isNumerical: Bool = true
     
-    
-    // FIXME
     /// If this DurationNode has only Extension Components (ties) (not a rest, but no info).
-    public var hasOnlyExtensionComponents: Bool {
-        for component in components {
-            if !(component is ComponentExtensionStart) && !(component is ComponentExtensionStop) {
-                return false
-            }
-        }
-        return true
-    }
+    public var hasOnlyExtensionComponents: Bool { return getHasOnlyExtensionComponents() }
     
-
+    
+    /*
     public func distanceFromDurationNode(durationNode: DurationNode) -> Duration? {
         // TODO
         return nil
@@ -77,6 +62,7 @@ public class DurationNode: Node, CustomStringConvertible {
         // TODO
         return nil
     }
+    */
     
     // MARK: Analyze DurationNode
     
@@ -96,6 +82,7 @@ public class DurationNode: Node, CustomStringConvertible {
     /// If DurationNode is subdividable (non-tuplet)
     public var isSubdividable: Bool { get { return getIsSubdividable() } }
     
+    /*
     // implement
     public class func rangeFromDurationNodes(durationNodes: [DurationNode],
         inDurationSpan durationSpan: DurationSpan
@@ -103,7 +90,8 @@ public class DurationNode: Node, CustomStringConvertible {
     {
         return []
     }
-    
+    */
+
     /// From an array of DurationNodes, choose those that fit within the given DurationSpan
     public class func rangeFromDurationNodes(
         durationNodes: [DurationNode],
@@ -121,20 +109,9 @@ public class DurationNode: Node, CustomStringConvertible {
                 durationNodeRange.append(durationNode)
             }
         }
+        // make nil returnable if count == 0
         return durationNodeRange
     }
-    
-    /*
-    // DEPRECATE?
-    public class func rangeFromDurationNodes(
-        durationNodes: [DurationNode],
-        startingAtIndex index: Int,
-        constrainedByMaximumTotalDuration: Duration
-    ) -> [DurationNode]
-    {
-        return []
-    }
-    */
     
     public class func random() -> DurationNode {
         
@@ -150,7 +127,9 @@ public class DurationNode: Node, CustomStringConvertible {
         return durationNode
     }
     
-    public class func getMaximumSubdivisionOfSequence(sequence: [DurationNode]) -> Subdivision? {
+    public class func getMaximumSubdivisionOfSequence(sequence: [DurationNode])
+        -> Subdivision?
+    {
         var maxSubdivision: Subdivision?
         for child in sequence {
             if maxSubdivision == nil || child.duration.subdivision! > maxSubdivision! {
@@ -160,7 +139,9 @@ public class DurationNode: Node, CustomStringConvertible {
         return maxSubdivision
     }
     
-    public class func getMinimumSubdivisionOfSequence(sequence: [DurationNode]) -> Subdivision? {
+    public class func getMinimumSubdivisionOfSequence(sequence: [DurationNode])
+        -> Subdivision?
+    {
         var minSubdivision: Subdivision?
         for child in sequence {
             if minSubdivision == nil || child.duration.subdivision! < minSubdivision! {
@@ -349,6 +330,7 @@ public class DurationNode: Node, CustomStringConvertible {
         if sequence.count == 1 {
             (children.first! as! DurationNode).duration.setSubdivision(duration.subdivision!)
         }
+        
         setOffsetDurationOfChildren()
         return self
     }
@@ -379,7 +361,6 @@ public class DurationNode: Node, CustomStringConvertible {
             var newOffsetDuration = offsetDuration
             
             if child.isContainer {
-                print("child is container: scale of child.children: \(child.scaleOfChildren)")
                 traverseToSetOffsetDurationOfChildrenOfDurationNode(child,
                     andOffsetDuration: &newOffsetDuration
                 )
@@ -415,6 +396,7 @@ public class DurationNode: Node, CustomStringConvertible {
         }
     }
     
+    /*
     /**
     Set if DurationNode is extended at the beginning
     
@@ -438,6 +420,7 @@ public class DurationNode: Node, CustomStringConvertible {
         self.hasExtensionStop = hasExtensionStop
         return self
     }
+    */
     
     // MARK: Operations
     
@@ -474,12 +457,13 @@ public class DurationNode: Node, CustomStringConvertible {
         node = newParent
     }
     
-    
+    // should be private
     public func matchDurationsOfTree() {
         var node = self
         traverseToMatchDurationsOfTree(&node)
     }
     
+    // should be private
     private func traverseToMatchDurationsOfTree(inout node: DurationNode) {
         if node.isContainer {
             node.matchDurationToChildren_destructive()
@@ -490,6 +474,7 @@ public class DurationNode: Node, CustomStringConvertible {
         }
     }
     
+    // should be private?
     public func scaleDurationsOfTree(scale scale: Float) -> DurationNode {
         duration.setScale(scale)
         scaleDurationsOfChildren()
@@ -530,80 +515,33 @@ public class DurationNode: Node, CustomStringConvertible {
         }
     }
     
-    // make this private, can only happen on INIT_WITH_SEQ() !!!!
+    // make this private, can only happen on INIT_WITH_SEQ()
     private func matchDurationToChildren_destructive() {
-        
-        //print("matchDurationToChildren_destructive")
         
         for child in children as! [DurationNode] {
             child.duration.respellAccordingToSubdivision(duration.subdivision!)
         }
-        let beats: Int = duration.beats!.amount
         
+        let beats: Int = duration.beats!.amount
         var reduced: [Int] = []
         let relDurs = relativeDurationsOfChildren!
         let relDursGCD = gcd(relDurs)
         for d in relDurs { reduced.append(d / relDursGCD) }
-        
-        //print("reduced: \(reduced)")
-        
         let sum: Int = reduced.sum()
-        
-        //print("beats: \(beats); sum: \(sum); relativeDurations: \(reduced)")
-        
         if sum < beats {
-            //let closestPowerOfTwo = getClosestPowerOfTwo(multiplier: sum, value: beats)
-            //print("closestPowerOfTwo: \(closestPowerOfTwo)")
-            
-            //let scale: Int = closestPowerOfTwo / sum
-            //print("scale: \(scale)")
-
             for c in 0..<children.count {
                 let child = children[c] as! DurationNode
                 child.duration.respellAccordingToBeats(reduced[c])
             }
-            
-            /*
-            for child in children as! [DurationNode] {
-            child.duration *= scale
-            }
-            */
- 
-            
         }
         else if sum > beats {
-            
-            //print("parent duration: \(duration)")
-            
-            //print("sum: \(sum) > beats: \(beats)")
-            
             let closestPowerOfTwo = getClosestPowerOfTwo(multiplier: beats, value: sum)
-            
-            //print("closestPowerOfTwo: \(closestPowerOfTwo)")
-            
             let scale: Int = closestPowerOfTwo / beats
-            
-            //print("scale: \(scale)")
-            
             let newBeats = duration.beats!.amount * scale
-            
-            //print("children before: \(children)")
-            
-            //print("parent dur before: \(duration)")
             duration.respellAccordingToBeats(newBeats)
-            //print("parent dur after: \(duration)")
-            
-            // only being respelled to 4 not 8? why!??!??!
-            
             for child in children as! [DurationNode] {
-                
-                // something has to happen in here!!!!
-                
                 child.duration.setSubdivision(duration.subdivision!)
             }
-            
-            //print("reduced beats: \(reduced)")
-            //print("children after: \(children)")
         }
         
         for c in 0..<children.count {
@@ -847,7 +785,8 @@ public class DurationNode: Node, CustomStringConvertible {
                 var newLast: [DurationNode] = compound.last!
                 let endNode: DurationNode = array[0].copy()
                 endNode.duration.beats!.setAmount(sum - (accumulated - curBeats))
-                endNode.setHasExtensionStart(true)
+                endNode.addComponent(ComponentExtensionStart())
+                //endNode.setHasExtensionStart(true)
                 newLast.append(endNode)
                 compound.removeLast()
                 compound.append(newLast)
@@ -856,8 +795,8 @@ public class DurationNode: Node, CustomStringConvertible {
                     while beginBeats > sum {
                         let newNode: DurationNode = array[0].copy()
                         newNode.duration.beats!.setAmount(sum)
-                        newNode.setHasExtensionStop(true)
-                        newNode.setHasExtensionStart(true)
+                        newNode.addComponent(ComponentExtensionStop())
+                        newNode.addComponent(ComponentExtensionStart())
                         compound.append([newNode])
                         beginBeats -= sum
                     }
@@ -865,7 +804,7 @@ public class DurationNode: Node, CustomStringConvertible {
                 if beginBeats > 0 {
                     let newNode: DurationNode = array[0].copy()
                     newNode.duration.beats!.setAmount(beginBeats)
-                    newNode.setHasExtensionStop(true)
+                    newNode.addComponent(ComponentExtensionStop())
                     compound.append([newNode])
                 }
                 array.removeAtIndex(0)
@@ -943,6 +882,13 @@ public class DurationNode: Node, CustomStringConvertible {
         return sum == beats
     }
     
+    
+    private func getIsRest() -> Bool {
+        if !isLeaf { return false }
+        for component in components { if !(component is ComponentRest) { return false } }
+        return true
+    }
+    
     /**
     - returns: Subdivision of children, if present.
     */
@@ -950,14 +896,6 @@ public class DurationNode: Node, CustomStringConvertible {
         if !isContainer { return nil }
         // match (level, reduce) children to parent
         return (children[0] as! DurationNode).duration.subdivision!
-        
-        /*
-        // ensure that all subdivisions are ==
-        if isContainer {
-        return (children[0] as! DurationNode).duration.subdivision!
-        }
-        else { return nil }
-        */
     }
     
     private func getScaleOfChildren() -> Float {
@@ -1016,6 +954,30 @@ public class DurationNode: Node, CustomStringConvertible {
         return DurationSpan(duration: duration, startDuration: offsetDuration)
     }
     
+    private func getHasExtensionStart() -> Bool {
+        for component in components {
+            if component is ComponentExtensionStart { return true }
+        }
+        return false
+    }
+    
+    private func getHasExtensionStop() -> Bool {
+        for component in components {
+            if component is ComponentExtensionStop { return true }
+        }
+        return false
+    }
+    
+    
+    private func getHasOnlyExtensionComponents() -> Bool {
+        for component in components {
+            if !(component is ComponentExtensionStart) && !(component is ComponentExtensionStop) {
+                return false
+            }
+        }
+        return true
+    }
+    
     public override func getDescription() -> String {
         var description: String = "DurationNode"
         if isRoot { description += " (root)" }
@@ -1045,5 +1007,20 @@ public class DurationNode: Node, CustomStringConvertible {
             }
         }
         return description
+    }
+}
+
+// MAKE EXTENSION -- add to DurationNode as class func
+public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> DurationSpan {
+    if durationNodes.count == 0 { return DurationSpan() }
+    else {
+        let nds = durationNodes
+        let startDuration = nds.sort({
+            $0.durationSpan.startDuration < $1.durationSpan.startDuration
+        }).first!.durationSpan.startDuration
+        let stopDuration = nds.sort({
+            $0.durationSpan.stopDuration > $1.durationSpan.stopDuration
+        }).first!.durationSpan.stopDuration
+        return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
     }
 }

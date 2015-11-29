@@ -96,25 +96,15 @@ public struct DurationSpan: Equatable, CustomStringConvertible {
     }
 }
 
+public var DurationSpanZero = DurationSpan(
+    startDuration: DurationZero,
+    stopDuration: DurationZero
+)
+
 public extension Duration {
     
     public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
         return durationSpan.containsDuration(self)
-    }
-}
-
-// MAKE EXTENSION
-public func makeDurationSpanWithDurationNodes(durationNodes: [DurationNode]) -> DurationSpan {
-    if durationNodes.count == 0 { return DurationSpan() }
-    else {
-        let nds = durationNodes
-        let startDuration = nds.sort({
-            $0.durationSpan.startDuration < $1.durationSpan.startDuration
-        }).first!.durationSpan.startDuration
-        let stopDuration = nds.sort({
-            $0.durationSpan.stopDuration > $1.durationSpan.stopDuration
-        }).first!.durationSpan.stopDuration
-        return DurationSpan(startDuration: startDuration, stopDuration: stopDuration)
     }
 }
 
@@ -128,10 +118,4 @@ public func ==(lhs: DurationSpan, rhs: DurationSpan) -> Bool {
 
 public enum DurationSpanRelationship {
     case None, Adjacent, Overlapping
-}
-
-extension Duration {
-    public func isInDurationSpan(durationSpan: DurationSpan) -> Bool {
-        return self >= durationSpan.startDuration && self <= durationSpan.stopDuration
-    }
 }

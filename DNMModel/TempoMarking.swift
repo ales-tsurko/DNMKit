@@ -16,8 +16,8 @@ public struct TempoMarking {
     /// The beats-per-minute value of the Tempo being established
     public var value: Int
     
-    /// The SubdivisionLevel to which this Tempo is applied
-    public var subdivisionLevel: Int
+    /// The SubdivisionValue to which this Tempo is applied
+    public var subdivisionValue: Int
     
     /// The Duration that this TempoMarking is offset from the beginning of the piece
     public var offsetDuration: Duration
@@ -33,9 +33,9 @@ public struct TempoMarking {
     
     - returns: TempoMarking
     */
-    public init(value: Int, subdivisionLevel: Int, offsetDuration: Duration) {
+    public init(value: Int, subdivisionValue: Int, offsetDuration: Duration) {
         self.value = value
-        self.subdivisionLevel = subdivisionLevel
+        self.subdivisionValue = subdivisionValue
         self.offsetDuration = offsetDuration
     }
 }

@@ -31,8 +31,8 @@ public class DurationNodeDyad {
     public var hasMatchingPIDs: Bool { get { return getHasMatchingPIDs() } }
     
     private func getHasMatchingPIDs() -> Bool {
-        let dn0_pIDs = durationNode0.iIDsByPID.map({$0.0})
-        let dn1_pIDs = durationNode1.iIDsByPID.map({$0.0})
+        let dn0_pIDs = durationNode0.instrumentIDsByPerformerID.map({$0.0})
+        let dn1_pIDs = durationNode1.instrumentIDsByPerformerID.map({$0.0})
         return dn0_pIDs == dn1_pIDs
     }
     

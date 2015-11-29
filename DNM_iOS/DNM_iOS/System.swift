@@ -301,10 +301,10 @@ public class System: ViewNode, BuildPattern {
     - parameter x:                Horizontal placement of TempoMarking
     */
     public func addTempoMarkingWithValue(value: Int,
-        andSubdivisionLevel subdivisionLevel: Int, atX x: CGFloat
+        andSubdivisionValue subdivisionValue: Int, atX x: CGFloat
     )
     {
-        temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionLevel: subdivisionLevel, atX: x)
+        temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionValue: subdivisionValue, atX: x)
     }
     
     /**
@@ -1292,7 +1292,7 @@ public class System: ViewNode, BuildPattern {
         
         func getPIDsFromDurationNode(durationNode: DurationNode) -> [String] {
             var pids: [String] = []
-            for (pid, _) in durationNode.iIDsByPID { pids.append(pid) }
+            for (pid, _) in durationNode.instrumentIDsByPerformerID { pids.append(pid) }
             return pids
         }
         

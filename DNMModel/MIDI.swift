@@ -11,7 +11,7 @@ import Foundation
 /**
 MIDI (Musical Instrument Digital Interface) representation of Pitch
 */
-public struct MIDI: CustomStringConvertible {
+public struct MIDI: Comparable, CustomStringConvertible {
     
     // MARK: String Representation
     
@@ -74,40 +74,40 @@ public struct MIDI: CustomStringConvertible {
 
 // MARK: Compare MIDI
 
-func ==(lhs: MIDI, rhs: MIDI) -> Bool {
+public func ==(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value == rhs.value
 }
 
-func !=(lhs: MIDI, rhs: MIDI) -> Bool {
+public func !=(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value != rhs.value
 }
 
-func <(lhs: MIDI, rhs: MIDI) -> Bool {
+public func <(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value < rhs.value
 }
 
-func >(lhs: MIDI, rhs: MIDI) -> Bool {
+public func >(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value > rhs.value
 }
 
-func <=(lhs: MIDI, rhs: MIDI) -> Bool {
+public func <=(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value <= rhs.value
 }
 
-func >=(lhs: MIDI, rhs: MIDI) -> Bool {
+public func >=(lhs: MIDI, rhs: MIDI) -> Bool {
     return lhs.value >= rhs.value
 }
 
 // MARK: Modify MIDI
 
-func +(lhs: MIDI, rhs: MIDI) -> MIDI {
+public func +(lhs: MIDI, rhs: MIDI) -> MIDI {
     return MIDI(lhs.value + rhs.value)
 }
 
-func -(lhs: MIDI, rhs: MIDI) -> MIDI {
+public func -(lhs: MIDI, rhs: MIDI) -> MIDI {
     return MIDI(lhs.value - rhs.value)
 }
 
-func %(lhs: MIDI, rhs: Float) -> MIDI {
+public func %(lhs: MIDI, rhs: Float) -> MIDI {
     return MIDI(Float.modulo(lhs.value, rhs))
 }

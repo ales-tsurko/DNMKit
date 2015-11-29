@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchVerticalityTests: XCTestCase {
 
     override func setUp() {
@@ -25,17 +25,17 @@ class PitchVerticalityTests: XCTestCase {
     func testInitWithOnePitch() {
         let p0 = Pitch(midi: MIDI(60))
         let verticality = PitchVerticality(pitches: [p0])
-        assert(verticality.pitches.count == 1, "pitch not added corectly")
-        assert(verticality.pitches.first! == p0, "pitch not set correctly")
+        XCTAssert(verticality.pitches.count == 1, "pitch not added corectly")
+        XCTAssert(verticality.pitches.first! == p0, "pitch not set correctly")
     }
     
     func testInitWithTwoPitches() {
         let p0 = Pitch(midi: MIDI(60))
         let p1 = Pitch(midi: MIDI(67))
         let verticality = PitchVerticality(pitches: [p0,p1])
-        assert(verticality.pitches.count == 2, "pitches not added correctly")
-        assert(verticality.pitches.first! == p0, "pitches not set correctly")
-        assert(verticality.pitches.second! == p1, "pitches not set correctly")
+        XCTAssert(verticality.pitches.count == 2, "pitches not added correctly")
+        XCTAssert(verticality.pitches.first! == p0, "pitches not set correctly")
+        XCTAssert(verticality.pitches.second! == p1, "pitches not set correctly")
     }
     
     func testInitWithManyPitches() {
@@ -43,10 +43,10 @@ class PitchVerticalityTests: XCTestCase {
         let p1 = Pitch(midi: MIDI(67))
         let p2 = Pitch(midi: MIDI(69))
         let verticality = PitchVerticality(pitches: [p0,p1,p2])
-        assert(verticality.pitches.count == 3, "pitches not added correctly")
-        assert(verticality.pitches.first! == p0, "pitches not set correctly")
-        assert(verticality.pitches.second! == p1, "pitches not set correctly")
-        assert(verticality.pitches.last! == p2, "pitches not set correctly")
+        XCTAssert(verticality.pitches.count == 3, "pitches not added correctly")
+        XCTAssert(verticality.pitches.first! == p0, "pitches not set correctly")
+        XCTAssert(verticality.pitches.second! == p1, "pitches not set correctly")
+        XCTAssert(verticality.pitches.last! == p2, "pitches not set correctly")
     }
     
     func testDyadsWithOnePitch() {
@@ -87,21 +87,50 @@ class PitchVerticalityTests: XCTestCase {
     
     func testInitWithNoPitches() {
         let verticality = PitchVerticality()
-        assert(verticality.pitches.count == 0, "pitches not set correctly")
+        XCTAssert(verticality.pitches.count == 0, "pitches not set correctly")
         print(verticality)
         verticality.addPitch(Pitch.random())
-        assert(verticality.pitches.count == 1, "pitch not added correctly")
+        XCTAssert(verticality.pitches.count == 1, "pitch not added correctly")
         print(verticality)
         verticality.addPitch(Pitch.random())
-        assert(verticality.pitches.count == 2, "pitch not added correctly")
-        assert(verticality[0] <= verticality[1], "pitches not sorted when added")
+        XCTAssert(verticality.pitches.count == 2, "pitch not added correctly")
+        XCTAssert(verticality[0] <= verticality[1], "pitches not sorted when added")
         print(verticality)
         verticality.addPitches(Pitch.random(5))
-        assert(verticality.pitches.count == 7, "pitches not added correctly")
+        XCTAssert(verticality.pitches.count == 7, "pitches not added correctly")
         print(verticality)
         print("dyads: \(verticality.dyads!)")
     }
     
+    func testClearPitchSpellings() {
+        let pitch = Pitch(midi: MIDI(60))
+        pitch.spelling = PitchSpelling(pitch: pitch, coarse: 0, fine: 0, letterName: .C)
+        let pitchVerticality = PitchVerticality(pitches: [pitch])
+        pitchVerticality.clearPitchSpellings()
+        for p in pitchVerticality.pitches {
+            XCTAssert(p.spelling == nil, "pitch spellings not cleared")
+        }
+    }
+    
+    /*
+    func testGetAllPitchesHaveBeenSpelledTrue() {
+        let pitchVerticality = PitchVerticality()
+        let pitches = Pitch.random(5)
+        pitchVerticality.pitches = pitches
+        let pVSpeller = PitchVerticalitySpeller(verticality: pitchVerticality)
+        pVSpeller.spell()
+        XCTAssert(pitchVerticality.allPitchesHaveBeenSpelled, "all pitches have not been spelled")
+    }
+    */
+    
+    func testGetAllPitchesHasBeenSpelledFalse() {
+        let pitchVerticality = PitchVerticality()
+        let pitches = Pitch.random(5)
+        pitchVerticality.pitches = pitches
+        XCTAssert(!pitchVerticality.allPitchesHaveBeenSpelled, "pitches shouldn't be spelled")
+    }
+    
+    /*
     func testRemoveDuplicates() {
         let verticality: PitchVerticality = PitchVerticality()
         for _ in 0..<4 {
@@ -110,11 +139,12 @@ class PitchVerticalityTests: XCTestCase {
             verticality.addPitch(randomPitch)
         }
         print(verticality)
-        assert(verticality.pitches.count == 8, "pitches not added correctly")
+        XCTAssert(verticality.pitches.count == 8, "pitches not added correctly")
         verticality.removeDuplicates()
         print(verticality)
-        assert(verticality.pitches.count == 4, "duplicated not removed correctly")
+        XCTAssert(verticality.pitches.count == 4, "duplicated not removed correctly")
     }
+    */
     
     func testInitWithTwoVerticalities() {
         let verticality0 = PitchVerticality(pitches: Pitch.random(5))
@@ -123,8 +153,6 @@ class PitchVerticalityTests: XCTestCase {
             verticality0: verticality0,
             verticality1: verticality1
         )
-        assert(newVerticality.pitches.count == 8, "pitches not added correctly")
+        XCTAssert(newVerticality.pitches.count == 8, "pitches not added correctly")
     }
 }
-
-*/

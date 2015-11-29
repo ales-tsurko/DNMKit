@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DNMModel
 
 // Make TempoMarkingView -- mirror with TempoMarking in Model
 // Make subclass of Label
@@ -18,7 +19,7 @@ public class TempoMarkingView: CALayer {
     
     public var height: CGFloat = 0
     
-    public var subdivisionLevel: Int = 1 // eighth note
+    public var subdivisionValue: Int = 1 // eighth note
     public var value: Int = 60 // at 60 bpm
     
     public var subdivisionGraphic: SubdivisionGraphic!
@@ -29,7 +30,7 @@ public class TempoMarkingView: CALayer {
         top: CGFloat = 0,
         height: CGFloat,
         value: Int = 60,
-        subdivisionLevel: Int = 1
+        subdivisionValue: Int = 8
     )
     {
         super.init()
@@ -37,7 +38,7 @@ public class TempoMarkingView: CALayer {
         self.top = top
         self.height = height
         self.value = value
-        self.subdivisionLevel = subdivisionLevel
+        self.subdivisionValue = subdivisionValue
         build()
     }
     
@@ -70,8 +71,9 @@ public class TempoMarkingView: CALayer {
     }
     
     public func addSubdivisionGraphic() {
+        let level = Subdivision(value: value).level
         subdivisionGraphic = SubdivisionGraphic(
-            x: 0, top: 0, height: height, stemDirection: .Down, amountBeams: subdivisionLevel
+            x: 0, top: 0, height: height, stemDirection: .Down, amountBeams: subdivisionValue
         )
         subdivisionGraphic.position.x = 0.5 * subdivisionGraphic.frame.width
         addSublayer(subdivisionGraphic)

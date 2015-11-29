@@ -13,12 +13,15 @@
 
 import Foundation
 
-public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomStringConvertible {
+public struct OrderedDictionary<Tk: Hashable, Tv: Equatable where Tk: Comparable>: Equatable, CustomStringConvertible
+{
     
     public var description: String { return getDescription() }
 
     public var keys: [Tk] = []
     public var values: [Tk : Tv] = [:]
+    
+    public var count: Int { return keys.count }
     
     public init() { }
     
@@ -30,6 +33,11 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
         for key in orderedDictionary.keys {
             values.updateValue(orderedDictionary[key]!, forKey: key)
         }
+    }
+    
+    public mutating func insertValue(value: Tv, forKey key: Tk, atIndex index: Int) {
+        keys.insert(key, atIndex: index)
+        values[key] = value
     }
     
     public subscript(key: Tk) -> Tv? {
@@ -53,13 +61,13 @@ public struct OrderedDictionary<Tk: Hashable, Tv where Tk: Comparable>: CustomSt
     }
     
     private func getDescription() -> String {
-        var result = "{\n"
+        var description: String = "Ordered Dictionary: [\n"
         for i in 0..<keys.count {
             let key = keys[i]
-            result += "[\(i): \(key) => \(self[key])\n"
+            description += "\t(\(i), \(key)): \(self[key]!)\n"
         }
-        result += "}"
-        return result
+        description += "]"
+        return description
     }
 }
 
@@ -78,4 +86,21 @@ extension OrderedDictionary: SequenceType {
             return nil
         }
     }
+}
+
+public func ==<Tk: Hashable, Tv: Equatable where Tk: Comparable>(
+    lhs: OrderedDictionary<Tk, Tv>, rhs: OrderedDictionary<Tk, Tv>
+) -> Bool {
+    if lhs.keys != rhs.keys { return false }
+    
+    // for each lhs key, check if rhs has value for key, and if that value is the same
+    for key in lhs.keys {
+        if rhs.values[key] == nil || rhs.values[key]! != lhs.values[key]! { return false }
+    }
+    
+    // do the same for rhs keys to lhs values
+    for key in rhs.keys {
+        if lhs.values[key] == nil || lhs.values[key]! != rhs.values[key]! { return false }
+    }
+    return true
 }

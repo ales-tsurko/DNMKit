@@ -322,7 +322,7 @@ public class Environment: UIView {
                 let durationFromSystemStart = tempoMarking.offsetDuration - system.offsetDuration
                 let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
                 
-                system.addTempoMarkingWithValue(tempoMarking.value, andSubdivisionLevel: tempoMarking.subdivisionLevel, atX: x)
+                system.addTempoMarkingWithValue(tempoMarking.value, andSubdivisionValue: tempoMarking.subdivisionValue, atX: x)
             }
         }
     }

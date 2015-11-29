@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchPolyphonyTests: XCTestCase {
 
     override func setUp() {
@@ -24,14 +24,12 @@ class PitchPolyphonyTests: XCTestCase {
 
     func testInitWithNoPolyphonies() {
         let polyphony = PitchPolyphony()
-        assert(polyphony.verticalities.count == 0, "somehow >0 verticalities")
+        XCTAssert(polyphony.verticalities.count == 0, "somehow >0 verticalities")
     }
     
     func testInitWithSinglePolyphony() {
         let verticality = PitchVerticality(pitches: Pitch.random(4))
         let polyphony = PitchPolyphony(verticalities: [verticality])
-        assert(polyphony.verticalities.count == 1, "verticality not added correctly")
+        XCTAssert(polyphony.verticalities.count == 1, "verticality not added correctly")
     }
 }
-
-*/

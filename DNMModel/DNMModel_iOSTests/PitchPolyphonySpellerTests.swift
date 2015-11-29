@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
 /*
 class PitchPolyphonySpellerTests: XCTestCase {
@@ -67,5 +68,4 @@ class PitchPolyphonySpellerTests: XCTestCase {
         speller.spell()
     }
 }
-
 */

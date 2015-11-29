@@ -8,21 +8,26 @@
 
 import Foundation
 
+/// Create DNMScoreModel from a TokenContainer (produced by Tokenizer, tokenizing a DNM file)
 public class Parser {
     
-    /** 
-    Manner in which the current DurationNode is placed in time
-    - Measure: place DurationNode at beginning of current Measure
-    - Increment: place DurationNode immediately after last DurationNode
-    - Decrement: place DurationNode at beginning of last DurationNode
-    */
-    private var durationNodeStackMode: DurationNodeStackMode = .Measure
+    // TODO: add "current" to all values that are global variables that change (often) in process
     
     /// Stack of DurationNodes, used to embed DurationNodes into other ones
     //private var durationNodeContainerStack = Stack<DurationNode>()
     
     // use instead of above
     private var durationNodeContainerStack = Stack<DurationNode>()
+    
+    
+    /**
+     Manner in which the current DurationNode is placed in time
+     - Measure: place DurationNode at beginning of current Measure
+     - Increment: place DurationNode immediately after last DurationNode
+     - Decrement: place DurationNode at beginning of last DurationNode
+     */
+    private var currentDurationNodeStackMode: DurationNodeStackMode = .Measure
+    
     
     /// Current DurationNodeLeaf which shall be decorated with Components
     private var currentDurationNodeLeaf: DurationNode?
@@ -62,8 +67,21 @@ public class Parser {
     private var tempoMarkings: [TempoMarking] = []
     private var rehearsalMarkings: [RehearsalMarking] = []
     
+    /**
+    Create a Parser
+
+    - returns: Parser
+    */
     public init() { }
     
+    
+    /**
+    Parse a TokenContainer (produced by Tokenizer)
+
+    - parameter tokenContainer: TokenContainer containing all Tokens of a musical work
+
+    - returns: DNMScoreModel (musical model to be represented by DNMRenderer)
+    */
     public func parseTokenContainer(tokenContainer: TokenContainer) -> DNMScoreModel {
         
         for token in tokenContainer.tokens {
@@ -72,9 +90,7 @@ public class Parser {
                 switch container.identifier {
                 case "PerformerDeclaration":
                     do { try managePerformerDeclarationTokenContainer(container) }
-                    catch ParserError.InvalidInstrumentType(let string) {
-                        print("INVALID InstrumentType: \(string)")
-                    } catch _ { print("...?") }
+                    catch let error { print(error) }
                     
                 case "Rest": manageRestToken()
                 case "Pitch": managePitchTokenContainer(container)
@@ -116,12 +132,12 @@ public class Parser {
     }
     
     private func manageDurationNodeStackModeMeasure() {
-        durationNodeStackMode = .Measure
+        currentDurationNodeStackMode = .Measure
         accumDurationInMeasure = DurationZero
     }
     
     private func manageDurationNodeStackModeIncrement() {
-        durationNodeStackMode = .Increment
+        currentDurationNodeStackMode = .Increment
     }
     
     private func manageDurationNodeStackModeDecrement() {
@@ -129,14 +145,12 @@ public class Parser {
     }
     
     private func manageExtensionStartToken() {
-        print("manage extension start")
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         let component = ComponentExtensionStart(performerID: pID, instrumentID: iID)
         addComponent(component)
     }
     
     private func manageExtensionStopToken() {
-        print("manage extension stop")
         guard let pID = currentPerformerID, iID = currentInstrumentID else { return }
         let component = ComponentExtensionStop(performerID: pID, instrumentID: iID)
         addComponent(component)
@@ -162,9 +176,7 @@ public class Parser {
     }
     
     private func managePerformerDeclarationTokenContainer(container: TokenContainer) throws {
-        
-        print("manage perf decl: token \(container)")
-        
+
         var performerID: String {
             for token in container.tokens {
                 switch token.identifier {
@@ -220,13 +232,12 @@ public class Parser {
         accumDurationInMeasure = DurationZero
         
         // set default duration node stacking behavior
-        durationNodeStackMode = .Measure
+        currentDurationNodeStackMode = .Measure
     }
     
     private func addMeasure(var measure: Measure) {
         measure.number = measures.count + 1
         measures.append(measure)
-        print("add measure: number: \(measure.number)")
     }
     
     private func setDurationOfLastMeasure() {
@@ -312,8 +323,7 @@ public class Parser {
             if let spannerStart = token as? TokenContainer
                 where spannerStart.identifier == "SpannerStart"
             {
-                // manage glissando
-                // add glissando component
+                // TODO: manage glissando: add glissando component
             }
             else if let tokenFloat = token as? TokenFloat {
                 pitches.append(tokenFloat.value)
@@ -335,7 +345,6 @@ public class Parser {
                 let component = ComponentDynamicMarkingSpannerStart(
                     performerID: pID, instrumentID: iID)
                 addComponent(component)
-                
             case "SpannerStop":
                 let component = ComponentDynamicMarkingSpannerStop(
                     performerID: pID, instrumentID: iID)
@@ -367,17 +376,19 @@ public class Parser {
         addComponent(component)
     }
     
+    /*
     private func manageSpannerStartTokenContainer(container: TokenContainer) {
 
     }
+    */
 
+    // this needs to be tested thoroughly
     private func setOffsetDurationForNewRootDurationNode(rootDurationNode: DurationNode) {
         let offsetDuration: Duration
-        switch durationNodeStackMode {
+        switch currentDurationNodeStackMode {
         case .Measure:
             offsetDuration = currentMeasureDurationOffset
             accumTotalDuration = currentMeasureDurationOffset
-            //accumDurationInMeasure = rootDurationNode.duration
         case .Increment:
             offsetDuration = accumTotalDuration
         case .Decrement:
@@ -393,7 +404,6 @@ public class Parser {
     }
     
     private func addRootDurationNode(rootDurationNode: DurationNode) {
-        print("add root durationNode: \(rootDurationNode)")
         durationNodes.append(rootDurationNode)
         durationNodeContainerStack = Stack(items: [rootDurationNode])
     }

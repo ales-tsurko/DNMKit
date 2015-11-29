@@ -345,7 +345,7 @@ public class BGStratum: ViewNode, BuildPattern {
         var iIDsByPID: [String : [String]] = [:]
         for beamGroup in beamGroups {
             if let durationNode = beamGroup.durationNode {
-                let bg_iIDsByPID = durationNode.iIDsByPID
+                let bg_iIDsByPID = durationNode.instrumentIDsByPerformerID
                 for (pid, iids) in bg_iIDsByPID {
                     if iIDsByPID[pid] == nil {
                         iIDsByPID[pid] = iids

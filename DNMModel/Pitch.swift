@@ -16,7 +16,7 @@ public class Pitch: CustomStringConvertible, Equatable {
     // MARK: String Representation
     
     /// Printable description of Pitch
-    public var description: String { get { return getDescription() } }
+    public var description: String { return getDescription() }
     
     // MARK: Attributes
     
@@ -26,12 +26,12 @@ public class Pitch: CustomStringConvertible, Equatable {
     /// Frequency representation of Pitch (middle-c = 261.6)
     public var frequency: Frequency
     
-    /// Modulo 12 representation of Pitch
-    public var pitchClass: Pitch { get { return Pitch(midi: self.midi % 12.0) } }
+    /// Modulo 12 representation of Pitch // dedicated class?
+    public var pitchClass: Pitch { return PitchClass(pitch: self) }
     
     /// Resolution of Pitch (1.0 = chromatic, 0.5 = 1/4-tone, 0.25 = 1/8-tone)
     public var resolution: Float {
-        get { return midi.value % 1 == 0 ? 1.0 : midi.value % 0.5 == 0 ? 0.5 : 0.25 }
+        return midi.value % 1 == 0 ? 1.0 : midi.value % 0.5 == 0 ? 0.5 : 0.25
     }
     
     public var octave: Int { get { return getOctave() } }
@@ -43,14 +43,11 @@ public class Pitch: CustomStringConvertible, Equatable {
     
     /// All possible PitchSpellings of Pitch
     public var possibleSpellings: [PitchSpelling] {
-        get { return PitchSpelling.pitchSpellingsForPitch(pitch: self) }
-        
-        
-        //get { return GetPitchSpellings.forPitch(self) }
+        return PitchSpelling.pitchSpellingsForPitch(pitch: self)
     }
     
     /// Check if this Pitch has been spelled
-    public var hasBeenSpelled: Bool { get { return spelling != nil } }
+    public var hasBeenSpelled: Bool { return spelling != nil }
     
     // NYI: Create random pitch with Frequency
     
@@ -139,75 +136,35 @@ public class Pitch: CustomStringConvertible, Equatable {
         self.frequency = Frequency(midi: m)
     }
     
+    // TODO: init(var string: String, andEnforceSpelling shouldEnforceSpelling: Bool) throws
+    // move this to Parser, and call it from there... get it outta here!
+    
     /**
-    Create a Pitch with String. This string can be of a format "C#" which will create a C#
-    above middle-c, or of a format "Eb5" which will create an Eb a minor 10th above middle-c.
-    At this point, the actual pitch spelling prescribed by you here is ignored. Further
-    down the line, perhaps the pitch spelling will be enforced here.
+    Create a Pitch with String.
+    - Defaults: octave starting at middle-c (c4), natural
+    - Specify sharp: "#" or "s"
+    - Specify flat: "b"
+    - Specify quarterSharp: "q#", "qs"
+    - Specify quarterFlat: "qf"
+    - Specify eighthTones: "gup", "d_qf_down_7", etc
+    - Underscores are ignored, and helpful for visualization
+    
+    For example:
+    - "c" or "C" = middleC
+    - "d#","ds","ds4","d_s_4" = midi value 63.0 ("d sharp" above middle c)
+    - "eqb5","e_qf_5" = midi value 75.5
+    - "eb_up" = midi value 63.25
     
     - parameter string: String representation of Pitch
     
     - returns: Initialized Pitch object if you didn't fuck up the formatting of the String.
     */
-    public convenience init(var string: String) throws {
-
-        enum StringInitError: ErrorType {
-            case InvalidString
-            case InvalidLetterName
-            case InvalidEighthToneIndicator
-            case InvalidQuarterToneIndicator
-            case InvalidHalfToneIndicator
-            case InvalidOctave
-        }
-
-        // throw error if empty string
-        if string == "" { throw StringInitError.InvalidString }
-        
-        let firstChar = String(string.characters.first!)
-        if let letterName = PitchLetterName.pitchLetterNameWithString(string: firstChar) {
-            
-            // trim off first char
-            string = string[1...string.characters.count - 1]
-            
-            let scanner = NSScanner(string: string)
-            scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "_")
-            scanner.caseSensitive = true
-            var str: NSString?
-            
-            // quarter tone
-            var quarterTone: Float = 1
-            if scanner.scanString("q", intoString: &str) { quarterTone = 0.5 }
-            
-            // half tone
-            let halfToneCharSet = NSCharacterSet(charactersInString: "s#")
-            var halfTone: Float = 0
-            if scanner.scanString("b", intoString: &str) { halfTone = -1 }
-            else if scanner.scanCharactersFromSet(halfToneCharSet, intoString: &str) {
-                halfTone = 1
-            }
-            
-            var eighthTone: Float = 0
-            if scanner.scanString("up", intoString: &str) { eighthTone = 0.25 }
-            else if scanner.scanString("down", intoString: &str) { eighthTone = -0.25 }
-            
-            var octave: Float = 4 // default to octave starting at middle c
-            var floatValue: Float = 0.0
-            if scanner.scanFloat(&floatValue) { octave = floatValue }
-            
-            let midi: Float = (
-                (octave + 1) * 12
-                    + letterName.rawValue
-                    + quarterTone * halfTone
-                    + eighthTone
-            )
+    public convenience init?(string: String) {
+        if let midi = midiFloatWithString(string) {
             self.init(midi: MIDI(midi))
-            
         } else {
-            throw StringInitError.InvalidLetterName
+            return nil
         }
-        
-
-
     }
     
     // MARK: Set attributes of a Pitch
@@ -334,5 +291,3 @@ public func <=(lhs: Pitch, rhs: Pitch) -> Bool {
 public func >=(lhs: Pitch, rhs: Pitch) -> Bool {
     return lhs.midi.value >= rhs.midi.value
 }
-
-// TODO: +, +=, -, -=, *, *=, /, /=

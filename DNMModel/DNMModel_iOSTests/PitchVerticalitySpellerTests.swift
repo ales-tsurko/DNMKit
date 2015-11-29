@@ -8,8 +8,8 @@
 
 import UIKit
 import XCTest
+@testable import DNMModel
 
-/*
 class PitchVerticalitySpellerTests: XCTestCase {
 
     override func setUp() {
@@ -153,9 +153,10 @@ class PitchVerticalitySpellerTests: XCTestCase {
         for p in verticality.pitches { print(p) }
     }
     
+    /*
     func testInitWithAnyNumberOfPitchesNotSpellableObjectively() {
         for _ in 0..<1000 {
-            let pitches: [Pitch] = Pitch.random(randomInt(randomInt(2, 7)))
+            let pitches: [Pitch] = Pitch.random(randomInt(randomInt(2, max: 7)))
             let verticality = PitchVerticality(pitches: pitches)
             let speller = PitchVerticalitySpeller(verticality: verticality)
             speller.spell()
@@ -164,7 +165,9 @@ class PitchVerticalitySpellerTests: XCTestCase {
             assert(speller.allFineValuesMatch, "not all fine values match")
         }
     }
+    */
     
+    /*
     func testSpellThreePitches() {
         for _ in 0..<100 {
             var pitches: [Pitch] = []
@@ -175,6 +178,7 @@ class PitchVerticalitySpellerTests: XCTestCase {
             for p in verticality.pitches { print(p) }
         }
     }
+    */
     
     func testSpellEflatAFlatFNatural() {
         let p0 = Pitch(midi: MIDI(63))
@@ -187,6 +191,7 @@ class PitchVerticalitySpellerTests: XCTestCase {
         for p in pitches { print(p) }
     }
     
+    /*
     func testSpellTwoVerticalitiesMerged() {
         for _ in 0..<25 {
             let verticality0 = PitchVerticality(pitches: Pitch.random(4, min: 60, max: 84, resolution: 0.25))
@@ -205,6 +210,7 @@ class PitchVerticalitySpellerTests: XCTestCase {
             for p in verticality1.pitches { print(p) }
         }
     }
+    */
     
     func testA_Gsharp_Bflat() {
         let midi: [Float] = [68.0,69.0,70.0]
@@ -220,5 +226,3 @@ class PitchVerticalitySpellerTests: XCTestCase {
         }
     }
 }
-
-*/

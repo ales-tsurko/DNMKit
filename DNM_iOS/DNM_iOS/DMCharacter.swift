@@ -46,7 +46,7 @@ public class DMCharacter: CAShapeLayer {
         type: DMCharacterType,
         x: CGFloat,
         height: CGFloat
-        ) -> DMCharacter?
+    ) -> DMCharacter?
     {
         let dmCharacter: DMCharacter?
         switch type {

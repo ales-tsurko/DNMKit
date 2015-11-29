@@ -16,12 +16,12 @@ TO-DO: removeChild(node) needs to get working again
 -- -- .Left, .Right instead
 
 **/
-public class Node {
+public class Node: CustomStringConvertible {
     
     // MARK: String Representation
     
     /// Printed description of Node
-    public var description: String { get { return getDescription() } }
+    public var description: String { return getDescription() }
     
     // MARK: Organization
     
@@ -74,7 +74,6 @@ public class Node {
     
     public var positionInTree: NodePositionTree? { get { return getPositionInTree() } }
     
-    
     public var positionInContainer: NodePositionContainer? {
         get { return getPositionInContainer() }
     }
@@ -98,21 +97,7 @@ public class Node {
     - returns: Initialized Node object
     */
     public init() { }
-    
-    // MARK: Set Attributes of Node
-    
-    /**
-    Set Parent Node of Node
-    
-    - parameter parent: parent Node
-    
-    - returns: Node object
-    */
-    public func setParent(parent: Node) -> Self {
-        self.parent = parent
-        return self
-    }
-    
+   
     // MARK: Tree Operations
     
     /**
@@ -188,7 +173,7 @@ public class Node {
     
     - returns: Ancestor Node, if it exists
     */
-    public func getAncestorAtDistance(distance: Int) -> Node? {
+    public func ancestorAtDistance(distance: Int) -> Node? {
         var node: Node = self
         var distance: Int = distance
         ascendToGetAncestorAtDistance(&node, distance: &distance)
@@ -202,9 +187,9 @@ public class Node {
     
     - returns: child Node residing at index, if it exists
     */
-    public func getChildAtIndex(index: Int) -> Node {
-        assert(children.count >= index, "Index out of bounds")
-        return children[index]
+    public func childAtIndex(index: Int) -> Node? {
+        if index >= 0 && index < children.count { return children[index] }
+        return nil
     }
     
     public func descendToCopy(inout node: Node) {
@@ -382,7 +367,7 @@ public class Node {
     }
     
     public func getDescription() -> String {
-        var description: String = "Node:"
+        var description: String = "Node: "
         if children.count == 1 { description += "1 child" }
         else { description += "\(children.count) children" }
         return description

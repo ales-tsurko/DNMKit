@@ -8,11 +8,8 @@
 
 import Foundation
 
-public enum PitchFine: String, CustomStringConvertible {
-    
-    case None = ""
-    case Up = "Up"
-    case Down = "Down"
-    
-    public var description: String { get { return self.rawValue } }
+public enum PitchFine: String {
+    case None
+    case Up
+    case Down
 }

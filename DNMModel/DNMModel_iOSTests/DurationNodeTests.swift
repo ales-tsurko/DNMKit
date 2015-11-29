@@ -24,10 +24,113 @@ class DurationNodeTests: XCTestCase {
 
     
     func testInit() {
-        var durNode: DurationNode = DurationNode(duration: Duration(5,16))
-        assert(durNode.duration == Duration(5,16))
+        let durNode: DurationNode = DurationNode(duration: Duration(5,16))
+        XCTAssert(durNode.duration == Duration(5,16))
     }
     
+    func testDurationSpan() {
+        let dn = DurationNode(duration: (9,16), offsetDuration: (2,8), sequence: [])
+        let ds = DurationSpan(duration: Duration(9,16), startDuration: Duration(2,8))
+        XCTAssert(dn.durationSpan == ds, "duration span wrong")
+    }
+    
+    func testSetDuration() {
+        let dn = DurationNode(duration: Duration(3,16))
+        dn.setDuration(Duration(9,8))
+        XCTAssert(dn.duration == Duration(9,8), "duration not set correctly")
+    }
+    
+    func testClearComponents() {
+        let dn = DurationNode(duration: Duration(3,16))
+        dn.addComponent(ComponentExtensionStart(performerID: "", instrumentID: ""))
+        dn.addComponent(ComponentExtensionStop(performerID: "", instrumentID: ""))
+        dn.addComponent(ComponentPitch(performerID: "", instrumentID: "", values: [60]))
+        XCTAssert(dn.components.count > 0, "should have components in there")
+        dn.clearComponents()
+        XCTAssert(dn.components.count == 0, "should have no components")
+        XCTAssert(dn.instrumentIDsByPerformerID.count == 0, "all iids and pids should be cleared")
+    }
+    
+    func testHasOnlyExtensionComponents() {
+        let dn = DurationNode(duration: Duration(3,16))
+        
+        // add extension start
+        dn.addComponent(ComponentExtensionStart(performerID: "", instrumentID: ""))
+        XCTAssert(dn.hasOnlyExtensionComponents, "should only have one extension component")
+        
+        XCTAssert(dn.hasExtensionStart, "should have extension start")
+        XCTAssert(!dn.hasExtensionStop, "should not have extension start")
+        
+        // add extension stop
+        dn.addComponent(ComponentExtensionStop(performerID: "", instrumentID: ""))
+        XCTAssert(dn.hasOnlyExtensionComponents, "should have two extension components")
+        
+        XCTAssert(dn.hasExtensionStart, "should have extension start")
+        XCTAssert(dn.hasExtensionStop, "should have extension start")
+        
+        // add pitch
+        dn.addComponent(ComponentPitch(performerID: "", instrumentID: "", values: [60]))
+        XCTAssert(!dn.hasOnlyExtensionComponents, "should not have only extension components")
+    }
+    
+    func testInstrumentIDsByPerformerID() {
+        let root = DurationNode(duration: Duration(3,16))
+        
+        let c1 = DurationNode(duration: Duration(1,16))
+        c1.addComponent(ComponentPitch(performerID: "VN", instrumentID: "vn", values: [60]))
+        c1.addComponent(ComponentPitch(performerID: "VN", instrumentID: "vx", values: [60.25]))
+        root.addChild(c1)
+        
+        let c2 = DurationNode(duration: Duration(1,16))
+        c2.addComponent(ComponentPitch(performerID: "VC", instrumentID: "vc", values: [40]))
+        root.addChild(c2)
+        
+        let c3 = DurationNode(duration: Duration(1,16))
+        c3.addComponent(ComponentPitch(performerID: "VC", instrumentID: "vc", values: [60.5]))
+        root.addChild(c3)
+        
+        XCTAssert(root.instrumentIDsByPerformerID == ["VN": ["vn","vx"], "VC": ["vc"]], "iids wrong")
+    }
+    
+    func testAddChildWithBeats() {
+        let root = DurationNode(duration: Duration(1,16))
+        root.addChildWithBeats(1)
+    }
+    
+    func testSubdivisionOfChildren() {
+        let root = DurationNode(duration: (1,8), sequence: [1,1,1])
+        XCTAssert(root.subdivisionOfChildren != nil, "should not be nil")
+        XCTAssert(root.subdivisionOfChildren! == Subdivision(value: 16), "subdivision wrong")
+        
+        // go deeper
+    }
+    
+    func testIsSubdividable() {
+        let root_s = DurationNode(duration: Duration(2,8), sequence: [1,1,1,1])
+        XCTAssert(root_s.isSubdividable, "should be subdividable")
+        
+        let root_ns0 = DurationNode(duration: Duration(2,8), sequence: [1,1,1])
+        XCTAssert(!root_ns0.isSubdividable, "should not be subdividable")
+        
+        let root_ns1 = DurationNode(duration: (3,8), sequence: [1,1,1,1])
+        XCTAssert(!root_ns1.isSubdividable, "should not be subdividable")
+    }
+    
+    // test class func
+    func testRangeRangeFromDurationNodes() {
+        let dn0 = DurationNode(duration: (3,8), offsetDuration: (0,8), sequence: [])
+        let dn1 = DurationNode(duration: (2,8), offsetDuration: (3,8), sequence: [])
+        let dn2 = DurationNode(duration: (4,8), offsetDuration: (5,8), sequence: [])
+        let dns = [dn0, dn1, dn2]
+        let maximumDuration = Duration(6,8)
+        let range = DurationNode.rangeFromDurationNodes(dns,
+            afterDuration: DurationZero, untilDuration: maximumDuration
+        )
+        XCTAssert(range.count == 2, "should have 2 dns in there")
+        XCTAssert(range.containsObject(dn0), "should have dn0 in there")
+        XCTAssert(range.containsObject(dn1), "should have dn1 in there")
+        XCTAssert(!range.containsObject(dn2), "should not have dn2 in there")
+    }
     
     func testCopy() {
         let durNode: DurationNode = DurationNode(duration: Duration(5,16))
@@ -40,11 +143,12 @@ class DurationNodeTests: XCTestCase {
         
         // copy duration node
         let newDurNode: DurationNode = durNode.copy()
-        assert(durNode.duration == newDurNode.duration, "dur not set correctly")
-        assert((newDurNode.children[0] as! DurationNode).duration == child1.duration, "child dur not set correctly")
-        assert(newDurNode.children[0] !== child1, "durNodes equiv")
-        assert(newDurNode.children.count == 3, "all durNodes not added")
-        assert(durNode !== newDurNode, "nodes are equiv")
+        XCTAssert(durNode.duration == newDurNode.duration, "dur not set correctly")
+        XCTAssert((newDurNode.children[0] as! DurationNode).duration == child1.duration,
+            "child dur not set correctly")
+        XCTAssert(newDurNode.children[0] !== child1, "durNodes equiv")
+        XCTAssert(newDurNode.children.count == 3, "all durNodes not added")
+        XCTAssert(durNode !== newDurNode, "nodes are equiv")
     }
     
     /*
@@ -54,8 +158,8 @@ class DurationNodeTests: XCTestCase {
         let child2 = DurationNode(duration: Duration(4,16))
         durNode.addChild(child1)
         durNode.addChild(child2)
-        assert(durNode.children.count == 2, "children not added correctly")
-        assert(durNode.relativeDurationsOfChildren! == [3,4], "rel durs incrorrect")
+        XCTAssert(durNode.children.count == 2, "children not added correctly")
+        XCTAssert(durNode.relativeDurationsOfChildren! == [3,4], "rel durs incrorrect")
     }
     */
     
@@ -68,7 +172,7 @@ class DurationNodeTests: XCTestCase {
         durNode.addChild(child2)
         durNode.addChild(child3)
         print("durNode before level: \(durNode)")
-        assert(durNode.getMaximumSubdivisionOfChildren()! == Subdivision(value: 128), "getMaxSubdivision not called correctly")
+        XCTAssert(durNode.getMaximumSubdivisionOfChildren()! == Subdivision(value: 128), "getMaxSubdivision not called correctly")
         durNode.levelDurationsOfChildren()
         print("durNode after level: \(durNode)")
         
@@ -87,8 +191,8 @@ class DurationNodeTests: XCTestCase {
         print("durNode before reduce: \(durNode)")
         durNode.reduceDurationsOfChildren()
         print("durNode after reduce: \(durNode)")
-        assert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
-        assert(child2.duration.beats!.amount == 16, "beats incorrect")
+        XCTAssert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
+        XCTAssert(child2.duration.beats!.amount == 16, "beats incorrect")
         durNode.reduceDurationsOfChildren()
         print("durNode after second reduce: \(durNode)")
     }
@@ -104,8 +208,8 @@ class DurationNodeTests: XCTestCase {
         print("durNode before matchDurationsOfChildren: \(durNode)")
         durNode.matchDurationsOfChildren()
         print("durNode after matchDurationsOfChildren: \(durNode)")
-        assert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
-        assert(child2.duration.beats!.amount == 16, "beats incorrect")
+        XCTAssert(child1.duration.subdivision!.value == 128, "subdivision incorrect")
+        XCTAssert(child2.duration.beats!.amount == 16, "beats incorrect")
     }
     
     func testGetMaximumSubdivisionOfSequence() {
@@ -114,7 +218,7 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let maxSubd = DurationNode.getMaximumSubdivisionOfSequence(sequence)
-        assert(maxSubd! == Subdivision(value: 64), "not correct max subdivision")
+        XCTAssert(maxSubd! == Subdivision(value: 64), "not correct max subdivision")
     }
     
     func testGetMinimumSubdivisionOfSequence() {
@@ -123,7 +227,7 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let minSubd = DurationNode.getMinimumSubdivisionOfSequence(sequence)
-        assert(minSubd! == Subdivision(value: 8), "not correct min subdivision")
+        XCTAssert(minSubd! == Subdivision(value: 8), "not correct min subdivision")
     }
     
     func testGetRelativeDurationsOfSequence() {
@@ -133,7 +237,7 @@ class DurationNodeTests: XCTestCase {
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let relDurs = DurationNode.getRelativeDurationsOfSequence(sequence)
         print("sequence before relDur get: \(sequence)")
-        assert(relDurs == [2,8,1], "relative durations incorrect")
+        XCTAssert(relDurs == [2,8,1], "relative durations incorrect")
         print("sequence after relDur get: \(sequence)")
     }
     
@@ -148,7 +252,7 @@ class DurationNodeTests: XCTestCase {
         dn.addChild(dn1)
         dn.addChild(dn2)
         let relDurs = dn.relativeDurationsOfChildren!
-        assert(relDurs == [2,8,1], "relative durations incorrect")
+        XCTAssert(relDurs == [2,8,1], "relative durations incorrect")
         */
     }
     
@@ -158,14 +262,14 @@ class DurationNodeTests: XCTestCase {
         let dn2 = DurationNode(duration: Duration(1,64))
         let sequence: [DurationNode] = [dn0, dn1, dn2]
         let areEquiv = DurationNode.allSubdivisionsOfSequenceAreEquivalent(sequence)
-        assert(areEquiv == false, "subd equiv incorrect")
+        XCTAssert(areEquiv == false, "subd equiv incorrect")
         
         let dn3 = DurationNode(duration: Duration(1,32))
         let dn4 = DurationNode(duration: Duration(1,32))
         let dn5 = DurationNode(duration: Duration(1,32))
         let sequence2: [DurationNode] = [dn3, dn4, dn5]
         let areEquiv2 = DurationNode.allSubdivisionsOfSequenceAreEquivalent(sequence2)
-        assert(areEquiv2 == true, "subd equiv incorrect")
+        XCTAssert(areEquiv2 == true, "subd equiv incorrect")
     }
     
     

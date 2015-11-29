@@ -1,16 +1,15 @@
 //
-//  LetterNameTests.swift
-//  denm
+//  RehearsalMarkingTests.swift
+//  DNMModel
 //
-//  Created by James Bean on 3/23/15.
-//  Copyright (c) 2015 James Bean. All rights reserved.
+//  Created by James Bean on 11/23/15.
+//  Copyright © 2015 James Bean. All rights reserved.
 //
 
-import UIKit
 import XCTest
 @testable import DNMModel
 
-class LetterNameTests: XCTestCase {
+class RehearsalMarkingTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -23,7 +22,7 @@ class LetterNameTests: XCTestCase {
     }
 
     func testInit() {
-        let a = PitchLetterName.A
-        print(a)
+        let rh = RehearsalMarking(index: 4, type: "Alphabetical", offsetDuration: Duration(9,8))
+        print(rh)
     }
 }
