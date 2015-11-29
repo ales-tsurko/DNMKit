@@ -65,55 +65,54 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func saveFile() {
         
-        print("save file")
-        
+        // don't think this is the best way to do this...
         if let vc = NSApplication
             .sharedApplication()
             .keyWindow?
             .contentViewController as? ViewController
         {
-            
-            // make method: saveToLocalDirectory()
-            // user chosen directory
-            if let string = vc.textView.textStorage?.string, fileURL = fileURL {
-                do {
-                    try string.writeToURL(fileURL,
-                        atomically: false,
-                        encoding: NSUTF8StringEncoding
-                    )
-                }
-                catch let error {
-                    print(error)
-                }
-            }
-            
-            // make method:
-            // parse datastore
             if let string = vc.textView.textStorage?.string {
-                
+                saveFileToLocalDirectoryWithString(string)
+                saveFileToParseWithString(string)
+            }
+        }
+    }
+    
+    func saveFileToParseWithString(string: String) {
 
-                // temp
-                let scoreModel = Parser().parseTokenContainer(Tokenizer().tokenizeString(string))
-                
-                print("scoremodel: \(scoreModel)")
-                
-                let title = scoreModel.metadata["Title"] ?? fileName
-                
-                if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) {
-                    //print("scoreData: \(scoreData)")
-                    //let scoreFile = PFFile(data: scoreData)
-                    let score = PFObject(className: "Score")
-                    score["username"] = PFUser.currentUser()?.username
-                    score["title"] = title
-                    score["text"] = string
-                    //score["score"] = scoreFile
-                    do {
-                        try score.save()
-                    }
-                    catch {
-                        print("couldnt save: \(error)")
-                    }
-                }
+        // temp
+        let scoreModel = Parser().parseTokenContainer(Tokenizer().tokenizeString(string))
+        let title = scoreModel.metadata["Title"] ?? fileName
+        
+        let score = PFObject(className: "Score")
+        score["username"] = PFUser.currentUser()?.username
+        score["title"] = title
+        score["text"] = string
+        do {
+            try score.save()
+        }
+        catch {
+            print("couldnt save: \(error)")
+        }
+        
+        // create scoreFile (PFFile) with NSData
+        // current issue: must save PFFile
+        // -- before saving the PFObject it is associated with
+        // haven't gotten that working yet
+        // if let _ = string.dataUsingEncoding(NSUTF8StringEncoding) { }
+        
+    }
+    
+    func saveFileToLocalDirectoryWithString(string: String) {
+        if let fileURL = fileURL {
+            do {
+                try string.writeToURL(fileURL,
+                    atomically: false,
+                    encoding: NSUTF8StringEncoding
+                )
+            }
+            catch let error {
+                print(error)
             }
         }
     }
