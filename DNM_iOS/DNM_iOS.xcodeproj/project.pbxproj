@@ -145,6 +145,7 @@
 		0751EA081C092E3A008693C2 /* BGStratumFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751EA071C092E3A008693C2 /* BGStratumFactory.swift */; };
 		0757EE301C0103EA00C900E7 /* GraphEventRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */; };
 		07947C731BFA923D00C97F31 /* test_piece.dnm in Resources */ = {isa = PBXBuildFile; fileRef = 07947C721BFA906900C97F31 /* test_piece.dnm */; };
+		07C6D6061C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */; };
 		07CC12B11C07EB250006A232 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */; };
 		07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */; };
 		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
@@ -335,6 +336,7 @@
 		0751EA071C092E3A008693C2 /* BGStratumFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGStratumFactory.swift; sourceTree = "<group>"; };
 		0757EE2F1C0103EA00C900E7 /* GraphEventRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphEventRest.swift; sourceTree = "<group>"; };
 		07947C721BFA906900C97F31 /* test_piece.dnm */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_piece.dnm; sourceTree = "<group>"; };
+		07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -599,6 +601,7 @@
 			children = (
 				072321331C0780B200D21F61 /* MasterViewController.swift */,
 				07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */,
+				07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */,
 				07CC12B01C07EB250006A232 /* MasterTableViewCell.swift */,
 			);
 			name = ViewControllers;
@@ -882,6 +885,7 @@
 				07074F051BF96D1D00BFC6FA /* Graph.swift in Sources */,
 				07074EE31BF96D1D00BFC6FA /* Barline.swift in Sources */,
 				07074EF81BF96D1D00BFC6FA /* ColorMode.swift in Sources */,
+				07C6D6061C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift in Sources */,
 				07074F5A1BF96F6200BFC6FA /* PageControlButton.swift in Sources */,
 				0751EA081C092E3A008693C2 /* BGStratumFactory.swift in Sources */,
 				07074F341BF96D1D00BFC6FA /* UIColorExtensions.swift in Sources */,

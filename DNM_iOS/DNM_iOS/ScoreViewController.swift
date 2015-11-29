@@ -9,16 +9,19 @@
 import UIKit
 import DNMModel
 
-class ScoreViewController: UIViewController {
+class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // MARK: - UI
+    
     @IBOutlet weak var previousPageButton: UIButton!
     @IBOutlet weak var nextPageButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var viewSelectorTableView: UITableView!
     
+    // integrate contexts of Environment into this
     var environment: Environment!
     
-    var scoreModel: DNMScoreModel?
-    var scoreString: String?
+    var viewIDs: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -26,6 +29,16 @@ class ScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // make good decisions re: UX and order of loading pages / views asynchrously
+        
+        setupTableView()
+        // create views
+    }
+    
+    func setupTableView() {
+        viewSelectorTableView.delegate = self
+        viewSelectorTableView.dataSource = self
     }
     
     func manageColorMode() {
@@ -41,7 +54,14 @@ class ScoreViewController: UIViewController {
     func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
         environment = Environment(scoreModel: scoreModel)
         environment.build()
-        view.addSubview(environment)
+        view.insertSubview(environment, atIndex: 0)
+        //view.addSubview(environment)
+        
+        // populate viewIDs
+        
+        // createViewIDs
+        viewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
+        //viewSelectorTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +88,25 @@ class ScoreViewController: UIViewController {
         goToNextPage()
     }
     
+    // MARK: - View Selector UITableViewDelegate
+    
+    
+    // MARK: - View Selector UITableViewDataSource
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewIDs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        /*
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell",
+            forIndexPath: indexPath
+        ) as! MasterTableViewCell
+        */
+        cell.textLabel?.text = viewIDs[indexPath.row]
+        return cell
+    }
     
     
     

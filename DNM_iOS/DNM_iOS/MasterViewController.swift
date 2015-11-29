@@ -18,8 +18,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UI
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loginStatusLabel: UILabel!
     
+    
+    @IBOutlet weak var loginStatusLabel: UILabel!
     @IBOutlet weak var signInOrOutOrUpButton: UIButton!
     @IBOutlet weak var signInOrUpButton: UIButton!
     
@@ -28,7 +29,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    private var scoreObjectSelected: PFObject?
+    //private var scoreObjectSelected: PFObject?
     private var scoreStringSelected: String?
     private var scoreModelSelected: DNMScoreModel?
 
@@ -90,7 +91,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func fetchAllObjectsFromLocalDatastore() {
-        print("fetch all local objects")
         if let username = PFUser.currentUser()?.username {
             let query = PFQuery(className: "Score")
             query.fromLocalDatastore()
@@ -106,16 +106,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func fetchAllObjects() {
-        print("fetch all objects")
         if let username = PFUser.currentUser()?.username {
             PFObject.unpinAllObjectsInBackground()
             let query = PFQuery(className: "Score")
             query.whereKey("username", equalTo: username)
             query.findObjectsInBackgroundWithBlock { (objects, error) -> () in
-                if error != nil {
-                    // error
-                }
-                else if let objects = objects {
+                
+                if let objects = objects where error == nil {
                     self.scoreObjects = objects
                     do {
                         try PFObject.pinAll(objects)

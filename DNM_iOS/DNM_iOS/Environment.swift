@@ -15,40 +15,42 @@ public class Environment: UIView {
     public var viewSelector: RadioGroupPanelVertical!
     public var viewSelectorDot: UIView!
     
-    // MARK: Views
+    // MARK: - Views
     
     public var views: [PerformerView] = []
     public var viewByID: [String: PerformerView] = [:]
     public var currentView: PerformerView?
     
-    // MARK: Pages
+    // MARK: - Pages
     
     public var pages: [Page] = []
     public var currentPage: Page?
     public var currentPageIndex: Int?
     
-    public var systems: [System] = []
+    // MARK: - Model
+    
     public var measures: [Measure] = []
-    public var measureViews: [MeasureView] = []
     public var tempoMarkings: [TempoMarking] = []
     public var rehearsalMarkings: [RehearsalMarking] = []
-    
-    
     public var durationNodes: [DurationNode] = []
+    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
+        String, OrderedDictionary<String, InstrumentType>
+    >()
+    
+    
+    // MARK: - View Components
+    
+    public var systems: [System] = []
+    public var measureViews: [MeasureView] = []
+    
+    // MARK: - Size
     
     public var g: CGFloat = 10 // ?! // hack
     public var beatWidth: CGFloat = 110 // ?! // hack
     
     // get rid of this
     public var page_pad: CGFloat = 25
-    
-    public var componentTypesShownByID: [String : [String]] = [:]
-    
-    public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
-    >()
-    
-    
+
     public var viewIDs: [String] = []
     
     public init(scoreModel: DNMScoreModel) {
@@ -90,6 +92,7 @@ public class Environment: UIView {
         }
     }
     
+    // did select cell at path
     public func goToViewWithID(id: String) {
         if let view = viewByID[id] {
             
@@ -202,15 +205,11 @@ public class Environment: UIView {
                 let measureRange = try Measure.rangeFromArray(measures,
                     withinDurationInterval: interval
                 )
-                
-                
+
                 // start System init: clean up
                 let system = System(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
                 system.measures = measureRange
-                // set the Measure range (model)
-                //system.setMeasuresWithMeasures(measureRange)
-                
                 system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
                 
                 // encapsulate: internal
