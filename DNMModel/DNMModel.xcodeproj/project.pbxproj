@@ -144,6 +144,13 @@
 		07428C931C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C811C017A7C00A1E76B /* PitchVerticalitySpellerTests.swift */; };
 		07428C941C017A7C00A1E76B /* PitchVerticalityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */; };
 		07428C951C017A7C00A1E76B /* SubdivisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07428C831C017A7C00A1E76B /* SubdivisionTests.swift */; };
+		07B1EFD01C08CBF60090237A /* IntervalRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFCF1C08CBF60090237A /* IntervalRelationship.swift */; };
+		07B1EFD31C08CC600090237A /* DurationInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFD21C08CC600090237A /* DurationInterval.swift */; };
+		07B1EFD81C08D3C90090237A /* DurationIntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFD71C08D3C90090237A /* DurationIntervalTests.swift */; };
+		07B1EFDA1C08DD7F0090237A /* DurationSpanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFD91C08DD7F0090237A /* DurationSpanning.swift */; };
+		07B1EFDB1C08DDE00090237A /* DurationInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFD21C08CC600090237A /* DurationInterval.swift */; };
+		07B1EFDC1C08DDE50090237A /* IntervalRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFCF1C08CBF60090237A /* IntervalRelationship.swift */; };
+		07B1EFDD1C08DDF40090237A /* DurationSpanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1EFD91C08DD7F0090237A /* DurationSpanning.swift */; };
 		07B3A12A1C03FE8100595939 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A1291C03FE8100595939 /* PitchClass.swift */; };
 		07B3A12E1C0411AA00595939 /* TempoMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */; };
 		07B3A1301C0413F300595939 /* RehearsalMarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */; };
@@ -259,6 +266,10 @@
 		07428C821C017A7C00A1E76B /* PitchVerticalityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchVerticalityTests.swift; sourceTree = "<group>"; };
 		07428C831C017A7C00A1E76B /* SubdivisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubdivisionTests.swift; sourceTree = "<group>"; };
 		0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		07B1EFCF1C08CBF60090237A /* IntervalRelationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalRelationship.swift; sourceTree = "<group>"; };
+		07B1EFD21C08CC600090237A /* DurationInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationInterval.swift; sourceTree = "<group>"; };
+		07B1EFD71C08D3C90090237A /* DurationIntervalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationIntervalTests.swift; sourceTree = "<group>"; };
+		07B1EFD91C08DD7F0090237A /* DurationSpanning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpanning.swift; sourceTree = "<group>"; };
 		07B3A1291C03FE8100595939 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarkingTests.swift; sourceTree = "<group>"; };
 		07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarkingTests.swift; sourceTree = "<group>"; };
@@ -350,6 +361,7 @@
 				07074D9B1BF967DC00BFC6FA /* SimpleRoot.swift */,
 				07074D9C1BF967DC00BFC6FA /* Stack.swift */,
 				0773437F1BFBFDBD00F571A2 /* StringExtensions.swift */,
+				07B1EFCF1C08CBF60090237A /* IntervalRelationship.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -361,6 +373,8 @@
 				07074DB51BF9685500BFC6FA /* Beats.swift */,
 				07074DB81BF9685500BFC6FA /* Duration.swift */,
 				07074DBB1BF9685500BFC6FA /* DurationSpan.swift */,
+				07B1EFD21C08CC600090237A /* DurationInterval.swift */,
+				07B1EFD91C08DD7F0090237A /* DurationSpanning.swift */,
 				07074DBE1BF9685500BFC6FA /* Measure.swift */,
 				07074DD31BF9685500BFC6FA /* Subdivision.swift */,
 				07074DD41BF9685500BFC6FA /* Tempo.swift */,
@@ -529,6 +543,7 @@
 				07428C741C017A7C00A1E76B /* DurationTests.swift */,
 				071470A81C02B70B00D847D3 /* MeasureTests.swift */,
 				072621791C03D08C001A665A /* DurationSpanTests.swift */,
+				07B1EFD71C08D3C90090237A /* DurationIntervalTests.swift */,
 				07B3A12D1C0411AA00595939 /* TempoMarkingTests.swift */,
 				07B3A12F1C0413F300595939 /* RehearsalMarkingTests.swift */,
 			);
@@ -745,11 +760,14 @@
 				071E9E641C00EE34008D1263 /* Tokenizer.swift in Sources */,
 				071E9EB61C00EE4D008D1263 /* Beats.swift in Sources */,
 				071E9E6D1C00EE39008D1263 /* ArrayExtensions.swift in Sources */,
+				07B1EFD31C08CC600090237A /* DurationInterval.swift in Sources */,
 				071E9E921C00EE47008D1263 /* PitchCoarse.swift in Sources */,
 				071E9E9F1C00EE47008D1263 /* PitchVerticality.swift in Sources */,
 				071E9E6E1C00EE39008D1263 /* Direction.swift in Sources */,
 				071E9E9A1C00EE47008D1263 /* PitchPolyphonySpeller.swift in Sources */,
+				07B1EFD01C08CBF60090237A /* IntervalRelationship.swift in Sources */,
 				071E9EBC1C00EE4D008D1263 /* TempoFunction.swift in Sources */,
+				07B1EFDA1C08DD7F0090237A /* DurationSpanning.swift in Sources */,
 				071E9E9B1C00EE47008D1263 /* PitchSpeller.swift in Sources */,
 				071E9E961C00EE47008D1263 /* PitchInterval.swift in Sources */,
 				071E9E901C00EE47008D1263 /* MIDI.swift in Sources */,
@@ -810,6 +828,7 @@
 				071470A71C02B04D00D847D3 /* InstrumentTypeTests.swift in Sources */,
 				07428C8A1C017A7C00A1E76B /* PitchDyadSpellerTests.swift in Sources */,
 				072621781C03CBE8001A665A /* DNMScoreModelTests.swift in Sources */,
+				07B1EFD81C08D3C90090237A /* DurationIntervalTests.swift in Sources */,
 				07428C851C017A7C00A1E76B /* DurationNodeTests.swift in Sources */,
 				07428C8B1C017A7C00A1E76B /* PitchDyadTests.swift in Sources */,
 				071FF1D21C029AEB0009CD19 /* TokenTests.swift in Sources */,
@@ -834,6 +853,7 @@
 				071E9E661C00EE35008D1263 /* Parser.swift in Sources */,
 				071E9E811C00EE3A008D1263 /* Stack.swift in Sources */,
 				071E9EB31C00EE48008D1263 /* PitchVerticalitySpeller.swift in Sources */,
+				07B1EFDC1C08DDE50090237A /* IntervalRelationship.swift in Sources */,
 				071E9E7C1C00EE3A008D1263 /* Node.swift in Sources */,
 				071E9E7F1C00EE3A008D1263 /* Random.swift in Sources */,
 				071E9E801C00EE3A008D1263 /* SimpleRoot.swift in Sources */,
@@ -846,6 +866,7 @@
 				071E9EAD1C00EE48008D1263 /* PitchPolyphonySpeller.swift in Sources */,
 				071E9EC51C00EE4D008D1263 /* TempoFunction.swift in Sources */,
 				071E9EAE1C00EE48008D1263 /* PitchSpeller.swift in Sources */,
+				07B1EFDD1C08DDF40090237A /* DurationSpanning.swift in Sources */,
 				071E9EA91C00EE48008D1263 /* PitchInterval.swift in Sources */,
 				071E9EA31C00EE48008D1263 /* MIDI.swift in Sources */,
 				071E9EA41C00EE48008D1263 /* Pitch.swift in Sources */,
@@ -878,6 +899,7 @@
 				071E9EC01C00EE4D008D1263 /* Duration.swift in Sources */,
 				071E9EC11C00EE4D008D1263 /* DurationSpan.swift in Sources */,
 				071E9EA81C00EE48008D1263 /* PitchFine.swift in Sources */,
+				07B1EFDB1C08DDE00090237A /* DurationInterval.swift in Sources */,
 				071E9E681C00EE35008D1263 /* TokenContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

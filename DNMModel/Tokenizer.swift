@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 /// Creates Tokens of incoming text, tailored for the DNMShorthand Text Input Language
 public class Tokenizer {
     
@@ -182,7 +183,7 @@ public class Tokenizer {
         }
     }
     
-    // MARK: Character Sets
+    // MARK: - Character Sets
     
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     private let newLineCharacterSet = NSCharacterSet.newlineCharacterSet()
@@ -194,7 +195,7 @@ public class Tokenizer {
         return makeInstrumentTypeCharacterSet()
     }
     
-    // MARK: Lines of text
+    // MARK: - Lines of text
     
     // All lines in the file
     private var lines: LineCollection = LineCollection()
@@ -464,7 +465,7 @@ public class Tokenizer {
     
     private func makeTokenContainerForCommand(command: TopLevelCommand,
         startingAtIndex startIndex: Int
-        ) -> TokenContainer
+    ) -> TokenContainer
     {
         let tokenContainer = TokenContainer(
             identifier: command.identifier,
@@ -474,39 +475,43 @@ public class Tokenizer {
         return tokenContainer
     }
     
+    // TODO: manage start index
     private func scanHeaderWithScanner(scanner: NSScanner,
         andContainer container: TokenContainer
-        ) -> [String : String]
+    )
     {
-        
-        let startIndex = scanner.scanLocation
-        
-        var string: NSString?
-        var dictionary: [String : String] = [:]
+        var key: String?
+        var value: String?
+ 
+        let startIndex = scanner.scanLocation + lineStartIndex + 1
         if scanner.string.characters.contains(Character(":")) {
-            
+
             // get key
-            if scanner.scanUpToString(":", intoString: &string) {
-                
-                let key = string as! String
+            var str: NSString?
+            if scanner.scanUpToString(":", intoString: &str) {
+                key = str as? String
                 
                 // brush past the ":"
                 scanner.scanLocation++
                 
+                // set startIndex here
+                // get value
                 let set = NSCharacterSet.newlineCharacterSet()
-                scanner.scanUpToCharactersFromSet(set, intoString: &string)
-                if let string = string {
-                    let value = string as String
-                    dictionary[key] = value
-                }
+                scanner.scanUpToCharactersFromSet(set, intoString: &str)
+                value = str as? String
             }
         }
         
-        if dictionary.count == 0 {
-            scanner.scanLocation = startIndex
-            return [:]
-        } else {
-            return dictionary
+        // if key and value are valid, add tokens
+        if let key = key, value = value {
+            let keyToken = TokenString(
+                identifier: "MetadataKey", value: key, startIndex: startIndex
+            )
+            let valueToken = TokenString(
+                identifier: "MetadataValue", value: value, startIndex: startIndex
+            )
+            container.addToken(keyToken)
+            container.addToken(valueToken)
         }
     }
     
@@ -527,7 +532,7 @@ public class Tokenizer {
             }
         }
         
-        let startIndex = scanner.scanLocation
+        let startIndex = scanner.scanLocation + lineStartIndex + 1
         
         var string: NSString?
         if scanner.scanString("P:", intoString: &string) {
@@ -535,7 +540,7 @@ public class Tokenizer {
             let performerDeclarationTokenContainer = TokenContainer(
                 identifier: "PerformerDeclaration",
                 openingValue: "P:",
-                startIndex: startIndex + lineStartIndex
+                startIndex: startIndex
             )
             
             var performerID: String
