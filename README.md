@@ -31,7 +31,7 @@ N.B.: Richer metadata to be added over time (Composer, Dates, Ensembles, notes f
 
 ####Declare Performers
 
-Use the `P:` command, followed by an alphanumeric `String` to declare a the `PerformerID` for a `Performer` (a human that does things). This `PerformerID` will be used within the text file to declare who is performing what musical information.
+Use the `P:` command, followed by an alphanumeric `String` to declare the `PerformerID` for a `Performer` (a human that does things). This `PerformerID` will be used within the text file to declare who is performing what musical information.
 
 For example, declare someone who will go by the ID `VN`.
 ```
