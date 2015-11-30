@@ -19,7 +19,6 @@ public protocol DurationSpanning {
 
 extension DurationSpanning {
 
-    // default implementation
     public static func rangeFromArray<T: DurationSpanning>(array: [T],
         withinDurationInterval durationInterval: DurationInterval
     ) throws -> [T]

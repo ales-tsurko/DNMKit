@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-// Consider making this a UIViewController subclass
+// TODO: Refactor this to ScoreViewController (in-process: 2015-11-29)
 public class Environment: UIView {
     
     public var viewSelector: RadioGroupPanelVertical!
@@ -68,9 +68,8 @@ public class Environment: UIView {
     
     public func build() {
         createViews()
-        goToViewWithID("omni") // set default view
+        goToViewWithID("omni")
         goToFirstPage()
-        //addPageControlButtons()
     }
     
     public func createViews() {
@@ -180,7 +179,7 @@ public class Environment: UIView {
         addSubview(previousPageButton)
     }
     
-    // Create SystemManager (better name)
+    // Create SystemManager (get better name)
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
         for measure in measures { print(measure) }
@@ -232,21 +231,6 @@ public class Environment: UIView {
             catch {
                 print("could not create measure range: \(error)")
             }
-            
-            /*
-            if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
-            print("_measureRange: \(_measureRange)")
-            }
-            */
-            
-            /*
-            if let measureRange = Measure.rangeFromMeasures(measures,
-            startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
-            )
-            {
-            
-            }
-            */
         }
         
         // PRELIMINARY BUILD
@@ -276,7 +260,13 @@ public class Environment: UIView {
         return systems
     }
     
+    
+    
+    // ----------------------------------------------------------------------------------------
+    // now, use rehearsalMarking.rangeWithArray as part of DurationSpanning protocol
+    
     // get rehearsalMarkings in DurationInterval - manage within System!
+    // clean up and gtfo
     private func manageRehearsalMarkingsForSystem(system: System) {
         for rehearsalMarking in rehearsalMarkings {
             if rehearsalMarking.offsetDuration >= system.offsetDuration &&
@@ -295,7 +285,8 @@ public class Environment: UIView {
         }
     }
     
-    // get tempo markings in DurationInterval - manage within System!
+    // use tempoMarking.rangeWithArray as part of DurationSpanning protocol
+    // clean up and the gtfo
     private func manageTempoMarkingsForSystem(system: System) {
         for tempoMarking in tempoMarkings {
             if tempoMarking.offsetDuration >= system.offsetDuration &&
@@ -304,10 +295,17 @@ public class Environment: UIView {
                 let durationFromSystemStart = tempoMarking.offsetDuration - system.offsetDuration
                 let x = durationFromSystemStart.width(beatWidth: beatWidth) + system.infoStartX
                 
-                system.addTempoMarkingWithValue(tempoMarking.value, andSubdivisionValue: tempoMarking.subdivisionValue, atX: x)
+                system.addTempoMarkingWithValue(tempoMarking.value,
+                    andSubdivisionValue: tempoMarking.subdivisionValue,
+                    atX: x
+                )
             }
         }
     }
+    
+    // ----------------------------------------------------------------------------------------
+    
+    // ----------------------------------------------------------------------------------------
     
     // make DMLigature (DynamicMarkingSpanner at some point) Manager class, this is out of hand
     public func manageDMLigaturesForSystems(systems: [System]) {
@@ -439,4 +437,6 @@ public class Environment: UIView {
             }
         }
     }
+    
+    // ----------------------------------------------------------------------------------------
 }

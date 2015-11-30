@@ -11,7 +11,7 @@ import Foundation
 /**
 Structure indicating a establishment of a rehearsal section
 */
-public struct RehearsalMarking {
+public struct RehearsalMarking: DurationSpanning {
     
     /// The index of this RehearsalMarking
     public var index: Int = 0
@@ -21,6 +21,10 @@ public struct RehearsalMarking {
     
     /// The Duration that this RehearsalMarking is offset from the beginning of the piece
     public var offsetDuration: Duration = DurationZero
+    
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: DurationZero, startDuration: offsetDuration)
+    }
     
     /**
     Create a RehearsalMarking with the index, 
