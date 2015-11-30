@@ -118,7 +118,7 @@
 		07074F5C1BF96F6200BFC6FA /* PageControlButtonPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */; };
 		07074F5D1BF96F6200BFC6FA /* PageControlButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */; };
 		07074F5E1BF96F6200BFC6FA /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F481BF96F6200BFC6FA /* PageView.swift */; };
-		07074F5F1BF96F6200BFC6FA /* PerformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F491BF96F6200BFC6FA /* PerformerView.swift */; };
+		07074F5F1BF96F6200BFC6FA /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F491BF96F6200BFC6FA /* ScoreView.swift */; };
 		07074F601BF96F6200BFC6FA /* RadioGroupPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */; };
 		07074F611BF96F6200BFC6FA /* RadioGroupPanelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */; };
 		07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */; };
@@ -307,7 +307,7 @@
 		07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButtonPrevious.swift; sourceTree = "<group>"; };
 		07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButtonType.swift; sourceTree = "<group>"; };
 		07074F481BF96F6200BFC6FA /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
-		07074F491BF96F6200BFC6FA /* PerformerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformerView.swift; sourceTree = "<group>"; };
+		07074F491BF96F6200BFC6FA /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanel.swift; sourceTree = "<group>"; };
 		07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanelVertical.swift; sourceTree = "<group>"; };
 		07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionRectangle.swift; sourceTree = "<group>"; };
@@ -571,7 +571,7 @@
 				07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */,
 				07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */,
 				07074F481BF96F6200BFC6FA /* PageView.swift */,
-				07074F491BF96F6200BFC6FA /* PerformerView.swift */,
+				07074F491BF96F6200BFC6FA /* ScoreView.swift */,
 				07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */,
 				07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */,
 				07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */,
@@ -866,7 +866,7 @@
 				07074F2B1BF96D1D00BFC6FA /* TempoMarkingView.swift in Sources */,
 				07074EE91BF96D1D00BFC6FA /* BezierCurve.swift in Sources */,
 				07074F271BF96D1D00BFC6FA /* StemDirection.swift in Sources */,
-				07074F5F1BF96F6200BFC6FA /* PerformerView.swift in Sources */,
+				07074F5F1BF96F6200BFC6FA /* ScoreView.swift in Sources */,
 				0751EA061C091E59008693C2 /* DurationNodeStratumArranger.swift in Sources */,
 				07074F041BF96D1D00BFC6FA /* DynamicMarking.swift in Sources */,
 				07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */,

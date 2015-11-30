@@ -36,8 +36,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         build()
     }
-    
-    
+
     func build() {
         setupScoreViewTableView()
         createViews()
@@ -47,7 +46,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         for id in scoreViewIDs {
             
             // manage systems
-            
         }
     }
     

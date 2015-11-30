@@ -9,6 +9,8 @@
 import UIKit
 import DNMModel
 
+// THIS IS BEING REFACTORED INTO SYSTEMVIEW (UIVIEW): 2015-11-30
+
 /// A Musical System (container of a single line's worth of music)
 public class System: ViewNode, BuildPattern, DurationSpanning {
     
@@ -18,7 +20,6 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     
     /// String representation of System
     public override var description: String { get { return getDescription() } }
-    
     
     public var viewerID: String?
     
