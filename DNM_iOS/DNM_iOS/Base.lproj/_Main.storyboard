@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9y5-Cj-rQY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+>>>>>>> 14b22767b3fa31842e54fea413582ce3618c63e9
     </dependencies>
     <scenes>
         <!--MasterViewController-->
         <scene sceneID="DJM-7S-1oU">
             <objects>
+<<<<<<< HEAD
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DNM_iOS" customModuleProvider="target" sceneMemberID="viewController">
+=======
                 <viewController storyboardIdentifier="MasterViewController" title="MasterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9y5-Cj-rQY" customClass="MasterViewController" customModule="DNM_iOS" customModuleProvider="target" sceneMemberID="viewController">
+>>>>>>> 14b22767b3fa31842e54fea413582ce3618c63e9
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gEP-2p-2bT"/>
                         <viewControllerLayoutGuide type="bottom" id="Kd5-La-26H"/>
@@ -111,7 +122,7 @@
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oqp-XN-rxw" id="m1p-EN-a8R">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -211,7 +222,7 @@
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEc-lW-FOG" id="kKW-lt-QAl">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
