@@ -21,31 +21,62 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // integrate contexts of Environment into this
     var environment: Environment!
     
+    // MARK: - Score Views
+    
+    /// All ScoreViews organized by ID
     var scoreViewsByID: [String: ScoreView] = [:]
+    
+    /// All ScoreViewIDs (populates ScoreViewTableView)
     var scoreViewIDs: [String] = []
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    /// ScoreView currently displayed
+    var currentScoreView: ScoreView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // make good decisions re: UX and order of loading pages / views asynchrously
-        setupTableView()
-        // create views
+        build()
     }
     
-    func setupTableView() {
-        viewSelectorTableView.delegate = self
-        viewSelectorTableView.dataSource = self
+    
+    func build() {
+        setupScoreViewTableView()
+        createViews()
     }
     
-    func manageColorMode() {
-        view.backgroundColor = DNMColorManager.backgroundColor
+    func createViews() {
+        for id in scoreViewIDs {
+            
+            // manage systems
+            
+        }
+    }
+    
+    func showScoreViewWithID(id: String) {
+        if let scoreView = scoreViewsByID[id] {
+            removeCurrentScoreView()
+            
+            // insert subview below any ScoreViewController UIViews
+            view.insertSubview(scoreView, atIndex: 0)
+            
+            // set currentScoreView to this view
+            currentScoreView = scoreView
+            
+            // setFrame() // necessary
+        }
+    }
+    
+    private func removeCurrentScoreView() {
+        // remove currentView is necessary
+        if let currentScoreView = currentScoreView {
+            currentScoreView.removeFromSuperview()
+        }
+    }
+    
+    func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
+        let iIDsByPIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
         
-        let bgView = UIView()
-        bgView.backgroundColor = DNMColorManager.backgroundColor
-        viewSelectorTableView.backgroundView = bgView
+        // add IDs for each Performer (ScoreView), as well as the full score ("omni")
+        scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
     }
     
     func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
@@ -58,17 +89,27 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         environment.build()
         view.insertSubview(environment, atIndex: 0)
         
-        // createViewIDs
-        scoreViewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map {
-            $0.0
-        } + ["omni"]
+        // temp
+        populateScoreViewIDsWithScoreModel(scoreModel)
+
         viewSelectorTableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Setup
+    
+    func setupScoreViewTableView() {
+        viewSelectorTableView.delegate = self
+        viewSelectorTableView.dataSource = self
     }
+    
+    func manageColorMode() {
+        view.backgroundColor = DNMColorManager.backgroundColor
+        
+        let bgView = UIView()
+        bgView.backgroundColor = DNMColorManager.backgroundColor
+        viewSelectorTableView.backgroundView = bgView
+    }
+    
     
     func goToNextPage() {
         print("go to next page")
@@ -90,9 +131,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - View Selector UITableViewDelegate
-    
-    
-    // MARK: - View Selector UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count
@@ -130,6 +168,11 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     /*
