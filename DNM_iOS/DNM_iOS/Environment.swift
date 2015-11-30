@@ -35,7 +35,7 @@ public class Environment: UIView {
     public var durationNodes: [DurationNode] = []
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
-    >()
+        >()
     
     
     // MARK: - View Components
@@ -50,12 +50,12 @@ public class Environment: UIView {
     
     // get rid of this
     public var page_pad: CGFloat = 25
-
+    
     public var viewIDs: [String] = []
     
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
-
+        
         self.measures = scoreModel.measures
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
@@ -70,7 +70,7 @@ public class Environment: UIView {
         createViews()
         goToViewWithID("omni") // set default view
         goToFirstPage()
-        addPageControlButtons()
+        //addPageControlButtons()
     }
     
     public func createViews() {
@@ -140,7 +140,7 @@ public class Environment: UIView {
         currentView?.goToPreviousPage()
     }
     
-
+    
     public func addViewSelector() {
         let w: CGFloat = 50
         let viewSelector = ViewSelector(
@@ -180,6 +180,7 @@ public class Environment: UIView {
         addSubview(previousPageButton)
     }
     
+    // Create SystemManager (better name)
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
         for measure in measures { print(measure) }
@@ -204,7 +205,7 @@ public class Environment: UIView {
                 let measureRange = try Measure.rangeFromArray(measures,
                     withinDurationInterval: interval
                 )
-
+                
                 // start System init: clean up
                 let system = System(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
@@ -226,24 +227,24 @@ public class Environment: UIView {
                         accumDuration += system.totalDuration
                     }
                 }
-
+                
             }
             catch {
                 print("could not create measure range: \(error)")
             }
-
+            
             /*
             if let _measureRange = Measure._rangeFromMeasures(measures, withinDurationInterval: interval) {
-                print("_measureRange: \(_measureRange)")
+            print("_measureRange: \(_measureRange)")
             }
             */
             
             /*
             if let measureRange = Measure.rangeFromMeasures(measures,
-                startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
+            startingAtIndex: measureIndex, constrainedByDuration: maximumDuration
             )
             {
-                
+            
             }
             */
         }
@@ -253,7 +254,6 @@ public class Environment: UIView {
         
         // ADD FRAYED LIGATURES, ADD DMNODES IF NECESSARY
         manageDMLigaturesForSystems(systems)
-        manageSlursForSystems(systems)
         
         // COMPLETE BUILD
         for system in systems {
@@ -276,19 +276,7 @@ public class Environment: UIView {
         return systems
     }
     
-    private func makeMeasureViewsWithMeasures(measures: [Measure]) -> [MeasureView] {
-        var measureViews: [MeasureView] = []
-        // for measure in measures { let measureView = MeasureView(measure: measure) }
-        
-        for measure in measures {
-            let duration = measure.duration
-            let measureView = MeasureView(duration: duration)
-            measureView.hasTimeSignature = measure.hasTimeSignature
-            measureViews.append(measureView)
-        }
-        return measureViews
-    }
-    
+    // get rehearsalMarkings in DurationInterval - manage within System!
     private func manageRehearsalMarkingsForSystem(system: System) {
         for rehearsalMarking in rehearsalMarkings {
             if rehearsalMarking.offsetDuration >= system.offsetDuration &&
@@ -307,6 +295,7 @@ public class Environment: UIView {
         }
     }
     
+    // get tempo markings in DurationInterval - manage within System!
     private func manageTempoMarkingsForSystem(system: System) {
         for tempoMarking in tempoMarkings {
             if tempoMarking.offsetDuration >= system.offsetDuration &&
@@ -320,13 +309,7 @@ public class Environment: UIView {
         }
     }
     
-    public func manageSlursForSystems(systems: [System]) {
-        struct SlurSpan {
-            var systemStartIndex: Int?
-            var systemStopIndex: Int?
-        }
-    }
-    
+    // make DMLigature (DynamicMarkingSpanner at some point) Manager class, this is out of hand
     public func manageDMLigaturesForSystems(systems: [System]) {
         
         // encapsulate: create ligature spans
@@ -358,7 +341,7 @@ public class Environment: UIView {
         }
         
         var dmLigatureSpansByID: [String : [DMLigatureSpan]] = [:]
-
+        
         for (s, system) in systems.enumerate() {
             for (id, dmNode) in system.dmNodeByID {
                 for ligature in dmNode.ligatures {

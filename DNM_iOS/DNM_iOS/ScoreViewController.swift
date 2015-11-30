@@ -10,7 +10,7 @@ import UIKit
 import DNMModel
 
 class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     // MARK: - UI
     
     @IBOutlet weak var previousPageButton: UIButton!
@@ -37,27 +37,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func setupTableView() {
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
-        //resizeViewSelectorTableViewIfNecessary()
-    }
-    
-    // generalize this: tableView.resizeToFitContents() ?
-    func resizeViewSelectorTableViewIfNecessary() {
-        print("rezie view selector")
-        dispatch_async(dispatch_get_main_queue()) {
-            var frame = self.viewSelectorTableView.frame
-            let height = self.viewSelectorTableView.contentSize.height
-            
-            print("contentsHeight: \(height); frameheight: \(frame.height)")
-            if height <= frame.height {
-                frame.size.height = height
-                self.viewSelectorTableView.frame = frame
-                self.viewSelectorTableView.scrollEnabled = false
-            } else {
-                self.viewSelectorTableView.scrollEnabled = true
-            }
-
-            print("actual frame: \(self.viewSelectorTableView.frame)")
-        }
     }
     
     func manageColorMode() {
@@ -80,11 +59,9 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // createViewIDs
         viewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
-        
         viewSelectorTableView.reloadData()
-        resizeViewSelectorTableViewIfNecessary() // wtf!
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -127,7 +104,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCellWithIdentifier("scoreSelectorCell",
             forIndexPath: indexPath
-        ) as! ScoreSelectorTableViewCell
+            ) as! ScoreSelectorTableViewCell
         
         cell.textLabel?.text = viewIDs[indexPath.row]
         
@@ -154,12 +131,12 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
