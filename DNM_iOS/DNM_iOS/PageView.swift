@@ -11,10 +11,10 @@ import UIKit
 public class PageView: UIView {
     
     public var page: Page!
-    public var performerView: PerformerView!
+    public var performerView: ScoreView!
     public var systemViews: [SystemView] = []
     
-    public init(page: Page, systemViews: [SystemView], performerView: PerformerView) {
+    public init(page: Page, systemViews: [SystemView], performerView: ScoreView) {
         self.page = page
         self.performerView = performerView
         self.systemViews = systemViews

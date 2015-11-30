@@ -17,9 +17,9 @@ public class Environment: UIView {
     
     // MARK: - Views
     
-    public var views: [PerformerView] = []
-    public var viewByID: [String: PerformerView] = [:]
-    public var currentView: PerformerView?
+    public var views: [ScoreView] = []
+    public var viewByID: [String: ScoreView] = [:]
+    public var currentView: ScoreView?
     
     // MARK: - Pages
     
@@ -82,7 +82,7 @@ public class Environment: UIView {
             let systems = makeSystemsWithViewerID(id)
             
             // Create a Performer(Interface)View, passing ALL Systems!
-            let view = PerformerView(id: id, systems: systems)
+            let view = ScoreView(id: id, systems: systems)
             
             viewByID[id] = view
             views.append(view)

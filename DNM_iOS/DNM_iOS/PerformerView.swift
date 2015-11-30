@@ -1,5 +1,5 @@
 //
-//  PerformerView.swift
+//  ScoreView.swift
 //  denm_view
 //
 //  Created by James Bean on 10/2/15.
@@ -9,7 +9,7 @@
 import UIKit
 
 // Rename as PerformerInterfaceView
-public class PerformerView: UIView {
+public class ScoreView: UIView {
 
     public var id: String = ""
     public var pages: [Page] = []
