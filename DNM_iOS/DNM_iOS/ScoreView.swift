@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Rename as PerformerInterfaceView
+// TODO: THIS WILL BE THE OLD SCOREVIEW, being refactored into _ScoreView.swift (2015-11-30)
 public class ScoreView: UIView {
 
     public var id: String = ""
@@ -87,12 +87,10 @@ public class ScoreView: UIView {
             let systemRange = System.rangeFromSystems(systems,
                 startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
             )
-        
-            
+
             // clean up initialization
             let page = Page(systems: systemRange)
             page.build()
-            
             
             // make contingency for too-big-a-system
             let lastSystemIndex = systems.indexOfObject(page.systems.last!)!

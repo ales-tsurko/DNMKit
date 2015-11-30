@@ -149,6 +149,7 @@
 		07CC12B11C07EB250006A232 /* ScoreSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */; };
 		07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */; };
 		07CEFC981C0CF5370024308F /* _System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEFC971C0CF5370024308F /* _System.swift */; };
+		07CEFC9C1C0D05350024308F /* _ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEFC9B1C0D05350024308F /* _ScoreView.swift */; };
 		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
 		2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -341,6 +342,7 @@
 		07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		07CEFC971C0CF5370024308F /* _System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _System.swift; sourceTree = "<group>"; };
+		07CEFC9B1C0D05350024308F /* _ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ScoreView.swift; sourceTree = "<group>"; };
 		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -572,6 +574,7 @@
 				07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */,
 				07074F481BF96F6200BFC6FA /* PageView.swift */,
 				07074F491BF96F6200BFC6FA /* ScoreView.swift */,
+				07CEFC9B1C0D05350024308F /* _ScoreView.swift */,
 				07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */,
 				07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */,
 				07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */,
@@ -885,6 +888,7 @@
 				07074EED1BF96D1D00BFC6FA /* BezierCurveStyler.swift in Sources */,
 				07074F011BF96D1D00BFC6FA /* DurationalExtension.swift in Sources */,
 				07074F171BF96D1D00BFC6FA /* MeasureNumber.swift in Sources */,
+				07CEFC9C1C0D05350024308F /* _ScoreView.swift in Sources */,
 				07074F121BF96D1D00BFC6FA /* InstrumentEvent.swift in Sources */,
 				07074F051BF96D1D00BFC6FA /* Graph.swift in Sources */,
 				07074EE31BF96D1D00BFC6FA /* Barline.swift in Sources */,
