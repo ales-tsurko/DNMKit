@@ -21,7 +21,8 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // integrate contexts of Environment into this
     var environment: Environment!
     
-    var viewIDs: [String] = []
+    var scoreViewsByID: [String: ScoreView] = [:]
+    var scoreViewIDs: [String] = []
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -58,7 +59,9 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.insertSubview(environment, atIndex: 0)
         
         // createViewIDs
-        viewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
+        scoreViewIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.map {
+            $0.0
+        } + ["omni"]
         viewSelectorTableView.reloadData()
     }
     
@@ -92,7 +95,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - View Selector UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewIDs.count
+        return scoreViewIDs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -106,7 +109,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             forIndexPath: indexPath
             ) as! ScoreSelectorTableViewCell
         
-        cell.textLabel?.text = viewIDs[indexPath.row]
+        cell.textLabel?.text = scoreViewIDs[indexPath.row]
         
         // SET COLOR IF VIEWER ID, or OMNI
         

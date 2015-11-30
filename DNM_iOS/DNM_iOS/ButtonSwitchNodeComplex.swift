@@ -30,7 +30,7 @@ public class ButtonSwitchNodeComplex: UIView {
     private let buttonSwitchNode_width: CGFloat = 75
     
     // test
-    public var systemView: SystemView?
+    public var systemView: _SystemView?
     public var componentTypesShownByID: [String : [String]] {
         get {
             var componentTypesShownByID: [String: [String]] = [:]

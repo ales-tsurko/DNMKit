@@ -23,7 +23,7 @@ public class ScoreView: UIView {
     public var systems: [System] = []
     
     /// All SystemViews for a given piece of music
-    public var systemViews: [SystemView] = []
+    public var systemViews: [_SystemView] = []
 
     public init(id: String, systems: [System]) {
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -58,10 +58,10 @@ public class ScoreView: UIView {
         setFrame()
     }
     
-    public func makeSystemViewsForSystems(systems: [System]) -> [SystemView] {
-        var systemViews: [SystemView] = []
+    public func makeSystemViewsForSystems(systems: [System]) -> [_SystemView] {
+        var systemViews: [_SystemView] = []
         for system in systems {
-            let systemView = SystemView(system: system)
+            let systemView = _SystemView(system: system)
             systemViews.append(systemView)
         }
         return systemViews
@@ -97,7 +97,7 @@ public class ScoreView: UIView {
             // make contingency for too-big-a-system
             let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
             
-            var systemViewsInRange: [SystemView] = []
+            var systemViewsInRange: [_SystemView] = []
             for sv in systemIndex...lastSystemIndex {
                 let systemView = systemViews[sv]
                 systemViewsInRange.append(systemView)

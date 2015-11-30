@@ -1,5 +1,5 @@
 //
-//  SystemView.swift
+//  SystemUIView.swift
 //  denm_view
 //
 //  Created by James Bean on 10/2/15.
@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-public class SystemView: UIView {
+public class _SystemView: UIView {
     
     public var system: System!
     public var pageView: PageView!

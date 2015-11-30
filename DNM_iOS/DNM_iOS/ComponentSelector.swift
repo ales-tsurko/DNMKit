@@ -132,7 +132,7 @@ public class ComponentSelector: UIView {
             }
         }
         
-        //(target as? SystemView)?.stateHasChangedFromComponentSelector(self)
+        //(target as? SystemUIView)?.stateHasChangedFromComponentSelector(self)
     }
     
     
