@@ -55,7 +55,6 @@ public class Environment: UIView {
     
     public init(scoreModel: DNMScoreModel) {
         super.init(frame: CGRectZero)
-        
         self.measures = scoreModel.measures
         self.tempoMarkings = scoreModel.tempoMarkings
         self.rehearsalMarkings = scoreModel.rehearsalMarkings
@@ -93,10 +92,7 @@ public class Environment: UIView {
     // did select cell at path
     public func goToViewWithID(id: String) {
         if let view = viewByID[id] {
-            
-            // Remove currentView
             if let currentView = currentView { currentView.removeFromSuperview() }
-            
             insertSubview(view, atIndex: 0) // keep it under any other UI stuff (ViewSelector)
             currentView = view
             setFrame()
@@ -139,7 +135,7 @@ public class Environment: UIView {
         currentView?.goToPreviousPage()
     }
     
-    
+    /*
     public func addViewSelector() {
         let w: CGFloat = 50
         let viewSelector = ViewSelector(
@@ -149,7 +145,9 @@ public class Environment: UIView {
         viewSelector.layer.position.x = frame.width - (0.5 * viewSelector.frame.width)
         addSubview(viewSelector)
     }
+    */
     
+    /*
     public func addPageControlButtons() {
         addPageControlButtonPrevious()
         addPageControlButtonNext()
@@ -178,6 +176,7 @@ public class Environment: UIView {
         )
         addSubview(previousPageButton)
     }
+    */
     
     // Create SystemManager (get better name)
     public func makeSystemsWithViewerID(id: String) -> [System] {
@@ -226,7 +225,6 @@ public class Environment: UIView {
                         accumDuration += system.totalDuration
                     }
                 }
-                
             }
             catch {
                 print("could not create measure range: \(error)")
@@ -259,8 +257,6 @@ public class Environment: UIView {
         }
         return systems
     }
-    
-    
     
     // ----------------------------------------------------------------------------------------
     // now, use rehearsalMarking.rangeWithArray as part of DurationSpanning protocol
@@ -347,8 +343,10 @@ public class Environment: UIView {
                     if ligature.initialDynamicMarkingIntValue == nil {
                         if let finalIntValue = ligature.finalDynamicMarkingIntValue {
                             if dmLigatureSpansByID[id] == nil {
+                                
                                 let dmLigatureSpan = DMLigatureSpan(
-                                    systemStopIndex: s, stopIntValue: finalIntValue
+                                    systemStopIndex: s,
+                                    stopIntValue: finalIntValue
                                 )
                                 dmLigatureSpansByID[id] = [dmLigatureSpan]
                             }
@@ -437,6 +435,5 @@ public class Environment: UIView {
             }
         }
     }
-    
     // ----------------------------------------------------------------------------------------
 }
