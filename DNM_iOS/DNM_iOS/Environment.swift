@@ -37,7 +37,6 @@ public class Environment: UIView {
         String, OrderedDictionary<String, InstrumentType>
         >()
     
-    
     // MARK: - View Components
     
     public var systems: [System] = []

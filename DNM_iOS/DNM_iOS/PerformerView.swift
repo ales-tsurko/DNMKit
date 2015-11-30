@@ -103,7 +103,7 @@ public class ScoreView: UIView {
                 systemViewsInRange.append(systemView)
             }
             
-            let pageView = PageView(page: page, systemViews: systemViewsInRange, performerView: self)
+            let pageView = PageView(page: page, systemViews: systemViewsInRange, scoreView: self)
             pageViews.append(pageView)
             
             systemIndex = lastSystemIndex + 1
