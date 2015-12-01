@@ -113,12 +113,10 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func didPressPreviousButton(sender: UIButton) {
-        print("did press prev button")
         goToPreviousPage()
     }
     
     @IBAction func didPressNextButton(sender: UIButton) {
-        print("did press next button")
         goToNextPage()
     }
     
@@ -128,6 +126,13 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         didSelectRowAtIndexPath indexPath: NSIndexPath
     )
     {
+        
+        if let scoreView = tableView.cellForRowAtIndexPath(indexPath)
+            as? ScoreSelectorTableViewCell
+        {
+            
+        }
+        // TODO: decouple representation and reference: in ScoreSelectorTableViewCell
         if let id = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text {
             showScoreViewWithID(id)
         }
@@ -137,6 +142,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         return scoreViewIDs.count
     }
     
+    // TODO: CLEANUP
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
@@ -148,8 +154,10 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCellWithIdentifier("scoreSelectorCell",
             forIndexPath: indexPath
-            ) as! ScoreSelectorTableViewCell
+        ) as! ScoreSelectorTableViewCell
         
+        // set scoreView of cell
+        cell.identifier = scoreViewIDs[indexPath.row]
         cell.textLabel?.text = scoreViewIDs[indexPath.row]
         
         // SET COLOR IF VIEWER ID, or OMNI

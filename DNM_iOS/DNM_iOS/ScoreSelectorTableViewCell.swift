@@ -9,17 +9,18 @@
 import UIKit
 
 // Change to ScoreSelectorTableViewCell
-class ScoreSelectorTableViewCell: UITableViewCell {
+public class ScoreSelectorTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
+    public var identifier: String?
+    
+    public override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    public override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-
 }
