@@ -110,6 +110,7 @@ public class _ScoreView: UIView {
         self.pages = pages
     }
 
+    // MARK: - Page Navigation
     
     public func goToPageAtIndex(index: Int) {
         //print("go to page at index: \(index)")

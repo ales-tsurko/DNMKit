@@ -710,6 +710,7 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
         createIDsHiddenByComponentType()
     }
     
+    
     private func addPerfomerComponentTypeToComponentTypesByID() {
         for (id, componentTypes) in componentTypesByID {
             if !componentTypes.contains("performer") {
@@ -718,6 +719,7 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
         }
     }
     
+    // user .filter { }
     private func createIDsByComponentType() {
         idsByComponentType = [:]
         for (id, componentTypes) in componentTypesByID {
@@ -729,7 +731,8 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
             }
         }
     }
-    
+
+    // use .filter { }
     private func createIDsShownByComponentType() {
         idsShownByComponentType = [:]
         for (id, componentTypesShown) in componentTypesShownByID {
@@ -1153,6 +1156,12 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
             instrumentEventHandler.decorateInstrumentEvent()
         }
     }
+
+    private func getStemDirectionAndGForPID(pID: String) -> (StemDirection, CGFloat) {
+        let s = getStemDirectionForPID(pID)
+        let g = getGForPID(pID)
+        return (s, g)
+    }
     
     private func getStemDirectionForPID(pID: String) -> StemDirection {
         return pID == viewerID ? .Up : .Down
@@ -1162,12 +1171,7 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
         return pID == viewerID ? self.g : 0.75 * self.g
     }
     
-    private func getStemDirectionAndGForPID(pID: String) -> (StemDirection, CGFloat) {
-        let s = getStemDirectionForPID(pID)
-        let g = getGForPID(pID)
-        return (s, g)
-    }
-    
+    // get this out of here
     private func createInstrumentEventHandlers() {
         var instrumentEventHandlers: [InstrumentEventHandler] = []
         
@@ -1293,111 +1297,10 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
     // Encapsulate in BGStratumFactory or something
     private func createBGStrata() {
         
-        /*
-        func getPIDsFromStratum(stratum: [DurationNode]) -> [String] {
-            var pids: [String] = []
-            for dn in stratum { pids += getPIDsFromDurationNode(dn) }
-            return pids
-        }
-        
-        func getPIDsFromDurationNode(durationNode: DurationNode) -> [String] {
-            var pids: [String] = []
-            for (pid, _) in durationNode.instrumentIDsByPerformerID { pids.append(pid) }
-            return pids
-        }
-        
-        func stratum(stratum: [DurationNode],
-            overlapsWithStratum otherStratum: [DurationNode]
-        ) -> Bool
-        {
-            var overlaps: Bool = false
-            for dn0 in stratum {
-                for dn1 in otherStratum {
-                    let dyad = DurationNodeDyad(durationNode0: dn0, durationNode1: dn1)
-                    if dyad.relationship == .Overlapping { overlaps = true }
-                }
-            }
-            return overlaps
-        }
-        
-        func getStratumClumps() -> [[DurationNode]] {
-
-            // First pass: get initial stratum clumps
-            var stratumClumps: [[DurationNode]] = []
-            durationNodeLoop: for durationNode in durationNodes {
-
-                // Create initial stratum if none yet
-                if stratumClumps.count == 0 {
-                    stratumClumps = [[durationNode]]
-                    continue durationNodeLoop
-                }
-                
-                // Find if we can clump the remaining durationNodes onto a stratum
-                var matchFound: Bool = false
-                stratumLoop: for s in 0..<stratumClumps.count {
-                    
-                    let durationIntervals = stratumClumps[s].map { $0.durationInterval }
-                    
-                    let stratum_durationInterval = DurationInterval.unionWithDurationIntervals(
-                        durationIntervals
-                    )
-                    
-                    let relationship: IntervalRelationship = durationNode.durationInterval.relationshipToDurationInterval(stratum_durationInterval)
-
-                    if relationship == .Meets {
-                        var stratum = stratumClumps[s]
-                        let stratum_pids = getPIDsFromStratum(stratum)
-                        let dn_pids = getPIDsFromDurationNode(durationNode)
-                        for pid in dn_pids {
-                            if stratum_pids.contains(pid) {
-                                stratumClumps.removeAtIndex(s)
-                                stratum.append(durationNode)
-                                stratumClumps.insert(stratum, atIndex: s)
-                                matchFound = true
-                                break stratumLoop
-                            }
-                        }
-                    }
-                }
-                if !matchFound { stratumClumps.append([durationNode]) }
-            }
-            return stratumClumps
-        }
-        
-        func makeStrataWithDisparateStratumClumps(var stratumClumps: [[DurationNode]])
-            -> [[DurationNode]]
-        {
-            var s_index0: Int = 0
-            while s_index0 < stratumClumps.count {
-                var s_index1: Int = 0
-                while s_index1 < stratumClumps.count {
-                    let s0 = stratumClumps[s_index0]
-                    let s1 = stratumClumps[s_index1]
-                    if !stratum(s0, overlapsWithStratum: s1) {
-                        let s0_pids: [String] = getPIDsFromStratum(s0).unique()
-                        let s1_pids: [String] = getPIDsFromStratum(s1).unique()
-                        if s0_pids == s1_pids {
-                            let concatenated = s0 + s1
-                            stratumClumps.removeAtIndex(s_index0)
-                            stratumClumps.removeAtIndex(s_index1 - 1) // compensate for above
-                            stratumClumps.insert(concatenated, atIndex: 0)
-                            s_index0 = 0
-                            s_index1 = 0
-                        }
-                        else { s_index1++ } // how do i clump these together?
-                    }
-                    else { s_index1++ } // see above!
-                }
-                s_index0++
-            }
-            return stratumClumps
-        }
-        */
-        
+        // get this out of here
         func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]])
             -> [BGStratum]
         {
-            
             // temp
             func performerIDsInStratum(stratum: DurationNodeStratum) -> [String] {
                 var performerIDs: [String] = []
@@ -1446,16 +1349,9 @@ public class SystemView: ViewNode, BuildPattern, DurationSpanning {
             return bgStrata
         }
 
-        /*
-        let stratumClumps = getStratumClumps()
-        let strata_model = makeStrataWithDisparateStratumClumps(stratumClumps)
-        */
-        
         let durationNodeArranger = DurationNodeStratumArranger(durationNodes: durationNodes)
-        let durationNodeStrata = durationNodeArranger.makeDurationNodeStrata(
-        )
+        let durationNodeStrata = durationNodeArranger.makeDurationNodeStrata()
         let bgStrata = makeBGStrataFromDurationNodeStrata(durationNodeStrata)
-        
         
         // encapsulate: set initial bgStratum "rhythm" by id
         for bgStratum in bgStrata {
