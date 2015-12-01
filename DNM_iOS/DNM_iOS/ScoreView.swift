@@ -1,5 +1,5 @@
 //
-//  ScoreViewNew.swift
+//  ScoreView.swift
 //  DNM_iOS
 //
 //  Created by James Bean on 11/30/15.
@@ -10,7 +10,7 @@ import UIKit
 import DNMModel
 
 // TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from _ScoreView.swift (2015-11-30)
-public class ScoreViewNew: UIView {
+public class ScoreView: UIView {
 
     public var viewerID: String?
     public var scoreModel: DNMScoreModel!
@@ -27,7 +27,7 @@ public class ScoreViewNew: UIView {
     public var currentPageIndex: Int? { return getCurrentPageIndex() }
     
     /**
-    Create a _ScoreView with an identifier and scoreModel
+    Create a ScoreView with an identifier and scoreModel
 
     - parameter identifier: String with identifier of Performer ViewerID
     - parameter scoreModel: DNMScoreModel

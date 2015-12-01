@@ -24,14 +24,14 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Score Views
     
-    /// All ScoreViews organized by ID; TODO: change ScoreViewNew to _ScoreView once refactored
-    var scoreViewsByID: [String: ScoreViewNew] = [:]
+    /// All ScoreViews organized by ID; TODO: change ScoreView to _ScoreView once refactored
+    var scoreViewsByID: [String: ScoreView] = [:]
     
     /// All ScoreViewIDs (populates ScoreViewTableView)
     var scoreViewIDs: [String] = []
     
-    /// _ScoreView currently displayed; TODO: change ScoreViewNew to _ScoreView once refactored
-    var currentScoreView: ScoreViewNew?
+    /// _ScoreView currently displayed; TODO: change ScoreView to _ScoreView once refactored
+    var currentScoreView: ScoreView?
     
     /// Model of musical work
     var scoreModel: DNMScoreModel!
@@ -72,10 +72,10 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // ----------------------------------------------------------------------------------------
     
     // Creates and stores a _ScoreView for each scoreViewID; 
-    // TODO: change ScoreViewNew to _ScoreView once refactored
+    // TODO: change ScoreView to _ScoreView once refactored
     func createScoreViews() {
         for viewerID in scoreViewIDs {
-            let scoreView = ScoreViewNew(scoreModel: scoreModel, viewerID: viewerID)
+            let scoreView = ScoreView(scoreModel: scoreModel, viewerID: viewerID)
             scoreViewsByID[viewerID] = scoreView
         }
     }

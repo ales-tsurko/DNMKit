@@ -8,7 +8,7 @@
 
 import UIKit
 
-// TODO: THIS WILL BE THE OLD SCOREVIEW, being refactored into ScoreViewNew.swift (2015-11-30)
+// TODO: THIS WILL BE THE OLD SCOREVIEW, being refactored into ScoreView.swift (2015-11-30)
 public class _ScoreView: UIView {
 
     public var id: String = ""

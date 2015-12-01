@@ -46,7 +46,7 @@ public struct System {
                     measureRange.map { $0.durationInterval}
                 )
                 
-                // attempt to get range of duration nodes within duration interval for SystemView
+                // attempt to get range of duration nodes within duration interval for System
                 do {
                     let durationNodeRange = try DurationNode.rangeFromArray(
                         scoreModel.durationNodes,
