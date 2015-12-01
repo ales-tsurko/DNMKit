@@ -73,17 +73,10 @@ public class ScoreView: UIView {
                 let pageLayer = PageLayer(systems: systemRange)
                 let pageView = PageView(frame: frame)
                 
-                // ----------------------------------------------------------------------------
-                // add random color for testing
-                let randomHue: CGFloat = CGFloat(randomFloat(1.0))
-                let color = UIColor(hue: randomHue, saturation: 0.75, brightness: 0.75, alpha: 1)
-                pageView.backgroundColor = color
-                // ----------------------------------------------------------------------------
-                
                 pageViews.append(pageView)
                 
                 // add in after bg color test
-                //pageView.layer.addSublayer(pageLayer)
+                pageView.layer.addSublayer(pageLayer)
                 systemIndex += systemRange.count
             }
             catch {

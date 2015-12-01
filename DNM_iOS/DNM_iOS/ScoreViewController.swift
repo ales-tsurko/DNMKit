@@ -45,9 +45,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         populateScoreViewIDsWithScoreModel(scoreModel)
         manageColorMode()
         build()
-        // test
-        view.backgroundColor = UIColor.redColor()
-        //createEnviromentWithScoreModel(scoreModel)
     }
     
     func build() {
@@ -56,22 +53,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         showScoreViewWithID("omni")
         goToFirstPage()
     }
-    
-    /*
-    // ----------------------------------------------------------------------------------------
-    // TO BE DEPRECATED
-    func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
-        environment = _Environment(scoreModel: scoreModel)
-        environment.build()
-        view.insertSubview(environment, atIndex: 0)
-        
-        // temp
-
-        
-        viewSelectorTableView.reloadData()
-    }
-    // ----------------------------------------------------------------------------------------
-    */    
 
     func createScoreViews() {
         for viewerID in scoreViewIDs {
@@ -81,19 +62,10 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showScoreViewWithID(id: String) {
-        
-        print("show score view with id: \(id)")
         if let scoreView = scoreViewsByID[id] {
-            print("scoreView?: \(scoreView); bgColor: \(scoreView.backgroundColor)")
             removeCurrentScoreView()
-            
-            // insert subview below any ScoreViewController UIViews
             view.insertSubview(scoreView, atIndex: 0)
-            
-            // set currentScoreView to this view
             currentScoreView = scoreView
-            
-            // setFrame() // if necessary
         }
     }
     
@@ -104,8 +76,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
         let iIDsByPIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
-        
-        // add IDs for each Performer (_ScoreView), as well as the full score ("omni")
         scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
     }
     
