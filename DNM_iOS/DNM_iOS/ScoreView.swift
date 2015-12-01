@@ -45,10 +45,9 @@ public class ScoreView: UIView {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func build() {
-        print("build")
         let systems = makeSystems()
-        
-        
+        // create SystemLayers with systems
+
     }
     
     // Enscpsulate in class: SystemFactory

@@ -35,7 +35,7 @@ public class _Environment: UIView {
     public var durationNodes: [DurationNode] = []
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
         String, OrderedDictionary<String, InstrumentType>
-        >()
+    >()
     
     // MARK: - View Components
     

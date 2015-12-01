@@ -191,6 +191,11 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         return systemRange
     }
     
+    // TODO
+    public init(system: System, g: CGFloat, beatWidth: CGFloat, viewerID: String? = nil) {
+        super.init()
+    }
+    
     /**
     Create a SystemLayer
     
@@ -396,6 +401,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         }
     }
     
+    
+    // Encapsulate into own Class
     /**
     Arrange all ViewNodes contained within this SystemLayer to show only those selected.
     */
@@ -585,17 +592,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
         func sortComponents() {
 
-            // encapsulate makeSortedPIDs() -> [String]
-            //var sortedPIDs: [String] = []
-            
             let sortedPIDs = instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 }
-            
-            
-            /*
-            for pID_dict in iIDsAndInstrumentTypesByPID {
-                for (pID, _) in pID_dict { sortedPIDs.append(pID) }
-            }
-            */
 
             var sortedPerformers = sortedPIDs
             if let viewerID = viewerID where viewerID != "omni" {

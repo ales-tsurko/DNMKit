@@ -12,11 +12,18 @@ import DNMModel
 // add tests for this, add doc comments
 public struct System {
     
+    // actually just use score model?
+    
+    public var durationInterval: DurationInterval
+    public var scoreModel: DNMScoreModel
+    
+    /*
     public var durationInterval: DurationInterval
     public var measures: [Measure]
     public var durationNodes: [DurationNode]
     public var tempoMarkings: [TempoMarking]
     public var rehearsalMarkings: [RehearsalMarking]
+    */
     
     // throws?, options: defined by measures or duration nodes?
     public static func rangeWithScoreModel(scoreModel: DNMScoreModel,
@@ -53,13 +60,16 @@ public struct System {
                         withinDurationInterval: systemDurationInterval
                     )
                     
-                    // create SystemLayer
+                    var systemScoreModel = DNMScoreModel()
+                    systemScoreModel.instrumentIDsAndInstrumentTypesByPerformerID = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
+                    systemScoreModel.measures = measureRange
+                    systemScoreModel.durationNodes = durationNodeRange
+                    
+                    // manage tempo markings, rehearsal markings, and anything later here
+                    
                     let system = System(
                         durationInterval: systemDurationInterval,
-                        measures: measureRange,
-                        durationNodes: durationNodeRange,
-                        tempoMarkings: [],
-                        rehearsalMarkings: []
+                        scoreModel: systemScoreModel
                     )
                     systems.append(system)
                     
@@ -80,18 +90,16 @@ public struct System {
         return systems
     }
     
-    public init(
-        durationInterval: DurationInterval,
-        measures: [Measure],
-        durationNodes: [DurationNode],
-        tempoMarkings: [TempoMarking],
-        rehearsalMarkings: [RehearsalMarking]
-    )
-    {
+    public init(durationInterval: DurationInterval, scoreModel: DNMScoreModel) {
         self.durationInterval = durationInterval
-        self.measures = measures
-        self.durationNodes = durationNodes
-        self.tempoMarkings = tempoMarkings
-        self.rehearsalMarkings = rehearsalMarkings
+        self.scoreModel = scoreModel
+        
+        /*
+        self.durationInterval = durationInterval
+        self.measures = scoreModel.measures
+        self.durationNodes = scoreModel.durationNodes
+        self.tempoMarkings = scoreModel.tempoMarkings
+        self.rehearsalMarkings = scoreModel.rehearsalMarkings
+        */
     }
 }
