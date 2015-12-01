@@ -1,5 +1,5 @@
 //
-//  SystemModel.swift
+//  System.swift
 //  DNM_iOS
 //
 //  Created by James Bean on 11/30/15.
@@ -10,7 +10,7 @@ import QuartzCore
 import DNMModel
 
 // add tests for this, add doc comments
-public struct SystemModel {
+public struct System {
     
     public var durationInterval: DurationInterval
     public var measures: [Measure]
@@ -21,10 +21,10 @@ public struct SystemModel {
     // throws?, options: defined by measures or duration nodes?
     public static func rangeWithScoreModel(scoreModel: DNMScoreModel,
         beatWidth: CGFloat, maximumWidth: CGFloat
-    ) -> [SystemModel]
+    ) -> [System]
     {
         let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
-        var systems: [SystemModel] = []
+        var systems: [System] = []
         var systemStartDuration: Duration = DurationZero
         var measureIndex: Int = 0
         while measureIndex < scoreModel.measures.count {
@@ -35,7 +35,7 @@ public struct SystemModel {
                 stopDuration: systemStartDuration + maximumDuration
             )
             
-            // attempt to get range of measures within maximum duration interval for SystemView
+            // attempt to get range of measures within maximum duration interval for System
             do {
                 let measureRange = try Measure.rangeFromArray(scoreModel.measures,
                     withinDurationInterval: maximumDurationInterval
@@ -54,7 +54,7 @@ public struct SystemModel {
                     )
                     
                     // create SystemView
-                    let system = SystemModel(
+                    let system = System(
                         durationInterval: systemDurationInterval,
                         measures: measureRange,
                         durationNodes: durationNodeRange,

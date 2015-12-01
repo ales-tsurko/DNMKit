@@ -51,11 +51,11 @@ public class ScoreViewNew: UIView {
     }
     
     // Enscpsulate in class: SystemFactory
-    public func makeSystems() -> [SystemModel] {
+    public func makeSystems() -> [System] {
         let page_pad: CGFloat = 25
         let maximumWidth = frame.width - 2 * page_pad
         let beatWidth: CGFloat = 110 // hack, make not static
-        let systems = SystemModel.rangeWithScoreModel(scoreModel,
+        let systems = System.rangeWithScoreModel(scoreModel,
             beatWidth: beatWidth, maximumWidth: maximumWidth
         )
         return systems
