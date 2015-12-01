@@ -165,7 +165,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     /**
     Get an array of Systems, starting at a given index, and not exceeding a given maximumHeight.
     
-    TODO: Make contingency for case where a single SystemLayer is larger than the maximumHeight
+    TODO: throws in the case of single System too large
     
     - parameter systems:       The entire reservoir of Systems from which to choose
     - parameter index:         Index of first SystemLayer in the output range
@@ -173,12 +173,15 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     - returns: Array of Systems fulfilling these requirements
     */
-    public class func rangeFromSystems(
+    public class func rangeFromSystemLayers(
         systems: [SystemLayer],
         startingAtIndex index: Int,
         constrainedByMaximumTotalHeight maximumHeight: CGFloat
-    ) -> [SystemLayer]
+    ) throws -> [SystemLayer]
     {
+        
+        enum SystemRangeError: ErrorType { case Error }
+        
         var systemRange: [SystemLayer] = []
         var s: Int = index
         var accumHeight: CGFloat = 0
@@ -190,6 +193,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
             }
             else { break }
         }
+        if systemRange.count == 0 { throw SystemRangeError.Error }
         return systemRange
     }
     
@@ -197,7 +201,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     public init(system: System, g: CGFloat, beatWidth: CGFloat, viewerID: String? = nil) {
         self.system = system
         
-        
+        // perhaps not necessary -- just reference self.system
         self.instrumentIDsAndInstrumentTypesByPerformerID = system.scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
         self.durationNodes = system.scoreModel.durationNodes
         self.g = g

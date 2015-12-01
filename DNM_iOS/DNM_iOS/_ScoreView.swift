@@ -69,6 +69,7 @@ public class _ScoreView: UIView {
     
     public func createPages() {
         
+        /*
         // clean this up, please
         let page_pad: CGFloat = 25
         //let page_pad_left: CGFloat = 50
@@ -108,6 +109,7 @@ public class _ScoreView: UIView {
             pages.append(page)
         }
         self.pages = pages
+        */
     }
 
     // MARK: - PageLayer Navigation
