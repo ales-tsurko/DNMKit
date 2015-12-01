@@ -10,20 +10,26 @@ import UIKit
 
 public class PageLayer: ViewNode, BuildPattern {
     
-    public var viewerID: String?
+    /// Identifier of Performer viewing this PageLayer
+    //public var viewerID: String?
     
-    public var systems: [SystemLayer] = []
+    // All SystemLayers in this PageLayer -- laid out automatically
+    public var systemLayers: [SystemLayer] = []
     
-    // not in here...
-    public var maximumHeight: CGFloat { get { return getMaximumHeight() } }
-    public var maximumWidth: CGFloat { get { return getMaximumWidth() } }
-    
+    /// If this PageLayer has been built yet
     public var hasBeenBuilt: Bool = false
     
-    public init(systems: [SystemLayer]) {
+    /**
+    Create a PageLayer with SystemLayers
+
+    - parameter systemLayers: All SystemLayers to be contained by this PageLayer
+
+    - returns: PageLayer
+    */
+    public init(systemLayers: [SystemLayer]) {
         super.init()
         layoutAccumulation_vertical = .Top
-        setSystemsWithSystems(systems)
+        setSystemLayersWithSystemLayerss(systemLayers)
         build()
     }
     
@@ -35,18 +41,14 @@ public class PageLayer: ViewNode, BuildPattern {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init(layer: AnyObject) { super.init(layer: layer) }
 
-    public func setSystemsWithSystems(systems: [SystemLayer]) {
-        self.systems = systems
-        for system in systems {
-            system.page = self
-            addNode(system)
-        }
+    public func setSystemLayersWithSystemLayerss(systemLayers: [SystemLayer]) {
+        for systemLayer in systemLayers { addSystemLayer(systemLayer) }
     }
     
-    public func addSystem(system: SystemLayer) {
-        system.page = self
-        systems.append(system)
-        addNode(system)
+    public func addSystemLayer(systemLayer: SystemLayer) {
+        systemLayer.page = self
+        systemLayers.append(systemLayer)
+        addNode(systemLayer)
     }
     
     public func build() {
@@ -56,19 +58,9 @@ public class PageLayer: ViewNode, BuildPattern {
     }
     
     private func buildSystems() {
-        for system in systems { if !system.hasBeenBuilt { system.build() } }
-    }
-    
-    public func getBounds() -> CGRect {
-        return UIScreen.mainScreen().bounds
-    }
-    
-    private func getMaximumHeight() -> CGFloat {
-        return UIScreen.mainScreen().bounds.height // - pad
-    }
-    
-    private func getMaximumWidth() -> CGFloat {
-        return UIScreen.mainScreen().bounds.width
+        for systemLayer in systemLayers {
+            if !systemLayer.hasBeenBuilt { systemLayer.build() }
+        }
     }
 }
 

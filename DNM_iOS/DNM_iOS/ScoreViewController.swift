@@ -9,8 +9,8 @@
 import UIKit
 import DNMModel
 
-// TODO: THIS IS BEING REFACTORED INTO FROM ENVIRONMENT (in-process: 2015-11-29)
-class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// TODO: THIS IS BEING REFACTORED INTO FROM ENVIRONMENT (in-process: 2015-12-01)
+public class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - UI
     
@@ -25,43 +25,43 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Score Views
     
     /// All ScoreViews organized by ID
-    var scoreViewsByID = OrderedDictionary<String, ScoreView>()
+    private var scoreViewsByID = OrderedDictionary<String, ScoreView>()
     
     /// All ScoreViewIDs (populates ScoreViewTableView)
-    var scoreViewIDs: [String] = []
+    private var scoreViewIDs: [String] = []
     
     /// _ScoreView currently displayed; TODO: change ScoreView to _ScoreView once refactored
-    var currentScoreView: ScoreView?
+    private var currentScoreView: ScoreView?
     
     /// Model of musical work
-    var scoreModel: DNMScoreModel!
+    public var scoreModel: DNMScoreModel!
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
+    public func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
         self.scoreModel = scoreModel
         populateScoreViewIDsWithScoreModel(scoreModel)
         manageColorMode()
         build()
     }
     
-    func build() {
+    private func build() {
         setupScoreViewTableView()
         createScoreViews()
         showScoreViewWithID("omni")
         goToFirstPage()
     }
 
-    func createScoreViews() {
+    private func createScoreViews() {
         for viewerID in scoreViewIDs {
             let scoreView = ScoreView(scoreModel: scoreModel, viewerID: viewerID)
             scoreViewsByID[viewerID] = scoreView
         }
     }
     
-    func showScoreViewWithID(id: String) {
+    public func showScoreViewWithID(id: String) {
         if let scoreView = scoreViewsByID[id] {
             removeCurrentScoreView()
             view.insertSubview(scoreView, atIndex: 0)
@@ -74,19 +74,19 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let currentScoreView = currentScoreView { currentScoreView.removeFromSuperview() }
     }
     
-    func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
+    private func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
         let iIDsByPIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
         scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
     }
     
     // MARK: - Setup
     
-    func setupScoreViewTableView() {
+    private func setupScoreViewTableView() {
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
     }
     
-    func manageColorMode() {
+    private func manageColorMode() {
         view.backgroundColor = DNMColorManager.backgroundColor
         
         let bgView = UIView()
@@ -94,22 +94,21 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         viewSelectorTableView.backgroundView = bgView
     }
     
-    
     // MARK: - PageLayer Navigation
     
-    func goToFirstPage() {
+    public func goToFirstPage() {
         currentScoreView?.goToFirstPage()
     }
     
-    func goToLastPage() {
+    public func goToLastPage() {
         currentScoreView?.goToLastPage()
     }
     
-    func goToNextPage() {
+    public func goToNextPage() {
         currentScoreView?.goToNextPage()
     }
     
-    func goToPreviousPage() {
+    public func goToPreviousPage() {
         currentScoreView?.goToPreviousPage()
     }
     
@@ -125,17 +124,22 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - View Selector UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath
+    )
+    {
         if let id = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text {
             showScoreViewWithID(id)
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell
+    {
         
         // make a specific one
         // format:
@@ -161,15 +165,15 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: CGRectZero)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    public override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

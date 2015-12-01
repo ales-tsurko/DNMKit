@@ -6,15 +6,15 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
-/*
+
 import UIKit
 import DNMModel
 
 // TODO: Refactor this to ScoreViewController (in-process: 2015-11-29)
 public class _Environment: UIView {
     
-    public var viewSelector: RadioGroupPanelVertical!
-    public var viewSelectorDot: UIView!
+    //public var viewSelector: RadioGroupPanelVertical!
+    //public var viewSelectorDot: UIView!
     
     // MARK: - Views
     
@@ -65,12 +65,15 @@ public class _Environment: UIView {
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    /*
     public func build() {
         createViews()
         goToViewWithID("omni")
-        goToFirstPage()
+        //goToFirstPage()
     }
+    */
     
+    /*
     public func createViews() {
         
         // Get ViewIDs
@@ -88,7 +91,9 @@ public class _Environment: UIView {
             views.append(view)
         }
     }
+    */
     
+    /*
     // did select cell at path
     public func goToViewWithID(id: String) {
         if let view = viewByID[id] {
@@ -98,18 +103,24 @@ public class _Environment: UIView {
             setFrame()
         }
     }
+    */
     
+    /*
     private func getViewIDs() -> [String] {
         let viewIDs = instrumentIDsAndInstrumentTypesByPerformerID.map { $0.0 } + ["omni"]
         return viewIDs
     }
+    */
     
+    /*
     public func setFrame() {
         //if let currentView = currentView { frame = currentView.frame }
         //
         frame = UIScreen.mainScreen().bounds
     }
-    
+    */
+
+    /*
     // MARK: PageLayer Navigation
     public func goToLastPage() {
         currentView?.goToLastPage()
@@ -134,6 +145,7 @@ public class _Environment: UIView {
     public func goToPreviousPage() {
         currentView?.goToPreviousPage()
     }
+    */
     
     /*
     public func addViewSelector() {
@@ -440,4 +452,3 @@ public class _Environment: UIView {
     }
     // ----------------------------------------------------------------------------------------
 }
-*/

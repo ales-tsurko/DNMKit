@@ -1728,16 +1728,16 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     private func getNextSystem() -> SystemLayer? {
         if page == nil { return nil }
-        if let index = page!.systems.indexOfObject(self) {
-            if index < page!.systems.count - 1 { return page!.systems[index + 1] }
+        if let index = page!.systemLayers.indexOfObject(self) {
+            if index < page!.systemLayers.count - 1 { return page!.systemLayers[index + 1] }
         }
         return nil
     }
     
     private func getPreviousSystem() -> SystemLayer? {
         if page == nil { return nil }
-        if let index = page?.systems.indexOfObject(self) {
-            if index > 0 { return page!.systems[index - 1] }
+        if let index = page?.systemLayers.indexOfObject(self) {
+            if index > 0 { return page!.systemLayers[index - 1] }
         }
         return nil
     }

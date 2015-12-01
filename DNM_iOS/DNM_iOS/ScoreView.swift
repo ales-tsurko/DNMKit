@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-// TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from _ScoreView.swift (2015-11-30)
+// TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from _ScoreView.swift (2015-12-01)
 public class ScoreView: UIView {
 
     public var viewerID: String?
@@ -64,13 +64,12 @@ public class ScoreView: UIView {
         let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * margin
         var systemIndex: Int = 0
         while systemIndex < systemLayers.count {
-            
             do {
                 let systemRange = try SystemLayer.rangeFromSystemLayers(systemLayers,
                     startingAtIndex: systemIndex,
                     constrainedByMaximumTotalHeight: maximumHeight
                 )
-                let pageLayer = PageLayer(systems: systemRange)
+                let pageLayer = PageLayer(systemLayers: systemRange)
                 let pageView = PageView(frame: frame)
                 
                 pageViews.append(pageView)
