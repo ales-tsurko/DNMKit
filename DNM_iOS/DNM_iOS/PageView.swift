@@ -10,11 +10,11 @@ import UIKit
 
 public class PageView: UIView {
     
-    public var page: Page!
+    public var page: PageLayer!
     public var scoreView: _ScoreView!
     public var systemViews: [SystemUIView] = []
     
-    public init(page: Page, systemViews: [SystemUIView], scoreView: _ScoreView) {
+    public init(page: PageLayer, systemViews: [SystemUIView], scoreView: _ScoreView) {
         self.page = page
         self.scoreView = scoreView
         self.systemViews = systemViews
@@ -29,7 +29,6 @@ public class PageView: UIView {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func addSystemViews() {
-        
         clearSystemViews()
         for systemView in systemViews {
             systemView.pageView = self

@@ -12,8 +12,8 @@ import UIKit
 public class _ScoreView: UIView {
 
     public var id: String = ""
-    public var pages: [Page] = []
-    public var currentPage: Page?
+    public var pages: [PageLayer] = []
+    public var currentPage: PageLayer?
     public var currentPageIndex: Int?
     
     public var pageViews: [PageView] = []
@@ -81,7 +81,7 @@ public class _ScoreView: UIView {
 
         // add systemViews
         
-        var pages: [Page] = []
+        var pages: [PageLayer] = []
         var systemIndex: Int = 0
         while systemIndex < systems.count {
             let systemRange = SystemLayer.rangeFromSystems(systems,
@@ -89,7 +89,7 @@ public class _ScoreView: UIView {
             )
 
             // clean up initialization
-            let page = Page(systems: systemRange)
+            let page = PageLayer(systems: systemRange)
             page.build()
             
             // make contingency for too-big-a-system
@@ -110,7 +110,7 @@ public class _ScoreView: UIView {
         self.pages = pages
     }
 
-    // MARK: - Page Navigation
+    // MARK: - PageLayer Navigation
     
     public func goToPageAtIndex(index: Int) {
         //print("go to page at index: \(index)")

@@ -24,8 +24,8 @@ public class _Environment: UIView {
     
     // MARK: - Pages
     
-    public var pages: [Page] = []
-    public var currentPage: Page?
+    public var pages: [PageLayer] = []
+    public var currentPage: PageLayer?
     public var currentPageIndex: Int?
     
     // MARK: - Model
@@ -78,7 +78,7 @@ public class _Environment: UIView {
         
         for id in viewIDs {
             
-            // Create all Systems for the whole piece, regardless of Page
+            // Create all Systems for the whole piece, regardless of PageLayer
             let systems = makeSystemsWithViewerID(id)
             
             // Create a Performer(Interface)View, passing ALL Systems!
@@ -110,7 +110,7 @@ public class _Environment: UIView {
         frame = UIScreen.mainScreen().bounds
     }
     
-    // MARK: Page Navigation
+    // MARK: PageLayer Navigation
     public func goToLastPage() {
         currentView?.goToLastPage()
     }

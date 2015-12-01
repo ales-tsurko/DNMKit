@@ -51,10 +51,12 @@ public class ScoreView: UIView {
     public func build() {
         let systems = makeSystems()
         let systemLayers = makeSystemLayersWithSystems(systems)
-        print("systemLayers: \(systemLayers)")
         
-        //
+        // make pages with systemLayers
+
     }
+    
+    
     
     private func makeSystemLayersWithSystems(systems: [System]) -> [SystemLayer] {
         return systems.map {

@@ -23,8 +23,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     public var viewerID: String?
     
-    /// Page containing this SystemLayer
-    public var page: Page?
+    /// PageLayer containing this SystemLayer
+    public var page: PageLayer?
     
     public var system: System!
     
@@ -126,10 +126,10 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     /// DurationSpan of SystemLayer
     //public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
-    /// SystemLayer following this SystemLayer on the Page containing this SystemLayer. May be `nil`.
+    /// SystemLayer following this SystemLayer on the PageLayer containing this SystemLayer. May be `nil`.
     public var nextSystem: SystemLayer? { get { return getNextSystem() } }
    
-    /// SystemLayer preceeding this SystemLayer on the Page containing this SystemLayer. May be `nil`.
+    /// SystemLayer preceeding this SystemLayer on the PageLayer containing this SystemLayer. May be `nil`.
     public var previousSystem: SystemLayer? { get { return getPreviousSystem() } }
     
     /**

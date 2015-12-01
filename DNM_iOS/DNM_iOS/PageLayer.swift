@@ -1,5 +1,5 @@
 //
-//  Page.swift
+//  PageLayer.swift
 //  denm_view
 //
 //  Created by James Bean on 8/24/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Page: ViewNode, BuildPattern {
+public class PageLayer: ViewNode, BuildPattern {
     
     public var viewerID: String?
     

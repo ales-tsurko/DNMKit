@@ -73,7 +73,7 @@
 		07074F181BF96D1D00BFC6FA /* MeasureNumberNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EBE1BF96D1D00BFC6FA /* MeasureNumberNode.swift */; };
 		07074F191BF96D1D00BFC6FA /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */; };
 		07074F1A1BF96D1D00BFC6FA /* Notehead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC01BF96D1D00BFC6FA /* Notehead.swift */; };
-		07074F1B1BF96D1D00BFC6FA /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC11BF96D1D00BFC6FA /* Page.swift */; };
+		07074F1B1BF96D1D00BFC6FA /* PageLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC11BF96D1D00BFC6FA /* PageLayer.swift */; };
 		07074F1C1BF96D1D00BFC6FA /* Performer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC21BF96D1D00BFC6FA /* Performer.swift */; };
 		07074F1D1BF96D1D00BFC6FA /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC31BF96D1D00BFC6FA /* Polygon.swift */; };
 		07074F1E1BF96D1D00BFC6FA /* RehearsalMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */; };
@@ -263,7 +263,7 @@
 		07074EBE1BF96D1D00BFC6FA /* MeasureNumberNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureNumberNode.swift; sourceTree = "<group>"; };
 		07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		07074EC01BF96D1D00BFC6FA /* Notehead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notehead.swift; sourceTree = "<group>"; };
-		07074EC11BF96D1D00BFC6FA /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		07074EC11BF96D1D00BFC6FA /* PageLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageLayer.swift; sourceTree = "<group>"; };
 		07074EC21BF96D1D00BFC6FA /* Performer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Performer.swift; sourceTree = "<group>"; };
 		07074EC31BF96D1D00BFC6FA /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarkingView.swift; sourceTree = "<group>"; };
@@ -520,7 +520,7 @@
 				07074EBE1BF96D1D00BFC6FA /* MeasureNumberNode.swift */,
 				07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */,
 				07074EC01BF96D1D00BFC6FA /* Notehead.swift */,
-				07074EC11BF96D1D00BFC6FA /* Page.swift */,
+				07074EC11BF96D1D00BFC6FA /* PageLayer.swift */,
 				07074EC21BF96D1D00BFC6FA /* Performer.swift */,
 				07074EC31BF96D1D00BFC6FA /* Polygon.swift */,
 				07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */,
@@ -873,7 +873,7 @@
 				0751EA061C091E59008693C2 /* DurationNodeStratumArranger.swift in Sources */,
 				07074F041BF96D1D00BFC6FA /* DynamicMarking.swift in Sources */,
 				07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */,
-				07074F1B1BF96D1D00BFC6FA /* Page.swift in Sources */,
+				07074F1B1BF96D1D00BFC6FA /* PageLayer.swift in Sources */,
 				07074F581BF96F6200BFC6FA /* ComponentSelector.swift in Sources */,
 				07074F5E1BF96F6200BFC6FA /* PageView.swift in Sources */,
 				07074EF01BF96D1D00BFC6FA /* BezierCurveStylerWidth.swift in Sources */,

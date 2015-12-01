@@ -124,7 +124,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    // MARK: - Page Navigation
+    // MARK: - PageLayer Navigation
     
     func goToFirstPage() {
         currentScoreView?.goToFirstPage()
