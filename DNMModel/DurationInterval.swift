@@ -21,6 +21,7 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     /// Span of this DurationInterval
     public var duration: Duration = DurationZero
     
+    // add tests, doc comments
     public static func unionWithDurationIntervals(durationIntervals: [DurationInterval]) ->
         DurationInterval
     {

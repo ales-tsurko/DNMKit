@@ -1,43 +1,35 @@
 //
 //  _ScoreView.swift
-//  DNM_iOS
+//  denm_view
 //
-//  Created by James Bean on 11/30/15.
+//  Created by James Bean on 10/2/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
 import UIKit
-import DNMModel
 
-// TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from ScoreView.swift (2015-11-30)
+// TODO: THIS WILL BE THE OLD SCOREVIEW, being refactored into ScoreViewNew.swift (2015-11-30)
 public class _ScoreView: UIView {
 
-    public var viewerID: String?
-    public var scoreModel: DNMScoreModel!
+    public var id: String = ""
+    public var pages: [Page] = []
+    public var currentPage: Page?
+    public var currentPageIndex: Int?
     
-    // MARK: - PageViews
-    
-    /// All PageViews
     public var pageViews: [PageView] = []
-    
-    /// Current PageView
     public var currentPageView: PageView?
-
-    /// Index of current PageView
-    public var currentPageIndex: Int? { return getCurrentPageIndex() }
     
-    /**
-    Create a ScoreView with an identifier and scoreModel
+    /// All Systems for a given piece of music
+    public var systems: [System] = []
+    
+    /// All SystemViews for a given piece of music
+    public var systemViews: [SystemUIView] = []
 
-    - parameter identifier: String with identifier of Performer ViewerID
-    - parameter scoreModel: DNMScoreModel
-
-    - returns: ScoreView
-    */
-    public init(scoreModel: DNMScoreModel, viewerID: String? = nil) {
-        super.init(frame: UIScreen.mainScreen().bounds) // reset frame to size of screen
-        self.scoreModel = scoreModel
-        self.viewerID = viewerID
+    public init(id: String, systems: [System]) {
+        super.init(frame: UIScreen.mainScreen().bounds)
+        self.id = id
+        self.systems = systems // ALL SYSTEMS
+        self.systemViews = makeSystemViewsForSystems(systems) // ALL SYSTEM VIEWS
         build()
     }
     
@@ -45,121 +37,131 @@ public class _ScoreView: UIView {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func build() {
-        print("build")
-        createSystems()
-    }
-    
-    // Enscpsulate in class: SystemFactory
-    public func createSystems() {
+        createPages()
+        goToFirstPage()
+        setFrame()
         
-        print("create systems")
-        
-        // hacks
-        let page_pad: CGFloat = 25
-        let beatWidth: CGFloat = 110
-        //let g: CGFloat = 10
-        
-        let maximumWidth = frame.width - 2 * page_pad
-        let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
-        
-        print("maximum width: \(maximumWidth)")
-        print("maximum duration: \(maximumDuration)")
-        print("measures.count: \(scoreModel.measures)")
-        
-        let systems = SystemModel.rangeWithScoreModel(scoreModel,
-            beatWidth: beatWidth, maximumWidth: maximumWidth
-        )
-        
-        /*
-        // System (MODEL)
-        var systems: [SystemModel] = []
-        var systemStartDuration: Duration = DurationZero
-        var measureIndex: Int = 0
-        while measureIndex < scoreModel.measures.count {
-            
-            // create the maximum duration interval for the next System
-            let maximumDurationInterval = DurationInterval(
-                startDuration: systemStartDuration,
-                stopDuration: systemStartDuration + maximumDuration
-            )
-
-            do {
-                let measureRange = try Measure.rangeFromArray(scoreModel.measures,
-                    withinDurationInterval: maximumDurationInterval
-                )
-                
-                // create actual duration interval for System
-                let systemDurationInterval = DurationInterval.unionWithDurationIntervals(
-                    measureRange.map { $0.durationInterval}
-                )
-                
-                print("system duration interval: \(systemDurationInterval)")
-                
-                // get durationNodes in range
-                do {
-                    let durationNodeRange = try DurationNode.rangeFromArray(
-                        scoreModel.durationNodes,
-                        withinDurationInterval: systemDurationInterval
-                    )
-                    
-                    // create System
-                    let system = SystemModel(
-                        durationInterval: systemDurationInterval,
-                        measures: measureRange,
-                        durationNodes: durationNodeRange,
-                        tempoMarkings: [],
-                        rehearsalMarkings: []
-                    )
-                }
-                catch {
-                    print("couldn't find duration nodes in range")
-                }
-                
-                // advance accumDuration
-                systemStartDuration = systemDurationInterval.stopDuration
-                
-                // advance measure index
-                measureIndex += measureRange.count
-                
-            }
-            catch {
-                print("could not create measure range: \(error)")
+        // encapsulate: setFramesOfSystemViews()
+        for pageView in pageViews {
+            for systemView in pageView.systemViews {
+                systemView.setFrame()
             }
         }
-        */
     }
     
-    // throws error?
+    public func systemsNeedReflowing() {
+        for pageView in pageViews { pageView.removeFromSuperview() }
+        pages = []
+        pageViews = []
+        createPages()
+        goToFirstPage()
+        setFrame()
+    }
+    
+    public func makeSystemViewsForSystems(systems: [System]) -> [SystemUIView] {
+        var systemViews: [SystemUIView] = []
+        for system in systems {
+            let systemView = SystemUIView(system: system)
+            systemViews.append(systemView)
+        }
+        return systemViews
+    }
+    
+    public func createPages() {
+        
+        // clean this up, please
+        let page_pad: CGFloat = 25
+        //let page_pad_left: CGFloat = 50
+        
+        // hack
+        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
+        
+        // remove PageViews as necessary
+        for pageView in pageViews { pageView.removeFromSuperview() }
+
+        // add systemViews
+        
+        var pages: [Page] = []
+        var systemIndex: Int = 0
+        while systemIndex < systems.count {
+            let systemRange = System.rangeFromSystems(systems,
+                startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
+            )
+
+            // clean up initialization
+            let page = Page(systems: systemRange)
+            page.build()
+            
+            // make contingency for too-big-a-system
+            let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
+            
+            var systemViewsInRange: [SystemUIView] = []
+            for sv in systemIndex...lastSystemIndex {
+                let systemView = systemViews[sv]
+                systemViewsInRange.append(systemView)
+            }
+            
+            let pageView = PageView(page: page, systemViews: systemViewsInRange, scoreView: self)
+            pageViews.append(pageView)
+            
+            systemIndex = lastSystemIndex + 1
+            pages.append(page)
+        }
+        self.pages = pages
+    }
+
+    
     public func goToPageAtIndex(index: Int) {
-        if index >= 0 && index < pageViews.count {
-            removeCurrentPageView()
+        //print("go to page at index: \(index)")
+        
+        if index >= 0 && index < pages.count {
+            let page = pages[index]
             let pageView = pageViews[index]
-            insertSubview(pageView, atIndex: 0)
+            for subview in subviews { subview.removeFromSuperview() }
+            addSubview(pageView)
+            currentPageView = pageView
+            currentPage = page
+            currentPageIndex = index
+            setFrame()
+        }
+    }
+    
+    public func goToFirstPage() {
+        //print("go to first page")
+        
+        if pages.count > 0 { goToPageAtIndex(0) }
+    }
+    
+    public func goToLastPage() {
+        if pages.count > 0 { goToPageAtIndex(pages.count - 1) }
+    }
+    
+    public func goToNextPage() {
+        if let currentPageIndex = currentPageIndex {
+            if currentPageIndex < pages.count - 1 { goToPageAtIndex(currentPageIndex + 1) }
+            else { print("LAST PAGE") }
         }
     }
     
     public func goToPreviousPage() {
-        // TODO
+        if let currentPageIndex = currentPageIndex {
+            if currentPageIndex > 0 { goToPageAtIndex(currentPageIndex - 1) }
+            else { print("FIRST PAGE") }
+        }
     }
     
-    public func goToNextPage() {
-        // TODO
-    }
-
-    public func goToFirstPage() {
-        // TODO
-    }
-    
-    public func goToLastPage() {
-        // TODO
-    }
-    
-    private func removeCurrentPageView() {
-        if let currentPageView = currentPageView { currentPageView.removeFromSuperview() }
-    }
-    
-    private func getCurrentPageIndex() -> Int? {
-        if let currentPageView = currentPageView { return pageViews.indexOf(currentPageView) }
-        return nil
+    public func setFrame() {
+        let pad_left: CGFloat = 50
+        let pad_top: CGFloat = 12
+        if let currentPageView = currentPageView {
+            frame = CGRectMake(
+                pad_left, pad_top, currentPageView.frame.width, currentPageView.frame.height
+            )
+        }
+        /*
+        if let currentPage = currentPage {
+            frame = CGRectMake(pad_left, pad_top, currentPage.frame.width, currentPage.frame.height)
+        }
+        */
     }
 }

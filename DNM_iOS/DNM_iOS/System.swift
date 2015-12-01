@@ -67,7 +67,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /// All Performers in this System.
     public var performers: [Performer] = []
     
-    /// Performers organized by identifier `String`
+    /// Performers organized by identifier `String` -- MAKE ORDERED DICTIONARY
     public var performerByID: [String: Performer] = [:]
     
     /// SlurHandlers organizaed by identifier `String`

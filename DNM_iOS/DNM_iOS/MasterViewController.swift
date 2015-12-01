@@ -42,8 +42,8 @@ class MasterViewController: UIViewController,
     // MARK: - Views
     
     // change to PerformerInterfaceView
-    var viewByID: [String: ScoreView] = [:]
-    var currentView: ScoreView?
+    var viewByID: [String: _ScoreView] = [:]
+    var currentView: _ScoreView?
     
     // don't make all of ScoreModel proporties top-level like in Envrionment
     

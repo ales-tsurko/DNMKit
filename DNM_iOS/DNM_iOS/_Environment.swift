@@ -1,5 +1,5 @@
 //
-//  Environment.swift
+//  _Environment.swift
 //  denm_view
 //
 //  Created by James Bean on 9/20/15.
@@ -10,16 +10,16 @@ import UIKit
 import DNMModel
 
 // TODO: Refactor this to ScoreViewController (in-process: 2015-11-29)
-public class Environment: UIView {
+public class _Environment: UIView {
     
     public var viewSelector: RadioGroupPanelVertical!
     public var viewSelectorDot: UIView!
     
     // MARK: - Views
     
-    public var views: [ScoreView] = []
-    public var viewByID: [String: ScoreView] = [:]
-    public var currentView: ScoreView?
+    public var views: [_ScoreView] = []
+    public var viewByID: [String: _ScoreView] = [:]
+    public var currentView: _ScoreView?
     
     // MARK: - Pages
     
@@ -81,7 +81,7 @@ public class Environment: UIView {
             let systems = makeSystemsWithViewerID(id)
             
             // Create a Performer(Interface)View, passing ALL Systems!
-            let view = ScoreView(id: id, systems: systems)
+            let view = _ScoreView(id: id, systems: systems)
             
             viewByID[id] = view
             views.append(view)
@@ -177,7 +177,7 @@ public class Environment: UIView {
     }
     */
     
-    // THIS MUST GO IN ScoreView
+    // THIS MUST GO IN _ScoreView
     // Create SystemManager (get better name)
     public func makeSystemsWithViewerID(id: String) -> [System] {
         

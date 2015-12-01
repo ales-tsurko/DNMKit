@@ -1,35 +1,43 @@
 //
-//  ScoreView.swift
-//  denm_view
+//  ScoreViewNew.swift
+//  DNM_iOS
 //
-//  Created by James Bean on 10/2/15.
+//  Created by James Bean on 11/30/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
 import UIKit
+import DNMModel
 
-// TODO: THIS WILL BE THE OLD SCOREVIEW, being refactored into _ScoreView.swift (2015-11-30)
-public class ScoreView: UIView {
+// TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from _ScoreView.swift (2015-11-30)
+public class ScoreViewNew: UIView {
 
-    public var id: String = ""
-    public var pages: [Page] = []
-    public var currentPage: Page?
-    public var currentPageIndex: Int?
+    public var viewerID: String?
+    public var scoreModel: DNMScoreModel!
     
+    // MARK: - PageViews
+    
+    /// All PageViews
     public var pageViews: [PageView] = []
+    
+    /// Current PageView
     public var currentPageView: PageView?
-    
-    /// All Systems for a given piece of music
-    public var systems: [System] = []
-    
-    /// All SystemViews for a given piece of music
-    public var systemViews: [_SystemView] = []
 
-    public init(id: String, systems: [System]) {
-        super.init(frame: UIScreen.mainScreen().bounds)
-        self.id = id
-        self.systems = systems // ALL SYSTEMS
-        self.systemViews = makeSystemViewsForSystems(systems) // ALL SYSTEM VIEWS
+    /// Index of current PageView
+    public var currentPageIndex: Int? { return getCurrentPageIndex() }
+    
+    /**
+    Create a _ScoreView with an identifier and scoreModel
+
+    - parameter identifier: String with identifier of Performer ViewerID
+    - parameter scoreModel: DNMScoreModel
+
+    - returns: _ScoreView
+    */
+    public init(scoreModel: DNMScoreModel, viewerID: String? = nil) {
+        super.init(frame: UIScreen.mainScreen().bounds) // reset frame to size of screen
+        self.scoreModel = scoreModel
+        self.viewerID = viewerID
         build()
     }
     
@@ -37,131 +45,53 @@ public class ScoreView: UIView {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func build() {
-        createPages()
-        goToFirstPage()
-        setFrame()
+        print("build")
+        let systems = makeSystems()
         
-        // encapsulate: setFramesOfSystemViews()
-        for pageView in pageViews {
-            for systemView in pageView.systemViews {
-                systemView.setFrame()
-            }
-        }
     }
     
-    public func systemsNeedReflowing() {
-        for pageView in pageViews { pageView.removeFromSuperview() }
-        pages = []
-        pageViews = []
-        createPages()
-        goToFirstPage()
-        setFrame()
-    }
-    
-    public func makeSystemViewsForSystems(systems: [System]) -> [_SystemView] {
-        var systemViews: [_SystemView] = []
-        for system in systems {
-            let systemView = _SystemView(system: system)
-            systemViews.append(systemView)
-        }
-        return systemViews
-    }
-    
-    public func createPages() {
-        
-        // clean this up, please
+    // Enscpsulate in class: SystemFactory
+    public func makeSystems() -> [SystemModel] {
         let page_pad: CGFloat = 25
-        //let page_pad_left: CGFloat = 50
-        
-        // hack
-        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
-        
-        // remove PageViews as necessary
-        for pageView in pageViews { pageView.removeFromSuperview() }
-
-        // add systemViews
-        
-        var pages: [Page] = []
-        var systemIndex: Int = 0
-        while systemIndex < systems.count {
-            let systemRange = System.rangeFromSystems(systems,
-                startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
-            )
-
-            // clean up initialization
-            let page = Page(systems: systemRange)
-            page.build()
-            
-            // make contingency for too-big-a-system
-            let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
-            
-            var systemViewsInRange: [_SystemView] = []
-            for sv in systemIndex...lastSystemIndex {
-                let systemView = systemViews[sv]
-                systemViewsInRange.append(systemView)
-            }
-            
-            let pageView = PageView(page: page, systemViews: systemViewsInRange, scoreView: self)
-            pageViews.append(pageView)
-            
-            systemIndex = lastSystemIndex + 1
-            pages.append(page)
-        }
-        self.pages = pages
+        let maximumWidth = frame.width - 2 * page_pad
+        let beatWidth: CGFloat = 110 // hack, make not static
+        let systems = SystemModel.rangeWithScoreModel(scoreModel,
+            beatWidth: beatWidth, maximumWidth: maximumWidth
+        )
+        return systems
     }
-
     
+    // throws error?
     public func goToPageAtIndex(index: Int) {
-        //print("go to page at index: \(index)")
-        
-        if index >= 0 && index < pages.count {
-            let page = pages[index]
+        if index >= 0 && index < pageViews.count {
+            removeCurrentPageView()
             let pageView = pageViews[index]
-            for subview in subviews { subview.removeFromSuperview() }
-            addSubview(pageView)
-            currentPageView = pageView
-            currentPage = page
-            currentPageIndex = index
-            setFrame()
-        }
-    }
-    
-    public func goToFirstPage() {
-        //print("go to first page")
-        
-        if pages.count > 0 { goToPageAtIndex(0) }
-    }
-    
-    public func goToLastPage() {
-        if pages.count > 0 { goToPageAtIndex(pages.count - 1) }
-    }
-    
-    public func goToNextPage() {
-        if let currentPageIndex = currentPageIndex {
-            if currentPageIndex < pages.count - 1 { goToPageAtIndex(currentPageIndex + 1) }
-            else { print("LAST PAGE") }
+            insertSubview(pageView, atIndex: 0)
         }
     }
     
     public func goToPreviousPage() {
-        if let currentPageIndex = currentPageIndex {
-            if currentPageIndex > 0 { goToPageAtIndex(currentPageIndex - 1) }
-            else { print("FIRST PAGE") }
-        }
+        // TODO
     }
     
-    public func setFrame() {
-        let pad_left: CGFloat = 50
-        let pad_top: CGFloat = 12
-        if let currentPageView = currentPageView {
-            frame = CGRectMake(
-                pad_left, pad_top, currentPageView.frame.width, currentPageView.frame.height
-            )
-        }
-        /*
-        if let currentPage = currentPage {
-            frame = CGRectMake(pad_left, pad_top, currentPage.frame.width, currentPage.frame.height)
-        }
-        */
+    public func goToNextPage() {
+        // TODO
+    }
+
+    public func goToFirstPage() {
+        // TODO
+    }
+    
+    public func goToLastPage() {
+        // TODO
+    }
+    
+    private func removeCurrentPageView() {
+        if let currentPageView = currentPageView { currentPageView.removeFromSuperview() }
+    }
+    
+    private func getCurrentPageIndex() -> Int? {
+        if let currentPageView = currentPageView { return pageViews.indexOf(currentPageView) }
+        return nil
     }
 }

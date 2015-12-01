@@ -19,19 +19,19 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var viewSelectorTableView: UITableView!
     
-    // DEPRECATE once refactored integrate contexts of Environment into this
-    var environment: Environment!
+    // DEPRECATE once refactored integrate contexts of _Environment into this
+    var environment: _Environment!
     
     // MARK: - Score Views
     
-    /// All ScoreViews organized by ID; TODO: change _ScoreView to ScoreView once refactored
-    var scoreViewsByID: [String: _ScoreView] = [:]
+    /// All ScoreViews organized by ID; TODO: change ScoreViewNew to _ScoreView once refactored
+    var scoreViewsByID: [String: ScoreViewNew] = [:]
     
     /// All ScoreViewIDs (populates ScoreViewTableView)
     var scoreViewIDs: [String] = []
     
-    /// ScoreView currently displayed; TODO: change _ScoreView to ScoreView once refactored
-    var currentScoreView: _ScoreView?
+    /// _ScoreView currently displayed; TODO: change ScoreViewNew to _ScoreView once refactored
+    var currentScoreView: ScoreViewNew?
     
     /// Model of musical work
     var scoreModel: DNMScoreModel!
@@ -60,7 +60,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // ----------------------------------------------------------------------------------------
     // TO BE DEPRECATED
     func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
-        environment = Environment(scoreModel: scoreModel)
+        environment = _Environment(scoreModel: scoreModel)
         environment.build()
         view.insertSubview(environment, atIndex: 0)
         
@@ -71,11 +71,11 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     // ----------------------------------------------------------------------------------------
     
-    // Creates and stores a ScoreView for each scoreViewID; 
-    // TODO: change _ScoreView to ScoreView once refactored
+    // Creates and stores a _ScoreView for each scoreViewID; 
+    // TODO: change ScoreViewNew to _ScoreView once refactored
     func createScoreViews() {
         for viewerID in scoreViewIDs {
-            let scoreView = _ScoreView(scoreModel: scoreModel, viewerID: viewerID)
+            let scoreView = ScoreViewNew(scoreModel: scoreModel, viewerID: viewerID)
             scoreViewsByID[viewerID] = scoreView
         }
     }
@@ -102,7 +102,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
         let iIDsByPIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
         
-        // add IDs for each Performer (ScoreView), as well as the full score ("omni")
+        // add IDs for each Performer (_ScoreView), as well as the full score ("omni")
         scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-public class _SystemView: UIView {
+public class SystemUIView: UIView {
     
     public var system: System!
     public var pageView: PageView!

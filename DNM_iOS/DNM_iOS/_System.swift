@@ -9,6 +9,7 @@
 import QuartzCore
 import DNMModel
 
+// add tests for this, add doc comments
 public struct SystemModel {
     
     public var durationInterval: DurationInterval
@@ -34,9 +35,8 @@ public struct SystemModel {
                 stopDuration: systemStartDuration + maximumDuration
             )
             
+            // attempt to get range of measures within maximum duration interval for System
             do {
-                
-                // get range of measures within maximum duration interval for System
                 let measureRange = try Measure.rangeFromArray(scoreModel.measures,
                     withinDurationInterval: maximumDurationInterval
                 )
@@ -46,8 +46,8 @@ public struct SystemModel {
                     measureRange.map { $0.durationInterval}
                 )
                 
+                // attempt to get range of duration nodes within duration interval for System
                 do {
-                    
                     let durationNodeRange = try DurationNode.rangeFromArray(
                         scoreModel.durationNodes,
                         withinDurationInterval: systemDurationInterval
@@ -77,7 +77,6 @@ public struct SystemModel {
                 print("could not find measures in range: \(error)")
             }
         }
-        
         return systems
     }
     
