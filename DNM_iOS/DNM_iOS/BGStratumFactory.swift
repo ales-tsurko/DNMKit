@@ -11,7 +11,7 @@ import DNMModel
 
 public class BGStratumFactory {
     
-    // system: System?
+    // system: SystemView?
     
     
     public init(durationNodeStrata: [DurationNodeStratum]) {

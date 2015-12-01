@@ -13,7 +13,7 @@ public class MeasureView: ViewNode, BuildPattern {
     
     public override var description: String { get { return getDescription() } }
     
-    public var system: System?
+    public var system: SystemView?
     
     public var measure: Measure?
     

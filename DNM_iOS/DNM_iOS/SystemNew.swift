@@ -29,31 +29,31 @@ public struct SystemModel {
         var measureIndex: Int = 0
         while measureIndex < scoreModel.measures.count {
             
-            // create the maximum duration interval for the next System
+            // create the maximum duration interval for the next SystemView
             let maximumDurationInterval = DurationInterval(
                 startDuration: systemStartDuration,
                 stopDuration: systemStartDuration + maximumDuration
             )
             
-            // attempt to get range of measures within maximum duration interval for System
+            // attempt to get range of measures within maximum duration interval for SystemView
             do {
                 let measureRange = try Measure.rangeFromArray(scoreModel.measures,
                     withinDurationInterval: maximumDurationInterval
                 )
                 
-                // create actual duration interval for System, based on Measures present
+                // create actual duration interval for SystemView, based on Measures present
                 let systemDurationInterval = DurationInterval.unionWithDurationIntervals(
                     measureRange.map { $0.durationInterval}
                 )
                 
-                // attempt to get range of duration nodes within duration interval for System
+                // attempt to get range of duration nodes within duration interval for SystemView
                 do {
                     let durationNodeRange = try DurationNode.rangeFromArray(
                         scoreModel.durationNodes,
                         withinDurationInterval: systemDurationInterval
                     )
                     
-                    // create System
+                    // create SystemView
                     let system = SystemModel(
                         durationInterval: systemDurationInterval,
                         measures: measureRange,

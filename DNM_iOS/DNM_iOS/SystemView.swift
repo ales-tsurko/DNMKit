@@ -1,5 +1,5 @@
 //
-//  System.swift
+//  SystemView.swift
 //  denm_view
 //
 //  Created by James Bean on 8/19/15.
@@ -11,25 +11,25 @@ import DNMModel
 
 // THIS IS BEING REFACTORED INTO SYSTEMVIEW (UIVIEW): 2015-11-30
 
-/// A Musical System (container of a single line's worth of music)
-public class System: ViewNode, BuildPattern, DurationSpanning {
+/// A Musical SystemView (container of a single line's worth of music)
+public class SystemView: ViewNode, BuildPattern, DurationSpanning {
     
     // DESTROY --------------------------------------------------------------------------------
     public var rhythmCueGraphByID: [String : RhythmCueGraph] = [:]
     // DESTROY --------------------------------------------------------------------------------
     
-    /// String representation of System
+    /// String representation of SystemView
     public override var description: String { get { return getDescription() } }
     
     public var viewerID: String?
     
-    /// Page containing this System
+    /// Page containing this SystemView
     public var page: Page?
     
-    /// If this System has been built yet
+    /// If this SystemView has been built yet
     public var hasBeenBuilt: Bool = false
     
-    /// All GraphEvents contained within this System
+    /// All GraphEvents contained within this SystemView
     public var graphEvents: [GraphEvent] { return getGraphEvents() }
     
     /**
@@ -64,7 +64,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /// DynamicMarkingNodes organized by identifier `String`
     public var dmNodeByID: [String : DMNode] = [:]
     
-    /// All Performers in this System.
+    /// All Performers in this SystemView.
     public var performers: [Performer] = []
     
     /// Performers organized by identifier `String` -- MAKE ORDERED DICTIONARY
@@ -73,10 +73,10 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /// SlurHandlers organizaed by identifier `String`
     public var slurHandlersByID: [String : [SlurHandler]] = [:]
 
-    /// All InstrumentEventHandlers in this System
+    /// All InstrumentEventHandlers in this SystemView
     public var instrumentEventHandlers: [InstrumentEventHandler] = []
     
-    /** TemporalInfoNode of this System. Contains:
+    /** TemporalInfoNode of this SystemView. Contains:
         - TimeSignatureNode
         - MeasureNumberNode
         - TempoMarkingsNode
@@ -84,7 +84,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     public var temporalInfoNode = TemporalInfoNode(height: 75)
     
     /** 
-    EventsNode of System. Stacked after the `temporalInfoNode`.
+    EventsNode of SystemView. Stacked after the `temporalInfoNode`.
     Contains all non-temporal musical information (`Performers`, `BGStrata`, `DMNodes`, etc).
     */
     public var eventsNode = ViewNode(accumulateVerticallyFrom: .Top)
@@ -92,13 +92,13 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /// Layer for Barlines. First (most background) layer of EventsNode
     private let barlinesLayer = CALayer()
     
-    /// All Measures (model) contained in this System
+    /// All Measures (model) contained in this SystemView
     public var measures: [Measure] = [] { didSet { setMeasuresWithMeasures(measures) } }
     
-    /// All MeasureViews contained in this System
+    /// All MeasureViews contained in this SystemView
     public var measureViews: [MeasureView] = []
     
-    /// All DurationNodes contained in this System
+    /// All DurationNodes contained in this SystemView
     public var durationNodes: [DurationNode] = []
 
     /// Graphical height of a single Guidonian staff space
@@ -110,10 +110,10 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /// Horiztonal starting point of musical information
     public var infoStartX: CGFloat = 50
     
-    /// Duration that the beginning of this System is offset from the beginning of the piece.
+    /// Duration that the beginning of this SystemView is offset from the beginning of the piece.
     public var offsetDuration: Duration = DurationZero
     
-    /// The Duration of this System
+    /// The Duration of this SystemView
     public var totalDuration: Duration = DurationZero
     
     // make a better interface for this
@@ -121,14 +121,14 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
         return DurationInterval(duration: totalDuration, startDuration: offsetDuration)
     }
     
-    /// DurationSpan of System
+    /// DurationSpan of SystemView
     //public var durationSpan: DurationSpan { get { return DurationSpan() } }
     
-    /// System following this System on the Page containing this System. May be `nil`.
-    public var nextSystem: System? { get { return getNextSystem() } }
+    /// SystemView following this SystemView on the Page containing this SystemView. May be `nil`.
+    public var nextSystem: SystemView? { get { return getNextSystem() } }
    
-    /// System preceeding this System on the Page containing this System. May be `nil`.
-    public var previousSystem: System? { get { return getPreviousSystem() } }
+    /// SystemView preceeding this SystemView on the Page containing this SystemView. May be `nil`.
+    public var previousSystem: SystemView? { get { return getPreviousSystem() } }
     
     /**
     All BGStrata organized by identifier `String`.
@@ -137,13 +137,13 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     */
     public var bgStrataByID: [String : [BGStratum]] = [:]
     
-    /// All BGStrata in this System
+    /// All BGStrata in this SystemView
     public var bgStrata: [BGStratum] = []
     
-    /// All Stems in this System
+    /// All Stems in this SystemView
     public var stems: [Stem] = []
 
-    /// All Barlines in this System
+    /// All Barlines in this SystemView
     private var barlines: [Barline] = []
     
     /**
@@ -163,21 +163,21 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     /**
     Get an array of Systems, starting at a given index, and not exceeding a given maximumHeight.
     
-    TODO: Make contingency for case where a single System is larger than the maximumHeight
+    TODO: Make contingency for case where a single SystemView is larger than the maximumHeight
     
     - parameter systems:       The entire reservoir of Systems from which to choose
-    - parameter index:         Index of first System in the output range
+    - parameter index:         Index of first SystemView in the output range
     - parameter maximumHeight: Height which is not to be exceeded by range of Systems
     
     - returns: Array of Systems fulfilling these requirements
     */
     public class func rangeFromSystems(
-        systems: [System],
+        systems: [SystemView],
         startingAtIndex index: Int,
         constrainedByMaximumTotalHeight maximumHeight: CGFloat
-    ) -> [System]
+    ) -> [SystemView]
     {
-        var systemRange: [System] = []
+        var systemRange: [SystemView] = []
         var s: Int = index
         var accumHeight: CGFloat = 0
         while s < systems.count && accumHeight < maximumHeight {
@@ -192,9 +192,9 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Create a System
+    Create a SystemView
     
-    - returns: System
+    - returns: SystemView
     */
     public override init() {
         super.init()
@@ -204,13 +204,13 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Create a System
+    Create a SystemView
     
     - parameter g:         Graphical height of a single Guidonian staff space
     - parameter beatWidth: Graphical width of a single 8th-note
     - parameter viewerID:  Identifier of human interacting with the score
     
-    - returns: System
+    - returns: SystemView
     */
     public init(
         g: CGFloat,
@@ -227,20 +227,20 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Create a System.
+    Create a SystemView.
     
     - parameter coder: NSCoder
     
-    - returns: System
+    - returns: SystemView
     */
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     /**
-    Create a System
+    Create a SystemView
     
     - parameter layer: AnyObject
     
-    - returns: System
+    - returns: SystemView
     */
     public override init(layer: AnyObject) { super.init(layer: layer) }
     
@@ -254,7 +254,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Add a MeasureNumber to this System
+    Add a MeasureNumber to this SystemView
     
     - parameter measureNumber: MeasureNumber to be added
     - parameter x:             Horizontal placement of MeasureNumber
@@ -264,7 +264,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Add a TimeSignature to this System
+    Add a TimeSignature to this SystemView
     
     - parameter timeSignature: TimeSignature to be added
     - parameter x:             Horizontal placement of TimeSignature
@@ -274,7 +274,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Add a BeamGroupStratum to this System
+    Add a BeamGroupStratum to this SystemView
     
     - parameter bgStratum: BeamGroupStratum
     */
@@ -284,7 +284,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Add a Performer to this System
+    Add a Performer to this SystemView
     
     - parameter performer: Performer to be added
     */
@@ -328,7 +328,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     Set MeasureViews with MeasureViews. Manages the handing-off of Measure-related
     graphical components (Barlines, TimeSignatures, MeasureNumbers)
     
-    - parameter measures: All MeasureViews in this System
+    - parameter measures: All MeasureViews in this SystemView
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
         
@@ -379,9 +379,9 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     
     /**
     Create Stems.
-    This is currently `public`, as the System `build()` process is fragmented externally.
-    As the System `build()` process becomes clearer, this shall be made `private`,
-    and called only within the System itself.
+    This is currently `public`, as the SystemView `build()` process is fragmented externally.
+    As the SystemView `build()` process becomes clearer, this shall be made `private`,
+    and called only within the SystemView itself.
     */
     public func createStems() {
         
@@ -397,7 +397,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Arrange all ViewNodes contained within this System to show only those selected.
+    Arrange all ViewNodes contained within this SystemView to show only those selected.
     */
     public func arrangeNodesWithComponentTypesPresent() {
         
@@ -678,7 +678,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Layout this System. Calls `ViewNode.layout()`, then adjusts Ligatures.
+    Layout this SystemView. Calls `ViewNode.layout()`, then adjusts Ligatures.
     */
     public override func layout() {
         super.layout()
@@ -1815,7 +1815,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     }
     */
     
-    private func getNextSystem() -> System? {
+    private func getNextSystem() -> SystemView? {
         if page == nil { return nil }
         if let index = page!.systems.indexOfObject(self) {
             if index < page!.systems.count - 1 { return page!.systems[index + 1] }
@@ -1823,7 +1823,7 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
         return nil
     }
     
-    private func getPreviousSystem() -> System? {
+    private func getPreviousSystem() -> SystemView? {
         if page == nil { return nil }
         if let index = page?.systems.indexOfObject(self) {
             if index > 0 { return page!.systems[index - 1] }
@@ -1844,6 +1844,6 @@ public class System: ViewNode, BuildPattern, DurationSpanning {
     */
     
     private func getDescription() -> String {
-        return "System: totalDuration: \(totalDuration), offsetDuration: \(offsetDuration)"
+        return "SystemView: totalDuration: \(totalDuration), offsetDuration: \(offsetDuration)"
     }
 }

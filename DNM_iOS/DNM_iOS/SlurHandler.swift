@@ -14,7 +14,7 @@ public class SlurHandler {
     public var graphEvent0: GraphEvent?
     public var graphEvent1: GraphEvent?
     public var slur: Slur?
-    public var system: System?
+    public var system: SystemView?
     public var g: CGFloat = 10
     
     public var connectionPoint0: CGPoint { get { return getConnectionPoint0() } }

@@ -88,7 +88,7 @@
 		07074F271BF96D1D00BFC6FA /* StemDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */; };
 		07074F281BF96D1D00BFC6FA /* StyledBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */; };
 		07074F291BF96D1D00BFC6FA /* SubdivisionGraphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */; };
-		07074F2A1BF96D1D00BFC6FA /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED01BF96D1D00BFC6FA /* System.swift */; };
+		07074F2A1BF96D1D00BFC6FA /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED01BF96D1D00BFC6FA /* SystemView.swift */; };
 		07074F2B1BF96D1D00BFC6FA /* TempoMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */; };
 		07074F2C1BF96D1D00BFC6FA /* TemporalInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */; };
 		07074F2D1BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED31BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift */; };
@@ -148,7 +148,7 @@
 		07C6D6061C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */; };
 		07CC12B11C07EB250006A232 /* ScoreSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */; };
 		07CC12B31C07F5DC0006A232 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */; };
-		07CEFC981C0CF5370024308F /* _System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEFC971C0CF5370024308F /* _System.swift */; };
+		07CEFC981C0CF5370024308F /* SystemNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEFC971C0CF5370024308F /* SystemNew.swift */; };
 		07CEFC9C1C0D05350024308F /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEFC9B1C0D05350024308F /* ScoreView.swift */; };
 		2BF054331C0275E6006414FE /* DNMModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; };
 		2BF054341C0275E6006414FE /* DNMModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF054301C027566006414FE /* DNMModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -278,7 +278,7 @@
 		07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDirection.swift; sourceTree = "<group>"; };
 		07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledBezierCurve.swift; sourceTree = "<group>"; };
 		07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubdivisionGraphic.swift; sourceTree = "<group>"; };
-		07074ED01BF96D1D00BFC6FA /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		07074ED01BF96D1D00BFC6FA /* SystemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
 		07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarkingView.swift; sourceTree = "<group>"; };
 		07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporalInfoNode.swift; sourceTree = "<group>"; };
 		07074ED31BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayerContstrainedByHeight.swift; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 		07C6D6051C0AB24E00D81CA5 /* ViewSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B01C07EB250006A232 /* ScoreSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		07CC12B21C07F5DC0006A232 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
-		07CEFC971C0CF5370024308F /* _System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _System.swift; sourceTree = "<group>"; };
+		07CEFC971C0CF5370024308F /* SystemNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemNew.swift; sourceTree = "<group>"; };
 		07CEFC9B1C0D05350024308F /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		2BF054301C027566006414FE /* DNMModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DNMModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -535,8 +535,8 @@
 				07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */,
 				07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */,
 				07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */,
-				07074ED01BF96D1D00BFC6FA /* System.swift */,
-				07CEFC971C0CF5370024308F /* _System.swift */,
+				07074ED01BF96D1D00BFC6FA /* SystemView.swift */,
+				07CEFC971C0CF5370024308F /* SystemNew.swift */,
 				07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */,
 				07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */,
 				07074ED31BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift */,
@@ -847,7 +847,7 @@
 				07074EF41BF96D1D00BFC6FA /* BGEvent.swift in Sources */,
 				07074F001BF96D1D00BFC6FA /* DNMColorManager.swift in Sources */,
 				07074F641BF96F6200BFC6FA /* ViewSelector.swift in Sources */,
-				07CEFC981C0CF5370024308F /* _System.swift in Sources */,
+				07CEFC981C0CF5370024308F /* SystemNew.swift in Sources */,
 				07074EEF1BF96D1D00BFC6FA /* BezierCurveStylerDashesVariable.swift in Sources */,
 				07074F081BF96D1D00BFC6FA /* GraphEvent.swift in Sources */,
 				07074EE81BF96D1D00BFC6FA /* BeamsLayerGroup.swift in Sources */,
@@ -855,7 +855,7 @@
 				07074F501BF96F6200BFC6FA /* ButtonSwitchNode.swift in Sources */,
 				07074F261BF96D1D00BFC6FA /* Stem.swift in Sources */,
 				07074F101BF96D1D00BFC6FA /* HueByTupletDepth.swift in Sources */,
-				07074F2A1BF96D1D00BFC6FA /* System.swift in Sources */,
+				07074F2A1BF96D1D00BFC6FA /* SystemView.swift in Sources */,
 				07074F0A1BF96D1D00BFC6FA /* GraphEventEdgeHandler.swift in Sources */,
 				07074F1F1BF96D1D00BFC6FA /* RhythmCueGraph.swift in Sources */,
 				07074F351BF96D1D00BFC6FA /* ViewArithmetic.swift in Sources */,

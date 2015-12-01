@@ -39,7 +39,7 @@ public class _Environment: UIView {
     
     // MARK: - View Components
     
-    public var systems: [System] = []
+    public var systems: [SystemView] = []
     public var measureViews: [MeasureView] = []
     
     // MARK: - Size
@@ -179,13 +179,13 @@ public class _Environment: UIView {
     
     // THIS MUST GO IN _ScoreView
     // Create SystemManager (get better name)
-    public func makeSystemsWithViewerID(id: String) -> [System] {
+    public func makeSystemsWithViewerID(id: String) -> [SystemView] {
         
         for measure in measures { print(measure) }
         
         let maximumWidth = UIScreen.mainScreen().bounds.width - 2 * page_pad
         let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
-        var systems: [System] = []
+        var systems: [SystemView] = []
         var measureIndex: Int = 0
         var accumDuration: Duration = DurationZero
         while measureIndex < measures.count {
@@ -198,13 +198,13 @@ public class _Environment: UIView {
             
             do {
                 
-                // create range of measures to define the next System
+                // create range of measures to define the next SystemView
                 let measureRange = try Measure.rangeFromArray(measures,
                     withinDurationInterval: interval
                 )
                 
-                // start System init: clean up
-                let system = System(g: g, beatWidth: 110, viewerID: id)
+                // start SystemView init: clean up
+                let system = SystemView(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
                 system.measures = measureRange
                 system.instrumentIDsAndInstrumentTypesByPerformerID = instrumentIDsAndInstrumentTypesByPerformerID
@@ -260,9 +260,9 @@ public class _Environment: UIView {
     // ----------------------------------------------------------------------------------------
     // now, use rehearsalMarking.rangeWithArray as part of DurationSpanning protocol
     
-    // get rehearsalMarkings in DurationInterval - manage within System!
+    // get rehearsalMarkings in DurationInterval - manage within SystemView!
     // clean up and gtfo
-    private func manageRehearsalMarkingsForSystem(system: System) {
+    private func manageRehearsalMarkingsForSystem(system: SystemView) {
         for rehearsalMarking in rehearsalMarkings {
             if rehearsalMarking.offsetDuration >= system.offsetDuration &&
                 rehearsalMarking.offsetDuration < system.totalDuration
@@ -282,7 +282,7 @@ public class _Environment: UIView {
     
     // use tempoMarking.rangeWithArray as part of DurationSpanning protocol
     // clean up and the gtfo
-    private func manageTempoMarkingsForSystem(system: System) {
+    private func manageTempoMarkingsForSystem(system: SystemView) {
         for tempoMarking in tempoMarkings {
             if tempoMarking.offsetDuration >= system.offsetDuration &&
                 tempoMarking.offsetDuration < system.totalDuration
@@ -303,7 +303,7 @@ public class _Environment: UIView {
     // ----------------------------------------------------------------------------------------
     
     // make DMLigature (DynamicMarkingSpanner at some point) Manager class, this is out of hand
-    public func manageDMLigaturesForSystems(systems: [System]) {
+    public func manageDMLigaturesForSystems(systems: [SystemView]) {
         
         // encapsulate: create ligature spans
         struct DMLigatureSpan {
