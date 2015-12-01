@@ -23,7 +23,14 @@ extension DurationSpanning {
         withinDurationInterval durationInterval: DurationInterval
     ) throws -> [T]
     {
-        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During]
+        
+        print("duration spanning range from array: \(array)")
+        
+        for el in array {
+            print("relationship: \(el.durationInterval.relationshipToDurationInterval(durationInterval))")
+        }
+        
+        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During, .Equal]
         let filtered = array.filter {
             validRelationships.contains(
                 $0.durationInterval.relationshipToDurationInterval(durationInterval)

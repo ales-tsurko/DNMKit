@@ -12,7 +12,7 @@ import DNMModel
 // TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from ScoreView.swift (2015-11-30)
 public class _ScoreView: UIView {
 
-    public var identifier: String!
+    public var viewerID: String?
     public var scoreModel: DNMScoreModel!
     
     // MARK: - PageViews
@@ -34,18 +34,99 @@ public class _ScoreView: UIView {
 
     - returns: ScoreView
     */
-    public init(identifier: String, scoreModel: DNMScoreModel) {
+    public init(scoreModel: DNMScoreModel, viewerID: String? = nil) {
         super.init(frame: UIScreen.mainScreen().bounds) // reset frame to size of screen
-        self.identifier = identifier
         self.scoreModel = scoreModel
+        self.viewerID = viewerID
+        build()
     }
     
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    public func build() {
+        print("build")
+        createSystems()
+    }
+    
+    // Enscpsulate in class: SystemFactory
     public func createSystems() {
-        // TODO
-        // get maximumWidth
+        
+        print("create systems")
+        
+        // hacks
+        let page_pad: CGFloat = 25
+        let beatWidth: CGFloat = 110
+        //let g: CGFloat = 10
+        
+        let maximumWidth = frame.width - 2 * page_pad
+        let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
+        
+        print("maximum width: \(maximumWidth)")
+        print("maximum duration: \(maximumDuration)")
+        print("measures.count: \(scoreModel.measures)")
+        
+        let systems = SystemModel.rangeWithScoreModel(scoreModel,
+            beatWidth: beatWidth, maximumWidth: maximumWidth
+        )
+        
+        /*
+        // System (MODEL)
+        var systems: [SystemModel] = []
+        var systemStartDuration: Duration = DurationZero
+        var measureIndex: Int = 0
+        while measureIndex < scoreModel.measures.count {
+            
+            // create the maximum duration interval for the next System
+            let maximumDurationInterval = DurationInterval(
+                startDuration: systemStartDuration,
+                stopDuration: systemStartDuration + maximumDuration
+            )
+
+            do {
+                let measureRange = try Measure.rangeFromArray(scoreModel.measures,
+                    withinDurationInterval: maximumDurationInterval
+                )
+                
+                // create actual duration interval for System
+                let systemDurationInterval = DurationInterval.unionWithDurationIntervals(
+                    measureRange.map { $0.durationInterval}
+                )
+                
+                print("system duration interval: \(systemDurationInterval)")
+                
+                // get durationNodes in range
+                do {
+                    let durationNodeRange = try DurationNode.rangeFromArray(
+                        scoreModel.durationNodes,
+                        withinDurationInterval: systemDurationInterval
+                    )
+                    
+                    // create System
+                    let system = SystemModel(
+                        durationInterval: systemDurationInterval,
+                        measures: measureRange,
+                        durationNodes: durationNodeRange,
+                        tempoMarkings: [],
+                        rehearsalMarkings: []
+                    )
+                }
+                catch {
+                    print("couldn't find duration nodes in range")
+                }
+                
+                // advance accumDuration
+                systemStartDuration = systemDurationInterval.stopDuration
+                
+                // advance measure index
+                measureIndex += measureRange.count
+                
+            }
+            catch {
+                print("could not create measure range: \(error)")
+            }
+        }
+        */
     }
     
     // throws error?
@@ -76,7 +157,6 @@ public class _ScoreView: UIView {
     private func removeCurrentPageView() {
         if let currentPageView = currentPageView { currentPageView.removeFromSuperview() }
     }
-    
     
     private func getCurrentPageIndex() -> Int? {
         if let currentPageView = currentPageView { return pageViews.indexOf(currentPageView) }

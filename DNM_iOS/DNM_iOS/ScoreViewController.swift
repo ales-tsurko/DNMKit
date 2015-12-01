@@ -9,6 +9,7 @@
 import UIKit
 import DNMModel
 
+// TODO: THIS IS BEING REFACTORED INTO FROM ENVIRONMENT (in-process: 2015-11-29)
 class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - UI
@@ -18,34 +19,64 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var viewSelectorTableView: UITableView!
     
-    // integrate contexts of Environment into this
+    // DEPRECATE once refactored integrate contexts of Environment into this
     var environment: Environment!
     
     // MARK: - Score Views
     
-    /// All ScoreViews organized by ID
-    var scoreViewsByID: [String: ScoreView] = [:]
+    /// All ScoreViews organized by ID; TODO: change _ScoreView to ScoreView once refactored
+    var scoreViewsByID: [String: _ScoreView] = [:]
     
     /// All ScoreViewIDs (populates ScoreViewTableView)
     var scoreViewIDs: [String] = []
     
-    /// ScoreView currently displayed
-    var currentScoreView: ScoreView?
+    /// ScoreView currently displayed; TODO: change _ScoreView to ScoreView once refactored
+    var currentScoreView: _ScoreView?
+    
+    /// Model of musical work
+    var scoreModel: DNMScoreModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        build()
     }
 
-    func build() {
-        setupScoreViewTableView()
-        createViews()
+    func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
+        self.scoreModel = scoreModel
+        populateScoreViewIDsWithScoreModel(scoreModel)
+        manageColorMode()
+        build()
+        // test
+        view.backgroundColor = UIColor.redColor()
+        //createEnviromentWithScoreModel(scoreModel)
     }
     
-    func createViews() {
-        for id in scoreViewIDs {
-            
-            // manage systems
+    func build() {
+        setupScoreViewTableView()
+        createScoreViews()
+        showScoreViewWithID("omni")
+        goToFirstPage()
+    }
+    
+    // ----------------------------------------------------------------------------------------
+    // TO BE DEPRECATED
+    func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
+        environment = Environment(scoreModel: scoreModel)
+        environment.build()
+        view.insertSubview(environment, atIndex: 0)
+        
+        // temp
+
+        
+        viewSelectorTableView.reloadData()
+    }
+    // ----------------------------------------------------------------------------------------
+    
+    // Creates and stores a ScoreView for each scoreViewID; 
+    // TODO: change _ScoreView to ScoreView once refactored
+    func createScoreViews() {
+        for viewerID in scoreViewIDs {
+            let scoreView = _ScoreView(scoreModel: scoreModel, viewerID: viewerID)
+            scoreViewsByID[viewerID] = scoreView
         }
     }
     
@@ -59,15 +90,13 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             // set currentScoreView to this view
             currentScoreView = scoreView
             
-            // setFrame() // necessary
+            // setFrame() // if necessary
         }
     }
     
     private func removeCurrentScoreView() {
         // remove currentView is necessary
-        if let currentScoreView = currentScoreView {
-            currentScoreView.removeFromSuperview()
-        }
+        if let currentScoreView = currentScoreView { currentScoreView.removeFromSuperview() }
     }
     
     func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
@@ -75,22 +104,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // add IDs for each Performer (ScoreView), as well as the full score ("omni")
         scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
-    }
-    
-    func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
-        manageColorMode()
-        createEnviromentWithScoreModel(scoreModel)
-    }
-    
-    func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
-        environment = Environment(scoreModel: scoreModel)
-        environment.build()
-        view.insertSubview(environment, atIndex: 0)
-        
-        // temp
-        populateScoreViewIDsWithScoreModel(scoreModel)
-
-        viewSelectorTableView.reloadData()
     }
     
     // MARK: - Setup
@@ -109,14 +122,23 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    // MARK: - Page Navigation
+    
+    func goToFirstPage() {
+        currentScoreView?.goToFirstPage()
+    }
+    
+    func goToLastPage() {
+        currentScoreView?.goToLastPage()
+    }
+    
     func goToNextPage() {
-        print("go to next page")
+        currentScoreView?.goToNextPage()
     }
     
     func goToPreviousPage() {
-        print("go to prev page")
+        currentScoreView?.goToPreviousPage()
     }
-    
     
     @IBAction func didPressPreviousButton(sender: UIButton) {
         print("did press prev button")

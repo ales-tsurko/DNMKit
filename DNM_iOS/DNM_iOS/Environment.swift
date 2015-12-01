@@ -177,6 +177,7 @@ public class Environment: UIView {
     }
     */
     
+    // THIS MUST GO IN ScoreView
     // Create SystemManager (get better name)
     public func makeSystemsWithViewerID(id: String) -> [System] {
         
@@ -184,7 +185,6 @@ public class Environment: UIView {
         
         let maximumWidth = UIScreen.mainScreen().bounds.width - 2 * page_pad
         let maximumDuration = maximumWidth.durationWithBeatWidth(beatWidth)
-        print("maximumDuration: \(maximumDuration)")
         var systems: [System] = []
         var measureIndex: Int = 0
         var accumDuration: Duration = DurationZero
