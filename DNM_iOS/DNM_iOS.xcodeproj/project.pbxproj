@@ -119,11 +119,11 @@
 		07074F5D1BF96F6200BFC6FA /* PageControlButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */; };
 		07074F5E1BF96F6200BFC6FA /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F481BF96F6200BFC6FA /* PageView.swift */; };
 		07074F5F1BF96F6200BFC6FA /* _ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F491BF96F6200BFC6FA /* _ScoreView.swift */; };
-		07074F601BF96F6200BFC6FA /* RadioGroupPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */; };
-		07074F611BF96F6200BFC6FA /* RadioGroupPanelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */; };
+		07074F601BF96F6200BFC6FA /* _RadioGroupPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4A1BF96F6200BFC6FA /* _RadioGroupPanel.swift */; };
+		07074F611BF96F6200BFC6FA /* _RadioGroupPanelVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4B1BF96F6200BFC6FA /* _RadioGroupPanelVertical.swift */; };
 		07074F621BF96F6200BFC6FA /* SelectionRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */; };
 		07074F631BF96F6200BFC6FA /* SystemUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4D1BF96F6200BFC6FA /* SystemUIView.swift */; };
-		07074F641BF96F6200BFC6FA /* ViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4E1BF96F6200BFC6FA /* ViewSelector.swift */; };
+		07074F641BF96F6200BFC6FA /* _ViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4E1BF96F6200BFC6FA /* _ViewSelector.swift */; };
 		071E9E051C00EC4F008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E0C1C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
 		071E9E131C00EC4F008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */; };
@@ -309,11 +309,11 @@
 		07074F471BF96F6200BFC6FA /* PageControlButtonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButtonType.swift; sourceTree = "<group>"; };
 		07074F481BF96F6200BFC6FA /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		07074F491BF96F6200BFC6FA /* _ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ScoreView.swift; sourceTree = "<group>"; };
-		07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanel.swift; sourceTree = "<group>"; };
-		07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroupPanelVertical.swift; sourceTree = "<group>"; };
+		07074F4A1BF96F6200BFC6FA /* _RadioGroupPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _RadioGroupPanel.swift; sourceTree = "<group>"; };
+		07074F4B1BF96F6200BFC6FA /* _RadioGroupPanelVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _RadioGroupPanelVertical.swift; sourceTree = "<group>"; };
 		07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionRectangle.swift; sourceTree = "<group>"; };
 		07074F4D1BF96F6200BFC6FA /* SystemUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUIView.swift; sourceTree = "<group>"; };
-		07074F4E1BF96F6200BFC6FA /* ViewSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSelector.swift; sourceTree = "<group>"; };
+		07074F4E1BF96F6200BFC6FA /* _ViewSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ViewSelector.swift; sourceTree = "<group>"; };
 		071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMModel_iOS.h; sourceTree = "<group>"; };
 		071E9E061C00EC4F008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -575,11 +575,11 @@
 				07074F481BF96F6200BFC6FA /* PageView.swift */,
 				07074F491BF96F6200BFC6FA /* _ScoreView.swift */,
 				07CEFC9B1C0D05350024308F /* ScoreView.swift */,
-				07074F4A1BF96F6200BFC6FA /* RadioGroupPanel.swift */,
-				07074F4B1BF96F6200BFC6FA /* RadioGroupPanelVertical.swift */,
 				07074F4C1BF96F6200BFC6FA /* SelectionRectangle.swift */,
 				07074F4D1BF96F6200BFC6FA /* SystemUIView.swift */,
-				07074F4E1BF96F6200BFC6FA /* ViewSelector.swift */,
+				07074F4A1BF96F6200BFC6FA /* _RadioGroupPanel.swift */,
+				07074F4B1BF96F6200BFC6FA /* _RadioGroupPanelVertical.swift */,
+				07074F4E1BF96F6200BFC6FA /* _ViewSelector.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -821,7 +821,7 @@
 				07074F141BF96D1D00BFC6FA /* InstrumentString.swift in Sources */,
 				07074EDF1BF96D1D00BFC6FA /* AccidentalCollision.swift in Sources */,
 				07074F631BF96F6200BFC6FA /* SystemUIView.swift in Sources */,
-				07074F601BF96F6200BFC6FA /* RadioGroupPanel.swift in Sources */,
+				07074F601BF96F6200BFC6FA /* _RadioGroupPanel.swift in Sources */,
 				07074F071BF96D1D00BFC6FA /* GraphContinuousControllerStepped.swift in Sources */,
 				07074F571BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift in Sources */,
 				07074F291BF96D1D00BFC6FA /* SubdivisionGraphic.swift in Sources */,
@@ -835,7 +835,7 @@
 				07074EE51BF96D1D00BFC6FA /* BeamGroup.swift in Sources */,
 				07074EF51BF96D1D00BFC6FA /* BGStratum.swift in Sources */,
 				07074F061BF96D1D00BFC6FA /* GraphContinuousController.swift in Sources */,
-				07074F611BF96F6200BFC6FA /* RadioGroupPanelVertical.swift in Sources */,
+				07074F611BF96F6200BFC6FA /* _RadioGroupPanelVertical.swift in Sources */,
 				07074F231BF96D1D00BFC6FA /* Staff.swift in Sources */,
 				07074EEE1BF96D1D00BFC6FA /* BezierCurveStylerDashes.swift in Sources */,
 				07074F361BF96D1D00BFC6FA /* ViewNode.swift in Sources */,
@@ -846,7 +846,7 @@
 				07074EE11BF96D1D00BFC6FA /* Articulation.swift in Sources */,
 				07074EF41BF96D1D00BFC6FA /* BGEvent.swift in Sources */,
 				07074F001BF96D1D00BFC6FA /* DNMColorManager.swift in Sources */,
-				07074F641BF96F6200BFC6FA /* ViewSelector.swift in Sources */,
+				07074F641BF96F6200BFC6FA /* _ViewSelector.swift in Sources */,
 				07CEFC981C0CF5370024308F /* System.swift in Sources */,
 				07074EEF1BF96D1D00BFC6FA /* BezierCurveStylerDashesVariable.swift in Sources */,
 				07074F081BF96D1D00BFC6FA /* GraphEvent.swift in Sources */,

@@ -26,6 +26,10 @@ public class ScoreView: UIView {
     /// Index of current PageView
     public var currentPageIndex: Int? { return getCurrentPageIndex() }
     
+    // HACKS
+    let g: CGFloat = 10 // hack
+    let beatWidth: CGFloat = 110 // hack
+    
     /**
     Create a ScoreView with an identifier and scoreModel
 
@@ -46,12 +50,20 @@ public class ScoreView: UIView {
     
     public func build() {
         let systems = makeSystems()
-        // create SystemLayers with systems
-
+        let systemLayers = makeSystemLayersWithSystems(systems)
+        print("systemLayers: \(systemLayers)")
+        
+        //
+    }
+    
+    private func makeSystemLayersWithSystems(systems: [System]) -> [SystemLayer] {
+        return systems.map {
+            SystemLayer(system: $0, g: g, beatWidth: beatWidth, viewerID: viewerID)
+        }
     }
     
     // Enscpsulate in class: SystemFactory
-    public func makeSystems() -> [System] {
+    private func makeSystems() -> [System] {
         let page_pad: CGFloat = 25
         let maximumWidth = frame.width - 2 * page_pad
         let beatWidth: CGFloat = 110 // hack, make not static

@@ -12,18 +12,12 @@ import DNMModel
 // add tests for this, add doc comments
 public struct System {
     
-    // actually just use score model?
-    
+
+    /// DurationInterval for this System
     public var durationInterval: DurationInterval
+    
+    /// Model of musical information for this System
     public var scoreModel: DNMScoreModel
-    
-    /*
-    public var durationInterval: DurationInterval
-    public var measures: [Measure]
-    public var durationNodes: [DurationNode]
-    public var tempoMarkings: [TempoMarking]
-    public var rehearsalMarkings: [RehearsalMarking]
-    */
     
     // throws?, options: defined by measures or duration nodes?
     public static func rangeWithScoreModel(scoreModel: DNMScoreModel,
@@ -93,13 +87,5 @@ public struct System {
     public init(durationInterval: DurationInterval, scoreModel: DNMScoreModel) {
         self.durationInterval = durationInterval
         self.scoreModel = scoreModel
-        
-        /*
-        self.durationInterval = durationInterval
-        self.measures = scoreModel.measures
-        self.durationNodes = scoreModel.durationNodes
-        self.tempoMarkings = scoreModel.tempoMarkings
-        self.rehearsalMarkings = scoreModel.rehearsalMarkings
-        */
     }
 }

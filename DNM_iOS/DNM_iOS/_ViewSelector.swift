@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 public class ViewSelector: RadioGroupPanelVertical {
     
     public override init(
@@ -24,3 +25,4 @@ public class ViewSelector: RadioGroupPanelVertical {
         super.init(coder: aDecoder)
     }
 }
+*/

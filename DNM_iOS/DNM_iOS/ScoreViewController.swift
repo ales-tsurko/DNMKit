@@ -20,7 +20,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var viewSelectorTableView: UITableView!
     
     // DEPRECATE once refactored integrate contexts of _Environment into this
-    var environment: _Environment!
+    //var environment: _Environment!
     
     // MARK: - Score Views
     
@@ -57,6 +57,7 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         goToFirstPage()
     }
     
+    /*
     // ----------------------------------------------------------------------------------------
     // TO BE DEPRECATED
     func createEnviromentWithScoreModel(scoreModel: DNMScoreModel) {
@@ -70,7 +71,8 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         viewSelectorTableView.reloadData()
     }
     // ----------------------------------------------------------------------------------------
-    
+    */    
+
     // Creates and stores a _ScoreView for each scoreViewID; 
     // TODO: change ScoreView to _ScoreView once refactored
     func createScoreViews() {

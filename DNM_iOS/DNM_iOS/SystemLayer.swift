@@ -26,6 +26,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     /// Page containing this SystemLayer
     public var page: Page?
     
+    public var system: System!
+    
     /// If this SystemLayer has been built yet
     public var hasBeenBuilt: Bool = false
     
@@ -117,9 +119,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     public var totalDuration: Duration = DurationZero
     
     // make a better interface for this
-    public var durationInterval: DurationInterval {
+    public var durationInterval: DurationInterval = DurationIntervalZero /*{
         return DurationInterval(duration: totalDuration, startDuration: offsetDuration)
-    }
+    }*/
     
     /// DurationSpan of SystemLayer
     //public var durationSpan: DurationSpan { get { return DurationSpan() } }
@@ -193,9 +195,20 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     // TODO
     public init(system: System, g: CGFloat, beatWidth: CGFloat, viewerID: String? = nil) {
-        super.init()
+        self.system = system
+        
+        
+        self.instrumentIDsAndInstrumentTypesByPerformerID = system.scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
+        self.durationNodes = system.scoreModel.durationNodes
+        self.g = g
+        self.beatWidth = beatWidth
+        self.viewerID = viewerID
+        super.init(accumulateVerticallyFrom: .Top)
+        setsWidthWithContents = true
+        pad_bottom = 2 * g
     }
     
+    /*
     /**
     Create a SystemLayer
     
@@ -230,6 +243,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         setsWidthWithContents = true
         pad_bottom = 2 * g
     }
+    */
     
     /**
     Create a SystemLayer.

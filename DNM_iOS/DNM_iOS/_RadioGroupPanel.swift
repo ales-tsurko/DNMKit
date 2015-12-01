@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 public class RadioGroupPanel: ButtonSwitchPanel {
     
     public var currentButtonSelectedID: String = ""
@@ -62,3 +63,4 @@ public class RadioGroupPanel: ButtonSwitchPanel {
         }
     }
 }
+*/

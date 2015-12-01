@@ -6,6 +6,7 @@
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
+/*
 import UIKit
 import DNMModel
 
@@ -203,6 +204,7 @@ public class _Environment: UIView {
                     withinDurationInterval: interval
                 )
                 
+                /*
                 // start SystemLayer init: clean up
                 let system = SystemLayer(g: g, beatWidth: 110, viewerID: id)
                 system.offsetDuration = accumDuration
@@ -217,13 +219,15 @@ public class _Environment: UIView {
                 )
                 system.durationNodes = durationNodeRange
                 systems.append(system)
-                
+                    
+
                 if let lastMeasure = measureRange.last {
                     if let lastMeasureIndex: Int = measures.indexOf(lastMeasure) {
                         measureIndex = lastMeasureIndex + 1
                         accumDuration += system.totalDuration
                     }
                 }
+                */
             }
             catch {
                 print("could not create measure range: \(error)")
@@ -436,3 +440,4 @@ public class _Environment: UIView {
     }
     // ----------------------------------------------------------------------------------------
 }
+*/
