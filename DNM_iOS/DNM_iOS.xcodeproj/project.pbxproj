@@ -88,7 +88,7 @@
 		07074F271BF96D1D00BFC6FA /* StemDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */; };
 		07074F281BF96D1D00BFC6FA /* StyledBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */; };
 		07074F291BF96D1D00BFC6FA /* SubdivisionGraphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */; };
-		07074F2A1BF96D1D00BFC6FA /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED01BF96D1D00BFC6FA /* SystemView.swift */; };
+		07074F2A1BF96D1D00BFC6FA /* SystemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED01BF96D1D00BFC6FA /* SystemLayer.swift */; };
 		07074F2B1BF96D1D00BFC6FA /* TempoMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */; };
 		07074F2C1BF96D1D00BFC6FA /* TemporalInfoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */; };
 		07074F2D1BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074ED31BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift */; };
@@ -278,7 +278,7 @@
 		07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDirection.swift; sourceTree = "<group>"; };
 		07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledBezierCurve.swift; sourceTree = "<group>"; };
 		07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubdivisionGraphic.swift; sourceTree = "<group>"; };
-		07074ED01BF96D1D00BFC6FA /* SystemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
+		07074ED01BF96D1D00BFC6FA /* SystemLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLayer.swift; sourceTree = "<group>"; };
 		07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoMarkingView.swift; sourceTree = "<group>"; };
 		07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporalInfoNode.swift; sourceTree = "<group>"; };
 		07074ED31BF96D1D00BFC6FA /* TextLayerContstrainedByHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayerContstrainedByHeight.swift; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 				07074ECD1BF96D1D00BFC6FA /* StemDirection.swift */,
 				07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */,
 				07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */,
-				07074ED01BF96D1D00BFC6FA /* SystemView.swift */,
+				07074ED01BF96D1D00BFC6FA /* SystemLayer.swift */,
 				07CEFC971C0CF5370024308F /* System.swift */,
 				07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */,
 				07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */,
@@ -855,7 +855,7 @@
 				07074F501BF96F6200BFC6FA /* ButtonSwitchNode.swift in Sources */,
 				07074F261BF96D1D00BFC6FA /* Stem.swift in Sources */,
 				07074F101BF96D1D00BFC6FA /* HueByTupletDepth.swift in Sources */,
-				07074F2A1BF96D1D00BFC6FA /* SystemView.swift in Sources */,
+				07074F2A1BF96D1D00BFC6FA /* SystemLayer.swift in Sources */,
 				07074F0A1BF96D1D00BFC6FA /* GraphEventEdgeHandler.swift in Sources */,
 				07074F1F1BF96D1D00BFC6FA /* RhythmCueGraph.swift in Sources */,
 				07074F351BF96D1D00BFC6FA /* ViewArithmetic.swift in Sources */,

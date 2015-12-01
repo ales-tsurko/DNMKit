@@ -29,7 +29,7 @@ public struct System {
         var measureIndex: Int = 0
         while measureIndex < scoreModel.measures.count {
             
-            // create the maximum duration interval for the next SystemView
+            // create the maximum duration interval for the next SystemLayer
             let maximumDurationInterval = DurationInterval(
                 startDuration: systemStartDuration,
                 stopDuration: systemStartDuration + maximumDuration
@@ -41,7 +41,7 @@ public struct System {
                     withinDurationInterval: maximumDurationInterval
                 )
                 
-                // create actual duration interval for SystemView, based on Measures present
+                // create actual duration interval for SystemLayer, based on Measures present
                 let systemDurationInterval = DurationInterval.unionWithDurationIntervals(
                     measureRange.map { $0.durationInterval}
                 )
@@ -53,7 +53,7 @@ public struct System {
                         withinDurationInterval: systemDurationInterval
                     )
                     
-                    // create SystemView
+                    // create SystemLayer
                     let system = System(
                         durationInterval: systemDurationInterval,
                         measures: measureRange,

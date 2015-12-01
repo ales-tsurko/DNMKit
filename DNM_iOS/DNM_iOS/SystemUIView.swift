@@ -11,7 +11,7 @@ import DNMModel
 
 public class SystemUIView: UIView {
     
-    public var system: SystemView!
+    public var system: SystemLayer!
     public var pageView: PageView!
     public var isShowingComponentSelector: Bool = false
     
@@ -30,7 +30,7 @@ public class SystemUIView: UIView {
     public var stemsSelected: [Stem] = []
     
     // takes in frame from global context
-    public init(system: SystemView, pageView: PageView? = nil) {
+    public init(system: SystemLayer, pageView: PageView? = nil) {
         self.system = system
         self.pageView = pageView // need to make sure this gets set before UI happens
         super.init(frame: system.frame) // sketch?

@@ -20,12 +20,12 @@ public class _ScoreView: UIView {
     public var currentPageView: PageView?
     
     /// All Systems for a given piece of music
-    public var systems: [SystemView] = []
+    public var systems: [SystemLayer] = []
     
     /// All SystemViews for a given piece of music
     public var systemViews: [SystemUIView] = []
 
-    public init(id: String, systems: [SystemView]) {
+    public init(id: String, systems: [SystemLayer]) {
         super.init(frame: UIScreen.mainScreen().bounds)
         self.id = id
         self.systems = systems // ALL SYSTEMS
@@ -58,7 +58,7 @@ public class _ScoreView: UIView {
         setFrame()
     }
     
-    public func makeSystemViewsForSystems(systems: [SystemView]) -> [SystemUIView] {
+    public func makeSystemViewsForSystems(systems: [SystemLayer]) -> [SystemUIView] {
         var systemViews: [SystemUIView] = []
         for system in systems {
             let systemView = SystemUIView(system: system)
@@ -84,7 +84,7 @@ public class _ScoreView: UIView {
         var pages: [Page] = []
         var systemIndex: Int = 0
         while systemIndex < systems.count {
-            let systemRange = SystemView.rangeFromSystems(systems,
+            let systemRange = SystemLayer.rangeFromSystems(systems,
                 startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
             )
 

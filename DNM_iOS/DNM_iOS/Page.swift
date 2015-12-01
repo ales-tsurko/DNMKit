@@ -12,7 +12,7 @@ public class Page: ViewNode, BuildPattern {
     
     public var viewerID: String?
     
-    public var systems: [SystemView] = []
+    public var systems: [SystemLayer] = []
     
     // not in here...
     public var maximumHeight: CGFloat { get { return getMaximumHeight() } }
@@ -20,7 +20,7 @@ public class Page: ViewNode, BuildPattern {
     
     public var hasBeenBuilt: Bool = false
     
-    public init(systems: [SystemView]) {
+    public init(systems: [SystemLayer]) {
         super.init()
         layoutAccumulation_vertical = .Top
         setSystemsWithSystems(systems)
@@ -34,7 +34,7 @@ public class Page: ViewNode, BuildPattern {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init(layer: AnyObject) { super.init(layer: layer) }
 
-    public func setSystemsWithSystems(systems: [SystemView]) {
+    public func setSystemsWithSystems(systems: [SystemLayer]) {
         self.systems = systems
         for system in systems {
             system.page = self
@@ -42,7 +42,7 @@ public class Page: ViewNode, BuildPattern {
         }
     }
     
-    public func addSystem(system: SystemView) {
+    public func addSystem(system: SystemLayer) {
         system.page = self
         systems.append(system)
         addNode(system)
