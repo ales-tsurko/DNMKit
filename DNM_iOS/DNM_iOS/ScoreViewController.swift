@@ -24,8 +24,8 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Score Views
     
-    /// All ScoreViews organized by ID; TODO: change ScoreView to _ScoreView once refactored
-    var scoreViewsByID: [String: ScoreView] = [:]
+    /// All ScoreViews organized by ID
+    var scoreViewsByID = OrderedDictionary<String, ScoreView>()
     
     /// All ScoreViewIDs (populates ScoreViewTableView)
     var scoreViewIDs: [String] = []
@@ -73,8 +73,6 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // ----------------------------------------------------------------------------------------
     */    
 
-    // Creates and stores a _ScoreView for each scoreViewID; 
-    // TODO: change ScoreView to _ScoreView once refactored
     func createScoreViews() {
         for viewerID in scoreViewIDs {
             let scoreView = ScoreView(scoreModel: scoreModel, viewerID: viewerID)
@@ -83,7 +81,10 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showScoreViewWithID(id: String) {
+        
+        print("show score view with id: \(id)")
         if let scoreView = scoreViewsByID[id] {
+            print("scoreView?: \(scoreView); bgColor: \(scoreView.backgroundColor)")
             removeCurrentScoreView()
             
             // insert subview below any ScoreViewController UIViews
@@ -153,6 +154,12 @@ class ScoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - View Selector UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let id = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text {
+            showScoreViewWithID(id)
+        }
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count

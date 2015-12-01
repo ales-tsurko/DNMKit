@@ -51,9 +51,8 @@ public class ScoreView: UIView {
     public func build() {
         let systems = makeSystems()
         let systemLayers = makeSystemLayersWithSystems(systems)
-        
-        // makePageViews
-
+        self.pageViews = makePageViewsWithSystemLayers(systemLayers)
+        goToFirstPage()
     }
     
     private func makePageViewsWithSystemLayers(systemLayers: [SystemLayer]) -> [PageView] {
@@ -71,13 +70,25 @@ public class ScoreView: UIView {
                     startingAtIndex: systemIndex,
                     constrainedByMaximumTotalHeight: maximumHeight
                 )
+                let pageLayer = PageLayer(systems: systemRange)
+                let pageView = PageView(frame: frame)
+                
+                // ----------------------------------------------------------------------------
+                // add random color for testing
+                let randomHue: CGFloat = CGFloat(randomFloat(1.0))
+                let color = UIColor(hue: randomHue, saturation: 0.75, brightness: 0.75, alpha: 1)
+                pageView.backgroundColor = color
+                // ----------------------------------------------------------------------------
+                
+                pageViews.append(pageView)
+                
+                // add in after bg color test
+                //pageView.layer.addSublayer(pageLayer)
                 systemIndex += systemRange.count
             }
             catch {
                 print("could not create systemRange: \(error)")
             }
-            
-            
         }
         return pageViews
     }
@@ -117,11 +128,11 @@ public class ScoreView: UIView {
     }
 
     public func goToFirstPage() {
-        // TODO
+        goToPageAtIndex(0)
     }
     
     public func goToLastPage() {
-        // TODO
+        goToPageAtIndex(pageViews.count - 1)
     }
     
     private func removeCurrentPageView() {

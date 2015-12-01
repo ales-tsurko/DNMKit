@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DNMModel
 
 public class PageView: UIView {
     

@@ -24,6 +24,7 @@ public class PageLayer: ViewNode, BuildPattern {
         super.init()
         layoutAccumulation_vertical = .Top
         setSystemsWithSystems(systems)
+        build()
     }
     
     public override init() {
