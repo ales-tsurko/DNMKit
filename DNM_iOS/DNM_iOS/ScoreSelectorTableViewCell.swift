@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Change to ScoreSelectorTableViewCell
+// TODO: manage styling in here
 public class ScoreSelectorTableViewCell: UITableViewCell {
 
     public var identifier: String?

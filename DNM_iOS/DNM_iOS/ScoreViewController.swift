@@ -127,28 +127,28 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     )
     {
         
-        if let scoreView = tableView.cellForRowAtIndexPath(indexPath)
-            as? ScoreSelectorTableViewCell
+        if let identifier = (tableView.cellForRowAtIndexPath(indexPath)
+            as? ScoreSelectorTableViewCell)?.identifier
         {
-            
+            showScoreViewWithID(identifier)
         }
+        
+        /*
         // TODO: decouple representation and reference: in ScoreSelectorTableViewCell
         if let id = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text {
             showScoreViewWithID(id)
         }
+        */
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count
     }
     
-    // TODO: CLEANUP
+    // TODO: CLEANUP, add Fields
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
-        
-        // make a specific one
-        // format:
         // PerformerID -- bold
         // - InstrumentID (InstrumentType)
         
@@ -162,6 +162,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         
         // SET COLOR IF VIEWER ID, or OMNI
         
+        // manageStyling within ScoreSelectorTableViewCell
         // color
         cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
