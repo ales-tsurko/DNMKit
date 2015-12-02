@@ -96,6 +96,14 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     private func setupScoreViewTableView() {
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
+        viewSelectorTableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+        
+        // clean up
+        let pad = 20
+        let right = view.bounds.width
+        viewSelectorTableView.layer.position.x = right - 0.5 * viewSelectorTableView.frame.width - 20
+        
+        viewSelectorTableView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     private func manageColorMode() {
@@ -133,7 +141,24 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         goToNextPage()
     }
     
+    private func resizeViewSelectorTableView() {
+        print("resize view selector table view frame.height: \(viewSelectorTableView.frame.height); contentssize: \(viewSelectorTableView.contentSize.height)")
+        
+        let contentsHeight = viewSelectorTableView.contentSize.height
+        let frameHeight = viewSelectorTableView.frame.height
+        
+        print("old height: \(frameHeight)")
+        
+        if contentsHeight <= frameHeight {
+            var frame = viewSelectorTableView.frame
+            print("new frame: \(frame)")
+            frame.size.height = contentsHeight
+            viewSelectorTableView.frame = frame
+        }
+    }
+    
     // MARK: - View Selector UITableViewDelegate
+
     
     public func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath
@@ -145,6 +170,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
             showScoreViewWithID(identifier)
         }
     }
+    
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count
@@ -176,12 +202,17 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         let selBGView = UIView()
         selBGView.backgroundColor = UIColor.grayscaleColorWithDepthOfField(.Middleground)
         cell.selectedBackgroundView = selBGView
+        
+        resizeViewSelectorTableView()
+        
         return cell
     }
     
+    /*
     public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: CGRectZero)
     }
+    */
     
     public override func prefersStatusBarHidden() -> Bool {
         return true

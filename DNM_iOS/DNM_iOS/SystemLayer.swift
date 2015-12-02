@@ -1315,8 +1315,10 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
             
             // isolate sizing
             var bgStrata: [BGStratum] = []
-            for stratum_model in durationNodeStrata {
-                let pIDs = performerIDsInStratum(stratum_model)
+            for durationNodeStratum in durationNodeStrata {
+                
+                // wrap --------------->
+                let pIDs = performerIDsInStratum(durationNodeStratum)
                 guard let firstValue = pIDs.first else { continue }
                 var onlyOnePID: Bool {
                     for pID in pIDs { if pID != firstValue { return false } }
@@ -1325,27 +1327,23 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                 
                 var stemDirection: StemDirection = .Down
                 var bgStratum_g: CGFloat = g
-               
-                
                 if onlyOnePID {
                     let (s, g) = getStemDirectionAndGForPID(firstValue)
                     stemDirection = s
                     bgStratum_g = g
                 }
+                // <----------------- wrap
                 
+                
+                // wrap --------------------->
                 let bgStratum = BGStratum(stemDirection: stemDirection, g: bgStratum_g)
                 bgStratum.system = self
                 bgStratum.beatWidth = beatWidth
                 bgStratum.pad_bottom = 0.5 * g
+                // <----------------- wrap
                 
-                print("system.durationInterval: \(system.durationInterval)")
-                
-                for durationNode in stratum_model {
-                    
-                    print("get offset duration from system: interval: \(durationNode.durationInterval)")
-                    
+                for durationNode in durationNodeStratum {
                     let offset_fromSystem = durationNode.durationInterval.startDuration - system.durationInterval.startDuration
-                    print("offset_fromSystem: \(offset_fromSystem)")
                     let x = infoStartX + offset_fromSystem.width(beatWidth: beatWidth)
                     bgStratum.addBeamGroupWithDurationNode(durationNode, atX: x)
                 }
