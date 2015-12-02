@@ -181,7 +181,6 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         constrainedByMaximumTotalHeight maximumHeight: CGFloat
     ) throws -> [SystemLayer]
     {
-        print("range from system layers")
         enum SystemRangeError: ErrorType { case Error }
         
         var systemRange: [SystemLayer] = []
@@ -206,6 +205,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         // perhaps not necessary -- just reference self.system
         self.instrumentIDsAndInstrumentTypesByPerformerID = system.scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
         self.durationNodes = system.scoreModel.durationNodes
+
         self.g = g
         self.beatWidth = beatWidth
         self.viewerID = viewerID
@@ -213,46 +213,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         setsWidthWithContents = true
         pad_bottom = 2 * g
         
-        // preliminary build
-        build()
+        self.setMeasuresWithMeasures(system.scoreModel.measures)
     }
-    
-    /*
-    /**
-    Create a SystemLayer
-    
-    - returns: SystemLayer
-    */
-    public override init() {
-        super.init()
-        layoutAccumulation_vertical = .Top
-        setsWidthWithContents = true
-        pad_bottom = 2 * g
-    }
-    
-    /**
-    Create a SystemLayer
-    
-    - parameter g:         Graphical height of a single Guidonian staff space
-    - parameter beatWidth: Graphical width of a single 8th-note
-    - parameter viewerID:  Identifier of human interacting with the score
-    
-    - returns: SystemLayer
-    */
-    public init(
-        g: CGFloat,
-        beatWidth: CGFloat,
-        viewerID: String? = nil
-    ) {
-        self.g = g
-        self.beatWidth = beatWidth
-        self.viewerID = viewerID
-        super.init()
-        layoutAccumulation_vertical = .Top
-        setsWidthWithContents = true
-        pad_bottom = 2 * g
-    }
-    */
     
     /**
     Create a SystemLayer.
@@ -272,7 +234,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     */
     public override init(layer: AnyObject) { super.init(layer: layer) }
     
-    
+    // TODO: documentation
     public func getDurationAtX(x: CGFloat) -> Duration {
         if x <= infoStartX { return DurationZero }
         let infoX = round(((x - infoStartX) / beatWidth) * 16) / 16
@@ -338,7 +300,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         andSubdivisionValue subdivisionValue: Int, atX x: CGFloat
     )
     {
-        temporalInfoNode.addTempoMarkingWithValue(value, andSubdivisionValue: subdivisionValue, atX: x)
+        temporalInfoNode.addTempoMarkingWithValue(value,
+            andSubdivisionValue: subdivisionValue, atX: x
+        )
     }
     
     /**
@@ -348,7 +312,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     - parameter type:  RehearsalMarkingType (.Alphabetical, .Numerical)
     - parameter x:     Horizonatal placement of RehearsalMarking
     */
-    public func addRehearsalMarkingWithIndex(index: Int, type: RehearsalMarkingType, atX x: CGFloat) {
+    public func addRehearsalMarkingWithIndex(index: Int,
+        type: RehearsalMarkingType, atX x: CGFloat
+    ) {
         temporalInfoNode.addRehearsalMarkingWithIndex(index, type: type, atX: x)
     }
     
@@ -359,6 +325,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     - parameter measures: All MeasureViews in this SystemLayer
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
+        
+        print("set measures with measures: \(measures)")
         
         // create MeasureViews with Measures
         self.measureViews = makeMeasureViewsWithMeasures(measures)
@@ -1050,7 +1018,6 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     }
 
     public func build() {
-        print("system.build()")
         clearNodes()
         createTemporalInfoNode() // change name of this: // tempo always above?
         createEventsNode()
@@ -1064,15 +1031,17 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         createSlurHandlers()
         addSlurs()
         setDefaultComponentTypesShownByID()
-
         hasBeenBuilt = true
     }
     
     private func setDefaultComponentTypesShownByID() {
         
         // make sure PERFORMER is in all component types
+        
         for (id, _) in componentTypesByID {
-            componentTypesByID[id]!.append("performer")
+            if !componentTypesByID[id]!.contains("performer") {
+                componentTypesByID[id]!.append("performer")
+            }
         }
         
         // then transfer all to componentTypesShown
@@ -1114,8 +1083,10 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         print("manage graph lines")
         print("measures -------------------------")
 
-        for measure in measureViews {
+        for measureView in measureViews {
 
+            print(measureView)
+            
             // dict of Instrument : Bool (isContainedWithinMeasure)
             // if eventHandler.instrument is contained within measure, stop line at measure.left
             //var allInstruments: [Instrument] = []
@@ -1130,12 +1101,12 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                 }
             }
             
-            print(measure.durationSpan)
+            print("measure.durationInterval: \(measureView.measure!.durationInterval)")
             print("event handlers -----------------------------")
             for eventHandler in instrumentEventHandlers {
                 
                 // if eventhandler exists within measure...
-                if eventHandler.isContainedWithinDurationSpan(measure.durationSpan) {
+                if eventHandler.isContainedWithinDurationInterval(measureView.measure!.durationInterval) {
 
                     if let instrument = eventHandler.instrumentEvent?.instrument {
                         print("performer contained within measure: \(instrument)")
@@ -1150,7 +1121,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                 if eventHandlers.count == 0 {
                     print("NO EVENTS IN THIS MEASURE: CUT THE LINES OFF!")
                     for (_, graph) in instrument.graphByID {
-                        let x = measure.frame.minX
+                        let x = measureView.frame.minX
                         print("measure left: \(x)")
                         graph.stopLinesAtX(x)
                     }
@@ -1196,6 +1167,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     // get this out of here
     private func createInstrumentEventHandlers() {
+        
+        print("create instrumentEventHandlers()")
+        
         var instrumentEventHandlers: [InstrumentEventHandler] = []
         
         func addInstrumentEventHandlerWithBGEvent(bgEvent: BGEvent?,

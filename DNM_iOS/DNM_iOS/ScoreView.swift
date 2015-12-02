@@ -79,15 +79,15 @@ public class ScoreView: UIView {
                     constrainedByMaximumTotalHeight: maximumHeight
                 )
                 
-                print("system layer range: \(systemLayerRange)")
+                print("PAGE -----------------------------------------------------------------")
                 
                 // preliminary systemLayerBuild: wrap up
-                for systemLayer in systemLayerRange { systemLayer.build() }
+                //for systemLayer in systemLayerRange { systemLayer.build() }
 
                 let pageLayer = PageLayer(systemLayers: systemLayerRange)
                 let pageView = PageView(frame: frame)
                 
-                // adjust view: wrap in method
+                // adjust view.frame: wrap in method
                 pageView.layer.position.y += 25
                 pageView.layer.position.x += 50
                 
@@ -115,62 +115,32 @@ public class ScoreView: UIView {
             systemLayers.append(systemLayer)
         }
         
-        // PRELIMINARY BUILD
+        // preliminary build
         for systemLayer in systemLayers { systemLayer.build() }
         
-        // ADD FRAYED LIGATURES, ADD DMNODES IF NECESSARY
+        // manage spanners
         manageDMLigaturesForSystemLayers(systemLayers)
         
-        // COMPLETE BUILD
+        // complete build
         for systemLayer in systemLayers {
-            
-            // encapsulate
-            // make show only view id, unless omni view
-           
-            print("complete systemLayer build: viewerID: \(viewerID); componentTypesShownByID: \(systemLayer.componentTypesShownByID)")
-            
-            
-            
-            /*
-            // set default values for systemLayer.componentTypesShownByID
-            if viewerID != "omni" {
-                print("viewerID != omni")
-                let otherIDs = allViewerIDs.filter { $0 != viewerID }
-                print("otherIDs: \(otherIDs)")
-                for id in otherIDs { systemLayer.componentTypesShownByID[id] = [] }
-            }
-            */
-            
-            /*
-            //if let viewerID = viewerID {
-                
-                if viewerID != "omni" {
-                    
 
-                    
-                    // TODO: CHECK THIS OUT 2015-12-01
-                    //let ids_complement = viewIDs.filter({$0 != viewerID })
-                    //for id in ids_complement { system.componentTypesShownByID[viewerID] = [] }
+            // setDefaultComponentTypesShown
+            if viewerID != "omni" {
+                // wipe out all of the component types shown
+                for id in peerIDs {
+                    systemLayer.componentTypesShownByID[id] = []
                 }
-                
-            //}
-            */
-            
-            systemLayer.arrangeNodesWithComponentTypesPresent() // need to get slurs in there somehow
+            }
+
+            systemLayer.arrangeNodesWithComponentTypesPresent()
             
             // probably not the best place for this
             systemLayer.createStems()
             
-            //manageTempoMarkingsForSystem(system)
-            //manageRehearsalMarkingsForSystem(system)
+            //systemLayer.layout()
+            //manageTempoMarkingsForSystem(systemLayer)
+            //manageRehearsalMarkingsForSystem(systemLayer)
         }
-
-        /*
-        print("make system layers with systems")
-        return systems.map {
-            SystemLayer(system: $0, g: g, beatWidth: beatWidth, viewerID: viewerID)
-        }
-        */
         return systemLayers
     }
     

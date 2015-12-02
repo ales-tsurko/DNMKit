@@ -52,7 +52,7 @@ public class PageLayer: ViewNode, BuildPattern {
     }
     
     public func build() {
-        buildSystems()
+        //buildSystems()
         layout()
         hasBeenBuilt = true
     }

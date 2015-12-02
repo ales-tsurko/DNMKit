@@ -9,8 +9,6 @@
 import QuartzCore
 import DNMModel
 
-// when where how to add graphEvents to instrumentEvent?
-
 public class InstrumentEventHandler {
     
     public var bgEvent: BGEvent?
@@ -31,10 +29,10 @@ public class InstrumentEventHandler {
         self.system = system
     }
     
-    public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
+    public func isContainedWithinDurationInterval(durationInterval: DurationInterval) -> Bool {
         guard let bgEvent = bgEvent else { return false }
         let offsetDuration = bgEvent.durationNode.offsetDuration
-        return durationSpan.containsDuration(offsetDuration)
+        return durationInterval.containsDuration(offsetDuration)
     }
     
     public func decorateInstrumentEvent() {

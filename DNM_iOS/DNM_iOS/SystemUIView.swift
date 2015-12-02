@@ -82,8 +82,7 @@ public class SystemUIView: UIView {
         system.componentTypesShownByID = complex.componentTypesShownByID
         system.arrangeNodesWithComponentTypesPresent()
         pageView.systemsNeedReflowing()
-        
-        
+
         // do this within systemsNeedReflowing... up there
         // encapsulate: call from within pageView: pageView.setFramesOfAllSystemViews()
         for systemView in pageView.systemViews {

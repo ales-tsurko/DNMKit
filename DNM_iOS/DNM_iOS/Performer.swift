@@ -110,7 +110,6 @@ public class Performer: ViewNode {
                 label?.position.y = minInstrumentsTop + 0.5 * (maxInstrumentsBottom - minInstrumentsTop)
             }
         }
-
     }
     
     private func addLabel() {
