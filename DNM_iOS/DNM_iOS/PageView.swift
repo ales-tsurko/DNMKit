@@ -12,10 +12,10 @@ import DNMModel
 public class PageView: UIView {
     
     public var page: PageLayer!
-    public var scoreView: _ScoreView!
+    public var scoreView: ScoreView!
     public var systemViews: [SystemUIView] = []
     
-    public init(page: PageLayer, systemViews: [SystemUIView], scoreView: _ScoreView) {
+    public init(page: PageLayer, systemViews: [SystemUIView], scoreView: ScoreView) {
         self.page = page
         self.scoreView = scoreView
         self.systemViews = systemViews
@@ -43,6 +43,6 @@ public class PageView: UIView {
     
     public func systemsNeedReflowing() {
         clearSystemViews()
-        scoreView.systemsNeedReflowing()
+        //scoreView.systemsNeedReflowing()
     }
 }

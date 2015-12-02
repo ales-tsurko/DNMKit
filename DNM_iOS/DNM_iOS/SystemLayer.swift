@@ -119,7 +119,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     public var totalDuration: Duration = DurationZero
     
     // make a better interface for this
-    public var durationInterval: DurationInterval = DurationIntervalZero /*{
+    public var durationInterval: DurationInterval { return system.durationInterval }
+    
+    /* = DurationIntervalZero {
         return DurationInterval(duration: totalDuration, startDuration: offsetDuration)
     }*/
     
@@ -179,7 +181,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         constrainedByMaximumTotalHeight maximumHeight: CGFloat
     ) throws -> [SystemLayer]
     {
-        
+        print("range from system layers")
         enum SystemRangeError: ErrorType { case Error }
         
         var systemRange: [SystemLayer] = []
@@ -210,6 +212,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         super.init(accumulateVerticallyFrom: .Top)
         setsWidthWithContents = true
         pad_bottom = 2 * g
+        
+        // preliminary build
+        build()
     }
     
     /*
@@ -425,6 +430,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     Arrange all ViewNodes contained within this SystemLayer to show only those selected.
     */
     public func arrangeNodesWithComponentTypesPresent() {
+        
+        print("arrangeNodesWithComponentTypesPresent: viewerID: \(viewerID); componentTypesShownByID: \(componentTypesShownByID)")
         
         organizeIDsByComponentType()
         
@@ -1043,6 +1050,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     }
 
     public func build() {
+        print("system.build()")
         clearNodes()
         createTemporalInfoNode() // change name of this: // tempo always above?
         createEventsNode()

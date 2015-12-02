@@ -19,21 +19,21 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var viewSelectorTableView: UITableView!
     
-    // DEPRECATE once refactored integrate contexts of _Environment into this
-    //var environment: _Environment!
-    
     // MARK: - Score Views
     
     /// All ScoreViews organized by ID
     private var scoreViewsByID = OrderedDictionary<String, ScoreView>()
     
-    /// All ScoreViewIDs (populates ScoreViewTableView)
+    /// All ScoreViewIDs (populates ScoreViewTableView) // performerIDs + "omni"
     private var scoreViewIDs: [String] = []
+
+    // Identifiers for each Performer in the ensemble
+    private var performerIDs: [String] = []
     
-    /// _ScoreView currently displayed; TODO: change ScoreView to _ScoreView once refactored
+    /// ScoreView currently displayed
     private var currentScoreView: ScoreView?
     
-    /// Model of musical work
+    /// Model of an entire musical work
     public var scoreModel: DNMScoreModel!
     
     public override func viewDidLoad() {
@@ -41,8 +41,9 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     public func showScoreWithScoreModel(scoreModel: DNMScoreModel) {
-        self.scoreModel = scoreModel
-        populateScoreViewIDsWithScoreModel(scoreModel)
+        self.scoreModel = scoreModel // maybe don't make this an ivar?
+        setPerformerIDsWithScoreModel(scoreModel)
+        setScoreViewIDsWithScoreModel(scoreModel)
         manageColorMode()
         build()
     }
@@ -54,9 +55,14 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         goToFirstPage()
     }
 
+    // MARK: ScoreView Management
+    
     private func createScoreViews() {
         for viewerID in scoreViewIDs {
-            let scoreView = ScoreView(scoreModel: scoreModel, viewerID: viewerID)
+            let peerIDs: [String] = performerIDs.filter { $0 != viewerID }
+            let scoreView = ScoreView(
+                scoreModel: scoreModel, viewerID: viewerID, peerIDs: peerIDs
+            )
             scoreViewsByID[viewerID] = scoreView
         }
     }
@@ -64,22 +70,28 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     public func showScoreViewWithID(id: String) {
         if let scoreView = scoreViewsByID[id] {
             removeCurrentScoreView()
-            view.insertSubview(scoreView, atIndex: 0)
-            currentScoreView = scoreView
+            showScoreView(scoreView)
         }
     }
     
+    private func showScoreView(scoreView: ScoreView) {
+        view.insertSubview(scoreView, atIndex: 0)
+        currentScoreView = scoreView
+    }
+    
     private func removeCurrentScoreView() {
-        // remove currentView is necessary
         if let currentScoreView = currentScoreView { currentScoreView.removeFromSuperview() }
     }
     
-    private func populateScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
-        let iIDsByPIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID
-        scoreViewIDs = iIDsByPIDs.map { $0.0 } + ["omni"]
+    private func setPerformerIDsWithScoreModel(scoreModel: DNMScoreModel) {
+        performerIDs = scoreModel.instrumentIDsAndInstrumentTypesByPerformerID.keys
     }
     
-    // MARK: - Setup
+    private func setScoreViewIDsWithScoreModel(scoreModel: DNMScoreModel) {
+        scoreViewIDs = performerIDs + ["omni"]
+    }
+    
+    // MARK: - UI Setup
     
     private func setupScoreViewTableView() {
         viewSelectorTableView.delegate = self
@@ -89,6 +101,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     private func manageColorMode() {
         view.backgroundColor = DNMColorManager.backgroundColor
         
+        // wrap this up in a method
         let bgView = UIView()
         bgView.backgroundColor = DNMColorManager.backgroundColor
         viewSelectorTableView.backgroundView = bgView
@@ -126,19 +139,11 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         didSelectRowAtIndexPath indexPath: NSIndexPath
     )
     {
-        
         if let identifier = (tableView.cellForRowAtIndexPath(indexPath)
             as? ScoreSelectorTableViewCell)?.identifier
         {
             showScoreViewWithID(identifier)
         }
-        
-        /*
-        // TODO: decouple representation and reference: in ScoreSelectorTableViewCell
-        if let id = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text {
-            showScoreViewWithID(id)
-        }
-        */
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -42,8 +42,8 @@ class MasterViewController: UIViewController,
     // MARK: - Views
     
     // change to PerformerInterfaceView
-    var viewByID: [String: _ScoreView] = [:]
-    var currentView: _ScoreView?
+    var viewByID: [String: ScoreView] = [:]
+    var currentView: ScoreView?
     
     // don't make all of ScoreModel proporties top-level like in Envrionment
     
@@ -106,7 +106,7 @@ class MasterViewController: UIViewController,
         
         if let username = usernameField.text, password = passwordField.text {
             
-            // make sure its legit
+            // make sure the username and password is legit legit
             if username.characters.count > 0 && password.characters.count >= 8 {
                 
                 // disable keyboard
@@ -125,6 +125,7 @@ class MasterViewController: UIViewController,
                     }
                     catch {
                         print("could not sign up user")
+                        // manage this in the UI
                     }
                     
                 case "SIGN IN":
@@ -144,7 +145,7 @@ class MasterViewController: UIViewController,
     @IBAction func didPressSignInOrOutOrUpButton(sender: AnyObject) {
         print("sign in or out or up")
         
-        // don't this by text
+        // don't do this with the text
         
         if let title = signInOrOutOrUpButton.currentTitle {
             if title == "SIGN OUT?" {
@@ -321,7 +322,6 @@ class MasterViewController: UIViewController,
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     // MARK: - Parse
     

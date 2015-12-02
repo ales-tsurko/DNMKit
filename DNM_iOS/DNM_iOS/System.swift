@@ -12,7 +12,6 @@ import DNMModel
 // add tests for this, add doc comments
 public struct System {
     
-
     /// DurationInterval for this System
     public var durationInterval: DurationInterval
     
