@@ -13,7 +13,7 @@ import DNMModel
 public class ScoreView: UIView {
 
     public var viewerID: String!
-    public var peerIDs: [String] = []
+    public var peerIDs: [PerformerID] = []
     public var scoreModel: DNMScoreModel!
     
     // MARK: - PageViews
@@ -42,8 +42,8 @@ public class ScoreView: UIView {
     */
     public init(
         scoreModel: DNMScoreModel,
-        viewerID: String,
-        peerIDs: [String] = [] // not optimal
+        viewerID: PerformerID,
+        peerIDs: [PerformerID] = [] // not optimal
     ) {
         super.init(frame: UIScreen.mainScreen().bounds) // reset frame to size of screen
         self.scoreModel = scoreModel

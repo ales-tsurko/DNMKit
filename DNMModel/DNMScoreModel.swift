@@ -38,7 +38,7 @@ public struct DNMScoreModel: CustomStringConvertible {
     while making it still possible to call for this information by key identifiers.
     */
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
+        PerformerID, OrderedDictionary<InstrumentID, InstrumentType>
     >()
     
     /// All DurationNodes in the piece
@@ -65,3 +65,6 @@ public struct DNMScoreModel: CustomStringConvertible {
         return description
     }
 }
+
+public typealias PerformerID = String
+public typealias InstrumentID = String

@@ -60,20 +60,6 @@ public class PerformerView: ViewNode {
         }
     }
     
-    /*
-    public func addInstrumentsWithIDsAndInstrumentTypes(
-        idsAndInstrumentTypes: [(String, InstrumentType)]
-    )
-    {
-        print("add instruments with ids and instrument types: \(idsAndInstrumentTypes)")
-        for idAndInstrumentType in idsAndInstrumentTypes {
-            let id = idAndInstrumentType.0
-            let instrumentType = idAndInstrumentType.1
-            createInstrumentWithInstrumentType(instrumentType, andID: id)
-        }
-    }
-    */
-    
     public func createInstrumentWithInstrumentType(instrumentType: InstrumentType,
         andID id: String
     )

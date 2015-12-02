@@ -22,13 +22,13 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Score Views
     
     /// All ScoreViews organized by ID
-    private var scoreViewsByID = OrderedDictionary<String, ScoreView>()
+    private var scoreViewsByID = OrderedDictionary<PerformerID, ScoreView>()
     
     /// All ScoreViewIDs (populates ScoreViewTableView) // performerIDs + "omni"
-    private var scoreViewIDs: [String] = []
+    private var scoreViewIDs: [PerformerID] = []
 
     // Identifiers for each PerformerView in the ensemble
-    private var performerIDs: [String] = []
+    private var performerIDs: [PerformerID] = []
     
     /// ScoreView currently displayed
     private var currentScoreView: ScoreView?
@@ -59,7 +59,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     
     private func createScoreViews() {
         for viewerID in scoreViewIDs {
-            let peerIDs: [String] = performerIDs.filter { $0 != viewerID }
+            let peerIDs = performerIDs.filter { $0 != viewerID }
             let scoreView = ScoreView(
                 scoreModel: scoreModel, viewerID: viewerID, peerIDs: peerIDs
             )
@@ -67,7 +67,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    public func showScoreViewWithID(id: String) {
+    public func showScoreViewWithID(id: PerformerID) {
         if let scoreView = scoreViewsByID[id] {
             removeCurrentScoreView()
             showScoreView(scoreView)
