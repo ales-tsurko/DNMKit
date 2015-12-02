@@ -97,13 +97,8 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         viewSelectorTableView.delegate = self
         viewSelectorTableView.dataSource = self
         viewSelectorTableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-        
-        // clean up
-        let pad = 20
-        let right = view.bounds.width
-        viewSelectorTableView.layer.position.x = right - 0.5 * viewSelectorTableView.frame.width - 20
-        
         viewSelectorTableView.translatesAutoresizingMaskIntoConstraints = true
+        positionViewSelectorTableView()
     }
     
     private func manageColorMode() {
@@ -142,19 +137,20 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     private func resizeViewSelectorTableView() {
-        print("resize view selector table view frame.height: \(viewSelectorTableView.frame.height); contentssize: \(viewSelectorTableView.contentSize.height)")
-        
         let contentsHeight = viewSelectorTableView.contentSize.height
         let frameHeight = viewSelectorTableView.frame.height
-        
-        print("old height: \(frameHeight)")
-        
         if contentsHeight <= frameHeight {
             var frame = viewSelectorTableView.frame
-            print("new frame: \(frame)")
             frame.size.height = contentsHeight
             viewSelectorTableView.frame = frame
         }
+    }
+    
+    private func positionViewSelectorTableView() {
+        let pad: CGFloat = 20
+        let right = view.bounds.width
+        let centerX = right - 0.5 * viewSelectorTableView.frame.width - pad
+        viewSelectorTableView.layer.position.x = centerX
     }
     
     // MARK: - View Selector UITableViewDelegate

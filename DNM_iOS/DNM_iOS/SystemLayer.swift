@@ -1080,12 +1080,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     private func manageGraphLines() {
         
-        print("manage graph lines")
-        print("measures -------------------------")
-
         for measureView in measureViews {
-
-            print(measureView)
             
             // dict of Instrument : Bool (isContainedWithinMeasure)
             // if eventHandler.instrument is contained within measure, stop line at measure.left
@@ -1100,16 +1095,13 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                     eventsContainedInMeasureByInstrument[instrument] = []
                 }
             }
-            
-            print("measure.durationInterval: \(measureView.measure!.durationInterval)")
-            print("event handlers -----------------------------")
+
             for eventHandler in instrumentEventHandlers {
                 
                 // if eventhandler exists within measure...
                 if eventHandler.isContainedWithinDurationInterval(measureView.measure!.durationInterval) {
 
                     if let instrument = eventHandler.instrumentEvent?.instrument {
-                        print("performer contained within measure: \(instrument)")
                         eventsContainedInMeasureByInstrument[instrument]!.append(eventHandler)
                     }
                 }
@@ -1131,13 +1123,26 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         
         // does graph contain any events within the measure? if not: stop lines at measure
         
+        print("manage graph lines: measures.last!.frame.maxX: \(measureViews.last!.frame.maxX)")
+        
+        print("measureViews.count: \(measureViews.count)")
+        
         for (_, performer) in performerByID {
+            print("performer: \(performer)")
             for (_, instrument) in performer.instrumentByID {
+                print("instrument: \(instrument)")
                 for (_, graph) in instrument.graphByID {
-                    if measures.count > 0 {
-                        graph.stopLinesAtX(measureViews.last!.frame.maxX)
+                    print("graph: \(graph)")
+                    if measureViews.count > 0 {
+                        print("measures.count > 0")
+                        let x = measureViews.last!.frame.maxX
+                        print("graph: \(graph); stopLinesAtX: \(x)")
+                        graph.stopLinesAtX(x)
                     }
-                    else { graph.stopLinesAtX(frame.width) }
+                    else {
+                        print("measure.count <= 0")
+                        graph.stopLinesAtX(frame.width)
+                    }
                     graph.build()
                 }
                 instrument.layout()
@@ -1167,8 +1172,6 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     // get this out of here
     private func createInstrumentEventHandlers() {
-        
-        print("create instrumentEventHandlers()")
         
         var instrumentEventHandlers: [InstrumentEventHandler] = []
         
