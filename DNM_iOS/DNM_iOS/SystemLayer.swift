@@ -1294,6 +1294,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     // Encapsulate in BGStratumFactory or something
     private func createBGStrata() {
         
+        print("create BGStrata")
+        
         // get this out of here
         func makeBGStrataFromDurationNodeStrata(durationNodeStrata: [[DurationNode]])
             -> [BGStratum]
@@ -1335,8 +1337,15 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                 bgStratum.system = self
                 bgStratum.beatWidth = beatWidth
                 bgStratum.pad_bottom = 0.5 * g
+                
+                print("system.durationInterval: \(system.durationInterval)")
+                
                 for durationNode in stratum_model {
-                    let offset_fromSystem = durationNode.durationInterval.startDuration - offsetDuration
+                    
+                    print("get offset duration from system: interval: \(durationNode.durationInterval)")
+                    
+                    let offset_fromSystem = durationNode.durationInterval.startDuration - system.durationInterval.startDuration
+                    print("offset_fromSystem: \(offset_fromSystem)")
                     let x = infoStartX + offset_fromSystem.width(beatWidth: beatWidth)
                     bgStratum.addBeamGroupWithDurationNode(durationNode, atX: x)
                 }
