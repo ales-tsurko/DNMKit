@@ -1080,18 +1080,14 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     private func manageGraphLines() {
         
+        // WRAP: manage graph lines for empty measures
         for measureView in measureViews {
-            
-            // dict of Instrument : Bool (isContainedWithinMeasure)
-            // if eventHandler.instrument is contained within measure, stop line at measure.left
-            //var allInstruments: [Instrument] = []
-            
+
             var eventsContainedInMeasureByInstrument: [Instrument : [InstrumentEventHandler]] = [:]
             
             // initialize each array for each instrument (on the way, flattening all instr.)
             for performer in performers {
                 for (_, instrument) in performer.instrumentByID {
-                    //allInstruments.append(instrument)
                     eventsContainedInMeasureByInstrument[instrument] = []
                 }
             }
@@ -1106,41 +1102,27 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                     }
                 }
             }
-            
-            print("events contained in measure: \(eventsContainedInMeasureByInstrument)")
-            
+
             for (instrument, eventHandlers) in eventsContainedInMeasureByInstrument {
                 if eventHandlers.count == 0 {
-                    print("NO EVENTS IN THIS MEASURE: CUT THE LINES OFF!")
                     for (_, graph) in instrument.graphByID {
                         let x = measureView.frame.minX
-                        print("measure left: \(x)")
                         graph.stopLinesAtX(x)
                     }
                 }
             }
         }
         
+        // WRAP
         // does graph contain any events within the measure? if not: stop lines at measure
-        
-        print("manage graph lines: measures.last!.frame.maxX: \(measureViews.last!.frame.maxX)")
-        
-        print("measureViews.count: \(measureViews.count)")
-        
         for (_, performer) in performerByID {
-            print("performer: \(performer)")
             for (_, instrument) in performer.instrumentByID {
-                print("instrument: \(instrument)")
                 for (_, graph) in instrument.graphByID {
-                    print("graph: \(graph)")
                     if measureViews.count > 0 {
-                        print("measures.count > 0")
                         let x = measureViews.last!.frame.maxX
-                        print("graph: \(graph); stopLinesAtX: \(x)")
                         graph.stopLinesAtX(x)
                     }
                     else {
-                        print("measure.count <= 0")
                         graph.stopLinesAtX(frame.width)
                     }
                     graph.build()

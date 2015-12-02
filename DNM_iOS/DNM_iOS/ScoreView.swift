@@ -297,16 +297,24 @@ public class ScoreView: UIView {
         if index >= 0 && index < pageViews.count {
             removeCurrentPageView()
             let pageView = pageViews[index]
+            currentPageView = pageView
             insertSubview(pageView, atIndex: 0)
         }
     }
     
     public func goToPreviousPage() {
-        // TODO
+        if let currentPageIndex = currentPageIndex {
+            goToPageAtIndex(currentPageIndex - 1)
+        }
     }
     
     public func goToNextPage() {
-        // TODO
+
+        print("amount pages: \(pageViews.count)")
+        if let currentPageIndex = currentPageIndex {
+            print("score view go to next page: curIndex: \(currentPageIndex)")
+            goToPageAtIndex(currentPageIndex + 1)
+        }
     }
 
     public func goToFirstPage() {
