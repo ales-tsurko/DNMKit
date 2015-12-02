@@ -84,7 +84,7 @@ public class _Environment: UIView {
             // Create all Systems for the whole piece, regardless of PageLayer
             let systems = makeSystemsWithViewerID(id)
             
-            // Create a Performer(Interface)View, passing ALL Systems!
+            // Create a PerformerView(Interface)View, passing ALL Systems!
             let view = _ScoreView(id: id, systems: systems)
             
             viewByID[id] = view

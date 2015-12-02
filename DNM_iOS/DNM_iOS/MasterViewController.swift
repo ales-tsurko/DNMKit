@@ -21,17 +21,13 @@ public class MasterViewController: UIViewController,
     // MARK: - UI
     
     @IBOutlet weak var scoreSelectorTableView: UITableView!
-    
     @IBOutlet weak var colorModeLabel: UILabel!
     @IBOutlet weak var colorModeLightLabel: UILabel!
     @IBOutlet weak var colorModeDarkLabel: UILabel!
-    
     @IBOutlet weak var loginStatusLabel: UILabel!
     @IBOutlet weak var signInOrOutOrUpButton: UIButton!
     @IBOutlet weak var signInOrUpButton: UIButton!
-    
     @IBOutlet weak var dnmLogoLabel: UILabel!
-    
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
@@ -98,7 +94,6 @@ public class MasterViewController: UIViewController,
                 // disable keyboard
                 passwordField.resignFirstResponder()
                 
-                
                 // don't do this by the text of the button: enum LoginState { }
                 switch signInOrOutOrUpButton.currentTitle! {
                 case "SIGN UP":
@@ -129,10 +124,7 @@ public class MasterViewController: UIViewController,
     }
     
     @IBAction func didPressSignInOrOutOrUpButton(sender: AnyObject) {
-        print("sign in or out or up")
-        
         // don't do this with the text
-        
         if let title = signInOrOutOrUpButton.currentTitle {
             if title == "SIGN OUT?" {
                 if PFUser.currentUser() != nil {
@@ -146,6 +138,7 @@ public class MasterViewController: UIViewController,
     }
     
     @IBAction func didPressSignInOrUpButton(sender: AnyObject) {
+        // don't do this with text!
         if let title = signInOrUpButton.currentTitle {
             if title == "SIGN UP?" {
                 enterSignUpmMode()
@@ -154,7 +147,6 @@ public class MasterViewController: UIViewController,
             }
         }
     }
-    
     
     @IBAction func didChangeValueOfSwitch(sender: UISwitch) {
         
@@ -200,6 +192,14 @@ public class MasterViewController: UIViewController,
         }
     }
     
+    private func showScoreSelectorTableView() {
+        scoreSelectorTableView.hidden = false
+    }
+    
+    private func hideScoreSelectorTableView() {
+        scoreSelectorTableView.hidden = true
+    }
+    
     // MARK: - Parse Management
     
     func manageLoginStatus() {
@@ -209,7 +209,7 @@ public class MasterViewController: UIViewController,
     func enterSignInMode() {
         
         // hide score selector table view -- later: animate offscreen left
-        scoreSelectorTableView.hidden = true
+        hideScoreSelectorTableView()
         
         signInOrOutOrUpButton.hidden = false
         signInOrOutOrUpButton.setTitle("SIGN IN", forState: .Normal)
@@ -225,12 +225,9 @@ public class MasterViewController: UIViewController,
     
     // signed in
     func enterSignedInMode() {
-        
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
-        
-        scoreSelectorTableView.hidden = false
-        
+        showScoreSelectorTableView()
         updateLoginStatusLabel()
         
         // hide username field, clear contents
@@ -245,7 +242,6 @@ public class MasterViewController: UIViewController,
         
         signInOrOutOrUpButton.hidden = false
         signInOrOutOrUpButton.setTitle("SIGN OUT?", forState: .Normal)
-        
     }
     
     // need to sign up
@@ -358,18 +354,6 @@ public class MasterViewController: UIViewController,
         let scoreModel = parser.parseTokenContainer(tokenContainer)
         return scoreModel
     }
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
 
 private enum LoginState {

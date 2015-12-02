@@ -10,7 +10,7 @@ import UIKit
 
 public class PageLayer: ViewNode, BuildPattern {
     
-    /// Identifier of Performer viewing this PageLayer
+    /// Identifier of PerformerView viewing this PageLayer
     //public var viewerID: String?
     
     // All SystemLayers in this PageLayer -- laid out automatically

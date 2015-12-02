@@ -1,5 +1,5 @@
 //
-//  Instrument.swift
+//  InstrumentView.swift
 //  denm_view
 //
 //  Created by James Bean on 8/19/15.
@@ -10,7 +10,7 @@ import UIKit
 import DNMModel
 
 // container 0 -> n Graphs (Staffs for now)
-public class Instrument: ViewNode {
+public class InstrumentView: ViewNode {
     
     //public var uiView: InstrumentView?
 
@@ -28,9 +28,9 @@ public class Instrument: ViewNode {
     public var primaryGraphs: [Graph] = []
     public var supplementaryGraphs: [Graph] = []
     
-    public var performer: Performer?
+    public var performer: PerformerView?
     
-    // consider protocol or superclass : See Performer
+    // consider protocol or superclass : See PerformerView
     public var bracket: CAShapeLayer? // make subclass
     public var label: TextLayerConstrainedByHeight?
     
@@ -38,7 +38,7 @@ public class Instrument: ViewNode {
     public var maxGraphsBottom: CGFloat? { get { return getMaxGraphsBottom() } }
     
     // maybe just make this an initializer
-    public class func withType(instrumentType: InstrumentType) -> Instrument? {
+    public class func withType(instrumentType: InstrumentType) -> InstrumentView? {
         if instrumentType.isInInstrumentFamily(Strings) {
             let instrument = InstrumentString()
             instrument.instrumentType = instrumentType
@@ -47,7 +47,7 @@ public class Instrument: ViewNode {
         //else if instrumentType.isInInstrumentFamily(Woodwinds) {}
         //else if instrumentType.isInInstrumentFamily(Brass) {}
 
-        let instrument = Instrument()
+        let instrument = InstrumentView()
         instrument.instrumentType = instrumentType
         return instrument
     }

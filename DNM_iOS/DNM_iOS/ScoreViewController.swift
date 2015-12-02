@@ -27,7 +27,7 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     /// All ScoreViewIDs (populates ScoreViewTableView) // performerIDs + "omni"
     private var scoreViewIDs: [String] = []
 
-    // Identifiers for each Performer in the ensemble
+    // Identifiers for each PerformerView in the ensemble
     private var performerIDs: [String] = []
     
     /// ScoreView currently displayed
@@ -155,7 +155,6 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - View Selector UITableViewDelegate
 
-    
     public func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath
     )
@@ -166,7 +165,6 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
             showScoreViewWithID(identifier)
         }
     }
-    
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreViewIDs.count
@@ -183,9 +181,9 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
             forIndexPath: indexPath
         ) as! ScoreSelectorTableViewCell
         
-        // set scoreView of cell
-        cell.identifier = scoreViewIDs[indexPath.row]
-        cell.textLabel?.text = scoreViewIDs[indexPath.row]
+        let viewerID = scoreViewIDs[indexPath.row]
+        cell.identifier = viewerID
+        cell.textLabel?.text = viewerID
         
         // SET COLOR IF VIEWER ID, or OMNI
         
@@ -193,6 +191,8 @@ public class ScoreViewController: UIViewController, UITableViewDelegate, UITable
         // color
         cell.textLabel?.textColor = UIColor.grayscaleColorWithDepthOfField(.Foreground)
         cell.backgroundColor = UIColor.grayscaleColorWithDepthOfField(DepthOfField.Background)
+        
+
         
         // make cleaner
         let selBGView = UIView()

@@ -9,7 +9,7 @@
 import UIKit
 import DNMModel
 
-/// Organizes DurationNodes into collections based on Performer Identifiers
+/// Organizes DurationNodes into collections based on PerformerView Identifiers
 public class DurationNodeStratumArranger {
     
     public var durationNodes: [DurationNode]

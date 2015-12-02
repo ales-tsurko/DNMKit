@@ -1,5 +1,5 @@
 //
-//  Performer.swift
+//  PerformerView.swift
 //  denm_view
 //
 //  Created by James Bean on 8/19/15.
@@ -10,19 +10,19 @@ import UIKit
 import DNMModel
 
 // contains 0 -> n instruments
-public class Performer: ViewNode {
+public class PerformerView: ViewNode {
 
     public override var description: String {
-        get { return "Performer: ID: \(id); instrumentByID: \(instrumentByID)" }
+        get { return "PerformerView: ID: \(id); instrumentByID: \(instrumentByID)" }
     }
     
     public var id: String = ""
     
     public var instrumentOrder: [String]?
-    public var instruments: [Instrument] = []
-    public var instrumentByID: [String : Instrument] = [:]
+    public var instruments: [InstrumentView] = []
+    public var instrumentByID: [String : InstrumentView] = [:]
     
-    // consider protocol or superclass : See Performer
+    // consider protocol or superclass : See PerformerView
     public var bracket: CAShapeLayer? // make subclass
     public var label: TextLayerConstrainedByHeight?
     
@@ -44,7 +44,7 @@ public class Performer: ViewNode {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     public override init(layer: AnyObject) { super.init(layer: layer) }
     
-    public func addInstrument(instrument: Instrument) {
+    public func addInstrument(instrument: InstrumentView) {
         instruments.append(instrument)
         instrumentByID[instrument.id] = instrument
         addNode(instrument)
@@ -79,7 +79,7 @@ public class Performer: ViewNode {
     )
     {
         if instrumentByID[id] == nil {
-            if let instrument = Instrument.withType(instrumentType) {
+            if let instrument = InstrumentView.withType(instrumentType) {
                 instrument.id = id
                 instrument.pad_bottom = 20 // HACK
                 addInstrument(instrument)

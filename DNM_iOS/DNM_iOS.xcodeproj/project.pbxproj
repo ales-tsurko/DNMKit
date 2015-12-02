@@ -63,7 +63,7 @@
 		07074F0E1BF96D1D00BFC6FA /* GraphWaveform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB41BF96D1D00BFC6FA /* GraphWaveform.swift */; };
 		07074F0F1BF96D1D00BFC6FA /* Guido.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB51BF96D1D00BFC6FA /* Guido.swift */; };
 		07074F101BF96D1D00BFC6FA /* HueByTupletDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB61BF96D1D00BFC6FA /* HueByTupletDepth.swift */; };
-		07074F111BF96D1D00BFC6FA /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB71BF96D1D00BFC6FA /* Instrument.swift */; };
+		07074F111BF96D1D00BFC6FA /* InstrumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB71BF96D1D00BFC6FA /* InstrumentView.swift */; };
 		07074F121BF96D1D00BFC6FA /* InstrumentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB81BF96D1D00BFC6FA /* InstrumentEvent.swift */; };
 		07074F131BF96D1D00BFC6FA /* InstrumentEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EB91BF96D1D00BFC6FA /* InstrumentEventHandler.swift */; };
 		07074F141BF96D1D00BFC6FA /* InstrumentString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EBA1BF96D1D00BFC6FA /* InstrumentString.swift */; };
@@ -74,7 +74,7 @@
 		07074F191BF96D1D00BFC6FA /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */; };
 		07074F1A1BF96D1D00BFC6FA /* Notehead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC01BF96D1D00BFC6FA /* Notehead.swift */; };
 		07074F1B1BF96D1D00BFC6FA /* PageLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC11BF96D1D00BFC6FA /* PageLayer.swift */; };
-		07074F1C1BF96D1D00BFC6FA /* Performer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC21BF96D1D00BFC6FA /* Performer.swift */; };
+		07074F1C1BF96D1D00BFC6FA /* PerformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC21BF96D1D00BFC6FA /* PerformerView.swift */; };
 		07074F1D1BF96D1D00BFC6FA /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC31BF96D1D00BFC6FA /* Polygon.swift */; };
 		07074F1E1BF96D1D00BFC6FA /* RehearsalMarkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */; };
 		07074F1F1BF96D1D00BFC6FA /* RhythmCueGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074EC51BF96D1D00BFC6FA /* RhythmCueGraph.swift */; };
@@ -253,7 +253,7 @@
 		07074EB41BF96D1D00BFC6FA /* GraphWaveform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphWaveform.swift; sourceTree = "<group>"; };
 		07074EB51BF96D1D00BFC6FA /* Guido.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guido.swift; sourceTree = "<group>"; };
 		07074EB61BF96D1D00BFC6FA /* HueByTupletDepth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueByTupletDepth.swift; sourceTree = "<group>"; };
-		07074EB71BF96D1D00BFC6FA /* Instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
+		07074EB71BF96D1D00BFC6FA /* InstrumentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentView.swift; sourceTree = "<group>"; };
 		07074EB81BF96D1D00BFC6FA /* InstrumentEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentEvent.swift; sourceTree = "<group>"; };
 		07074EB91BF96D1D00BFC6FA /* InstrumentEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentEventHandler.swift; sourceTree = "<group>"; };
 		07074EBA1BF96D1D00BFC6FA /* InstrumentString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentString.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		07074EC01BF96D1D00BFC6FA /* Notehead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notehead.swift; sourceTree = "<group>"; };
 		07074EC11BF96D1D00BFC6FA /* PageLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageLayer.swift; sourceTree = "<group>"; };
-		07074EC21BF96D1D00BFC6FA /* Performer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Performer.swift; sourceTree = "<group>"; };
+		07074EC21BF96D1D00BFC6FA /* PerformerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformerView.swift; sourceTree = "<group>"; };
 		07074EC31BF96D1D00BFC6FA /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RehearsalMarkingView.swift; sourceTree = "<group>"; };
 		07074EC51BF96D1D00BFC6FA /* RhythmCueGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RhythmCueGraph.swift; sourceTree = "<group>"; };
@@ -510,7 +510,7 @@
 				07074EB41BF96D1D00BFC6FA /* GraphWaveform.swift */,
 				07074EB51BF96D1D00BFC6FA /* Guido.swift */,
 				07074EB61BF96D1D00BFC6FA /* HueByTupletDepth.swift */,
-				07074EB71BF96D1D00BFC6FA /* Instrument.swift */,
+				07074EB71BF96D1D00BFC6FA /* InstrumentView.swift */,
 				07074EB81BF96D1D00BFC6FA /* InstrumentEvent.swift */,
 				07074EB91BF96D1D00BFC6FA /* InstrumentEventHandler.swift */,
 				07074EBA1BF96D1D00BFC6FA /* InstrumentString.swift */,
@@ -521,7 +521,7 @@
 				07074EBF1BF96D1D00BFC6FA /* MeasureView.swift */,
 				07074EC01BF96D1D00BFC6FA /* Notehead.swift */,
 				07074EC11BF96D1D00BFC6FA /* PageLayer.swift */,
-				07074EC21BF96D1D00BFC6FA /* Performer.swift */,
+				07074EC21BF96D1D00BFC6FA /* PerformerView.swift */,
 				07074EC31BF96D1D00BFC6FA /* Polygon.swift */,
 				07074EC41BF96D1D00BFC6FA /* RehearsalMarkingView.swift */,
 				07074EC51BF96D1D00BFC6FA /* RhythmCueGraph.swift */,
@@ -826,7 +826,7 @@
 				07074F571BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift in Sources */,
 				07074F291BF96D1D00BFC6FA /* SubdivisionGraphic.swift in Sources */,
 				07074F241BF96D1D00BFC6FA /* StaffEvent.swift in Sources */,
-				07074F1C1BF96D1D00BFC6FA /* Performer.swift in Sources */,
+				07074F1C1BF96D1D00BFC6FA /* PerformerView.swift in Sources */,
 				07074F551BF96F6200BFC6FA /* ButtonSwitchPanel.swift in Sources */,
 				07074EEB1BF96D1D00BFC6FA /* BezierCurveLinear.swift in Sources */,
 				07074F311BF96D1D00BFC6FA /* Tremolo.swift in Sources */,
@@ -922,7 +922,7 @@
 				07074F5C1BF96F6200BFC6FA /* PageControlButtonPrevious.swift in Sources */,
 				07074EDE1BF96D1D00BFC6FA /* Accidental.swift in Sources */,
 				07074EEC1BF96D1D00BFC6FA /* BezierCurveQuadratic.swift in Sources */,
-				07074F111BF96D1D00BFC6FA /* Instrument.swift in Sources */,
+				07074F111BF96D1D00BFC6FA /* InstrumentView.swift in Sources */,
 				07074F321BF96D1D00BFC6FA /* TupletBracket.swift in Sources */,
 				07074EE41BF96D1D00BFC6FA /* Beam.swift in Sources */,
 				07074F561BF96F6200BFC6FA /* ButtonSwitchPanelWithID.swift in Sources */,

@@ -36,7 +36,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     /**
     Collection of InstrumentIDsWithInstrumentType, organized by PerformerID.
-    These values ensure Performer order and Instrument order,
+    These values ensure PerformerView order and InstrumentView order,
     while making it still possible to call for this information by key identifiers.
     */
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
@@ -67,10 +67,10 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     public var dmNodeByID: [String : DMNode] = [:]
     
     /// All Performers in this SystemLayer.
-    public var performers: [Performer] = []
+    public var performers: [PerformerView] = []
     
     /// Performers organized by identifier `String` -- MAKE ORDERED DICTIONARY
-    public var performerByID: [String: Performer] = [:]
+    public var performerByID: [String: PerformerView] = [:]
     
     /// SlurHandlers organizaed by identifier `String`
     public var slurHandlersByID: [String : [SlurHandler]] = [:]
@@ -151,16 +151,16 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     private var barlines: [Barline] = []
     
     /**
-    Minimum vertical value for Performer, for the purposes of Barline placement.
+    Minimum vertical value for PerformerView, for the purposes of Barline placement.
     This is the highest graphTop contained within the
-    Performer -> Instrument -> Graph hierarchy.
+    PerformerView -> InstrumentView -> Graph hierarchy.
     */
     public var minPerformersTop: CGFloat? { get { return getMinPerformersTop() } }
     
     /**
-    Maximum vertical value for Performer, for the purposes of Barline placement.
+    Maximum vertical value for PerformerView, for the purposes of Barline placement.
     This is the lowest graphBottom contained within the
-    Performer -> Instrument -> Graph hierarchy.
+    PerformerView -> InstrumentView -> Graph hierarchy.
     */
     public var maxPerformersBottom: CGFloat? { get { return getMaxPerformersBottom() } }
     
@@ -274,11 +274,11 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     }
     
     /**
-    Add a Performer to this SystemLayer
+    Add a PerformerView to this SystemLayer
     
-    - parameter performer: Performer to be added
+    - parameter performer: PerformerView to be added
     */
-    public func addPerformer(performer: Performer) {
+    public func addPerformer(performer: PerformerView) {
         performers.append(performer)
         performerByID[performer.id] = performer
         eventsNode.addNode(performer)
@@ -759,8 +759,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     }
     
     // TODO: now with OrderedDictionary
-    private func makePerformerByIDWithBGStrata(bgStrata: [BGStratum]) -> [String : Performer] {
-        var performerByID: [String : Performer] = [:]
+    private func makePerformerByIDWithBGStrata(bgStrata: [BGStratum]) -> [String : PerformerView] {
+        var performerByID: [String : PerformerView] = [:]
         for bgStratum in bgStrata {
             for (performerID, instrumentIDs) in bgStratum.iIDsByPID {
                 
@@ -788,7 +788,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                     )
                 }
                 else {
-                    let performer = Performer(id: performerID)
+                    let performer = PerformerView(id: performerID)
                     performer.addInstrumentsWithInsturmentTypeByInstrumentID(
                         instrumentTypeByInstrumentID
                     )
@@ -803,7 +803,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                     performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
                 }
                 else {
-                    let performer = Performer(id: performerID)
+                    let performer = PerformerView(id: performerID)
                     performer.addInstrumentsWithIDsAndInstrumentTypes(idsAndInstrumentTypes)
                     performer.pad_bottom = g // HACK
                     performerByID[performerID] = performer
@@ -839,8 +839,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
 
     /*
     // TODO: reimplement with InstrumentEventHandlers
-    private func getBGStratumRepresentationByPerformer() -> [Performer : [BGStratum : Int]] {
-        var bgStratumRepresentationByPerformer: [Performer : [BGStratum : Int]] = [:]
+    private func getBGStratumRepresentationByPerformer() -> [PerformerView : [BGStratum : Int]] {
+        var bgStratumRepresentationByPerformer: [PerformerView : [BGStratum : Int]] = [:]
         for eventHandler in eventHandlers {
             if eventHandler.bgEvent == nil { continue }
             if eventHandler.graphEvent == nil { continue }
@@ -876,8 +876,8 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     */
     
     /*
-    private func getDMNodeRepresentationByPerformer() -> [Performer: [DMNode : Int]] {
-        var dmNodeRepresentationByPerformer: [Performer : [DMNode : Int]] = [:]
+    private func getDMNodeRepresentationByPerformer() -> [PerformerView: [DMNode : Int]] {
+        var dmNodeRepresentationByPerformer: [PerformerView : [DMNode : Int]] = [:]
         for eventHandler in eventHandlers {
             if eventHandler.bgEvent == nil { continue }
             if eventHandler.graphEvent == nil { continue }
@@ -1083,7 +1083,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         // WRAP: manage graph lines for empty measures
         for measureView in measureViews {
 
-            var eventsContainedInMeasureByInstrument: [Instrument : [InstrumentEventHandler]] = [:]
+            var eventsContainedInMeasureByInstrument: [InstrumentView : [InstrumentEventHandler]] = [:]
             
             // initialize each array for each instrument (on the way, flattening all instr.)
             for performer in performers {
@@ -1204,7 +1204,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
                             }
                         }
                     }
-                    else { fatalError("Unable to find Performer or Instrument") }
+                    else { fatalError("Unable to find PerformerView or InstrumentView") }
                     
                     // clean up
                     if !instrumentEventHandlerSuccessfullyCreated {

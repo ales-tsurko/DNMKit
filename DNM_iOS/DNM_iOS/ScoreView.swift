@@ -35,7 +35,7 @@ public class ScoreView: UIView {
     /**
     Create a ScoreView with an identifier and scoreModel
 
-    - parameter identifier: String with identifier of Performer ViewerID
+    - parameter identifier: String with identifier of PerformerView ViewerID
     - parameter scoreModel: DNMScoreModel
 
     - returns: _ScoreView
