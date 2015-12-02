@@ -13,7 +13,7 @@ import Bolts
 
 // TODO: manage signed in / signed out: tableview.reloadData
 
-class MasterViewController: UIViewController,
+public class MasterViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
     UITextFieldDelegate
@@ -42,38 +42,24 @@ class MasterViewController: UIViewController,
     // MARK: - Views
     
     // change to PerformerInterfaceView
-    var viewByID: [String: ScoreView] = [:]
-    var currentView: ScoreView?
-    
-    // don't make all of ScoreModel proporties top-level like in Envrionment
+    private var viewByID: [String: ScoreView] = [:]
+    private var currentView: ScoreView?
     
     // MARK: - Score Object Management
     
-    var scoreObjects: [PFObject] = []
-    
-    var loginState: LoginState = .SignIn
-    
-    
-    func createViews() {
-        
-    }
-    
-    // do this, instead, in tableView:didSelectCell...
-    func goToViewWithID(id: String) {
-        
-    }
-    
+    private var scoreObjects: [PFObject] = []
+    private var loginState: LoginState = .SignIn
     
     // MARK: - Startup
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupScoreSelectorTableView()
         setupTextFields()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(animated: Bool) {
         manageLoginStatus() // necessary to wait until viewDidAppear?
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
@@ -271,7 +257,7 @@ class MasterViewController: UIViewController,
     // MARK: - UITableViewDelegate Methods
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
@@ -293,7 +279,7 @@ class MasterViewController: UIViewController,
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let scoreString = scoreObjects[indexPath.row]["text"] {
             let scoreModel = makeScoreModelWithString(scoreString as! String)
             scoreModelSelected = scoreModel
@@ -301,7 +287,7 @@ class MasterViewController: UIViewController,
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let id = segue.identifier where id == "showScore" {
             let scoreViewController = segue.destinationViewController as! ScoreViewController
             if let scoreModel = scoreModelSelected {
@@ -310,22 +296,24 @@ class MasterViewController: UIViewController,
         }
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int)
+        -> UIView?
+    {
         return UIView(frame: CGRectZero)
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreObjects.count
     }
     
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     // MARK: - Parse
     
-    func fetchAllObjectsFromLocalDatastore() {
+    private func fetchAllObjectsFromLocalDatastore() {
         if let username = PFUser.currentUser()?.username {
             let query = PFQuery(className: "Score")
             query.fromLocalDatastore()
@@ -340,7 +328,7 @@ class MasterViewController: UIViewController,
         }
     }
     
-    func fetchAllObjects() {
+    private func fetchAllObjects() {
         if let username = PFUser.currentUser()?.username {
             PFObject.unpinAllObjectsInBackground()
             let query = PFQuery(className: "Score")
@@ -363,7 +351,7 @@ class MasterViewController: UIViewController,
     
     // MARK: - Model
     
-    func makeScoreModelWithString(string: String) -> DNMScoreModel {
+    public func makeScoreModelWithString(string: String) -> DNMScoreModel {
         let tokenizer = Tokenizer()
         let tokenContainer = tokenizer.tokenizeString(string)
         let parser = Parser()
@@ -384,6 +372,6 @@ class MasterViewController: UIViewController,
     
 }
 
-enum LoginState {
+private enum LoginState {
     case SignedIn, SignIn, SignUp
 }

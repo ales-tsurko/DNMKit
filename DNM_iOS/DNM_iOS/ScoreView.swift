@@ -64,8 +64,7 @@ public class ScoreView: UIView {
     
     // can this be encapsulated in a class (or event a class func)
     private func makePageViewsWithSystemLayers(systemLayers: [SystemLayer]) -> [PageView] {
-        print("make page views with system layers")
-        // deal with maximum height
+
         var pageViews: [PageView] = []
         
         // hack
@@ -78,11 +77,6 @@ public class ScoreView: UIView {
                     startingAtIndex: systemIndex,
                     constrainedByMaximumTotalHeight: maximumHeight
                 )
-                
-                print("PAGE -----------------------------------------------------------------")
-                
-                // preliminary systemLayerBuild: wrap up
-                //for systemLayer in systemLayerRange { systemLayer.build() }
 
                 let pageLayer = PageLayer(systemLayers: systemLayerRange)
                 let pageView = PageView(frame: frame)
@@ -137,7 +131,6 @@ public class ScoreView: UIView {
             // probably not the best place for this
             systemLayer.createStems()
             
-            //systemLayer.layout()
             //manageTempoMarkingsForSystem(systemLayer)
             //manageRehearsalMarkingsForSystem(systemLayer)
         }
@@ -303,18 +296,11 @@ public class ScoreView: UIView {
     }
     
     public func goToPreviousPage() {
-        if let currentPageIndex = currentPageIndex {
-            goToPageAtIndex(currentPageIndex - 1)
-        }
+        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex - 1) }
     }
     
     public func goToNextPage() {
-
-        print("amount pages: \(pageViews.count)")
-        if let currentPageIndex = currentPageIndex {
-            print("score view go to next page: curIndex: \(currentPageIndex)")
-            goToPageAtIndex(currentPageIndex + 1)
-        }
+        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex + 1) }
     }
 
     public func goToFirstPage() {
