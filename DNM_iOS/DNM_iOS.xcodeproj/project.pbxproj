@@ -112,7 +112,6 @@
 		07074F561BF96F6200BFC6FA /* ButtonSwitchPanelWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F401BF96F6200BFC6FA /* ButtonSwitchPanelWithID.swift */; };
 		07074F571BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F411BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift */; };
 		07074F581BF96F6200BFC6FA /* ComponentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F421BF96F6200BFC6FA /* ComponentSelector.swift */; };
-		07074F591BF96F6200BFC6FA /* _Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F431BF96F6200BFC6FA /* _Environment.swift */; };
 		07074F5A1BF96F6200BFC6FA /* PageControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F441BF96F6200BFC6FA /* PageControlButton.swift */; };
 		07074F5B1BF96F6200BFC6FA /* PageControlButtonNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F451BF96F6200BFC6FA /* PageControlButtonNext.swift */; };
 		07074F5C1BF96F6200BFC6FA /* PageControlButtonPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */; };
@@ -302,7 +301,6 @@
 		07074F401BF96F6200BFC6FA /* ButtonSwitchPanelWithID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchPanelWithID.swift; sourceTree = "<group>"; };
 		07074F411BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonSwitchPanelWithMasterButtonSwitch.swift; sourceTree = "<group>"; };
 		07074F421BF96F6200BFC6FA /* ComponentSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSelector.swift; sourceTree = "<group>"; };
-		07074F431BF96F6200BFC6FA /* _Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Environment.swift; sourceTree = "<group>"; };
 		07074F441BF96F6200BFC6FA /* PageControlButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButton.swift; sourceTree = "<group>"; };
 		07074F451BF96F6200BFC6FA /* PageControlButtonNext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButtonNext.swift; sourceTree = "<group>"; };
 		07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlButtonPrevious.swift; sourceTree = "<group>"; };
@@ -567,7 +565,6 @@
 				07074F401BF96F6200BFC6FA /* ButtonSwitchPanelWithID.swift */,
 				07074F411BF96F6200BFC6FA /* ButtonSwitchPanelWithMasterButtonSwitch.swift */,
 				07074F421BF96F6200BFC6FA /* ComponentSelector.swift */,
-				07074F431BF96F6200BFC6FA /* _Environment.swift */,
 				07074F441BF96F6200BFC6FA /* PageControlButton.swift */,
 				07074F451BF96F6200BFC6FA /* PageControlButtonNext.swift */,
 				07074F461BF96F6200BFC6FA /* PageControlButtonPrevious.swift */,
@@ -812,7 +809,6 @@
 				07074EF11BF96D1D00BFC6FA /* BezierCurveStyleWidthVariable.swift in Sources */,
 				07074F031BF96D1D00BFC6FA /* DurationNodeExtensions.swift in Sources */,
 				07074F4F1BF96F6200BFC6FA /* ButtonSwitch.swift in Sources */,
-				07074F591BF96F6200BFC6FA /* _Environment.swift in Sources */,
 				07074F2C1BF96D1D00BFC6FA /* TemporalInfoNode.swift in Sources */,
 				07074EE01BF96D1D00BFC6FA /* AccidentalComponent.swift in Sources */,
 				07074EF21BF96D1D00BFC6FA /* BezierPath.swift in Sources */,
