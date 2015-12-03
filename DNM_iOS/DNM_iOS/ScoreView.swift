@@ -9,11 +9,15 @@
 import UIKit
 import DNMModel
 
-// TODO: THIS WILL BE THE NEW SCOREVIEW, being refactored from _ScoreView.swift (2015-12-01)
 public class ScoreView: UIView {
 
+    /// The PerformerID of the Performer viewing the current Score
     public var viewerID: String!
+    
+    /// The PerformerIDs of all colleagues in an ensemble, excluding the viewer's PerformerID
     public var peerIDs: [PerformerID] = []
+    
+    /// The model of the entire piece being rendered
     public var scoreModel: DNMScoreModel!
     
     // MARK: - PageViews
@@ -38,14 +42,14 @@ public class ScoreView: UIView {
     - parameter identifier: String with identifier of PerformerView ViewerID
     - parameter scoreModel: DNMScoreModel
 
-    - returns: _ScoreView
+    - returns: ScoreView
     */
     public init(
         scoreModel: DNMScoreModel,
         viewerID: PerformerID,
-        peerIDs: [PerformerID] = [] // not optimal
+        peerIDs: [PerformerID] = []
     ) {
-        super.init(frame: UIScreen.mainScreen().bounds) // reset frame to size of screen
+        super.init(frame: UIScreen.mainScreen().bounds)
         self.scoreModel = scoreModel
         self.viewerID = viewerID
         self.peerIDs = peerIDs
@@ -136,144 +140,13 @@ public class ScoreView: UIView {
         }
         return systemLayers
     }
-    
-    // refactor out of here
-    // ----------------------------------------------------------------------------------------   
-    // make DMLigature (DynamicMarkingSpanner at some point) Manager class, this is out of hand
-    public func manageDMLigaturesForSystemLayers(systems: [SystemLayer]) {
-        
-        // encapsulate: create ligature spans
-        struct DMLigatureSpan {
-            var systemStartIndex: Int?
-            var systemStopIndex: Int?
-            var startIntValue: Int?
-            var stopIntValue: Int?
-            
-            init(systemStartIndex: Int, startIntValue: Int) {
-                self.systemStartIndex = systemStartIndex
-                self.startIntValue = startIntValue
-            }
-            
-            init(systemStopIndex: Int, stopIntValue: Int) {
-                self.systemStartIndex = systemStopIndex
-                self.stopIntValue = stopIntValue
-            }
-            
-            mutating func setSystemStopIndex(systemStopIndex: Int, stopIntValue: Int) {
-                self.systemStopIndex = systemStopIndex
-                self.stopIntValue = stopIntValue
-            }
-            
-            mutating func setSystemStartIndex(systemStartIndex: Int, startIntValue: Int) {
-                self.systemStartIndex = systemStartIndex
-                self.startIntValue = startIntValue
-            }
-        }
-        
-        var dmLigatureSpansByID: [String : [DMLigatureSpan]] = [:]
-        
-        for (s, system) in systems.enumerate() {
-            for (id, dmNode) in system.dmNodeByID {
-                for ligature in dmNode.ligatures {
-                    if ligature.hasBeenBuilt { continue }
-                    if ligature.initialDynamicMarkingIntValue == nil {
-                        if let finalIntValue = ligature.finalDynamicMarkingIntValue {
-                            if dmLigatureSpansByID[id] == nil {
-                                
-                                let dmLigatureSpan = DMLigatureSpan(
-                                    systemStopIndex: s,
-                                    stopIntValue: finalIntValue
-                                )
-                                dmLigatureSpansByID[id] = [dmLigatureSpan]
-                            }
-                            else {
-                                for (d, var dmLigatureSpan) in dmLigatureSpansByID[id]!.enumerate() {
-                                    if dmLigatureSpan.stopIntValue == nil {
-                                        dmLigatureSpan.setSystemStopIndex(s, stopIntValue: finalIntValue)
-                                        dmLigatureSpansByID[id]!.removeAtIndex(d)
-                                        dmLigatureSpansByID[id]!.insert(dmLigatureSpan, atIndex: d)
-                                        break
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        if let initialValue = ligature.initialDynamicMarkingIntValue {
-                            if dmLigatureSpansByID[id] == nil {
-                                // create
-                                let dmLigatureSpan = DMLigatureSpan(
-                                    systemStartIndex: s, startIntValue: initialValue
-                                )
-                                dmLigatureSpansByID[id] = [dmLigatureSpan]
-                            }
-                            else {
-                                // find and append
-                                for (d, var dmLigatureSpan) in dmLigatureSpansByID[id]!.enumerate() {
-                                    if dmLigatureSpan.startIntValue == nil {
-                                        dmLigatureSpan.setSystemStartIndex(s, startIntValue: initialValue)
-                                        dmLigatureSpansByID[id]!.removeAtIndex(d)
-                                        dmLigatureSpansByID[id]!.insert(dmLigatureSpan, atIndex: d)
-                                        break
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        // encapsulate: now add ligature components to dmNode
-        
-        for (id, dmLigatureSpans) in dmLigatureSpansByID {
-            for dmLigatureSpan in dmLigatureSpans {
-                
-                let startSystem = systems[dmLigatureSpan.systemStartIndex!]
-                let stopIntValue = dmLigatureSpan.stopIntValue!
-                let lastDMNode = startSystem.dmNodeByID[id]!
-                let lastLigature = lastDMNode.ligatures.last!
-                if lastLigature.finalDynamicMarkingIntValue == nil {
-                    let x = startSystem.frame.width + 20
-                    lastLigature.completeHalfOpenToX(x, withDynamicMarkingIntValue: stopIntValue)
-                    lastLigature.position.y = 0.5 * lastDMNode.frame.height
-                }
-                
-                let stopSystem = systems[dmLigatureSpan.systemStopIndex!]
-                let startIntValue = dmLigatureSpan.startIntValue!
-                let firstDMNode = stopSystem.dmNodeByID[id]!
-                let firstLigature = firstDMNode.ligatures.first!
-                if firstLigature.initialDynamicMarkingIntValue == nil {
-                    firstLigature.completeHalfOpenFromLeftWithDynamicMarkingIntValue(startIntValue)
-                    firstLigature.position.y = 0.5 * firstDMNode.frame.height
-                }
-                
-                for s in dmLigatureSpan.systemStartIndex! + 1..<dmLigatureSpan.systemStopIndex! {
-                    
-                    if systems[s].dmNodeByID[id] == nil {
-                        // create dmNode
-                        let dmNode = DMNode(height: 2.5 * g) // hack
-                        dmNode.startLigatureAtX(0, withDynamicMarkingIntValue: startIntValue)
-                        dmNode.ligatures.last!.completeHalfOpenToX(systems[s].frame.width + 20,
-                            withDynamicMarkingIntValue: stopIntValue
-                        )
-                        dmNode.ligatures.last!.position.y = 0.5 * dmNode.frame.height
-                        
-                        dmNode.build()
-                        systems[s].dmNodeByID[id] = dmNode
-                        
-                        // hail mary
-                        systems[s].eventsNode.insertNode(dmNode,
-                            afterNode: systems[s].performerByID[id]!
-                        )
-                    }
-                }
-            }
-        }
+
+    // consider how this is to be generalized for all spanners
+    private func manageDMLigaturesForSystemLayers(systemLayers: [SystemLayer]) {
+        let dmLigatureCoordinator = DMLigatureCoordinator(systemLayers: systemLayers, g: g)
+        dmLigatureCoordinator.coordinateDMLigatures()
     }
-    // ----------------------------------------------------------------------------------------
     
-    // Enscpsulate in class: SystemFactory
     private func makeSystems() -> [System] {
         let margin: CGFloat = 25
         let maximumWidth = frame.width - 2 * margin
@@ -285,7 +158,8 @@ public class ScoreView: UIView {
         return systems
     }
     
-    // throws error?
+    // MARK: - Page Navigation
+    
     public func goToPageAtIndex(index: Int) {
         if index >= 0 && index < pageViews.count {
             removeCurrentPageView()

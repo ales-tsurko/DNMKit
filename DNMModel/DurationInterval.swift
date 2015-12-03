@@ -141,7 +141,7 @@ public struct DurationInterval: Equatable, CustomStringConvertible {
     }
 
     private func getDescription() -> String {
-        return "start: \(startDuration); stop: \(stopDuration); total: \(duration)"
+        return "(\(startDuration) -> (\(stopDuration): \(duration)))"
     }
 }
 
