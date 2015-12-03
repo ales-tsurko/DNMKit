@@ -59,6 +59,35 @@ public class ScoreView: UIView {
     public override init(frame: CGRect) { super.init(frame: frame) }
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    // MARK: - Page Navigation
+    
+    public func goToPageAtIndex(index: Int) {
+        if index >= 0 && index < pageViews.count {
+            removeCurrentPageView()
+            let pageView = pageViews[index]
+            currentPageView = pageView
+            insertSubview(pageView, atIndex: 0)
+        }
+    }
+    
+    public func goToPreviousPage() {
+        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex - 1) }
+    }
+    
+    public func goToNextPage() {
+        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex + 1) }
+    }
+    
+    public func goToFirstPage() {
+        goToPageAtIndex(0)
+    }
+    
+    public func goToLastPage() {
+        goToPageAtIndex(pageViews.count - 1)
+    }
+
+    // MARK: - Build
+    
     public func build() {
         let systems = makeSystems()
         let systemLayers = makeSystemLayersWithSystems(systems)
@@ -131,32 +160,6 @@ public class ScoreView: UIView {
         return systems
     }
     
-    // MARK: - Page Navigation
-    
-    public func goToPageAtIndex(index: Int) {
-        if index >= 0 && index < pageViews.count {
-            removeCurrentPageView()
-            let pageView = pageViews[index]
-            currentPageView = pageView
-            insertSubview(pageView, atIndex: 0)
-        }
-    }
-    
-    public func goToPreviousPage() {
-        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex - 1) }
-    }
-    
-    public func goToNextPage() {
-        if let currentPageIndex = currentPageIndex { goToPageAtIndex(currentPageIndex + 1) }
-    }
-
-    public func goToFirstPage() {
-        goToPageAtIndex(0)
-    }
-    
-    public func goToLastPage() {
-        goToPageAtIndex(pageViews.count - 1)
-    }
     
     private func removeCurrentPageView() {
         if let currentPageView = currentPageView { currentPageView.removeFromSuperview() }
