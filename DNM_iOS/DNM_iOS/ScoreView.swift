@@ -102,30 +102,11 @@ public class ScoreView: UIView {
         return pageViews
     }
     
-    // TODO: IN PROCESS: 2015-12-01
     private func makeSystemLayersWithSystems(systems: [System]) -> [SystemLayer] {
-        var systemLayers: [SystemLayer] = []
-        
-        for system in systems {
-            let systemLayer = SystemLayer(
-                system: system, g: g, beatWidth: beatWidth, viewerID: viewerID
-            )
-            systemLayers.append(systemLayer)
-        }
-
-        buildSystemLayers(systemLayers)
-        
-        // generalize for all spanners
-        manageDMLigaturesForSystemLayers(systemLayers)
-        
-        // do this in systemLayer
-        for systemLayer in systemLayers {
-            systemLayer.arrangeNodesWithComponentTypesPresent()
-            systemLayer.createStems()
-            
-            //manageTempoMarkingsForSystem(systemLayer)
-            //manageRehearsalMarkingsForSystem(systemLayer)
-        }
+        let systemLayerFactory = SystemLayerFactory(systems: systems,
+            g: g, beatWidth: beatWidth, viewerID: viewerID
+        )
+        let systemLayers = systemLayerFactory.makeSystemLayers()
         return systemLayers
     }
     
