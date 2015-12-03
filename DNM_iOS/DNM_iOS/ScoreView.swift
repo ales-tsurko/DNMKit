@@ -104,41 +104,33 @@ public class ScoreView: UIView {
     
     // TODO: IN PROCESS: 2015-12-01
     private func makeSystemLayersWithSystems(systems: [System]) -> [SystemLayer] {
-        
         var systemLayers: [SystemLayer] = []
+        
         for system in systems {
             let systemLayer = SystemLayer(
                 system: system, g: g, beatWidth: beatWidth, viewerID: viewerID
             )
             systemLayers.append(systemLayer)
         }
+
+        buildSystemLayers(systemLayers)
         
-        // preliminary build
-        for systemLayer in systemLayers { systemLayer.build() }
-        
-        // manage spanners
+        // generalize for all spanners
         manageDMLigaturesForSystemLayers(systemLayers)
         
-        // complete build
+        // do this in systemLayer
         for systemLayer in systemLayers {
-
-            // setDefaultComponentTypesShown
-            if viewerID != "omni" {
-                // wipe out all of the component types shown
-                for id in peerIDs {
-                    systemLayer.componentTypesShownByID[id] = []
-                }
-            }
-
             systemLayer.arrangeNodesWithComponentTypesPresent()
-            
-            // probably not the best place for this
             systemLayer.createStems()
             
             //manageTempoMarkingsForSystem(systemLayer)
             //manageRehearsalMarkingsForSystem(systemLayer)
         }
         return systemLayers
+    }
+    
+    private func buildSystemLayers(systemLayers: [SystemLayer]) {
+        for systemLayer in systemLayers { systemLayer.build() }
     }
 
     // consider how this is to be generalized for all spanners

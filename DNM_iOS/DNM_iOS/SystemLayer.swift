@@ -325,11 +325,9 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     - parameter measures: All MeasureViews in this SystemLayer
     */
     public func setMeasuresWithMeasures(measures: [Measure]) {
-        
-        print("set measures with measures: \(measures)")
-        
+
         // create MeasureViews with Measures
-        self.measureViews = makeMeasureViewsWithMeasures(measures)
+        self.measureViews = makeMeasureViewsWithMeasures(measures) // ivar necessary?
         
         // don't set
         var accumLeft: CGFloat = infoStartX
@@ -345,9 +343,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         }
         totalDuration = accumDur
     }
-    
-    // currently in environment, but it should be shoved in here?
-    // perhaps: MeasureViewManageer
+
     private func makeMeasureViewsWithMeasures(measures: [Measure]) -> [MeasureView] {
         let measureViews: [MeasureView] = measures.map { MeasureView(measure: $0) }
         return measureViews
@@ -1036,8 +1032,7 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
     
     private func setDefaultComponentTypesShownByID() {
         
-        // make sure PERFORMER is in all component types
-        
+        // make sure "performer" is in all component types
         for (id, _) in componentTypesByID {
             if !componentTypesByID[id]!.contains("performer") {
                 componentTypesByID[id]!.append("performer")
@@ -1047,6 +1042,12 @@ public class SystemLayer: ViewNode, BuildPattern, DurationSpanning {
         // then transfer all to componentTypesShown
         for (id, componentTypes) in componentTypesByID {
             componentTypesShownByID[id] = componentTypes
+        }
+
+        // filter out everyone by viewerID
+        if viewerID != "omni" {
+            let peerIDs = performerByID.keys.filter { $0 != self.viewerID }
+            for id in peerIDs { componentTypesShownByID[id] = [] }
         }
     }
     

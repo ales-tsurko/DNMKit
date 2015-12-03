@@ -124,6 +124,7 @@
 		07074F631BF96F6200BFC6FA /* SystemUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4D1BF96F6200BFC6FA /* SystemUIView.swift */; };
 		07074F641BF96F6200BFC6FA /* _ViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07074F4E1BF96F6200BFC6FA /* _ViewSelector.swift */; };
 		070A60131C0FD7040036CB3C /* DMLigatureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070A60121C0FD7040036CB3C /* DMLigatureCoordinator.swift */; };
+		070A60151C0FDD850036CB3C /* SystemLayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070A60141C0FDD850036CB3C /* SystemLayerFactory.swift */; };
 		071E9E051C00EC4F008D1263 /* DNMModel_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071E9E0C1C00EC4F008D1263 /* DNMModel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */; };
 		071E9E131C00EC4F008D1263 /* DNMModel_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E9E121C00EC4F008D1263 /* DNMModel_iOSTests.swift */; };
@@ -314,6 +315,7 @@
 		07074F4D1BF96F6200BFC6FA /* SystemUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUIView.swift; sourceTree = "<group>"; };
 		07074F4E1BF96F6200BFC6FA /* _ViewSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ViewSelector.swift; sourceTree = "<group>"; };
 		070A60121C0FD7040036CB3C /* DMLigatureCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMLigatureCoordinator.swift; sourceTree = "<group>"; };
+		070A60141C0FDD850036CB3C /* SystemLayerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLayerFactory.swift; sourceTree = "<group>"; };
 		071E9E021C00EC4F008D1263 /* DNMModel_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNMModel_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E9E041C00EC4F008D1263 /* DNMModel_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNMModel_iOS.h; sourceTree = "<group>"; };
 		071E9E061C00EC4F008D1263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 				07074ECE1BF96D1D00BFC6FA /* StyledBezierCurve.swift */,
 				07074ECF1BF96D1D00BFC6FA /* SubdivisionGraphic.swift */,
 				07074ED01BF96D1D00BFC6FA /* SystemLayer.swift */,
+				070A60141C0FDD850036CB3C /* SystemLayerFactory.swift */,
 				07CEFC971C0CF5370024308F /* System.swift */,
 				07074ED11BF96D1D00BFC6FA /* TempoMarkingView.swift */,
 				07074ED21BF96D1D00BFC6FA /* TemporalInfoNode.swift */,
@@ -820,6 +823,7 @@
 				07074F201BF96D1D00BFC6FA /* SANode.swift in Sources */,
 				07074F141BF96D1D00BFC6FA /* InstrumentString.swift in Sources */,
 				07074EDF1BF96D1D00BFC6FA /* AccidentalCollision.swift in Sources */,
+				070A60151C0FDD850036CB3C /* SystemLayerFactory.swift in Sources */,
 				07074F631BF96F6200BFC6FA /* SystemUIView.swift in Sources */,
 				07074F601BF96F6200BFC6FA /* _RadioGroupPanel.swift in Sources */,
 				07074F071BF96D1D00BFC6FA /* GraphContinuousControllerStepped.swift in Sources */,
