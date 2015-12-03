@@ -25,7 +25,7 @@ public class BGStratum: ViewNode, BuildPattern {
         get { if iIDsByPID.count == 1 { return iIDsByPID.first!.0 }; return nil }
     }
     
-    public var system: System? // temp
+    public var system: SystemLayer? // temp
     
     public var g: CGFloat = 12
     public var s: CGFloat = 1

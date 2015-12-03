@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 public class RadioGroupPanel: ButtonSwitchPanel {
     
     public var currentButtonSelectedID: String = ""
@@ -57,8 +58,9 @@ public class RadioGroupPanel: ButtonSwitchPanel {
             statesByText[sender.text] = sender.isOn
         }
     
-        if let environment = target as? Environment {
+        if let environment = target as? _Environment {
             environment.goToViewWithID(currentButtonSelectedID)
         }
     }
 }
+*/

@@ -13,7 +13,7 @@ public class InstrumentEvent: CALayer {
 
     public var x: CGFloat = 0
     
-    public var instrument: Instrument?
+    public var instrument: InstrumentView?
     public var graphEvents: [GraphEvent] = []
     public var stem: Stem?
     public var stemDirection: StemDirection = .Down

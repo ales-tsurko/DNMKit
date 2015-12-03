@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Implementation of Allen's interval algebra calculus
 public struct IntervalRelationship: OptionSetType {
 
     public let rawValue: Int

@@ -9,21 +9,19 @@
 import QuartzCore
 import DNMModel
 
-// when where how to add graphEvents to instrumentEvent?
-
 public class InstrumentEventHandler {
     
     public var bgEvent: BGEvent?
     public var instrumentEvent: InstrumentEvent?
     public var stem: Stem?
-    public var system: System?
+    public var system: SystemLayer?
     
     private var stemDirection: StemDirection { get { return getStemDirection() } }
     
     public init(
         bgEvent: BGEvent?,
         instrumentEvent: InstrumentEvent? = nil,
-        system: System? = nil
+        system: SystemLayer? = nil
     )
     {
         self.bgEvent = bgEvent
@@ -31,10 +29,10 @@ public class InstrumentEventHandler {
         self.system = system
     }
     
-    public func isContainedWithinDurationSpan(durationSpan: DurationSpan) -> Bool {
+    public func isContainedWithinDurationInterval(durationInterval: DurationInterval) -> Bool {
         guard let bgEvent = bgEvent else { return false }
         let offsetDuration = bgEvent.durationNode.offsetDuration
-        return durationSpan.containsDuration(offsetDuration)
+        return durationInterval.containsDuration(offsetDuration)
     }
     
     public func decorateInstrumentEvent() {
@@ -346,7 +344,7 @@ public class InstrumentEventHandler {
                     // testing hack
                     graphEvent.graph!.addGlissandoFromGraphEventAtIndex(0, toIndex: 1)
                 case .Node(_):
-                    // happens automatically when eventHandler is created within System
+                    // happens automatically when eventHandler is created within SystemLayer
                     break
                 case .Label(let value):
                     let label = Label(x: 0, top: 0, height: 20, text: value)
