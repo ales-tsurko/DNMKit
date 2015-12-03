@@ -1,169 +1,142 @@
 //
-//  ScoreView.swift
+//  PerformerView.swift
 //  denm_view
 //
-//  Created by James Bean on 10/2/15.
+//  Created by James Bean on 8/19/15.
 //  Copyright © 2015 James Bean. All rights reserved.
 //
 
 import UIKit
+import DNMModel
 
-// Rename as PerformerInterfaceView
-public class ScoreView: UIView {
+// contains 0 -> n instruments
+public class PerformerView: ViewNode {
 
+    public override var description: String {
+        get { return "PerformerView: ID: \(id); instrumentByID: \(instrumentByID)" }
+    }
+    
     public var id: String = ""
-    public var pages: [Page] = []
-    public var currentPage: Page?
-    public var currentPageIndex: Int?
     
-    public var pageViews: [PageView] = []
-    public var currentPageView: PageView?
+    public var instrumentOrder: [String]?
+    public var instruments: [InstrumentView] = []
+    public var instrumentByID: [String : InstrumentView] = [:]
     
-    /// All Systems for a given piece of music
-    public var systems: [System] = []
+    // consider protocol or superclass : See PerformerView
+    public var bracket: CAShapeLayer? // make subclass
+    public var label: TextLayerConstrainedByHeight?
     
-    /// All SystemViews for a given piece of music
-    public var systemViews: [SystemView] = []
-
-    public init(id: String, systems: [System]) {
-        super.init(frame: UIScreen.mainScreen().bounds)
+    public var minInstrumentsTop: CGFloat? { get { return getMinInstrumentsTop() } }
+    public var maxInstrumentsBottom: CGFloat? { get { return getMaxInstrumentsBottom() } }
+    
+    public init(id: String) {
+        super.init()
         self.id = id
-        self.systems = systems // ALL SYSTEMS
-        self.systemViews = makeSystemViewsForSystems(systems) // ALL SYSTEM VIEWS
-        build()
+        layoutAccumulation_vertical = .Top
+        addLabel()
     }
     
-    public override init(frame: CGRect) { super.init(frame: frame) }
+    public override init() {
+        super.init()
+        layoutAccumulation_vertical = .Top
+    }
+    
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+    public override init(layer: AnyObject) { super.init(layer: layer) }
     
-    public func build() {
-        createPages()
-        goToFirstPage()
-        setFrame()
-        
-        // encapsulate: setFramesOfSystemViews()
-        for pageView in pageViews {
-            for systemView in pageView.systemViews {
-                systemView.setFrame()
+    public func addInstrument(instrument: InstrumentView) {
+        instruments.append(instrument)
+        instrumentByID[instrument.id] = instrument
+        addNode(instrument)
+        instrument.performer = self
+        instrument.pad_bottom = 20 // hack
+    }
+    
+    public func addInstrumentsWithInsturmentTypeByInstrumentID(
+        instrumentTypeByInstrumentID: OrderedDictionary<String, InstrumentType>)
+    {
+        for (instrumentID, instrumentType) in instrumentTypeByInstrumentID {
+            createInstrumentWithInstrumentType(instrumentType, andID: instrumentID)
+        }
+    }
+    
+    public func createInstrumentWithInstrumentType(instrumentType: InstrumentType,
+        andID id: String
+    )
+    {
+        if instrumentByID[id] == nil {
+            if let instrument = InstrumentView.withType(instrumentType) {
+                instrument.id = id
+                instrument.pad_bottom = 20 // HACK
+                addInstrument(instrument)
             }
         }
     }
     
-    public func systemsNeedReflowing() {
-        for pageView in pageViews { pageView.removeFromSuperview() }
-        pages = []
-        pageViews = []
-        createPages()
-        goToFirstPage()
-        setFrame()
-    }
-    
-    public func makeSystemViewsForSystems(systems: [System]) -> [SystemView] {
-        var systemViews: [SystemView] = []
-        for system in systems {
-            let systemView = SystemView(system: system)
-            systemViews.append(systemView)
+    public override func layout() {
+        super.layout()
+        
+        // encapsulate: updateBracket
+        if bracket == nil {
+            bracket = CAShapeLayer()
+            addSublayer(bracket!)
         }
-        return systemViews
+        else {
+            
+            // this is inexcusable
+            if let minInstrumentsTop = minInstrumentsTop, maxInstrumentsBottom = maxInstrumentsBottom {
+                let path = UIBezierPath()
+                path.moveToPoint(CGPointMake(0, minInstrumentsTop))
+                path.addLineToPoint(CGPointMake(0, maxInstrumentsBottom))
+                bracket!.path = path.CGPath
+                bracket!.strokeColor = UIColor.grayscaleColorWithDepthOfField(.MiddleBackground).CGColor
+                bracket!.lineWidth = 3
+                
+                // hackish -- this is why we need more intelligent barline
+                label?.position.y = minInstrumentsTop + 0.5 * (maxInstrumentsBottom - minInstrumentsTop)
+            }
+        }
     }
     
-    public func createPages() {
-        
-        // clean this up, please
-        let page_pad: CGFloat = 25
-        //let page_pad_left: CGFloat = 50
-        
+    private func addLabel() {
         // hack
-        let maximumHeight = UIScreen.mainScreen().bounds.height - 2 * page_pad
-        
-        // remove PageViews as necessary
-        for pageView in pageViews { pageView.removeFromSuperview() }
-
-        // add systemViews
-        
-        var pages: [Page] = []
-        var systemIndex: Int = 0
-        while systemIndex < systems.count {
-            let systemRange = System.rangeFromSystems(systems,
-                startingAtIndex: systemIndex, constrainedByMaximumTotalHeight: maximumHeight
-            )
-        
-            
-            // clean up initialization
-            let page = Page(systems: systemRange)
-            page.build()
-            
-            
-            // make contingency for too-big-a-system
-            let lastSystemIndex = systems.indexOfObject(page.systems.last!)!
-            
-            var systemViewsInRange: [SystemView] = []
-            for sv in systemIndex...lastSystemIndex {
-                let systemView = systemViews[sv]
-                systemViewsInRange.append(systemView)
+        label = TextLayerConstrainedByHeight(
+            text: id,
+            x: -10,
+            top: 0,
+            height: 10,
+            alignment: .Right,
+            fontName: "Baskerville-SemiBold"
+        )
+        label!.foregroundColor = UIColor.grayscaleColorWithDepthOfField(.MostForeground).CGColor
+        addSublayer(label!)
+    }
+    
+    private func getMinInstrumentsTop() -> CGFloat? {
+        var minY: CGFloat?
+        for instrument in instruments {
+            if !hasNode(instrument) { continue }
+            if let minGraphsTop = instrument.minGraphsTop {
+                let instrumentTop = convertY(minGraphsTop, fromLayer: instrument)
+                if minY == nil { minY = instrumentTop }
+                else if instrumentTop < minY! { minY = instrumentTop }
             }
-            
-            let pageView = PageView(page: page, systemViews: systemViewsInRange, scoreView: self)
-            pageViews.append(pageView)
-            
-            systemIndex = lastSystemIndex + 1
-            pages.append(page)
         }
-        self.pages = pages
-    }
-
-    
-    public func goToPageAtIndex(index: Int) {
-        //print("go to page at index: \(index)")
-        
-        if index >= 0 && index < pages.count {
-            let page = pages[index]
-            let pageView = pageViews[index]
-            for subview in subviews { subview.removeFromSuperview() }
-            addSubview(pageView)
-            currentPageView = pageView
-            currentPage = page
-            currentPageIndex = index
-            setFrame()
-        }
+        return minY
     }
     
-    public func goToFirstPage() {
-        //print("go to first page")
-        
-        if pages.count > 0 { goToPageAtIndex(0) }
-    }
-    
-    public func goToLastPage() {
-        if pages.count > 0 { goToPageAtIndex(pages.count - 1) }
-    }
-    
-    public func goToNextPage() {
-        if let currentPageIndex = currentPageIndex {
-            if currentPageIndex < pages.count - 1 { goToPageAtIndex(currentPageIndex + 1) }
-            else { print("LAST PAGE") }
+    private func getMaxInstrumentsBottom() -> CGFloat? {
+        var maxY: CGFloat?
+        for instrument in instruments {
+            if !hasNode(instrument) { continue }
+            if let maxGraphsBottom = instrument.maxGraphsBottom {
+                let instrumentBottom = convertY(maxGraphsBottom, fromLayer: instrument)
+                if maxY == nil { maxY = instrumentBottom }
+                else if instrumentBottom > maxY! { maxY = instrumentBottom }
+            }
         }
-    }
-    
-    public func goToPreviousPage() {
-        if let currentPageIndex = currentPageIndex {
-            if currentPageIndex > 0 { goToPageAtIndex(currentPageIndex - 1) }
-            else { print("FIRST PAGE") }
-        }
-    }
-    
-    public func setFrame() {
-        let pad_left: CGFloat = 50
-        let pad_top: CGFloat = 12
-        if let currentPageView = currentPageView {
-            frame = CGRectMake(
-                pad_left, pad_top, currentPageView.frame.width, currentPageView.frame.height
-            )
-        }
-        /*
-        if let currentPage = currentPage {
-            frame = CGRectMake(pad_left, pad_top, currentPage.frame.width, currentPage.frame.height)
-        }
-        */
+        return maxY
     }
 }
+
+

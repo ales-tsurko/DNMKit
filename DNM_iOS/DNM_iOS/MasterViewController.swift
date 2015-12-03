@@ -13,7 +13,7 @@ import Bolts
 
 // TODO: manage signed in / signed out: tableview.reloadData
 
-class MasterViewController: UIViewController,
+public class MasterViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
     UITextFieldDelegate
@@ -21,17 +21,13 @@ class MasterViewController: UIViewController,
     // MARK: - UI
     
     @IBOutlet weak var scoreSelectorTableView: UITableView!
-    
     @IBOutlet weak var colorModeLabel: UILabel!
     @IBOutlet weak var colorModeLightLabel: UILabel!
     @IBOutlet weak var colorModeDarkLabel: UILabel!
-    
     @IBOutlet weak var loginStatusLabel: UILabel!
     @IBOutlet weak var signInOrOutOrUpButton: UIButton!
     @IBOutlet weak var signInOrUpButton: UIButton!
-    
     @IBOutlet weak var dnmLogoLabel: UILabel!
-    
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
@@ -42,38 +38,24 @@ class MasterViewController: UIViewController,
     // MARK: - Views
     
     // change to PerformerInterfaceView
-    var viewByID: [String: ScoreView] = [:]
-    var currentView: ScoreView?
-    
-    // don't make all of ScoreModel proporties top-level like in Envrionment
+    private var viewByID: [String: ScoreView] = [:]
+    private var currentView: ScoreView?
     
     // MARK: - Score Object Management
     
-    var scoreObjects: [PFObject] = []
-    
-    var loginState: LoginState = .SignIn
-    
-    
-    func createViews() {
-        
-    }
-    
-    // do this, instead, in tableView:didSelectCell...
-    func goToViewWithID(id: String) {
-        
-    }
-    
+    private var scoreObjects: [PFObject] = []
+    private var loginState: LoginState = .SignIn
     
     // MARK: - Startup
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupScoreSelectorTableView()
         setupTextFields()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(animated: Bool) {
         manageLoginStatus() // necessary to wait until viewDidAppear?
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
@@ -106,12 +88,11 @@ class MasterViewController: UIViewController,
         
         if let username = usernameField.text, password = passwordField.text {
             
-            // make sure its legit
+            // make sure the username and password is legit legit
             if username.characters.count > 0 && password.characters.count >= 8 {
                 
                 // disable keyboard
                 passwordField.resignFirstResponder()
-                
                 
                 // don't do this by the text of the button: enum LoginState { }
                 switch signInOrOutOrUpButton.currentTitle! {
@@ -125,6 +106,7 @@ class MasterViewController: UIViewController,
                     }
                     catch {
                         print("could not sign up user")
+                        // manage this in the UI
                     }
                     
                 case "SIGN IN":
@@ -142,10 +124,7 @@ class MasterViewController: UIViewController,
     }
     
     @IBAction func didPressSignInOrOutOrUpButton(sender: AnyObject) {
-        print("sign in or out or up")
-        
-        // don't this by text
-        
+        // don't do this with the text
         if let title = signInOrOutOrUpButton.currentTitle {
             if title == "SIGN OUT?" {
                 if PFUser.currentUser() != nil {
@@ -159,6 +138,7 @@ class MasterViewController: UIViewController,
     }
     
     @IBAction func didPressSignInOrUpButton(sender: AnyObject) {
+        // don't do this with text!
         if let title = signInOrUpButton.currentTitle {
             if title == "SIGN UP?" {
                 enterSignUpmMode()
@@ -167,7 +147,6 @@ class MasterViewController: UIViewController,
             }
         }
     }
-    
     
     @IBAction func didChangeValueOfSwitch(sender: UISwitch) {
         
@@ -213,6 +192,14 @@ class MasterViewController: UIViewController,
         }
     }
     
+    private func showScoreSelectorTableView() {
+        scoreSelectorTableView.hidden = false
+    }
+    
+    private func hideScoreSelectorTableView() {
+        scoreSelectorTableView.hidden = true
+    }
+    
     // MARK: - Parse Management
     
     func manageLoginStatus() {
@@ -222,7 +209,7 @@ class MasterViewController: UIViewController,
     func enterSignInMode() {
         
         // hide score selector table view -- later: animate offscreen left
-        scoreSelectorTableView.hidden = true
+        hideScoreSelectorTableView()
         
         signInOrOutOrUpButton.hidden = false
         signInOrOutOrUpButton.setTitle("SIGN IN", forState: .Normal)
@@ -238,12 +225,9 @@ class MasterViewController: UIViewController,
     
     // signed in
     func enterSignedInMode() {
-        
         fetchAllObjectsFromLocalDatastore()
         fetchAllObjects()
-        
-        scoreSelectorTableView.hidden = false
-        
+        showScoreSelectorTableView()
         updateLoginStatusLabel()
         
         // hide username field, clear contents
@@ -258,7 +242,6 @@ class MasterViewController: UIViewController,
         
         signInOrOutOrUpButton.hidden = false
         signInOrOutOrUpButton.setTitle("SIGN OUT?", forState: .Normal)
-        
     }
     
     // need to sign up
@@ -270,7 +253,7 @@ class MasterViewController: UIViewController,
     // MARK: - UITableViewDelegate Methods
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell",
@@ -292,7 +275,7 @@ class MasterViewController: UIViewController,
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let scoreString = scoreObjects[indexPath.row]["text"] {
             let scoreModel = makeScoreModelWithString(scoreString as! String)
             scoreModelSelected = scoreModel
@@ -300,7 +283,7 @@ class MasterViewController: UIViewController,
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let id = segue.identifier where id == "showScore" {
             let scoreViewController = segue.destinationViewController as! ScoreViewController
             if let scoreModel = scoreModelSelected {
@@ -309,23 +292,24 @@ class MasterViewController: UIViewController,
         }
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int)
+        -> UIView?
+    {
         return UIView(frame: CGRectZero)
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scoreObjects.count
     }
     
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    
     // MARK: - Parse
     
-    func fetchAllObjectsFromLocalDatastore() {
+    private func fetchAllObjectsFromLocalDatastore() {
         if let username = PFUser.currentUser()?.username {
             let query = PFQuery(className: "Score")
             query.fromLocalDatastore()
@@ -340,7 +324,7 @@ class MasterViewController: UIViewController,
         }
     }
     
-    func fetchAllObjects() {
+    private func fetchAllObjects() {
         if let username = PFUser.currentUser()?.username {
             PFObject.unpinAllObjectsInBackground()
             let query = PFQuery(className: "Score")
@@ -363,27 +347,15 @@ class MasterViewController: UIViewController,
     
     // MARK: - Model
     
-    func makeScoreModelWithString(string: String) -> DNMScoreModel {
+    public func makeScoreModelWithString(string: String) -> DNMScoreModel {
         let tokenizer = Tokenizer()
         let tokenContainer = tokenizer.tokenizeString(string)
         let parser = Parser()
         let scoreModel = parser.parseTokenContainer(tokenContainer)
         return scoreModel
     }
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
 
-enum LoginState {
+private enum LoginState {
     case SignedIn, SignIn, SignUp
 }

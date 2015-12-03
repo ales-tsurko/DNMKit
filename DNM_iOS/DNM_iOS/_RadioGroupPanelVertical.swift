@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 public class RadioGroupPanelVertical: RadioGroupPanel {
     
     public init(
@@ -64,3 +65,4 @@ public class RadioGroupPanelVertical: RadioGroupPanel {
         */
     }
 }
+*/

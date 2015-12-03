@@ -19,11 +19,12 @@ public protocol DurationSpanning {
 
 extension DurationSpanning {
 
+    
     public static func rangeFromArray<T: DurationSpanning>(array: [T],
         withinDurationInterval durationInterval: DurationInterval
     ) throws -> [T]
     {
-        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During]
+        let validRelationships: IntervalRelationship = [.Starts, .Finishes, .During, .Equal]
         let filtered = array.filter {
             validRelationships.contains(
                 $0.durationInterval.relationshipToDurationInterval(durationInterval)

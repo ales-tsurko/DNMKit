@@ -14,7 +14,7 @@ public class Graph: ViewNode, BuildPattern/*, Identifiable*/ {
     public var id: String = ""
     
     public var events: [GraphEvent] = []
-    public var instrument: Instrument?
+    public var instrument: InstrumentView?
     
     public var lineActions: [LineAction] = []
     public var lastLinesX: CGFloat?

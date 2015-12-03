@@ -1,5 +1,5 @@
 //
-//  SystemView.swift
+//  SystemUIView.swift
 //  denm_view
 //
 //  Created by James Bean on 10/2/15.
@@ -9,9 +9,9 @@
 import UIKit
 import DNMModel
 
-public class SystemView: UIView {
+public class SystemUIView: UIView {
     
-    public var system: System!
+    public var system: SystemLayer!
     public var pageView: PageView!
     public var isShowingComponentSelector: Bool = false
     
@@ -30,7 +30,7 @@ public class SystemView: UIView {
     public var stemsSelected: [Stem] = []
     
     // takes in frame from global context
-    public init(system: System, pageView: PageView? = nil) {
+    public init(system: SystemLayer, pageView: PageView? = nil) {
         self.system = system
         self.pageView = pageView // need to make sure this gets set before UI happens
         super.init(frame: system.frame) // sketch?
@@ -82,8 +82,7 @@ public class SystemView: UIView {
         system.componentTypesShownByID = complex.componentTypesShownByID
         system.arrangeNodesWithComponentTypesPresent()
         pageView.systemsNeedReflowing()
-        
-        
+
         // do this within systemsNeedReflowing... up there
         // encapsulate: call from within pageView: pageView.setFramesOfAllSystemViews()
         for systemView in pageView.systemViews {
