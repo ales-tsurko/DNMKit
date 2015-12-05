@@ -673,14 +673,14 @@
 				TargetAttributes = {
 					071E9E231C00EC84008D1263 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = F8LCL8SXLX;
+						DevelopmentTeam = 525ACQ9A3N;
 					};
 					071E9E2C1C00EC84008D1263 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 					071E9E3F1C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = F8LCL8SXLX;
+						DevelopmentTeam = 525ACQ9A3N;
 					};
 					071E9E481C00EC96008D1263 = {
 						CreatedOnToolsVersion = 7.2;
