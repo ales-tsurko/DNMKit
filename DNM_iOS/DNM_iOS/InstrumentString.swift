@@ -9,7 +9,7 @@
 import QuartzCore
 import DNMModel
 
-public class InstrumentString: Instrument {
+public class InstrumentString: InstrumentView {
     
     // sounding pitch graph
     // fingered pitch graph

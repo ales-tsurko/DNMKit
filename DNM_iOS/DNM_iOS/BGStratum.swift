@@ -25,7 +25,7 @@ public class BGStratum: ViewNode, BuildPattern {
         get { if iIDsByPID.count == 1 { return iIDsByPID.first!.0 }; return nil }
     }
     
-    public var system: System? // temp
+    public var system: SystemLayer? // temp
     
     public var g: CGFloat = 12
     public var s: CGFloat = 1
@@ -50,6 +50,9 @@ public class BGStratum: ViewNode, BuildPattern {
     public var tbLigaturesAtDepth: [Int : [TBLigature]] = [:]
     public var augmentationDots: [AugmentationDot] = []
     
+    public var instrumentIDsByPerformerID: [String: [String]] { return getIIDsByPID() }
+
+    // deprecate
     // make verbose title at some point: instrumentsIDsByPerformerID
     public var iIDsByPID: [String: [String]] { get { return getIIDsByPID() } }
 

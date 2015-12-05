@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import DNMModel
 
 public class PageView: UIView {
     
-    public var page: Page!
-    public var performerView: PerformerView!
-    public var systemViews: [SystemView] = []
+    public var page: PageLayer!
+    public var scoreView: ScoreView!
+    public var systemViews: [SystemUIView] = []
     
-    public init(page: Page, systemViews: [SystemView], performerView: PerformerView) {
+    public init(page: PageLayer, systemViews: [SystemUIView], scoreView: ScoreView) {
         self.page = page
-        self.performerView = performerView
+        self.scoreView = scoreView
         self.systemViews = systemViews
 
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -29,7 +30,6 @@ public class PageView: UIView {
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     public func addSystemViews() {
-        
         clearSystemViews()
         for systemView in systemViews {
             systemView.pageView = self
@@ -43,6 +43,6 @@ public class PageView: UIView {
     
     public func systemsNeedReflowing() {
         clearSystemViews()
-        performerView.systemsNeedReflowing()
+        //scoreView.systemsNeedReflowing()
     }
 }

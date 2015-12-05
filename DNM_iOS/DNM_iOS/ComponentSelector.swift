@@ -64,7 +64,7 @@ public class ComponentSelector: UIView {
     
     public func stateHasChangedFromSender(sender: ButtonSwitchPanelWithMasterButtonSwitch) {
         
-        // HIDDEN NOT NECESSARY: done within System
+        // HIDDEN NOT NECESSARY: done within SystemLayer
         
         for (text, isOn) in sender.statesByText {
             // filter out master button
@@ -132,7 +132,7 @@ public class ComponentSelector: UIView {
             }
         }
         
-        //(target as? SystemView)?.stateHasChangedFromComponentSelector(self)
+        //(target as? SystemUIView)?.stateHasChangedFromComponentSelector(self)
     }
     
     

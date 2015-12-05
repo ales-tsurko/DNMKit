@@ -23,6 +23,9 @@ public struct DNMScoreModel: CustomStringConvertible {
     /// String representation of DNMScoreModel
     public var description: String { return getDescription() }
     
+    public var metadata: [String: String] = [:]
+    
+    // deprecate -- in metadata
     /// Title of Work
     public var title: String = ""
     
@@ -35,7 +38,7 @@ public struct DNMScoreModel: CustomStringConvertible {
     while making it still possible to call for this information by key identifiers.
     */
     public var instrumentIDsAndInstrumentTypesByPerformerID = OrderedDictionary<
-        String, OrderedDictionary<String, InstrumentType>
+        PerformerID, OrderedDictionary<InstrumentID, InstrumentType>
     >()
     
     /// All DurationNodes in the piece
@@ -54,10 +57,14 @@ public struct DNMScoreModel: CustomStringConvertible {
     
     private func getDescription() -> String {
         var description: String = ""
-        if title != "" { description += ": \(title)" }
+        //if title != "" { description += ": \(title)" }
+        description += "; metadata: \(metadata)"
         description += "; amountMeasures: \(measures.count)"
         description += "; amountDurationNodes: \(durationNodes.count)"
         description += "; IIDsAndInstrumentTypesByPID: \(instrumentIDsAndInstrumentTypesByPerformerID)"
         return description
     }
 }
+
+public typealias PerformerID = String
+public typealias InstrumentID = String

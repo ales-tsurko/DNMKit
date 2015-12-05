@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="rEu-04-G8C">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
@@ -10,11 +10,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="DNM_IDE" id="1Xt-HY-uBw">
+                            <menuItem title="ViewControllerTest" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="DNM_IDE" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="ViewControllerTest" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About DNM_IDE" id="5kV-Vb-QxS">
+                                        <menuItem title="About ViewControllerTest" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -28,7 +28,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide DNM_IDE" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide ViewControllerTest" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -46,7 +46,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit DNM_IDE" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit ViewControllerTest" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -65,7 +65,7 @@
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="wDE-mZ-vNG"/>
+                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="Jns-sY-pr2"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
@@ -89,13 +89,12 @@
                                         </menuItem>
                                         <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
-                                                <action selector="saveMenuItemSelected:" target="Voe-Tx-rLC" id="vNv-lq-D8k"/>
-                                                <binding destination="80D-Oo-dJU" name="value" keyPath="values.savePanel" id="1xA-if-dXE"/>
+                                                <action selector="saveMenuItemSelected:" target="Voe-Tx-rLC" id="9YW-Ge-xId"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
                                             <connections>
-                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
+                                                <action selector="saveAsMenuItemSelected:" target="Voe-Tx-rLC" id="EhI-ai-V13"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Revert to Saved" id="KaW-ft-85H">
@@ -105,7 +104,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                                        <menuItem title="Page Setup…" keyEquivalent="P" id="qIS-W8-SiK">
+                                        <menuItem title="PageLayer Setup…" keyEquivalent="P" id="qIS-W8-SiK">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="runPageLayout:" target="Ady-hI-5gd" id="Din-rz-gC5"/>
@@ -628,7 +627,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="DNM_IDE Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="ViewControllerTest Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -642,73 +641,166 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DNM_Text_Editor" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="DNM_Text_Editor" customModuleProvider="target">
+                    <connections>
+                        <outlet property="saveAsMenuItemSelected" destination="Bw7-FT-i3A" id="UBB-c4-l5V"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController representsSharedInstance="YES" id="80D-Oo-dJU"/>
             </objects>
-            <point key="canvasLocation" x="75.5" y="-111"/>
+            <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
-        <scene sceneID="e0O-sP-gtx">
+        <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="rEu-04-G8C" sceneMemberID="viewController">
-                    <window key="window" title="dnm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="d8d-bE-jhQ">
+                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="DNM Text Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <connections>
-                            <binding destination="rEu-04-G8C" name="representedFilename" keyPath="self.window" id="MJ2-FX-z98"/>
-                        </connections>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
-                        <segue destination="t8X-Ze-OFV" kind="relationship" relationship="window.shadowedContentViewController" id="Tlh-cj-7Lb"/>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
-                <customObject id="6ww-IC-N74" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55" y="360"/>
+            <point key="canvasLocation" x="75" y="250"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="yNq-eF-YZM">
+        <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="t8X-Ze-OFV" customClass="ViewController" customModule="DNM_Text_Editor" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="4XO-Gg-D4t">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="DNM_Text_Editor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="831" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="WkC-7i-1VY">
-                            <rect key="frame" x="1" y="1" width="448" height="298"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Bzz-Uo-tHd">
-                                    <rect key="frame" x="0.0" y="0.0" width="460" height="298"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy3-4S-aE9">
+                                <rect key="frame" x="0.0" y="20" width="831" height="250"/>
+                                <clipView key="contentView" id="ih5-q1-f13">
+                                    <rect key="frame" x="0.0" y="0.0" width="831" height="250"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="448" height="298"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="448" height="298"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="LBa-6m-Y5k">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="YBV-v6-lPg">
-                            <rect key="frame" x="433" y="1" width="16" height="298"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
+                                    <subviews>
+                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Ldp-FJ-N29">
+                                            <rect key="frame" x="0.0" y="0.0" width="831" height="250"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="831" height="250"/>
+                                            <size key="maxSize" width="835" height="10000000"/>
+                                            <color key="insertionPointColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="831" height="250"/>
+                                            <size key="maxSize" width="835" height="10000000"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.40819896106439563" green="0.86367582070707072" blue="0.37558494124135677" alpha="1" colorSpace="calibratedRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="RAD-6D-2Ms">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="eTs-Qq-KHZ">
+                                    <rect key="frame" x="815" y="0.0" width="16" height="250"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gEp-uP-wMS">
+                                <rect key="frame" x="786" y="0.0" width="41" height="23"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="offline" id="wM9-vA-a3v">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qcP-ac-kb8">
+                                <rect key="frame" x="7" y="-5" width="71" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="GG9-BE-evy"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="SIGN IN" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="Q0F-Fs-Gza">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="14" name="AvenirNext-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didPressSignInOrOutButton:" target="XfG-lQ-9wD" id="lUO-4Z-GcO"/>
+                                </connections>
+                            </button>
+                            <textField hidden="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="37O-eA-Po2">
+                                <rect key="frame" x="77" y="0.0" width="91" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="hJ4-tL-All"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="username" id="L2m-pw-AEw">
+                                    <font key="font" size="13" name="AvenirNext-Medium"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="elZ-Q1-VPE">
+                                <rect key="frame" x="286" y="-5" width="71" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="vWv-qD-Dy7"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="SIGN UP?" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="V6b-a2-Tc8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="14" name="AvenirNext-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didPressSignUpButton:" target="XfG-lQ-9wD" id="gAy-gr-Rx2"/>
+                                </connections>
+                            </button>
+                            <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="swl-7K-PkO">
+                                <rect key="frame" x="172" y="-3" width="100" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="DdX-Es-aFM"/>
+                                </constraints>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="password" usesSingleLineMode="YES" id="hsA-3b-yuu">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                                <connections>
+                                    <action selector="didPressEnterInPasswordField:" target="XfG-lQ-9wD" id="Les-xG-KBG"/>
+                                </connections>
+                            </secureTextField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="qcP-ac-kb8" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="7" id="1OI-f5-83l"/>
+                            <constraint firstItem="37O-eA-Po2" firstAttribute="baseline" secondItem="gEp-uP-wMS" secondAttribute="baseline" id="2EA-Fi-jfm"/>
+                            <constraint firstItem="elZ-Q1-VPE" firstAttribute="top" secondItem="qcP-ac-kb8" secondAttribute="top" id="2Ph-ys-Qa2"/>
+                            <constraint firstItem="Fy3-4S-aE9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="3mF-Lh-wah"/>
+                            <constraint firstAttribute="bottom" secondItem="Fy3-4S-aE9" secondAttribute="bottom" constant="20" symbolic="YES" id="7vf-e4-1h6"/>
+                            <constraint firstAttribute="trailing" secondItem="Fy3-4S-aE9" secondAttribute="trailing" id="DmW-B8-kTj"/>
+                            <constraint firstItem="37O-eA-Po2" firstAttribute="centerY" secondItem="qcP-ac-kb8" secondAttribute="centerY" constant="-0.5" id="FEo-qE-sc1"/>
+                            <constraint firstItem="qcP-ac-kb8" firstAttribute="baseline" secondItem="elZ-Q1-VPE" secondAttribute="baseline" id="N9T-qg-8Mg"/>
+                            <constraint firstAttribute="trailing" secondItem="gEp-uP-wMS" secondAttribute="trailing" constant="6" id="OLQ-s5-zBw"/>
+                            <constraint firstAttribute="bottom" secondItem="37O-eA-Po2" secondAttribute="bottom" id="aha-tC-RRZ"/>
+                            <constraint firstAttribute="bottom" secondItem="swl-7K-PkO" secondAttribute="bottom" constant="-3" id="bek-tG-siH"/>
+                            <constraint firstAttribute="bottom" secondItem="qcP-ac-kb8" secondAttribute="bottom" constant="-5" id="djl-Sv-HBS"/>
+                            <constraint firstItem="elZ-Q1-VPE" firstAttribute="leading" secondItem="swl-7K-PkO" secondAttribute="trailing" constant="16" id="oUH-Qt-bIE"/>
+                            <constraint firstItem="37O-eA-Po2" firstAttribute="leading" secondItem="qcP-ac-kb8" secondAttribute="trailing" constant="1" id="tA1-V4-5JC"/>
+                            <constraint firstItem="swl-7K-PkO" firstAttribute="leading" secondItem="37O-eA-Po2" secondAttribute="trailing" constant="8" symbolic="YES" id="ucs-Ms-g9K"/>
+                            <constraint firstItem="swl-7K-PkO" firstAttribute="top" secondItem="Fy3-4S-aE9" secondAttribute="bottom" constant="1" id="yd8-ul-8AA"/>
+                            <constraint firstItem="Fy3-4S-aE9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="zar-ep-78s"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="textView" destination="Bzz-Uo-tHd" id="y6F-IA-mPV"/>
+                        <outlet property="loginStatusLabel" destination="gEp-uP-wMS" id="U3S-u8-tSM"/>
+                        <outlet property="passwordField" destination="swl-7K-PkO" id="OYv-59-jjY"/>
+                        <outlet property="signInOrOutButton" destination="qcP-ac-kb8" id="qbr-ZU-66s"/>
+                        <outlet property="signInOrOutorUpButton" destination="qcP-ac-kb8" id="s0m-LD-Kiw"/>
+                        <outlet property="signUpButton" destination="elZ-Q1-VPE" id="7UF-Dr-SuQ"/>
+                        <outlet property="textView" destination="Ldp-FJ-N29" id="Y89-qq-ZYZ"/>
+                        <outlet property="usernameField" destination="37O-eA-Po2" id="KQZ-iY-Ucu"/>
                     </connections>
                 </viewController>
-                <customObject id="L6s-C7-ehY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="360"/>
+            <point key="canvasLocation" x="205.5" y="698"/>
         </scene>
     </scenes>
 </document>

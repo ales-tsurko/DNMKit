@@ -11,7 +11,7 @@ import Foundation
 /**
 Structure indicating the establishment of a Tempo
 */
-public struct TempoMarking {
+public struct TempoMarking: DurationSpanning {
     
     /// The beats-per-minute value of the Tempo being established
     public var value: Int
@@ -21,6 +21,10 @@ public struct TempoMarking {
     
     /// The Duration that this TempoMarking is offset from the beginning of the piece
     public var offsetDuration: Duration
+    
+    public var durationInterval: DurationInterval {
+        return DurationInterval(duration: DurationZero, startDuration: offsetDuration)
+    }
     
     /**
     Create a TempoMarking with the beats-per-minute value,

@@ -2,35 +2,50 @@
 
 [![Build Status](https://travis-ci.org/jsbean/DNMKit.svg)](https://travis-ci.org/jsbean/DNMKit)
 
-Work-in-progress.
+iPad based music notation renderer. Work-in-progress.
 
-iPad based music notation renderer.
+### Create a file
 
+Build and run **DNM Text Editor**. *If that doesn't work, file an issue.*
 
-#### Create a file
+To create an account (which will enable you to transfer scores to any device), create a username and password. This will create an account within [Parse](https://github.com/ParsePlatform).
 
-Use filename extension: `.dnm`
+You can work offline, saving files to your computer locally. Use filename extension: `.dnm`.
 
-Save anywhere in project (to be retrieved from `NSBundle.mainBundle()`)
+When you save a file (and are logged in), the score will be saved in the cloud, to be displayed on an iPad elsewhere.
 
-### Text Input Format
+---
 
-**Declare Performers** (humans doing things) with:    
-- `Performer identifier` (string, I've been using two uppercase letters)
-- `1...n` pairs of
-    - `Instrument identifier` (string, I've been using two lowercase letters)
-    - `InstrumentTypes` (note: these `InstrumentTypes` must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18).)
+### Author a score
 
+In the text file that you have just started with the **DNM Text Editor**, start by adding a title, then declaring the performers in the work.
 
-**Example**:
+####Add a title:
+```
+Title: This is my Title
+```
 
-Add a performer and their instruments: (Violinist who is just playing Violin)
+This is the title which will show up on the iPad ScoreSelector to be chosen from by the performer.
 
-```Swift
+N.B.: Richer metadata to be added over time (Composer, Dates, Ensembles, notes for Electronics, etc.).
+
+####Declare Performers
+
+Use the `P:` command, followed by an alphanumeric `String` to declare the `PerformerID` for a `Performer` (a human that does things). This `PerformerID` will be used within the text file to declare who is performing what musical information.
+
+For example, declare someone who will go by the ID `VN`.
+```
+P: VN
+```
+
+Then, declare the `Instruments` that are played by the declared `Performer` (e.g., a flutist may play their flute, and sing, while playing a kick drum, and controlling MaxMSP with a foot pedal). After the `PerformerID`, enter an `InstrumentID`, also an alphanumeric `String`, and the `InstrumentType` of this instrument (which must strictly match an item in this [list](https://github.com/jsbean/DNMKit/issues/18))
+
+For example, a violinist, who is just playing Violin.
+```
 P: VN vn Violin
 ```
 
-Add another performer: (Cellist who is just playing Violoncello)
+Add another performer: a cellist who is just playing Violoncello.
 
 ```Swift
 P: VN vn Violin
@@ -44,7 +59,11 @@ P: VN vn Violin
 P: VC vc Violoncello cc ContinuousController
 ```
 
-#### Start a piece
+You can add any number of `Instruments` to a `Performer's` arsenal, just keep listing the pairs of `InstrumentID` and `InstrumentType` as necessary.
+
+*Let me know if there is any clunkiness with the syntax highlighting.*
+
+####Start a piece
 
 `#` Add a Measure (you don't need to know the length, it gets calculated based on what's inside)
 
@@ -57,10 +76,9 @@ P: VC vc Violoncello cc ContinuousController
 
 `b s` Create a rhythmic container with the duration of Beats (`b`) and Subdivision value (`s`). Currently, only powers-of-two are allowed (`4, 8, 16, 32` etc...).
 
-**Example**: `3 8`: Three eighth notes, or a dotted quarter.
+For example, `3 8`: Three eighth notes, or a dotted quarter.
 
-
-To this point, we have only created a container of events, but we haven't actually create any events yet.
+At this point, we have only created a container of events, but we haven't actually create any events yet.
 
 ```Swift
 # // start measure
@@ -158,6 +176,18 @@ P: VC vc Violoncello
 ```
 
 <img src="/img/do_re_mi_plus_plus.png" height="275">
+
+---
+
+### Display the score on an iPad
+
+Build and run **DNM_iOS**. Requires iOS / iphonesimulator 9.1. *If that doesn't work, file an issue.*
+
+Sign in with the username and password you have set up (or create one).
+
+If you have saved a score, the scores should show up on the left once you sign in.
+
+Click on a score, it should load. Currently, it takes a long time to load, because everything is synchronous. That will be changed over time.
 
 ---
 

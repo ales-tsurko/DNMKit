@@ -28,10 +28,10 @@ class DurationNodeTests: XCTestCase {
         XCTAssert(durNode.duration == Duration(5,16))
     }
     
-    func testDurationSpan() {
+    func testDurationInterval() {
         let dn = DurationNode(duration: (9,16), offsetDuration: (2,8), sequence: [])
-        let ds = DurationSpan(duration: Duration(9,16), startDuration: Duration(2,8))
-        XCTAssert(dn.durationSpan == ds, "duration span wrong")
+        let di = DurationInterval(duration: Duration(9,16), startDuration: Duration(2,8))
+        XCTAssert(dn.durationInterval == di, "duration interval wrong")
     }
     
     func testSetDuration() {
